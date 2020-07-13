@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+  
+  <!-- Extra tests not related explicitly to a particular element -->
+
+  <x:scenario label="When transforming Five Interesting Things">
+    <x:context href="../resources/xml/fit.001.xml"/>
+    <x:expect label="expect it to produce the right results" href="../resources/expected/fit.001.html"/>
+  </x:scenario>
+
+</x:description>

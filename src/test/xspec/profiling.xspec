@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<x:scenario label="When converting profiling.001">
+   <x:context href="../resources/xml/profiling.001.xml"/>
+   <x:expect label="expect profiled HTML" href="../resources/expected/profiling.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting dynprof.001">
+   <x:context href="../resources/xml/dynprof.001.xml"/>
+   <x:expect label="expect dynamic profiling"
+             href="../resources/expected/dynprof.001.html"/>
+</x:scenario>
+
+</x:description>

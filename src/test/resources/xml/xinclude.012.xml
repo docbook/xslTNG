@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: xinclude.012</title>
+</info>
+
+<para xml:id="p">This is an article tests the XInclude extension. It’s unlikely
+to pass if that extension is not available.</para>
+
+<para>Text fallback:</para>
+
+<literallayout>---<xi:include href="./aint-no-such-file.txt" xpointer="char=77,82"
+ parse="text"><xi:fallback>Fallback</xi:fallback></xi:include>---</literallayout>
+
+<para>(The dashes are for reference; they are not in the XIncluded file.)</para>
+
+</article>

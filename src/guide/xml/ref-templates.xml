@@ -1,0 +1,748 @@
+<reference xmlns="http://docbook.org/ns/docbook"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="5.0"
+           xml:id="templates">
+<info>
+  <?db filename="templates.html"?>
+  <title>Template reference</title>
+</info>
+
+<refentry xml:id="t_biblioentry">
+<?db filename="t_biblioentry.html"?>
+<refmeta>
+<refentrytitle>t:biblioentry</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}biblioentry</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:biblioentry</refname>
+<refpurpose>Format a <tag>biblioentry</tag> element</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Unlike <tag>bibliomixed</tag>, where the author is expected to
+provide most of the formatting, <tag>biblioentry</tag> is a bag of
+metadata. On the one hand, this opens up the possibility of producing
+different bibliographic styles from the same entry. On the other hand, it
+greatly complicates formatting.</para>
+<para>The default <template>t:biblioentry</template> template uses a
+header template (see <xref linkend="header-templates"/>).</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_bottom-nav">
+<?db filename="t_bottom-nav.html"?>
+<refmeta>
+<refentrytitle>t:bottom-nav</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}bottom-nav</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:bottom-nav</refname>
+<refpurpose>Generate bottom-of-page navigation links</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template generates the bottom-of-page <tag>nav</tag> element. When
+chunking is performed, this should provide links between pages.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_chunk-cleanup">
+<?db filename="t_chunk-cleanup.html"?>
+<refmeta>
+<refentrytitle>t:chunk-cleanup</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}chunk-cleanup</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:chunk-cleanup</refname>
+<refpurpose>Cleanup the HTML markup for a DocBook document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode performs cleanup tasks on the HTML document that
+results from calling <template>t:process</template>. This process
+moves footnotes and annotations when necessary, generates navigation
+elements, etc.</para>
+<para>Most customizations can simply call <template>t:docbook</template>; you only need
+to call the <template>t:preprocess</template>, <template>t:process</template>,
+<template>t:postprocess</template> (or <template>t:chunk-cleanup</template> and
+<template>t:chunk-output</template>) if you need to perform very specialized
+cleanup tasks.
+</para></refsection>
+</refentry>
+
+<refentry xml:id="t_chunk-footnotes">
+<?db filename="t_chunk-footnotes.html"?>
+<refmeta>
+<refentrytitle>t:chunk-footnotes</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}chunk-footnotes</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:chunk-footnotes</refname>
+<refpurpose>Processes footnotes in a chunk</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When chunking is being performed (see <xref linkend="chunking"/>),
+all of the footnotes that should appear in a chunk are processed with this template.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_chunk-output">
+<?db filename="t_chunk-output.html"?>
+<refmeta>
+<refentrytitle>t:chunk-output</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}chunk-output</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:chunk-output</refname>
+<refpurpose>Generate chunked output for a DocBook document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode processes the <parameter>persistent-toc</parameter> if
+requested and generates individual documents for each chunk. Like the
+XPath <code>transform</code> function, this template returns a map.
+You must process the map to store the documents.</para>
+<para>Most customizations can simply call <template>t:docbook</template>; you only need
+to call the <template>t:preprocess</template>, <template>t:process</template>,
+<template>t:postprocess</template> (or <template>t:chunk-output</template> and
+<template>t:chunk-output</template>) if you need to perform very specialized
+cleanup tasks.
+</para></refsection>
+</refentry>
+
+<refentry xml:id="t_docbook">
+<?db filename="t_docbook.html"?>
+<refmeta>
+<refentrytitle>t:docbook</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}docbook</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:docbook</refname>
+<refpurpose>Process a DocBook document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode processes a DocBook document. It runs the <template>t:preprocess</template>
+template to normalize the source, processes the normalized source in the <mode>m:docbook</mode> mode
+with the <template>t:process</template> template, and runs the <template>t:postprocess</template>
+template to clean up the HTML and generate the chunks (if necessary).
+</para></refsection>
+</refentry>
+
+<refentry xml:id="t_generate-index">
+<?db filename="t_generate-index.html"?>
+<refmeta>
+<refentrytitle>t:generate-index</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}generate-index</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:generate-index</refname>
+<refpurpose>Generate a back-of-the-book style index</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template is called when an empty <tag>index</tag> tag is found
+the document and automatic index generation is enabled. Automatic index
+generation is enabled if
+either the <parameter>generate-index</parameter> <glossterm>is true</glossterm>
+or a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with an
+<literal>autoindex</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>autoindex pseudo-attribute</secondary>
+</indexterm> pseudo-attribute is true. If the <literal>autoindex</literal> pseudo-attribute
+is explicitly false, automatic index generation is suppressed for the index in which
+it appears.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_html-body-script">
+<?db filename="t_html-body-script.html"?>
+<refmeta>
+<refentrytitle>t:html-body-script</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}html-body-script</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:html-body-script</refname>
+<refpurpose>Add script elements to the end of a document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>One way to assure that JavaScript will only be invoked by the user agent
+after the DOM tree has been constructed is to put the script elements for that
+code at the end of the file.</para>
+<para>Any elements constructed in the <template>t:html-body-script</template>
+template will be added to the end of the HTML BODY.
+The built-in implementation does nothing; this template exists as an extensibility
+point. See also <template>t:html-head-script</template>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_html-head">
+<?db filename="t_html-head.html"?>
+<refmeta>
+<refentrytitle>t:html-head</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}html-head</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:html-head</refname>
+<refpurpose>Add elements to the head of a document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Any elements constructed in the <template>t:html-head</template>
+template will be added to the HTML HEAD element of the result.
+The built-in implementation does nothing; this template exists as an extensibility
+point.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_html-head-script">
+<?db filename="t_html-head-script.html"?>
+<refmeta>
+<refentrytitle>t:html-head-script</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}html-head-script</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:html-head-script</refname>
+<refpurpose>Add script elements to the head of a document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Any elements constructed in the <template>t:html-head-script</template>
+template will be added to the HTML HEAD element of the result.
+The built-in implementation does nothing; this template exists as an extensibility
+point. See also <template>t:html-body-script</template>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_imagemap">
+<?db filename="t_imagemap.html"?>
+<refmeta>
+<refentrytitle>t:imagemap</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}imagemap</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:imagemap</refname>
+<refpurpose>Process image map areas in an <tag>imageobjectco</tag></refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If callouts are provided for an image with <tag>imageobjectco</tag>,
+the <template>t:imagemap</template> template is called to transform the areas into
+an HTML image map.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_index-zone-reference">
+<?db filename="t_index-zone-reference.html"?>
+<refmeta>
+<refentrytitle>t:index-zone-reference</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}index-zone-reference</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:index-zone-reference</refname>
+<refpurpose>Process index zone references</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template is called to generate index references for terms that have
+a <att>zone</att> attribute. It is only called when generating an index.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_inline">
+<?db filename="t_inline.html"?>
+<refmeta>
+<refentrytitle>t:inline</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}inline</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:inline</refname>
+<refpurpose>Process an inline element</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>All of the inline elements are processed by <template>t:inline</template>.
+This provides a common place to handle the fact that any of them might be a link.
+Several parameters exist to handle variations in presentation:</para>
+
+<variablelist>
+<varlistentry><term><code>namemap</code></term>
+<listitem>
+<para>Maps the element to a particular HTML element. Defaults to
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>class</code></term>
+<listitem>
+<para>A list of tokens that should be added to the element’s <att>class</att> attribute.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>local-name-as-class</code></term>
+<listitem>
+<para>If this is true, the local name of the DocBook element being processed will
+be added to the classes.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>content</code></term>
+<listitem>
+<para>The element content. By default, this is obtained by applying XSLT templates to
+the element’s content.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>extra-attributes</code></term>
+<listitem>
+<para>Extra attributes to be added to the element.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_person-name">
+<?db filename="t_person-name.html"?>
+<refmeta>
+<refentrytitle>t:person-name</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:person-name</refname>
+<refpurpose>Formats a personal name</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template formats a personal name according to the specified style.
+This template must only be called when the current context item is a
+<tag>personname</tag>. The <tag>personname</tag> element can be used
+in two different ways, it can just contain the name:</para>
+
+<programlisting language="xml" linenumbering="unnumbered"
+>&lt;personname>Norman Walsh&lt;/personname></programlisting>
+
+<para>or it can contain the name with markup:</para>
+
+<programlisting language="xml" linenumbering="unnumbered"
+>&lt;personname>&lt;givenname>Norman&lt;/givenname>
+&lt;surname>Walsh&lt;/surname>&lt;/personname></programlisting>
+
+<para>How the name is formatted depends on which form of markup is used
+and which style is selected. Several styles are supported:</para>
+
+<orderedlist>
+<listitem>
+<para>If the name contains no markup, it is simply formatted as is.
+</para>
+</listitem>
+<listitem>
+<para>If the style is “<literal>FAMILY-given</literal>”, it is formatted
+with <template>t:person-name-family-given</template> and generally produces
+the family name in upper case followed by the given name. For example: “WALSH Norman”.
+</para>
+</listitem>
+<listitem>
+<para>If the style is “<literal>last-first</literal>”, it is formatted
+with <template>t:person-name-last-first</template> and generally produces
+the family name followed by the given name separated by a comma.
+For example: “Walsh, Norman”.
+</para>
+</listitem>
+<listitem>
+<para>If the style is “<literal>first-last</literal>”, it is formatted
+with <template>t:person-name-first-last</template> and generally produces
+the given name followed by the family name. For example: “Norman Walsh”.
+</para>
+</listitem>
+<listitem>
+<para>Any other value raises <errorcode>dbe:INVALID-NAME-STYLE</errorcode>.
+</para>
+</listitem>
+</orderedlist>
+
+<note>
+<title>Given names</title>
+<para>Historically, DocBook used <tag>firstname</tag> for the given name of a person.
+In DocBook 5.1, the <tag>givenname</tag> element was introduced as an
+alternative. The stylesheets treat them identically.</para>
+</note>
+
+<para>The stylesheets attempt to determine what style to use for each
+<tag>personname</tag>:</para>
+
+<orderedlist>
+<listitem>
+<para>First, by looking at that the <att>role</att> attribute
+on that element. If any of styles from the
+<varname>v:personal-name-styles</varname> list appear in the role,
+that style will be selected. (If more than one style appears, the
+results are undefined.)</para>
+</listitem>
+<listitem>
+<para>If the <tag>personname</tag> doesn’t identify a style, and if it’s a child of
+<tag>author</tag>, <tag>editor</tag>, or <tag>othercredit</tag>, the <att>role</att>
+attirbute of its parent is inspected.</para>
+</listitem>
+<listitem>
+<para>If a style still hasn’t been selected and the in-context language
+localization file contains a “<literal>personname</literal>” key, the value of that
+key is taken as the style.</para>
+</listitem>
+<listitem>
+<para>Failing all those options, the <parameter>default-personal-name-style</parameter>
+is selected.</para>
+</listitem>
+</orderedlist>
+
+<para>Personal names are notoriously complicated (see
+<biblioref linkend="falsehoods-about-names"/>). DocBook includes several tags
+for identifying parts of names:</para>
+
+<variablelist>
+<varlistentry><term><tag>firstname</tag> or <tag>givenname</tag></term>
+<listitem>
+<para>for a given name,</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><tag>surname</tag></term>
+<listitem>
+<para>for a family name,</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><tag>lineage</tag></term>
+<listitem>
+<para>for lineage (such as “Jr” or “III”),</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><tag>honorific</tag></term>
+<listitem>
+<para>for an honorific title (such as “Dr” or “Ms”), and</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><tag>othername</tag></term>
+<listitem>
+<para>for everything else.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>In all likelihood, if your document contains a variety of personal names,
+you will need to use roles to disambiguate special cases and you will have to
+provide alternate or additional templates to format them.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="t_person-name-family-given">
+<?db filename="t_person-name-family-given.html"?>
+<refmeta>
+<refentrytitle>t:person-name-family-given</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-family-given</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:person-name-family-given</refname>
+<refpurpose>Formats a personal name in the “FAMILY-given” style</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The “<literal>FAMILY-given</literal>” style formats a personal
+name as the family name (<tag>surname</tag>) in upper-case, followed
+by the first given name (if there is one), followed by the text
+“<literal>[FAMILY given]</literal>”. See <template>t:person-name</template>.</para>
+
+<para><xref linkend="ex-family-given"/> shows an example of a personal
+name to be formatted with the “<literal>FAMILY-given</literal>” style.</para>
+
+<example xml:id="ex-family-given">
+<title>The FAMILY-given name style</title>
+<?guide-example fig-family-given?>
+</example>
+
+<para>That would be formatted as:</para>
+
+<informalfigure xml:id="fig-family-given">
+<para>The author is
+<personname role="FAMILY-given">
+<givenname>Norman</givenname><surname>Walsh</surname>
+<othername>David</othername>
+</personname>.</para>
+</informalfigure>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="t_person-name-first-last">
+<?db filename="t_person-name-first-last.html"?>
+<refmeta>
+<refentrytitle>t:person-name-first-last</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-first-last</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:person-name-first-last</refname>
+<refpurpose>Formats a personal name in the “first-last” style</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The “<literal>first-last</literal>” style formats a personal name
+as: the first <tag>honorific</tag>, followed by
+the given name, followed possibly by the “middle name”, followed by the
+<tag>surname</tag>, followed by the <tag>lineage</tag>.
+See <template>t:person-name</template>.
+</para>
+
+<para>If an <tag>othername</tag> is provided and if
+<parameter>othername-in-middle</parameter> is true, then the first
+<tag>othername</tag> will be treated as a “middle name” and presented
+between the given and family names.</para>
+
+<para><xref linkend="ex-first-last"/> shows an example of a personal
+name to be formatted with the “<literal>first-last</literal>” style.</para>
+
+<example xml:id="ex-first-last">
+<title>The first-last name style</title>
+<?guide-example fig-first-last?>
+</example>
+
+<para>That would be formatted as:</para>
+
+<informalfigure xml:id="fig-first-last">
+<para>The author is
+<personname role="first-last">
+<givenname>Norman</givenname><surname>Walsh</surname>
+<othername>David</othername>
+</personname>.</para>
+</informalfigure>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="t_person-name-last-first">
+<?db filename="t_person-name-last-first.html"?>
+<refmeta>
+<refentrytitle>t:person-name-last-first</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-last-first</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:person-name-last-first</refname>
+<refpurpose>Formats a personal name in the “last-first” style</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The “<literal>last-first</literal>” style formats a personal
+name as the family name (<tag>surname</tag>) followed
+by the first given name (if there is one). If both a family name and a given name
+are present, they are separated by a comma. See <template>t:person-name</template>.</para>
+
+<para><xref linkend="ex-last-first"/> shows an example of a personal
+name to be formatted with the “<literal>last-first</literal>” style.</para>
+
+<example xml:id="ex-last-first">
+<title>The last-first name style</title>
+<?guide-example fig-last-first?>
+</example>
+
+<para>That would be formatted as:</para>
+
+<informalfigure xml:id="fig-last-first">
+<para>The author is
+<personname role="last-first">
+<givenname>Norman</givenname><surname>Walsh</surname>
+<othername>David</othername>
+</personname>.</para>
+</informalfigure>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_person-name-list">
+<?db filename="t_person-name-list.html"?>
+<refmeta>
+<refentrytitle>t:person-name-list</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-list</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:person-name-list</refname>
+<refpurpose>Formats a sequence of personal names</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Formats a sequence of names:</para>
+<itemizedlist>
+<listitem>
+<para>If the sequence consists of a single name, it is formatted.
+</para>
+</listitem>
+<listitem>
+<para>If the sequence consists of exactly two names, they are
+formatted with “and” between them where “and” is taken from the
+in-scope language localization file. It is the item with the key
+“<literal>author-sep2</literal>”.</para>
+</listitem>
+<listitem>
+<para>If the sequence consists of more than two names, all but the
+last are separated by “, “ (the localization item with the key
+“<literal>author-sep</literal>”). The last is separated by “, and”
+(the localization item with the key “<literal>author-seplast</literal>”).
+</para>
+</listitem>
+</itemizedlist>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_preprocess">
+<?db filename="t_preprocess.html"?>
+<refmeta>
+<refentrytitle>t:preprocess</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}preprocess</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:preprocess</refname>
+<refpurpose>Prepare a DocBook document for processing</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>A lot of variation is possible in DocBook documents. In
+addition, the stylesheets have features that require combining several
+documents together (see
+<parameter>bibliography-collection</parameter>, for example).</para>
+<para>The <template>t:preprocess</template> template runs a pipeline of transformations
+that normalize the sources. This normalized source has much less variation which simplifies
+the templates used for main processing.</para>
+<para>Most customizations can simply call <template>t:docbook</template>; you only need
+to call the <template>t:preprocess</template>, <template>t:process</template>,
+<template>t:postprocess</template> if you need to perform very specialized
+cleanup tasks.
+</para></refsection>
+</refentry>
+
+<refentry xml:id="t_process">
+<?db filename="t_process.html"?>
+<refmeta>
+<refentrytitle>t:process</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}process</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:process</refname>
+<refpurpose>Process a DocBook document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode processes a <emphasis>normalized</emphasis> document.
+You must call <template>t:preprocess</template> before calling <template>t:process</template>
+or you will get erroneous results.</para>
+<para>Most customizations can simply call <template>t:docbook</template>; you only need
+to call the <template>t:preprocess</template>, <template>t:process</template>,
+<template>t:postprocess</template> if you need to perform very specialized
+cleanup tasks.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_postprocess">
+<?db filename="t_postprocess.html"?>
+<refmeta>
+<refentrytitle>t:postprocess</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}postprocess</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:postprocess</refname>
+<refpurpose>Postprocess a DocBook document</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode performs cleanup tasks on the HTML document that
+results from calling <template>t:process</template> by calling
+<template>t:chunk-cleanup</template> and <tag>t:chunk-output</tag>.
+This template returns a map.</para>
+<para>Most customizations can simply call <template>t:docbook</template>; you only need
+to call the <template>t:preprocess</template>, <template>t:process</template>,
+<template>t:postprocess</template> if you need to perform very specialized
+cleanup tasks.
+</para></refsection>
+</refentry>
+
+<refentry xml:id="t_table-footnotes">
+<?db filename="t_table-footnotes.html"?>
+<refmeta>
+<refentrytitle>t:table-footnotes</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}table-footnotes</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:table-footnotes</refname>
+<refpurpose>Process table footnotes</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <template>t:table-footnotes</template> template is called
+to process footnotes at the bottom of a table.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_top-nav">
+<?db filename="t_top-nav.html"?>
+<refmeta>
+<refentrytitle>t:top-nav</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}top-nav</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:top-nav</refname>
+<refpurpose>Generate top-of-page navigation links</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template generates the top-of-page <tag>nav</tag> element. When
+chunking is performed, this should provide links between pages.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_xlink">
+<?db filename="t_xlink.html"?>
+<refmeta>
+<refentrytitle>t:xlink</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}xlink</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:xlink</refname>
+<refpurpose>Supports hypertext linking</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>In DocBook, most elements can be links. The
+<template>t:xlink</template> template is called for each element that might
+be participating in a link. This includes both simple links (any inline
+element with an <att>xlink:href</att> attribute) and extended links.
+</para>
+</refsection>
+</refentry>
+
+</reference>

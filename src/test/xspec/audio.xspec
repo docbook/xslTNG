@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     audioobject audiodata
+-->
+
+<x:scenario label="When converting audioobject.001">
+   <x:context href="../resources/xml/audioobject.001.xml"/>
+   <x:expect label="expect the player to be rendered" href="../resources/expected/audioobject.001.html"/>
+</x:scenario>
+
+</x:description>

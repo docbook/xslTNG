@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: formalgroup.002</title>
+
+<chapter>
+<title>Testing formal group enumeration</title>
+
+<section>
+<title>With inherited numeration</title>
+
+<formalgroup pgwide="1">
+<title>First and second</title>
+
+<table>
+<title>First table</title>
+<tgroup cols="3">
+<tbody>
+<row><entry>A1</entry><entry>A2</entry><entry>A3</entry></row>
+<row><entry>B1</entry><entry>B2</entry><entry>B3</entry></row>
+<row><entry>C1</entry><entry>C2</entry><entry>C3</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+<table>
+<title>Second table</title>
+<tgroup cols="3">
+<tbody>
+<row><entry>A1</entry><entry>B1</entry><entry>C1</entry></row>
+<row><entry>A2</entry><entry>B2</entry><entry>C2</entry></row>
+<row><entry>A3</entry><entry>B3</entry><entry>C3</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+</formalgroup>
+
+<para>This group isn’t “page wide”.</para>
+
+<formalgroup>
+<title>Second and first</title>
+
+<table>
+<title>Second table</title>
+<tgroup cols="3">
+<tbody>
+<row><entry>A1</entry><entry>B1</entry><entry>C1</entry></row>
+<row><entry>A2</entry><entry>B2</entry><entry>C2</entry></row>
+<row><entry>A3</entry><entry>B3</entry><entry>C3</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+<table>
+<title>First table</title>
+<tgroup cols="3">
+<tbody>
+<row><entry>A1</entry><entry>A2</entry><entry>A3</entry></row>
+<row><entry>B1</entry><entry>B2</entry><entry>B3</entry></row>
+<row><entry>C1</entry><entry>C2</entry><entry>C3</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+</formalgroup>
+
+</section>
+</chapter>
+</book>

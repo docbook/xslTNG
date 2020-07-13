@@ -1,0 +1,2052 @@
+<reference xmlns="http://docbook.org/ns/docbook"
+	   xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="5.0"
+           xml:id="functions">
+<info>
+<?db filename="functions.html"?>
+<title>Function reference</title>
+</info>
+
+<refentry xml:id="f_absolute-length">
+<?db filename="f_absolute-length.html"?>
+<refmeta>
+<refentrytitle>f:absolute-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}absolute-length#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:absolute-length</refname>
+<refpurpose>Returns the absolute length of a unit of measurement</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>For a given unit of measurement, returns the absolute length in terms
+of pixels. For a discussion of units, see <xref linkend="units"/>.
+</para>
+<para>See also
+<varname>pixels-per-inch</varname>,
+<varname>default-length-magnitude</varname>, and
+<varname>default-length-unit</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_annotation-style">
+<?db filename="f_annotation-style.html"?>
+<refmeta>
+<refentrytitle>f:annotation-style</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}annotation-style#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:annotation-style</refname>
+<refpurpose>Returns the annotation style for this document</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The default annotation style is defined by the
+<parameter>annotations</parameter> parameter. An individual document may
+override that style by specifying a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>annotations</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>annotations pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the <tag>info</tag> element at the
+beginning of the document.</para>
+<para>Annotation styles cannot vary across a single document.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_attributes">
+<?db filename="f_attributes.html"?>
+<refmeta>
+<refentrytitle>f:attributes</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}attributes#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}attributes#4</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:attributes</refname>
+<refpurpose>Returns the attribute that apply to an output element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Most output elements have attributes: any <att>xml:id</att>
+attributes in the source are reflected in the output as
+<code>id</code> attributes, most elements get a <code>class</code>
+attribute, etc. The <function>f:attributes</function> function is called to determine
+what those attributes should be.</para>
+<para>In practice, the way this usually works is the element is processed in the
+<mode>m:attributes</mode> mode and that template calls <function>f:attributes</function>
+to generate the actual attribute nodes.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_cals-colsep">
+<?db filename="f_cals-colsep.html"?>
+<refmeta>
+<refentrytitle>f:cals-colsep</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}cals-colsep#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:cals-colsep</refname>
+<refpurpose>Returns the “colsep” value associated with a CALS table cell</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The column separator, or “colsep”, associated with a CALS table cell
+depends on a variety of factors: <tag>colspec</tag>, and <tag>spanspec</tag>
+elements as well as the attributes on the cell itself and its ancestors.</para>
+<para>This function returns the value that applies to the specified cell.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_cals-rowsep">
+<?db filename="f_cals-rowsep.html"?>
+<refmeta>
+<refentrytitle>f:cals-rowsep</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}cals-rowsep#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:cals-rowsep</refname>
+<refpurpose>Returns the “rowsep” value associated with a CALS table cell</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The row separator, or “rowsep”, associated with a CALS table cell
+depends on a variety of factors: <tag>colspec</tag>, and <tag>spanspec</tag>
+elements as well as the attributes on the cell itself and its ancestors.</para>
+<para>This function returns the value that applies to the specified cell.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_check-gentext">
+<?db filename="f_check-gentext.html"?>
+<refmeta>
+<refentrytitle>f:check-gentext</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}check-gentext#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:check-gentext</refname>
+<refpurpose>Returns generated text</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Like <function>f:gentext</function>, this function returns the
+generated text appropriate for its arguments. However, if there is no
+appropriate generated text, this function returns an empty sequence
+<emphasis>without</emphasis> generating any warning messages.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_chunk">
+<?db filename="f_chunk.html"?>
+<refmeta>
+<refentrytitle>f:chunk</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}chunk#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:chunk</refname>
+<refpurpose>Returns chunking attributes</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the
+<att>db-chunk</att> and perhaps other chunking-related attributes
+for the given node. </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_chunk-filename">
+<?db filename="f_chunk-filename.html"?>
+<refmeta>
+<refentrytitle>f:chunk-filename</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}chunk-filename#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:chunk-filename</refname>
+<refpurpose>Returns the filename to use for a particular chunk</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When chunking, see <xref linkend="chunking"/>, this function is
+called to determine the filename for a chunk. The default implementation considers
+relevant <tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instructions
+(<literal>filename</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>annotations pseudo-attribute</secondary>
+</indexterm>,
+<literal>href</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>annotations pseudo-attribute</secondary>
+</indexterm>, and
+<literal>basename</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>annotations pseudo-attribute</secondary>
+</indexterm> pseudo-attributes) as well as the generated ID of the element.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_chunk-title">
+<?db filename="f_chunk-title.html"?>
+<refmeta>
+<refentrytitle>f:chunk-title</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}chunk-title#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:chunk-title</refname>
+<refpurpose>Returns the title of a chunk</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When the title of a neighboring chunk is required (for header or
+footer navigation, for example), this function can be used to obtain
+the title of that chunk.</para>
+<para>This function must return the HTML-formatted title, not the DocBook title.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_css-length">
+<?db filename="f_css-length.html"?>
+<refmeta>
+<refentrytitle>f:css-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}css-length#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:css-length</refname>
+<refpurpose>Returns a length in the format of a CSS property</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the CSS property specified with the corresponding length, if the length
+exists. Returns the empty sequence otherwise.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_css-property">
+<?db filename="f_css-property.html"?>
+<refmeta>
+<refentrytitle>f:css-property</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}css-property#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:css-property</refname>
+<refpurpose>Returns a CSS property for a given value</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the specified value exists, a string formatted as a CSS
+property is returned. If the value doesn’t exist, an empty sequence is
+returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_date-format">
+<?db filename="f_date-format.html"?>
+<refmeta>
+<refentrytitle>f:date-format</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}date-format#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:date-format</refname>
+<refpurpose>Returns the format string for a date</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Dates may be stored in a variety of formats and the <tag>pubdate</tag>
+element even allows inline markup. The <function>f:date-format</function> function
+determines how a date will be formatted:</para>
+<itemizedlist>
+<listitem>
+<para>If the date contains embedded markup, the special value
+“<literal>apply-templates</literal>” is returned to indicate that string formatting
+isn’t appropriate.</para>
+</listitem>
+<listitem>
+<para>If the date conforms to an <biblioref linkend="iso8601"/> date, the
+<parameter>date-date-format</parameter> string is returned.</para>
+</listitem>
+<listitem>
+<para>If the date conforms to an <biblioref linkend="iso8601"/> dateTime, the
+<parameter>date-dateTime-format</parameter> string is returned.</para>
+</listitem>
+<listitem>
+<para>If the date does not conform to either of those date formats,
+“<literal>apply-templates</literal>” is returned.</para>
+</listitem>
+</itemizedlist>
+
+<para>If the date conforms to a date or dateTime, the author may override
+the format string by providing a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>date-format</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>date-format pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.</para>
+
+<para><xref linkend="ex-date-format"/> shows an example of
+several dates that may be formatted in more familiar forms.</para>
+
+<example xml:id="ex-date-format">
+<title>Several dates in ISO 8601 formats</title>
+<?guide-example fig-date-format?>
+</example>
+
+<para>With default formats, these are formatted as shown:</para>
+
+<informalfigure xml:id="fig-date-format">
+<para>The Unix epoch begins at
+<date>1970-01-01T00:00:00Z</date>.
+Grace Hopper was born on <date>1906-12-09</date>.
+That was a <date><?db date-format="[F]"?>1906-12-09</date>.
+I was born on a <date>Friday</date>.</para>
+</informalfigure>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="f_empty-length">
+<?db filename="f_empty-length.html"?>
+<refmeta>
+<refentrytitle>f:empty-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}empty-length#0</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:empty-length</refname>
+<refpurpose>Returns a map that represents an empty length</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Lengths are compound objects. Lengths consist of
+a magnitude (a number) and a unit: 3 inches, for example, or 11.9
+<phrase xml:id="barleycorn">barleycorns</phrase> in the case of absolute
+lengths. For relative lengths, the unit is something relative like percent.</para>
+<para>These are represented as maps internally and <function>f:empty-length</function>
+returns a length with no magnitude or units.
+</para>
+<annotation role="wide tall" condition="$annotations=javascript" annotates="barleycorn">
+<para>Yes, that’s a real unit. It’s equal to ⅓ of an inch. I’ll leave
+it <link xlink:href="https://en.wikipedia.org/wiki/Barleycorn_(unit)">to
+Wikipedia</link> to explain the details. Just looking at the chart of
+imperial units makes me want to add them all!</para>
+<mediaobject>
+<alt>English imperial lengths</alt>
+<imageobject>
+<imagedata fileref="https://upload.wikimedia.org/wikipedia/commons/9/9e/English_Length_Units_Graph.svg"/>
+</imageobject>
+<textobject>
+<para>A graph showing the derivations of English imperial measurements: 12 inches
+to the foot, 3 feet to the yard, etc.</para>
+</textobject>
+</mediaobject>
+<para>Image credit: 42CrMo4, Christoph Päper</para>
+</annotation>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_equal-lengths">
+<?db filename="f_equal-lengths.html"?>
+<refmeta>
+<refentrytitle>f:equal-lengths</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}equal-lengths#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:equal-lengths</refname>
+<refpurpose>Returns true if two lengths are equal</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Lengths (see <xref linkend="units"/>) are stored in maps and so are not
+directly comparable. This function returns true if two lengths are equal.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_generate-id">
+<?db filename="f_generate-id.html"?>
+<refmeta>
+<refentrytitle>f:generate-id</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}generate-id#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:generate-id</refname>
+<refpurpose>Generate a unique identifier for an element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns a unique ID for an element. The ID is
+generated from the names of the ancestors and preceding siblings of
+the element. This value will be consistent across different
+transformations as long as the ancestors and preceding siblings remain
+unchanged.</para>
+<para>If there’s an element with a <att>xml:id</att> attribute among
+the ancestors, the unique identifier is rooted at that element, rather
+than traversing all the way to the root of the document..</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_gentext">
+<?db filename="f_gentext.html"?>
+<refmeta>
+<refentrytitle>f:gentext</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:gentext</refname>
+<refpurpose>Returns generated text</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the generated text associated with the specified key in
+the specified context for the specified node. If key is not provided,
+the element name of the node is used.</para>
+<para>For example, if the <function>f:language</function> of the
+<code>$node</code> is English, then in the “title” context, the
+generated text for the key “tableofcontents” is “Table of Contents”.
+If the language is French, then the generated text is
+“Table des matières”.</para>
+<para>The contexts and the keys are defined in the locale files.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_gentext-letters">
+<?db filename="f_gentext-letters.html"?>
+<refmeta>
+<refentrytitle>f:gentext-letters</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext-letters#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:gentext-letters</refname>
+<refpurpose>Returns the letters for the in-scope language</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function works calls <function>f:language</function> on the specified
+node and then calls <function>f:gentext-letters-for-language</function> with that
+language.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_gentext-letters-for-language">
+<?db filename="f_gentext-letters-for-language.html"?>
+<refmeta>
+<refentrytitle>f:gentext-letters-for-language</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext-letters-for-language#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:gentext-letters-for-language</refname>
+<refpurpose>Returns the letters for a language</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns a language-specific list of letters. These are used, for example,
+to construct the divisions in an index.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_highlight-verbatim">
+<?db filename="f_highlight-verbatim.html"?>
+<refmeta>
+<refentrytitle>f:highlight-verbatim</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}highlight-verbatim#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:highlight-verbatim</refname>
+<refpurpose>Syntax highlight verbatim element?</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns true if the specified verbatim environment should have
+syntax highlighting applied to it. This depends on the
+<att>language</att> specified on the environment and the
+<parameter>verbatim-syntax-highlight-languages</parameter> parameter.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_href">
+<?db filename="f_href.html"?>
+<refmeta>
+<refentrytitle>f:href</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}href#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:href</refname>
+<refpurpose>Returns the href link to a node</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function generates a value for an HTML <code>href</code> attribute
+at the position of the context that will link to the node.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_id">
+<?db filename="f_id.html"?>
+<refmeta>
+<refentrytitle>f:id</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}id#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:id</refname>
+<refpurpose>Returns an ID for the element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the ID of the element. If the element has
+an <att>xml:id</att> attribute, the value of that attribute is returned.
+Otherwise, the function constructs a unique ID value for the element.</para>
+<para>The simplest way to construct a unique ID is with the <function>f:generate-id</function>
+function. However, those values are only unique within the context of a single transformation
+and tend to vary over time. This can break anchors used in published documents and leads
+to spurious differences between documents.</para>
+<para>The stylesheets generate their own unique IDs with <function>f:generate-id</function>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_intra-number-separator">
+<?db filename="f_intra-number-separator.html"?>
+<refmeta>
+<refentrytitle>f:intra-number-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}intra-number-separator#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:intra-number-separator</refname>
+<refpurpose>Return the intra-number separator</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a compound number appears in a title, this function is used to obtain
+the intra number separator. The most common separator is “.” which results in numbers
+such as “Section 3.4”. If the function returned “*”, the section title would
+be rendered as “Section 3*4”.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_is-empty-length">
+<?db filename="f_is-empty-length.html"?>
+<refmeta>
+<refentrytitle>f:is-empty-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}is-empty-length#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:is-empty-length</refname>
+<refpurpose>Tests if a length is empty</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns true if the length is empty.
+For a discussion of units and lengths, see <xref linkend="units"/>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_is-true">
+<?db filename="f_is-true.html"?>
+<refmeta>
+<refentrytitle>f:is-true</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}is-true#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:is-true</refname>
+<refpurpose>Determines if a given value represents “true”</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>There are several conventions for indicating “true” or “false”.
+XSLT uses the words “yes” and “no” in many places. The XML Schema data
+type for <type>xs:boolean</type> uses “true” and “false” but also “1”
+and “0”.</para>
+<para>The <function>f:is-true</function> function returns
+<code>true()</code> for any of “<code>true()</code>”, “yes”, “true”,
+or a value that can be cast to an integer if that integer is not
+zero. It returns
+<code>false()</code>
+for any of “<code>false()</code>”, “no”, “false”, a value that can be
+cast to an integer that is zero, or the empty sequence.</para>
+<para>It reports an error for any other value and returns “<code>true()</code>”.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_l10n-language">
+<?db filename="f_l10n-language.html"?>
+<refmeta>
+<refentrytitle>f:l10n-language</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-language#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:l10n-language</refname>
+<refpurpose>Returns the best matching localization language</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the localization language that best
+matches the language of the <code>$target</code> node. The default language
+will be returned if there is no localization available for that language.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_label-separator">
+<?db filename="f_label-separator.html"?>
+<refmeta>
+<refentrytitle>f:label-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}label-separator#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:label-separator</refname>
+<refpurpose>Returns the label separator</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The label separator separates a label from the number or title that follows it.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_language">
+<?db filename="f_language.html"?>
+<refmeta>
+<refentrytitle>f:language</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}language#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:language</refname>
+<refpurpose>Returns the language associated with an element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the value of the nearest in-scope <att>xml:lang</att> attribute
+or <parameter>default-language</parameter> if no such attribute exists.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_length-string">
+<?db filename="f_length-string.html"?>
+<refmeta>
+<refentrytitle>f:length-string</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}length-string#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:length-string</refname>
+<refpurpose>Returns the string representation of a length</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>For a given length (see <xref linkend="units"/>), returns the relative
+or absolute length formatted as a string. Relative lengths are formatted
+as the length followed by a literal “<literal>*</literal>” (e.g., “3*”). Absolute lengths
+are formatted as the length followed by the unit (e.g., “2.54cm”).
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_length-units">
+<?db filename="f_length-units.html"?>
+<refmeta>
+<refentrytitle>f:length-units</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}length-units#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:length-units</refname>
+<refpurpose>Returns the units associated with a length</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>For a given length (see <xref linkend="units"/>), returns the units
+associated with the length. Returns an empty sequence for relative lengths.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_make-length">
+<?db filename="f_make-length.html"?>
+<refmeta>
+<refentrytitle>f:make-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}make-length#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}make-length#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}make-length#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:make-length</refname>
+<refpurpose>Construct a length from constituent parts</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>These functions construct a length (see <xref linkend="units"/>) from 
+either a relative magnitude, an absolute magnitude and a unit, or 
+both.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_number-separator">
+<?db filename="f_number-separator.html"?>
+<refmeta>
+<refentrytitle>f:number-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}number-separator#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:number-separator</refname>
+<refpurpose>Returns the number separator</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The number separator separates a number (in a title) from the
+title that follows it.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-align">
+<?db filename="f_object-align.html"?>
+<refmeta>
+<refentrytitle>f:object-align</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-align#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-align</refname>
+<refpurpose>Returns the alignment of a media object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>By default, this function simply returns the value of the object’s
+<att>align</att> attribute.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-contentheight">
+<?db filename="f_object-contentheight.html"?>
+<refmeta>
+<refentrytitle>f:object-contentheight</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-contentheight#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-contentheight</refname>
+<refpurpose>Returns the content height of an object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the content height, for reasons of historical accident,
+in the <att>contentdepth</att> attribute. This function returns the
+height of an object as a length (see <xref linkend="units"/>), if it
+has one. If the height is specified as a percentage, and the <glossterm>intrinsic size</glossterm>
+of the object is known, the an absolute length equal to that percentage of the
+intrinsic size is returned.</para>
+
+<para>If <parameter>image-ignore-scaling</parameter> is true, or no
+<att>contentdepth</att> is specified for the object, the empty sequence is
+returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-contentwidth">
+<?db filename="f_object-contentwidth.html"?>
+<refmeta>
+<refentrytitle>f:object-contentwidth</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-contentwidth#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-contentwidth</refname>
+<refpurpose>Returns the content width of an object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the content width. This function returns the
+width of an object as a length (see <xref linkend="units"/>), if it
+has one. If the width is specified as a percentage, and the <glossterm>intrinsic size</glossterm>
+of the object is known, the an absolute length equal to that percentage of the
+intrinsic size is returned.</para>
+
+<para>If <parameter>image-ignore-scaling</parameter> is true, or no
+<att>contentwidth</att> is specified for the object, the empty
+sequence is returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-height">
+<?db filename="f_object-height.html"?>
+<refmeta>
+<refentrytitle>f:object-height</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-height#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-height</refname>
+<refpurpose>Returns the height (depth) of a <tag>mediaobject</tag></refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The height of a <tag>mediaobject</tag> is specified, for reasons of historical
+accident, in the <att>depth</att> attribute. This function returns the
+height of an object as a length (see <xref linkend="units"/>), if it has one.
+If <parameter>image-ignore-scaling</parameter> is true, or no <att>depth</att>
+is specified for the object, the empty sequence is returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-properties">
+<?db filename="f_object-properties.html"?>
+<refmeta>
+<refentrytitle>f:object-properties</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-properties#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-properties</refname>
+<refpurpose>Returns the properties of an object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <link linkend="extensions">extension functions</link>
+are available, the stylesheets will interrogate images for their
+properties. The goal is to return, at a minimum, the height and width
+of the image. This is used to compute viewport and scaling factors.
+If the image metadata extension is available, then considerably more information
+my be returned in the map.
+</para>
+<para>
+For example, the image metadata properties of the Amaryllis photograph
+in <xref linkend="fig.amaryllis"/> are:</para>
+
+<?guide-properties-as-table media/amaryllis.jpg?>
+
+<figure xml:id="fig.amaryllis">
+<title>An amaryllis</title>
+<mediaobject>
+<alt>A photograph of an amaryllis</alt>
+<imageobject>
+<imagedata fileref="media/amaryllis.jpg"/>
+</imageobject>
+<textobject>
+<para>Several rich, red amaryllis blossoms on a black
+background.</para>
+</textobject>
+</mediaobject>
+</figure>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-scale">
+<?db filename="f_object-scale.html"?>
+<refmeta>
+<refentrytitle>f:object-scale</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-scale#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-scale</refname>
+<refpurpose>Returns the scaling factor for an object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the scaling factor for an object. Scaling only applies if
+<parameter>image-ignore-scaling</parameter> is false and the object has a
+<att>scale</att> attribute.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-scalefit">
+<?db filename="f_object-scalefit.html"?>
+<refmeta>
+<refentrytitle>f:object-scalefit</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-scalefit#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-scalefit</refname>
+<refpurpose>Scale object to fit?</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function determines whether or not an object should be scaled
+to fit its container.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-valign">
+<?db filename="f_object-valign.html"?>
+<refmeta>
+<refentrytitle>f:object-valign</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-valign#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-valign</refname>
+<refpurpose>Returns the vertical alignment of a media object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>By default, this function simply returns the value of the object’s
+<att>valign</att> attribute. If it doesn’t have a
+<att>valign</att> attribute, the value “<literal>middle</literal>” is returned, because
+that’s what previous versions of stylesheets for DocBook did.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_object-width">
+<?db filename="f_object-width.html"?>
+<refmeta>
+<refentrytitle>f:object-width</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-width#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:object-width</refname>
+<refpurpose>Returns the width of a <tag>mediaobject</tag></refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the
+width of an object as a length (see <xref linkend="units"/>), if it has one.
+If <parameter>image-ignore-scaling</parameter> is true, or no <att>width</att>
+is specified for the object, the empty length is returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_orderedlist-item-numeration">
+<?db filename="f_orderedlist-item-numeration.html"?>
+<refmeta>
+<refentrytitle>f:orderedlist-item-numeration</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}orderedlist-item-numeration#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:orderedlist-item-numeration</refname>
+<refpurpose>Returns the item numeration format for an ordered list</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Computes the numeration for the specified list item.
+See <parameter>orderedlist-item-numeration</parameter>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_orderedlist-item-number">
+<?db filename="f_orderedlist-item-number.html"?>
+<refmeta>
+<refentrytitle>f:orderedlist-item-number</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}orderedlist-item-number#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:orderedlist-item-number</refname>
+<refpurpose>Returns the item number of an item in an ordered list</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the item number of a list item. This is always an integer, even if it will
+be formatted as a letter, roman numeral, or other symbol. For nested lists, this function
+returns the fully qualified item number. For example, for the second item in the fourth item in the
+third item of a list, it will return <literal>(2, 4, 3)</literal>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_orderedlist-startingnumber">
+<?db filename="f_orderedlist-startingnumber.html"?>
+<refmeta>
+<refentrytitle>f:orderedlist-startingnumber</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}orderedlist-startingnumber#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:orderedlist-startingnumber</refname>
+<refpurpose>Returns the starting number of an ordered list</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>In most <tag>orderedlist</tag> elements, the first item in the list
+is item number “1”. However, the <att>startingnumber</att> attribute can specify
+a different initial number and, in the case of continued lists, the starting number
+depends on the ending number of the preceding list.</para>
+<para>The <function>f:orderedlist-startingnumber</function> returns the number
+of the first list item in an ordered list.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_parse-length">
+<?db filename="f_parse-length.html"?>
+<refmeta>
+<refentrytitle>f:parse-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}parse-length#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:parse-length</refname>
+<refpurpose>Parse a string into a length</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function parses a string such as “4in” or “3.14cm” or “50%”
+into a length. It will fall back to a distance of the
+<parameter>default-length-magnitude</parameter> and
+<parameter>default-length-unit</parameter> if the string cannot be parsed
+as a length.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_pi">
+<?db filename="f_pi.html"?>
+<refmeta>
+<refentrytitle>f:pi</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}pi#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}pi#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:pi</refname>
+<refpurpose>Returns DocBook processing-instruction property values</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Several DocBook elements have alternate presentations that can be
+specified with global parameters. Many of them can also be set on a per-element
+basis with a <tag class="pi">db</tag><indexterm>
+<primary>db processing instruction</primary>
+</indexterm> processing instruction.
+The date format, for example, can be changed in this way as described
+in the <function>f:date-format</function> function.</para>
+<para>The <function>f:pi</function> function takes a context and the name
+of a property. It returns the value specified for that property from all of the
+<tag class="pi">db</tag> processing instructions in the
+specified context. The three argument version allows you to specify a default
+value. It will be returned if there are no values specified for the property
+in that context.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_pi-attributes">
+<?db filename="f_pi-attributes.html"?>
+<refmeta>
+<refentrytitle>f:pi-attributes</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}pi-attributes#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:pi-attributes</refname>
+<refpurpose>Returns processing-instruction pseudo-attributes as attributes</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Using pseudo-attributes in a
+<tag class="pi">db</tag><indexterm>
+<primary>db processing instruction</primary>
+</indexterm> processing instruction is a convenient mechanism
+for providing additional options to the stylesheets. But processing them
+is tedious. This function gathers together the pseudo-attributes specified
+in a series of processing instructions and returns the as attributes on
+an element. If the same property occurs more than once in the sequence,
+the last value will be returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_post-label-punctuation">
+<?db filename="f_post-label-punctuation.html"?>
+<refmeta>
+<refentrytitle>f:post-label-punctuation</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:post-label-punctuation</refname>
+<refpurpose>Punctuation that follows a label</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Titles consist of an optional label, followed by an optional number, followed
+by the title. In some contexts, additional prefixes and suffixes may also be involved.
+In the title “Chapter 1 Introduction”, the word “Chapter” is the label, “1”
+is the number, and “Introduction” is the title.</para>
+<para>When a label appears in a title, the
+<function>f:post-label-punctuation</function> function determines what
+punctuation, if any, should follow it.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_refsection">
+<?db filename="f_refsection.html"?>
+<refmeta>
+<refentrytitle>f:refsection</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}refsection#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:refsection</refname>
+<refpurpose>Is this a section in a <tag>refentry</tag>?</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns true if the node is a section in a <tag>refentry</tag>, a
+<tag>refsection</tag>, <tag>refsect1</tag>, <tag>refsect2</tag>, or <tag>refsect3</tag>
+element.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_relative-length">
+<?db filename="f_relative-length.html"?>
+<refmeta>
+<refentrytitle>f:relative-length</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}relative-length#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:relative-length</refname>
+<refpurpose>Returns the relative portion of a length, if it has one</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>For a given length, returns the relative length if it has one.
+For lengths that have no relative component, returns 0.0.
+For a discussion of units, see <xref linkend="units"/>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_resolve-object-uri">
+<?db filename="f_resolve-object-uri.html"?>
+<refmeta>
+<refentrytitle>f:resolve-object-uri</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}resolve-object-uri#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:resolve-object-uri</refname>
+<refpurpose>Returns the (relative) path to a <tag>mediaobject</tag></refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Working out the correct URI for a media objects (images, videos, audio)
+can be quite complicated. For the author, it may be useful or necessary that the
+URI in the <att>fileref</att> attribute correctly point to the object at authoring
+time. But that URI may not be correct for the generated HTML. In particular, authors
+may put source files in different directories, media objects may be stored in a common
+location for several documents even though those documents are published in different
+locations, etc.</para>
+<para>The <function>f:resolve-object-uri</function> takes the URI of the media
+object as it appears in the source and attempts to resolve that into an appropriate
+URI for the generated HTML.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_section">
+<?db filename="f_section.html"?>
+<refmeta>
+<refentrytitle>f:section</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}section#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:section</refname>
+<refpurpose>Is this a section?</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns true if the node is a section, a
+<tag>section</tag>, <tag>sect<replaceable>1</replaceable>-<replaceable>5</replaceable></tag>,
+or <tag>legalsection</tag> element.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_section-depth">
+<?db filename="f_section-depth.html"?>
+<refmeta>
+<refentrytitle>f:section-depth</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}section-depth#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:section-depth</refname>
+<refpurpose>Returns the section depth of a node</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the section depth of a node, that is, how many section elements
+are among its ancestors.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_select-mediaobject">
+<?db filename="f_select-mediaobject.html"?>
+<refmeta>
+<refentrytitle>f:select-mediaobject</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:select-mediaobject</refname>
+<refpurpose>Select a media object for presentation</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function takes a sequence of media objects
+(<tag>imageobject</tag>, <tag>videoobject</tag>, etc.) and returns one
+for presentation. It processes each element in
+<mode>m:acceptable-mediaobject</mode> mode. If at least one object is
+deemed acceptable, the first acceptable object is returned. If none
+are acceptable, the first object is returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_select-mediaobject-data">
+<?db filename="f_select-mediaobject-data.html"?>
+<refmeta>
+<refentrytitle>f:select-mediaobject-data</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject-data#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject-data#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:select-mediaobject-data</refname>
+<refpurpose>Selects an appropriate data element for a media object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Once a media object has been selected, one of its data elements
+has to be selected. This function is responsible for making that
+selection. It processes each of the data elements in
+<mode>m:acceptable-mediaobject-data</mode> mode and returns the first
+acceptable item.</para>
+<para>If no acceptable items are found, the function will return the
+empty sequence if <code>$force</code> is false. If <code>$force</code>
+is true, the first data element will be returned, even though it was not
+deemed “acceptable”.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_spaces">
+<?db filename="f_spaces.html"?>
+<refmeta>
+<refentrytitle>f:spaces</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}spaces#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:spaces</refname>
+<refpurpose>Returns a string of spaces</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns a string of <code>$length</code> spaces.
+If <code>$length</code>:</para>
+<itemizedlist spacing="compact">
+<listitem>
+<para>is empty, an empty sequence is returned.</para>
+</listitem>
+<listitem>
+<para>is an integer, or castable to an integer, a string of that length is
+returned. If the length is negative, an empty sequence is returned.</para>
+</listitem>
+<listitem>
+<para>is anything else, the length of the string value of <code>$length</code>
+is used as the length.</para>
+</listitem>
+</itemizedlist>
+
+<para>In other words:</para>
+<itemizedlist spacing="compact">
+<listitem><para><code>f:spaces(())</code> is ‘<code>()</code>’,</para>
+</listitem>
+<listitem><para><code>f:spaces(0)</code> is ‘’ (no spaces),</para>
+</listitem>
+<listitem><para><code>f:spaces(-1)</code> is ‘<code>()</code>’,</para>
+</listitem>
+<listitem><para><code>f:spaces(2)</code> is ‘  ’ (two spaces),</para>
+</listitem>
+<listitem><para><code>f:spaces("1")</code> is ‘ ’ (one space), and</para>
+</listitem>
+<listitem><para><code>f:spaces("test")</code> is ‘    ’ (four spaces).</para>
+</listitem>
+</itemizedlist>
+
+<para>This function accepts a sequence to support the empty sequence.
+If it’s passed a sequence of more than one item, it treats that as if
+the string values of the items had been concatenated together. This can
+have slightly surprising consequences as “<code>('a', '3', '0')</code>”
+will return a string of three spaces whereas 
+“<code>('0', '3', '0')</code>” will return a string of thirty.
+</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="f_step-number">
+<?db filename="f_step-number.html"?>
+<refmeta>
+<refentrytitle>f:step-number</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}step-number#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:step-number</refname>
+<refpurpose>Returns the step number of a step in an procedure</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the step number of step in a procedure. This is always
+an integer, even if it will be formatted as a letter, roman numeral,
+or other symbol. For steps nested in side <tag>substeps</tag>, this
+function returns the fully qualified item number. For example, for the
+second substep in the fourth substep in the third step of a procedure, it will
+return <literal>(2, 4, 3)</literal>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_step-numeration">
+<?db filename="f_step-numeration.html"?>
+<refmeta>
+<refentrytitle>f:step-numeration</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}step-numeration#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:step-numeration</refname>
+<refpurpose>Returns the step numeration format for a step</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Computes the numeration for the specified step.
+See <parameter>procedure-step-numeration</parameter>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_syntax-highlight">
+<?db filename="f_syntax-highlight.html"?>
+<refmeta>
+<refentrytitle>f:syntax-highlight</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}syntax-highlight#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}syntax-highlight#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}syntax-highlight#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:syntax-highlight</refname>
+<refpurpose>Performs syntax highlighting</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Verbatim environments that specify a <att>language</att> can be syntax highlighted.
+Syntax highlighting adds additional spans so that, for example, CSS can be used to make
+keyword bold or quoted strings a different color.</para>
+<para>Syntax highlighting requires an extension function. The list of languages that
+will be syntax highlighted is taken from
+<parameter>verbatim-syntax-highlight-languages</parameter>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_target">
+<?db filename="f_target.html"?>
+<refmeta>
+<refentrytitle>f:target</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}target#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:target</refname>
+<refpurpose>Returns the element identified by a particular id</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The item with the specified ID that is in the same document as
+<code>$context</code> item is returned.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_template">
+<?db filename="f_template.html"?>
+<refmeta>
+<refentrytitle>f:template</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}template#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:template</refname>
+<refpurpose>Returns the title page template for an element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the title page template that should be used for an element.
+If no template is found, returns the <code>$default</code> template.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_tokenize-on-char">
+<?db filename="f_tokenize-on-char.html"?>
+<refmeta>
+<refentrytitle>f:tokenize-on-char</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}tokenize-on-char#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:tokenize-on-char</refname>
+<refpurpose>Tokenize a string at a specific character</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function tokenizes a string at a specific character (not a regular
+expression). If the specified character is a regular expression meta-character, it
+is automatically escaped.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_verbatim-highlight">
+<?db filename="f_verbatim-highlight.html"?>
+<refmeta>
+<refentrytitle>f:verbatim-highlight</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-highlight#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-highlight</refname>
+<refpurpose>Returns the highlight properties for a verbatim environment</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Verbatim elements can be styled in a variety of ways, see
+<xref linkend="verbstyle"/>. This function returns the highlight settings
+for a particular verbatim environment.</para>
+<para>If the style for this environment is explicitly “plain”, then no
+highlight settings are returned (this avoids a bunch of warning messages).
+Otherwise, if a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-highlight</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-highlight pseudo-attribute</secondary>
+</indexterm> pseudo-attribute is present,
+it is returned. If there’s no PI, then the default
+settings for this kind of environment are returned.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_verbatim-numbered">
+<?db filename="f_verbatim-numbered.html"?>
+<refmeta>
+<refentrytitle>f:verbatim-numbered</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-numbered#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-numbered</refname>
+<refpurpose>Returns true if the listing should be numbered</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <function>f:verbatim-numbered</function> function returns true of
+the specified verbatim listing should be numbered. This will be true if:
+</para>
+<itemizedlist>
+<listitem>
+<para>The <att>linenumbering</att> attribute is specified and has the
+value <literal>numbered</literal>,
+</para>
+</listitem>
+<listitem>
+<para>the element’s name is listed in
+<parameter>verbatim-numbered-elements</parameter>, or
+</para>
+</listitem>
+<listitem>
+<para>a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-numbered</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-numbered pseudo-attribute</secondary>
+</indexterm> <glossterm>pseudo-attribute</glossterm> that
+<glossterm>is true</glossterm> is specified.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>There are two overriding conditions that will force the value to
+be false: first, if the <att>linenumbering</att> attribute is specified and has the
+value <literal>unnumbered</literal>, the listing will not be numbered.
+Second if the listing has a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-style</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-style pseudo-attribute</secondary>
+</indexterm> pseudo attribute that specifies the “plain” style. Listings
+in the plain style cannot be numbered, attempting to do so will generate
+a warning message from the stylesheets.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_verbatim-style">
+<?db filename="f_verbatim-style.html"?>
+<refmeta>
+<refentrytitle>f:verbatim-style</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-style#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-style</refname>
+<refpurpose>Returns the style of a verbatim listing</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <function>f:verbatim-style</function> function returns the style
+of presentation that should be used for the
+specified verbatim listing.
+</para>
+<para>If a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-style</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-style pseudo-attribute</secondary>
+</indexterm> <glossterm>pseudo-attribute</glossterm> is present,
+the value of that pseudo-attribute will be returned.
+Otherwise, it will be “<literal>lines</literal>” if the
+element’s name is listed in
+<parameter>verbatim-line-style</parameter>, 
+“<literal>plain</literal>” if the
+element’s name is listed in
+<parameter>verbatim-plain-style</parameter>, or “<literal>raw</literal>”.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_verbatim-trim-trailing">
+<?db filename="f_verbatim-trim-trailing.html"?>
+<refmeta>
+<refentrytitle>f:verbatim-trim-trailing</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-trim-trailing#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-trim-trailing</refname>
+<refpurpose>Return true if trailing blank lines should be trimmed</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function examines a verbatim environment, the <literal>$context</literal>,
+and returns true if trailing blank lines should be trimmed from it.
+A <tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-trim-trailing</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-trim-trailing pseudo-attribute</secondary>
+</indexterm> pseudo-attribute may be used to override the
+<parameter>verbatim-trim-trailing-blank-lines</parameter> parameter on a
+case-by-case basis.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_xlink-style">
+<?db filename="f_xlink-style.html"?>
+<refmeta>
+<refentrytitle>f:xlink-style</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}xlink-style#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:xlink-style</refname>
+<refpurpose>Returns the XLink style for this document</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The stylesheets support XLink extended links. See
+<parameter>xlink-style</parameter> for more details.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_xpointer-idref">
+<?db filename="f_xpointer-idref.html"?>
+<refmeta>
+<refentrytitle>f:xpointer-idref</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}xpointer-idref#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:xpointer-idref</refname>
+<refpurpose>Parses an XPointer for a same-document ID reference</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>In DocBook, there are generally two ways to refer to other
+elements in the current document by ID: using the <att>linkend</att>
+(or <att>linkends</att>) attribute or using the <att>xlink:href</att>
+attribute.</para>
+<para>The <function>f:xpointer-idref</function> function returns the
+ID portion of an XPointer that is a reference to another ID in the
+current document.</para>
+<para>In other words:
+</para>
+<itemizedlist spacing="compact">
+<listitem><para><code>f:xpointer-idref('#foo')</code> is <code>foo</code>,</para>
+</listitem>
+<listitem><para><code>f:xpointer-idref('id(foo)')</code> is <code>foo</code>,</para>
+</listitem>
+<listitem><para>and <code>f:xpointer-idref('http://example.org/#foo')</code>
+is the empty sequence.</para></listitem>
+</itemizedlist>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_cwd">
+<?db filename="ext_cwd.html"?>
+<refmeta>
+<refentrytitle>ext:cwd</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}cwd#0</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:cwd</refname>
+<refpurpose>Returns the current working directory</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>xs:string</type>
+        <function>ext:cwd</function>
+      </funcdef>
+      <void/>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>This extension function returns the current working directory from which
+the processor was executed.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_image-metadata">
+<?db filename="ext_image-metadata.html"?>
+<refmeta>
+<refentrytitle>ext:image-metadata</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}image-metadata#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:image-metadata</refname>
+<refpurpose>Return intrinsic properties of an image</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>map(*)</type>
+        <function>ext:image-metadata</function>
+      </funcdef>
+      <paramdef>
+        <parameter>filename</parameter>
+        <type>xs:string</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>This extension function returns a map of metadata properties
+about the image, including its <glossterm>intrinsic size</glossterm>:
+its width and height in pixels. If the size can be determined, the map
+returned will have a “<literal>width</literal>” key whose value is the
+width of the image and a “<literal>height</literal>” key whose value
+is the height of the image. Both sizes will be integer values.</para>
+
+<para>This function uses the <biblioref linkend="metadata-extractor"/>
+library. The map may contain other properties as well.</para>
+
+<itemizedlist>
+<listitem>
+<para>If the media was successfully parsed with <citetitle>metadata-extractor</citetitle>,
+all of the properties identified by the extractor will be returned. Each property
+name will be converted to lowercase and spaces will be replaced with hyphens.
+(In other words, a property with the tag name “Palette Colour Count” will appear
+in the map with a key of “palette-colour-count”.)</para>
+<para>Property values that appear to be data/time values<footnote>
+<para>A value that matches the regular expression
+“<literal>^\d\d\d\d:\d\d:\d\d \d\d:\d\d:\d\d$</literal>” is assumed to be a date/time.
+This is the format of date/time values used in EXIF metadata for most
+properties that have a date/time value.</para></footnote> will be converted to
+strings that are valid ISO 8601 date/time values. Any control characters that can’t appear
+in XML but that appear in a value will be replaced with Unicode references,
+<literal>\u</literal><replaceable>xxxx</replaceable>. For example, a null byte will be
+replaced with <literal>\u0000</literal>.</para>
+</listitem>
+<listitem>
+<para>If the media isn’t successfully parsed with <citetitle>metadata-extractor</citetitle>,
+</para>
+<itemizedlist>
+<listitem>
+<para>If it appears to be a PDF document, the function will search for the
+“<literal>MediaBox</literal>” or “<literal>CropBox</literal>” in the first 100 lines
+of the PDF. If either is found, its dimensions are used to calculate the width and height.
+If both are present, <literal>CropBox</literal> is preferred.
+</para>
+</listitem>
+<listitem>
+<para>If it appears to be an SVG document, the function will search
+for <att>width</att> and <att>height</att> attributes on the root
+element. All of the attributes of the root element will be returned as
+properties, using <glossterm baseform="Clark name">Clark
+names</glossterm>.
+</para>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+
+<para>If the <literal>width</literal> and <literal>height</literal> properties
+exist, they will always be integers. This means that if an image has a property
+with the name  <literal>width</literal> or <literal>height</literal> and its value
+isn’t an integer, it will not be returned.</para>
+
+<para>If the <parameter>debug</parameter> parameter includes the token
+<literal>image-properties</literal>, the stylesheets will print every property
+returned in an <tag>xsl:message</tag>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_image-properties">
+<?db filename="ext_image-properties.html"?>
+<refmeta>
+<refentrytitle>ext:image-properties</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}image-properties#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:image-properties</refname>
+<refpurpose>Return intrinsic properties of an image</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>map(*)</type>
+        <function>ext:image-properties</function>
+      </funcdef>
+      <paramdef>
+        <parameter>filename</parameter>
+        <type>xs:string</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>This extension function returns the <glossterm>intrinsic size</glossterm> of
+an image: its width and height in pixels. If the size can be determined, the map returned
+will have a “<literal>width</literal>” key whose value is the width of the image and
+a “<literal>height</literal>” key whose value is the height of the image. Both sizes
+will be integral numbers of pixels.</para>
+<para>The <function>ext:image-metadata</function> function provides better results.
+It should be preferred unless the <biblioref linkend="metadata-extractor"/> libraries
+are unavailable.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_pygmentize">
+<?db filename="ext_pygmentize.html"?>
+<refmeta>
+<refentrytitle>ext:pygmentize</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}pygmentize#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/extensions/xslt}pygmentize#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/extensions/xslt}pygmentize#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:pygmentize</refname>
+<refpurpose>Syntax highlight a listing with pygmentize</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>xs:string</type>
+        <function>ext:pygmentize</function>
+      </funcdef>
+      <paramdef>
+        <parameter>listing</parameter>
+        <type>xs:string</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <function>ext:pygmentize</function>
+        <type>xs:string</type>
+      </funcdef>
+      <paramdef>
+        <parameter>listing</parameter>
+        <type>xs:string</type>
+      </paramdef>
+      <paramdef>
+        <parameter>options</parameter>
+        <type>item()</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>xs:string</type>
+        <function>ext:pygmentize</function>
+      </funcdef>
+      <paramdef>
+        <parameter>listing</parameter>
+        <type>xs:string</type>
+      </paramdef>
+      <paramdef>
+        <parameter>options</parameter>
+        <type>item()</type>
+      </paramdef>
+      <paramdef>
+        <parameter>pygments-options</parameter>
+        <type>map(xs:string,xs:string)</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>This extension function runs the <command>pygmentize</command> command to
+add syntax highlighting to a listing.</para>
+<para>The second argument can either be map, in which case the key-value pairs of the map
+constitute the options, or it can be a single string. If it’s a single string, it’s
+interpreted as if it was a map with the key “<literal>language</literal>” and the string
+as the value.</para>
+<para>The third argument must be a map. Each key-value pair will be passed to
+<command>pygmentize</command> as “<literal>-P</literal><replaceable>key</replaceable><literal>=</literal><replaceable>value</replaceable>”.
+</para>
+<para>The function returns the string output from <command>pygmentize</command>. It must
+be parsed with <literal>parse-xml</literal> if you wish to process it as XML.</para>
+<para>Be aware that <command>pygmentize</command> strips leading blank
+lines off of the source listing. If you’re selecting portions of a
+listing with XInclude, make sure not to select leading blank lines in
+the listing if you are trying to accurately count the lines.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_pygmentize-available">
+<?db filename="ext_pygmentize-available.html"?>
+<refmeta>
+<refentrytitle>ext:pygmentize-available</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}pygmentize-available#0</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:pygmentize-available</refname>
+<refpurpose>Returns true if pygmentize is available</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>xs:boolean</type>
+        <function>ext:pygmentize-available</function>
+      </funcdef>
+      <void/>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>In order to run Pygments on listings,
+the <function>ext:pygmentize</function> extension function must be available
+<emphasis>and</emphasis> the <command>pygmentize</command> command must be available
+on the host system.</para>
+<para>This function returns true if it successfully finds the
+<command>pygmentize</command> command on the system path.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_xinclude">
+<?db filename="ext_xinclude.html"?>
+<refmeta>
+<refentrytitle>ext:xinclude</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}xinclude#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/extensions/xslt}xinclude#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:xinclude</refname>
+<refpurpose>Performs XInclude processing</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>node()*</type>
+        <function>ext:xinclude</function>
+      </funcdef>
+      <paramdef>
+        <parameter>node</parameter>
+        <type>node()</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>node()*</type>
+        <function>ext:xinclude</function>
+      </funcdef>
+      <paramdef>
+        <parameter>node</parameter>
+        <type>node()</type>
+      </paramdef>
+      <paramdef>
+        <parameter>options</parameter>
+        <type>map(xs:QName, item()*)</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>Performs XInclude processing on <code>node</code> and all of its
+descendants. The options “<literal>fixup-xml-base</literal>” and
+“<literal>fixup-xml-lang</literal>” are <code>true()</code> by default.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="ext_validate-with-relax-ng">
+<?db filename="ext_validate-with-relax-ng.html"?>
+<refmeta>
+<refentrytitle>ext:validate-with-relax-ng</refentrytitle>
+<refmiscinfo>{http://docbook.org/extensions/xslt}validate-with-relax-ng#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/extensions/xslt}validate-with-relax-ng#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>ext:validate-with-relax-ng</refname>
+<refpurpose>Returns the current working directory</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsynopsisdiv>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>map(xs:string, item())</type>
+        <function>ext:validate-with-relax-ng</function>
+      </funcdef>
+      <paramdef>
+        <parameter>node</parameter>
+        <type>node()</type>
+      </paramdef>
+      <paramdef>
+        <parameter>schema</parameter>
+        <type>item()</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+  <funcsynopsis>
+    <funcprototype>
+      <funcdef>
+        <type>map(xs:string, item())</type>
+        <function>ext:validate-with-relax-ng</function>
+      </funcdef>
+      <paramdef>
+        <parameter>node</parameter>
+        <type>node()</type>
+      </paramdef>
+      <paramdef>
+        <parameter>schema</parameter>
+        <type>item()</type>
+      </paramdef>
+      <paramdef>
+        <parameter>options</parameter>
+        <type>map(xs:string, xs:string)</type>
+      </paramdef>
+    </funcprototype>
+  </funcsynopsis>
+</refsynopsisdiv>
+<refsection>
+<title>Description</title>
+<para>This extension function validates the <code>node</code> provided
+against the <code>schema</code>. The <code>schema</code> can be either a
+string (the URI of the RELAX NG grammar file) or a node (a RELAX NG grammar
+document). There is no support for the RELAX NG Compact Syntax at this time.
+</para>
+<para>The available options are <code>assert-valid</code> which defaults to
+<code>true()</code>
+and <code>dtd-compatibility</code> which isn’t actually supported yet.</para>
+<para>If <code>assert-valid</code> is <code>true()</code> and the document is
+not valid according to the grammar provided, an exception is raised.</para>
+<para>If <code>assert-valid</code> is <code>false()</code>, or the document
+is valid, the map returned will contain the following keys:</para>
+
+<variablelist>
+<varlistentry><term><literal>valid</literal></term>
+<listitem>
+<para>A boolean indicating whether or not the document was valid.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>document</literal></term>
+<listitem>
+<para>The validated document. Today, this always returns the same node, but
+it may eventually return an augmented document.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>errors</literal></term>
+<listitem>
+<para>An array of maps containing the <literal>type</literal>
+(<code>warning</code>, <code>error</code>, or <code>fatal-error</code>),
+<literal>message</literal>,
+<literal>line</literal>, and <literal>column</literal> where an error occurred.
+If the document is valid, the <literal>errors</literal> key will not be present.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+</reference>

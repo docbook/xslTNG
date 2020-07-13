@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- ============================================================ -->
+<!-- verbatim tests -->
+
+<x:scenario label="When transforming lineannotation.001">
+  <x:context href="../resources/xml/lineannotation.001.xml"/>
+  <x:expect label="expect line annotation markup"
+            href="../resources/expected/lineannotation.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming screen.001">
+  <x:context href="../resources/xml/screen.001.xml"/>
+  <x:expect label="expect screen markup"
+            href="../resources/expected/screen.001.html"/>
+</x:scenario>
+
+</x:description>

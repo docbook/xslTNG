@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<figure xmlns="http://docbook.org/ns/docbook" version="5.0"
+        xml:id="fig.units">
+<title>Recognized units of measure</title>
+<informaltable>
+<tgroup cols="2">
+<colspec/>
+<thead>
+<row rowsep="1"><entry>Unit</entry><entry>Size</entry>
+</row>
+</thead>
+<tbody>
+<row><entry><literal>px</literal></entry>
+<entry><code>1.0</code></entry>
+</row>
+<row><entry><literal>in</literal></entry>
+<entry><code><varname>pixels-per-inch</varname></code></entry>
+</row>
+<row><entry><literal>m</literal></entry>
+<entry><code><varname>pixels-per-inch</varname> div 2.54 * 100.0</code></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</figure>

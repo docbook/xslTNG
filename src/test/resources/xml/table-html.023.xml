@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e623">
+            <tbody>
+               <tr>
+                  <td>a foo</td>
+                  <td>a bar</td>
+                  <td>a baz</td>
+               </tr>
+               <tr>
+                  <td>b foo</td>
+                  <td><informaltable width="200">
+                        <tbody>
+                           <tr>
+                              <td>a' foo</td>
+                              <td>a' bar</td>
+                              <td>a' baz</td>
+                           </tr>
+                           <tr>
+                              <td>b' foo</td>
+                              <td>b' bar</td>
+                              <td rowspan="2">b' and c' baz</td>
+                           </tr>
+                           <tr>
+                              <td>c' foo</td>
+                              <td>c' bar</td>
+                           </tr>
+                        </tbody>
+                     </informaltable></td>
+                  <td>b baz</td>
+               </tr>
+               <tr>
+                  <td>c foo</td>
+                  <td>c bar</td>
+                  <td>c baz</td>
+               </tr>
+            </tbody>
+         </informaltable>

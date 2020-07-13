@@ -1,0 +1,28 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Example productionset</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="http://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet"/></head><body class="home"><nav class="top"></nav><main><article class="article"><header><h1>Example productionset</h1></header><p>For the purposes of testing, the <code>MultExpression</code>
+is in a separate <code class="tag tag-element">productionset</code>.</p><div id="set1" class="productionset"><div class="productions"><div class="production"><span class="lhs"><span class="number" id="ebnf.mult">[1] </span>MultExpression</span><span class="lhssep lhs1sep">:=</span><span class="rhs"><a href="#ebnf.mult" class="nonterminal">MultExpression</a>
+       '*'
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a> <br/>|
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a>
+       '/'
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a> <br/>|
+       <a href="#ebnf.number" class="nonterminal">Number</a>
+  </span><span class="constraint"><a href="#div0">div0</a> </span></div></div></div><p>The full grammar follows:</p><div id="set2" class="productionset"><header><div class="title">Arithemetic Expressions</div></header><div class="productions"><div class="production"><span class="lhs"><span class="number" id="ebnf.expression">[2] </span>Expression</span><span class="lhssep lhs1sep">:=</span><span class="rhs"><a href="#ebnf.arith" class="nonterminal">ArithExpression</a> |
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a>
+  </span><span class="constraint"></span></div><div class="production"><span class="lhs ghost"></span><span class="lhssep"></span><span class="rhs">Second RHS for testing.
+  <span class="lineannotation">/* This isn’t grammatical! */</span></span><span class="constraint"></span></div><div class="production"><span class="lhs"><span class="number" id="ebnf.arith">[3] </span>ArithExpression</span><span class="lhssep lhs1sep">:=</span><span class="rhs"><a href="#ebnf.expression" class="nonterminal">Expression</a>
+       '+'
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a> |
+       <a href="#ebnf.expression" class="nonterminal">Expression</a>
+       '-'
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a>
+  </span><span class="constraint"></span></div><div class="production"><span class="lhs"><span class="number">[1] </span>MultExpression</span><span class="lhssep lhs1sep">:=</span><span class="rhs"><a href="#ebnf.mult" class="nonterminal">MultExpression</a>
+       '*'
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a> <br/>|
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a>
+       '/'
+       <a href="#ebnf.mult" class="nonterminal">MultExpression</a> <br/>|
+       <a href="#ebnf.number" class="nonterminal">Number</a>
+  </span><span class="constraint"><a href="#div0">div0</a> </span></div><div class="production"><span class="lhs"><span class="number" id="ebnf.number">[4] </span>Number</span><span class="lhssep lhs1sep">:=</span><span class="rhs">[0-9]+</span><span class="constraint"></span></div></div></div><div id="div0" class="constraintdef"><header><div class="title">Division by Zero</div></header>
+
+<p>Division by zero is an error.</p>
+</div></article></main><nav class="bottom"></nav></body></html>

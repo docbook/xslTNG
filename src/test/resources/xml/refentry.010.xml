@@ -1,0 +1,38 @@
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info>
+  <title>Unit Test: refentry.010</title>
+</info>
+
+<refentry xml:id="ls">
+
+  <refmeta>
+    <refentrytitle>ls</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>ls</refname>
+    <refpurpose>list contents of a directory</refpurpose>
+    <refclass>UNIX/Linux</refclass>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>/usr/bin/ls</command>
+      <arg choice="opt">
+        <option>aAbcCdfFgilLmnopqrRstux1</option>
+      </arg>
+      <arg choice="opt" rep="repeat">file</arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1><title>Description</title>
+  <para>For each file that is a directory, <command>ls</command>
+  lists the contents of the directory; for each file that is an
+  ordinary file, <command>ls</command> repeats its name and any
+  other information requested.
+  </para>
+  <para>…</para>
+  </refsect1>
+</refentry>
+</article>

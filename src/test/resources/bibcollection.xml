@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bibliography xmlns="http://docbook.org/ns/docbook"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              version="5.0">
+<title>References</title>
+
+<bibliomixed xml:id="bib.xml"><abbrev>XML</abbrev>Tim Bray,
+Jean Paoli, C. M. Sperberg-McQueen, Eve Maler, and François Yergeau, editors.
+<citetitle><link xlink:href="https://www.w3.org/TR/xml">Extensible Markup
+Language (XML) 1.0 (Fifth Edition)</link></citetitle>.
+World Wide Web Consortium, November 2008.</bibliomixed>
+
+<biblioentry xml:id="bib.maler96">
+  <abbrev>MalerAndal96</abbrev>
+  <title>Developing SGML DTDs</title>
+  <subtitle>From Text to Model to Markup</subtitle>
+  <authorgroup>
+    <author>
+      <firstname>Eve</firstname>
+      <surname>Maler</surname>
+    </author>
+    <author>
+      <firstname>Jeanne</firstname>
+      <surname>El Andaloussi</surname>
+    </author>
+  </authorgroup>
+  <isbn>0-13-309881-8</isbn>
+  <publisher>
+    <publishername>Prentice-Hall PTR</publishername>
+    <address><city>Upper Saddle River</city>
+      <state>New Jersey</state></address>
+  </publisher>
+  <pubdate>1996</pubdate>
+</biblioentry>
+
+</bibliography>

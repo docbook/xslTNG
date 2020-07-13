@@ -1,0 +1,171 @@
+@media screen {
+    @import url("https://fonts.googleapis.com/css?family=B612+Mono&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
+}
+
+:root {
+    --table-border-style: 1px solid black;
+    --numbered-separator-style: 1px solid #dfdfdf;
+    --numbered-number-color: #dfdfdf;
+    --numbered-background-color: #f0f0f0;
+    --verbatim-odd-background-color: #f4f4f4;
+    --verbatim-even-background-color: inherit;
+    --sidebar-background-color: #f0f0f0;
+    --border-grey: #afafaf;
+    --body-font: "Noto Serif", serif;
+    --title-font: "Noto Sans", sans-serif;
+    --mono-font: "B612 Mono", monospace;
+    --revadded-before: "<ins>";
+    --revadded-after: "</ins>";
+    --revchanged-before: "<chg>";
+    --revchanged-after: "</chg>";
+    --revdeleted-before: "<del>";
+    --revdeleted-after: "</del>";
+    background-color: #fffff8;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0;
+    font-family: var(--body-font);
+    line-height: 1.75rem;
+    font-size: 13.5pt;
+}
+
+body {
+    max-width: 50rem;
+    min-height: 100%;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    margin-top: 2em;
+}
+
+header {
+    margin-top: 1rem;
+    display: table;
+    width: 100%;
+    line-height: 1.0;
+}
+
+header h1 {
+    display: table-row;
+}
+
+header h1 span {
+    display: table-cell;
+    text-align: right;
+    vertical-align: bottom;
+}
+
+h1 .text {
+    text-align: left;
+    vertical-align: bottom;
+}
+
+h1 .logo {
+    text-align: right;
+    margin-bottom: 0.5rem;
+}
+
+header h1 {
+    margin-bottom: 0;
+}
+
+header h2 {
+    margin-top: 3pt;
+    font-style: italic;
+}
+
+.logo img {
+    display: inline-block;
+}
+
+.logo {
+    max-height: 64px;
+    vertical-align: baseline;
+}
+
+h1 { font-weight: 800;
+     font-size: 2.2rem;
+     line-height: 1;
+   }
+
+h2 { font-weight: 600;
+     font-size: 1.7rem;
+     line-height: 1;
+   }
+
+h3 { font-weight: 600;
+     font-size: 1.5rem;
+     line-height: 1;
+   }
+
+h4 { font-weight: 600;
+     font-size: 1.25rem;
+     line-height: 1;
+   }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--title-font);
+    color: var(--tng-blue);
+}
+
+a, a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.toc {
+    margin-top: 1em;
+}
+
+.table-of-contents .title {
+    font-weight: bold;
+    font-family: var(--title-font);
+}
+
+ul.toc {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 1em;
+}
+
+.good {
+    background-color: #cfffcf;
+}
+
+.fair {
+    background-color: #ffffcf;
+}
+
+.none {
+    background-color: #ffcfcf;
+}
+
+@media screen and (min-width: 400px) {
+    dl {
+        column-count: 2;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    dl {
+        column-count: 4;
+    }
+}

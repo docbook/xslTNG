@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: equation.001</title>
+
+<equation xml:id="eq1">
+  <title>First Equation</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="../media/emc2.png"/>
+    </imageobject>
+    <textobject>
+      <phrase>E=mc^2</phrase>
+    </textobject>
+  </mediaobject>
+</equation>
+
+<para>An informal equation:</para>
+
+<informalequation xml:id="infeq1">
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="../media/emc2.png"/>
+    </imageobject>
+    <textobject>
+      <phrase>E=mc^2</phrase>
+    </textobject>
+  </mediaobject>
+</informalequation>
+
+<para xml:id="mp">And an inline one: <inlineequation>
+<mathphrase>E=mc<superscript>2</superscript>
+</mathphrase>
+</inlineequation>.
+</para>
+
+</article>

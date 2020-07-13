@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     footnote imagedata imageobject inlinemediaobject programlisting
+     textdata textobject
+-->
+
+<x:scenario label="When converting programlisting.001">
+  <x:context href="../resources/xml/programlisting.001.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.002">
+  <x:context href="../resources/xml/programlisting.002.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.003">
+  <x:context href="../resources/xml/programlisting.003.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.003.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.004">
+  <x:context href="../resources/xml/programlisting.004.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.004.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.005">
+  <x:context href="../resources/xml/programlisting.005.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.005.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.006">
+  <x:context href="../resources/xml/programlisting.006.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.006.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.007">
+  <x:context href="../resources/xml/programlisting.007.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.007.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.008">
+  <x:context href="../resources/xml/programlisting.008.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.008.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.009">
+  <x:context href="../resources/xml/programlisting.009.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.009.html"/>
+</x:scenario>
+
+<x:scenario label="When converting programlisting.010">
+  <x:context href="../resources/xml/programlisting.010.xml"/>
+  <x:expect label="expect a correctly rendered pre" href="../resources/expected/programlisting.010.html"/>
+</x:scenario>
+
+</x:description>

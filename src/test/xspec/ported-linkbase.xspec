@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<x:scenario label="When converting ported legacy test linkbase">
+   <x:context href="../resources/xml/linkbase.xml"/>
+   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="expect some generated HTML">
+      <body/>
+   </x:expect>
+</x:scenario>
+
+</x:description>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+-->
+
+<x:scenario label="When transforming keywordset.001">
+   <x:context href="../resources/xml/keywordset.001.xml"/>
+   <x:expect label="expect keywords to be processed" href="../resources/expected/keywordset.001.html"/>
+</x:scenario>
+
+</x:description>

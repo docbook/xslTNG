@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     bridgehead
+-->
+
+<!-- ============================================================ -->
+
+<x:scenario label="When converting bridgeheads">
+   <x:context href="../resources/xml/bridgehead.001.xml"/>
+   <x:expect label="expect appropriate HTML h* elements" href="../resources/expected/bridgehead.001.html"/>
+</x:scenario>
+
+<!-- ============================================================ -->
+
+<x:scenario label="When converting section.001">
+   <x:context href="../resources/xml/section.001.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/section.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting section.002">
+   <x:context href="../resources/xml/section.002.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/section.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting section.003">
+   <x:context href="../resources/xml/section.003.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/section.003.html"/>
+</x:scenario>
+
+<x:scenario label="When converting section.004">
+   <x:context href="../resources/xml/section.004.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/section.004.html"/>
+</x:scenario>
+
+<x:scenario label="When converting section.005">
+   <x:context href="../resources/xml/section.005.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/section.005.html"/>
+</x:scenario>
+
+<!-- ============================================================ -->
+
+<x:scenario label="When converting sect1.001">
+   <x:context href="../resources/xml/sect1.001.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/sect1.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting sect1.002">
+   <x:context href="../resources/xml/sect1.002.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/sect1.002.html"/>
+</x:scenario>
+
+<!-- ============================================================ -->
+
+<x:scenario label="When converting simplesect.001">
+   <x:context href="../resources/xml/simplesect.001.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/simplesect.001.html"/>
+</x:scenario>
+
+<!-- ============================================================ -->
+
+<x:scenario label="When converting legalsection.001">
+   <x:context href="../resources/xml/legalsection.001.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/legalsection.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting legalsection.002">
+   <x:context href="../resources/xml/legalsection.002.xml"/>
+   <x:expect label="expect section markup" href="../resources/expected/legalsection.002.html"/>
+</x:scenario>
+
+</x:description>

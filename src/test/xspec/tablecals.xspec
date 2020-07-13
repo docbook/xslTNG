@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+  <x:scenario label="When transforming table-cals.001.xml">
+    <x:context href="../resources/xml/table-cals.001.xml"/>
+    <x:expect label="a formatted HTML table" href="../resources/expected/table-cals.001.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.002.xml">
+    <!-- +........+........+........+........+
+         |        |   B    |        |   D    |
+         +   A    +........+   C    +........+
+         |        |        |        |   E    |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.002.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.002.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.003.xml">
+    <!-- +........+........+........+........+
+         |   A    |   B    |   C    |   D    |
+         +........+........+        +        +
+         |   E    |   F    |        |        |
+         +        +........+        +        +
+         |        |   G    |        |        |
+         +        +........+........+........+
+         |        |   H    |        |   I    |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.003.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.003.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.004.xml">
+    <!-- +........+........+........+........+
+         |   A    |   B    |   C    |   D    |
+         +........+        +........+        +
+         |   E    |        |   F    |        |
+         +        +        +........+........+
+         |        |        |        |   G    |
+         +........+........+........+........+
+         |   H    |        |   I    |   J    |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.004.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.004.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.005.xml">
+    <!-- +........+........+........+........+........+
+         |   A    |        |        |        |        |
+         +        +........+........+........+........+
+         |        |   B    |        |        C        |
+         +        +........+........+........+........+
+         |        |        |   D    |   F    |        |
+         +........+........+        +........+........+
+         |        |        |        |        |   E    |
+         +........+........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.005.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.005.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.006.xml">
+    <!-- +........+........+........+........+
+         |        |   B    |        |   D    |
+         +   A    +........+   C    +........+
+         |        |        |        |   E    |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.006.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.006.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.007.xml">
+    <!-- +........+........+........+........+
+         |   A    |        |        |        |
+         +        +........+........+........+
+         |        |   B    |        |   C    |
+         +        +........+........+........+
+         |        |        |   D    |   F    |
+         +........+........+        +........+
+         |        |        |        |   E    |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.007.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.007.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.008.xml">
+    <!-- +........+........+........+........+........+
+         |        A        |        |        B        |
+         +........+........+........+........+........+
+         |   X    |                          |        |
+         +........+            C             +........+
+         |   Y    |                          |        |
+         +........+........+........+........+........+
+         |        D        |        |        E        |
+         +........+........+........+........+........+
+         |   F    |   G    |   H    |   I    |   J    |
+         +........+........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.008.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.008.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.009.xml">
+    <!-- +........+........+........+........+........+
+         |        A        |        |        B        |
+         +........+........+........+........+........+
+         |   X    |                          |        |
+         +........+            C             +........+
+         |   Y    |                          |        |
+         +........+........+........+........+........+
+         |        D        |        |        E        |
+         +........+........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.009.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.009.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.010.xml">
+    <!-- +........+........+........+........+........+
+         |        A        |        |        B        |
+         +........+........+........+........+........+
+         |        |            C             |        |
+         +........+........+........+........+........+
+         |        D        |        |        E        |
+         +........+........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.010.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.010.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.011.xml">
+    <!-- +........+........+........+........+
+         |   A    |        |        |    F   |
+         +........+........+........+........+
+         |        |   B    |                 |
+         +........+........+        D        +
+         |   C    |        |                 |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.011.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.011.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.012.xml">
+    <!-- +........+........+........+........+
+         |        |        |        |    F   |
+         +   A    +........+........+........+
+         |        |        B                 |
+         +........+                          +
+         |   C    |                          |
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.012.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.012.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.013.xml">
+    <!-- +........+........+........+
+         |   A    |        |        |
+         +........+........+........+
+         |        |        B        |
+         +........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.013.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.013.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.014.xml">
+    <!-- +........+........+........+........+........+
+         |   A    |        |        |        |        |
+         +........+........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.014.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.014.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.015.xml">
+    <!-- +........+........+........+........+........+
+         |   A    |        |        |        |        |
+         +        +........+........+........+........+
+         |        |   B    |        |        C        |
+         +        +........+........+........+........+
+         |        |        |   D    |   G    |        |
+         +........+........+        +........+........+
+         |        |        |        |        |   E    |
+         +........+........+........+........+........+
+         |        |        |            F             |
+         +........+........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.015.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.015.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.016.xml">
+    <x:context href="../resources/xml/table-cals.016.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.016.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.017.xml">
+    <!-- +........+........+........+........+
+         |   A    |   B    |   C    |   D    |
+         +........+........+........+........+
+         |   E    |                         F|
+         +........+........+........+........+
+    -->
+    <x:context href="../resources/xml/table-cals.017.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.017.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.018.xml">
+    <x:context href="../resources/xml/table-cals.018.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.018.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.019.xml">
+    <x:context href="../resources/xml/table-cals.019.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.019.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.020.xml">
+    <x:context href="../resources/xml/table-cals.020.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.020.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.021.xml">
+    <x:context href="../resources/xml/table-cals.021.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.021.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.022.xml">
+    <x:context href="../resources/xml/table-cals.022.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.022.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.023.xml">
+    <x:context href="../resources/xml/table-cals.023.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.023.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.024.xml">
+    <x:context href="../resources/xml/table-cals.024.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.024.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.025.xml">
+    <x:context href="../resources/xml/table-cals.025.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.025.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.026.xml">
+    <x:context href="../resources/xml/table-cals.026.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.026.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.027.xml">
+    <x:context href="../resources/xml/table-cals.027.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.027.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.028.xml">
+    <x:context href="../resources/xml/table-cals.028.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.028.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.029.xml">
+    <x:context href="../resources/xml/table-cals.029.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.029.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.030.xml">
+    <x:context href="../resources/xml/table-cals.030.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.030.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.031.xml">
+    <x:context href="../resources/xml/table-cals.031.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.031.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.032.xml">
+    <x:context href="../resources/xml/table-cals.032.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.032.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.033.xml">
+    <x:context href="../resources/xml/table-cals.033.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.033.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.034.xml">
+    <x:context href="../resources/xml/table-cals.034.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.034.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.035.xml">
+    <x:context href="../resources/xml/table-cals.035.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.035.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.036.xml">
+    <x:context href="../resources/xml/table-cals.036.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.036.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.037.xml">
+    <x:context href="../resources/xml/table-cals.037.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.037.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.038.xml">
+    <x:context href="../resources/xml/table-cals.038.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.038.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.039.xml">
+    <x:context href="../resources/xml/table-cals.039.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.039.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.040.xml">
+    <x:context href="../resources/xml/table-cals.040.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.040.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.041.xml">
+    <x:context href="../resources/xml/table-cals.041.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.041.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.042.xml">
+    <x:context href="../resources/xml/table-cals.042.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.042.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.043.xml">
+    <x:context href="../resources/xml/table-cals.043.xml"/>
+    <x:expect label="a properly formatted HTML table" href="../resources/expected/table-cals.043.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.044.xml">
+    <x:context href="../resources/xml/table-cals.044.xml"/>
+    <x:expect label="the text should become a details element" href="../resources/expected/table-cals.044.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.045.xml">
+    <x:context href="../resources/xml/table-cals.045.xml"/>
+    <x:expect label="the alt should be part of the details" href="../resources/expected/table-cals.045.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.046.xml">
+    <x:context href="../resources/xml/table-cals.046.xml"/>
+    <x:expect label="expect rowsep between thead and tbody" href="../resources/expected/table-cals.046.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.047.xml">
+    <x:context href="../resources/xml/table-cals.047.xml"/>
+    <x:expect label="expect rowsep between thead and tbody" href="../resources/expected/table-cals.047.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming table-cals.048.xml">
+    <x:context href="../resources/xml/table-cals.048.xml"/>
+    <x:expect label="expect rowsep between thead and tbody" href="../resources/expected/table-cals.048.html"/>
+  </x:scenario>
+</x:description>

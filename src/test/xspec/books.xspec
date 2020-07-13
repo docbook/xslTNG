@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<x:scenario label="When converting test book.001">
+   <x:context href="../resources/xml/book.001.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.002">
+   <x:context href="../resources/xml/book.002.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.003">
+   <x:context href="../resources/xml/book.003.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.003.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.004">
+   <x:context href="../resources/xml/book.004.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.004.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.005">
+   <x:context href="../resources/xml/book.005.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.005.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.006">
+   <x:context href="../resources/xml/book.006.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.006.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.007">
+   <x:context href="../resources/xml/book.007.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.007.html"/>
+</x:scenario>
+
+<x:scenario label="When converting test book.008">
+   <x:context href="../resources/xml/book.008.xml"/>
+   <x:expect label="An HTML book" href="../resources/expected/book.008.html"/>
+</x:scenario>
+
+<x:scenario label="When converting info.001">
+   <x:context href="../resources/xml/info.001.xml"/>
+   <x:expect label="expect the metadata to have been processed" href="../resources/expected/info.001.html"/>
+</x:scenario>
+
+</x:description>

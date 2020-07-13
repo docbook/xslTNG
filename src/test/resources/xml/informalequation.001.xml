@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: informalequation.001</title>
+
+<para>As an image first.</para>
+
+<informalexample>
+<equation xml:id="eq.fermat">
+<title>Fermat's Last Theorem</title>
+  <alt>x^n + y^n ≠ z^n ∀ n > 2</alt>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="../media/db5d_refeqn01.png"/>
+    </imageobject>
+  </mediaobject>
+</equation>
+</informalexample>
+
+<para>But this one actually works better as a <tag>mathphrase</tag>.
+Or at least it works if you have a reasonable set of fonts.</para>
+
+<informalexample>
+<equation xml:id="eq.fermat.mathphrase">
+<title>Fermat's Last Theorem</title>
+<mathphrase>x<superscript>n</superscript> + y<superscript>n</superscript>
+≠ z<superscript>n</superscript> ∀ n > 2</mathphrase>
+</equation>
+</informalexample>
+
+</article>

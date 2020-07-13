@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0" xml:id="building">
+<info>
+  <?db filename="ch05.html"?>
+  <title>Building the stylesheets</title>
+</info>
+
+<para>…</para>
+
+<section xml:id="repostruct">
+<title>Repository structure</title>
+
+<para>The most significant parts of the repository hierarchy are:</para>
+
+<screen role="monochrome">src/main/xslt
+src/main/xslt/transforms
+src/main/xslt/modules</screen>
+
+<para>These are the sources for the stylesheets themselves. The
+<dir>transform</dir> subdirectory contains the preprocessing
+stylesheets that are run as separate transforms. The
+<dir>modules</dir> directory doesn’t have any special significance, it
+just makes the main entry points easier to find.</para>
+
+<para>You cannot run the XSLT stylesheets directly from the source
+location. You must build them first with the
+<buildtarget>makeXslt</buildtarget> build target.</para>
+
+<screen role="monochrome">src/main/resources
+src/main/resources/css
+src/main/resources/js
+src/main/resources/locale-10
+src/main/resources/locale</screen>
+
+<para>These are extra resoures. The CSS and JavaScript files are needed by the browser.
+The <dir>local-10</dir> directory holds copies of the localization files from the XSLT 1.0
+stylesheets. They’re transformed into the <dir>locale</dir> versions by the build system.
+This whole area is one that needs work.</para>
+
+<screen role="monochrome">src/test/xspec
+src/test/generators
+src/test/resources/xml
+src/test/resources/expected</screen>
+
+<para>These are the testing resources. You cannot run the XSpec tests
+directly from <dir>src/test/xspec</dir>. The build system copies them into
+<dir>build/xspec</dir> along with a few XSpec tests generated
+automatically by the stylesheets in <dir>generators</dir>.
+</para>
+
+<para>The library of DocBook documents that are used for testing is
+stored in the <dir>xml</dir> directory. The HTML files in
+<dir>expected</dir> correspond to the expected results. The expected
+results aren’t usefully viewed in a browser. Only the
+<tag namespace="http://www.w3.org/1999/xhtml">body</tag> element and its
+decendants are stored in the expected results. This avoids a lot of
+noise in the
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag>.</para>
+
+<screen role="monochrome">src/main/java</screen>
+
+<para>These are the sources for the <link
+linkend="extensions">extension functions</link>.
+</para>
+
+<screen role="monochrome">src/guide
+src/website</screen>
+
+<para>These are the sources, resources, and ancillary files for the 
+reference guide and the website.</para>
+
+<screen role="monochrome">tools</screen>
+
+<para>The <dir>tools</dir> directory holds a number of stylesheets and other scripts used
+by the build process.</para>
+
+<screen role="monochrome">lib</screen>
+
+<para>The <dir>lib</dir> directory holds third party jar files. This is also where
+you can put your Saxon PE or EE files if you have them.</para>
+
+<screen role="monochrome">build
+build/actual
+build/xslt</screen>
+
+<para>The build system puts all of its temporary files under <dir>build</dir>. It’s
+always safe to delete the entire directory and start over, though it will require internet
+access and it may take a while.</para>
+
+<para>Test files that you format are published to
+<dir>build/actual</dir> and the images, CSS, and JavaScript resources
+are copied under there so that everything will look right in the
+browser. For security reasons, some JavaScript features may not work
+if you are looking at the documents from the filesystem. You can work
+around this by pointing a local web server at the build directory.</para>
+
+<para>The built stylesheets are in <dir>build/xslt</dir>. You can run
+them directly from there.</para>
+</section>
+
+<section xml:id="buildtasks">
+<title>Build tasks</title>
+
+<para>The build system is <biblioref linkend="Gradle"/>. Gradle’s
+processing model operates in several phases, this allows an initial
+configuration phase to construct build targets (called tasks)
+dynamically. The <citetitle>DocBook xslTNG Stylesheets</citetitle>
+build script uses this facility quite a bit.</para>
+
+<para>In the discussion that follows, <replaceable>testdoc</replaceable> is the
+base name of a test document, that is, one of the example files from the
+<dir>src/test/resources/xml</dir> directory. For example, one of the test documents
+is <filename>src/test/resources/xml/article.001.xml</filename>. In the build
+targets that would be the “testdoc” <literal>article.001</literal>.
+In an analogous way, “testset” is the root name of an XSpec test file in
+<dir>src/test/xspec</dir>.</para>
+
+<para>The most important tasks are:</para>
+
+<variablelist>
+<varlistentry><term><buildtarget>makeXslt</buildtarget></term>
+<listitem>
+<para>This tasks “compiles” the stylesheets into <dir>build/xslt</dir>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>report</buildtarget></term>
+<listitem>
+<para>This task runs all of the tests and generates a unified report in
+<dir>build/report</dir>. This is the default task.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>test</buildtarget></term>
+<listitem>
+<para>Runs the test suite against the stylesheets.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>testdoc</replaceable>.html</buildtarget></term>
+<listitem>
+<para>Formats <replaceable>testdoc</replaceable> into HTML and stores the result
+in <dir>build/actual</dir> where it can be viewed in the browser with the appropriate
+CSS, JavaScript, images, etc.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>testdoc</replaceable>.expected</buildtarget></term>
+<listitem>
+<para>Formats <replaceable>testdoc</replaceable> into HTML and stores the result
+in <dir>src/test/resources/expected</dir>. You should <emphasis>only</emphasis> run this
+task when you’ve made a change and determined that the new results are correct and should
+replace the previously expected results.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>testdoc</replaceable>.pdf.html</buildtarget></term>
+<listitem>
+<para>Formats <replaceable>testdoc</replaceable> into HTML suitable
+for paged media and stores the result in <dir>build/actual</dir>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>testdoc</replaceable>.pdf</buildtarget></term>
+<listitem>
+<para>The <ext>.pdf</ext> target will generate the
+<ext>.pdf.html</ext> output and then attempt to transform it into PDF
+with either AntennaHouse or PrinceXML. Additional configuration may be
+necessary to get this to work.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>testdoc</replaceable>.chunk</buildtarget></term>
+<listitem>
+<para>Formats <replaceable>testdoc</replaceable> into HTML with chunking turned
+on. The result is stored in <filename>index.html</filename> and other files
+in <dir>build/actual</dir>. No attempt is made to avoid having
+the output files from different documents overwrite each other. At the moment,
+none of the automated tests create chunked output.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>testset</replaceable>.xspec</buildtarget></term>
+<listitem>
+<para>Runs the <replaceable>testset</replaceable> set of XSpec tests. These don’t
+all work reliably because of different parameter settings. But it can be useful for quick
+testing of a particular set of features.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>dist</buildtarget></term>
+<listitem>
+<para>Builds an archive in <dir>build/distributions</dir> suitable for distribution.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>guide</buildtarget></term>
+<listitem>
+<para>Builds the reference guide.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>website</buildtarget></term>
+<listitem>
+<para>Builds the website.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>explorer</buildtarget></term>
+<listitem>
+<para>Generates the <link xlink:href="https://xslt.xmlexplorer.com/">XSLT Explorer</link>
+report for the stylesheets in
+<filename class="directory">build/explorer</filename>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget><replaceable>tagname</replaceable>Test</buildtarget></term>
+<listitem>
+<para>The build file constructs tests for different tag types. For example,
+to run all the XSpec tests that involve “<tag>revhistory</tag>”, you can
+use the target <buildtarget>revhistoryTest</buildtarget>. In practice, this feature
+is little used and may not be wholly up-to-date with respect to the most
+recent tests.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>helloWorld</buildtarget></term>
+<listitem>
+<para>A smoke test target. It just prints a message, but doing so will exercise
+a bunch of the build machinery in Gradle.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</section>
+
+<section xml:id="xspec">
+<title>Running XSpec</title>
+
+<para>FIXME: There’s a special driver.</para>
+</section>
+
+</chapter>

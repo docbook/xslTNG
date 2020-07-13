@@ -1,0 +1,149 @@
+<reference xmlns="http://docbook.org/ns/docbook"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="5.0"
+           xml:id="ref-pis">
+<info>
+  <?db filename="pis.html"?>
+  <title>Processing instruction reference</title>
+</info>
+
+<refentry xml:id="pi_current-dateTime">
+<?db filename="pi_current-dateTime.html"?>
+<refmeta>
+<refentrytitle>current-dateTime</refentrytitle>
+<refmiscinfo>current-dateTime</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>current-dateTime</refname>
+<refpurpose>Resolves to a formatted date/time string</refpurpose>
+<refclass>pi</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag class="pi">current-dateTime</tag> processing
+instruction will be replaced by a formatted date and time. The date
+and time is controlled by three pseudo-attributes:</para>
+
+<variablelist>
+<varlistentry><term><literal>dateTime</literal></term>
+<listitem>
+<para>The <biblioref linkend="iso8601"/> date or date/time to format.
+If not specified, defaults to the current date/time. If a date (and
+not a date/time) is specified, a default time of noon is assumed.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>offset</literal></term>
+<listitem>
+<para>An <biblioref linkend="iso8601"/> day/time duration or
+year/month duration. This value will be added to the dateTime that is
+to be formatted.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>format</literal></term>
+<listitem>
+<para>The format string to use. If not specified, the
+<parameter>date-dateTime-format</parameter> is used.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>For example:</para>
+<programlisting language="xml" linenumbering="unnumbered"
+><![CDATA[<para>Published on
+<?current-dateTime format="[F]"?>.</para>]]></programlisting>
+<para>Will render like this:</para>
+<informalexample>
+<para>Published on
+<?current-dateTime format="[F]"?>.</para>
+</informalexample>
+</refsection>
+</refentry>
+
+<refentry xml:id="pi_db">
+<?db filename="pi_db.html"?>
+<refmeta>
+<refentrytitle>db</refentrytitle>
+<refmiscinfo>db</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>db</refname>
+<refpurpose>Provides additional control over rendering</refpurpose>
+<refclass>pi</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag class="pi">db</tag> processing
+instruction provides additional control over the rendering of a number
+of elements. It doesn’t produce any output directly.</para>
+<?guide-db-pi?>
+</refsection>
+</refentry>
+
+<refentry xml:id="pi_DocBook-xslTNG-version">
+<?db filename="pi_docbook-xsltng-version.html"?>
+<refmeta>
+<refentrytitle>DocBook-xslTNG-version</refentrytitle>
+<refmiscinfo>DocBook-xslTNG-version</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>DocBook-xslTNG-version</refname>
+<refpurpose>Resolves to the DocBook stylesheet version</refpurpose>
+<refclass>pi</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag class="pi">DocBook-xslTNG-version</tag> processing
+instruction will be replaced by the version number of the
+stylesheets.</para>
+<para>For example:</para>
+<programlisting language="xml" linenumbering="unnumbered"
+><![CDATA[<para>This document was formatted with the <citetitle>DocBook
+xslTNG Stylesheets</citetitle>
+version <?DocBook-xslTNG-version?>.</para>]]></programlisting>
+<para>Will render like this:</para>
+<informalexample>
+<para>This document was formatted with the <citetitle>DocBook
+xslTNG Stylesheets</citetitle>
+version <?DocBook-xslTNG-version?>.</para>
+</informalexample>
+</refsection>
+</refentry>
+
+<refentry xml:id="pi_system-property">
+<?db filename="pi_system-property.html"?>
+<refmeta>
+<refentrytitle>system-property</refentrytitle>
+<refmiscinfo>system-property</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>system-property</refname>
+<refpurpose>Resolves to an XSLT system property</refpurpose>
+<refclass>pi</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag class="pi">system-property</tag> processing
+instruction will be replaced by the corresponding system
+property.</para>
+<para>For example:</para>
+<programlisting language="xml" linenumbering="unnumbered"
+><![CDATA[<para>This document was formatted with
+<?system-property xsl:product-name?>
+version <?system-property xsl:product-version?> on
+<?current-dateTime format="[D01] [MNn,*-3] [Y0001]"?>.
+</para>]]></programlisting>
+<para>Will render like this:</para>
+<informalexample>
+<para>This document was formatted with
+<?system-property xsl:product-name?>
+version <?system-property xsl:product-version?> on
+<?current-dateTime format="[D01] [MNn,*-3] [Y0001]"?>.
+</para>
+</informalexample>
+</refsection>
+</refentry>
+
+</reference>
+

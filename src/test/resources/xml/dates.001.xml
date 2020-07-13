@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+  <title>Date formatting tests</title>
+</info>
+
+<para xml:id="today"><date>Today</date></para>
+
+<para xml:id="date"><date>2020-05-08</date></para>
+
+<para xml:id="amtime"><date>2020-05-08T06:49:00Z</date></para>
+
+<para xml:id="pmtime"><date>2020-05-08T16:49:00Z</date></para>
+
+<para xml:id="dtformat"><date><?db date-format="At [h1]:[m01][P] on [F], [MNn] [D1], [Y0001]"?>2020-05-08T16:49:00Z</date></para>
+
+<para xml:id="dtformat-fr"><date xml:lang="fr"><?db date-format="[h1]:[m01][P] / [F], [MNn] [D1], [Y0001]"?>2020-05-08T16:49:00Z</date></para>
+
+</article>

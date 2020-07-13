@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+    itemizedlist listitem orderedlist term variablelist varlistentry
+-->
+
+<x:scenario label="When converting an itemizedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <itemizedlist>
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </itemizedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="it should return a ul">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ul class="itemizedlist">
+            <li><p>First</p></li>
+            <li><p>Second</p></li>
+            <li><p>Third</p></li>
+          </ul>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an itemizedlist with a preamble">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <itemizedlist>
+      <info/>
+      <para>This is a preamble.</para>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </itemizedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="it should return a div containing the ol">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <div class="itemizedlist">
+            <p>This is a preamble.</p>
+            <ul>
+              <li><p>First</p></li>
+              <li><p>Second</p></li>
+              <li><p>Third</p></li>
+            </ul>
+          </div>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting a compact itemizedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <itemizedlist spacing="compact">
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </itemizedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="if all the listitems are single paragraphs, remove the p wrappers">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ul class="itemizedlist">
+            <li>First</li>
+            <li>Second</li>
+            <li>Third</li>
+          </ul>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting a compact itemizedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <itemizedlist spacing="compact">
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Two B</para>
+                <para>Not Two B</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </itemizedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="if any item is irregular, ignore compact">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ul class="itemizedlist">
+            <li><p>First</p></li>
+            <li><p>Two B</p><p>Not Two B</p></li>
+            <li><p>Third</p></li>
+          </ul>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an itemizedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <itemizedlist mark="square">
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </itemizedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the mark should be propagated into the HTML">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ul class="itemizedlist" db-mark="square">
+            <li><p>First</p></li>
+            <li><p>Second</p></li>
+            <li><p>Third</p></li>
+          </ul>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an itemizedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <itemizedlist mark="square">
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem override="circle"><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </itemizedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="if a listitem specifies an override, it should be propagated">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ul class="itemizedlist" db-mark="square">
+            <li><p>First</p></li>
+            <li db-mark="circle"><p>Second</p></li>
+            <li><p>Third</p></li>
+          </ul>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting itemizedlist.001">
+  <x:context href="../resources/xml/itemizedlist.001.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/itemizedlist.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting itemizedlist.002">
+  <x:context href="../resources/xml/itemizedlist.002.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/itemizedlist.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting itemizedlist.003">
+  <x:context href="../resources/xml/itemizedlist.003.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/itemizedlist.003.html"/>
+</x:scenario>
+
+<x:scenario label="When converting itemizedlist.004">
+  <x:context href="../resources/xml/itemizedlist.004.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/itemizedlist.004.html"/>
+</x:scenario>
+
+<x:scenario label="When converting itemizedlist.005">
+  <x:context href="../resources/xml/itemizedlist.005.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/itemizedlist.005.html"/>
+</x:scenario>
+
+<x:scenario label="When converting itemizedlist.006">
+  <x:context href="../resources/xml/itemizedlist.006.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/itemizedlist.006.html"/>
+</x:scenario>
+
+</x:description>

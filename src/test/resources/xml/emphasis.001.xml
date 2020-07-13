@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: emphasis.001</title>
+
+<para>This is <emphasis>emphasis</emphasis>.</para>
+<para>Should these variants, with role, be supported?</para>
+<para>This is <emphasis role="bold">bold emphasis</emphasis>.</para>
+<para>This is <emphasis role="strikethrough">strikethrough emphasis</emphasis>.</para>
+<para>This is <emphasis role="underline">underline emphasis</emphasis>.</para>
+<para>This is <emphasis>nested <emphasis>emphasis</emphasis> inside
+emphasis</emphasis>.</para>
+
+<para>This is a <phrase>phrase</phrase>.</para>
+<para>Should these variants, with role, be supported?</para>
+<para>This is a <phrase role="bold">bold phrase</phrase>.</para>
+<para>This is a <phrase role="strikethrough">strikethrough phrase</phrase>.</para>
+<para>This is an <phrase role="underline">underline phrase</phrase>.</para>
+<para>This is a <phrase>nested <phrase>phrase</phrase> inside a
+phrase</phrase>.</para>
+</article>

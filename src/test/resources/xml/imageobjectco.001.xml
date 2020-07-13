@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+<para>A whole duck</para>
+
+<mediaobject>
+  <imageobjectco>
+    <areaspec>
+      <area linkends="p1"
+            units="calspair"
+            coords="0,0 10000,10000"
+            xml:id="wholeduck"/>
+    </areaspec>
+    <imageobject>
+      <imagedata format="PNG" fileref="../media/duck-small.png">
+        <info>
+          <othercredit>
+            <orgname>O'Reilly &amp; Associates/Dover Archives</orgname>
+          </othercredit>
+        </info>
+      </imagedata>
+    </imageobject>
+  </imageobjectco>
+</mediaobject>
+<para>A duck with callouts</para>
+<mediaobject>
+  <imageobjectco>
+    <areaspec>
+      <area linkends="c1"
+            units="calspair"
+            coords="240,9049 497,8786"
+            xml:id="p1"/>
+      <area linkends="c2" coords="2905,1360 3162,1098" xml:id="p2"/>
+      <area linkends="c3"
+            units="calspair"
+            coords="8796,1491 9052,1229"
+            xml:id="p3"/>
+    </areaspec>
+    <imageobject>
+      <imagedata format="PNG" fileref="../media/duck-co.png">
+        <info>
+          <othercredit>
+            <orgname>O'Reilly &amp; Associates/Dover Archives</orgname>
+          </othercredit>
+        </info>
+      </imagedata>
+    </imageobject>
+  </imageobjectco>
+</mediaobject>
+<calloutlist>
+  <callout xml:id="c1" arearefs="p1">
+    <para>The bill.</para>
+  </callout>
+  <callout xml:id="c2" arearefs="p2">
+    <para>The feet.</para>
+  </callout>
+  <callout xml:id="c3" arearefs="p3">
+    <para>The tail.</para>
+  </callout>
+</calloutlist>
+</article>

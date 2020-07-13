@@ -1,0 +1,208 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+<title>DocBook xslTNG</title>
+<link href="css/style.css" rel="stylesheet" />
+<link rel="shortcut icon" href="media/xsltng-icon.png" />
+</head>
+<body>
+<header>
+<div class="fixed">
+<h1><span class="text">DocBook</span><span class="img"
+><img class="logo" alt="[xslTNG logo]" src="media/DocBookXslTNG.png" /></span>
+</h1>
+</div>
+</header>
+<h2>xslTNG<sup><a href="#footnote">*</a></sup></h2>
+<main>
+<p>These are <a href="https://www.w3.org/TR/xslt-30/">XSLT 3.0</a> stylesheets for
+<a href="https://docbook.org/">DocBook</a>. They transform
+DocBook XML documents into clean, semantically rich HTML5. A CSS
+stylesheet suitable for online presentation is included. Producing
+high quality print output with a paged media capable CSS processor is
+also supported.</p>
+
+<div>
+<h3>Documentation</h3>
+
+<p>The stylesheets are documented in the
+<a href="guide/index.html"><cite>DocBook: xslTNG Reference</cite></a>.
+</p>
+
+<p>The <a href="https://xslt.xmlexplorer.com/">XSLT Explorer</a>
+summary of the stylesheets <a href="explorer/index.html">is also available</a>.
+</p>
+
+<div>
+<h4>Sample output</h4>
+<p>The stylesheets come with a test suite of <?testcount?>
+tests.
+The <a href="report/index.html">test suite report</a> shows the current status of all
+of the tests. It also includes samples of the expected output for a large collection
+of test documents.</p>
+
+<p>The following figures highlight some of the new features.</p>
+
+<div class="twoup">
+<div class="twouprow">
+<div id="chap1" class="figure pgwide">
+  <div class="screenshot">
+    <h5>Figure 1. Improved navigation</h5>
+    <p>This chapter of the “<a href="samples/fit/">Five Interesting Things</a>”
+    sample document explains some of
+    the new features of the stylesheets and highlights the improved navigation
+    in <a href="guide/ch02.html#chunking">chunked</a> pages.
+    </p>
+    <div class="mediaobject" summary="Screenshot of a rendered DocBook chapter.">
+      <details>
+        <p>Screenshot of Chapter 1 of the “Five Interesting Things”
+        sample document.</p>
+      </details>
+      <div class="imageobject">
+        <div class="media">
+          <img src="media/chapter-1.png" alt="Screenshot of a rendered DocBook chapter."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="chap2" class="figure pgwide">
+  <div class="screenshot">
+    <h5>Figure 2. Persistent Table of Contents</h5>
+    <p><a href="samples/fit/chap02.html">Chapter 2</a> shows how it is
+    now possible to include a Table of Contents for the entire
+    document as a fly-out navigation bar in “chunked” output.</p>
+    <div class="mediaobject" summary="Screenshot of a rendered DocBook chapter.">
+      <details>
+        <p>Screenshot of Chapter 2, showing the fly-out Table of Contents on
+        the right hand side.</p>
+      </details>
+      <div class="imageobject">
+        <div class="media">
+          <img src="media/chapter-2.png" alt="Screenshot of a rendered DocBook chapter."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="twoup">
+<div class="twouprow">
+<div id="chap4" class="figure pgwide">
+  <div class="screenshot">
+    <h5>Figure 4. Annotations</h5>
+    <p>In <a href="samples/fit/ch04.html">Chapter 4</a>, annotations are demonstrated.
+    Annotations can be presented either as dialog boxes or end notes.
+    Elements can link to their annotations, or annotations can link
+    to the elements they annotate.
+    </p>
+    <p>Figure 6 (<a href="samples/anim-anno.html">on a separate page</a>)
+    shows an animated rendering
+    of the popup dialog.</p>
+    <div class="mediaobject" summary="Screenshot of a rendered DocBook chapter.">
+      <details>
+        <p>Screenshot of Chapter 4 displaying an annotation rendered as a
+        pop-up dialog box.</p>
+      </details>
+      <div class="imageobject">
+        <div class="media">
+          <img src="media/chapter-4-anno.png" alt="Screenshot of a rendered DocBook chapter."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="chap5" class="figure pgwide">
+  <div class="screenshot">
+    <h5>Figure 5. XLink extended links</h5>
+    <p><a href="samples/fit/ch05.html">Chapter 5</a> includes an example of an
+    extended link, a link to multiple targets. These are rendered dynamically as
+    drop-down lists with JavaScript or as an inline list if JavaScript is
+    unavailable.
+    </p>
+    <p>Figure 7 (<a href="samples/anim-xlink.html">on a separate page</a>)
+    shows an animated rendering
+    of the drop-down list presentation.</p>
+    <div class="mediaobject" summary="Screenshot of a rendered DocBook chapter.">
+      <details>
+        <p>Screenshot of Chapter 5 displaying a multi-ended link rendered
+        as a drop-down list.</p>
+      </details>
+      <div class="imageobject">
+        <div class="media">
+          <img src="media/chapter-5-xlink.png" alt="Screenshot of a rendered DocBook chapter."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div>
+<h3>Getting the stylesheets</h3>
+
+<p>The stylesheets are available from <a href="https://github.com/docbook/xslTNG/">GitHub</a>.
+They will also be available from the
+<!-- <a href="https://cdn.docbook.org/release/xslTNG/">DocBook CDN</a> -->
+DocBook CDN in due course and from Maven.</p>
+
+<div>
+<h4>The latest release</h4>
+
+<p>The <a href="https://github.com/docbook/xslTNG/releases/latest">latest release</a> is version <?xsltng-version?>
+published <?pubdate?>.</p>
+</div>
+<div>
+<h4>The cutting edge</h4>
+
+<p>The <a href="https://github.com/docbook/xslTNG/">current development branch</a> contains the latest commits
+since the last release.</p>
+
+<p>Current build status:
+<img src="https://circleci.com/gh/ndw/docbook-xsltNG.svg?style=svg&amp;circle-token=fff3d12b38fab0fbce5b9f431f80d1b44f1b5553"/>; <?testsummary?>
+</p>
+
+<p>Instructions for building the stylesheets from the sources are
+included <a href="guide/ch01.html">in the guide</a>.</p>
+
+</div>
+</div>
+</div>
+<div>
+<h3>Participate!</h3>
+
+<p>Please contribute ideas, suggestions, and pull requests for
+improving the stylesheets!</p>
+
+<ul>
+<li>If you use DocBook markup that isn’t represented in the test
+suite, please submit a test!</li>
+<li>If you think the HTML transformation of some DocBook markup is wrong,
+or could be improved, please <a href="https://github.com/docbook/xslTNG/issues">open an issue</a>!</li>
+<li>If you have ideas for how to improve the HTML markup, open an
+issue or make a pull request!</li>
+<li>If you have a suggestion for alternate screen or print CSS styling,
+please send it along!</li>
+<li>And, obviously, if you think you’ve found a bug, <a href="https://github.com/docbook/xslTNG/issues">please
+report it</a>!</li>
+</ul>
+
+</div>
+</main>
+<footer>
+<hr />
+<p><sup id="footnote">*</sup><cite>DocBook: xslTNG</cite> are the next generation
+of DocBook stylesheets following on from the
+<a href="https://github.com/docbook/xslt20-stylesheets"><cite>DocBook XSLT 2.0 Stylesheets</cite></a> and the
+<a href="https://github.com/docbook/xslt10-stylesheets"><cite>DocBook XSLT 1.0 Stylesheets</cite></a>
+that preceded them.</p>
+</footer>
+<script src="js/banner.js"></script>
+</body>
+</html>

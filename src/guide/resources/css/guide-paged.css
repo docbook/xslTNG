@@ -1,0 +1,133 @@
+/* Paged media style for the guide */
+
+@page title {
+    size: A4;
+    margin: 25mm;
+    @top-center: {
+        content: "";
+    }
+    @bottom-right: {
+        content: "";
+    }
+    @bottom-left: {
+        content: "";
+    }
+}
+
+@page main:right {
+    size: A4;
+    margin-top: 25mm;
+    margin-bottom: 25mm;
+    margin-left: 30mm;
+    margin-right: 20mm;
+    @top-center: {
+        content: "DocBook xslTNG Reference";
+    }
+    @bottom-right: {
+        content: counter(page)
+    }
+    @footnote {
+        float: bottom page;
+        border-top: thin solid black;
+        border-length: 30%;
+        padding-top: 0.5em;
+    }
+}
+
+@page main:left {
+    size: A4;
+    margin-top: 25mm;
+    margin-bottom: 25mm;
+    margin-left: 20mm;
+    margin-right: 30mm;
+    @top-center: {
+        content: "DocBook xslTNG Reference";
+    }
+    @bottom-left: {
+        content: counter(page)
+    }
+    @footnote {
+        float: bottom page;
+        border-top: thin solid black;
+        border-length: 30%;
+        padding-top: 0.5em;
+    }
+}
+
+:root {
+    /* These work on A4 paper ... */
+    --header-height: 240mm;
+    --fill-margin: 40mm;
+}
+
+body {
+    page: title;
+}
+
+.book > .list-of-titles {
+    page: main;
+    string-set: ComponentTitle "Table of Contents";
+}
+
+/* Don't force refentry elements onto an odd page */
+.book .refentry  {
+    break-before: page;
+    page: normal-flow;
+}
+
+.index-list {
+    column-count: 2;
+}
+
+h2 {
+    string-set: none;
+}
+
+header img {
+    text-align: center;
+}
+
+.book .cover,
+.book .cover .image {
+    width: 100%;
+}
+
+.book .cover .image {
+    text-align: center;
+}
+
+.book .cover img {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.book > header {
+    border: none;
+    height: 240mm; /* var(--header-height); */
+}
+
+.book > header h1 {
+    display: none;
+}
+
+.book > header .authorgroup {
+    font-size: 16pt;
+}
+
+.book > header .authorgroup .label {
+    display: none;
+}
+
+.book > header .fill {
+    margin-top: 40mm; /* var(--fill-margin); */
+    padding: 0;
+}
+
+.admonition header {
+    margin-top: 1em;
+}
+
+.a-detail div div {
+    padding: 0.25em;
+}

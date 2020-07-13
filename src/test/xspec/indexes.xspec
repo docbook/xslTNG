@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+   <x:scenario label="When transforming index.001">
+      <x:context href="../resources/xml/index.001.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/index.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming index.002">
+      <x:context href="../resources/xml/index.002.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/index.002.html"/>
+   </x:scenario>
+
+   <!-- index.003 is in nav.xspec because it's a hand-built index -->
+
+   <x:scenario label="When transforming indexterm.001">
+      <x:context href="../resources/xml/indexterm.001.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/indexterm.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming indexterm.002">
+      <x:context href="../resources/xml/indexterm.002.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/indexterm.002.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming indexterm.003">
+      <x:context href="../resources/xml/indexterm.003.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/indexterm.003.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming indexterm.004">
+      <x:context href="../resources/xml/indexterm.004.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/indexterm.004.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming indexterm.005">
+      <x:context href="../resources/xml/indexterm.005.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/indexterm.005.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming indexterm.006">
+      <x:context href="../resources/xml/indexterm.006.xml"/>
+      <x:expect label="expect an index to be generated" href="../resources/expected/indexterm.006.html"/>
+   </x:scenario>
+
+</x:description>

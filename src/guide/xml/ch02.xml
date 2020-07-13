@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0" xml:id="using">
+<info>
+  <?db filename="ch02.html"?>
+  <title>Using the stylesheets</title>
+</info>
+
+<para>In principle, the stylesheets will run with any conformant XSLT
+3.0 processor. In practice, that means
+<link xlink:href="http://saxonica.com/">Saxon</link>. Although earlier versions
+may work, Saxon 10.1 or later is recommended.</para>
+
+<section xml:id="extensions">
+<title>Extension functions</title>
+
+<para>The stylesheets are distributed with several extension functions:</para>
+
+<variablelist>
+<varlistentry><term><function>ext:cwd</function></term>
+<listitem>
+<para>Returns the “current working directory” where the processor is running.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:image-properties</function></term>
+<listitem>
+<para>Returns basic properties of an image, width and height.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:image-metadata</function></term>
+<listitem>
+<para>Returns much more comprehensive image properties and understands
+far more image types than <function>ext:image-properties</function>.
+Requires the <biblioref linkend="metadata-extractor"/> libraries.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:pygmentize</function></term>
+<listitem>
+<para>Runs the external <biblioref linkend="Pygments"/> processor on
+a verbatim listing to add syntax highlighting.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:pygmentize-available</function></term>
+<listitem>
+<para>Returns true if the external <biblioref linkend="Pygments"/> processor
+is available on the current system.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:xinclude</function></term>
+<listitem>
+<para>Performs <biblioref linkend="xinclude"/> processing. This extension supports
+the basic XPointer schemes, <biblioref linkend="RFC5147"/> fragment identifiers,
+and <biblioref linkend="searchfid"/>, a scheme that supports searching in text
+documents.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:validate-with-relax-ng</function></term>
+<listitem>
+<para>Performs RELAX NG validation.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>At the time of this writing, all of these extension functions require
+Saxon 10.1 or later.
+Make sure that the <filename>docbook-xsltng-<replaceable>version</replaceable>.jar</filename>
+file is on your class path and use the Saxon <code>-init</code> option to
+load them:</para>
+
+<screen><?db verbatim-style="plain"
+?><userinput>-init:org.docbook.extensions.xslt.Register</userinput></screen>
+
+<section xml:id="ext-debug">
+<title>Extension function debugging</title>
+
+<para>You can enable the following trace events by setting
+the system property <property>org.docbook.extensions.xslt.verbose</property>:</para>
+
+<screen>    public static final String REGISTRATION = "registration";
+    public static final String IMAGE_PROPERTIES = "image-properties";
+    public static final String IMAGE_ERRORS = "image-errors";
+    public static final String PYGMENTIZE_SHOW_COMMAND = "pygmentize-show-command";
+    public static final String PYGMENTIZE_SHOW_RESULTS = "pygmentize-show-results";
+    public static final String PYGMENTIZE_ERRORS = "pygmentize-errors";
+            -Dorg.docbook.extensions.pygmentize=${PYGMENTIZE} \
+
+</screen>
+</section>
+
+</section>
+
+<section xml:id="chunking">
+<title>“Chunked” output</title>
+
+<para>FIXME: finish this section.
+</para>
+</section>
+
+<section xml:id="profiling">
+<title>Effectivity attributes and profiling</title>
+
+<para>When documenting computer hardware and software systems, it’s
+very common to have different documentation sets that overlap
+signficantly. Documentation for two different models of network
+router, for example, might differ only in a few specific details. Or a
+user guide aimed at experts might have a lot in common with the new user
+guide.</para>
+
+<section>
+<title>Effectivity</title>
+
+<para>There are many ways to address this problem, but one of the
+simplest is to identify the “effectivity” of different parts of a
+document. Effectivity in this context means identifying the parts
+of a document that are effective for different audiences.</para>
+
+<para>When a document is formatted, the stylesheets can selectively
+include or omit elements based on their configured effectivity. This
+“profiled” version of the document is the one that’s explicitly
+targeted to the audience specified.</para>
+
+<para>DocBook supports a wide variety of common attributes for this
+purpose:</para>
+
+<table>
+<title>Common DocBook effectivity attributes</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Attribute</entry>
+<entry>Nominal effectivity axis</entry>
+</row>
+</thead>
+<tbody>
+<row><entry>arch</entry>
+     <entry>The architecture, Intel or AMD</entry></row>
+<row><entry>audience</entry>    
+     <entry>The audience, operations or development</entry></row>
+<row><entry>condition</entry>   
+     <entry>Any condition (semantically neutral)</entry></row>
+<row><entry>conformance</entry> 
+     <entry>The conformance level</entry></row>
+<row><entry>os</entry>          
+     <entry>The operating system, Windows or Linux</entry></row>
+<row><entry>outputformat</entry>
+     <entry>The output format, print or online</entry></row>
+<row><entry>revision</entry>    
+     <entry>The revision, 3.4 or 4.0.</entry></row>
+<row><entry>security</entry>    
+     <entry>The security, secret or top-secret</entry></row>
+<row><entry>userlevel</entry>   
+     <entry>The user level, novice or expert</entry></row>
+<row><entry>vendor</entry>      
+     <entry>The vendor, Acme or Yoyodyne</entry></row>
+<row><entry>wordsize</entry>    
+     <entry>The word size, 32 or 64 bit</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+<para>In addition, the stylesheets support profiling on several common attributes
+that are not explicitly for effectivity: <att>xml:lang</att>, <att>revisionflag</att>,
+and <att>role</att>.</para>
+
+<note>
+<para>DocBook places no constraints on the values used for effectivity
+and the stylesheets don’t either. You’re free to use “cat” and “dog”
+as effectivity values in the <att>wordsize</att> attribute, if you
+wish. The further you deviate from the nominal meaning, the more
+important it is to document your system!</para>
+</note>
+
+<para>Consider <xref linkend="ex-profile-os"/>.</para>
+
+<example xml:id="ex-profile-os">
+<title>A contrived effectivity example</title>
+<programlisting><?db verbatim-style="plain"
+?><![CDATA[<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+<phrase os="windows">/</phrase>
+<phrase os="mac;linux">-</phrase> character.</para>]]></programlisting>
+</example>
+
+<para>If this document is formatted with the <parameter>profile-os</parameter>
+parameter set to “windows”, it will produce:</para>
+
+<blockquote>
+<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+<phrase os="windows">/</phrase>
+ character.</para>
+</blockquote>
+
+<para>If “mac” or “linux” is specified, it will produce:</para>
+
+<blockquote>
+<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+
+<phrase os="mac;linux">-</phrase> character.</para>
+</blockquote>
+
+<important>
+<para>If the document is formatted without any profiling, <emphasis>all</emphasis>
+of the versions will be included:</para>
+<blockquote>
+<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+<phrase>/</phrase>
+<phrase>-</phrase> character.</para>
+</blockquote>
+<para>That is unlikely to work well.</para>
+</important>
+
+</section>
+<section>
+<title>Profiling</title>
+
+<para>The profiling parameters are applied to every document:
+<parameter>profile-arch</parameter>,
+<parameter>profile-audience</parameter>,
+<parameter>profile-condition</parameter>,
+<parameter>profile-conformance</parameter>,
+<parameter>profile-lang</parameter>,
+<parameter>profile-os</parameter>,
+<parameter>profile-outputformat</parameter>,
+<parameter>profile-revision</parameter>,
+<parameter>profile-revisionflag</parameter>,
+<parameter>profile-role</parameter>,
+<parameter>profile-security</parameter>,
+<parameter>profile-userlevel</parameter>,
+<parameter>profile-vendor</parameter>, and
+<parameter>profile-wordsize</parameter>. Each of these values is treated
+as a string and broken into tokens at the
+<parameter>profile-separator</parameter>.</para>
+
+<para>For every element in the source document:</para>
+
+<itemizedlist>
+<listitem>
+<para>If it specifies a value for an effectivity attribute, the value
+is split into tokens at the
+<parameter>profile-separator</parameter>.</para>
+</listitem>
+<listitem>
+<para>If the corresponding profile parameter is not empty, then the
+element is discarded unless at least one of the tokens in the profile
+parameter list is also in the effectivity list.</para>
+</listitem>
+</itemizedlist>
+
+<para>In practice, elements that don’t specify effectivity are always included
+and profile parameters that are empty don’t exclude any elements.</para>
+
+</section>
+
+<section xml:id="dynprofiling">
+<title>Dynamic profiling</title>
+<para>FIXME: finish this section</para>
+</section>
+</section>
+
+<section xml:id="docbook.py">
+<title>The docbook script</title>
+<para>FIXME: finish this section</para>
+</section>
+
+</chapter>
+

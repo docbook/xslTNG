@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e3398" frame="all">
+         <tgroup cols="4">
+            <colspec colname="b" colnum="2"/>
+            <colspec colname="c" colnum="3"/>
+            <colspec colname="d"/>
+            <spanspec spanname="cd" namest="c" nameend="d"/>
+            <tbody>
+               <row>
+                  <entry>a1</entry>
+                  <entry morerows="1" namest="b" nameend="c">b1-c2</entry>
+                  <entry>d1</entry>
+               </row>
+               <row>
+                  <entry morerows="2">a2-a4</entry>
+                  <!-- b2, c2 spans from above -->
+                  <entry>d2</entry>
+               </row>
+               <row><!-- a3 spans from above -->
+                  <entry>b3</entry>
+                  <entry>c3</entry>
+                  <entry>d3</entry>
+               </row>
+               <row><!-- a4 spans from above -->
+                  <entry>b4</entry>
+                  <entry spanname="cd">c4-d4</entry>
+               </row>
+               <row>
+                  <entry>a5</entry>
+                  <entry>b5</entry>
+                  <!-- c4 is missing -->
+                  <entry colname="d">d5</entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </informaltable>

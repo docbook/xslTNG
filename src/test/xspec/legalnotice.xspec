@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     legalnotice
+-->
+
+<x:scenario label="When transforming legalnotice.001">
+   <x:context href="../resources/xml/legalnotice.001.xml"/>
+   <x:expect label="expect a message set" href="../resources/expected/legalnotice.001.html"/>
+</x:scenario>
+
+</x:description>

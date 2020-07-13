@@ -1,0 +1,3335 @@
+<reference xmlns="http://docbook.org/ns/docbook"
+           xmlns:xi='http://www.w3.org/2001/XInclude'
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="5.0"
+           xml:id="params">
+<info>
+  <?db filename="params.html"?>
+  <title>Parameter reference</title>
+</info>
+
+<refentry xml:id="p_align-char-default">
+<?db filename="p_align-char-default.html"?>
+<refmeta>
+<refentrytitle>$align-char-default, $align-char-pad, $align-char-width</refentrytitle>
+<refmiscinfo>{}align-char-default</refmiscinfo>
+<refmiscinfo>{}align-char-pad</refmiscinfo>
+<refmiscinfo>{}align-char-width</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$align-char-default</refname>
+<refname xml:id="p_align-char-pad">$align-char-pad</refname>
+<refname xml:id="p_align-char-width">$align-char-width</refname>
+<refpurpose>Support “char” alignment on CALS table cells</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>CALS tables support “char” alignment on columns. The most common
+use case for character alignment is to align a column of numbers on a
+decimal point even when the number of characters to right or left of
+the decimal point varies.</para>
+
+<para>Three parameters apply to character alignment:</para>
+
+<variablelist>
+<varlistentry><term><parameter>align-char-default</parameter></term>
+<listitem>
+<para>Specifies the default alignment character.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>align-char-pad</parameter></term>
+<listitem>
+<para>Specifies the default padding character.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>align-char-width</parameter></term>
+<listitem>
+<para>Specifies the number of characters that follow the alignment
+character.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note>
+<title>Notes</title>
+<orderedlist spacing="compact">
+<listitem>
+<para>The HTML table model doesn’t really support character alignment.
+This feature pads each entry on the right as necessary to put the
+alignment character in the same place. Naturally, this will only
+produce the desired result if a monospace font is used in the
+cell.</para>
+</listitem>
+<listitem>
+<para>If the alignment character appears more than once in the cell,
+the cells are aligned around the last occurrence. The notion of “last”
+and padding on the right or the left should be sensitive to the writing
+direction, but it isn’t currently.
+</para>
+</listitem>
+<listitem>
+<para>Character alignment is ignored if a cell contains markup.</para>
+</listitem>
+</orderedlist>
+</note>
+
+<para><xref linkend="ex-align-char-default"/> shows an example of
+character alignment on the “,” character.</para>
+
+<example xml:id="ex-align-char-default">
+<title>An example of char alignment</title>
+<?guide-example ifig-align-char-default?>
+</example>
+
+<para>Table rendering:</para>
+
+<informalexample xml:id="ifig-align-char-default">
+<informaltable frame="all">
+<tgroup cols="2" colsep="1" rowsep="1">
+<colspec colnum="2" align="char" char=","/>
+<tbody>
+<row>
+<entry>Row A</entry>
+<entry>10000,01</entry>
+</row>
+<row>
+<entry>Row B</entry>
+<entry>10</entry>
+</row>
+<row>
+<entry>Row C</entry>
+<entry>-3,14</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</informalexample>
+
+<para>The alignment character can be specified on a per-column, per-table
+basis with the <att>char</att> attribute on <tag>colspec</tag>.
+</para>
+
+<para>The alignment width and padding character can be specified on a
+per-column, per-table basis with a
+<literal>db</literal><indexterm><primary>db processing
+instruction</primary> </indexterm> processing instruction.</para>
+
+<para>If the settings apply to the whole table, the processing
+instruction can be a child of <tag>tgroup</tag>, preceding any other
+elements. If you want to specify different values for different
+columns, the processing instruction must immediately follow the
+<tag>colspec</tag> for the column.</para>
+
+<para>The <literal>align-char-width</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>align-char-width pseudo-attribute</secondary></indexterm>
+pseudo-attribute controls the number of characters following the
+alignment character. The <literal>align-char-pad</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>align-char-pad pseudo-attribute</secondary></indexterm>
+pseudo-attribute controls the character used for padding.</para>
+
+<para>A value that does not contain the alignment character is assumed
+to be followed immediately by the alignment character. (In other
+words, if you’re aligning on “.”, “10” is considered to be “10.”.)
+If the pad character is a space<footnote>
+<para>Technically, is in the class of Unicode characters considered to be spaces,
+one that matches <literal>\p{Zs}</literal>.</para></footnote>, then the pad
+character will be used to pad the value. If the pad character isn’t a space,
+the value will be padded with the alignment character followed by pad characters
+as necessary.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="p_allow-eval">
+<?db filename="p_allow-eval.html"?>
+<refmeta>
+<refentrytitle>$allow-eval</refentrytitle>
+<refmiscinfo>{}allow-eval</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$allow-eval</refname>
+<refpurpose>Process the <tag class="pi">eval</tag> processing instruction?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter is true, XPath expressions contained in the
+<tag class="pi">eval</tag> processing instruction will be evaluated,
+otherwise the processing instruction is silently ignored.</para>
+<para>If the eval is performed, the result of the evaluation is
+inserted into the formatted document.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotate-toc">
+<?db filename="p_annotate-toc.html"?>
+<refmeta>
+<refentrytitle>$annotate-toc</refentrytitle>
+<refmiscinfo>{}annotate-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotate-toc</refname>
+<refpurpose>Annotate the table-of-contents?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, a table of contents containing <tag>refentry</tag> elements
+will also include the <tag>refpurpose</tag> for each entry.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotation-collection">
+<?db filename="p_annotation-collection.html"?>
+<refmeta>
+<refentrytitle>$annotation-collection</refentrytitle>
+<refmiscinfo>{}annotation-collection</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotation-collection</refname>
+<refpurpose>An external collection of annotations</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Because annotations can be applied by pointing from the
+annotation to the element they annotate, they can be stored and
+managed externally. If <parameter>annotation-collection</parameter>
+points to a collection of annotations, the stylesheets will add them
+to the document before it is processed.</para>
+
+<para>To achieve this:</para>
+<orderedlist>
+<listitem>
+<para>Create a collection of shared annotations and store them somewhere. The
+stylesheets will copy only the top-level <tag>annotation</tag> elements
+(<literal>/*/annotation</literal>). The
+document element doesn’t matter.</para>
+</listitem>
+<listitem>
+<para>Use the <att>annotates</att> attribute on the annotations to
+point at elements in the document you’re transforming.
+</para>
+<para>Annotations can point in either direction, but you will get
+ID/IDREF validation errors if you attempt to point from the document
+into the annotation collection because the annotation collection won’t
+be present when you validate. If your use case requires pointing in
+that direction, you will have better luck with a pipeline that
+combines the two documents before validating.</para>
+</listitem>
+<listitem>
+<para>Run your transformation with
+<parameter>annotation-collection</parameter> set to the URI of the
+document that contains your collection of annotations.
+</para>
+</listitem>
+</orderedlist>
+<para>The stylesheets will apply annotations to the elements
+identified. Extra annotations, annotations that don’t point to
+elements that actually exist in the document being transformed, will
+be ignored.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotation-mark">
+<?db filename="p_annotation-mark.html"?>
+<refmeta>
+<refentrytitle>$annotation-mark</refentrytitle>
+<refmiscinfo>{}annotation-mark</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotation-mark</refname>
+<refpurpose>Identifying mark for annotations</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When <tag>annotation</tag>s are rendered, the
+<parameter>annotation-mark</parameter> is inserted at each location
+where an annotation occurs.</para>
+<para>If JavaScript is used for annotations (see <parameter>annotations</parameter>),
+clicking on the mark will bring up the annotation; if JavaScript is not used, the marks
+are numbered and the annotations appear as a form of footnote.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotations">
+<?db filename="p_annotations.html"?>
+<refmeta>
+<refentrytitle>$annotations</refentrytitle>
+<refmiscinfo>{}annotations</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotations</refname>
+<refpurpose>Selects the annotation style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>An <tag>annotation</tag> can be used to add annotations
+to arbitrary elements. When formatted, these can be presented in one
+of two ways:</para>
+<variablelist>
+<varlistentry><term>javascript</term>
+<listitem>
+<para>If “<literal>javascript</literal>” is selected, markers are introduced
+at each point where an annotation occurs. Clicking on the marker will reveal
+the annotation. Obviously, this requires a user-agent with JavaScript.
+</para>
+<para>The roles “<literal>wide</literal>” and “<literal>tall</literal>” can be used
+to increase the size of a particular annotation when it’s popped up.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>inline</term>
+<listitem>
+<para>The “<literal>inline</literal>” rendering places the annotation text
+near each reference and numbers them, something like footnotes.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotations-inline-css">
+<?db filename="p_annotations-inline-css.html"?>
+<refmeta>
+<refentrytitle>$annotations-inline-css</refentrytitle>
+<refmiscinfo>{}annotations-inline-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotations-inline-css</refname>
+<refpurpose>Inline annotation CSS</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If inline annotations appear in the document, a link to this
+CSS file will be added to the HTML HEAD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotations-javascript-css">
+<?db filename="p_annotations-javascript-css.html"?>
+<refmeta>
+<refentrytitle>$annotations-javascript-css</refentrytitle>
+<refmiscinfo>{}annotations-javascript-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotations-javascript-css</refname>
+<refpurpose>Javascript annotation CSS</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If popup (JavaScript) annotations appear in the document, a link to this
+CSS file will be added to the HTML HEAD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_annotations-js">
+<?db filename="p_annotations-js.html"?>
+<refmeta>
+<refentrytitle>$annotations-js</refentrytitle>
+<refmiscinfo>{}annotations-js</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotations-js</refname>
+<refpurpose>Script to support popup (JavaScript) annotations</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If popup (JavaScript) annotations appear in the document, a link to
+this script will be added to the document. This script must contain the JavaScript
+necessary to support the popup annotations feature.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_bibliography-collection">
+<?db filename="p_bibliography-collection.html"?>
+<refmeta>
+<refentrytitle>$bibliography-collection</refentrytitle>
+<refmiscinfo>{}bibliography-collection</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$bibliography-collection</refname>
+<refpurpose>An external collection of bibliography entries</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>It’s often convenient to share a common bibliography
+across many documents. If
+<parameter>bibliography-collection</parameter> points to a
+bibliography, the stylesheets will automatically populate bibliography
+entries in the document being transformed.</para>
+<para>To achieve this:</para>
+<orderedlist>
+<listitem>
+<para>Create a shared bibliography and store it somewhere. Make sure that
+each entry in your shared bibliography has a unique <att>xml:id</att> value.
+</para>
+</listitem>
+<listitem>
+<para>Run your
+transformation with <parameter>bibliography-collection</parameter> set
+to the URI of that document.
+</para>
+</listitem>
+<listitem>
+<para>In the document you’re transforming, refer to the shared entries
+with completely empty <tag>biblioentry</tag> or <tag>bibliomixed</tag>
+elements that have the same <att>xml:id</att> as an entry in the
+shared bibliography.
+</para>
+</listitem>
+</orderedlist>
+<para>The stylesheets will copy those entries into your document before processing it.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_callout-default-column">
+<?db filename="p_callout-default-column.html"?>
+<refmeta>
+<refentrytitle>$callout-default-column</refentrytitle>
+<refmiscinfo>{}callout-default-column</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$callout-default-column</refname>
+<refpurpose>Default column for callouts</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When callouts are used in program listings (or screens), if the
+column is not specified for a callout, it will appear in this column.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_callout-unicode-start">
+<?db filename="p_callout-unicode-start.html"?>
+<refmeta>
+<refentrytitle>$callout-unicode-start</refentrytitle>
+<refmiscinfo>{}callout-unicode-start</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$callout-unicode-start</refname>
+<refpurpose>Initial callout character</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When callouts are rendered, for example in <tag>programlistingco</tag>,
+this is the beginning of the range of characters to be used for callout “bugs”.
+This is the decimal value of the Unicode code point that is the “zero” point in
+the list, the one just before the first character.</para>
+<para>The default value is 9311 which means the first callout will
+be 9312, U2460, “①”.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk">
+<?db filename="p_chunk.html"?>
+<refmeta>
+<refentrytitle>$chunk</refentrytitle>
+<refmiscinfo>{}chunk</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk</refname>
+<refpurpose>Produce chunked output?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Specifying any value for this parameter turns on “chunking”, see
+<xref linkend="chunking"/>. The value of the parameter is taken as the filename
+for the root chunk, unless some other mechanism identifies an alternate value.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk-exclude">
+<?db filename="p_chunk-exclude.html"?>
+<refmeta>
+<refentrytitle>$chunk-exclude</refentrytitle>
+<refmiscinfo>{}chunk-exclude</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-exclude</refname>
+<refpurpose>XPath expressions for excluding chunks</refpurpose>
+<refclass role="noinitializer">param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is only relevant when chunking is being performed,
+see <xref linkend="chunking"/>.
+This parameter contains a list of XPath expressions. When
+chunking is being applied, for any element that could be a chunk (see
+<parameter>chunk-include</parameter>), each expression is evaluated
+with that element as the context item. If the effective boolean value
+of any expression is true, the element will not become a chunk.
+</para>
+<para>The default value for this parameter is:</para>
+<programlisting language="xquery" linenumbering="unnumbered">('self::db:partintro',
+ 'self::*[ancestor::db:partintro]',
+ 'self::db:toc')</programlisting>
+<para>In other words <tag>partintro</tag>, all of the descendants of <tag>partintro</tag>,
+and <tag>toc</tag> are explicitly excluded from being chunks.</para>
+
+<para>The namespaces in <varname>chunk-filter-namespaces</varname> will
+be in-scope when this expression is evaluated.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk-include">
+<?db filename="p_chunk-include.html"?>
+<refmeta>
+<refentrytitle>$chunk-include</refentrytitle>
+<refmiscinfo>{}chunk-include</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-include</refname>
+<refpurpose>XPath expressions for identifying potential chunks</refpurpose>
+<refclass role="noinitializer">param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is only relevant when chunking is being
+performed, see <xref linkend="chunking"/>. This parameter contains a
+list of XPath expressions. When chunking is being applied, for every
+element in the document, each expression is evaluated with that
+element as the context item. If the effective boolean value of any
+expression is true, the element is a candidate for chunking. It will
+become a chunk unless <parameter>chunk-exclude</parameter> excludes it
+or, in the special case of recursive sections, if it is nested too
+deeply.</para>
+
+<para>The default value for this parameter is:</para>
+<programlisting language="xquery" linenumbering="unnumbered">('parent::db:set',
+ 'parent::db:book',
+ 'parent::db:part',
+ 'parent::db:reference',
+ 'self::db:refentry',
+ 'self::db:section',
+ 'self::db:legalsection',
+ 'self::db:sect1')</programlisting>
+
+<para>In other words all of the direct children of <tag>set</tag>,
+<tag>book</tag>, <tag>part</tag>, <tag>reference</tag> will become
+chunks (the special case of <tag>info</tag> is automatically
+excluded); <tag>refentry</tag>, <tag>section</tag>,
+<tag>legalsection</tag>, and <tag>sect1</tag> become chunks anywhere
+they appear. In the case of recursive sections,
+<parameter>chunk-section-depth</parameter> also applies.</para>
+
+<para>The namespaces in <varname>chunk-filter-namespaces</varname> will
+be in-scope when this expression is evaluated.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk-output-base-uri">
+<?db filename="p_chunk-output-base-uri.html"?>
+<refmeta>
+<refentrytitle>$chunk-output-base-uri</refentrytitle>
+<refmiscinfo>{}chunk-output-base-uri</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-output-base-uri</refname>
+<refpurpose>Output base URI for chunks</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter identifies the output directory where “chunks”
+will be stored. If the stylesheet is not producing
+chunked results (see <xref linkend="chunking"/>), this parameter has no effect.</para>
+<para>If the <function>ext:cwd</function> extension function (see
+<xref linkend="extensions"/>) is available, its value will be the default
+value for this parameter. If the extension isn’t available, you must
+provide a value for this parameter.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk-renumber-footnotes">
+<?db filename="p_chunk-renumber-footnotes.html"?>
+<refmeta>
+<refentrytitle>$chunk-renumber-footnotes</refentrytitle>
+<refmiscinfo>{}chunk-renumber-footnotes</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-renumber-footnotes</refname>
+<refpurpose>Renumber footnotes when chunking?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, footnotes
+will be renumbered within chunks. See <varname>v:chunk-renumber-footnotes</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk-section-depth">
+<?db filename="p_chunk-section-depth.html"?>
+<refmeta>
+<refentrytitle>$chunk-section-depth</refentrytitle>
+<refmiscinfo>{}chunk-section-depth</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-section-depth</refname>
+<refpurpose>Returns the chunking depth for recursive sections</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is only relevant when chunking is being performed,
+see <xref linkend="chunking"/>.
+For recursive sections (<tag>section</tag>,
+<tag>legalsection</tag>, and <tag>refsection</tag>), if the section would be a chunk
+according to <parameter>chunk-include</parameter>, it is further tested against
+<parameter>chunk-section-depth</parameter>. If it is nested more deeply than
+<parameter>chunk-section-depth</parameter>, it will not be considered for chunking.
+</para>
+<note>
+<para>In principle, this parameter is unnecessary as it could be represented
+by <parameter>chunk-exclude</parameter> expressions. However, the interchangeability
+of <tag>section</tag> and <tag>legalsection</tag> makes those expressions quite complicated
+and changing the section depth is a common customization, so it’s handled
+as a separate parameter.</para>
+</note>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_classsynopsis-indent">
+<?db filename="p_classsynopsis-indent.html"?>
+<refmeta>
+<refentrytitle>$classsynopsis-indent</refentrytitle>
+<refmiscinfo>{}classsynopsis-indent</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$classsynopsis-indent</refname>
+<refpurpose>Indent for <tag>classsynopsis</tag> members</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Elements inside a class synopsis (field and method declarations, for example)
+will be indented by this amount.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_component-numbers-inherit">
+<?db filename="p_component-numbers-inherit.html"?>
+<refmeta>
+<refentrytitle>$component-numbers-inherit</refentrytitle>
+<refmiscinfo>{}component-numbers-inherit</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$component-numbers-inherit</refname>
+<refpurpose>Include component labels in section labels?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, section labels will be prefixed with the label of their
+containing component (<tag>chapter</tag>, <tag>appendix</tag>, etc.)
+In other words, the first section of chapter 2 will be labeled “2.1”
+if this is true and simply “1” if it’s false.</para>
+<para>See also <parameter>division-numbers-inherit</parameter>,
+<parameter>section-numbers-inherit</parameter>, and
+<varname>v:title-properties</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_copyright-collapse-years">
+<?db filename="p_copyright-collapse-years.html"?>
+<refmeta>
+<refentrytitle>$copyright-collapse-years</refentrytitle>
+<refmiscinfo>{}copyright-collapse-years</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$copyright-collapse-years</refname>
+<refpurpose>Collapse sequential copyright years into a range?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, sequential copyright years will be collapsed into a range.
+</para>
+<para>For example,</para>
+<programlisting><?db verbatim-style="plain"
+?><![CDATA[<copyright>
+<year>1993</year>
+<year>1997</year>
+<year>1998</year>
+<year>1999</year>
+<holder>Jane Smith</holder>
+</copyright>]]></programlisting>
+<para>might be rendered: “Copyright © 1993, 1997–1999 Jane Smith”.</para>
+<para>If <varname>copyright-collapse-years</varname> is false, that
+wold be rendered: “Copyright © 1993, 1997, 1998, 1999 Jane Smith”.</para>
+<para>See also <varname>copyright-year-range-separator</varname>
+and <varname>copyright-year-separator</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_copyright-year-range-separator">
+<?db filename="p_copyright-year-range-separator.html"?>
+<refmeta>
+<refentrytitle>$copyright-year-range-separator</refentrytitle>
+<refmiscinfo>{}copyright-year-range-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$copyright-year-range-separator</refname>
+<refpurpose>Separator character for copyright year ranges</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a sequence of copyright years is collapsed into a range,
+this character is used to separate the first and last years.</para>
+<para>See also <varname>copyright-collapse-years</varname>
+and <varname>copyright-year-separator</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_copyright-year-separator">
+<?db filename="p_copyright-year-separator.html"?>
+<refmeta>
+<refentrytitle>$copyright-year-separator</refentrytitle>
+<refmiscinfo>{}copyright-year-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$copyright-year-separator</refname>
+<refpurpose>Separator character for copyright years</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a series of copyright years (or year ranges) is formatted,
+this string is used to separate them.</para>
+<para>See also <varname>copyright-year-range-separator</varname>
+and <varname>copyright-collapse-years</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_css-links">
+<?db filename="p_css-links.html"?>
+<refmeta>
+<refentrytitle>$css-links</refentrytitle>
+<refmiscinfo>{}css-links</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$css-links</refname>
+<refpurpose>List of CSS stylesheets</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>css-links</parameter> parameter is a space-separated list
+of CSS stylesheets. These stylesheets will be linked from the HTML document.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_date-date-format">
+<?db filename="p_date-date-format.html"?>
+<refmeta>
+<refentrytitle>$date-date-format, $date-dateTime-format</refentrytitle>
+<refmiscinfo>{}date-date-format</refmiscinfo>
+<refmiscinfo>{}date-dateTime-format</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$date-date-format</refname>
+<refname xml:id="p_date-dateTime-format">$date-dateTime-format</refname>
+<refpurpose>Format strings for dates and dateTimes</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The most convenient format for storing dates that will be
+machine processed: sorted, indexed, etc, is <biblioref
+linkend="iso8601"/>. When publishing these dates, it’s often
+desirable to use a different format, one more familiar to readers.</para>
+<para>A <tag>pubdate</tag> that conforms to an ISO 8601 date (“yyyy-mm-dd”)
+will be formatted with the <parameter>date-date-format</parameter>;
+one that conforms to an ISO 8601 dateTime (“yyyy-mm-ddThh:mm:ss”)
+will be formatted with the <parameter>date-dateTime-format</parameter>.
+</para>
+<para>See also <function>f:date-format</function>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_debug">
+<?db filename="p_debug.html"?>
+<refmeta>
+<refentrytitle>$debug</refentrytitle>
+<refmiscinfo>{}debug</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$debug</refname>
+<refpurpose>Debugging flags</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>debug</parameter> parameter contains a space
+separated list of flags. Depending on which flags are enabled, various additional
+debugging messages will be emitted during processing.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_default-float-style">
+<?db filename="p_default-float-style.html"?>
+<refmeta>
+<refentrytitle>$default-float-style</refentrytitle>
+<refmiscinfo>{}default-float-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$default-float-style</refname>
+<refpurpose>Default float style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <att>floatstyle</att> attribute on formal objects
+(<tag>figure</tag>, etc.) indicates that they should float. This is
+achieved by adding the float style as a class value in the HTML
+output. If the value of <att>floatstyle</att> is
+“<literal>float</literal>”, then the
+<parameter>default-float-style</parameter> will be applied. In other
+words, the CSS classes will be “<literal>float left</literal>” (as long
+as <parameter>default-float-style</parameter> is “<literal>left</literal>”).
+If any other value is given for <att>floatstyle</att>, then
+the CSS classes will be “<literal>float</literal>
+<replaceable>value</replaceable>”.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_default-language">
+<?db filename="p_default-language.html"?>
+<refmeta>
+<refentrytitle>$default-language</refentrytitle>
+<refmiscinfo>{}default-language</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$default-language</refname>
+<refpurpose>Default language</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the stylesheets need to generate text (the names of labels
+such as “Chapter”, for example), they attempt to do so in the same
+language as the document. This is determined by finding the nearast
+in-scope <tag>xml:lang</tag> attribute from the context where the
+generated text is required.
+</para>
+<para>If there is no in-scope <att>xml:lang</att> attribute, the
+<parameter>default-language</parameter> is used instead.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_default-length-magnitude">
+<?db filename="p_default-length-magnitude.html"?>
+<refmeta>
+<refentrytitle>$default-length-magnitude, $default-length-unit</refentrytitle>
+<refmiscinfo>{}default-length-magnitude</refmiscinfo>
+<refmiscinfo>{}default-length-unit</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$default-length-magnitude</refname>
+<refname xml:id="p_default-length-unit">$default-length-unit</refname>
+<refpurpose>The magnitude and units of the default length</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the stylesheet encounters a length that it cannot parse, the default
+magnitude and unit are used for that length. See <xref linkend="units"/>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_default-personal-name-style">
+<?db filename="p_default-personal-name-style.html"?>
+<refmeta>
+<refentrytitle>$default-personal-name-style</refentrytitle>
+<refmiscinfo>{}default-personal-name-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$default-personal-name-style</refname>
+<refpurpose>The default style for formatting personal names</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The stylesheets can format personal names in a variety of ways.
+Absent any indication of what style to use, the
+<parameter>default-personal-name-style</parameter> will be used;
+see
+<template>t:person-name</template>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_division-numbers-inherit">
+<?db filename="p_division-numbers-inherit.html"?>
+<refmeta>
+<refentrytitle>$division-numbers-inherit</refentrytitle>
+<refmiscinfo>{}division-numbers-inherit</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$division-numbers-inherit</refname>
+<refpurpose>Include division labels in component labels?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, component labels will be prefixed with the label of their
+containing division (<tag>part</tag>, <tag>reference</tag>, etc.)
+In other words, chapter 2 in part I will be labeled “I.2”
+if this is true and simply “2” if it’s false.</para>
+<para>See also <parameter>component-numbers-inherit</parameter>,
+<parameter>section-numbers-inherit</parameter>, and
+<varname>v:title-properties</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_dynamic-profile-error">
+<?db filename="p_dynamic-profile-error.html"?>
+<refmeta>
+<refentrytitle>$dynamic-profile-error</refentrytitle>
+<refmiscinfo>{}dynamic-profile-error</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$dynamic-profile-error</refname>
+<refpurpose>How are errors in dynamic profiling handled?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If an error occurs evaluating a dynamic profiling expression, what should happen?
+That depends on the setting of <parameter>dynamic-profile-error</parameter>:
+</para>
+<variablelist>
+<varlistentry><term><literal>ignore</literal></term>
+<listitem>
+<para>The error is ignored. This has no effect on whether or not the
+element is included.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>include</literal></term>
+<listitem>
+<para>The error is ignored and the expression is considered to have
+returned a value of “true”.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>exclude</literal></term>
+<listitem>
+<para>The error is ignored and the expression is considered to have
+returned a value of “false”.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>error</literal></term>
+<listitem>
+<para>Raises the <errorcode>dbe:DYNAMIC-PROFILE-EVAL-ERROR</errorcode> exception.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>any other value</term>
+<listitem>
+<para>Raises the <errorcode>dbe:INVALID-DYNAMIC-PROFILE-ERROR</errorcode> exception.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_dynamic-profiles">
+<?db filename="p_dynamic-profiles.html"?>
+<refmeta>
+<refentrytitle>$dynamic-profiles</refentrytitle>
+<refmiscinfo>{}dynamic-profiles</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$dynamic-profiles</refname>
+<refpurpose>Is dynamic profiling enabled?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, dynamic profiling
+will be applied to the document. See <xref linkend="dynprofiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_footnote-numeration">
+<?db filename="p_footnote-numeration.html"?>
+<refmeta>
+<refentrytitle>$footnote-numeration</refentrytitle>
+<refmiscinfo>{}footnote-numeration</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$footnote-numeration</refname>
+<refpurpose>How are footnotes numbered?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>There are different styles of footnote numeration. This parameter
+contains a list of the symbols that should be used. If there could be more
+footnotes than symbols in the list, the last symbol in the
+list must be a character suitable for formatting numbers.
+</para>
+<para>For example, if the sequence in <parameter>footnote-numeration</parameter> is
+“*”, “†”, “a”, then the first footnote will be marked with “<superscript>*</superscript>”,
+the second with “<superscript>†</superscript>”, the third with
+“<superscript>a</superscript>”, the forth with
+“<superscript>b</superscript>”, and so on.</para>
+<para>When <link linkend="chunking">chunking</link>, footnotes may be renumbered
+within each chunk (see <parameter>chunk-renumber-footnotes</parameter>).</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_formal-object-title-placement">
+<?db filename="p_formal-object-title-placement.html"?>
+<refmeta>
+<refentrytitle>$formal-object-title-placement</refentrytitle>
+<refmiscinfo>{}formal-object-title-placement</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$formal-object-title-placement</refname>
+<refpurpose>Specify placement of title on formal elements</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Formal elements are elements with a title that are often
+displayed with a caption: <tag>figure</tag>, <tag>table</tag>,
+<tag>example</tag> and <tag>equation</tag>. The
+<parameter>formal-object-title-placement</parameter> parameter determines
+if the title precedes or follows the element itself.</para>
+
+<para>The parameter consists of a series of tokens, “<literal>before</literal>”,
+“<literal>after</literal>”, or
+“<replaceable>element</replaceable><literal>:</literal><replaceable>position</replaceable>”.
+The named forms (e.g., <literal>figure:before</literal>) take precedence with
+the unnamed form serving as a default for any that don’t have named forms.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_funcsynopsis-default-style">
+<?db filename="p_funcsynopsis-default-style.html"?>
+<refmeta>
+<refentrytitle>$funcsynopsis-default-style</refentrytitle>
+<refmiscinfo>{}funcsynopsis-default-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$funcsynopsis-default-style</refname>
+<refpurpose>Default style for function synopses</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>funcsynopsis</tag> element can be rendered in several
+styles. The <parameter>funcsynopsis-default-style</parameter>
+parameter determines which style is used by default.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_funcsynopsis-table-threshold">
+<?db filename="p_funcsynopsis-table-threshold.html"?>
+<refmeta>
+<refentrytitle>$funcsynopsis-table-threshold</refentrytitle>
+<refmiscinfo>{}funcsynopsis-table-threshold</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$funcsynopsis-table-threshold</refname>
+<refpurpose>Maximium width of a function synopsis</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering <tag>funcsynopsis</tag> elements, the width of the synopsis depends on 
+the number of parameters and the lengths of their names and types. If the width of the
+<tag>funcsynopsis</tag> would exceed <parameter>funcsynopsis-table-threshold</parameter> characters,
+the presentation switches from an inline style to a tabular style.
+The tabular style aligns the parameters up vertically after the function name.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_funcsynopsis-trailing-punctuation">
+<?db filename="p_funcsynopsis-trailing-punctuation.html"?>
+<refmeta>
+<refentrytitle>$funcsynopsis-trailing-punctuation</refentrytitle>
+<refmiscinfo>{}funcsynopsis-trailing-punctuation</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$funcsynopsis-trailing-punctuation</refname>
+<refpurpose>Trailing punctuation in function synopses</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This punctuation character is added after the end of a
+<tag>funcsynopisis</tag>. The default value of “;” is appropriate for
+C and other languages that use “;” as statement separator.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generate-index">
+<?db filename="p_generate-index.html"?>
+<refmeta>
+<refentrytitle>$generate-index</refentrytitle>
+<refmiscinfo>{}generate-index</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generate-index</refname>
+<refpurpose>Automatically generate an index?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If a document contains an empty <tag>setindex</tag>, <tag>index</tag>, or
+<tag>indexdiv</tag>, and <parameter>generate-index</parameter>
+<glossterm>is true</glossterm>, then an index will automatically be generated
+from any <tag>indexterm</tag>s found in the document.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generate-nested-toc">
+<?db filename="p_generate-nested-toc.html"?>
+<refmeta>
+<refentrytitle>$generate-nested-toc</refentrytitle>
+<refmiscinfo>{}generate-nested-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generate-nested-toc</refname>
+<refpurpose>Determines if subsubections appear in the table of contents</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>generate-nested-toc</parameter> parameter is an
+XPath expression. If it evaluates to true when the context item is an
+element that appears in the table of contents (ToC), then the immediate
+children of that element will may also occur in the ToC.
+</para>
+<para>For example, if this expression returns true for a <tag>chapter</tag>
+element that appears in the ToC, then the first level sections in that chapter
+will also appear in the ToC. If the expression returns true for one of those
+sections, then the second level sections of the chapter will appear in the ToC,
+etc.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generate-toc">
+<?db filename="p_generate-toc.html"?>
+<refmeta>
+<refentrytitle>$generate-toc</refentrytitle>
+<refmiscinfo>{}generate-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generate-toc</refname>
+<refpurpose>Generate a table-of-contents?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>generate-toc</parameter> parameter is an XPath expression.
+If the expression evaluates to true for any element, then a table of contents
+will be generated automatically at the beginning of that element.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generated-id-root">
+<?db filename="p_generated-id-root.html"?>
+<refmeta>
+<refentrytitle>$generated-id-root</refentrytitle>
+<refmiscinfo>{}generated-id-root</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generated-id-root</refname>
+<refpurpose>The string generated as the unique identifier for the root of the tree</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When <function>f:generate-id</function> is constructing a unique
+identifier for an element, it walks up the ancestors of that element. If it reaches
+the root of the tree, it uses <parameter>generated-id-root</parameter> to mark that
+location.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generated-id-sep">
+<?db filename="p_generated-id-sep.html"?>
+<refmeta>
+<refentrytitle>$generated-id-sep</refentrytitle>
+<refmiscinfo>{}generated-id-sep</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generated-id-sep</refname>
+<refpurpose>The string generated to separate parts of a unique identifier</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When <function>f:generate-id</function> is constructing a unique
+identifier for an element, it walks up the ancestors of that element.
+To make the identifiers easier to read, and to disambiguate values, it
+places <parameter>generated-id-sep</parameter> between each component
+that it uses.
+</para>
+<note>
+<para>Historically, a “.” was used as the separator. However, if
+JavaScript is going to be used to process the HTML documents that the
+stylesheet produces, that may be inconvenient. (Because selectors use
+“.” to separate element names from class values.)
+</para>
+</note>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_gentext-language">
+<?db filename="p_gentext-language.html"?>
+<refmeta>
+<refentrytitle>$gentext-language</refentrytitle>
+<refmiscinfo>{}gentext-language</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$gentext-language</refname>
+<refpurpose>Specifies language for generated text</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The language used for generated text (words “Chapter”
+and “Figure”, for example) usually depends on the language of the (section of)
+the document where they appear. If <parameter>gentext-language</parameter> is
+specified, that language will be used for all generated text, regardless of
+the context.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_glossary-collection">
+<?db filename="p_glossary-collection.html"?>
+<refmeta>
+<refentrytitle>$glossary-collection</refentrytitle>
+<refmiscinfo>{}glossary-collection</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$glossary-collection</refname>
+<refpurpose>An external collection of glossary entries</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>It’s often convenient to share a common glossary
+across many documents. If
+<parameter>glossary-collection</parameter> points to a
+glossary, the stylesheets will automatically populate glossary
+entries in the document being transformed.</para>
+<para>To achieve this:</para>
+<orderedlist>
+<listitem>
+<para>Create a shared glossary and store it somewhere. Make sure that
+each entry in your shared glossary has a unique <att>xml:id</att> value.
+</para>
+</listitem>
+<listitem>
+<para>Run your
+transformation with <parameter>glossary-collection</parameter> set
+to the URI of that document.
+</para>
+</listitem>
+<listitem>
+<para>In the document you’re transforming, refer to the shared entries
+with completely empty <tag>glossentry</tag>
+elements that have the same <att>xml:id</att> as an entry in the
+shared glossary.
+</para>
+</listitem>
+</orderedlist>
+<para>The stylesheets will copy those entries into your document before processing it.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_glossary-sort-entries">
+<?db filename="p_glossary-sort-entries.html"?>
+<refmeta>
+<refentrytitle>$glossary-sort-entries</refentrytitle>
+<refmiscinfo>{}glossary-sort-entries</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$glossary-sort-entries</refname>
+<refpurpose>Sort glossaries?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>glossary-sort-entries</parameter> is true, the entries in a
+<tag>glossary</tag> or <tag>glosslist</tag> will be sorted before transformation.
+This saves the author from the burden of maintaining the list in a strictly
+alphabetic order.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_html-extension">
+<?db filename="p_html-extension.html"?>
+<refmeta>
+<refentrytitle>$html-extension</refentrytitle>
+<refmiscinfo>{}html-extension</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$html-extension</refname>
+<refpurpose>The extension used for HTML output when chunking</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When using chunking (see <xref linkend="chunking"/>), the resulting
+HTML documents will have this extension by default.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_image-ignore-scaling">
+<?db filename="p_image-ignore-scaling.html"?>
+<refmeta>
+<refentrytitle>$image-ignore-scaling</refentrytitle>
+<refmiscinfo>{}image-ignore-scaling</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$image-ignore-scaling</refname>
+<refpurpose>Ignore scaling?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter is true, all of the scaling attributes on
+images are ignored. Images will be displayed at their intrinsic size.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_image-nominal-height">
+<?db filename="p_image-nominal-height.html"?>
+<refmeta>
+<refentrytitle>$image-nominal-height</refentrytitle>
+<refmiscinfo>{}image-nominal-height</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$image-nominal-height</refname>
+<refpurpose>Nominal height of an image</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the extension functions necessary to determine the intrinsic height
+of an image are unavailable, or if the height cannot be determined, this value
+will be used as the assumed intrinsic height of the image.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_image-nominal-width">
+<?db filename="p_image-nominal-width.html"?>
+<refmeta>
+<refentrytitle>$image-nominal-width</refentrytitle>
+<refmiscinfo>{}image-nominal-width</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$image-nominal-width</refname>
+<refpurpose>Nominal width of an image</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the extension functions necessary to determine the intrinsic width
+of an image are unavailable, or if the width cannot be determined, this value
+will be used as the assumed intrinsic width of the image.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_image-property-warning">
+<?db filename="p_image-property-warning.html"?>
+<refmeta>
+<refentrytitle>$image-property-warning</refentrytitle>
+<refmiscinfo>{}image-property-warning</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$image-property-warning</refname>
+<refpurpose>Warn if image properties cannot be obtained?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This flag controls whether or not an
+<tag namespace="http://www.w3.org/1999/XSL/Transform">xsl:message</tag> is emitted when
+the <function>ext:image-properties</function> extension function is unavailable.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_index-on-role">
+<?db filename="p_index-on-role.html"?>
+<refmeta>
+<refentrytitle>$index-on-role, $index-on-type</refentrytitle>
+<refmiscinfo>{}index-on-type</refmiscinfo>
+<refmiscinfo>{}index-on-role</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$index-on-role</refname>
+<refname xml:id="p_index-on-type">$index-on-type</refname>
+<refpurpose>Make distinct indexes based on role and type?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>DocBook supports the creation of different types of index. A book
+that documents an API might have a general index, for example, and also an
+index of functions, an index of variables, etc.</para>
+<para>Typed indexes are created by specifying the index type in the
+<att>type</att> or <att>role</att> attribute. If
+<parameter>index-on-type</parameter> is true, then separate indexes
+will be generated based on <att>type</att> values. If
+<parameter>index-on-role</parameter> is true, then separate indexes
+will be generated based on <att>role</att> values.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_index-show-entries">
+<?db filename="p_index-show-entries.html"?>
+<refmeta>
+<refentrytitle>$index-show-entries</refentrytitle>
+<refmiscinfo>{}index-show-entries</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$index-show-entries</refname>
+<refpurpose>Make index entries visible in the text?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this value is non-empty, small markers will be left in the text
+where <tag>indexterm</tag> elements appear. This is probably not appropriate for
+final publication, but it can be a useful way to review the level of indexing.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_lists-of-equations">
+<?db filename="p_lists-of-equations.html"?>
+<refmeta>
+<refentrytitle>$lists-of-equations</refentrytitle>
+<refmiscinfo>{}lists-of-equations</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$lists-of-equations</refname>
+<refpurpose>Generate a list of equations?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, a list of equations will be generated. By default, they are only
+generated for <tag>book</tag>s and <tag>set</tag>s.</para>
+
+<para>This is a pseudo-boolean parameter. It is considered true if it
+has the value '1’, ‘yes’, or ‘true’. Any other value is considered false.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_lists-of-examples">
+<?db filename="p_lists-of-examples.html"?>
+<refmeta>
+<refentrytitle>$lists-of-examples</refentrytitle>
+<refmiscinfo>{}lists-of-examples</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$lists-of-examples</refname>
+<refpurpose>Generate a list of examples?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, a list of examples will be generated. By default, they are only
+generated for <tag>book</tag>s and <tag>set</tag>s.</para>
+
+<para>This is a pseudo-boolean parameter. It is considered true if it
+has the value '1’, ‘yes’, or ‘true’. Any other value is considered false.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_lists-of-figures">
+<?db filename="p_lists-of-figures.html"?>
+<refmeta>
+<refentrytitle>$lists-of-figures</refentrytitle>
+<refmiscinfo>{}lists-of-figures</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$lists-of-figures</refname>
+<refpurpose>Generate a list of figures?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, a list of figures will be generated. By default, they are only
+generated for <tag>book</tag>s and <tag>set</tag>s.</para>
+
+<para>This is a pseudo-boolean parameter. It is considered true if it
+has the value '1’, ‘yes’, or ‘true’. Any other value is considered false.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_lists-of-procedures">
+<?db filename="p_lists-of-procedures.html"?>
+<refmeta>
+<refentrytitle>$lists-of-procedures</refentrytitle>
+<refmiscinfo>{}lists-of-procedures</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$lists-of-procedures</refname>
+<refpurpose>Generate a list of figures?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, a list of procedures will be generated. By default, they are only
+generated for <tag>book</tag>s and <tag>set</tag>s.</para>
+
+<para>This is a pseudo-boolean parameter. It is considered true if it
+has the value '1’, ‘yes’, or ‘true’. Any other value is considered false.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_lists-of-tables">
+<?db filename="p_lists-of-tables.html"?>
+<refmeta>
+<refentrytitle>$lists-of-tables</refentrytitle>
+<refmiscinfo>{}lists-of-tables</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$lists-of-tables</refname>
+<refpurpose>Generate a list of tables?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, a list of tables will be generated. By default, they are only
+generated for <tag>book</tag>s and <tag>set</tag>s.</para>
+
+<para>This is a pseudo-boolean parameter. It is considered true if it
+has the value '1’, ‘yes’, or ‘true’. Any other value is considered false.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_local-conventions">
+<?db filename="p_local-conventions.html"?>
+<refmeta>
+<refentrytitle>$local-conventions</refentrytitle>
+<refmiscinfo>{}local-conventions</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$local-conventions</refname>
+<refpurpose>Transformation for local conventions</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter allows you to specify a tranformation for local
+markup conventions. This book uses several non-DocBook tagging
+conventions as a typing convenience,
+<code>&lt;att&gt;</code> for <code>&lt;tag class="attribute"&gt;</code>,
+for example. These can be translated back into proper DocBook markup
+by the <parameter>local-conventions</parameter> stylesheet. This
+stylesheet is run at the end of the
+<template>t:preprocess</template> step, just before validation
+(see <parameter>relax-ng-grammar</parameter>).</para>
+
+<para>The example stylesheet from the test suite looks like this:</para>
+
+<programlisting language="xml" linenumbering="unnumbered"
+><xi:include href="../../test/resources/local.xsl" parse="text"
+/></programlisting>
+
+<para>It transforms pseudo-DocBook elements “<code>att</code>” and “<code>mode</code>”
+into valid DocBook markup.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_mathml-js">
+<?db filename="p_mathml-js.html"?>
+<refmeta>
+<refentrytitle>$mathml-js</refentrytitle>
+<refmiscinfo>{}mathml-js</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$mathml-js</refname>
+<refpurpose>JavaScript library supporting MathML</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If your documents use MathML, this library will be included to support
+MathML rendering. <biblioref linkend="MathJax"/> is a popular choice.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_mediaobject-accessibility">
+<?db filename="p_mediaobject-accessibility.html"?>
+<refmeta>
+<refentrytitle>$mediaobject-accessibility</refentrytitle>
+<refmiscinfo>{}mediaobject-accessibility</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$mediaobject-accessibility</refname>
+<refpurpose>Accessibility settings for media objects</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <varname>mediaobject-accessibility</varname> parameter
+determines how accessibility features are added to media objects
+(image, video, and audio elements).</para>
+<para>The value of this parameter is a list of strings. If the list
+contains:</para>
+<variablelist>
+<varlistentry><term>summary</term>
+<listitem>
+<para>A <att>summary</att> attribute will be added if there is an
+<tag>alt</tag> element or a <tag>textobject</tag> containing a single
+<tag>phrase</tag> is available.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>details</term>
+<listitem>
+<para>A <tag>details</tag> element will be added to the <tag>div</tag>
+that surrounds the image if there is
+a <tag>textobject</tag> containing anything other than a single
+<tag>phrase</tag> available.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>The list may contain either or both values. If other values are present,
+they are ignored.</para>
+
+<para>See <xref linkend="ex-mediaobject-accessibility"/>.</para>
+
+<example xml:id="ex-mediaobject-accessibility">
+<title>An example of media object accessibility</title>
+<?guide-example fig-mediaobject-accessibility?>
+</example>
+
+<para>One possible rendering of such an example:</para>
+
+<!-- Note: the fileref in the image below is correct
+     relative to the location where the transformed
+     sources will ultimately be formatted. -->
+<informalfigure xml:id="fig-mediaobject-accessibility">
+<mediaobject>
+<alt>This is a skeuomorphic “postage stamp” with the
+DocBook logo.</alt>
+<imageobject>
+<imagedata fileref="media/stamp400x256.png"/>
+</imageobject>
+<textobject>
+<para>This is a skeuomorphic image of a “postage
+stamp.” Centrally, it features the DocBook wood
+duck logo. the word “DocBook” appears on the left
+hand side, rotated 90° counter-clockwise. The
+DocBook tag line, “The Source for Documentation”
+is printed in the upper-right corner.
+</para>
+</textobject>
+</mediaobject>
+</informalfigure>
+
+<para>Inspection of the HTML will reveal that the <att>summary</att> attribute
+is present on the <tag>div</tag> that wraps the figure and a
+<tag>details</tag> element precedes the image. These may or may not be
+rendered by your user agent depending on its accessibility features and
+settings.</para>
+
+<para>See also <varname>table-accessibility</varname>.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="p_mediaobject-exclude-extensions">
+<?db filename="p_mediaobject-exclude-extensions.html"?>
+<refmeta>
+<refentrytitle>$mediaobject-exclude-extensions</refentrytitle>
+<refmiscinfo>{}mediaobject-exclude-extensions</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$mediaobject-exclude-extensions</refname>
+<refpurpose>Exclude media objects by extension</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>mediaobject</tag> element (and <tag>inlinemediaobject</tag>)
+can contain several, alternative objects. The
+<parameter>mediaobject-exclude-extensions</parameter> parameter provides
+a way to exclude some of them.
+</para>
+<para>One common use case is to provide two versions of each image,
+one as a bitmap, perhaps a
+<link xlink:href="https://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</link
+><indexterm><primary>PNG image</primary></indexterm>, 
+and another as a vector, perhaps an
+<link xlink:href="https://en.wikipedia.org/wiki/Encapsulated_PostScript">EPS</link
+><indexterm><primary>EPS image</primary></indexterm>. Then
+<parameter>mediaobject-exclude-extensions</parameter> can be used to exclude
+“.eps” images from the web format and “.png” images from the print (or paged media)
+format.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_mediaobject-input-base-uri">
+<?db filename="p_mediaobject-input-base-uri.html"?>
+<refmeta>
+<refentrytitle>$mediaobject-input-base-uri</refentrytitle>
+<refmiscinfo>{}mediaobject-input-base-uri</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$mediaobject-input-base-uri</refname>
+<refpurpose>Base URI of images and other media in the XML sources</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Computing the correct URI for media objects (images, videos,
+audio files, etc.) is complicated. See <xref linkend="mediaobject-uris"/>.
+The <parameter>mediaobject-input-base-uri</parameter> is used to compute
+the absolute base URI of input media objects.
+</para>
+<para>If the “cwd” <link linkend="extensions">extension function</link> is
+available, then the default value of this parameter is the current working
+directory. Otherwise, the default value is the empty string.</para>
+<para>The current working directory is only likely to be a useful value for
+this parameter if you are running the processor in the same directory where
+your XML source files are stored.
+See <varname>v:mediaobject-input-base-uri</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_mediaobject-output-base-uri">
+<?db filename="p_mediaobject-output-base-uri.html"?>
+<refmeta>
+<refentrytitle>$mediaobject-output-base-uri</refentrytitle>
+<refmiscinfo>{}mediaobject-output-base-uri</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$mediaobject-output-base-uri</refname>
+<refpurpose>Base URI of images and other media in the output</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Computing the correct URI for media objects (images, videos,
+audio files, etc.) is complicated. See <xref linkend="mediaobject-uris"/>.
+The <parameter>mediaobject-output-base-uri</parameter> is used to compute
+the base URI of media objects in the output.
+</para>
+<para>It defaults to the empty string.
+See <varname>v:mediaobject-output-base-uri</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_nominal-page-width">
+<?db filename="p_nominal-page-width.html"?>
+<refmeta>
+<refentrytitle>$nominal-page-width</refentrytitle>
+<refmiscinfo>{}nominal-page-width</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$nominal-page-width</refname>
+<refpurpose>The nominal page width</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>To calculate the width of the columns in some complex CALS
+tables, the stylesheets need to know the page width. The
+<parameter>nominal-page-width</parameter> is used for this
+value.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_number-single-appendix">
+<?db filename="p_number-single-appendix.html"?>
+<refmeta>
+<refentrytitle>$number-single-appendix</refentrytitle>
+<refmiscinfo>{}number-single-appendix</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$number-single-appendix</refname>
+<refpurpose>Number a single appendix?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If a book (or other element) has several appendixes, they will
+be numbered, usually “A”, “B”, “C”, etc. If there is only a single appendix,
+it will be numbered if <parameter>number-single-appendix</parameter>
+<glossterm>is true</glossterm>. Otherwise, it will be unnumbered.</para>
+<para>This can be used to create the numbered title “Appendix” for a
+single appendix.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_orderedlist-item-numeration">
+<?db filename="p_orderedlist-item-numeration.html"?>
+<refmeta>
+<refentrytitle>$orderedlist-item-numeration</refentrytitle>
+<refmiscinfo>{}orderedlist-item-numeration</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$orderedlist-item-numeration</refname>
+<refpurpose>Numeration for nested ordered lists</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>orderedlist-item-numeration</parameter> parameter
+controls the numeration style of nested <tag>orderedlist</tag> elements.
+Items in the top-level list will use the numeration style of the first character
+in <parameter>orderedlist-item-numeration</parameter>, items in the second-level
+list will use the numeration style of the second character in the string, etc.
+If the list depth exceeds the number of characters in
+the <parameter>orderedlist-item-numeration</parameter>, selection “wraps back around”
+to the first character.</para>
+<para>In other words, if the string is “1ai”:
+list items at the first, fourth, seventh, tenth, etc. depth will have arabic numeration.
+List items at the second, fifth, eight, eleventh, etc. depth will have lowercase alpha
+numeration, etc.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_othername-in-middle">
+<?db filename="p_othername-in-middle.html"?>
+<refmeta>
+<refentrytitle>$othername-in-middle</refentrytitle>
+<refmiscinfo>{}othername-in-middle</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$othername-in-middle</refname>
+<refpurpose>Treat othername as a middle name</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>othername-in-middle</parameter> is true, then
+the first <tag>othername</tag> in a <tag>personname</tag> will be presented
+as the person’s “middle” name. See <template>t:person-name</template>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_persistent-toc">
+<?db filename="p_persistent-toc.html"?>
+<refmeta>
+<refentrytitle>$persistent-toc</refentrytitle>
+<refmiscinfo>{}persistent-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$persistent-toc</refname>
+<refpurpose>Generate a persistent Table of Contents?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this value <glossterm>is true</glossterm>, then a copy of the Table of Contents (ToC)
+will be added to every file produced. This Table of Contents is read by JavaScript when
+displayed in the browser and provides a “popup” ToC on every page.
+</para>
+<para>The Table of Contents is secreted away in a
+<tag namespace="http://www.w3.org/1999/xhtml">script</tag> element so that it will
+be ignored by screen readers and other user agents that don’t support JavaScript or CSS.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_persistent-toc-css">
+<?db filename="p_persistent-toc-css.html"?>
+<refmeta>
+<refentrytitle>$persistent-toc-css</refentrytitle>
+<refmiscinfo>{}persistent-toc-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$persistent-toc-css</refname>
+<refpurpose>Persistent ToC CSS</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the persistent ToC popup is enabled, a link to this
+CSS file will be added to the HTML HEAD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_persistent-toc-js">
+<?db filename="p_persistent-toc-js.html"?>
+<refmeta>
+<refentrytitle>$persistent-toc-js</refentrytitle>
+<refmiscinfo>{}persistent-toc-js</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$persistent-toc-js</refname>
+<refpurpose>Script to support the persistent ToC</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the persistent ToC is enabled, a link to this script will be
+added to the document. This script must contain the JavaScript
+necessary to support the persistent ToC feature.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_pixels-per-inch">
+<?db filename="p_pixels-per-inch.html"?>
+<refmeta>
+<refentrytitle>$pixels-per-inch</refentrytitle>
+<refmiscinfo>{}pixels-per-inch</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$pixels-per-inch</refname>
+<refpurpose>The number of pixels per inch</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the stylesheets need to convert between absolute and
+relative units (see <xref linkend="units"/>), this value is used
+to convert lengths into pixels. If <parameter>pixels-per-inch</parameter> has
+the value 96, then 25% of a 6in width is 144px.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_procedure-step-numeration">
+<?db filename="p_procedure-step-numeration.html"?>
+<refmeta>
+<refentrytitle>$procedure-step-numeration</refentrytitle>
+<refmiscinfo>{}procedure-step-numeration</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$procedure-step-numeration</refname>
+<refpurpose>Numeration for nested procedure steps</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>procedure-step-numeration</parameter> parameter
+controls the numeration style of nested steps and substeps in a <tag>procedure</tag>.
+Steps at the top level will use the numeration style of the first character
+in <parameter>procedure-step-numeration</parameter>, substeps at the second-level
+will use the numeration style of the second character in the string, etc.
+If the step depth exceeds the number of characters in
+the <parameter>procedure-step-numeration</parameter>, selection “wraps back around”
+to the first character.</para>
+<para>In other words, if the string is “1ai”:
+steps at the first, fourth, seventh, tenth, etc. depth will have arabic numeration.
+Steps at the second, fifth, eight, eleventh, etc. depth will have lowercase alpha
+numeration, etc.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_productionset-lhs-rhs-separator">
+<?db filename="p_productionset-lhs-rhs-separator.html"?>
+<refmeta>
+<refentrytitle>$productionset-lhs-rhs-separator</refentrytitle>
+<refmiscinfo>{}productionset-lhs-rhs-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$productionset-lhs-rhs-separator</refname>
+<refpurpose>Separator in productions</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>A <tag>productionset</tag> consists of non-terminals on the
+“left hand side” (LHS) and the productions that they expand to on the
+“right hand side” (RHS). When formatted, this string will be used as
+the separator between the left- and right-hand sides.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-arch">
+<?db filename="p_profile-arch.html"?>
+<refmeta>
+<refentrytitle>$profile-arch</refentrytitle>
+<refmiscinfo>{}profile-arch</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-arch</refname>
+<refpurpose>Profile tokens for “arch”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-arch</parameter> are matched against
+the values in the <att>arch</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-audience">
+<?db filename="p_profile-audience.html"?>
+<refmeta>
+<refentrytitle>$profile-audience</refentrytitle>
+<refmiscinfo>{}profile-audience</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-audience</refname>
+<refpurpose>Profile tokens for “audience”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-audience</parameter> are matched against
+the values in the <att>audience</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-condition">
+<?db filename="p_profile-condition.html"?>
+<refmeta>
+<refentrytitle>$profile-condition</refentrytitle>
+<refmiscinfo>{}profile-condition</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-condition</refname>
+<refpurpose>Profile tokens for “condition”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-condition</parameter> are matched against
+the values in the <att>condition</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-conformance">
+<?db filename="p_profile-conformance.html"?>
+<refmeta>
+<refentrytitle>$profile-conformance</refentrytitle>
+<refmiscinfo>{}profile-conformance</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-conformance</refname>
+<refpurpose>Profile tokens for “conformance”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-conformance</parameter> are matched against
+the values in the <att>conformance</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-lang">
+<?db filename="p_profile-lang.html"?>
+<refmeta>
+<refentrytitle>$profile-lang</refentrytitle>
+<refmiscinfo>{}profile-lang</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-lang</refname>
+<refpurpose>Profile tokens for “xml:lang”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-lang</parameter> are matched against
+the values in the <att>xml:lang</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-os">
+<?db filename="p_profile-os.html"?>
+<refmeta>
+<refentrytitle>$profile-os</refentrytitle>
+<refmiscinfo>{}profile-os</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-os</refname>
+<refpurpose>Profile tokens for “os”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-os</parameter> are matched against
+the values in the <att>os</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-outputformat">
+<?db filename="p_profile-outputformat.html"?>
+<refmeta>
+<refentrytitle>$profile-outputformat</refentrytitle>
+<refmiscinfo>{}profile-outputformat</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-outputformat</refname>
+<refpurpose>Profile tokens for “outputformat”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-outputformat</parameter> are matched against
+the values in the <att>outputformat</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-revision">
+<?db filename="p_profile-revision.html"?>
+<refmeta>
+<refentrytitle>$profile-revision</refentrytitle>
+<refmiscinfo>{}profile-revision</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-revision</refname>
+<refpurpose>Profile tokens for “revision”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-revision</parameter> are matched against
+the values in the <att>revision</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-revisionflag">
+<?db filename="p_profile-revisionflag.html"?>
+<refmeta>
+<refentrytitle>$profile-revisionflag</refentrytitle>
+<refmiscinfo>{}profile-revisionflag</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-revisionflag</refname>
+<refpurpose>Profile tokens for “revisionflag”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-revisionflag</parameter> are matched against
+the values in the <att>revisionflag</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-role">
+<?db filename="p_profile-role.html"?>
+<refmeta>
+<refentrytitle>$profile-role</refentrytitle>
+<refmiscinfo>{}profile-role</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-role</refname>
+<refpurpose>Profile tokens for “role”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-role</parameter> are matched against
+the values in the <att>role</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-security">
+<?db filename="p_profile-security.html"?>
+<refmeta>
+<refentrytitle>$profile-security</refentrytitle>
+<refmiscinfo>{}profile-security</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-security</refname>
+<refpurpose>Profile tokens for “security”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-security</parameter> are matched against
+the values in the <att>security</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-separator">
+<?db filename="p_profile-separator.html"?>
+<refmeta>
+<refentrytitle>$profile-separator</refentrytitle>
+<refmiscinfo>{}profile-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-separator</refname>
+<refpurpose>The profile separator character</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The profiling parameters (and the profiling attributes) are strings. Profiling
+operates on sets of tokens. The strings in each case are divided into tokens by separating them
+at the <parameter>profile-separator</parameter> character. Common values for separator include
+“;” and “ “ (space). See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-userlevel">
+<?db filename="p_profile-userlevel.html"?>
+<refmeta>
+<refentrytitle>$profile-userlevel</refentrytitle>
+<refmiscinfo>{}profile-userlevel</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-userlevel</refname>
+<refpurpose>Profile tokens for “userlevel”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-userlevel</parameter> are matched against
+the values in the <att>userlevel</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-vendor">
+<?db filename="p_profile-vendor.html"?>
+<refmeta>
+<refentrytitle>$profile-vendor</refentrytitle>
+<refmiscinfo>{}profile-vendor</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-vendor</refname>
+<refpurpose>Profile tokens for “vendor”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-vendor</parameter> are matched against
+the values in the <att>vendor</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_profile-wordsize">
+<?db filename="p_profile-wordsize.html"?>
+<refmeta>
+<refentrytitle>$profile-wordsize</refentrytitle>
+<refmiscinfo>{}profile-wordsize</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$profile-wordsize</refname>
+<refpurpose>Profile tokens for “wordsize”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The tokens (separated by <parameter>profile-separator</parameter>)
+specified for <parameter>profile-wordsize</parameter> are matched against
+the values in the <att>wordsize</att> attribute. See <xref linkend="profiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_transclusion-prefix-separator">
+<?db filename="p_transclusion-prefix-separator.html"?>
+<refmeta>
+<refentrytitle>$transclusion-prefix-separator</refentrytitle>
+<refmiscinfo>{}transclusion-prefix-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$transclusion-prefix-separator</refname>
+<refpurpose>Transclusion separator</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>These stylesheets attempt to implement <biblioref linkend="transclusion"/>.
+This parameter provides the separator for auto-generated prefixes.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_qandadiv-default-toc">
+<?db filename="p_qandadiv-default-toc.html"?>
+<refmeta>
+<refentrytitle>$qandadiv-default-toc</refentrytitle>
+<refmiscinfo>{}qandadiv-default-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$qandadiv-default-toc</refname>
+<refpurpose>Generate a table-of-contents for <tag>qandadiv</tag> elements?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, by default a table-of-contents will
+be generated at the beginning of each <tag>qandadiv</tag>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_qandaset-default-label">
+<?db filename="p_qandaset-default-label.html"?>
+<refmeta>
+<refentrytitle>$qandaset-default-label</refentrytitle>
+<refmiscinfo>{}qandaset-default-label</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$qandaset-default-label</refname>
+<refpurpose>The default label for <tag>qandaset</tag> elements</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Question and answers can be rendered with a few different labeling styles.
+This parameter selects the default style.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_qandaset-default-toc">
+<?db filename="p_qandaset-default-toc.html"?>
+<refmeta>
+<refentrytitle>$qandaset-default-toc</refentrytitle>
+<refmiscinfo>{}qandaset-default-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$qandaset-default-toc</refname>
+<refpurpose>Generate a table-of-contents for <tag>qandaset</tag> elements?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, by default a table-of-contents will
+be generated at the beginning of each <tag>qandaset</tag>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_relax-ng-grammar">
+<?db filename="p_relax-ng-grammar.html"?>
+<refmeta>
+<refentrytitle>$relax-ng-grammar</refentrytitle>
+<refmiscinfo>{}relax-ng-grammar</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$relax-ng-grammar</refname>
+<refpurpose>Validation grammar</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>relax-ng-grammar</parameter> is provided, then the
+last step of preprocessing the source document will be to validate it against
+the provided grammar. This can be useful if, for example, the
+<parameter>local-conventions</parameter> parameter has been used.
+Validation is the last step of the
+<template>t:preprocess</template> template.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_refentry.generate.name">
+<?db filename="p_refentry.generate.name.html"?>
+<refmeta>
+<refentrytitle>$refentry.generate.name</refentrytitle>
+<refmiscinfo>{}refentry.generate.name</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$refentry.generate.name</refname>
+<refpurpose>Use “Name” as the title of a <tag>refentry</tag></refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>refentry.generate.name</parameter> is true, the
+title of the refentry page will be the word “Name”. Otherwise it will
+be the title of the subject of the reference page. Generally, exactly one
+of <parameter>refentry.generate.name</parameter> or 
+<parameter>refentry.generate.title</parameter> should
+<glossterm baseform="is true">be true</glossterm>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_refentry.generate.title">
+<?db filename="p_refentry.generate.title.html"?>
+<refmeta>
+<refentrytitle>$refentry.generate.title</refentrytitle>
+<refmiscinfo>{}refentry.generate.title</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$refentry.generate.title</refname>
+<refpurpose>Use the subject of the page as the title of a <tag>refentry</tag></refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>refentry.generate.title</parameter> is true, the
+title of the refentry page will be the subject of the page (the
+<tag>refentrytitle</tag>, <tag>refdescriptor</tag>, or the first
+<tag>refname</tag>). Generally, exactly one
+of <parameter>refentry.generate.name</parameter> or 
+<parameter>refentry.generate.title</parameter> should
+<glossterm baseform="is true">be true</glossterm>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_resource-base-uri">
+<?db filename="p_resource-base-uri.html"?>
+<refmeta>
+<refentrytitle>$resource-base-uri</refentrytitle>
+<refmiscinfo>{}resource-base-uri</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$resource-base-uri</refname>
+<refpurpose>Base URI of additional resources</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Web pages rely on additional resources (CSS, JavaScript, etc.) to
+render properly. The <parameter>resource-base-uri</parameter> is used
+as the base URI for these resources.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_revhistory-style">
+<?db filename="p_revhistory-style.html"?>
+<refmeta>
+<refentrytitle>$revhistory-style</refentrytitle>
+<refmiscinfo>{}revhistory-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$revhistory-style</refname>
+<refpurpose>Rendering style for <tag>revhistory</tag> elements.</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>revhistory</tag> element can be rendered as a list or a table.
+If <parameter>revhistory-style</parameter> is “<literal>table</literal>”, it will be rendered
+using the tabular style, otherwise it will be rendered using the list style.</para>
+
+<para><xref linkend="ex-revhistory"/> shows an example of a <tag>revhistory</tag> element.</para>
+
+<example xml:id="ex-revhistory">
+<title>An example of char alignment</title>
+<programlisting language="xml" linenumbering="unnumbered"><![CDATA[<revhistory>
+  <revision>
+    <revnumber>1.0.0</revnumber>
+    <date>2020-07-27</date>
+    <author>
+      <personname>Norman Tovey-Walsh</personname>
+    </author>
+    <revdescription>
+      <para>Version 1.0.0 released.</para>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>0.0.1</revnumber>
+    <date>2020-05-08T06:24:00Z</date>
+    <author>
+      <personname>Norman Tovey-Walsh</personname>
+    </author>
+    <revremark>Development begins.</revremark>
+  </revision>
+</revhistory>]]></programlisting>
+</example>
+
+<para>It is shown rendered as a table in <xref linkend="fig-revhistory-table"/>.</para>
+
+<figure xml:id="fig-revhistory-table">
+<title>An example of <tag>revhistory</tag> rendered as a table</title>
+<revhistory><?db revhistory-style="table"?>
+  <revision>
+    <revnumber>1.0.0</revnumber>
+    <date>2020-07-27</date>
+    <author><personname>Norman Tovey-Walsh</personname></author>
+    <revdescription>
+      <para>Version 1.0.0 released.</para>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>0.0.1</revnumber>
+    <date>2020-05-08T06:24:00Z</date>
+    <author><personname>Norman Tovey-Walsh</personname></author>
+    <revremark>Development begins.</revremark>
+  </revision>
+</revhistory>
+</figure>
+
+<para>The same <tag>revhistory</tag> is shown rendered as a list in
+<xref linkend="fig-revhistory-list"/>.</para>
+
+<figure xml:id="fig-revhistory-list">
+<title>An example of <tag>revhistory</tag> rendered as a list</title>
+<revhistory><?db revhistory-style="list"?>
+  <revision>
+    <revnumber>1.0.0</revnumber>
+    <date>2020-07-27</date>
+    <author><personname>Norman Tovey-Walsh</personname></author>
+    <revdescription>
+      <para>Version 1.0.0 released.</para>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>0.0.1</revnumber>
+    <date>2020-05-08T06:24:00Z</date>
+    <author><personname>Norman Tovey-Walsh</personname></author>
+    <revremark>Development begins.</revremark>
+  </revision>
+</revhistory>
+</figure>
+
+<para>The default style specified by
+<parameter>revhistory-style</parameter> can be overridden on a
+case-by-case basis with the
+<literal>db</literal><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction using the
+<literal>revhistory-style</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>revhistory-style pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_section-numbers">
+<?db filename="p_section-numbers.html"?>
+<refmeta>
+<refentrytitle>$section-numbers</refentrytitle>
+<refmiscinfo>{}section-numbers</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$section-numbers</refname>
+<refpurpose>Are sections numbered?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>section-numbers</parameter> is true, sections that do not have
+an explicit label will be labeled with their section number.</para>
+<para>See also <parameter>division-numbers-inherit</parameter>,
+<parameter>section-numbers-inherit</parameter>, and
+<varname>v:title-properties</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_section-numbers-inherit">
+<?db filename="p_section-numbers-inherit.html"?>
+<refmeta>
+<refentrytitle>$section-numbers-inherit</refentrytitle>
+<refmiscinfo>{}section-numbers-inherit</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$section-numbers-inherit</refname>
+<refpurpose>Include ancestor section labels?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If true, section labels will be prefixed with the label of their
+ancestor sections.
+In other words, third subsection in the second section of a chapter
+be labeled “2.3” if this is true and simply “3” if it’s false.</para>
+<para>See also <parameter>component-numbers-inherit</parameter>,
+<parameter>division-numbers-inherit</parameter>, and
+<varname>v:title-properties</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_section-toc-depth">
+<?db filename="p_section-toc-depth.html"?>
+<refmeta>
+<refentrytitle>$section-toc-depth</refentrytitle>
+<refmiscinfo>{}section-toc-depth</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$section-toc-depth</refname>
+<refpurpose>Depth of sections in the table of contents</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When generating a Table of Contents, the
+<parameter>section-toc-depth</parameter> determines the maximum depth
+of section to include. See also <parameter>generate-toc</parameter>
+and <parameter>generate-nested-toc</parameter>.
+</para>
+<para>The <parameter>section-toc-depth</parameter> should be a positive
+integer or the token <literal>unbounded</literal> to indicate arbitrary
+depth.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_segmentedlist-style">
+<?db filename="p_segmentedlist-style.html"?>
+<refmeta>
+<refentrytitle>$segmentedlist-style</refentrytitle>
+<refmiscinfo>{}segmentedlist-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$segmentedlist-style</refname>
+<refpurpose>Choose segmented list presentation style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Segmented lists can be presented in two different ways: as lists
+or tables. The default is determined by
+<parameter>segmentedlist-style</parameter> which must be either
+“<literal>list</literal>” or “<literal>table</literal>”.</para>
+
+<para>Consider the following <tag>segmentedlist</tag> of (some of) the
+US states and their capitals:</para>
+
+<programlisting language="xml"><![CDATA[<segmentedlist>
+  <segtitle>State</segtitle>
+  <segtitle>Capital</segtitle>
+  <seglistitem>
+    <seg>Alabama</seg>
+    <seg>Montgomery</seg>
+  </seglistitem>
+  <seglistitem>
+    <seg>Alaska</seg>
+    <seg>Anchorage</seg>
+  </seglistitem>
+  <seglistitem>
+    <seg>Arkansas</seg>
+    <seg>Little Rock</seg>
+  </seglistitem>
+</segmentedlist>]]></programlisting>
+
+<para>This can be rendered as a table, as shown in
+<xref linkend="fig-segmentedlist-table"/>:</para>
+
+<figure xml:id="fig-segmentedlist-table">
+<title>Segmented list formatted as a table</title>
+<segmentedlist>
+  <?db segmentedlist-style='table'
+       table-summary='US States and their capitals'?>
+  <segtitle>State</segtitle>
+  <segtitle>Capital</segtitle>
+  <seglistitem>
+    <seg>Alabama</seg>
+    <seg>Montgomery</seg>
+  </seglistitem>
+  <seglistitem>
+    <seg>Alaska</seg>
+    <seg>Anchorage</seg>
+  </seglistitem>
+  <seglistitem>
+    <seg>Arkansas</seg>
+    <seg>Little Rock</seg>
+  </seglistitem>
+</segmentedlist>
+</figure>
+
+<para>Or as a list, as shown in
+<xref linkend="fig-segmentedlist-list"/>:</para>
+
+<figure xml:id="fig-segmentedlist-list">
+<title>Segmented list formatted as a list</title>
+<segmentedlist>
+  <?db segmentedlist-style='list'?>
+  <segtitle>State</segtitle>
+  <segtitle>Capital</segtitle>
+  <seglistitem>
+    <seg>Alabama</seg>
+    <seg>Montgomery</seg>
+  </seglistitem>
+  <seglistitem>
+    <seg>Alaska</seg>
+    <seg>Anchorage</seg>
+  </seglistitem>
+  <seglistitem>
+    <seg>Arkansas</seg>
+    <seg>Little Rock</seg>
+  </seglistitem>
+</segmentedlist>
+</figure>
+
+<para>The style can be selected on a per-list bases with the
+<literal>db</literal><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction using the
+<literal>segmentedlist-style</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>segmentedlist-style pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.
+A <literal>table-summary</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>table-summary pseudo-attribute</secondary>
+</indexterm> pseudo-attribute is also provided
+for the table summary in tabular presentations.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_show-remarks">
+<?db filename="p_show-remarks.html"?>
+<refmeta>
+<refentrytitle>$show-remarks</refentrytitle>
+<refmiscinfo>{}show-remarks</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$show-remarks</refname>
+<refpurpose>Show <tag>remark</tag> elements?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>remark</tag> element is useful for editorial comments
+and other notes that are not intended to appear in the final publication.
+If <parameter>show-remarks</parameter> <glossterm>is true</glossterm>, then
+they will be included in the transformed result. Otherwise, they are 
+omitted.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_sidebar-as-aside">
+<?db filename="p_sidebar-as-aside.html"?>
+<refmeta>
+<refentrytitle>$sidebar-as-aside</refentrytitle>
+<refmiscinfo>{}sidebar-as-aside</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$sidebar-as-aside</refname>
+<refpurpose>Render <tag>sidebar</tag> as an
+<tag namespace="http://www.w3.org/1999/xhtml">aside</tag>?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The HTML
+<tag namespace="http://www.w3.org/1999/xhtml">aside</tag> element has
+specific semantics. Whether or not those semantics are consistent with
+the way <tag>sidebar</tag> is used in your DocBook documents is an
+open question. If <parameter>sidebar-as-aside</parameter>
+<glossterm>is true</glossterm>, <tag>sidebar</tag> elements will be
+rendered as HTML <tag namespace="http://www.w3.org/1999/xhtml">aside</tag> elements,
+otherwise they will be
+rendered as <tag namespace="http://www.w3.org/1999/xhtml">div</tag> elements.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_sort-collation">
+<?db filename="p_sort-collation.html"?>
+<refmeta>
+<refentrytitle>$sort-collation</refentrytitle>
+<refmiscinfo>{}sort-collation</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$sort-collation</refname>
+<refpurpose>Sorting collation</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When items (the terms in a <tag>glossary</tag>, for example) are sorted,
+this collation is used.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_table-accessibility">
+<?db filename="p_table-accessibility.html"?>
+<refmeta>
+<refentrytitle>$table-accessibility</refentrytitle>
+<refmiscinfo>{}table-accessibility</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$table-accessibility</refname>
+<refpurpose>Accessibility settings for tables</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <varname>table-accessibility</varname> parameter
+determines how accessibility features are added to CALS
+tables<footnote><para>This parameter does not apply to HTML tables because
+the HTML table model supports these features directly.</para>
+</footnote>.</para>
+<para>The value of this parameter is a list of strings. If the list
+contains:</para>
+<variablelist>
+<varlistentry><term>summary</term>
+<listitem>
+<para>A <att>summary</att> attribute will be added to the table if an
+<tag>alt</tag> element or a <tag>textobject</tag> containing a single
+<tag>phrase</tag> is available.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>details</term>
+<listitem>
+<para>A <tag>details</tag> element will be added if there is
+a <tag>textobject</tag> containing anything other than a single
+<tag>phrase</tag> available.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>The list may contain either or both values. If other values are present,
+they are ignored.</para>
+
+<para>See <xref linkend="ex-table-accessibility"/>.</para>
+
+<example xml:id="ex-table-accessibility">
+<title>An example of table accessibility</title>
+<?guide-example fig-table-accessibility?>
+</example>
+
+<para>One possible rendering of such an example:</para>
+
+<informalfigure xml:id="fig-table-accessibility">
+<table frame="all">
+<title>Square numbers</title>
+<alt>The first four whole numbers
+and their squares.</alt>
+<textobject>
+<para>This table shows the first four whole numbers
+and their squares. (The square of a number is that
+number times itself.)
+</para>
+</textobject>
+<tgroup cols="2" colsep="1" rowsep="1">
+<thead>
+<row><entry><inlineequation><mathphrase>n</mathphrase></inlineequation></entry>
+<entry><inlineequation><mathphrase>n<superscript>2</superscript></mathphrase></inlineequation></entry>
+</row>
+</thead>
+<tbody>
+<row><entry>1</entry><entry>1</entry></row>
+<row><entry>2</entry><entry>4</entry></row>
+<row><entry>3</entry><entry>9</entry></row>
+<row><entry>4</entry><entry>16</entry></row>
+</tbody>
+</tgroup>
+</table>
+</informalfigure>
+
+<para>Inspection of the HTML will reveal that the <att>summary</att> attribute
+is present on the element that wraps the table and a
+<tag>details</tag> element precedes it. These may or may not be
+rendered by your user agent depending on its accessibility features and
+settings.</para>
+
+<para>See also <varname>mediaobject-accessibility</varname>.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="p_table-footnote-numeration">
+<?db filename="p_table-footnote-numeration.html"?>
+<refmeta>
+<refentrytitle>$table-footnote-numeration</refentrytitle>
+<refmiscinfo>{}table-footnote-numeration</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$table-footnote-numeration</refname>
+<refpurpose>How are footnotes numbered in tables?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>There are different styles of footnote numeration. This
+parameter contains a list of the symbols that should be used to mark
+footnotes in tables. If there could be more footnotes than symbols in
+the list, the last symbol in the list must be a character suitable for
+formatting numbers. See <parameter>footnote-numeration</parameter>.
+</para>
+<para>Footnote number begins with the first symbol in each table.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_variablelist-termlength-threshold">
+<?db filename="p_variablelist-termlength-threshold.html"?>
+<refmeta>
+<refentrytitle>$variablelist-termlength-threshold</refentrytitle>
+<refmiscinfo>{}variablelist-termlength-threshold</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$variablelist-termlength-threshold</refname>
+<refpurpose>Threshold value for considering <tag>varlistentry</tag> terms “long”</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the sum of the lengths of the <tag>term</tag> elements in a <tag>varlistentry</tag>
+exceeds this threshold, the variable list will have a “<tag>long</tag>” class.
+This can be used in CSS or in other downstream processing to decide whether or not the
+terms and their corresponding list items should be aligned side-by-side.</para>
+<para>The length computation is just the number of characters. No attempt is made to
+adjust for wide or narrow characters.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-callouts">
+<?db filename="p_verbatim-callouts.html"?>
+<refmeta>
+<refentrytitle>$verbatim-callouts</refentrytitle>
+<refmiscinfo>{}verbatim-callouts</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-callouts</refname>
+<refpurpose>A list determining how callouts are processed</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>verbatim-callouts</parameter> parameter is a space separated
+list of token values. These token values determine which kinds of callouts in a
+<tag>programlistingco</tag> or <tag>screenco</tag> will be processed and how.
+</para>
+
+<variablelist>
+<varlistentry><term><literal>linecolumn</literal></term>
+<listitem>
+<para>If “<literal>linecolumn</literal>” appears in the list then
+callouts that have a <att>units</att> attribute of <tag
+class="attvalue">linecolumn</tag> and specify both a line and column
+will be processed. A callout marker will be placed on the line and
+before the column indicated. Additional lines and columns will be added to the
+listing if necessary.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>lines</literal></term>
+<listitem>
+<para>If “<literal>lines</literal>” appears in the list then callouts
+that have a <att>units</att> attribute of <tag
+class="attvalue">linecolumn</tag> and specify only a line will be
+processed. A callout marker will be placed on the line and before
+the <parameter>callout-default-column</parameter>.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>lineranges-first</literal></term>
+<listitem>
+<para>If “<literal>lineranges-first</literal>” appears in the list
+then callouts that have a <att>units</att> attribute of <tag
+class="attvalue">linerange</tag> will be processed. A callout marker
+will be placed on the first line and before the
+<parameter>callout-default-column</parameter>.</para>
+<para>Only one of <literal>lineranges-first</literal> and
+<literal>lineranges-all</literal> should be specified.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>lineranges-all</literal></term>
+<listitem>
+<para>If “<literal>lineranges-first</literal>” appears in the list
+then callouts that have a <att>units</att> attribute of <tag
+class="attvalue">linerange</tag> will be processed. A callout marker
+will be placed on every line in the range before the
+<parameter>callout-default-column</parameter>.</para>
+<para>Only one of <literal>lineranges-first</literal> and
+<literal>lineranges-all</literal> should be specified.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>There is no support for <tag>area</tag>s with a <att>units</att> value of
+“<literal>calspair</literal>” or “<literal>linecolumnpair</literal>”.
+They are always ignored.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-line-style">
+<?db filename="p_verbatim-line-style.html"?>
+<refmeta>
+<refentrytitle>$verbatim-line-style</refentrytitle>
+<refmiscinfo>{}verbatim-line-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-line-style</refname>
+<refpurpose>List of verbatim elements to be rendered in the line style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space-separated list of element names (local names).
+Verbatim elements that appear in this list will be formatted using the line
+style by default. For a discussion of verbatim elements and styles, see
+<xref linkend="verbstyle"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-number-every-nth">
+<?db filename="p_verbatim-number-every-nth.html"?>
+<refmeta>
+<refentrytitle>$verbatim-number-every-nth</refentrytitle>
+<refmiscinfo>{}verbatim-number-every-nth</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-number-every-nth</refname>
+<refpurpose>Line numbering frequency</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting verbatim environments with line numbers,
+every <parameter>verbatim-number-every-nth</parameter> line is numbered.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-number-first-line">
+<?db filename="p_verbatim-number-first-line.html"?>
+<refmeta>
+<refentrytitle>$verbatim-number-first-line</refentrytitle>
+<refmiscinfo>{}verbatim-number-first-line</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-number-first-line</refname>
+<refpurpose>Number the first line?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting verbatim environments with line numbers,
+if <parameter>verbatim-number-first-line</parameter> line is true,
+the first line will be numbered even it isn’t one of
+the <parameter>verbatim-number-every-nth</parameter> lines.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-number-minlines">
+<?db filename="p_verbatim-number-minlines.html"?>
+<refmeta>
+<refentrytitle>$verbatim-number-minlines</refentrytitle>
+<refmiscinfo>{}verbatim-number-minlines</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-number-minlines</refname>
+<refpurpose>Shortest listing to number</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting verbatim environments with line numbers,
+environments less than
+<parameter>verbatim-number-minlines</parameter> in length will
+not be numbered.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-numbered-elements">
+<?db filename="p_verbatim-numbered-elements.html"?>
+<refmeta>
+<refentrytitle>$verbatim-numbered-elements</refentrytitle>
+<refmiscinfo>{}verbatim-numbered-elements</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-numbered-elements</refname>
+<refpurpose>Verbatim environments that should be numbered</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space-separated list of element names (local names).
+Verbatim elements that appear in this list will be formatted with line numbers.
+For a discussion of verbatim elements and styles, see
+<xref linkend="verbstyle"/>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-plain-style">
+<?db filename="p_verbatim-plain-style.html"?>
+<refmeta>
+<refentrytitle>$verbatim-plain-style</refentrytitle>
+<refmiscinfo>{}verbatim-plain-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-plain-style</refname>
+<refpurpose>List of verbatim elements to be rendered in the plain style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space-separated list of element names (local names).
+Verbatim elements that appear in this list will be formatted using the plain
+style by default. For a discussion of verbatim elements and styles, see
+<xref linkend="verbstyle"/>.
+</para>
+<para>See also <varname>v:verbatim-plain-style</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-space">
+<?db filename="p_verbatim-space.html"?>
+<refmeta>
+<refentrytitle>$verbatim-space</refentrytitle>
+<refmiscinfo>{}verbatim-space</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-space</refname>
+<refpurpose>The space character to use when padding verbatim lines</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a verbatim line has to be padded in order to get a callout to appear in
+the correct column, this character will be used as the padding character.
+For a discussion of verbatim elements and styles, see
+<xref linkend="verbstyle"/>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-style-default">
+<?db filename="p_verbatim-style-default.html"?>
+<refmeta>
+<refentrytitle>$verbatim-style-default</refentrytitle>
+<refmiscinfo>{}verbatim-style-default</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-style-default</refname>
+<refpurpose>The default verbatim style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The default verbatim style for verbatim environments that do not
+specify a style explicitly. For a discussion of verbatim
+elements and styles, see <xref linkend="verbstyle"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-syntax-highlight-css">
+<?db filename="p_verbatim-syntax-highlight-css.html"?>
+<refmeta>
+<refentrytitle>$verbatim-syntax-highlight-css</refentrytitle>
+<refmiscinfo>{}verbatim-syntax-highlight-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-syntax-highlight-css</refname>
+<refpurpose>Stylesheet for syntax highlighting</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <parameter>verbatim-syntax-highlight-languages</parameter> parameter
+is non-empty, then this stylesheet will be linked from the HTML document. The purpose
+of this stylesheet is to provide styling (fonts, colors, etc.) for syntax highlighted
+verbatim listings.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-syntax-highlight-languages">
+<?db filename="p_verbatim-syntax-highlight-languages.html"?>
+<refmeta>
+<refentrytitle>$verbatim-syntax-highlight-languages</refentrytitle>
+<refmiscinfo>{}verbatim-syntax-highlight-languages</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-syntax-highlight-languages</refname>
+<refpurpose>Languages for which syntax highlighting should be performed</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space-separated list of programming languages.
+If the <link xlink:href="https://pygments.org/">Pygments</link><indexterm>
+<primary>Pygments</primary></indexterm><indexterm>
+<primary>Syntax highlighting</primary><secondary>Pygments</secondary></indexterm>
+syntax highlighter is available, the stylesheets can apply syntax
+highlighting to program listings.
+If the program listing language (as specified in the <att>language</att>
+attribute) appears in the list of
+<parameter>verbatim-syntax-highlight-languages</parameter>, syntax highlighting
+will be attempted.</para>
+<note>
+<para>Syntax highlighting is incompatible with inline markup in the
+program listing; the embedded markup will be ignored.</para>
+</note>
+
+<para>The examples in this guide show syntax highlighting applied to XML.</para>
+
+<para>See also <varname>v:verbatim-syntax-highlight-options</varname>
+and <varname>v:verbatim-syntax-highlight-pygments-options</varname>.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-trim-trailing-blank-lines">
+<?db filename="p_verbatim-trim-trailing-blank-lines.html"?>
+<refmeta>
+<refentrytitle>$verbatim-trim-trailing-blank-lines</refentrytitle>
+<refmiscinfo>{}verbatim-trim-trailing-blank-lines</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-trim-trailing-blank-lines</refname>
+<refpurpose>Trim trailing blank lines off verbatim environments?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Trailing blank lines can be introduced into verbatim
+environments in a number of ways. Transcluded text files may have
+trailing blank lines, for example, and authors often put a newline
+before the closing tag of an environment.</para>
+<para>This can produce spurious looking listings in the documentation.
+If trailing newlines aren’t significant, setting
+<parameter>verbatim-trim-trailing-blank-lines</parameter> will cause
+the stylesheets to trim blank (that is, entirely empty) lines from
+the end of verbatim environments.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xlink-css">
+<?db filename="p_xlink-css.html"?>
+<refmeta>
+<refentrytitle>$xlink-css</refentrytitle>
+<refmiscinfo>{}xlink-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xlink-css</refname>
+<refpurpose>XLink CSS</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the extended XLinks are used, a link to this
+CSS file will be added to the HTML HEAD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xlink-js">
+<?db filename="p_xlink-js.html"?>
+<refmeta>
+<refentrytitle>$xlink-js</refentrytitle>
+<refmiscinfo>{}xlink-js</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xlink-js</refname>
+<refpurpose>Script to support extended XLinks</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the extended XLinks appear in the document, a link to this
+script will be added to the document. This script must contain the
+JavaScript necessary to support rendering extended XLinks.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xlink-style">
+<?db filename="p_xlink-style.html"?>
+<refmeta>
+<refentrytitle>$xlink-style</refentrytitle>
+<refmiscinfo>{}xlink-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xlink-style</refname>
+<refpurpose>Presentation style for XLink extended links</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The stylesheets support XLink extended links. Extended links make
+it possible to have one-to-many links. That is, a single link such
+as <phrase xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+         <link xlink:title="DocBook.org"
+               xlink:label="target"
+               xlink:href="https://docbook.org/"
+               xlink:type="locator"/>
+         <link xlink:title="DocBook on Wikipedia"
+               xlink:label="target"
+               xlink:href="https://en.wikipedia.org/wiki/DocBook"
+               xlink:type="locator"/>
+         <citetitle xlink:label="source" xlink:type="resource">DocBook</citetitle>
+         <link xlink:to="target" xlink:from="source" xlink:type="arc"/>
+</phrase> may point to more than one target. Two styles are supported:
+“<literal>inline</literal>” which renders a link to each target inline after
+the originating link, and “<literal>javascript</literal>” which uses
+JavaScript<indexterm><primary>JavaScript</primary></indexterm> to create a
+popup menu for the links.
+</para>
+<para>The XLink style for a document applies to the entire document, you cannot
+specify inline presentation in some cases and JavaScript presentation in others.
+However, if you specify “<literal>document</literal>” as the value for
+<parameter>xlink-style</parameter>, then a
+<literal>db</literal><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction in the document’s top-level <tag>info</tag>
+element can be used to control the presentation. Specify the style in the
+<literal>xlink-style</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>xlink-style pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.</para>
+<para>If the <literal>document</literal> style is selected and no
+processing instruction specifying a style exists, the
+<parameter>xlink-style-default</parameter> style will be selected.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xlink-style-default">
+<?db filename="p_xlink-style-default.html"?>
+<refmeta>
+<refentrytitle>$xlink-style-default</refentrytitle>
+<refmiscinfo>{}xlink-style-default</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xlink-style-default</refname>
+<refpurpose>Default XLink style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Specifies the default XLink style if “<literal>document</literal>”
+is specified for the <parameter>xlink-style</parameter> and no processing
+instruction specifying a style exists.</para>
+<para>Must be either “<literal>inline</literal>” or “<literal>javascript</literal>”.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xspec">
+<?db filename="p_xspec.html"?>
+<refmeta>
+<refentrytitle>$xspec</refentrytitle>
+<refmiscinfo>{}xspec</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xspec</refname>
+<refpurpose>Are we running XSpec tests?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is only true if the stylesheets are running in
+the context of the XSpec test harness. This allows tests to be crafted
+such that normal variations (Saxon HE vs. EE, the version of the
+stylesheets, or the current time, for example) don’t introduce spurious
+differences in the results, causing tests to fail.</para>
+</refsection>
+</refentry>
+
+</reference>

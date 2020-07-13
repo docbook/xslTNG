@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: programlistingco.002</title>
+
+<programlistingco>
+<areaspec>
+<area xml:id="t1" coords="4 12"/>
+<area xml:id="t2" coords="5 12"/>
+</areaspec>
+<programlisting>The is the first line
+In the fourth line a variant selector occurs
+after the ⚠; it should not be counted.
+123456789⚠&#xFE0E;1234567890
+12345678901234567890</programlisting>
+</programlistingco>
+
+<para>The user probably expects the line range marks to line up,
+but they don’t. It’s not clear how to fix that.</para>
+
+<programlistingco>
+<?db verbatim-style="lines" verbatim-highlight="linecolumn,lineranges-all"?>
+<areaspec>
+<area xml:id="t3" coords="3 10"/>
+<area xml:id="t4" coords="3 12"/>
+<area xml:id="t5" coords="3 14"/>
+<area xml:id="t1-4" coords="1 4" units="linerange"/>
+</areaspec>
+<programlisting>12345678901234567890
+12345678901234567890
+12345678901234567890
+12345678901234567890</programlisting>
+</programlistingco>
+
+<programlistingco>
+<?db verbatim-style="lines" verbatim-highlight="linecolumn,lineranges-all"?>
+<areaspec>
+<area xml:id="u1-4" coords="1 4" units="linerange"/>
+<area xml:id="u3" coords="3 10"/>
+<area xml:id="u4" coords="3 12"/>
+<area xml:id="u5" coords="3 14"/>
+</areaspec>
+<programlisting>12345678901234567890
+12345678901234567890
+12345678901234567890
+12345678901234567890</programlisting>
+</programlistingco>
+</article>

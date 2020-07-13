@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     glossary glossdef glossdiv glossentry glosslist glosssee
+     glossterm xref
+-->
+
+  <x:scenario label="When transforming glossary.001">
+     <x:context href="../resources/xml/glossary.001.xml"/>
+     <x:expect label="expect a glossary" href="../resources/expected/glossary.001.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming glossary.002">
+     <x:context href="../resources/xml/glossary.002.xml"/>
+     <x:expect label="expect a glossary" href="../resources/expected/glossary.002.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming glossary.003">
+     <x:context href="../resources/xml/glossary.003.xml"/>
+     <x:expect label="expect a glossary" href="../resources/expected/glossary.003.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming glosslist.001">
+     <x:context href="../resources/xml/glosslist.001.xml"/>
+     <x:expect label="expect a glossary list" href="../resources/expected/glosslist.001.html"/>
+  </x:scenario>
+
+</x:description>

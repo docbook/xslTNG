@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     seg seglistitem segmentedlist segtitle
+-->
+
+<x:scenario label="When converting a segmented list the list style">
+  <x:context href="../resources/xml/segmentedlist.001.xml"/>
+  <x:expect label="expect the list rendered as a list" href="../resources/expected/segmentedlist.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting a segmented list the table style">
+  <x:context href="../resources/xml/segmentedlist.002.xml"/>
+  <x:expect label="expect the list rendered as a table" href="../resources/expected/segmentedlist.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting a segmented list">
+  <x:context href="../resources/xml/segmentedlist.003.xml"/>
+  <x:expect label="expect the list to be rendered" href="../resources/expected/segmentedlist.003.html"/>
+</x:scenario>
+
+</x:description>

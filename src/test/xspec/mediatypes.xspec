@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- These tests check that the extension functions can get the
+     intrinsic size of png, bmp, gif, eps, pdf, and svg images. -->
+
+<x:scenario label="When converting duck-small.001">
+   <x:context href="../resources/xml/duck-small.001.xml"/>
+   <x:expect label="expect image width" href="../resources/expected/duck-small.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting duck-small.002">
+   <x:context href="../resources/xml/duck-small.002.xml"/>
+   <x:expect label="expect image width" href="../resources/expected/duck-small.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting duck-small.003">
+   <x:context href="../resources/xml/duck-small.003.xml"/>
+   <x:expect label="expect image width" href="../resources/expected/duck-small.003.html"/>
+</x:scenario>
+
+<x:scenario label="When converting duck-small.004">
+   <x:context href="../resources/xml/duck-small.004.xml"/>
+   <x:expect label="expect image width" href="../resources/expected/duck-small.004.html"/>
+</x:scenario>
+
+<x:scenario label="When converting duck-small.005">
+   <x:context href="../resources/xml/duck-small.005.xml"/>
+   <x:expect label="expect image width" href="../resources/expected/duck-small.005.html"/>
+</x:scenario>
+
+<x:scenario label="When converting duck-small.006">
+   <x:context href="../resources/xml/duck-small.006.xml"/>
+   <x:expect label="expect image width" href="../resources/expected/duck-small.006.html"/>
+</x:scenario>
+
+</x:description>

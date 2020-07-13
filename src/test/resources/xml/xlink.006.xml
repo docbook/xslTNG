@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.1">
+   <info>
+      <title>Unit test: xlink.006</title>
+      <extendedlink xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:type="extended">
+        <arc xlink:type="arc"
+             xlink:arcrole="http://www.w3.org/1999/xlink/properties/linkbase"
+             xlink:actuate="onLoad"
+             xlink:from="linkbase"
+             xlink:to="here"/>
+        <locator xlink:type="locator"
+                 xlink:label="linkbase"
+                 xlink:href="../linkbase.xml"/>
+        <locator xlink:type="locator"
+                 xlink:label="here"
+                 xlink:href=""/>
+      </extendedlink>
+      <extendedlink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+         <locator xlink:title="nwalsh.com"
+                  xlink:label="target"
+                  xlink:href="http://nwalsh.com/"
+                  xlink:type="locator"/>
+         <locator xlink:label="source"
+                  xlink:href="xmlns(db=http%3a//docbook.org/ns/docbook)
+                              xpath(//db:orgname%5b. = 'nwalsh.com'%5d)"
+                  xlink:type="locator"/>
+         <arc xlink:to="target" xlink:from="source" xlink:type="arc"/>
+      </extendedlink>
+   </info>
+
+<para>Testing loading an external linkbase.</para>
+
+<para>Does <citetitle xml:id="xquery">XQuery</citetitle>
+have links?
+</para>
+
+<para>And would <orgname>MarkLogic</orgname> work?</para>
+<para>And would <orgname>MLS</orgname> work?</para>
+<para>And would <orgname>nwalsh.com</orgname> work?</para>
+
+</article>

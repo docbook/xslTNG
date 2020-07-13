@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               strip-space="h:div h:li"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     revhistory
+     revnumber
+     revremark
+     revdescription
+     date
+-->
+
+<x:scenario label="When transforming revremark.001">
+  <x:context href="../resources/xml/revhistory.001.xml"/>
+  <x:expect label="expect body rendering but not info rendering" test="empty(//h:main/h:*/h:header/*[contains-token(@class, 'revhistory')])"/>
+  <x:expect label="expect body rendering but not info rendering" href="../resources/expected/revhistory.001.html"/>
+</x:scenario>
+
+</x:description>

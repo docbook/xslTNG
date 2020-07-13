@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     figure imagedata imageobject informalfigure mediaobject
+     othercredit screenshot textobject
+-->
+
+<x:scenario label="When transforming figure.001">
+   <x:context href="../resources/xml/figure.001.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming figure.002">
+   <x:context href="../resources/xml/figure.002.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.002.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming figure.003">
+   <x:context href="../resources/xml/figure.003.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.003.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming figure.004">
+   <x:context href="../resources/xml/figure.004.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.004.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming informalfigure.001">
+   <x:context href="../resources/xml/informalfigure.001.xml"/>
+   <x:expect label="expect the informal figure(s) to be rendered" href="../resources/expected/informalfigure.001.html"/>
+</x:scenario>
+
+</x:description>

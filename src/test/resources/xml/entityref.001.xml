@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article [
+<!ENTITY duck SYSTEM "../media/duck-small.png" NDATA PNG>
+]>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: entityref.001</title>
+<mediaobject>
+<imageobject>
+<imagedata format="PNG"
+           entityref="duck"
+           width="6in"
+           align="right"/>
+</imageobject>
+</mediaobject>
+</article>

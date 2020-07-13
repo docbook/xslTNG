@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0" xml:id="customization">
+<info>
+  <?db filename="ch03.html"?>
+  <title>Customizing the stylesheets</title>
+</info>
+
+<para>In many circumstances, the stylesheets can be used “out of the
+box” without any customization. But sometimes you may need to change
+the formatting of certain elements. One common reason is to change the
+formatting of title pages or navigational features. In other cases, it
+may be to support local extensions to DocBook or simply to change the
+markup to support a particular use case.</para>
+
+<para>Three approaches are possible, with increasing degrees of
+effort: changing stylesheet parameters, creating your own
+customization layer, or making broader changes to the stylesheet’s
+implementation.</para>
+
+<para>The subject of broader implementation changes is the subject of
+<xref linkend="implementation"/>. In this chapter, we’ll look at the
+easier options.</para>
+
+<section xml:id="change-params">
+<title>Changing stylesheet parameters</title>
+
+<para>The <citetitle>DocBook xslTNG Stylesheets</citetitle> define a
+lot of parameters. They are all described in <xref linkend="params"/>.
+If the change you want to make has already been parameterized, you may
+be able to achieve your goal simply by setting a parameter at runtime.</para>
+
+<para>For example, if you want to change the formatting of dates and times
+in <tag>date</tag> elements, you can simply change the <link
+xlink:href="p_date-date-format">date and time formatting</link>
+parameters. Similarly, if you want to change the numeration style of
+ordered lists, you can simply change the <link
+linkend="p_orderedlist-item-numeration">ordered list item
+numeration</link> parameter.</para>
+
+<para>These changes can be accomplished by simply passing the new
+values to the processor, on the command line or in a configuration
+file, for example. You do not have to write any XSLT to make these
+changes.</para>
+
+<para>Parameter values apply to the entire document processed by the
+stylesheets. In some cases, you may wish to change the presentation of
+just one or small number of elements. This can often be accomplished
+with a <link xlink:href="pi_db">db processing instruction</link> in
+the source document itself. These customizations can also be
+accomplished without writing any XSLT.</para>
+
+<para>If you want to make a change that isn’t supported by a
+parameter, or an ad hoc exception that doesn’t have a supporting
+processing instruction, you will have to write a customization layer.
+(You are invited to submit an issue with your use case if you think it
+would be of general interest.)
+</para>
+
+<para>You may also find it convenient to write a customization layer
+if you want to change several parameters and you find it inconvenient
+to pass them all to the processor on every invocation.
+</para>
+</section>
+
+<section xml:id="layer">
+<title>Creating a customization layer</title>
+
+<para>A customization layer is simply an XSLT stylesheet that you
+write which extends the DocBook stylesheets. The simplest<footnote><para>Ok,
+technically, this stylesheet has a couple of namespace references that aren’t
+strictly necessary so it could be a teeny bit simpler, but you’ll need those
+declarations (and more!) if you want to do anything useful.</para></footnote> customization
+layer is:</para>
+
+<programlisting language="xml"
+><xi:include href="examples/custom0.xsl" parse="text"/></programlisting>
+
+<para>This customization doesn’t do anything. But you can, for example, redefine
+parameters if you wish:</para>
+
+<programlisting language="xml"
+><xi:include href="examples/custom1.xsl" parse="text"/></programlisting>
+
+<para>This will have the effect of running the DocBook stylesheets with those two
+parameters set as specified.</para>
+
+<para>If you want to change the HTML output for an element, you can write a template
+for that element in your customization layer. Consider this DocBook document:
+</para>
+
+<programlisting language="xml"
+><xi:include href="examples/sample.xml" parse="text"/></programlisting>
+
+<para>Suppose that you decided you wanted to have the
+<tag>productname</tag> element link automatically to the vendor
+webpage. One way to do that would be to redefine the template that processes the
+<tag>productname</tag> element:</para>
+
+<programlistingco>
+<areaspec>
+  <area xml:id="ex.xmlns-m" coords="5 52"/>
+  <area xml:id="ex.excl-m" coords="8 40"/>
+  <area xml:id="ex.m-docbook" coords="21 34"/>
+  <area xml:id="ex.cramped" coords="24 1"/>
+  <areaset xml:id="ex.next-match">
+    <area xml:id="ex.next-match-44" coords="44 26"/>
+    <area xml:id="ex.next-match-48" coords="48 28"/>
+  </areaset>
+</areaspec>
+<programlisting language="xml"
+><xi:include href="examples/custom2.xsl" parse="text"
+             xpointer="line=0,;length=1559"/></programlisting>
+</programlistingco>
+
+<calloutlist>
+<callout arearefs="ex.xmlns-m">
+<para>All of the DocBook elements are processed in the “<mode>m:docbook</mode>” mode.</para>
+</callout>
+<callout arearefs="ex.excl-m">
+<para>Remember to exclude all the namespaces you declare so that they don’t wind up
+scattered about in your HTML.</para>
+</callout>
+<callout arearefs="ex.m-docbook">
+<para>I repeat, all of the DocBook elements are processed in the
+“<mode>m:docbook</mode>” mode. I expect failure to declare this mode is going to be a common
+error.</para>
+</callout>
+<callout arearefs="ex.cramped">
+<para>Yes, this whole listing is rather cramped.
+<phrase outputformat="print">I’m trying to make it all narrow
+enough to fit in the display without overflowing the margins.
+</phrase><phrase outputformat="online">I’m trying to make it all narrow
+enough to fit in the display without making horizontal scrolling necessary.</phrase>
+</para>
+</callout>
+<callout arearefs="ex.next-match">
+<para>Calling <literal>xsl:next-match</literal> invokes the underlying
+processing. The effect of this template is to wrap an HTML
+“<code>a</code>” around the default processing for
+<tag>productname</tag>.</para>
+</callout>
+</calloutlist>
+
+<para>It’s worth pointing out that if the tag has an
+<att>xlink:href</att> attribute, that will generate an HTML
+<code>a</code> as well. A more robust stylesheet would check for that,
+but I’m trying to keep the example simple.</para>
+
+<para>This is paragraph number: <?eval count(preceding::*:para intersect ../..//*:para)?>.</para>
+
+</section>
+</chapter>

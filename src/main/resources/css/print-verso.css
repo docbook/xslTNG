@@ -1,0 +1,23 @@
+@import url("print-book.css");
+
+body > header {
+    page-break-after: always;
+}
+
+.book .list-of-titles {
+    break-before: always;
+}
+
+.book .chapter,
+.book .preface,
+.book .appendix,
+.book .refentry,
+.book .part,
+.book .partintro,
+.book .dedication,
+.book .glossary,
+.book .bibliography,
+.book .index,
+.book .colophon {
+    break-before: always;
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: procedure.004</title>
+
+<para>This is a procedure with a lot of nested substeps.</para>
+
+<procedure xml:id="notitle">
+  <step>
+    <para>First step.</para>
+  </step>
+  <step>
+    <para>Seconds step.</para>
+    <substeps>
+      <step>
+        <para>First substep.</para>
+      </step>
+      <step>
+        <para>Second substep.</para>
+      </step>
+      <step>
+        <para>Third substep.</para>
+        <substeps>
+          <step>
+            <para>First substep of third substep of second step.</para>
+          </step>
+          <step xml:id="step-z-1">
+            <para>Second substep of third substep of second step.</para>
+            <substeps>
+              <step>
+                <para>First of second of third of second.</para>
+
+                <procedure>
+                  <title>Nested procedure</title>
+                  <step>
+                    <para>First</para>
+                    <substeps>
+                      <step>
+                        <para>First.first</para>
+                        <substeps>
+                          <step>
+                            <para>First.first.first</para>
+                          </step>
+                        </substeps>
+                      </step>
+                    </substeps>
+                  </step>
+                </procedure>
+
+                <substeps>
+                  <step>
+                    <para>First of first of second of third of second.</para>
+                    <substeps>
+                      <step>
+                        <para>First of first of first of second of third of second.</para>
+                      </step>
+                    </substeps>
+                  </step>
+                </substeps>
+              </step>
+            </substeps>
+          </step>
+        </substeps>
+      </step>
+      <step xml:id="step-y-1">
+        <para>Fourth substep.</para>
+      </step>
+    </substeps>
+  </step>
+  <step>
+    <para>Third step.</para>
+  </step>
+</procedure>
+</article>

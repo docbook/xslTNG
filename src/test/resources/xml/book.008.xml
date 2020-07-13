@@ -1,0 +1,109 @@
+<book xmlns='http://docbook.org/ns/docbook'
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0">
+<info>
+  <title>DocBook</title>
+  <subtitle>The Definitive Guide</subtitle>
+  <biblioid class="isbn">978-0-596-8050-2-9</biblioid>
+  <authorgroup>
+    <author>
+      <personname>
+	<firstname>Norman</firstname>
+	<surname>Walsh</surname>
+      </personname>
+    </author>
+  </authorgroup>
+  <publisher>
+    <publishername>O'Reilly Media, Inc.</publishername>
+    <address><city>Beijing</city></address>
+    <address><city>Cambridge</city></address>
+    <address><city>Farnham</city></address>
+    <address><city>Köln</city></address>
+    <address><city>Paris</city></address>
+    <address><city>Sebastopol</city></address>
+    <address><city>Taipei</city></address>
+    <address><city>Tokyo</city></address>
+  </publisher>
+  <copyright>
+    <year>2010</year>
+    <holder>Norman Walsh, All rights reserved.</holder>
+  </copyright>
+  <releaseinfo>Published by O'Reilly Media, Inc.,
+101 Morris Street, Sebastopol, CA 95472.</releaseinfo>
+  <editor>
+    <personname>
+      <firstname>Richard L.</firstname>
+      <surname>Hamilton</surname>
+    </personname>
+  </editor>
+  <revhistory>
+    <revision>
+      <date>March 2010</date>
+      <revremark>Second Edition.</revremark>
+    </revision>
+    <revision>
+      <date>October 1999</date>
+      <revremark>First Edition.</revremark>
+    </revision>
+  </revhistory>
+  <legalnotice>
+    <para>Nutshell Handbook, the Nutshell Handbook logo, and the…</para>
+    <para>Many of the designations used by manufacturers…</para>
+    <para>While every precaution has been taken in the preparation…</para>
+  </legalnotice>
+  <cover>
+    <para role="tagline">The Official Documentation for DocBook</para>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="graphics/duck-cover.png">
+	  <info>
+	    <othercredit>
+	      <orgname>O'Reilly Media</orgname>
+	    </othercredit>
+	    <othercredit>
+	      <orgname>Dover Archives</orgname>
+	    </othercredit>
+	  </info>
+	</imagedata>
+      </imageobject>
+    </mediaobject>
+  </cover>
+  <cover>
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="graphics/duck-backcover.png"/>
+      </imageobject>
+    </mediaobject>
+    <para>DocBook is a system for writing structured documents using…</para>
+    <para><citetitle>DocBook: The Definitive Guide</citetitle> is the…</para>
+    <itemizedlist>
+      <listitem>
+	<para>A brief introduction to  …</para>
+      </listitem>
+      <listitem>
+	<para>A guide to creating documents with the DocBook schema…</para>
+      </listitem>
+      <listitem>
+	<para>…</para>
+      </listitem>
+    </itemizedlist>
+    <para>In an era of collaborative creation of technology, …</para>
+    <formalpara>
+      <title>Norman Walsh</title>
+      <para>is a …</para>
+    </formalpara>
+  </cover>
+</info>
+
+<preface>
+<title>Preface</title>
+
+<para>DocBook provides a system …</para>
+
+<para>This isn’t really <link xlink:href="https://tdg.docbook.org/">The
+Definitive Guide</link>, it’s just a test case.</para>
+</preface>
+
+<!-- … -->
+
+</book>

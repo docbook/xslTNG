@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<x:scenario label="When transforming xref.001">
+   <x:context href="../resources/xml/xref.001.xml"/>
+   <x:expect label="expect cross references" href="../resources/expected/xref.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming xref.002">
+   <x:context href="../resources/xml/xref.002.xml"/>
+   <x:expect label="expect cross references" href="../resources/expected/xref.002.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming xref.003">
+   <x:context href="../resources/xml/xref.003.xml"/>
+   <x:expect label="expect cross references" href="../resources/expected/xref.003.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming titles.001">
+   <x:context href="../resources/xml/titles.001.xml"/>
+   <x:expect label="expect titles and cross-references" href="../resources/expected/titles.001.html"/>
+</x:scenario>
+
+</x:description>

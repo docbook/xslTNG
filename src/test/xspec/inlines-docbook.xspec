@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+-->
+
+   <x:scenario label="When converting ported legacy test wordsize.001">
+      <x:context href="../resources/xml/wordsize.001.xml"/>
+      <x:expect label="expect the productions to be rendered" href="../resources/expected/wordsize.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When converting ported legacy test application.001">
+      <x:context href="../resources/xml/application.001.xml"/>
+      <x:expect label="expect the application tags to be rendered" href="../resources/expected/application.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming emphasis with roles and classes">
+      <x:context href="../resources/xml/emphasis.001.xml"/>
+      <x:expect label="expect the emphasis to be rendred appropriately" href="../resources/expected/emphasis.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming citebiblioid">
+     <x:context href="../resources/xml/citebiblioid.001.xml"/>
+     <x:expect label="use the class value" href="../resources/expected/citebiblioid.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming database">
+     <x:context href="../resources/xml/database.001.xml"/>
+     <x:expect label="use the class value" href="../resources/expected/database.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming filename">
+     <x:context href="../resources/xml/filename.001.xml"/>
+     <x:expect label="use the class value" href="../resources/expected/filename.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming inlines">
+     <x:context href="../resources/xml/inlines.001.xml"/>
+     <x:expect label="use the class value" href="../resources/expected/inlines.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming elements with writing direction">
+     <x:context href="../resources/xml/dir.001.xml"/>
+     <x:expect label="use dir attributes in the HTML" href="../resources/expected/dir.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming elements with writing direction">
+     <x:context href="../resources/xml/dir.001.xml"/>
+     <x:expect label="use dir attributes in the HTML" href="../resources/expected/dir.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming replaceable">
+     <x:context href="../resources/xml/replaceable.001.xml"/>
+     <x:expect label="expect replacable markup" href="../resources/expected/replaceable.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming constant">
+     <x:context href="../resources/xml/constant.001.xml"/>
+     <x:expect label="expect constant markup" href="../resources/expected/constant.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming keycap">
+     <x:context href="../resources/xml/keycap.001.xml"/>
+     <x:expect label="expect keycap markup" href="../resources/expected/keycap.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming systemitem.001">
+     <x:context href="../resources/xml/systemitem.001.xml"/>
+     <x:expect label="expect systemitem markup" href="../resources/expected/systemitem.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming symbol.001">
+     <x:context href="../resources/xml/symbol.001.xml"/>
+     <x:expect label="expect symbol markup" href="../resources/expected/symbol.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming tag.001">
+     <x:context href="../resources/xml/tag.001.xml"/>
+     <x:expect label="expect tag markup" href="../resources/expected/tag.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming parameter.001">
+     <x:context href="../resources/xml/parameter.001.xml"/>
+     <x:expect label="expect parameter markup" href="../resources/expected/parameter.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming productname.001">
+     <x:context href="../resources/xml/productname.001.xml"/>
+     <x:expect label="expect product name markup" href="../resources/expected/productname.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming orgname.001">
+     <x:context href="../resources/xml/orgname.001.xml"/>
+     <x:expect label="expect product name markup" href="../resources/expected/orgname.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming quote.001">
+     <x:context href="../resources/xml/quote.001.xml"/>
+     <x:expect label="expect quotation markup" href="../resources/expected/quote.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming trademark.001">
+     <x:context href="../resources/xml/trademark.001.xml"/>
+     <x:expect label="expect trademark markup" href="../resources/expected/trademark.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming guiicon.001">
+     <x:context href="../resources/xml/guiicon.001.xml"/>
+     <x:expect label="expect icons" href="../resources/expected/guiicon.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming personname.001">
+     <x:context href="../resources/xml/personname.001.xml"/>
+     <x:expect label="expect personal names" href="../resources/expected/personname.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming uri.001">
+     <x:context href="../resources/xml/uri.001.xml"/>
+     <x:expect label="expect uri markup" href="../resources/expected/uri.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming dateTime.001">
+     <x:context href="../resources/xml/dateTime.001.xml"/>
+     <x:expect label="expect formatted dates and times"
+               href="../resources/expected/dateTime.001.html"/>
+   </x:scenario>
+
+</x:description>

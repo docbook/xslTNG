@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: xinclude.002</title>
+</info>
+
+<para xml:id="p">This is an article tests the XInclude extension. It’s unlikely
+to pass if that extension is not available.</para>
+
+<para>There are twenty lines in <filename>../blanks-of-text.txt</filename>:</para>
+
+<literallayout>----------------------------------------
+<xi:include href="../blanks-of-text.txt"
+parse="text"/>----------------------------------------</literallayout>
+
+<para>(The dashes are for reference; they are not in the XIncluded file.)</para>
+
+<para>Unlike <filename>../lines-of-text.txt</filename>, the blanks
+file has leading and trailing blank lines.</para>
+
+</article>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.0">
+<title>Annotation Collection</title>
+
+<!-- n.b. In real life, line breaks in the annotations wouldn't
+     matter. But in some of the generated XSpec tests, the annotations
+     wind up directly in verbatim environments where they do. So
+     make sure there aren't any. -->
+
+<annotation annotates="here-from-external-annotations"><para>This annotation was loaded from an external collection.</para></annotation>
+<annotation annotates="there-from-external-annotations"><para>This annotation isn’t used in the<filename>annotation.004.xml</filename> test.</para></annotation>
+
+</article>

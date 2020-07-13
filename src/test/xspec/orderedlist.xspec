@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     listitem orderedlist
+-->
+
+<x:scenario label="When converting an orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist>
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="it should return an ol">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="1">
+            <li><p>First</p></li>
+            <li><p>Second</p></li>
+            <li><p>Third</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist with a preamble">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist>
+      <info/>
+      <para>This is a preamble.</para>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="it should return a div containing the ol">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <div class="orderedlist">
+            <p>This is a preamble.</p>
+            <ol type="1">
+              <li><p>First</p></li>
+              <li><p>Second</p></li>
+              <li><p>Third</p></li>
+            </ol>
+          </div>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting a compact orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist spacing="compact">
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Second</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="if all the listitems are single paragraphs, remove the p wrappers">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="1">
+            <li>First</li>
+            <li>Second</li>
+            <li>Third</li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting a compact orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist spacing="compact">
+      <info/>
+      <listitem><para>First</para></listitem>
+      <listitem><para>Two B</para>
+                <para>Not Two B</para></listitem>
+      <listitem><para>Third</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="if any item is irregular, ignore compact">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="1">
+            <li><p>First</p></li>
+            <li><p>Two B</p><p>Not Two B</p></li>
+            <li><p>Third</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist numeration="arabic">
+      <info/>
+      <listitem><para>First</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="numeration='arabic' translates to type='1'">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="1">
+            <li><p>First</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist numeration="upperalpha">
+      <info/>
+      <listitem><para>First</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="numeration='upperalpha' translates to type='A'">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="A">
+            <li><p>First</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist numeration="loweralpha">
+      <info/>
+      <listitem><para>First</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="numeration='loweralpha' translates to type='a'">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="a">
+            <li><p>First</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist numeration="upperroman">
+      <info/>
+      <listitem><para>First</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="numeration='upperroman' translates to type='I'">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="I">
+            <li><p>First</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist numeration="lowerroman">
+      <info/>
+      <listitem><para>First</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="numeration='lowerroman' translates to type='i'">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="i">
+            <li><p>First</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist that specifies a startingnumber">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist startingnumber="7">
+      <info/>
+      <listitem><para>Seven</para></listitem>
+      <listitem><para>Eight</para></listitem>
+      <listitem><para>Nine</para></listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the resulting list should also start there">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" start="7" type="1">
+            <li><p>Seven</p></li>
+            <li><p>Eight</p></li>
+            <li><p>Nine</p></li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting sequential lists">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <informalfigure>
+      <orderedlist>
+      <info/>
+        <listitem><para>One</para></listitem>
+        <listitem><para>Two</para></listitem>
+        <listitem><para>Three</para></listitem>
+      </orderedlist>
+      <para>Inter-list paragraph</para>
+      <orderedlist>
+      <info/>
+        <listitem><para>One</para></listitem>
+        <listitem><para>Two</para></listitem>
+        <listitem><para>Three</para></listitem>
+      </orderedlist>
+    </informalfigure>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="number restarts with each one">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <div class="informalfigure">
+            <ol class="orderedlist" type="1">
+              <li><p>One</p></li>
+              <li><p>Two</p></li>
+              <li><p>Three</p></li>
+            </ol>
+            <p>Inter-list paragraph</p>
+            <ol class="orderedlist" type="1">
+              <li><p>One</p></li>
+              <li><p>Two</p></li>
+              <li><p>Three</p></li>
+            </ol>
+          </div>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting sequential lists that continue">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <informalfigure>
+      <orderedlist>
+      <info/>
+        <listitem><para>One</para></listitem>
+        <listitem><para>Two</para></listitem>
+        <listitem><para>Three</para></listitem>
+      </orderedlist>
+      <para>Inter-list paragraph</para>
+      <orderedlist continuation="continues">
+      <info/>
+        <listitem><para>Four</para></listitem>
+        <listitem><para>Five</para></listitem>
+        <listitem><para>Six</para></listitem>
+      </orderedlist>
+    </informalfigure>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="number restarts with each one">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <div class="informalfigure">
+            <ol class="orderedlist" type="1">
+              <li><p>One</p></li>
+              <li><p>Two</p></li>
+              <li><p>Three</p></li>
+            </ol>
+            <p>Inter-list paragraph</p>
+            <ol class="orderedlist" start="4" type="1">
+              <li><p>Four</p></li>
+              <li><p>Five</p></li>
+              <li><p>Six</p></li>
+            </ol>
+          </div>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an orderedlist with inherited numeration">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <orderedlist>
+      <info/>
+      <listitem>
+        <para>One</para>
+        <orderedlist inheritnum="inherit">
+          <info/>
+          <listitem>
+            <para>One.One</para>
+          </listitem>
+        </orderedlist>
+      </listitem>
+    </orderedlist>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="make sure the 'inheritnum' class is used">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <ol class="orderedlist" type="1">
+            <li>
+              <p>One</p>
+              <ol class="inheritnum orderedlist" type="a">
+                <li>
+                  <p>One.One</p>
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting orderedlist.001">
+  <x:context href="../resources/xml/orderedlist.001.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/orderedlist.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting orderedlist.002">
+  <x:context href="../resources/xml/orderedlist.002.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/orderedlist.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting orderedlist.003">
+  <x:context href="../resources/xml/orderedlist.003.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/orderedlist.003.html"/>
+</x:scenario>
+
+</x:description>

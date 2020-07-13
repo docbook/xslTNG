@@ -1,0 +1,161 @@
+/* DocBook xslTNG version 0.1.14
+ *
+ * This is docbook-paged.css.
+ *
+ * See https://xsltng.docbook.org/
+ *
+ * This stylesheet should be followed by the stylesheet for the particular
+ * presentation style: paper, book, etc.
+ *
+ */
+
+@page {
+    size: A4;
+    margin: 1in;
+    counter-reset: footnote;
+}
+
+@page title {
+    @top-center: {
+        content: "";
+    }
+    @bottom-right: {
+        content: "";
+    }
+    @bottom-left: {
+        content: "";
+    }
+}
+
+@page normal-flow {
+    @footnote {
+        float: bottom page;
+        border-top: thin solid black;
+        border-length: 30%;
+        padding-top: 0.5em;
+    }
+}
+
+@page normal-flow:blank {
+    @top-center: {
+        content: "";
+    }
+    @bottom-right: {
+        content: "";
+    }
+    @bottom-left: {
+        content: "";
+    }
+}
+
+html {
+    page: normal-flow;
+}
+
+.book > header {
+    padding: 0;
+    border: inherit;
+}
+
+h1, h2 {
+    string-set: ComponentTitle content()
+}
+
+header {
+    page-break-inside: avoid;
+}
+
+.example header {
+    page-break-before: avoid;
+}
+
+.book .list-of-titles {
+    counter-reset: page;
+}
+
+.book .lot {
+    margin-top: 1em;
+}
+
+.part .list-of-titles {
+    display: none;
+}
+
+/* ============================================================ */
+
+.toc a::after {
+    content: leader(dotted) " " target-counter(attr(href url), page);
+}
+
+/* ============================================================ */
+
+.footnote {
+    float: footnote;
+    margin-left: 0.75rem;
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: "Noto Serif", serif, "Arial Unicode";
+}
+
+/* ============================================================ */
+
+.indexref::before {
+    content: target-counter(attr(href url), page);
+}
+
+/* ============================================================ */
+
+details {
+    display: none;
+}
+
+a, a:visited {
+    text-decoration: none;
+}
+
+.error * {
+    background-color: inherit;
+    color: inherit;
+    padding: inherit;
+}
+
+span.error {
+    display: inline;
+    border: none;
+    padding: inherit;
+    margin: inherit;
+}
+
+span.error::before {
+    content: none;
+}
+
+span.error::after {
+    content: none;
+}
+
+span.error.broken-link::after {
+    content: none;
+}
+
+.annotations {
+    border-top: none;
+    page-break-before: always;
+}
+
+.xlink-arc-list {
+    font-style: normal;
+}
+
+.xlink-arc-delim {
+    display: inline;
+}
+
+.nhrefs .arc a::after {
+    content: " (" attr(href) ")";
+}
+
+/* Work around bug in AntennaHouse V7.0 MR2 for MacOSX */
+span.footnote p {
+    margin-bottom: 0pt;
+}

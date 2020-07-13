@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Article wrapper</title>
+   <para>Testing <tag>orgname</tag>.</para>
+   <itemizedlist>
+      <listitem>
+         <para>
+            <orgname>orgname</orgname>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <orgname class="consortium">consortium orgname</orgname>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <orgname class="corporation">corporation orgname</orgname>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <orgname class="informal">informal orgname</orgname>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <orgname class="nonprofit">nonprofit orgname</orgname>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <orgname otherclass="other" class="other">other orgname</orgname>
+         </para>
+      </listitem>
+   </itemizedlist>
+</article>

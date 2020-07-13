@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     videoobject videodata
+-->
+
+<x:scenario label="When converting videoobject.001">
+   <x:context href="../resources/xml/videoobject.001.xml"/>
+      <x:expect label="expect the player to be rendered" href="../resources/expected/videoobject.001.html"/>
+</x:scenario>
+
+</x:description>

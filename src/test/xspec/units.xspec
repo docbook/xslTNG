@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:f="http://docbook.org/ns/docbook/functions"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<x:scenario label="When computing the length 1.0in">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0in'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'in' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 1.0m">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0m'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'm' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 1.0cm">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0cm'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'cm' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 1.0mm">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0mm'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'mm' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 1.0pc">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0pc'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pc' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 1.0pt">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0pt'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pt' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 3.14barleycorn">
+   <x:call function="f:parse-length">
+     <x:param select="'3.14barleycorn'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 3.14, 'relative': 0.0, 'unit': 'barleycorn' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 1.0smoot">
+   <x:call function="f:parse-length">
+     <x:param select="'1.0smoot'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': $default-length-magnitude,                            'relative': 0.0,                             'unit': $default-length-unit }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 25%">
+   <x:call function="f:parse-length">
+     <x:param select="'25%'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 25.0, 'relative': 0.0, 'unit': '%' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 100%">
+   <x:call function="f:parse-length">
+     <x:param select="'100%'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 100.0, 'relative': 0.0, 'unit': '%' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 125%">
+   <x:call function="f:parse-length">
+     <x:param select="'125%'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 125.0, 'relative': 0.0, 'unit': '%' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 3*+0.5in">
+   <x:call function="f:parse-length">
+     <x:param select="'3*+0.5in'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 0.5, 'unit': 'in', 'relative': 3.0 }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 75">
+   <x:call function="f:parse-length">
+     <x:param select="'75'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 75, 'relative': 0.0, 'unit': 'px' }"/>
+</x:scenario>
+
+<x:scenario label="When computing the length 2.5*">
+   <x:call function="f:parse-length">
+     <x:param select="'2.5*'"/>
+   </x:call>
+   <x:expect label="return the correct parse" select="map { 'magnitude': 0, 'unit': 'px', 'relative': 2.5 }"/>
+</x:scenario>
+
+</x:description>

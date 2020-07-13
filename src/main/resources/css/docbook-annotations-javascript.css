@@ -1,0 +1,79 @@
+/* ============================================================ */
+/* JavaScript annotations */
+
+.annomark {
+    cursor: pointer;
+}
+
+a.annomark,
+a.annomark:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.annomark .num {
+    display: none;
+}
+
+.annotation-wrapper {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(128, 128, 128, 0.85);
+}
+
+.annotation-body {
+    border: 1px solid black;
+    width: 50%;
+    background-color: white;
+    min-height: 40%;
+    max-height: 50%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.15em;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 100%;
+}
+
+.wide .annotation-body {
+    width: 80%;
+}
+
+.tall .annotation-body {
+    max-height: 80%;
+}
+
+.annotation-header {
+    height: 2em;
+    background-color: #cfcfcf;
+    padding-left: 1em;
+    padding-right: 0.5em;
+    border-bottom: 1px solid black;
+}
+
+.annotation-header .annotation-close {
+    float: right;
+    cursor: pointer;
+    font-size: 125%;
+}
+
+.annotation-header .annotation-title {
+    padding-top: 0.1em;
+}
+
+.annotation-content {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    overflow: scroll;
+}
+
+.annotation-close {
+    padding-top: 4px;
+}

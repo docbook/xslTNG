@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Book wrapper</title>
+
+<preface>
+<title>Preface</title>
+<para>A test paragraph.</para>
+<para>This test para encourages you to see <xref linkend="bh"/>.</para>
+</preface>
+
+<chapter><title>Chapter with sect1…</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied sect1 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<sect1><title>sect1 title</title>
+<subtitle>sect1 subtitle</subtitle>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied sect2 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<sect2><title>sect2 title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied sect3 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<sect3><title>sect3 title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied sect4 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<sect4><title>sect4 title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied sect5 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<sect5><title>sect5 title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied sect6 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+</sect5>
+</sect4>
+</sect3>
+</sect2>
+</sect1>
+</chapter>
+
+<chapter><title>Chapter with section…</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead xml:id="bh">This is an implied level 1 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<section><title>section title</title>
+<subtitle>section subtitle</subtitle>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied level 2 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<section><title>section title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied level 3 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<section><title>section title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied level 4 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<section><title>section title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied level 5 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+<section><title>section title</title>
+<para>This is a test paragraph.</para>
+
+<bridgehead>This is an implied level 6 bridgehead</bridgehead>
+<para>This is a test paragraph.</para>
+
+</section>
+</section>
+</section>
+</section>
+</section>
+</chapter>
+
+<chapter><title>Another chapter</title>
+<para>This is a test paragraph.</para>
+
+<blockquote>
+<bridgehead>Bridgehead in a block quote</bridgehead>
+<para>This is the quote.</para>
+</blockquote>
+
+<bridgehead renderas="sect1">An explicit sect1 bridgehead.</bridgehead>
+<bridgehead renderas="sect2">An explicit sect2 bridgehead.</bridgehead>
+<bridgehead renderas="sect3">An explicit sect3 bridgehead.</bridgehead>
+<bridgehead renderas="sect4">An explicit sect4 bridgehead.</bridgehead>
+<bridgehead renderas="sect5">An explicit sect5 bridgehead.</bridgehead>
+
+</chapter>
+</book>

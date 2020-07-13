@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     arg cmdsynopsis command group option refsynopsisdiv sbr
+     synopfragment synopfragmentref
+-->
+
+<x:scenario label="When converting ported legacy test cmdsynopsis.001">
+  <x:context href="../resources/xml/cmdsynopsis.001.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/cmdsynopsis.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting ported legacy test cmdsynopsis.002">
+  <x:context href="../resources/xml/cmdsynopsis.002.xml"/>
+  <x:expect label="expect some generated HTML" href="../resources/expected/cmdsynopsis.002.html"/>
+</x:scenario>
+
+</x:description>

@@ -1,0 +1,140 @@
+version: 2
+jobs:
+
+  # FIXME: Work out how to use YAML features or “Orbs” to reduce the
+  # redundancy in this configuration. The ‘testbuild’ and ‘deploybuild’
+  # jobs are essentially the same. They only differ in the gradle target.
+
+  testbuild:
+    machine:
+      image: ubuntu-1604:202004-01
+
+    working_directory: ~/repo
+
+    environment:
+      JVM_OPTS: -Xmx8g
+      TERM: dumb
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "3b:70:31:86:74:31:25:e6:18:aa:ec:1b:01:d9:2d:76"
+
+      - run: python3 -m pip install pygments==2.6.1 click
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: openssl aes-256-cbc -d -k $SAXPASSPHRASE -in tools/saxon.enc | tar zxf -
+
+      - run: ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: ./gradlew website
+
+      - run: rm -rf lib
+
+      - persist_to_workspace:
+          root: build
+          paths:
+            - distributions
+            - website
+
+      - store_artifacts:
+          path: build/website
+
+  deploybuild:
+    machine:
+      image: ubuntu-1604:202004-01
+
+    working_directory: ~/repo
+
+    environment:
+      JVM_OPTS: -Xmx8g
+      TERM: dumb
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "3b:70:31:86:74:31:25:e6:18:aa:ec:1b:01:d9:2d:76"
+
+      - run: python3 -m pip install pygments==2.6.1 click
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: openssl aes-256-cbc -d -k $SAXPASSPHRASE -in tools/saxon.enc | tar zxf -
+
+      - run: ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: ./gradlew dist
+
+      - run: rm -rf lib
+
+      - persist_to_workspace:
+          root: build
+          paths:
+            - distributions
+            - website
+
+      - store_artifacts:
+          path: build/website
+
+      - run: ./.circleci/publish-website.sh
+
+  publish-github-release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: ./artifacts
+      - run: ls -lR
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            VERSION=${CIRCLE_TAG}
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${VERSION} ./artifacts/distributions/
+
+workflows:
+  version: 2
+  check:
+    jobs:
+      - testbuild:
+          filters:
+            branches:
+              ignore: gh-pages
+  deploy:
+    jobs:
+      - deploybuild:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.+/
+      - publish-github-release:
+          requires:
+            - deploybuild
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.+/

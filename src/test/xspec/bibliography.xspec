@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     abbrev abstract acronym address affiliation artpagenums author
+     authorgroup authorinitials bibliodiv biblioentry bibliography
+     biblioid bibliolist bibliomisc bibliomixed bibliomset biblioset
+     bibliosource chapter citetitle city collab confdates confgroup
+     confnum confsponsor conftitle contractnum contractsponsor
+     copyright country date edition editor firstname holder honorific
+     indexterm info issuenum jobtitle link orgdiv orgname othercredit
+     pagenums para parameter personblurb personname postcode primary
+     printhistory productname productnumber pubdate publisher
+     publishername quote releaseinfo revhistory revision revnumber
+     revremark secondary seriesvolnums shortaffil state street
+     subtitle surname title titleabbrev volumenum year
+-->
+
+  <x:scenario label="When transforming a bibliography.001">
+     <x:context href="../resources/xml/bibliography.001.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliography.001.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliography.002">
+     <x:context href="../resources/xml/bibliography.002.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliography.002.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliography.003">
+     <x:context href="../resources/xml/bibliography.003.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliography.003.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliography.004">
+     <x:context href="../resources/xml/bibliography.004.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliography.004.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliography.005">
+     <x:context href="../resources/xml/bibliography.005.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliography.005.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliography.006">
+     <x:context href="../resources/xml/bibliography.006.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliography.006.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliolist.001">
+     <x:context href="../resources/xml/bibliolist.001.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliolist.001.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliolist.002">
+     <x:context href="../resources/xml/bibliolist.002.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliolist.002.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliolist.003">
+     <x:context href="../resources/xml/bibliolist.003.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliolist.003.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a bibliolist.004">
+     <x:context href="../resources/xml/bibliolist.004.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliolist.004.html"/>
+  </x:scenario>
+
+</x:description>

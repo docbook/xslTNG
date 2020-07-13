@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: toc.001.xml</title>
+</info>
+
+<para>Most tables of contents (or, generally, lists of tables) are generated
+automatically. This markup is rarely used.</para>
+
+<toc>
+<title>Table of Contents</title>
+<tocdiv>
+<title>Part I</title>
+<tocentry pagenum="5">Chapter 1: Something</tocentry>
+<tocentry pagenum="15">Chapter 2: Something Else</tocentry>
+</tocdiv>
+<tocdiv>
+<title>Part II</title>
+<tocentry pagenum="27">Chapter 3: The Other Thing</tocentry>
+</tocdiv>
+</toc>
+
+</article>

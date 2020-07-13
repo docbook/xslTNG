@@ -1,0 +1,1460 @@
+<reference xmlns="http://docbook.org/ns/docbook"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="5.0"
+           xml:id="modes">
+<info>
+  <?db filename="modes.html"?>
+  <title>Mode reference</title>
+</info>
+
+<refentry xml:id="m_acceptable-mediaobject">
+<?db filename="m_acceptable-mediaobject.html"?>
+<refmeta>
+<refentrytitle>m:acceptable-mediaobject</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}acceptable-mediaobject</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:acceptable-mediaobject</refname>
+<refpurpose>Selects media objects for presentation</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>A <tag>mediaobject</tag> may contain several alternatives
+(different formats, for example, or different resolutions). The
+alternatives will be processed in the
+<mode>m:acceptable-mediaobject</mode> mode before presentation.
+This mode must either return the media object, if it’s appropriate for the
+rendering being produced, or the empty sequence, if it is not.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_acceptable-mediaobject-data">
+<?db filename="m_acceptable-mediaobject-data.html"?>
+<refmeta>
+<refentrytitle>m:acceptable-mediaobject-data</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}acceptable-mediaobject-data</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:acceptable-mediaobject-data</refname>
+<refpurpose>Selects media object data elements that may be used</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Like the <mode>m:acceptable-mediaobject</mode> mode, this mode is used to
+determine which alternative media objects (in the case of this mode, the media object
+data elements, such as <tag>imagedata</tag>) should be considered.</para>
+<para>By default, this mode just compares the media object URI extension
+with the list of <parameter>mediaobject-exclude-extensions</parameter> and rejects
+elements that have URIs that match.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_annotation-content">
+<?db filename="m_annotation-content.html"?>
+<refmeta>
+<refentrytitle>m:annotation-content</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}annotation-content</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:annotation-content</refname>
+<refpurpose>Mode for the content of annotations</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Annotations, like footnotes, have markers and wrappers that are necessary to support
+their presentation. The <mode>m:annotation-content</mode> mode is used to process the
+actual body of the annotation.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_ansi">
+<?db filename="m_ansi.html"?>
+<refmeta>
+<refentrytitle>m:ansi</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}ansi</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:ansi</refname>
+<refpurpose>Mode for processing funcsynopsis elements in the “ANSI” style</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>funcsynopsis</tag> element has several possible renderings.
+This mode is used when the “ANSI” style of rendering has been selected
+and a non-tabular layout is being used.
+</para>
+<para>See also: <mode>m:ansi-table</mode>, <mode>m:kr</mode>, <mode>m:kr-table</mode>,
+<varname>funcsynopsis-default-style</varname>,
+<varname>funcsynopsis-table-threshold</varname>, and
+<varname>funcsynopsis-trailing-punctuation</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_ansi-table">
+<?db filename="m_ansi-table.html"?>
+<refmeta>
+<refentrytitle>m:ansi-table</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}ansi-table</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:ansi-table</refname>
+<refpurpose>Mode for processing funcsynopsis elements in the “ANSI” style</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>funcsynopsis</tag> element has several possible renderings.
+This mode is used when the “ANSI” style of rendering has been selected
+and a table will be used for layout.
+</para>
+<para>See also: <mode>m:ansi</mode>, <mode>m:kr</mode>, <mode>m:kr-table</mode>,
+<varname>funcsynopsis-default-style</varname>,
+<varname>funcsynopsis-table-threshold</varname>, and
+<varname>funcsynopsis-trailing-punctuation</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_attributes">
+<?db filename="m_attributes.html"?>
+<refmeta>
+<refentrytitle>m:attributes</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}attributes</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:attributes</refname>
+<refpurpose>Mode for processing attributes</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Each DocBook element in the source document produces a primary HTML element
+in the result document. The attributes associated with that primary element are
+obtained by processing the DocBook element in the <mode>m:attributes</mode> mode.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_biblioentry">
+<?db filename="m_biblioentry.html"?>
+<refmeta>
+<refentrytitle>m:biblioentry</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}biblioentry</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:biblioentry</refname>
+<refpurpose>Mode for processing <tag>biblioentry</tag> bibliographic entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>DocBook bibliographic entries come in two forms:
+<link xlink:href="https://tdg.docbook.org/tdg/5.2/ch02.html#s.bibliography">raw
+and cooked</link>. The <tag>biblioentry</tag> form is the “raw” form. The
+<mode>m:biblioentry</mode> mode is used to process these elements.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_bibliomixed">
+<?db filename="m_bibliomixed.html"?>
+<refmeta>
+<refentrytitle>m:bibliomixed</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}bibliomixed</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:bibliomixed</refname>
+<refpurpose>Mode for processing <tag>bibliomixed</tag> bibliographic entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>DocBook bibliographic entries come in two forms:
+<link xlink:href="https://tdg.docbook.org/tdg/5.2/ch02.html#s.bibliography">raw
+and cooked</link>. The <tag>bibliomixed</tag> form is the “cooked” form. The
+<mode>m:bibliomixed</mode> mode is used to process these elements.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_callout-bug">
+<?db filename="m_callout-bug.html"?>
+<refmeta>
+<refentrytitle>m:callout-bug</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}callout-bug</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:callout-bug</refname>
+<refpurpose>Mode for producing callout marks</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Callouts are processed in this mode to produce the callout marks
+(or “bugs”) used to indicate cross references between the callouts and their
+corresponding areas. This mode should only produce the mark, for example
+“①”. See <mode>m:callout-link</mode>.
+</para>
+<para>By default, callouts are numbered sequentially from 1 within each listing.
+However, a 
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction placed in the
+<tag>areaspec</tag> can specify a different starting number.
+If the <literal>starting-callout-number</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>starting-callout-number pseudo-attribute</secondary>
+</indexterm> pseudo-attribute is an integer, that’s used as the starting
+number. If it has the special value “<literal>continues</literal>”, then numbering
+continues sequentially after the last callout number used in the preceding verbatim listing.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_callout-link">
+<?db filename="m_callout-link.html"?>
+<refmeta>
+<refentrytitle>m:callout-link</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}callout-link</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:callout-link</refname>
+<refpurpose>Mode for producing callout links</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Callouts in a <tag>calloutlist</tag> can link back to the corresponding
+point in the listing or on the image. This mode is used to produce those links.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_chunk-cleanup">
+<?db filename="m_chunk-cleanup.html"?>
+<refmeta>
+<refentrytitle>m:chunk-cleanup</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-cleanup</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:chunk-cleanup</refname>
+<refpurpose>Post-process HTML chunks</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Every HTML chunk is processed with the
+<mode>m:chunk-cleanup</mode> mode. This mode makes sure that footnotes
+and annotations appear in the chunks where their references appear,
+adds navigation to the top and bottom of each chunk, etc. 
+See <xref linkend="chunking"/>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_chunk-filename">
+<?db filename="m_chunk-filename.html"?>
+<refmeta>
+<refentrytitle>m:chunk-filename</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-filename</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:chunk-filename</refname>
+<refpurpose>Selects the chunk filename</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Every element that is identified as a chunk,
+see <xref linkend="chunking"/>, will be called in the <mode>m:chunk-filename</mode> mode
+to obtain the filename for that chunk.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_chunk-output">
+<?db filename="m_chunk-output.html"?>
+<refmeta>
+<refentrytitle>m:chunk-output</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-output</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:chunk-output</refname>
+<refpurpose>Performs the final-pass of processing on chunks</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Chunks (see <xref linkend="chunking"/>) are constructed in several
+passes. The last pass is in the <mode>m:chunk-output</mode> mode. This mode makes
+last minute adjustments and produces the individual chunk documents.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_chunk-title">
+<?db filename="m_chunk-title.html"?>
+<refmeta>
+<refentrytitle>m:chunk-title</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-title</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:chunk-title</refname>
+<refpurpose>Generates the page title for the chunk</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The page title, the
+<tag namespace="http://www.w3.org/1999/xhtml">title</tag> in the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag>, is generated by processing
+the heading in this mode. This mode is responsible for removing markup from the title.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_copyright-years">
+<?db filename="m_copyright-years.html"?>
+<refmeta>
+<refentrytitle>m:copyright-years</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}copyright-years</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:copyright-years</refname>
+<refpurpose>Mode for processing copyright years</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>year</tag> elements in a <tag>copyright</tag> are processed
+in this mode. This mode handles the separation (and possible collapsing) of
+years.</para>
+<para>See also <varname>copyright-year-range-separator</varname>
+and <varname>copyright-year-separator</varname>,
+and <varname>copyright-collapse-years</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref">
+<?db filename="m_crossref.html"?>
+<refmeta>
+<refentrytitle>m:crossref</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref</refname>
+<refpurpose>Produce a cross-reference to the element</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref</mode> mode is used to generate a cross-reference.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-inherit-separator">
+<?db filename="m_crossref-inherit-separator.html"?>
+<refmeta>
+<refentrytitle>m:crossref-inherit-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-inherit-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-inherit-separator</refname>
+<refpurpose>Produce the inherit separator</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-inherit-separator</mode> mode is used to generate the
+text that should follow the element when an inherited reference is used.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-label">
+<?db filename="m_crossref-label.html"?>
+<refmeta>
+<refentrytitle>m:crossref-label</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-label</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-label</refname>
+<refpurpose>Produce the label in a cross-reference</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-label</mode> mode is used to generate the
+label in a cross-reference.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-label-separator">
+<?db filename="m_crossref-label-separator.html"?>
+<refmeta>
+<refentrytitle>m:crossref-label-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-label-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-label-separator</refname>
+<refpurpose>Produce the cross-reference label separator</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-label-separator</mode> mode is used to generate the
+separator between a label and what follows it in a cross-reference.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-number">
+<?db filename="m_crossref-number.html"?>
+<refmeta>
+<refentrytitle>m:crossref-number</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-number</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-number</refname>
+<refpurpose>Produce the number in a cross-reference</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-number</mode> mode is used to generate the
+number in a cross-reference.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-number-separator">
+<?db filename="m_crossref-number-separator.html"?>
+<refmeta>
+<refentrytitle>m:crossref-number-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-number-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-number-separator</refname>
+<refpurpose>Produce the cross-reference number separator</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-number-separator</mode> mode is used to generate the
+separator between a number and what follows it in a cross-reference.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-prefix">
+<?db filename="m_crossref-prefix.html"?>
+<refmeta>
+<refentrytitle>m:crossref-prefix</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-prefix</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-prefix</refname>
+<refpurpose>Produce the cross-reference prefix</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-prefix</mode> mode is used to generate any text
+that precedes a cross reference.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-suffix">
+<?db filename="m_crossref-suffix.html"?>
+<refmeta>
+<refentrytitle>m:crossref-suffix</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-suffix</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-suffix</refname>
+<refpurpose>Produce the cross-reference suffix</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-suffix</mode> mode is used to generate any text
+that follows a cross reference.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_crossref-title">
+<?db filename="m_crossref-title.html"?>
+<refmeta>
+<refentrytitle>m:crossref-title</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-title</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:crossref-title</refname>
+<refpurpose>Produce the title in a cross-reference</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:crossref-title</mode> mode formats the title in a cross-reference.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_details">
+<?db filename="m_details.html"?>
+<refmeta>
+<refentrytitle>m:details</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}details</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:details</refname>
+<refpurpose>Produce details about a media object</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to produce the details about a media object, such as a long
+description.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_details-attribute">
+<?db filename="m_details-attribute.html"?>
+<refmeta>
+<refentrytitle>m:details-attribute</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}details-attribute</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:details-attribute</refname>
+<refpurpose>Produce the short summary for a media object</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to produce a short detail summary about a
+media object. This is most often used as the alt text for the
+object.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_docbook">
+<?db filename="m_docbook.html"?>
+<refmeta>
+<refentrytitle>m:docbook</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}docbook</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:docbook</refname>
+<refpurpose>The primary mode for processing DocBook elements</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:docbook</mode> mode is the primary mode for processing
+DocBook elements. Critically, this means that if you import the DocBook stylesheets
+and wish to override some of the templates, you <emphasis>must</emphasis> make sure
+that those templates are defined in the <mode>m:docbook</mode> mode.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_footnote-number">
+<?db filename="m_footnote-number.html"?>
+<refmeta>
+<refentrytitle>m:footnote-number</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}footnote-number</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:footnote-number</refname>
+<refpurpose>Mode for generating footnote numbers</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>A <tag>footnote</tag> processed in <mode>m:footnote-number</mode> mode
+renders the footnote number (or other symbol) associated with that footnote.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_footnotes">
+<?db filename="m_footnotes.html"?>
+<refmeta>
+<refentrytitle>m:footnotes</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}footnotes</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:footnotes</refname>
+<refpurpose>Mode for processing footnotes</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Perhaps unsurprisingly, <tag>footnote</tag> elements are processed
+in <mode>m:footnotes</mode>. On the first pass, they’re rendered inline with appropriate
+footnote markers. The “chunk cleanup” pass moves them to an appropriate location.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_generate-titlepage">
+<?db filename="m_generate-titlepage.html"?>
+<refmeta>
+<refentrytitle>m:generate-titlepage</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}generate-titlepage</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:generate-titlepage</refname>
+<refpurpose>Generate a title page</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>All “block” elements that have a <tag>title</tag> (or another
+feature that constitutes a title) are processed in the
+<mode>m:generate-titlepage</mode> mode to generate their “title page”.
+Don’t be mislead by the term “title page”. For many elements, the title page
+consists of nothing more than a single header element.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline">
+<?db filename="m_headline.html"?>
+<refmeta>
+<refentrytitle>m:headline</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline</refname>
+<refpurpose>Produce a headline title</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode produces the “headline” title for an element. This generally appears in
+the text where the element is formatted, but may also occur in the table of contents, the index,
+and other places.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-label">
+<?db filename="m_headline-label.html"?>
+<refmeta>
+<refentrytitle>m:headline-label</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-label</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-label</refname>
+<refpurpose>Produce the label for a headline title</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-label</mode> mode is used to generate the
+label in a headline.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-label-separator">
+<?db filename="m_headline-label-separator.html"?>
+<refmeta>
+<refentrytitle>m:headline-label-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-label-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-label-separator</refname>
+<refpurpose>Produce the headline label separator</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-label-separator</mode> mode is used to generate
+the separator that follows a label
+in a headline.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-number">
+<?db filename="m_headline-number.html"?>
+<refmeta>
+<refentrytitle>m:headline-number</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-number</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-number</refname>
+<refpurpose>Produce the headline number</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-number</mode> mode is used to generate
+the number
+in a headline.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-number-separator">
+<?db filename="m_headline-number-separator.html"?>
+<refmeta>
+<refentrytitle>m:headline-number-separator</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-number-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-number-separator</refname>
+<refpurpose>Produce the headline number separator</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-number-separator</mode> mode is used to
+generate the number separator
+in a headline.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-prefix">
+<?db filename="m_headline-prefix.html"?>
+<refmeta>
+<refentrytitle>m:headline-prefix</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-prefix</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-prefix</refname>
+<refpurpose>Generate the headline prefix</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-prefix</mode> mode is used to
+generate any text that should precede the text of
+a headline.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-suffix">
+<?db filename="m_headline-suffix.html"?>
+<refmeta>
+<refentrytitle>m:headline-suffix</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-suffix</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-suffix</refname>
+<refpurpose>Produce the headline suffix</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-suffix</mode> mode is used to
+generate any text that should follow the text of
+a headline.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_headline-title">
+<?db filename="m_headline-title.html"?>
+<refmeta>
+<refentrytitle>m:headline-title</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-title</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:headline-title</refname>
+<refpurpose>Produce the headline title</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:headline-title</mode> mode is used to format the
+title element
+in a headline.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_highlight-options">
+<?db filename="m_highlight-options.html"?>
+<refmeta>
+<refentrytitle>m:highlight-options</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}highlight-options</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:highlight-options</refname>
+<refpurpose>Determine the syntax highlighting options for an element</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>A verbatim element that will be syntax highlighted is processed in this mode
+to determine the options for the syntax highlighter. The template must return a map.
+The default template returns the <att>language</att> attribute if one is present.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_html-head">
+<?db filename="m_html-head.html"?>
+<refmeta>
+<refentrytitle>m:html-head</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}html-head</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:html-head</refname>
+<refpurpose>Construct the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <mode>m:html-head</mode> mode is used to produce the
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element.
+This should include all of the metadata, links, scripts, etc.
+necessary to render the document correctly.
+</para>
+<para>It is not supposed to be necessary to override this template.
+You can customize what is produced with the
+<template>t:html-head-script</template> and
+<template>t:html-head</template> templates.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_htmltable">
+<?db filename="m_htmltable.html"?>
+<refmeta>
+<refentrytitle>m:htmltable</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}htmltable</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:htmltable</refname>
+<refpurpose>Mode for processing HTML table elements</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Where DocBook uses the HTML table model, it copies the definitions
+of the table elements (and the attributes on those elements) from HTML.
+The <mode>m:htmltable</mode> mode simply copies those elements and attributes
+to the result. When processing the contents of table cells, processing switches
+back to <mode>m:docbook</mode> mode.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_index-div">
+<?db filename="m_index-div.html"?>
+<refmeta>
+<refentrytitle>m:index-div</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}index-div</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:index-div</refname>
+<refpurpose>Mode for generating divisions in an index</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Index processing, that is, the process of
+<emphasis>generating</emphasis> an index, involves collecting all of
+the <tag>indexterm</tag>s together, collating them, and rendering
+them.
+</para>
+<para>The terms are grouped alphabetically and each group is processed
+in the <mode>m:index-div</mode> mode.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_index-primary">
+<?db filename="m_index-primary.html"?>
+<refmeta>
+<refentrytitle>m:index-primary</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}index-primary</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:index-primary</refname>
+<refpurpose>Mode for generating primary index entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When generating an index, each distinct <tag>indexterm</tag> is
+processed in <mode>m:index-primary</mode> mode to output its primary
+entry.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_index-secondary">
+<?db filename="m_index-secondary.html"?>
+<refmeta>
+<refentrytitle>m:index-secondary</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}index-secondary</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:index-secondary</refname>
+<refpurpose>Mode for generating secondary index entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When generating an index, each distinct secondary <tag>indexterm</tag> is
+processed in <mode>m:index-secondary</mode> mode to output its secondary
+entry.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_index-see">
+<?db filename="m_index-see.html"?>
+<refmeta>
+<refentrytitle>m:index-see</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}index-see</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:index-see</refname>
+<refpurpose>Mode for generating index “see” entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When generating an index, each <tag>indexterm</tag> that defines a
+“see” index cross-reference is
+processed in <mode>m:index-see</mode> mode to output the cross-reference.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_index-seealso">
+<?db filename="m_index-seealso.html"?>
+<refmeta>
+<refentrytitle>m:index-seealso</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}index-seealso</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:index-seealso</refname>
+<refpurpose>Mode for generating index “see also” entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When generating an index, each <tag>indexterm</tag> that defines a
+“see also” index cross-reference is
+processed in <mode>m:index-seealso</mode> mode to output the cross-reference.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_index-tertiary">
+<?db filename="m_index-tertiary.html"?>
+<refmeta>
+<refentrytitle>m:index-tertiary</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}index-tertiary</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:index-tertiary</refname>
+<refpurpose>Mode for generating index tertiary entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When generating an index, each distinct tertiary <tag>indexterm</tag> is
+processed in <mode>m:index-tertiary</mode> mode to output its tertiary
+entry.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_kr">
+<?db filename="m_kr.html"?>
+<refmeta>
+<refentrytitle>m:kr</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}kr</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:kr</refname>
+<refpurpose>Mode for processing funcsynopsis elements in the “K&amp;R” style</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>funcsynopsis</tag> element has several possible renderings.
+This mode is used when the “K&amp;R” style of rendering has been selected
+and a non-tabular layout is being used.
+</para>
+<para>See also: <mode>m:kr-table</mode>, <mode>m:ansi</mode>, <mode>m:ansi-table</mode>,
+<varname>funcsynopsis-default-style</varname>,
+<varname>funcsynopsis-table-threshold</varname>, and
+<varname>funcsynopsis-trailing-punctuation</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_kr-args">
+<?db filename="m_kr-args.html"?>
+<refmeta>
+<refentrytitle>m:kr-args</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}kr-args</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:kr-args</refname>
+<refpurpose>Mode for processing function arguments</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to process the parameters of a <tag>funcsynopsis</tag>
+in th K&amp;R style. See <parameter>funcsynopsis-default-style</parameter>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_kr-table">
+<?db filename="m_kr-table.html"?>
+<refmeta>
+<refentrytitle>m:kr-table</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}kr-table</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:kr-table</refname>
+<refpurpose>Mode for processing funcsynopsis elements in the “K&amp;R” style</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>funcsynopsis</tag> element has several possible renderings.
+This mode is used when the “K&amp;R” style of rendering has been selected
+and a table will be used for layout.
+</para>
+<para>See also: <mode>m:kr</mode>, <mode>m:ansi</mode>, <mode>m:ansi-table</mode>,
+<varname>funcsynopsis-default-style</varname>,
+<varname>funcsynopsis-table-threshold</varname>, and
+<varname>funcsynopsis-trailing-punctuation</varname>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_kr-table-args">
+<?db filename="m_kr-table-args.html"?>
+<refmeta>
+<refentrytitle>m:kr-table-args</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}kr-table-args</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:kr-table-args</refname>
+<refpurpose>Mode for processing function arguments in a table</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When the tabular presentation of a “K&amp;R”
+<tag>funcsynopsis</tag> is being generated, this mode is used to process
+the function arguments.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_link">
+<?db filename="m_link.html"?>
+<refmeta>
+<refentrytitle>m:link</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}link</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:link</refname>
+<refpurpose>Process inline links</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>DocBook allows <att>xlink:href</att> to appear on most elements.
+All inline elements are processed in <mode>m:link</mode> mode to add
+a link around them if they specify an <att>xlink:href</att>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_list-of-equations">
+<?db filename="m_list-of-equations.html"?>
+<refmeta>
+<refentrytitle>m:list-of-equations</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-equations</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-equations</refname>
+<refpurpose>Mode for generating a list of equations</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>lists-of-equations</parameter> <glossterm>is true</glossterm>, then a
+list of equations will be generated. This mode is used to process the
+<tag>equation</tag> elements (if any) to
+produce that list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_list-of-examples">
+<?db filename="m_list-of-examples.html"?>
+<refmeta>
+<refentrytitle>m:list-of-examples</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-examples</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-examples</refname>
+<refpurpose>Mode for generating a list of examples</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>lists-of-examples</parameter> <glossterm>is true</glossterm>, then a
+list of examples will be generated. This mode is used to process the
+<tag>example</tag> elements (if any) to
+produce that list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_list-of-figures">
+<?db filename="m_list-of-figures.html"?>
+<refmeta>
+<refentrytitle>m:list-of-figures</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-figures</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-figures</refname>
+<refpurpose>Mode for generating a list of figures</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>lists-of-figures</parameter> <glossterm>is true</glossterm>, then a
+list of figures will be generated. This mode is used to process the
+<tag>figure</tag> elements (if any) to
+produce that list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_list-of-procedures">
+<?db filename="m_list-of-procedures.html"?>
+<refmeta>
+<refentrytitle>m:list-of-procedures</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-procedures</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-procedures</refname>
+<refpurpose>Mode for generating a list of procedures</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>lists-of-procedures</parameter> <glossterm>is true</glossterm>, then a
+list of procedures will be generated. This mode is used to process the
+<tag>procedure</tag> elements (if any) to
+produce that list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_list-of-tables">
+<?db filename="m_list-of-tables.html"?>
+<refmeta>
+<refentrytitle>m:list-of-tables</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-tables</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-tables</refname>
+<refpurpose>Mode for generating a list of tables</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>lists-of-tables</parameter> <glossterm>is true</glossterm>, then a
+list of tables will be generated. This mode is used to process the
+<tag>table</tag> elements (if any) to
+produce that list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_production-number">
+<?db filename="m_production-number.html"?>
+<refmeta>
+<refentrytitle>m:production-number</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}production-number</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:production-number</refname>
+<refpurpose>Mode for production numbers</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a <tag>productionset</tag> is being formatted, the
+<mode>m:production-number</mode> mode is used to produce the prodution numbers.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_profile">
+<?db filename="m_profile.html"?>
+<refmeta>
+<refentrytitle>m:profile</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}profile</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:profile</refname>
+<refpurpose>Mode for document profiling</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>All of the profile processing (see <xref linkend="profiling"/>) is done
+in this mode.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_pygments-options">
+<?db filename="m_pygments-options.html"?>
+<refmeta>
+<refentrytitle>m:pygments-options</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}pygments-options</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:pygments-options</refname>
+<refpurpose>Calculate the Pygments options for an element</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When the Pygments syntax highlighter is being used, every
+element that will be highlighted is processed in this mode to generate
+options for the Pygments process.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_revhistory-list">
+<?db filename="m_revhistory-list.html"?>
+<refmeta>
+<refentrytitle>m:revhistory-list</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}revhistory-list</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:revhistory-list</refname>
+<refpurpose>Mode to generate a “list” presentation of <tag>revhistory</tag></refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>revhistory</tag> element can be rendered as a list or a table
+(see <parameter>revhistory-style</parameter>). The <mode>m:revhistory-list</mode> mode is used
+to render it as a list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_revhistory-table">
+<?db filename="m_revhistory-table.html"?>
+<refmeta>
+<refentrytitle>m:revhistory-table</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}revhistory-table</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:revhistory-table</refname>
+<refpurpose>Mode to generate a “table” presentation of <tag>revhistory</tag></refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>revhistory</tag> element can be rendered as a list or a table
+(see <parameter>revhistory-style</parameter>). The <mode>m:revhistory-table</mode> mode is used
+to render it as a list.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_seglist-table">
+<?db filename="m_seglist-table.html"?>
+<refmeta>
+<refentrytitle>m:seglist-table</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}seglist-table</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:seglist-table</refname>
+<refpurpose>Process a <tag>segmentedlist</tag> as a table</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Segmented lists can be presented in either a list format or a table format.
+If the tabular format is selected, the <tag>segmentedlist</tag> is processed in this
+mode to generate the table.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_segtitle-in-seg">
+<?db filename="m_segtitle-in-seg.html"?>
+<refmeta>
+<refentrytitle>m:segtitle-in-seg</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}segtitle-in-seg</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:segtitle-in-seg</refname>
+<refpurpose>Mode for processing segment titles in a segment</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>In a <tag>segmentedlist</tag>, each <tag>segtitle</tag> is
+processed once for each segment. This processing occurs in the
+<mode>m:segtitle-in-seg</mode> mode.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_synopfragment-bug">
+<?db filename="m_synopfragment-bug.html"?>
+<refmeta>
+<refentrytitle>m:synopfragment-bug</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}synopfragment-bug</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:synopfragment-bug</refname>
+<refpurpose>Mode for generating the mark for a <tag>synopfragementref</tag></refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>synopfragment</tag> element allows a synopsis (for example
+a <tag>cmdsynopsis</tag>) to move common fragments out-of-line. The location
+where these fragments occur in the primary synopsis is indicated with
+a <tag>synopfragmentref</tag>. The stylesheets will generate a mark, analogous
+to the marks used for footnotes or callouts, to connect the reference to the fragment.
+The fragment will be processed in <mode>m:synopfragment-bug</mode> to produce
+that mark.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_synopsis">
+<?db filename="m_synopsis.html"?>
+<refmeta>
+<refentrytitle>m:synopsis</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}synopsis</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:synopsis</refname>
+<refpurpose>Mode for processing programming language synopses</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The elements of class, method, and field synopses are processed in this mode.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_title">
+<?db filename="m_title.html"?>
+<refmeta>
+<refentrytitle>m:title</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}title</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:title</refname>
+<refpurpose>Format a title</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to format titles when they appear in headlines
+or cross references.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_titlepage">
+<?db filename="m_titlepage.html"?>
+<refmeta>
+<refentrytitle>m:titlepage</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}titlepage</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:titlepage</refname>
+<refpurpose>Format elements for the title page</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Elements that appear on the title page are processed in this mode to
+produce the text that will appear on the title page.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_to-uppercase">
+<?db filename="m_to-uppercase.html"?>
+<refmeta>
+<refentrytitle>m:to-uppercase</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}to-uppercase</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:to-uppercase</refname>
+<refpurpose>Produce content in upper-case</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting personal names in a style that requires
+converting a name to upper case
+(see <xref linkend="t_person-name"/>), this mode is used to generate
+the upper-case name.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_toc">
+<?db filename="m_toc.html"?>
+<refmeta>
+<refentrytitle>m:toc</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:toc</refname>
+<refpurpose>Mode for generating tables of contents</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Elements are processed in <mode>m:toc</mode> when automatically
+constructing a Table of Contents (or, more generally, any list of elements).
+</para>
+<para>See also
+<varname>generate-toc</varname>,
+<varname>generate-nested-toc</varname>,
+<varname>annotate-toc</varname>,
+<varname>lists-of-figures</varname>,
+<varname>lists-of-tables</varname>,
+<varname>lists-of-examples</varname>,
+<varname>lists-of-equations</varname>,
+<varname>lists-of-procedures</varname>, and
+<varname>section-toc-depth</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_toc-entry">
+<?db filename="m_toc-entry.html"?>
+<refmeta>
+<refentrytitle>m:toc-entry</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}toc-entry</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:toc-entry</refname>
+<refpurpose>Format content for a list-of-titles</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When an element appears in the Table of Contents (or other list of titles),
+it is formatted in this mode to produce the entry in the list.
+</para>
+</refsection>
+</refentry>
+
+</reference>
+

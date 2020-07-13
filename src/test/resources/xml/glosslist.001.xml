@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+
+<para>An untitled <tag>glosslist</tag>.</para>
+
+<glosslist>
+  <glossentry>
+    <glossterm>Some term</glossterm>
+    <glossdef>
+      <para>Some definition.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry>
+    <glossterm>Term two</glossterm>
+    <glossdef>
+      <para>Some definition.</para>
+    </glossdef>
+  </glossentry>
+</glosslist>
+
+<para>A <tag>glosslist</tag> with a title.</para>
+
+<glosslist>
+  <title>Glossary List Title</title>
+  <glossentry>
+    <glossterm>Some other term</glossterm>
+    <glossdef>
+      <para>Some other definition.</para>
+    </glossdef>
+  </glossentry>
+  <glossentry>
+    <glossterm>Some other, other term</glossterm>
+    <glossdef>
+      <para>Some other other definition.</para>
+    </glossdef>
+  </glossentry>
+</glosslist>
+</article>

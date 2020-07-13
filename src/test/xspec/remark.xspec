@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+   <x:scenario label="When transforming remark.001">
+      <x:context href="../resources/xml/remark.001.xml"/>
+      <x:expect label="expect block remark" href="../resources/expected/remark.001.html"/>
+   </x:scenario>
+
+   <x:scenario label="When transforming remark.002">
+      <x:context href="../resources/xml/remark.002.xml"/>
+      <x:expect label="expect inline remark" href="../resources/expected/remark.002.html"/>
+   </x:scenario>
+
+</x:description>

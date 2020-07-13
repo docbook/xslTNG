@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         version="5.0">
+<title>Unit test: xinclude.020</title>
+
+<para>This stamp has a relative path of <filename>../media/stamp.png</filename>.
+</para>
+
+<mediaobject>
+<imageobject>
+<imagedata fileref="../media/stamp.png"/>
+</imageobject>
+</mediaobject>
+
+<xi:include href="includes/stamp.xml" xpointer="pstamp"/>
+<xi:include href="includes/stamp.xml" xpointer="stamp"/>
+
+</article>

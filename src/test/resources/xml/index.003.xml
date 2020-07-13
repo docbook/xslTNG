@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit Test: index.003</title>
+<index>
+   <title>Index</title>
+   <indexdiv>
+      <title>Index Div</title>
+      <indexentry>
+         <primaryie>foo</primaryie>
+      </indexentry>
+      <indexentry>
+         <primaryie>foo</primaryie>
+         <secondaryie>bar</secondaryie>
+      </indexentry>
+      <indexentry>
+         <primaryie>foo</primaryie>
+         <secondaryie>baz</secondaryie>
+         <tertiaryie>baz</tertiaryie>
+      </indexentry>
+
+      <indexentry>
+         <primaryie>goo</primaryie>
+         <seeie>foo</seeie>
+      </indexentry>
+
+      <indexentry>
+         <primaryie>goo</primaryie>
+         <secondaryie>bar</secondaryie>
+         <seeie>foo, bar</seeie>
+      </indexentry>
+
+      <indexentry>
+         <primaryie>moo</primaryie>
+         <seealsoie>goo</seealsoie>
+      </indexentry>
+
+      <indexentry>
+         <primaryie>moo</primaryie>
+         <secondaryie>bar</secondaryie>
+         <seealsoie>foo, bar</seealsoie>
+      </indexentry>
+   </indexdiv>
+</index>
+</book>

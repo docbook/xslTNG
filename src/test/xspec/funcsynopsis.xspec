@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               preserve-space="h:pre h:code"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     funcdef funcparams funcprototype funcsynopsis funcsynopsisinfo
+     function paramdef parameter type varargs void
+-->
+
+<x:scenario label="When transforming short funcsynopsis elements in ANSI mode">
+  <x:context href="../resources/xml/funcsynopsis.001.xml" mode="m:docbook" select="//*[@xml:id='ansi1']"/>
+  <x:expect label="expect non-tabular ANSI output" href="../resources/expected/funcsynopsis.001.html" select="//h:div[@id='ansi1']"/>
+</x:scenario>
+
+<x:scenario label="When transforming longer funcsynopsis elements in ANSI mode">
+   <x:context href="../resources/xml/funcsynopsis.001.xml" mode="m:docbook" select="//*[@xml:id='ansi2']"/>
+   <x:expect label="expect tabular ANSI output" href="../resources/expected/funcsynopsis.001.html" select="//h:div[@id='ansi2']"/>
+</x:scenario>
+
+<x:scenario label="When transforming long funcsynopsis elements in ANSI mode">
+  <x:context href="../resources/xml/funcsynopsis.001.xml" mode="m:docbook" select="//*[@xml:id='ansi3']"/>
+  <x:expect label="expect tabular ANSI output" href="../resources/expected/funcsynopsis.001.html" select="//h:div[@id='ansi3']"/>
+</x:scenario>
+
+<x:scenario label="When transforming short funcsynopsis elements in K&amp;R mode">
+  <x:context href="../resources/xml/funcsynopsis.001.xml" mode="m:docbook" select="//*[@xml:id='kr1']"/>
+  <x:expect label="expect non-tabular K&amp;R output" href="../resources/expected/funcsynopsis.001.html" select="//h:div[@id='kr1']"/>
+</x:scenario>
+
+<x:scenario label="When transforming longer funcsynopsis elements in K&amp;R mode">
+  <x:context href="../resources/xml/funcsynopsis.001.xml" mode="m:docbook" select="//*[@xml:id='kr2']"/>
+  <x:expect label="expect tabular K&amp;R output" href="../resources/expected/funcsynopsis.001.html" select="//h:div[@id='kr2']"/>
+</x:scenario>
+
+<x:scenario label="When transforming long funcsynopsis elements in K&amp;R mode">
+  <x:context href="../resources/xml/funcsynopsis.001.xml" mode="m:docbook" select="//*[@xml:id='kr3']"/>
+  <x:expect label="expect tabular K&amp;R output" href="../resources/expected/funcsynopsis.001.html" select="//h:div[@id='kr3']"/>
+</x:scenario>
+
+</x:description>

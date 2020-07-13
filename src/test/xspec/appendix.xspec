@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     appendix
+-->
+
+<x:scenario label="When converting an appendix">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <appendix>
+      <info>
+        <title>Appendix</title>
+      </info>
+      <para>Content</para>
+    </appendix>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="an appendix should be created">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <article class="appendix">
+            <header>
+              <h1>
+                <span class="label">Appendix<span class="sep"> </span></span>
+              <span class="number">A<span class="sep">. </span></span>Appendix</h1>
+            </header>
+            <p>Content</p>
+          </article>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an appendix with a label">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <appendix label="Boring">
+      <info>
+        <title>Some title</title>
+      </info>
+      <para>Content</para>
+    </appendix>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="an db-label is added to the appendix">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <article class="appendix" db-label="Boring">...</article>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When converting an appendix with a status">
+  <x:context xmlns="http://docbook.org/ns/docbook">
+    <appendix status="draft">
+      <info>
+        <title>Some title</title>
+      </info>
+      <para>Content</para>
+    </appendix>
+  </x:context>
+  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the status becomes a class">
+    <body class="home">
+        <nav class="top"/>
+        <main>
+          <article class="appendix draft">...</article>
+        </main>
+        <nav class="bottom"/>
+      </body>
+  </x:expect>
+</x:scenario>
+
+</x:description>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<title>Unit Test: bibliolist.002</title>
+</info>
+
+<para>Introductions TO XML technologies.</para>
+
+<bibliolist>
+<bibliomixed xml:id="XML-Intro"><abbrev>XML-Intro</abbrev>
+<orgname>TEI</orgname>, ed. <citetitle><quote>A Gentle Introduction to
+<acronym>XML</acronym>.</quote></citetitle> <publisher>
+<publishername>Text Encoding Initiative (TEI)</publishername>
+</publisher>, <pubdate>March 2002</pubdate>, <bibliosource xlink:href="http://www.tei-c.org/Guidelines/P4/html/SG.html">http://www.tei-c.org/Guidelines/P4/html/SG.html<indexterm>
+<primary>XML</primary>
+<secondary>introduction</secondary>
+</indexterm></bibliosource>.</bibliomixed>
+
+<bibliomixed xml:id="XML-Tech"><abbrev>XML-Tech</abbrev> <author>
+<personname>
+<surname>Walsh</surname>
+<firstname>Norman</firstname>
+</personname>
+</author>. <citetitle><quote>A Technical Introduction to
+<acronym>XML</acronym>.</quote></citetitle> <pubdate>February
+1998</pubdate>, <bibliosource xlink:href="http://nwalsh.com/docs/articles/xml/">http://nwalsh.com/docs/articles/xml/</bibliosource>.</bibliomixed>
+
+<bibliomixed xml:id="RNG-Intro"><abbrev>RNG-Intro</abbrev> <authorgroup>
+<author>
+<personname>
+<surname>Clark</surname>
+<firstname>James</firstname>
+</personname>
+</author><author>
+<personname>
+<surname>Murata</surname>
+<firstname>Makoto</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle><quote>RELAX NG Tutorial.</quote></citetitle>
+<publisher><publishername>OASIS Open</publishername></publisher>,
+<pubdate>December 2001</pubdate>,
+<bibliosource xlink:href="http://www.relaxng.org/tutorial.html">http://www.relaxng.org/tutorial.html<indexterm>
+<primary>RELAX NG</primary>
+<secondary>tutorial</secondary>
+</indexterm></bibliosource>.</bibliomixed>
+</bibliolist>
+
+</article>

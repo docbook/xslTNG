@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: formalgroup.003</title>
+
+<chapter>
+<title>Testing formal group enumeration</title>
+
+<section>
+<title>With inherited numeration</title>
+
+<formalgroup pgwide="1">
+<title>One and two</title>
+
+<example>
+<title>Example one</title>
+<para>This boring paragraph is the first example.</para>
+</example>
+<example>
+<title>Example Two</title>
+<para>This other boring paragraph is the second example.</para>
+</example>
+
+</formalgroup>
+
+<para>This group isn’t “page wide”.</para>
+
+<formalgroup>
+<title>Two and one</title>
+
+<example>
+<title>Example Two</title>
+<para>This other boring paragraph is the second example.</para>
+</example>
+
+<example>
+<title>Example one</title>
+<para>This boring paragraph is the first example.</para>
+</example>
+
+</formalgroup>
+
+</section>
+</chapter>
+</book>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Article wrapper</title>
+   <para>This article tests <tag>link</tag> hyphenation.</para>
+   <para>This is a really long URI with explicit discretionary hyphens:
+<link xmlns:xlink="http://www.w3.org/1999/xlink"
+            xlink:href="http://www.example.com/this/is/really/long/for/no/good/reason/except/to/test/what/happens/with/really/long/URIs/-/because/they/are/a/good/test/for/discretionary/hyphens/">http:/­/­www.example.com/­this/­is/­really/­long/­for/­no/­good/­reason/­except/­to/­test/­what/­happens/­with/­really/­long/­URIs/­-/­because/­they/­are/­a/­good/­test/­for/­discretionary/­hyphens/</link>.</para>
+   <para>This is a really long URI without explicit discretionary hyphens:
+<link xmlns:xlink="http://www.w3.org/1999/xlink"
+            xlink:href="http://www.example.com/this/is/really/long/for/no/good/reason/except/to/test/what/happens/with/really/long/URIs/-/because/they/are/a/good/test/for/discretionary/hyphens/"/>.</para>
+</article>

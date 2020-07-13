@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0" xml:id="implementation">
+<info>
+  <?db filename="ch04.html"?>
+  <title>Implementation details</title>
+</info>
+
+<para>…</para>
+
+<section xml:id="custom-chunking">
+<title>Customizing chunking</title>
+
+<para>FIXME: finish this section</para>
+</section>
+
+<section xml:id="units">
+<title>Lengths and units</title>
+
+<para>Lengths appear in the context of images (width and height) and
+tables (column widths). Several different units of length are
+possible: absolute lengths (e.g., 3in), relative lengths (e.g., 3*),
+and percentages (e.g., 25%). In some contexts, these can be combined:
+a column width of “3*+0.5in” should have a width equal to 3 times the
+relative width plus ½ inch.</para>
+
+<para>In practice, some of the more complicated forms in <biblioref
+linkend="calstable"/> have no direct mapping to the units available in
+HTML and CSS. The stylesheets attempt to specify a mapping that’s
+close. Broadly, they take the nominal width of the table
+(<parameter>nominal-page-width</parameter>, subtract out the fixed
+widths, divide up the remaining widths proportionally among the
+relative widths, and compute final widths. The final widths can be
+expressed either in absolute terms or as percentages.</para>
+
+<para>In handling the width and height of images, the intrinsic width
+and height of the image in pixels are converted into lengths by
+dividing by <parameter>pixels-per-inch</parameter>. Nominal widths are
+taken into consideration if necessary.</para>
+
+<note>
+<para>Determining the intrinsic size of an image depends on an extension function.
+See <xref linkend="extensions"/>. Many bitmap image formats are supported.
+The bounding box of EPS images is used, if it’s present. The intrinsic size of
+SVG images is not available.</para>
+</note>
+
+<para>The list of recognized units (in, cm, etc.) are taken from
+<varname>v:unit-scale</varname>.</para>
+</section>
+
+<section xml:id="verbstyle">
+<title>Verbatim styles</title>
+
+<para>plain, lines, …</para>
+
+<para>FIXME: finish this section</para>
+</section>
+
+<section xml:id="mediaobject-uris">
+<title>Mediaobject URIs</title>
+<para>FIXME: finish this section</para>
+</section>
+
+<section xml:id="header-templates">
+<title>Templates</title>
+<para>FIXME: finish this section</para>
+</section>
+</chapter>

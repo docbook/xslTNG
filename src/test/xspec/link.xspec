@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     link
+-->
+
+<x:scenario label="When transforming link.001">
+   <x:context href="../resources/xml/link.001.xml"/>
+   <x:expect label="expect links to be rendrered" href="../resources/expected/link.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming link.002">
+   <x:context href="../resources/xml/link.002.xml"/>
+   <x:expect label="expect links to be rendrered" href="../resources/expected/link.002.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming link.003">
+   <x:context href="../resources/xml/link.003.xml"/>
+   <x:expect label="expect links to be rendrered" href="../resources/expected/link.003.html"/>
+</x:scenario>
+
+</x:description>

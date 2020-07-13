@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e727" frame="all">
+         <tgroup cols="5" align="center">
+            <colspec colname="c1c"/>
+            <colspec colname="c2c"/>
+            <colspec colname="c3c"/>
+            <colspec colname="c4c"/>
+            <colspec colname="c5c"/>
+            <tbody>
+               <row>
+                  <entry namest="c1c" nameend="c2c">A</entry>
+                  <entry namest="c4c" nameend="c5c">B</entry>
+               </row>
+               <row>
+                  <entry>X</entry>
+                  <entry namest="c2c" nameend="c4c" morerows="1">C</entry>
+               </row>
+               <row>
+                  <entry>Y</entry>
+               </row>
+               <row>
+                  <entry namest="c1c" nameend="c2c">D</entry>
+                  <entry namest="c4c" nameend="c5c">E</entry>
+               </row>
+               <row>
+                  <entry>F</entry>
+                  <entry>G</entry>
+                  <entry>H</entry>
+                  <entry>I</entry>
+                  <entry>J</entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </informaltable>

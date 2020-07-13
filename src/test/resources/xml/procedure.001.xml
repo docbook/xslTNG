@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+
+<para>This is a procedure. See <xref linkend="step-z-1"/> and
+<xref linkend="step-y-1"/>.</para>
+
+<procedure xml:id="notitle">
+  <step>
+    <para>First step.</para>
+  </step>
+  <step>
+    <para>Seconds step.</para>
+    <substeps>
+      <step>
+        <para>First substep.</para>
+      </step>
+      <step>
+        <para>Second substep.</para>
+      </step>
+      <step>
+        <para>Third substep.</para>
+        <substeps>
+          <step>
+            <para>First substep of third substep of second step.</para>
+          </step>
+          <step xml:id="step-z-1">
+            <para>Second substep of third substep of second step.</para>
+          </step>
+        </substeps>
+      </step>
+      <step xml:id="step-y-1">
+        <para>Fourth substep.</para>
+      </step>
+    </substeps>
+  </step>
+  <step>
+    <para>Third step.</para>
+  </step>
+</procedure>
+
+<procedure xml:id="proc">
+  <title>Procedure Title</title>
+  <para>A procedure with a title.</para>
+  <step>
+    <para>First step.</para>
+  </step>
+  <step>
+    <para>Seconds step.</para>
+  </step>
+  <step>
+    <para>Third step.</para>
+  </step>
+</procedure>
+</article>

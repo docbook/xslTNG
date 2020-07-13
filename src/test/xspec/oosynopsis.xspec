@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               preserve-space="h:pre h:code"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     classname classsynopsis methodname methodparam methodsynopsis
+     modifier ooclass parameter type
+-->
+
+<x:scenario label="When transforming classsynopsis.001">
+  <x:context href="../resources/xml/classsynopsis.001.xml" select="//*[@xml:id='class']" mode="m:docbook"/>
+  <x:expect label="expect a class synopsis" href="../resources/expected/classsynopsis.001.html" select="//h:*[@id='class']">
+  </x:expect>
+</x:scenario>
+
+<x:scenario label="When transforming methodsynopsis.001">
+  <x:context href="../resources/xml/methodsynopsis.001.xml" select="//*[@xml:id='class']" mode="m:docbook"/>
+  <x:expect label="expect a class synopsis" href="../resources/expected/methodsynopsis.001.html" select="//h:*[@id='class']">
+  </x:expect>
+</x:scenario>
+
+</x:description>

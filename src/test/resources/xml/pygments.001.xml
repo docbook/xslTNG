@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info>
+  <pubdate><?db format="[MNn] [D01], [Y0001]"?>2020-05-29</pubdate>
+  <title>Unit test: pygments.001</title>
+</info>
+
+<para>This test checks to see if the extension function that runs
+Pygments syntax highlighting works.</para>
+
+<programlisting language="python">def printDict(di, format="%-25s %s"):
+    for (key, val) in di.items():
+        print format % (str(key)+':', val)</programlisting>
+
+<programlisting>This programlisting has
+no language attribute.</programlisting>
+
+</article>

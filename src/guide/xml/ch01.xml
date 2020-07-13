@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0" xml:id="getting">
+<info>
+  <?db filename="ch01.html"?>
+  <title>Getting the stylesheets</title>
+</info>
+
+<para>The easiest way to get the stylesheets is to download the most
+recent distribution from GitHub. They are also available via Maven.
+</para>
+
+<para>If you wish, you can also clone the distribution and build them
+yourself. The distribution is designed to be self contained. Running:
+</para>
+
+<screen><?db verbatim-style="plain"
+?><userinput>./gradlew makeXslt</userinput></screen>
+
+<para>should build the stylesheets in <filename>build/xslt</filename>.
+(Use <userinput>.\gradlew.bat makeXslt</userinput> on
+Windows<footnote><para>In the spirit of full disclosure, builds are very
+rarely tested on Windows. If you encounter problems, please file an issue.</para>
+</footnote>.)</para>
+
+</chapter>
+

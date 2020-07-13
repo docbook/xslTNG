@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e1469">
+        <info>
+         <title>Lisp function</title>
+        </info>
+         <tgroup cols="1">
+            <tbody>
+               <row>
+                  <entry><programlisting language="lisp"><?db verbatim-style="lines" verbatim-numbered="true"?>(defun cycle-length (n &amp; (len 1) (top 0))
+cond ((= n 1) (values len top))
+     ((evenp n) (cycle-length (ash n -1) (1+ len) (max top n)))
+     (t (let ((next (1+ (* 3 n))))
+          (cycle-length next (1+ len) (max top next))))))</programlisting></entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </table>

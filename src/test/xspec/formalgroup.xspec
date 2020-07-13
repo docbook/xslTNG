@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     figure formalgroup equation example table
+-->
+
+<x:scenario label="When transforming formalgroup.001">
+   <x:context href="../resources/xml/formalgroup.001.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/formalgroup.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming formalgroup.002">
+   <x:context href="../resources/xml/formalgroup.002.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/formalgroup.002.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming formalgroup.003">
+   <x:context href="../resources/xml/formalgroup.003.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/formalgroup.003.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming formalgroup.004">
+   <x:context href="../resources/xml/formalgroup.004.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/formalgroup.004.html"/>
+</x:scenario>
+
+</x:description>
