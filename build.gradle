@@ -1465,6 +1465,10 @@ task webHtml(type: Copy, dependsOn: ['report', 'webHomepage']) {
   }
 }
 
+def buildTag = System.getenv()["CIRCLE_TAG"]
+if (buildTag == null) {
+  buildTag = ""
+}
 task webHomepage(type: SaxonXsltTask, dependsOn: ['testSummary']) {
   inputs.file("src/website/html/homepage.html")
   inputs.file("tools/homepage.xsl")
@@ -1473,7 +1477,7 @@ task webHomepage(type: SaxonXsltTask, dependsOn: ['testSummary']) {
   stylesheet "tools/homepage.xsl"
   output "build/website/index.html"
   parameters(
-    "xsltng-version": "${xslTNGversion}"
+    "build-tag": buildTag
   )
 }
 

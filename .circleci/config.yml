@@ -57,6 +57,8 @@ jobs:
       - store_artifacts:
           path: build/website
 
+      - run: ./.circleci/publish-website.sh
+
   deploybuild:
     machine:
       image: ubuntu-1604:202004-01
@@ -110,6 +112,7 @@ jobs:
           path: build/website
 
       - run: ./.circleci/publish-website.sh
+      - run: ./.circleci/publish-cdn.sh
 
   publish-github-release:
     docker:
