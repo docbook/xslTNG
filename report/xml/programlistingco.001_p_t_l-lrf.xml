@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Article wrapper</title>
+   <para>These options apply to the
+listing that follows:</para><informaltable><tgroup cols="2"><thead><row><entry>Option</entry><entry>Value</entry></row></thead><tbody><row><entry>verbatim-style</entry><entry>plain</entry></row><row><entry>verbatim-highlight</entry><entry>lines,lineranges-first</entry></row><row><entry>verbatim-numbered</entry><entry>true</entry></row><row><entry>verbatim-number-every-nth</entry><entry>5</entry></row><row><entry>verbatim-number-first-line</entry><entry>true</entry></row><row><entry>verbatim-number-minlines</entry><entry>5</entry></row></tbody></tgroup></informaltable><programlistingco><?db verbatim-style="plain" verbatim-highlight="lines,lineranges-first" verbatim-numbered="true" verbatim-number-every-nth="5" verbatim-number-first-line="true" verbatim-number-minlines="5"?>
+      <areaspec>
+         <area xml:id="first" coords="1">
+           <alt>The first line</alt>
+         </area>
+         <area linkends="link" xml:id="second" coords="2 30"/>
+         <areaset xml:id="three-and-four-together">
+            <area xml:id="required1" coords="3 30"/>
+            <area xml:id="required2" coords="4 30"/>
+         </areaset>
+         <area xml:id="five" coords="5"/>
+         <area xml:id="six" coords="6"/>
+         <area xml:id="eight-and-nine" coords="8 9" units="linerange"/>
+         <area xml:id="twelve" coords="12 1"/>
+      </areaspec>
+      <programlisting>The first line
+The second line
+The third line
+The fourth line
+The fifth line
+The sixth line
+The seventh line
+The eighth line
+The ninth line
+The tenth line</programlisting>
+
+<calloutlist><info/>
+  <callout arearefs="first">
+    <para>The first line.</para>
+  </callout>
+  <callout xml:id="link" arearefs="second">
+    <para>The second line.</para>
+  </callout>
+  <callout arearefs="three-and-four-together">
+    <para>The third and fourth lines, together.</para>
+  </callout>
+  <callout arearefs="five six">
+    <para>The fifth and sixth lines, separately.</para>
+  </callout>
+  <callout arearefs="eight-and-nine">
+    <para>The eight and ninth lines as a range.</para>
+  </callout>
+  <callout arearefs="twelve">
+    <para>The twelfth line.</para>
+  </callout>
+</calloutlist>
+   </programlistingco>
+</article>

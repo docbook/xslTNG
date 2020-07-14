@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:report xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:test="http://www.jenitennison.com/xslt/unit-test"
+          xmlns:x="http://www.jenitennison.com/xslt/xspec"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          stylesheet="file:/home/circleci/repo/build/xslt/transforms/00-logstruct.xsl"
+          date="2020-07-14T05:59:29.398Z"
+          xspec="file:/home/circleci/repo/build/xspec/00_logstruct.xspec">
+   <x:scenario id="scenario1"
+               xspec="file:/home/circleci/repo/build/xspec/00_logstruct.xspec">
+      <x:label>When setting up the logical structure </x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/entityref.001.xml"/>
+      <x:result select="/element()">
+         <article xmlns="http://docbook.org/ns/docbook"
+                  version="5.0"
+                  xml:base="file:/home/circleci/repo/src/test/resources/xml/entityref.001.xml">
+            <test:ws>
+</test:ws>
+            <title>Unit test: entityref.001</title>
+            <test:ws>
+</test:ws>
+            <mediaobject>
+               <test:ws>
+</test:ws>
+               <imageobject>
+                  <test:ws>
+</test:ws>
+                  <imagedata format="PNG"
+                             width="6in"
+                             align="right"
+                             fileref="file:/home/circleci/repo/src/test/resources/media/duck-small.png"/>
+                  <test:ws>
+</test:ws>
+               </imageobject>
+               <test:ws>
+</test:ws>
+            </mediaobject>
+            <test:ws>
+</test:ws>
+         </article>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario1-expect1"
+              successful="true">
+         <x:label>expect xml:base and entityref resolution</x:label>
+         <x:expect select="/element()">
+            <article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:base="...">
+               <test:ws>
+</test:ws>
+               <title>Unit test: entityref.001</title>
+               <test:ws>
+</test:ws>
+               <mediaobject>
+                  <test:ws>
+</test:ws>
+                  <imageobject>
+                     <test:ws>
+</test:ws>
+                     <imagedata format="PNG" fileref="..." width="6in" align="right"/>
+                     <test:ws>
+</test:ws>
+                  </imageobject>
+                  <test:ws>
+</test:ws>
+               </mediaobject>
+               <test:ws>
+</test:ws>
+            </article>
+         </x:expect>
+      </x:test>
+      <x:test id="scenario1-expect2" successful="true">
+         <x:label>expect an xml:base URI</x:label>
+         <x:expect test="ends-with(/*/@xml:base, '/xml/entityref.001.xml')" select="()"/>
+      </x:test>
+      <x:test id="scenario1-expect3" successful="true">
+         <x:label>expect fileref pointing to image</x:label>
+         <x:expect test="ends-with(//db:imagedata/@fileref, '/media/duck-small.png')"
+                   select="()"/>
+      </x:test>
+   </x:scenario>
+</x:report>

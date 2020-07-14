@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e1648" frame="none" orient="land">
+        <info>
+         <title>This is a “landscape” table</title>
+        </info>
+         <tgroup cols="2">
+            <colspec colname="col2" colnum="2" rowsep="1"/>
+            <tbody>
+               <row>
+                  <entry>foo</entry>
+               </row>
+               <row>
+                  <entry>foo</entry>
+                  <entry>bar</entry>
+               </row>
+               <row>
+                  <entry>foo</entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </table>

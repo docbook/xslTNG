@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e1224" border="1">
+            <tbody>
+               <tr>
+                  <td>One</td>
+                  <td>Two</td>
+                  <td>Three</td>
+                  <td>Four</td>
+               </tr>
+               <tr>
+                  <td>One</td>
+                  <td colspan="2" rowspan="2"><informaltable border="1">
+                        <tbody>
+                           <tr>
+                              <td>One</td>
+                              <td>Two</td>
+                           </tr>
+                           <tr>
+                              <td>Three</td>
+                              <td>Four</td>
+                           </tr>
+                        </tbody>
+                     </informaltable></td>
+                  <td>Four</td>
+               </tr>
+               <tr>
+                  <td>One</td>
+                  <td>Four</td>
+               </tr>
+               <tr>
+                  <td>One</td>
+                  <td colspan="2" rowspan="2"></td>
+                  <td>Four</td>
+               </tr>
+               <tr>
+                  <td>One</td>
+                  <td>Four</td>
+               </tr>
+               <tr>
+                  <td>One</td>
+                  <td>Two</td>
+                  <td>Three</td>
+                  <td>Four</td>
+               </tr>
+            </tbody>
+         </informaltable>

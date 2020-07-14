@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <info>
+      <title>Article wrapper</title>
+      <x:irrelevant xmlns:x="http://example.com/doesntmatter" xml:id="xreftext">Xref Endterm</x:irrelevant>
+   </info>
+   <para>This is an xref test.</para>
+   <itemizedlist xml:id="xreftests">
+      <listitem>
+         <para>Cross reference to section one: <xref linkend="s1"/>.</para>
+      </listitem>
+      <listitem>
+         <para>Cross reference to section two: <xref linkend="s2"/>.</para>
+      </listitem>
+      <listitem>
+         <para>Cross reference to section one with endterm:
+<xref endterm="xreftext" linkend="s1"/>.</para>
+      </listitem>
+      <listitem>
+         <para>Cross reference to section two with endterm:
+<xref endterm="xreftext" linkend="s2"/>.</para>
+      </listitem>
+   </itemizedlist>
+   <section xml:id="s1">
+      <title>Section One Title</title>
+      <para>This text is irrelevant.</para>
+   </section>
+   <section xreflabel="Section Two XRefLabel" xml:id="s2">
+      <title>Section Two Title</title>
+      <para>This text is irrelevant.</para>
+   </section>
+</article>

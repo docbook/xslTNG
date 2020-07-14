@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: small-duck.005</title>
+
+<para>This is a pdf. This test will only pass if the stylesheets
+can determine the intrinsic size of the image. This requires
+an extension function.</para>
+
+<mediaobject>
+  <imageobject>
+    <imagedata fileref="../media/duck-small.pdf"
+               width="50%"/>
+  </imageobject>
+</mediaobject>
+
+</article>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xml:id="chapter" version="5.0">
+   <info>
+      <title>Unit Test: msgset.001.xml</title>
+   </info>
+   <msgset>
+      <simplemsgentry msgorig="parser" msglevel="user">
+         <msgtext>
+            <para>XML document structures must start and end within the same
+    entity.</para>
+         </msgtext>
+         <msgexplan>
+            <para>In XML, the end tag for an element must occur in the same
+entity as the start tag. You cannot include an external parsed entity
+that contains unbalanced tags, even if the result, after the content
+is included would be balanced.</para>
+         </msgexplan>
+      </simplemsgentry>
+   </msgset>
+   <msgset>
+      <title>Title of msgset</title>
+      <simplemsgentry msgorig="parser" msglevel="user">
+         <msgtext>
+            <para>XML document structures must start and end within the same
+    entity.</para>
+         </msgtext>
+         <msgexplan>
+            <para>In XML, the end tag for an element must occur in the same
+entity as the start tag. You cannot include an external parsed entity
+that contains unbalanced tags, even if the result, after the content
+is included would be balanced.</para>
+         </msgexplan>
+      </simplemsgentry>
+   </msgset>
+   <msgset>
+      <title>Title of msgset with msgentry</title>
+      <msgentry>
+         <msg>
+            <msgmain>
+               <msgtext>
+                  <para>XML document structures must start and end within the same entity.
+        </para>
+               </msgtext>
+            </msgmain>
+            <msgsub>
+              <!-- This isn't a real thing, it's just for testing. -->
+               <msgtext>
+                  <para>“Sub-message” about entities.</para>
+               </msgtext>
+            </msgsub>
+            <msgrel>
+               <msgtext>
+                  <para>Document is not well-formed.</para>
+               </msgtext>
+            </msgrel>
+            <msgrel>
+               <msgtext>
+                  <para>Subordinate message.</para>
+               </msgtext>
+            </msgrel>
+         </msg>
+         <msginfo>
+            <msgaud>audience</msgaud>
+            <msglevel>user</msglevel>
+            <msgorig>parser</msgorig>
+         </msginfo>
+         <msgexplan>
+            <para>In XML, the end tag for an element must occur in the same
+entity as the start tag. You cannot include an external parsed entity
+that contains unbalanced tags, even if the result, after the content
+is included would be balanced.</para>
+         </msgexplan>
+      </msgentry>
+   </msgset>
+</chapter>

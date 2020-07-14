@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e1307" border="1">
+            <tbody>
+               <tr>
+                  <td>a1</td>
+                  <td colspan="2" rowspan="2">b1-c2</td>
+                  <td>d1</td>
+               </tr>
+               <tr>
+                  <td rowspan="3">a2-a4</td>
+                  <!-- b2, c2 spans from above -->
+                  <td>d2</td>
+               </tr>
+               <tr>
+    <!-- a3 spans from above -->
+                  <td>b3</td>
+                  <td>c3</td>
+                  <td>d3</td>
+               </tr>
+               <tr>
+    <!-- a4 spans from above -->
+                  <td>b4</td>
+                  <td colspan="2">c4-d4</td>
+               </tr>
+               <tr>
+                  <td>a5</td>
+                  <td>b5</td>
+                  <td> <!-- c4 is missing is not supported by HTML--></td>
+                  <td>d5</td>
+               </tr>
+            </tbody>
+         </informaltable>

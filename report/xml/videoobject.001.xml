@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit test: videoobject.001</title>
+
+   <para>A test for the <tag>videoobject</tag>.</para>
+
+   <mediaobject>
+     <videoobject>
+       <videodata contentwidth="560" contentdepth="315"
+                  fileref="https://www.youtube.com/embed/twj8G5_hu_0">
+         <multimediaparam name="frameborder" value="0"/>
+         <multimediaparam name="allow"
+                          value="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
+         <multimediaparam name="allowfullscreen" value="allowfullscreen"/>
+       </videodata>
+     </videoobject>
+   </mediaobject>
+</article>

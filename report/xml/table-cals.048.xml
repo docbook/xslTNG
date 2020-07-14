@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: table-cals.048</title>
+
+<table frame="all">
+<info>
+<title>Computed align-char-width</title>
+</info>
+<tgroup cols="3" colsep="1" rowsep="1">
+<colspec colnum="2" colname="c2"/>
+<colspec colnum="3" colname="c3"/>
+<spanspec spanname="c2c3" namest="c2" nameend="c3" align="char"/>
+<thead>
+  <row>
+    <entry></entry>
+    <entry>Col 1</entry>
+    <entry>Col 2</entry>
+  </row>
+</thead>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry spanname="c2c3">0.1</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry spanname="c2c3">0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry spanname="c2c3">0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry spanname="c2c3">0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+</article>

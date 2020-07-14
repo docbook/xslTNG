@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:report xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:t="http://docbook.org/ns/docbook/templates"
+          xmlns:test="http://www.jenitennison.com/xslt/unit-test"
+          xmlns:x="http://www.jenitennison.com/xslt/xspec"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          stylesheet="file:/home/circleci/repo/build/xslt/transforms/20-db4to5.xsl"
+          date="2020-07-14T05:59:38.444Z"
+          xspec="file:/home/circleci/repo/build/xspec/20_db4to5.xspec">
+   <x:scenario id="scenario1"
+               xspec="file:/home/circleci/repo/build/xspec/20_db4to5.xspec">
+      <x:label>When transorming a db4 document</x:label>
+      <x:call template="t:main">
+         <x:param name="context">
+            <book>
+               <bookinfo>
+                  <title>Some Book</title>
+               </bookinfo>
+            </book>
+            <chapter>
+               <title>A Chapter</title>
+               <para>Content</para>
+            </chapter>
+         </x:param>
+      </x:call>
+      <x:result select="/self::document-node()"><!-- DocBook V4.x converted to DocBook V5.x by 10-db4to5.xsl version 1.0 -->
+         <test:ws>
+</test:ws>
+         <book xmlns="http://docbook.org/ns/docbook"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               version="5.0">
+            <info>
+               <title>Some Book</title>
+            </info>
+         </book>
+         <chapter xmlns="http://docbook.org/ns/docbook"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  version="5.0">
+            <info>
+               <title>A Chapter</title>
+            </info>
+            <para>Content</para>
+         </chapter>
+      </x:result>
+      <x:test id="scenario1-expect1" successful="true">
+         <x:label>the root element to be in the DocBook namespace</x:label>
+         <x:expect test="exists(/db:*)" select="()"/>
+      </x:test>
+      <x:test id="scenario1-expect2" successful="true">
+         <x:label>the root element to have a version attribute</x:label>
+         <x:expect test="/*/@version = '5.0'" select="()"/>
+      </x:test>
+      <x:test id="scenario1-expect3" successful="true">
+         <x:label>the bookinfo element to be renamed</x:label>
+         <x:expect test="exists(/*/db:info)" select="()"/>
+      </x:test>
+   </x:scenario>
+</x:report>

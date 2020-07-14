@@ -1,0 +1,1076 @@
+/* DocBook xslTNG version 0.1.14
+ *
+ * This is docbook.css.
+ *
+ * See https://xsltng.docbook.org/
+ *
+ */
+
+:root {
+    --table-border-style: 1px solid black;
+    --numbered-separator-style: 1px solid #dfdfdf;
+    --numbered-number-color: #dfdfdf;
+    --numbered-background-color: #f0f0f0;
+    --verbatim-odd-background-color: #f4f4f4;
+    --verbatim-even-background-color: inherit;
+    --sidebar-background-color: #f0f0f0;
+    --nav-background-color: #fdfdfd;
+    --border-grey: #afafaf;
+    --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
+    --body-family: "Noto Serif", serif, var(--symbol-fonts);
+    --title-family: "Noto Sans", sans-serif, var(--symbol-fonts);
+    --mono-family: "B612 Mono", monospace, var(--symbol-fonts);
+    --revadded-background-color: #cfffcf;
+    --revadded-before: "<ins>";
+    --revadded-after: "</ins>";
+    --revchanged-background-color: #ffffcf;
+    --revchanged-before: "<chg>";
+    --revchanged-after: "</chg>";
+    --revdeleted-background-color: #ffcfcf;
+    --revdeleted-before: "<del>";
+    --revdeleted-after: "</del>";
+}
+
+html {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--body-family);
+}
+
+body {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.error * {
+    background-color: #ffafaf;
+    color: black;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+span.error {
+    display: inline-block;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    padding: 2px;
+    margin-right: 0.5em;
+}
+
+span.error::before {
+    content: " ☞ ";
+}
+
+span.error::after {
+    content: " ☜ ";
+}
+
+span.error.broken-link::after {
+    content: " 🔗 ";
+}
+
+.xlink-arc-list {
+    display: none;
+}
+
+/* ============================================================ */
+
+.debug {
+    display: block;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    background-color: #ffdfdf;
+}
+
+.remark {
+    border: 1px solid #ffdfdf;
+    border-radius: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 5px,
+        #ffefef 5px,
+        #ffefef 10px
+    );
+}
+
+span.remark {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+code {
+    font-family: var(--mono-family);
+    background-color: var(--verbatim-odd-background-color);
+    border: 1px solid var(--numbered-number-color);
+    border-radius: 6px;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    margin: 0;
+    font-size: 85%;
+}
+
+pre code {
+    border: none;
+    background-color: inherit;
+    padding: inherit;
+    font-size: inherit;
+    margin: inherit;
+}
+
+.userinput {
+    font-weight: bold;
+}
+
+a, a:visited {
+    color: inherit;
+}
+
+.xref-area,
+.xref-areaset,
+.xref-co {
+    text-decoration: none;
+}
+
+.xref {
+    font-style: italic;
+}
+
+.xref-area,
+.xref-areaset,
+.xref-co,
+.xref-step,
+.xref-listitem {
+    font-style: normal;
+}
+
+.xref .prefix,
+.xref .sep,
+.xref-question .label,
+.xref-answer .label {
+    font-style: normal;
+}
+
+.footnote-number a,
+.footnote-number a:visited {
+    text-decoration: none;
+}
+
+/* ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--title-family);
+    font-weight: 600;
+    font-style: normal;
+}
+
+h1 { font-weight: 400;
+     margin-top: 4rem;
+     margin-bottom: 1.5rem;
+     font-size: 3.2rem;
+     line-height: 1;
+   }
+
+h2 { font-weight: 400;
+     margin-top: 2.1rem;
+     margin-bottom: 2rem;
+     font-size: 2.2rem;
+     line-height: 1;
+   }
+
+h3 { font-weight: 400;
+     font-size: 1.7rem;
+     margin-top: 2rem;
+     margin-bottom: 0;
+     line-height: 1;
+   }
+
+h4 { font-weight: 400;
+     font-size: 1.5rem;
+     margin-top: 2rem;
+     margin-bottom: 0;
+     line-height: 1;
+   }
+
+h5 { font-weight: 400;
+     font-size: 1.0rem;
+     margin-top: 1.5rem;
+     margin-bottom: 0;
+     line-height: 1;
+   }
+
+h6 { font-weight: 400;
+     font-size: 1.0rem;
+     margin-top: 1.5rem;
+     margin-bottom: 0;
+     line-height: 1;
+   }
+
+div .title {
+    font-weight: bold;
+    font-family: var(--title-family);
+    margin-bottom: 0.5em;
+}    
+
+.book > .list-of-titles > .lot > .title,
+.part > .list-of-titles > .lot > .title {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+header .authorgroup {
+    margin-bottom: 2rem;
+}
+
+/* ============================================================ */
+
+.article > header {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.article > header .abstract {
+    text-align: left;
+    margin-left: 5em;
+    margin-right: 5em;
+    border: 1px solid var(--border-grey);
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 0.5em;
+}
+
+.book > header {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid var(--border-grey);
+    border-radius: 0.5em;
+}
+
+.book > header h1 {
+    margin-top: 0;
+}
+
+.revhistory .title {
+    border-bottom: 1px solid var(--border-grey);
+}
+
+.revhistory td p {
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================================ */
+
+.toc {
+    margin-top: 1em;
+}
+
+.toc li {
+    text-indent: -2em;
+    padding-left: 2em;
+}
+
+ul.toc,
+.toc ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.bibliolist,
+.glosslist {
+    margin-top: 1em;
+}
+
+/* ============================================================ */
+
+.generated-index ul {
+    list-style: none;
+    padding-left: 2rem;
+}
+
+.generated-index > ul,
+.generated-indexdiv > ul {
+    padding-left: 0;
+}
+
+/* ============================================================ */
+
+.formalgroup {
+    margin-top: 1em;
+}
+
+.formalgroup.pgwide div {
+    display: inline-block;
+}
+
+table {
+    table-layout: fixed;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+figure.pgwide table {
+    width: 100%;
+}
+
+.inlinemediaobject,
+.inlinemediaobject div {
+    display: inline-block;
+}
+
+td, th {
+    padding: 0.25em;
+    text-align: left;
+}
+
+td.bottom,
+th.bottom {
+    vertical-align: bottom;
+}
+
+td.middle,
+th.middle {
+    vertical-align: middle;
+}
+
+td.top,
+th.top {
+    vertical-align: top;
+}
+
+td.center,
+th.center {
+    text-align: center;
+}
+
+td.left,
+th.left {
+    text-align: left;
+}
+
+td.right,
+th.right {
+    text-align: right;
+}
+
+td.justify,
+th.justify {
+    text-align: justify;
+}
+
+td.empty,
+th.empty {
+}
+
+td.btop,
+th.btop {
+    border-top: var(--table-border-style);
+}
+
+td.bleft,
+th.bleft {
+    border-left: var(--table-border-style);
+}
+
+td.colsep,
+th.colsep {
+    border-right: var(--table-border-style);
+}
+
+td.rowsep,
+th.rowsep {
+    border-bottom: var(--table-border-style);
+}
+
+td.char,
+th.char {
+    font-family: monospace;
+    text-align: right;
+}
+
+.media-wrapper {
+  width: 100%;
+}
+
+.media {
+  display: inline-block;
+}
+
+.viewport-table {
+  display: table;
+}
+
+.viewport-row {
+  display: table-row;
+}
+
+.viewport-cell {
+  display: table-cell;
+}
+
+.viewport {
+  display: inline-block;
+}
+
+.intrinsic-width img,
+.intrinsic-width svg {
+    width: 100%;
+}
+
+.intrinsic-height img,
+.intrinsic-height svg {
+    height: 100%;
+}
+
+.intrinsic-both img,
+.intrinsic-both svg {
+    width: 100%;
+    height: 100%;
+}
+
+.admonition {
+    /* background-color: #ffafaf; */
+    border-radius: 0.5rem;
+    min-height: 3rem;
+    padding-top: 0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 4px;
+    display: table;
+    width: 100%;
+}
+
+.admonition > div {
+    /* background-color: #afffaf; */
+    display: table-row;
+}
+
+.admonition .icon {
+    /* background-color: #afffff; */
+    display: table-cell;
+    padding-top: 1.5rem;
+    width: 4.5rem;
+    text-align: center;
+    vertical-align: top;
+    font-size: 3rem;
+    color: #d3d3d3;
+}
+
+.admonition .body {
+    /* background-color: #ffafff; */
+    display: table-cell;
+    padding-right: 1rem;
+}
+
+.admonition header {
+    padding-top: 0.5rem;
+}
+
+.note {
+    border: 2pt solid #d3d3d3;
+} 
+
+.tip {
+    border: 2pt solid #d3d3d3;
+} 
+
+.important {
+    background-color: #ffffe0;
+    border: 2pt solid #ffd300;
+} 
+
+.important .icon {
+    padding-top: 2rem;
+    color: #ffd300;
+}
+
+.caution {
+    background-color: #ffffe0;
+    border: 2pt solid #ffd300;
+} 
+
+.caution .icon {
+    color: #ffd300;
+}
+
+.warning {
+    background-color: #ffe0e0;
+    border: 2pt solid #d30000;
+} 
+
+.danger {
+    background-color: #ffe0e0;
+    border: 2pt solid #d30000;
+} 
+
+.warning .icon,
+.danger .icon {
+    color: #d30000;
+}    
+
+/* ============================================================ */
+
+.line.highlight {
+    background-color: #ffe0e0;
+}
+
+.pre-wrap {
+    overflow-x: scroll;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+pre {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+pre.address,
+pre.literallayout {
+    font-family: var(--body-family);
+}
+
+pre.monospaced {
+    font-family: var(--mono-family);
+}
+
+pre.programlisting,
+pre.screen {
+    line-height: 1.25em;
+}
+
+/* Adapted from https://stackoverflow.com/questions/41306797/html-how-to-add-line-numbers-to-a-source-code-block */
+
+pre.verbatim span.line:nth-child(odd) {
+    background-color: var(--verbatim-odd-background-color);
+}
+
+pre.verbatim span.line:nth-child(even) {
+    background-color: var(--verbatim-even-background-color);
+}
+
+/* Make the background of even lines the same as odd lines for
+   "monochrome" listings. */
+pre.verbatim.monochrome span.line:nth-child(even) {
+    background-color: var(--verbatim-odd-background-color);
+}
+
+pre.address span.line:nth-child(odd),
+pre.literallayout span.line:nth-child(odd) {
+    background-color: inherit;
+}
+
+pre.address span.line:nth-child(even),
+pre.literallayout span.line:nth-child(even) {
+    background-color: inherit;
+}
+
+pre.verbatim span.ln {
+    font-family: var(--mono-family);
+    width: 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: right;
+}
+
+pre.verbatim {
+    display: table;
+    table-layout: fixed;
+    width: 100%; /* anything but auto, otherwise fixed layout not guaranteed */
+    white-space: pre;
+}
+
+pre.verbatim span.line {
+    display: table-row;
+}
+
+pre.verbatim span.ln {
+    display: table-cell;
+}
+
+pre.numbered span.ln {
+    background-color: var(--numbered-background-color);
+    user-select: none;
+}
+
+pre.numbered span.ln {
+    width: 4em;
+    padding-right: 0.5em;
+}
+
+pre.verbatim span.ld {
+    display: table-cell;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+pre.numbered span.ld {
+    border-left: var(--numbered-separator-style);
+    padding-left: 0.25em;
+}
+
+/* ============================================================ */
+
+.productionset .productions {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.productionset .productions .production {
+    display: table-row;
+}
+
+.productionset .productions .production .lhs,
+.productionset .productions .production .rhs,
+.productionset .productions .production .lhssep {
+    font-family: var(--mono-family);
+}
+
+.productionset .productions .production .lhs,
+.productionset .productions .production .lhssep,
+.productionset .productions .production .rhs,
+.productionset .productions .production .constraint {
+    display: table-cell;
+}
+
+.productionset .productions .production .lhs {
+    width: 25%;
+    white-space: nowrap;
+}
+
+.productionset .productions .production .lhssep {
+    width: 3em;
+    text-align: center;
+}
+
+.productionset .productions .production .constraint {
+    width: 2em;
+}
+
+.nonterminal {
+}
+
+.lineannotation {
+    font-family: var(--body-family);
+    font-style: italic;
+}
+
+.constraintdef {
+    min-height: 3rem;
+    margin-left: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.constraintdef .title {
+    font-weight: bold;
+    font-family: var(--title-family);
+}
+
+/* ============================================================ */
+
+.qandadiv {
+    margin-top: 1em;
+}
+
+.qandalist .qanda {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.qandaentry .question,
+.qandaentry .answer {
+    display: table-row;
+}
+
+.qandaentry .question .label,
+.qandaentry .answer .label {
+    display: table-cell;
+    width: 3em;
+}
+
+.qandaentry .question .body,
+.qandaentry .answer .body {
+    display: table-cell;
+}
+
+.question p,
+.answer p {
+    margin-top: 0;
+}
+
+/* ============================================================ */
+
+.funcprototype table td {
+    padding: 0;
+}
+
+.funcprototype table.params {
+    margin-top: 1em;
+}
+
+.funcprototype table.params td {
+    padding-right: 1em;
+}
+
+.funcprototype {
+    margin-top: 1em;
+    font-family: var(--mono-family);
+}
+
+.funcprototype .paramdef {
+    font-family: var(--mono-family);
+}
+
+.funcprototype .parameter {
+    font-family: var(--body-family);
+    font-style: italic;
+}
+
+.funcprototype .function {
+    font-weight: bold;
+}
+
+/* ============================================================ */
+
+.linegroup {
+    margin-left: 2em;
+}
+
+.speaker::after {
+    content: ":";
+}
+
+.linegroup .speaker {
+    margin-left: -2em;
+}
+
+/* ============================================================ */
+
+.formalpara .title {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.formalpara .title::after {
+    content: ".";
+    margin-right: 0.5em;
+}
+
+.formalpara .titlepunct::after {
+    content: "";
+    margin-right: 0.5em;
+}
+
+blockquote {
+    margin-top: 1em;
+}
+
+blockquote p {
+    margin-top: 0;
+}
+
+blockquote .title {
+    font-weight: bold;
+    font-family: var(--title-family);
+    margin-bottom: 0.25em;
+}
+
+blockquote p + .attribution {
+    /* Tuck it back up closer to the preceding paragraph */
+    margin-top: -1em;
+}
+
+.attribution::before {
+    content: "—";
+}
+
+.attribution {
+    margin-left: 50%;
+}
+
+/* ============================================================ */
+
+.revhistory .title {
+    font-weight: bold;
+    font-family: var(--title-family);
+    margin-bottom: 0.5em;
+}
+
+/* ============================================================ */
+
+.figure,
+.example,
+.equation {
+    padding: 1em;
+}
+
+.figure,
+.example {
+    border: 1px solid #afafaf;
+}
+
+.figure .title {
+    font-family: var(--title-family);
+}
+
+.figure .media {
+    width: 100%;
+    text-align: center;
+}
+
+.figure img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.floatcenter {
+    text-align: center;
+}
+
+.floatright {
+    float: right;
+}
+
+.floatleft {
+    float: left;
+}
+    
+/* ============================================================ */
+
+.cmdsynopsis {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 3em;
+    text-indent: -3em;
+}
+
+.synopfragment {
+    margin-top: 1em;
+}
+
+.synopfragmentref {
+    font-style: italic;
+}
+
+.synopfragmentref a,
+.synopfragmentref a:visited {
+    text-decoration: none;
+}
+
+.synopfragmentref-number {
+    font-family: var(--mono-family);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10pt;
+
+}
+
+.synopfragment .synopfragmentref-number {
+}
+
+.cmdsynopsis .command,
+.cmdsynopsis .cmdpunct,
+.cmdsynopsis .group,
+.cmdsynopsis .arg {
+    font-family: var(--mono-family);
+}
+
+.calloutlist dl dt {
+    clear: both;
+    float: left;
+    width: 1.25em;
+}
+
+.calloutlist dl dd {
+    margin-left: 1.25em;
+    line-height: 1.5rem; /* tuck them together a little */
+}
+
+.calloutlist dd > p:first-child {
+    margin-top: 0;
+}
+
+a.callout-bug,
+a.callout-bug:visited {
+    text-decoration: none;
+}
+
+/* ============================================================ */
+
+.revadded {
+    background-color: var(--revadded-background-color);
+}
+
+.revadded::before {
+    content: var(--revadded-before);
+}
+
+.revadded::after {
+    content: var(--revadded-after);
+}
+
+.revchanged {
+    background-color: var(--revchanged-background-color);
+}
+
+.revchanged::before {
+    content: var(--revchanged-before);
+}
+
+.revchanged::after {
+    content: var(--revchanged-after);
+}
+
+.revdeleted {
+    background-color: var(--revdeleted-background-color);
+}
+
+.revdeleted::before {
+    content: var(--revdeleted-before);
+}
+
+.revdeleted::after {
+    content: var(--revdeleted-after);
+}
+
+.revoff .revadded,
+.revoff .revchanged,
+.revoff .revdeleted {
+    background-color: inherit;
+}
+
+.revoff .revadded::before,
+.revoff .revchanged::before,
+.revoff .revdeleted::before,
+.revoff .revadded::after,
+.revoff .revchanged::after,
+.revoff .revdeleted::after {
+    content: "";
+}
+
+/* ============================================================ */
+
+ul[db-mark='disc'],
+li[db-mark='disc'],
+ul[db-mark='bullet'],
+li[db-mark='bullet'] {
+    list-style-type: disc;
+}
+
+ul[db-mark='round'],
+li[db-mark='round'] {
+    list-style-type: circle;
+}
+
+ul[db-mark='box'],
+li[db-mark='box'] {
+    list-style-type: square;
+}
+
+/* ============================================================ */
+
+.simplelistvert,
+.simplelisthoriz {
+    display: table;
+}
+
+.simplelist .row {
+    display: table-row;
+}
+
+.simplelist .row span {
+    display: table-cell;
+}
+
+/* ============================================================ */
+
+
+.glossdiv {
+    margin-top: 1em;
+}
+
+/* ============================================================ */
+
+.sidebar {
+    margin-left: 4rem;
+    background-color: var(--sidebar-background-color);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    border-radius: 0.5em;
+}
+
+/* ============================================================ */
+
+.msgexplan {
+    margin-left: 2rem;
+}
+
+/* ============================================================ */
+
+.bold {
+    font-weight: bold;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+em {
+    font-style: italic;
+}
+
+em em {
+    font-style: normal;
+}
+
+em em em {
+    font-style: italic;
+}
+
+em em em em {
+    font-style: normal;
+}
+
+em em em em em {
+    font-style: italic;
+}
+
+em em me em em em {
+    font-style: normal;
+}
+
+/* ============================================================ */
+
+

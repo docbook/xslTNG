@@ -1,0 +1,3632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:report xmlns:test="http://www.jenitennison.com/xslt/unit-test"
+          xmlns:x="http://www.jenitennison.com/xslt/xspec"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
+          date="2020-07-14T06:01:02.14Z"
+          xspec="file:/home/circleci/repo/build/xspec/main.xspec">
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+               id="scenario1"
+               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+      <x:label>when formatting a single copyright year</x:label>
+      <x:call function="fp:collapse-years">
+         <x:param as="element()+">
+            <db:year>1999</db:year>
+         </x:param>
+      </x:call>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="copyright-years">
+            <span class="year">1999</span>
+         </span>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario1-expect1"
+              successful="true">
+         <x:label>a single year</x:label>
+         <x:expect select="/element()">
+            <span class="copyright-years">
+               <span class="year">1999</span>
+            </span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+               id="scenario2"
+               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+      <x:label>when formatting a single copyright year range</x:label>
+      <x:call function="fp:collapse-years">
+         <x:param as="element()+">
+            <db:year>1999</db:year>
+            <db:year>2000</db:year>
+         </x:param>
+      </x:call>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="copyright-years">
+            <span class="year">1999</span>–<span class="year">2000</span>
+         </span>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario2-expect1"
+              successful="true">
+         <x:label>a single range</x:label>
+         <x:expect select="/element()">
+            <span class="copyright-years">
+               <span class="year">1999</span>–<span class="year">2000</span>
+            </span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+               id="scenario3"
+               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+      <x:label>when formatting a year range and a non-range year</x:label>
+      <x:call function="fp:collapse-years">
+         <x:param as="element()+">
+            <db:year>1999</db:year>
+            <db:year>2000</db:year>
+            <db:year>2020</db:year>
+         </x:param>
+      </x:call>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="copyright-years">
+            <span class="year">1999</span>–<span class="year">2000</span>, <span class="year">2020</span>
+         </span>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario3-expect1"
+              successful="true">
+         <x:label>a range and a year</x:label>
+         <x:expect select="/element()">
+            <span class="copyright-years">
+               <span class="year">1999</span>–<span class="year">2000</span>, <span class="year">2020</span>
+            </span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+               id="scenario4"
+               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+      <x:label>when formatting two ranges</x:label>
+      <x:call function="fp:collapse-years">
+         <x:param as="element()+">
+            <db:year>1999</db:year>
+            <db:year>2000</db:year>
+            <db:year>2001</db:year>
+            <db:year>2002</db:year>
+            <db:year>2015</db:year>
+            <db:year>2016</db:year>
+            <db:year>2017</db:year>
+            <db:year>2018</db:year>
+         </x:param>
+      </x:call>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="copyright-years">
+            <span class="year">1999</span>–<span class="year">2002</span>, <span class="year">2015</span>–<span class="year">2018</span>
+         </span>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario4-expect1"
+              successful="true">
+         <x:label>two ranges</x:label>
+         <x:expect select="/element()">
+            <span class="copyright-years">
+               <span class="year">1999</span>–<span class="year">2002</span>, <span class="year">2015</span>–<span class="year">2018</span>
+            </span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+               id="scenario5"
+               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+      <x:label>a range interrupted</x:label>
+      <x:call function="fp:collapse-years">
+         <x:param as="element()+">
+            <db:year>2000</db:year>
+            <db:year>2001</db:year>
+            <db:year>2002</db:year>
+            <db:year>2003</db:year>
+            <db:year>2004</db:year>
+            <db:year>2006</db:year>
+            <db:year>2007</db:year>
+            <db:year>2008</db:year>
+            <db:year>2009</db:year>
+            <db:year>2010</db:year>
+         </x:param>
+      </x:call>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="copyright-years">
+            <span class="year">2000</span>–<span class="year">2004</span>, <span class="year">2006</span>–<span class="year">2010</span>
+         </span>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario5-expect1"
+              successful="true">
+         <x:label>two ranges</x:label>
+         <x:expect select="/element()">
+            <span class="copyright-years">
+               <span class="year">2000</span>–<span class="year">2004</span>, <span class="year">2006</span>–<span class="year">2010</span>
+            </span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+               id="scenario6"
+               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+      <x:label>a range interrupted by a non-numeric year</x:label>
+      <x:call function="fp:collapse-years">
+         <x:param as="element()+">
+            <db:year>2000</db:year>
+            <db:year>2001</db:year>
+            <db:year>2002</db:year>
+            <db:year>2003</db:year>
+            <db:year>2004</db:year>
+            <db:year>Spoon!</db:year>
+            <db:year>2006</db:year>
+            <db:year>2007</db:year>
+            <db:year>2008</db:year>
+            <db:year>2009</db:year>
+            <db:year>2010</db:year>
+         </x:param>
+      </x:call>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="copyright-years">
+            <span class="year">2000</span>–<span class="year">2004</span>, <span class="year">Spoon!</span>, <span class="year">2006</span>–<span class="year">2010</span>
+         </span>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario6-expect1"
+              successful="true">
+         <x:label>two ranges</x:label>
+         <x:expect select="/element()">
+            <span class="copyright-years">
+               <span class="year">2000</span>–<span class="year">2004</span>, <span class="year">Spoon!</span>, <span class="year">2006</span>–<span class="year">2010</span>
+            </span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario7"
+               xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+      <x:label>When transforming a date of 'today'</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook"
+                 href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                 mode="m:docbook"
+                 select="//db:para[@xml:id='today']/db:date"/>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="date">Today</span>
+      </x:result>
+      <x:test id="scenario7-expect1" successful="true">
+         <x:label>expect a verbatim copy</x:label>
+         <x:expect select="/element()">
+            <span xmlns="http://www.w3.org/1999/xhtml" class="date">Today</span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario8"
+               xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+      <x:label>When transforming an ISO 8601 date</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook"
+                 href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                 mode="m:docbook"
+                 select="//db:para[@xml:id='date']/db:date"/>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="date" time="2020-05-08">08 May 2020</span>
+      </x:result>
+      <x:test id="scenario8-expect1" successful="true">
+         <x:label>expect a formatted date</x:label>
+         <x:expect select="/element()">
+            <span xmlns="http://www.w3.org/1999/xhtml" class="date" time="2020-05-08">08 May 2020</span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario9"
+               xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+      <x:label>When transforming an ISO 8601 date time in the morning</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook"
+                 href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                 mode="m:docbook"
+                 select="//db:para[@xml:id='amtime']/db:date"/>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml"
+               class="date"
+               time="2020-05-08T06:49:00Z">06:49 08 May 2020</span>
+      </x:result>
+      <x:test id="scenario9-expect1" successful="true">
+         <x:label>expect formatted date time</x:label>
+         <x:expect select="/element()">
+            <span xmlns="http://www.w3.org/1999/xhtml"
+                  class="date"
+                  time="2020-05-08T06:49:00Z">06:49 08 May 2020</span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario10"
+               xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+      <x:label>When transforming an ISO 8601 date time in the afternoon</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook"
+                 href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                 mode="m:docbook"
+                 select="//db:para[@xml:id='pmtime']/db:date"/>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml"
+               class="date"
+               time="2020-05-08T16:49:00Z">16:49 08 May 2020</span>
+      </x:result>
+      <x:test id="scenario10-expect1" successful="true">
+         <x:label>expect a formatted date time</x:label>
+         <x:expect select="/element()">
+            <span xmlns="http://www.w3.org/1999/xhtml"
+                  class="date"
+                  time="2020-05-08T16:49:00Z">16:49 08 May 2020</span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario11"
+               xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+      <x:label>When transforming a date time with a custom format</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook"
+                 href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                 mode="m:docbook"
+                 select="//db:para[@xml:id='dtformat']/db:date"/>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml"
+               class="date"
+               time="2020-05-08T16:49:00Z">At 4:49p.m. on Friday, May 8, 2020</span>
+      </x:result>
+      <x:test id="scenario11-expect1" successful="true">
+         <x:label>expect the custom format to be used</x:label>
+         <x:expect select="/element()">
+            <span xmlns="http://www.w3.org/1999/xhtml"
+                  class="date"
+                  time="2020-05-08T16:49:00Z">At 4:49p.m. on Friday, May 8, 2020</span>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario12"
+               xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+      <x:label>When transforming a french date with a custom format</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook"
+                 href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                 mode="m:docbook"
+                 select="//db:para[@xml:id='dtformat-fr']/db:date"/>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml"
+               lang="fr"
+               class="date"
+               time="2020-05-08T16:49:00Z">4:49p.m. / Vendredi, Mai 8, 2020</span>
+      </x:result>
+      <x:test id="scenario12-expect1" successful="true">
+         <x:label>expect the result to be in French (maybe)</x:label>
+         <x:expect test="(starts-with(system-property('xsl:product-version'), 'HE')                    and string(.) = '4:49p.m. / Friday, May 8, 2020')                   or (string(.) = '4:49p.m. / Vendredi, Mai 8, 2020') "
+                   select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario13"
+               xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+      <x:label>When transforming short funcsynopsis elements in ANSI mode</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                 mode="m:docbook"
+                 select="//*[@xml:id='ansi1']"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="ansi1"
+              class="funcsynopsis">
+            <div class="pre-wrap">
+               <pre class="funcsynopsisinfo verbatim">
+                  <code>#include &lt;varargs.h&gt;</code>
+               </pre>
+            </div>
+            <div class="funcprototype">
+               <span class="funcdef">
+                  <span class="type">float</span>
+                  <test:ws> </test:ws>
+                  <span class="function">rand</span>
+               </span>
+               <span class="arglist">(<span class="void">void</span>);</span>
+            </div>
+            <div class="funcprototype">
+               <span class="funcdef">int <span class="function">max</span>
+               </span>
+               <span class="arglist">(<span class="varargs">...</span>);</span>
+            </div>
+            <div class="funcprototype">
+               <span class="funcdef">int <span class="function">idiv</span>
+               </span>
+               <span class="arglist">(<span>
+                     <span class="type">int</span>
+                     <test:ws> </test:ws>
+                     <span class="parameter">n</span>
+                     <span>, </span>
+                  </span>
+                  <span>
+                     <span class="type">int</span>
+                     <test:ws> </test:ws>
+                     <span class="parameter">m</span>
+                  </span>);</span>
+            </div>
+         </div>
+      </x:result>
+      <x:test id="scenario13-expect1" successful="true">
+         <x:label>expect non-tabular ANSI output</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="ansi1" class="funcsynopsis">
+               <div class="pre-wrap">
+                  <pre class="funcsynopsisinfo verbatim">
+                     <code>#include &lt;varargs.h&gt;</code>
+                  </pre>
+               </div>
+               <div class="funcprototype">
+                  <span class="funcdef">
+                     <span class="type">float</span>
+                     <test:ws> </test:ws>
+                     <span class="function">rand</span>
+                  </span>
+                  <span class="arglist">(<span class="void">void</span>);</span>
+               </div>
+               <div class="funcprototype">
+                  <span class="funcdef">int <span class="function">max</span>
+                  </span>
+                  <span class="arglist">(<span class="varargs">...</span>);</span>
+               </div>
+               <div class="funcprototype">
+                  <span class="funcdef">int <span class="function">idiv</span>
+                  </span>
+                  <span class="arglist">(<span>
+                        <span class="type">int</span>
+                        <test:ws> </test:ws>
+                        <span class="parameter">n</span>
+                        <span>, </span>
+                     </span>
+                     <span>
+                        <span class="type">int</span>
+                        <test:ws> </test:ws>
+                        <span class="parameter">m</span>
+                     </span>);</span>
+               </div>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario14"
+               xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+      <x:label>When transforming longer funcsynopsis elements in ANSI mode</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                 mode="m:docbook"
+                 select="//*[@xml:id='ansi2']"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="ansi2"
+              class="funcsynopsis">
+            <div class="funcprototype">
+               <table class="prototype">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <span class="funcdef">void <span class="function">qsort</span>
+                           </span>(</td>
+                        <td class="paramdef">void *<span class="parameter">dataptr</span>[],</td>
+                     </tr>
+                     <tr>
+                        <td rowspan="3"/>
+                        <td class="paramdef">int <span class="parameter">left</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">int <span class="parameter">right</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">
+                           <span class="type">int</span>  (*<span class="parameter">comp</span>)
+      (<span class="funcparams">void *, void *</span>));</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </x:result>
+      <x:test id="scenario14-expect1" successful="true">
+         <x:label>expect tabular ANSI output</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="ansi2" class="funcsynopsis">
+               <div class="funcprototype">
+                  <table class="prototype">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span class="funcdef">void <span class="function">qsort</span>
+                              </span>(</td>
+                           <td class="paramdef">void *<span class="parameter">dataptr</span>[],</td>
+                        </tr>
+                        <tr>
+                           <td rowspan="3"/>
+                           <td class="paramdef">int <span class="parameter">left</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">int <span class="parameter">right</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">
+                              <span class="type">int</span>  (*<span class="parameter">comp</span>)
+      (<span class="funcparams">void *, void *</span>));</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario15"
+               xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+      <x:label>When transforming long funcsynopsis elements in ANSI mode</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                 mode="m:docbook"
+                 select="//*[@xml:id='ansi3']"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="ansi3"
+              class="funcsynopsis">
+            <div class="funcprototype">
+               <table class="prototype">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <span class="funcdef">int <span class="function">foo_frob_something</span>
+                           </span>(</td>
+                        <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm1</span>,</td>
+                     </tr>
+                     <tr>
+                        <td rowspan="4"/>
+                        <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm2</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm3</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">int (*<span class="parameter">parm4</span>)
+      (<span class="funcparams">int a, int b, int c</span>),</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm5</span>);</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </x:result>
+      <x:test id="scenario15-expect1" successful="true">
+         <x:label>expect tabular ANSI output</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="ansi3" class="funcsynopsis">
+               <div class="funcprototype">
+                  <table class="prototype">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span class="funcdef">int <span class="function">foo_frob_something</span>
+                              </span>(</td>
+                           <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm1</span>,</td>
+                        </tr>
+                        <tr>
+                           <td rowspan="4"/>
+                           <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm2</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm3</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">int (*<span class="parameter">parm4</span>)
+      (<span class="funcparams">int a, int b, int c</span>),</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">foo_sometype1 <span class="parameter">foo_frob_parm5</span>);</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario16"
+               xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+      <x:label>When transforming short funcsynopsis elements in K&amp;R mode</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                 mode="m:docbook"
+                 select="//*[@xml:id='kr1']"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="kr1"
+              class="funcsynopsis">
+            <div class="pre-wrap">
+               <pre class="funcsynopsisinfo verbatim">
+                  <code>#include &lt;varargs.h&gt;</code>
+               </pre>
+            </div>
+            <div class="funcprototype">
+               <div>
+                  <span class="funcdef">
+                     <span class="type">float</span>
+                     <test:ws> </test:ws>
+                     <span class="function">rand</span>
+                  </span>
+                  <span class="arglist">(<span class="void"/>);</span>
+               </div>
+            </div>
+            <div class="funcprototype">
+               <div>
+                  <span class="funcdef">int <span class="function">max</span>
+                  </span>
+                  <span class="arglist">(<span class="varargs">...</span>);</span>
+               </div>
+            </div>
+            <div class="funcprototype">
+               <div>
+                  <span class="funcdef">int <span class="function">idiv</span>
+                  </span>
+                  <span class="arglist">(<span>
+                        <span class="parameter">n</span>
+                        <span>, </span>
+                     </span>
+                     <span>
+                        <span class="parameter">m</span>
+                     </span>);</span>
+               </div>
+               <div class="paramdef">
+                  <span class="type">int</span>
+                  <test:ws> </test:ws>
+                  <span class="parameter">n</span>;</div>
+               <div class="paramdef">
+                  <span class="type">int</span>
+                  <test:ws> </test:ws>
+                  <span class="parameter">m</span>;</div>
+            </div>
+         </div>
+      </x:result>
+      <x:test id="scenario16-expect1" successful="true">
+         <x:label>expect non-tabular K&amp;R output</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="kr1" class="funcsynopsis">
+               <div class="pre-wrap">
+                  <pre class="funcsynopsisinfo verbatim">
+                     <code>#include &lt;varargs.h&gt;</code>
+                  </pre>
+               </div>
+               <div class="funcprototype">
+                  <div>
+                     <span class="funcdef">
+                        <span class="type">float</span>
+                        <test:ws> </test:ws>
+                        <span class="function">rand</span>
+                     </span>
+                     <span class="arglist">(<span class="void"/>);</span>
+                  </div>
+               </div>
+               <div class="funcprototype">
+                  <div>
+                     <span class="funcdef">int <span class="function">max</span>
+                     </span>
+                     <span class="arglist">(<span class="varargs">...</span>);</span>
+                  </div>
+               </div>
+               <div class="funcprototype">
+                  <div>
+                     <span class="funcdef">int <span class="function">idiv</span>
+                     </span>
+                     <span class="arglist">(<span>
+                           <span class="parameter">n</span>
+                           <span>, </span>
+                        </span>
+                        <span>
+                           <span class="parameter">m</span>
+                        </span>);</span>
+                  </div>
+                  <div class="paramdef">
+                     <span class="type">int</span>
+                     <test:ws> </test:ws>
+                     <span class="parameter">n</span>;</div>
+                  <div class="paramdef">
+                     <span class="type">int</span>
+                     <test:ws> </test:ws>
+                     <span class="parameter">m</span>;</div>
+               </div>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario17"
+               xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+      <x:label>When transforming longer funcsynopsis elements in K&amp;R mode</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                 mode="m:docbook"
+                 select="//*[@xml:id='kr2']"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="kr2"
+              class="funcsynopsis">
+            <div class="funcprototype">
+               <table class="prototype">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <span class="funcdef">void <span class="function">qsort</span>
+                           </span>(</td>
+                        <td class="paramdef">
+                           <span class="parameter">dataptr</span>,</td>
+                     </tr>
+                     <tr>
+                        <td rowspan="3"/>
+                        <td class="paramdef">
+                           <span class="parameter">left</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">
+                           <span class="parameter">right</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">
+                           <span class="parameter">comp</span>);</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="params">
+                  <tbody>
+                     <tr class="paramdef">
+                        <td>void *</td>
+                        <td>
+                           <span class="parameter">dataptr</span>[]</td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>int </td>
+                        <td>
+                           <span class="parameter">left</span>
+                        </td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>int </td>
+                        <td>
+                           <span class="parameter">right</span>
+                        </td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>
+                           <span class="type">int</span>  (*<span class="parameter">comp</span>)
+      </td>
+                        <td>(<span class="funcparams">void *, void *</span>)</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </x:result>
+      <x:test id="scenario17-expect1" successful="true">
+         <x:label>expect tabular K&amp;R output</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="kr2" class="funcsynopsis">
+               <div class="funcprototype">
+                  <table class="prototype">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span class="funcdef">void <span class="function">qsort</span>
+                              </span>(</td>
+                           <td class="paramdef">
+                              <span class="parameter">dataptr</span>,</td>
+                        </tr>
+                        <tr>
+                           <td rowspan="3"/>
+                           <td class="paramdef">
+                              <span class="parameter">left</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">
+                              <span class="parameter">right</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">
+                              <span class="parameter">comp</span>);</td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table class="params">
+                     <tbody>
+                        <tr class="paramdef">
+                           <td>void *</td>
+                           <td>
+                              <span class="parameter">dataptr</span>[]</td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>int </td>
+                           <td>
+                              <span class="parameter">left</span>
+                           </td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>int </td>
+                           <td>
+                              <span class="parameter">right</span>
+                           </td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>
+                              <span class="type">int</span>  (*<span class="parameter">comp</span>)
+      </td>
+                           <td>(<span class="funcparams">void *, void *</span>)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario18"
+               xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+      <x:label>When transforming long funcsynopsis elements in K&amp;R mode</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                 mode="m:docbook"
+                 select="//*[@xml:id='kr3']"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="kr3"
+              class="funcsynopsis">
+            <div class="funcprototype">
+               <table class="prototype">
+                  <tbody>
+                     <tr>
+                        <td>
+                           <span class="funcdef">int <span class="function">foo_frob_something</span>
+                           </span>(</td>
+                        <td class="paramdef">
+                           <span class="parameter">foo_frob_parm1</span>,</td>
+                     </tr>
+                     <tr>
+                        <td rowspan="4"/>
+                        <td class="paramdef">
+                           <span class="parameter">foo_frob_parm2</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">
+                           <span class="parameter">foo_frob_parm3</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">
+                           <span class="parameter">parm4</span>,</td>
+                     </tr>
+                     <tr>
+                        <td class="paramdef">
+                           <span class="parameter">foo_frob_parm5</span>);</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table class="params">
+                  <tbody>
+                     <tr class="paramdef">
+                        <td>foo_sometype1 </td>
+                        <td>
+                           <span class="parameter">foo_frob_parm1</span>
+                        </td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>foo_sometype1 </td>
+                        <td>
+                           <span class="parameter">foo_frob_parm2</span>
+                        </td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>foo_sometype1 </td>
+                        <td>
+                           <span class="parameter">foo_frob_parm3</span>
+                        </td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>int (*<span class="parameter">parm4</span>)
+      </td>
+                        <td>(<span class="funcparams">int a, int b, int c</span>)</td>
+                     </tr>
+                     <tr class="paramdef">
+                        <td>foo_sometype1 </td>
+                        <td>
+                           <span class="parameter">foo_frob_parm5</span>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </x:result>
+      <x:test id="scenario18-expect1" successful="true">
+         <x:label>expect tabular K&amp;R output</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="kr3" class="funcsynopsis">
+               <div class="funcprototype">
+                  <table class="prototype">
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span class="funcdef">int <span class="function">foo_frob_something</span>
+                              </span>(</td>
+                           <td class="paramdef">
+                              <span class="parameter">foo_frob_parm1</span>,</td>
+                        </tr>
+                        <tr>
+                           <td rowspan="4"/>
+                           <td class="paramdef">
+                              <span class="parameter">foo_frob_parm2</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">
+                              <span class="parameter">foo_frob_parm3</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">
+                              <span class="parameter">parm4</span>,</td>
+                        </tr>
+                        <tr>
+                           <td class="paramdef">
+                              <span class="parameter">foo_frob_parm5</span>);</td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <table class="params">
+                     <tbody>
+                        <tr class="paramdef">
+                           <td>foo_sometype1 </td>
+                           <td>
+                              <span class="parameter">foo_frob_parm1</span>
+                           </td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>foo_sometype1 </td>
+                           <td>
+                              <span class="parameter">foo_frob_parm2</span>
+                           </td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>foo_sometype1 </td>
+                           <td>
+                              <span class="parameter">foo_frob_parm3</span>
+                           </td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>int (*<span class="parameter">parm4</span>)
+      </td>
+                           <td>(<span class="funcparams">int a, int b, int c</span>)</td>
+                        </tr>
+                        <tr class="paramdef">
+                           <td>foo_sometype1 </td>
+                           <td>
+                              <span class="parameter">foo_frob_parm5</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario19"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The empty sequence is the length</x:label>
+      <x:call function="f:spaces">
+         <x:param select="()"/>
+      </x:call>
+      <x:result select="()"/>
+      <x:test id="scenario19-expect1" successful="true">
+         <x:label>expect the empty sequence</x:label>
+         <x:expect select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario20"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is zero</x:label>
+      <x:call function="f:spaces">
+         <x:param select="0"/>
+      </x:call>
+      <x:result select="''"/>
+      <x:test id="scenario20-expect1" successful="true">
+         <x:label>expect the empty string</x:label>
+         <x:expect select="''"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario21"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is negative</x:label>
+      <x:call function="f:spaces">
+         <x:param select="-3"/>
+      </x:call>
+      <x:result select="()"/>
+      <x:test id="scenario21-expect1" successful="true">
+         <x:label>expect the empty sequence</x:label>
+         <x:expect select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario22"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is a positive integer (1)</x:label>
+      <x:call function="f:spaces">
+         <x:param select="1"/>
+      </x:call>
+      <x:result select="' '"/>
+      <x:test id="scenario22-expect1" successful="true">
+         <x:label>expect a string of that length</x:label>
+         <x:expect select="' '"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario23"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is a positive integer (12)</x:label>
+      <x:call function="f:spaces">
+         <x:param select="12"/>
+      </x:call>
+      <x:result select="'            '"/>
+      <x:test id="scenario23-expect1" successful="true">
+         <x:label>expect a string of that length</x:label>
+         <x:expect select="'            '"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario24"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is castable to a positive integer</x:label>
+      <x:call function="f:spaces">
+         <x:param select="'3'"/>
+      </x:call>
+      <x:result select="'   '"/>
+      <x:test id="scenario24-expect1" successful="true">
+         <x:label>expect a string of that length</x:label>
+         <x:expect select="'   '"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario25"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length isn't numeric'</x:label>
+      <x:call function="f:spaces">
+         <x:param select="'test'"/>
+      </x:call>
+      <x:result select="'    '"/>
+      <x:test id="scenario25-expect1" successful="true">
+         <x:label>expect a string equal in length to the length of the string value of the length argument</x:label>
+         <x:expect select="'    '"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario26"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is a sequence of several items'</x:label>
+      <x:call function="f:spaces">
+         <x:param select="('a', 'b', '3')"/>
+      </x:call>
+      <x:result select="'   '"/>
+      <x:test id="scenario26-expect1" successful="true">
+         <x:label>expect them to be concatenated</x:label>
+         <x:expect select="'   '"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario27"
+               xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+      <x:label>The length is a sequence of several items'</x:label>
+      <x:call function="f:spaces">
+         <x:param select="('0', '1', '0')"/>
+      </x:call>
+      <x:result select="'          '"/>
+      <x:test id="scenario27-expect1" successful="true">
+         <x:label>expect them to be concatenated</x:label>
+         <x:expect select="'          '"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario28"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting an anchor element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <anchor xml:id="d1e32" role="a c b"/>
+      </x:context>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" id="d1e32" class="a anchor b c"/>
+      </x:result>
+      <x:test id="scenario28-expect1" successful="true">
+         <x:label>it should return a single a element</x:label>
+         <x:expect test="count(/*) = 1 and /h:span" select="()"/>
+      </x:test>
+      <x:test id="scenario28-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/h:span/@id = 'd1e32'" select="()"/>
+      </x:test>
+      <x:test id="scenario28-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/h:span/@class = 'a anchor b c'" select="()"/>
+      </x:test>
+      <x:test id="scenario28-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario28-expect5" successful="true">
+         <x:label>it should be empty</x:label>
+         <x:expect test="empty(/*/node())" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario29"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting an emphasis element with a bold role</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <emphasis role="bold">This is strongly emphasized</emphasis>
+      </x:context>
+      <x:result select="/element()">
+         <strong xmlns="http://www.w3.org/1999/xhtml" class="bold">This is strongly emphasized</strong>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario29-expect1"
+              successful="true">
+         <x:label>it should return a strong element</x:label>
+         <x:expect select="/element()">
+            <strong class="bold">This is strongly emphasized</strong>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario30"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a code element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <code>This is a code element.</code>
+      </x:context>
+      <x:result select="/element()">
+         <code xmlns="http://www.w3.org/1999/xhtml">This is a code element.</code>
+      </x:result>
+      <x:test id="scenario30-expect1" successful="true">
+         <x:label>it should return a single code element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'code' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario30-expect2" successful="true">
+         <x:label>the name shouldn't become a class</x:label>
+         <x:expect test="empty(/*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario30-expect3" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except /*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario30-expect4" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a code element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario31"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a code element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <code xml:id="d15e0" role="b a b c">This is a code element.</code>
+      </x:context>
+      <x:result select="/element()">
+         <code xmlns="http://www.w3.org/1999/xhtml" id="d15e0" class="a b c">This is a code element.</code>
+      </x:result>
+      <x:test id="scenario31-expect1" successful="true">
+         <x:label>it should return a single code element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'code' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario31-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/*/@id = 'd15e0'" select="()"/>
+      </x:test>
+      <x:test id="scenario31-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/*/@class = 'a b c'" select="()"/>
+      </x:test>
+      <x:test id="scenario31-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario31-expect5" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a code element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario32"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a quote element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <quote>This is a quote element.</quote>
+      </x:context>
+      <x:result select="/element()">
+         <q xmlns="http://www.w3.org/1999/xhtml">This is a quote element.</q>
+      </x:result>
+      <x:test id="scenario32-expect1" successful="true">
+         <x:label>it should return a single q element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'q' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario32-expect2" successful="true">
+         <x:label>the name shouldn't become a class</x:label>
+         <x:expect test="empty(/*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario32-expect3" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except /*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario32-expect4" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a quote element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario33"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a quote element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <quote xml:id="d80e0" role="b a b c">This is a quote element.</quote>
+      </x:context>
+      <x:result select="/element()">
+         <q xmlns="http://www.w3.org/1999/xhtml" id="d80e0" class="a b c">This is a quote element.</q>
+      </x:result>
+      <x:test id="scenario33-expect1" successful="true">
+         <x:label>it should return a single q element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'q' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario33-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/*/@id = 'd80e0'" select="()"/>
+      </x:test>
+      <x:test id="scenario33-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/*/@class = 'a b c'" select="()"/>
+      </x:test>
+      <x:test id="scenario33-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario33-expect5" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a quote element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario34"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a subscript element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <subscript>This is a subscript element.</subscript>
+      </x:context>
+      <x:result select="/element()">
+         <sub xmlns="http://www.w3.org/1999/xhtml">This is a subscript element.</sub>
+      </x:result>
+      <x:test id="scenario34-expect1" successful="true">
+         <x:label>it should return a single sub element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'sub' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario34-expect2" successful="true">
+         <x:label>the name shouldn't become a class</x:label>
+         <x:expect test="empty(/*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario34-expect3" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except /*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario34-expect4" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a subscript element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario35"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a subscript element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <subscript xml:id="d85e0" role="b a b c">This is a subscript element.</subscript>
+      </x:context>
+      <x:result select="/element()">
+         <sub xmlns="http://www.w3.org/1999/xhtml" id="d85e0" class="a b c">This is a subscript element.</sub>
+      </x:result>
+      <x:test id="scenario35-expect1" successful="true">
+         <x:label>it should return a single sub element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'sub' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario35-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/*/@id = 'd85e0'" select="()"/>
+      </x:test>
+      <x:test id="scenario35-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/*/@class = 'a b c'" select="()"/>
+      </x:test>
+      <x:test id="scenario35-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario35-expect5" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a subscript element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario36"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a superscript element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <superscript>This is a superscript element.</superscript>
+      </x:context>
+      <x:result select="/element()">
+         <sup xmlns="http://www.w3.org/1999/xhtml">This is a superscript element.</sup>
+      </x:result>
+      <x:test id="scenario36-expect1" successful="true">
+         <x:label>it should return a single sup element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'sup' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario36-expect2" successful="true">
+         <x:label>the name shouldn't become a class</x:label>
+         <x:expect test="empty(/*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario36-expect3" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except /*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario36-expect4" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a superscript element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario37"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a superscript element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <superscript xml:id="d86e0" role="b a b c">This is a superscript element.</superscript>
+      </x:context>
+      <x:result select="/element()">
+         <sup xmlns="http://www.w3.org/1999/xhtml" id="d86e0" class="a b c">This is a superscript element.</sup>
+      </x:result>
+      <x:test id="scenario37-expect1" successful="true">
+         <x:label>it should return a single sup element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'sup' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario37-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/*/@id = 'd86e0'" select="()"/>
+      </x:test>
+      <x:test id="scenario37-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/*/@class = 'a b c'" select="()"/>
+      </x:test>
+      <x:test id="scenario37-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario37-expect5" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a superscript element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario38"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a tag element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <tag>This is a tag element.</tag>
+      </x:context>
+      <x:result select="/element()">
+         <code xmlns="http://www.w3.org/1999/xhtml" class="tag tag-element">This is a tag element.</code>
+      </x:result>
+      <x:test id="scenario38-expect1" successful="true">
+         <x:label>it should return a single code element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'code' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario38-expect2" successful="true">
+         <x:label>it should return the DocBook name as the class</x:label>
+         <x:expect test="/*/@class = 'tag tag-element'" select="()"/>
+      </x:test>
+      <x:test id="scenario38-expect3" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except /*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario38-expect4" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a tag element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario39"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a tag element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <tag xml:id="d84e0" role="b a b c">This is a tag element.</tag>
+      </x:context>
+      <x:result select="/element()">
+         <code xmlns="http://www.w3.org/1999/xhtml"
+               id="d84e0"
+               class="a b c tag tag-element">This is a tag element.</code>
+      </x:result>
+      <x:test id="scenario39-expect1" successful="true">
+         <x:label>it should return a single code element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'code' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario39-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/*/@id = 'd84e0'" select="()"/>
+      </x:test>
+      <x:test id="scenario39-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/*/@class = 'a b c tag tag-element'" select="()"/>
+      </x:test>
+      <x:test id="scenario39-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario39-expect5" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a tag element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario40"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a personname element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <personname>This is a personname element.</personname>
+      </x:context>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml" class="first-last personname">This is a personname element.</span>
+      </x:result>
+      <x:test id="scenario40-expect1" successful="true">
+         <x:label>it should return a single span element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'span' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario40-expect2" successful="true">
+         <x:label>it should return the DocBook name as the class</x:label>
+         <x:expect test="/*/@class = 'first-last personname'" select="()"/>
+      </x:test>
+      <x:test id="scenario40-expect3" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except /*/@class)" select="()"/>
+      </x:test>
+      <x:test id="scenario40-expect4" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a personname element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario41"
+               xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+      <x:label>When converting a personname element with an xml:id and roles</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <personname xml:id="d71e0" role="b a b c">This is a personname element.</personname>
+      </x:context>
+      <x:result select="/element()">
+         <span xmlns="http://www.w3.org/1999/xhtml"
+               id="d71e0"
+               class="a b c first-last personname">This is a personname element.</span>
+      </x:result>
+      <x:test id="scenario41-expect1" successful="true">
+         <x:label>it should return a single span element</x:label>
+         <x:expect test="count(/*) = 1 and local-name(/*[1]) = 'span' and namespace-uri(/*[1]) = 'http://www.w3.org/1999/xhtml'"
+                   select="()"/>
+      </x:test>
+      <x:test id="scenario41-expect2" successful="true">
+         <x:label>it should return the xml:id in the id</x:label>
+         <x:expect test="/*/@id = 'd71e0'" select="()"/>
+      </x:test>
+      <x:test id="scenario41-expect3" successful="true">
+         <x:label>it should return the roles as classes</x:label>
+         <x:expect test="/*/@class = 'a b c first-last personname'" select="()"/>
+      </x:test>
+      <x:test id="scenario41-expect4" successful="true">
+         <x:label>it should not return any other attributes</x:label>
+         <x:expect test="empty(/*/@* except (/*/@id | /*/@class))" select="()"/>
+      </x:test>
+      <x:test id="scenario41-expect5" successful="true">
+         <x:label>it should return the correct text</x:label>
+         <x:expect test=". = 'This is a personname element.'" select="()"/>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario42"
+               xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+      <x:label>When transforming classsynopsis.001</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/classsynopsis.001.xml"
+                 select="//*[@xml:id='class']"
+                 mode="m:docbook"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="class"
+              class="classsynopsis">
+            <div class="pre-wrap">
+               <pre class="classsynopsisinfo verbatim">
+                  <code>// This is just a made up example.
+  // Mostly.</code>
+               </pre>
+            </div>
+            <pre>public class Catalog {
+  <span class="fieldsynopsis">public static final int <span class="varname">BASE</span> = <span class="initializer">CatalogEntry.addEntryType("BASE", 1)</span>;</span>
+               <test:ws>
+  </test:ws>
+               <span class="constructorsynopsis">public Catalog();
+</span>
+               <test:ws>  </test:ws>
+               <span class="methodsynopsis">protected copyReaders(<span class="methodparam">Catalog newCatalog</span>);</span>
+}</pre>
+         </div>
+      </x:result>
+      <x:test id="scenario42-expect1" successful="true">
+         <x:label>expect a class synopsis</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="class" class="classsynopsis">
+               <div class="pre-wrap">
+                  <pre class="classsynopsisinfo verbatim">
+                     <code>// This is just a made up example.
+  // Mostly.</code>
+                  </pre>
+               </div>
+               <pre>public class Catalog {
+  <span class="fieldsynopsis">public static final int <span class="varname">BASE</span> = <span class="initializer">CatalogEntry.addEntryType("BASE", 1)</span>;</span>
+                  <test:ws>
+  </test:ws>
+                  <span class="constructorsynopsis">public Catalog();
+</span>
+                  <test:ws>  </test:ws>
+                  <span class="methodsynopsis">protected copyReaders(<span class="methodparam">Catalog newCatalog</span>);</span>
+}</pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario43"
+               xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+      <x:label>When transforming methodsynopsis.001</x:label>
+      <x:context href="file:/home/circleci/repo/src/test/resources/xml/methodsynopsis.001.xml"
+                 select="//*[@xml:id='class']"
+                 mode="m:docbook"/>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+              id="class"
+              class="classsynopsis">
+            <pre>class Foo {
+  <span class="methodsynopsis">public static double getQuote(<span class="methodparam">String symbol</span>,
+                                <span class="methodparam">double price</span>);</span>
+}</pre>
+         </div>
+      </x:result>
+      <x:test id="scenario43-expect1" successful="true">
+         <x:label>expect a class synopsis</x:label>
+         <x:expect select="/element()">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="class" class="classsynopsis">
+               <pre>class Foo {
+  <span class="methodsynopsis">public static double getQuote(<span class="methodparam">String symbol</span>,
+                                <span class="methodparam">double price</span>);</span>
+}</pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario44"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0in</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0in'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":0,"magnitude":1.0e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario44-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":0,"magnitude":1}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario45"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0m</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0m'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"m","relative":0,"magnitude":1.0e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario45-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"m","relative":0,"magnitude":1}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario46"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0cm</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0cm'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"cm","relative":0,"magnitude":1.0e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario46-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"cm","relative":0,"magnitude":1}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario47"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0mm</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0mm'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"mm","relative":0,"magnitude":1.0e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario47-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"mm","relative":0,"magnitude":1}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario48"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0pc</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0pc'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pc","relative":0,"magnitude":1.0e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario48-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pc","relative":0,"magnitude":1}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario49"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0pt</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0pt'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pt","relative":0,"magnitude":1.0e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario49-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pt","relative":0,"magnitude":1}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario50"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 3.14barleycorn</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'3.14barleycorn'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"barleycorn","relative":0,"magnitude":3.14e0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario50-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"barleycorn","relative":0,"magnitude":3.14}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario51"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 1.0smoot</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'1.0smoot'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":25}</pseudo-map>
+      </x:result>
+      <x:test id="scenario51-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":25}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario52"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 25%</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'25%'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":2.5e1}</pseudo-map>
+      </x:result>
+      <x:test id="scenario52-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":25}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario53"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 100%</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'100%'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":1.0e2}</pseudo-map>
+      </x:result>
+      <x:test id="scenario53-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":100}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario54"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 125%</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'125%'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":1.25e2}</pseudo-map>
+      </x:result>
+      <x:test id="scenario54-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":125}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario55"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 3*+0.5in</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'3*+0.5in'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":3,"magnitude":5.0e-1}</pseudo-map>
+      </x:result>
+      <x:test id="scenario55-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":3,"magnitude":0.5}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario56"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 75</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'75'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":0,"magnitude":7.5e1}</pseudo-map>
+      </x:result>
+      <x:test id="scenario56-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":0,"magnitude":75}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:f="http://docbook.org/ns/docbook/functions"
+               id="scenario57"
+               xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+      <x:label>When computing the length 2.5*</x:label>
+      <x:call function="f:parse-length">
+         <x:param select="'2.5*'"/>
+      </x:call>
+      <x:result select="/*">
+         <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":2.5,"magnitude":0}</pseudo-map>
+      </x:result>
+      <x:test id="scenario57-expect1" successful="true">
+         <x:label>return the correct parse</x:label>
+         <x:expect select="/*">
+            <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":2.5,"magnitude":0}</pseudo-map>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario58"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting an address in the raw style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'raw'"/>
+         <address>Line one
+Line two
+Line three
+Line four
+Line five</address>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario58-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario59"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a literallayout in the raw style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'raw'"/>
+         <literallayout>Line one
+Line two
+Line three
+Line four
+Line five</literallayout>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario59-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario60"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a programlisting in the raw style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'raw'"/>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario60-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario61"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a screen in the raw style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'raw'"/>
+         <screen>Line one
+Line two
+Line three
+Line four
+Line five</screen>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="screen verbatim">
+               <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario61-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="screen verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario62"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a synopsis in the raw style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'raw'"/>
+         <synopsis>Line one
+Line two
+Line three
+Line four
+Line five</synopsis>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="synopsis verbatim">
+               <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario62-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="synopsis verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario63"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a verbatim with inline markup in the raw style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'raw'"/>
+         <programlisting>Line one
+Line <emphasis>two</emphasis>
+Line <emphasis>end of three
+start of four</emphasis>
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>Line one
+Line <em>two</em>
+Line <em>end of three
+start of four</em>
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario63-expect1"
+              successful="true">
+         <x:label>the inline markup should be transformed.</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line <em>two</em>
+Line <em>end of three
+start of four</em>
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario64"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting an address in the plain style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <address>Line one
+Line two
+Line three
+Line four
+Line five</address>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario64-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario65"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a literallayout in the plain style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <literallayout>Line one
+Line two
+Line three
+Line four
+Line five</literallayout>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario65-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario66"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a programlisting in the plain style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario66-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario67"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a screen in the plain style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <screen>Line one
+Line two
+Line three
+Line four
+Line five</screen>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="screen verbatim">
+               <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario67-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="screen verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario68"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a synopsis in the plain style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <synopsis>Line one
+Line two
+Line three
+Line four
+Line five</synopsis>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="synopsis verbatim">
+               <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario68-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="synopsis verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario69"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a verbatim with inline markup in the plain style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" select="/*/*" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <div xml:space="preserve"><programlisting>Line one
+Line <emphasis>two</emphasis>
+Line <emphasis>end of three
+start of four</emphasis>
+Line five</programlisting></div>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>Line one
+Line <em>two</em>
+Line <em>end of three</em>
+                  <test:ws>
+</test:ws>
+                  <em>start of four</em>
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario69-expect1"
+              successful="true">
+         <x:label>the inline markup should be transformed.</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line <em>two</em>
+Line <em>end of three</em>
+                     <test:ws>
+</test:ws>
+                     <em>start of four</em>
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario70"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting an address in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <address>Line one
+Line two
+Line three
+Line four
+Line five</address>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="address verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln"/>
+                  <span class="ld">Line one</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">Line two</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">Line three</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">Line four</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln"/>
+                  <span class="ld">Line five</span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario70-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="address verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln"/>
+                     <span class="ld">Line one</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">Line two</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">Line three</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">Line four</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln"/>
+                     <span class="ld">Line five</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario71"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a literallayout in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <literallayout>Line one
+Line two
+Line three
+Line four
+Line five</literallayout>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="literallayout verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln"/>
+                  <span class="ld">Line one</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">Line two</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">Line three</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">Line four</span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln"/>
+                  <span class="ld">Line five</span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario71-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="literallayout verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln"/>
+                     <span class="ld">Line one</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">Line two</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">Line three</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">Line four</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln"/>
+                     <span class="ld">Line five</span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario72"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a programlisting in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              class="pre-wrap"
+              db-startinglinenumber="1"
+              db-numberoflines="5">
+            <pre class="language-none long numbered programlisting verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln">1</span>
+                  <span class="ld">
+                     <code>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line two</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line three</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln">5</span>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario72-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln">1</span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line two</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5</span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario73"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a screen in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <screen>Line one
+Line two
+Line three
+Line four
+Line five</screen>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="screen verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line two</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line three</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario73-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="screen verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line two</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario74"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a synopsis in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <synopsis>Line one
+Line two
+Line three
+Line four
+Line five</synopsis>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="synopsis verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line two</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line three</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario74-expect1"
+              successful="true">
+         <x:label>you should get all the lines</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="synopsis verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line two</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario75"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a verbatim with inline markup in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <programlisting>Line one
+Line <emphasis>two</emphasis>
+Line <emphasis>end of three
+Start of line</emphasis> four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              class="pre-wrap"
+              db-startinglinenumber="1"
+              db-numberoflines="5">
+            <pre class="language-none long numbered programlisting verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln">1</span>
+                  <span class="ld">
+                     <code>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line <em>two</em>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line <em>end of three</em>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>
+                        <em>Start of line</em> four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln">5</span>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario75-expect1"
+              successful="true">
+         <x:label>the inline markup should not cross line boundaries.</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln">1</span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line <em>two</em>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line <em>end of three</em>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>
+                           <em>Start of line</em> four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5</span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario76"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When converting a verbatim with inline markup in the lines style</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <programlisting>Line one
+Line <emphasis xml:id="two">two</emphasis>
+Line <emphasis xml:id="three">end of three
+Start of line</emphasis> four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              class="pre-wrap"
+              db-startinglinenumber="1"
+              db-numberoflines="5">
+            <pre class="language-none long numbered programlisting verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln">1</span>
+                  <span class="ld">
+                     <code>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line <em id="two">two</em>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line <em id="three">end of three</em>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>
+                        <em>Start of line</em> four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln">5</span>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario76-expect1"
+              successful="true">
+         <x:label>ID attributes should not be repeated.</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln">1</span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line <em id="two">two</em>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line <em id="three">end of three</em>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>
+                           <em>Start of line</em> four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5</span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario77"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When callouts are added to a verbatim element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <x:param name="inject" as="element()">
+            <areaspec>
+               <area coords="1 1">①</area>
+               <area coords="2 5">②</area>
+               <area coords="3 20">③</area>
+            </areaspec>
+         </x:param>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              class="pre-wrap"
+              db-startinglinenumber="1"
+              db-numberoflines="5">
+            <pre class="language-none long numbered programlisting verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln">1</span>
+                  <span class="ld">
+                     <code>
+                        <a id="R_area1"
+                           class="callout-bug linecolumn"
+                           db-line="1"
+                           db-column="1">①</a>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line<a id="R_area2"
+                           class="callout-bug linecolumn"
+                           db-line="2"
+                           db-column="5">②</a> two</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line three         <a id="R_area3"
+                           class="callout-bug linecolumn"
+                           db-line="3"
+                           db-column="20">③</a>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln">5</span>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario77-expect1"
+              successful="true">
+         <x:label>they should appear in the output</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln">1</span>
+                     <span class="ld">
+                        <code>
+                           <a id="R_area1"
+                              class="callout-bug linecolumn"
+                              db-line="1"
+                              db-column="1">①</a>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line<a id="R_area2"
+                              class="callout-bug linecolumn"
+                              db-line="2"
+                              db-column="5">②</a> two</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line three         <a id="R_area3"
+                              class="callout-bug linecolumn"
+                              db-line="3"
+                              db-column="20">③</a>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5</span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario78"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When callouts are added to a verbatim element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'lines'"/>
+         <x:param name="inject" as="element()">
+            <areaspec>
+               <area coords="1 1">①</area>
+               <area coords="2 5">②</area>
+               <area coords="8 8">③</area>
+            </areaspec>
+         </x:param>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml"
+              class="pre-wrap"
+              db-startinglinenumber="1"
+              db-numberoflines="8">
+            <pre class="language-none long numbered programlisting verbatim">
+               <span class="line" db-line="1">
+                  <span class="ln">1</span>
+                  <span class="ld">
+                     <code>
+                        <a id="R_area1"
+                           class="callout-bug linecolumn"
+                           db-line="1"
+                           db-column="1">①</a>Line one</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="2">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line<a id="R_area2"
+                           class="callout-bug linecolumn"
+                           db-line="2"
+                           db-column="5">②</a> two</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="3">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line three</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="4">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>Line four</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="5">
+                  <span class="ln">5</span>
+                  <span class="ld">
+                     <code>Line five</code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="6">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>
+                        <test:ws> </test:ws>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="7">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>
+                        <test:ws> </test:ws>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+               <span class="line" db-line="8">
+                  <span class="ln"/>
+                  <span class="ld">
+                     <code>
+                        <test:ws>       </test:ws>
+                        <a id="R_area3"
+                           class="callout-bug linecolumn"
+                           db-line="8"
+                           db-column="8">③</a>
+                     </code>
+                  </span>
+               </span>
+               <test:ws>
+</test:ws>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario78-expect1"
+              successful="true">
+         <x:label>they can extend the listing</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="8">
+               <pre class="language-none long numbered programlisting verbatim">
+                  <span class="line" db-line="1">
+                     <span class="ln">1</span>
+                     <span class="ld">
+                        <code>
+                           <a id="R_area1"
+                              class="callout-bug linecolumn"
+                              db-line="1"
+                              db-column="1">①</a>Line one</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="2">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line<a id="R_area2"
+                              class="callout-bug linecolumn"
+                              db-line="2"
+                              db-column="5">②</a> two</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="3">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="4">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5</span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="6">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>
+                           <test:ws> </test:ws>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="7">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>
+                           <test:ws> </test:ws>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+                  <span class="line" db-line="8">
+                     <span class="ln"/>
+                     <span class="ld">
+                        <code>
+                           <test:ws>       </test:ws>
+                           <a id="R_area3"
+                              class="callout-bug linecolumn"
+                              db-line="8"
+                              db-column="8">③</a>
+                        </code>
+                     </span>
+                  </span>
+                  <test:ws>
+</test:ws>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario79"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When callouts are added to a verbatim element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <x:param name="inject" as="element()">
+            <areaspec>
+               <area coords="1 1">①</area>
+               <area coords="2 5">②</area>
+               <area coords="3 20">③</area>
+            </areaspec>
+         </x:param>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>
+                  <a id="R_area1"
+                     class="callout-bug linecolumn"
+                     db-line="1"
+                     db-column="1">①</a>Line one
+Line<a id="R_area2"
+                     class="callout-bug linecolumn"
+                     db-line="2"
+                     db-column="5">②</a> two
+Line three         <a id="R_area3"
+                     class="callout-bug linecolumn"
+                     db-line="3"
+                     db-column="20">③</a>
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario79-expect1"
+              successful="true">
+         <x:label>plain mode also works</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>
+                     <a id="R_area1"
+                        class="callout-bug linecolumn"
+                        db-line="1"
+                        db-column="1">①</a>Line one
+Line<a id="R_area2"
+                        class="callout-bug linecolumn"
+                        db-line="2"
+                        db-column="5">②</a> two
+Line three         <a id="R_area3"
+                        class="callout-bug linecolumn"
+                        db-line="3"
+                        db-column="20">③</a>
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario80"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When callouts are added to a verbatim element</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <x:param name="inject" as="element()">
+            <areaspec>
+               <area coords="1 1">
+                  <a xmlns="http://www.w3.org/1999/xhtml" name="one">①</a>
+               </area>
+               <area coords="2 5">
+                  <span xmlns="http://www.w3.org/1999/xhtml" id="two">②</span>
+               </area>
+               <area coords="3 20">
+                  <span xmlns="http://www.w3.org/1999/xhtml" id="three" class="callout">③</span>
+               </area>
+            </areaspec>
+         </x:param>
+         <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>
+                  <a id="R_area1"
+                     class="callout-bug linecolumn"
+                     db-line="1"
+                     db-column="1">①</a>Line one
+Line<a id="R_area2"
+                     class="callout-bug linecolumn"
+                     db-line="2"
+                     db-column="5">②</a> two
+Line three         <a id="R_area3"
+                     class="callout-bug linecolumn"
+                     db-line="3"
+                     db-column="20">③</a>
+Line four
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario80-expect1"
+              successful="true">
+         <x:label>markup can also be inserted</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>
+                     <a id="R_area1"
+                        class="callout-bug linecolumn"
+                        db-line="1"
+                        db-column="1">①</a>Line one
+Line<a id="R_area2"
+                        class="callout-bug linecolumn"
+                        db-line="2"
+                        db-column="5">②</a> two
+Line three         <a id="R_area3"
+                        class="callout-bug linecolumn"
+                        db-line="3"
+                        db-column="20">③</a>
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+   <x:scenario xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               id="scenario81"
+               xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+      <x:label>When callouts are inserted into markup</x:label>
+      <x:context xmlns="http://docbook.org/ns/docbook" select="/*/*" mode="m:docbook">
+         <x:param name="style" select="'plain'"/>
+         <x:param name="inject" as="element()">
+            <areaspec>
+               <area coords="1 1">①</area>
+               <area coords="2 5">②</area>
+               <area coords="3 20">③</area>
+            </areaspec>
+         </x:param>
+         <div xml:space="preserve"><programlisting><emphasis>Line one</emphasis>
+<emphasis>Line two
+Line three
+Line four</emphasis>
+Line five</programlisting></div>
+      </x:context>
+      <x:result select="/element()">
+         <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <pre class="language-none numbered programlisting verbatim">
+               <code>
+                  <a id="R_area1"
+                     class="callout-bug linecolumn"
+                     db-line="1"
+                     db-column="1">①</a>
+                  <em>Line one</em>
+                  <test:ws>
+</test:ws>
+                  <em>Line</em>
+                  <a id="R_area2"
+                     class="callout-bug linecolumn"
+                     db-line="2"
+                     db-column="5">②</a>
+                  <em> two</em>
+                  <test:ws>
+</test:ws>
+                  <em>Line three</em>
+                  <test:ws>         </test:ws>
+                  <a id="R_area3"
+                     class="callout-bug linecolumn"
+                     db-line="3"
+                     db-column="20">③</a>
+                  <test:ws>
+</test:ws>
+                  <em>Line four</em>
+Line five</code>
+            </pre>
+         </div>
+      </x:result>
+      <x:test xmlns="http://www.w3.org/1999/xhtml"
+              id="scenario81-expect1"
+              successful="true">
+         <x:label>they interrupt that markup</x:label>
+         <x:expect select="/element()">
+            <div class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>
+                     <a id="R_area1"
+                        class="callout-bug linecolumn"
+                        db-line="1"
+                        db-column="1">①</a>
+                     <em>Line one</em>
+                     <test:ws>
+</test:ws>
+                     <em>Line</em>
+                     <a id="R_area2"
+                        class="callout-bug linecolumn"
+                        db-line="2"
+                        db-column="5">②</a>
+                     <em> two</em>
+                     <test:ws>
+</test:ws>
+                     <em>Line three</em>
+                     <test:ws>         </test:ws>
+                     <a id="R_area3"
+                        class="callout-bug linecolumn"
+                        db-line="3"
+                        db-column="20">③</a>
+                     <test:ws>
+</test:ws>
+                     <em>Line four</em>
+Line five</code>
+               </pre>
+            </div>
+         </x:expect>
+      </x:test>
+   </x:scenario>
+</x:report>

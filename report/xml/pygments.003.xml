@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: pygments.003</title>
+
+<para>This test checks to see if the extension function that runs
+Pygments syntax highlighting works.</para>
+
+<programlisting language="python"><?db-pygments classprefix="x-" wrapcode="true"
+?>def printDict(di, format="%-25s %s"):
+    for (key, val) in di.items():
+        print format % (str(key)+':', val)</programlisting>
+
+</article>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e18" border="1">
+            <caption>An HTML Table</caption>
+            <tbody>
+               <tr>
+                  <td>A Cell</td>
+                  <td>A Cell<footnote xml:id="d1e18-f1">
+                        <para>First footnote.</para>
+                     </footnote></td>
+                  <td>A Cell</td>
+               </tr>
+               <tr>
+                  <td>A Cell<footnote xml:id="d1e18-f2">
+                        <simpara>Second footnote.</simpara>
+                     </footnote></td>
+                  <td>A Cell</td>
+                  <td>A Cell</td>
+               </tr>
+               <tr>
+                  <td>A Cell</td>
+                  <td>A Cell</td>
+                  <td>A Cell<footnote xml:id="d1e18-f3">
+                        <address>100 Any Street
+East Yahoo, XX</address>
+                     </footnote></td>
+               </tr>
+            </tbody>
+         </table>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: formalgroup.004</title>
+
+<chapter>
+<title>Testing formal group enumeration</title>
+
+<section>
+<title>With inherited numeration</title>
+
+<formalgroup pgwide="1">
+<title>Euler’s identity and mass-energy equivalence</title>
+
+<equation>
+  <title>Euler’s identity</title>
+  <mathphrase>e<superscript>π<emphasis>i</emphasis></superscript> + 1 = 0</mathphrase>
+</equation>
+
+<equation>
+  <title>Mass-energy equivalence</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="../media/emc2.png"/>
+    </imageobject>
+    <textobject>
+      <phrase>E=mc^2</phrase>
+    </textobject>
+  </mediaobject>
+</equation>
+
+</formalgroup>
+
+<para>This group isn’t “page wide”.</para>
+
+<formalgroup>
+<title>Mass-energy equivalence and Euler’s identity</title>
+
+<equation>
+  <title>Mass-energy equivalence</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="../media/emc2.png"/>
+    </imageobject>
+    <textobject>
+      <phrase>E=mc^2</phrase>
+    </textobject>
+  </mediaobject>
+</equation>
+
+<equation>
+  <title>Euler’s identity</title>
+  <mathphrase>e<superscript>π<emphasis>i</emphasis></superscript> + 1 = 0</mathphrase>
+</equation>
+
+</formalgroup>
+
+</section>
+</chapter>
+</book>

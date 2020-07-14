@@ -1,0 +1,13 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Article wrapper</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="http://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet"/></head><body class="home"><nav class="top"></nav><main><article class="article"><header><h1>Article wrapper</h1></header><p>Callouts using <code class="tag tag-element">co</code>:</p><div class="pre-wrap"><pre class="screen verbatim"><span class="line" db-line="1"><span class="ln"></span><span class="ld"><code>(let <a class="co" id="dl1">①</a>loopvar <a class="co" id="dl2">②</a>((count 1))</code></span></span>
+<span class="line" db-line="2"><span class="ln"></span><span class="ld"><code>  <a class="co" id="dl3">③</a>(if (&gt; count 10)</code></span></span>
+<span class="line" db-line="3"><span class="ln"></span><span class="ld"><code>    <a class="co" id="dl4">④</a>#t</code></span></span>
+<span class="line" db-line="4"><span class="ln"></span><span class="ld"><code>    (<a class="co" id="dl5">⑤</a>loopvar <a class="co" id="dl6">⑥</a>(+ count 1))))</code></span></span>
+</pre></div><div class="calloutlist"><dl><dt class="callout"><a class="callout-bug" href="#dl1">①</a></dt><dd><p>This variable controls the loop. It is declared without an
+initial value, immediately after the <code class="literal">let</code>
+operand.</p></dd><dt class="callout"><a class="callout-bug" href="#dl2">②</a></dt><dd><p>Any number of additional local variables can be defined after
+the loop variable, just as they can in any other
+<code class="literal">let</code> expression.</p></dd><dt class="callout"><a class="callout-bug" href="#dl3">③</a></dt><dd><p>If you ever want the loop to end, you have to put some sort of a
+test in it.</p></dd><dt class="callout"><a class="callout-bug" href="#dl4">④</a></dt><dd><p>This is the value that will be returned.</p></dd><dt class="callout"><a class="callout-bug" href="#dl5">⑤</a></dt><dd><p>Note that you iterate the loop by using the loop variable as if
+it was a function name.</p></dd><dt class="callout"><a class="callout-bug" href="#dl6">⑥</a></dt><dd><p>The arguments to this function are the values that
+you want the local variables declared in <a href="#dl2" class="xref xref-co"><span><span class="xreftitle">②</span></span></a> to have
+in the next iteration.</p></dd></dl></div></article></main><nav class="bottom"></nav></body></html>

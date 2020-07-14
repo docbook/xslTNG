@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Article wrapper</title>
+   <para>Ordinary paragraph.</para>
+   <para os="win">Paragraph for Windows.</para>
+   <para os="linux">Paragraph for Linux.</para>
+   <para os="mac">Paragraph for Mac.</para>
+   <para os="mac;linux">Paragraph for Mac and Linux.</para>
+</article>

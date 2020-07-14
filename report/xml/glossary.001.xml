@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info>
+  <?db toc="false"?>
+   <title>Unit Test: glossary.001</title>
+   <editor>
+      <personname>
+         <firstname>Someone</firstname>
+         <surname>Random</surname>
+      </personname>
+   </editor>
+   <subtitle>Wikipedia fruits</subtitle>
+   <releaseinfo>Just some test data</releaseinfo>
+   <othercredit><orgname>Wikimedia Commons</orgname></othercredit>
+</info>
+
+<chapter>
+<title>Fruits</title>
+<para>There's a <tag>firstterm</tag> here:
+<firstterm>Apple</firstterm>.</para>
+
+<para>And there's a couple of <tag>glossterm</tag>s here:
+<glossterm>Peach</glossterm>, <glossterm>Jackfruit</glossterm>,
+and <glossterm>Durian</glossterm> (not in the <xref linkend="glossary"/>).</para>
+</chapter>
+
+<glossary xml:id="glossary">
+
+<glossdiv>
+<title>A</title>
+
+<glossentry xml:id="apple">
+  <glossterm>Apple</glossterm>
+  <glossdef>
+    <para>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</para>
+    <glossseealso otherterm="pear">Pear</glossseealso>
+  </glossdef>
+</glossentry>
+
+<glossentry xml:id="apricot">
+  <glossterm>Apricot</glossterm>
+  <glossdef>
+    <para>An apricot is a fruit, or the tree that bears the fruit, of
+    several species in the genus Prunus.</para>
+  </glossdef>
+</glossentry>
+</glossdiv>
+
+<glossdiv>
+<title>D</title>
+
+<glossentry xml:id="drupe">
+  <glossterm>Drupe</glossterm>
+  <glossdef>
+    <para>In botany, a drupe (or stone fruit) is an indehiscent fruit
+    in which an outer fleshy part (exocarp, or skin; and mesocarp, or
+    flesh) surrounds a single shell (the pit, stone, or pyrene) of
+    hardened endocarp with a seed (kernel) inside. These fruits
+    usually develop from a single carpel, and mostly from flowers with
+    superior ovaries.</para>
+    <glossseealso otherterm="apricot">Apricot</glossseealso>
+    <glossseealso otherterm="peach">Peach</glossseealso>
+    <glossseealso otherterm="nectarine">Nectarine</glossseealso>
+  </glossdef>
+</glossentry>
+</glossdiv>
+
+<glossdiv>
+<title>J</title>
+
+<glossentry xml:id="jackfruit">
+  <glossterm>Jackfruit</glossterm>
+  <glossdef>
+    <para>The jackfruit (Artocarpus heterophyllus), also known as jack
+    tree, is a species of tree in the fig, mulberry, and breadfruit
+    family (Moraceae). Its origin is in the region between the
+    Western Ghats of southern India and the rainforests of
+    Malaysia.</para>
+  </glossdef>
+</glossentry>
+</glossdiv>
+
+<glossdiv>
+<title>N</title>
+<glossentry xml:id="nectarine">
+  <glossterm>Nectarine</glossterm>
+  <glosssee>Peach</glosssee>
+</glossentry>
+</glossdiv>
+
+<glossdiv>
+<title>P</title>
+
+<glossentry xml:id="peach">
+  <glossterm>Peach</glossterm>
+  <glossdef>
+    <para>The peach (Prunus persica) is a deciduous tree native to the
+    region of Northwest China between the Tarim Basin and the north
+    slopes of the Kunlun Mountains, where it was first domesticated
+    and cultivated. It bears an edible juicy fruit called a peach
+    or a nectarine.</para>
+  </glossdef>
+</glossentry>
+
+<glossentry xml:id="pear">
+  <glossterm>Pear</glossterm>
+  <glossdef>
+    <para>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</para>
+    <glossseealso otherterm="apple">Apples</glossseealso>
+  </glossdef>
+</glossentry>
+</glossdiv>
+
+</glossary>
+</book>

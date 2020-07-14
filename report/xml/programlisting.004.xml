@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <info>
+      <title>Unit Test: programlisting.004</title>
+      <author>
+         <personname>
+            <firstname>Stéphane</firstname>
+            <surname>Bortzmeyer</surname>
+         </personname>
+      </author>
+   </info>
+   <para>Testing footnote within programlisting.</para>
+   <programlisting>      hostname RTA
+      router ospf
+          ospf router-id 192.134.7.241	<footnote>
+         <para>It is not
+necessary to set the router ID.</para>
+      </footnote>
+          network 192.134.7.0/24 area 0</programlisting>
+</article>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.1">
+   <info>
+      <title>Extended XLink</title>
+      <extendedlink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+         <locator xlink:title="XQuery specification"
+                  xlink:label="target"
+                  xlink:href="http://www.w3.org/TR/XQuery"
+                  xlink:type="locator"/>
+         <locator xlink:title="XQuery WG"
+                  xlink:label="target"
+                  xlink:href="http://www.w3.org/XML/Query/"
+                  xlink:type="locator"/>
+         <locator xlink:title="XQuery on Wikipedia"
+                  xlink:label="target"
+                  xlink:href="http://en.wikipedia.org/wiki/XQuery"
+                  xlink:type="locator"/>
+         <locator xlink:label="source" xlink:href="#xquery" xlink:type="locator"/>
+         <arc xlink:to="target" xlink:from="source" xlink:type="arc"/>
+      </extendedlink>
+      <extendedlink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+         <locator xlink:title="MarkLogic"
+                  xlink:label="t"
+                  xlink:href="http://www.marklogic.com/"
+                  xlink:type="locator"/>
+         <locator xlink:title="MarkLogic at Wikipedia"
+                  xlink:label="t"
+                  xlink:href="http://en.wikipedia.org/wiki/MarkLogic"
+                  xlink:type="locator"/>
+         <locator xlink:label="source"
+                  xlink:href="xmlns(db=http%3a//docbook.org/ns/docbook)
+                              xpath(//db:orgname%5b. = 'MarkLogic'%5d)"
+                  xlink:type="locator"/>
+         <locator xlink:label="source"
+                  xlink:href="xmlns(db=http%3a//docbook.org/ns/docbook)
+                              xpath(//db:orgname%5b. = 'MLS'%5d)"
+                  xlink:type="locator"/>
+         <arc xlink:to="t" xlink:from="source" xlink:type="arc"/>
+      </extendedlink>
+   </info>
+   <para>What about
+<phrase xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+         <link xlink:title="DocBook.org"
+               xlink:label="target"
+               xlink:href="http://docbook.org/"
+               xlink:type="locator"/>
+         <link xlink:title="DocBook on Wikipedia"
+               xlink:label="target"
+               xlink:href="http://en.wikipedia.org/wiki/DocBook"
+               xlink:type="locator"/>
+         <citetitle xlink:label="source" xlink:type="resource">DocBook</citetitle>
+         <link xlink:to="target" xlink:from="source" xlink:type="arc"/>
+      </phrase>
+and
+<citetitle xml:id="xquery">XQuery</citetitle>?
+</para>
+   <para>And would <orgname>MarkLogic</orgname> work?</para>
+   <para>And would <orgname>MLS</orgname> work?</para>
+   <para>This orgname, <orgname>nwalsh.com</orgname>, doesn’t have a link.</para>
+   <para>But <orgname>MarkLogic</orgname> works even if it’s repeated.</para>
+</article>

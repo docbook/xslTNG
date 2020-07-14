@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: xinclude.018</title>
+</info>
+
+<para xml:id="p">This is an article tests the XInclude extension. It’s unlikely
+to pass if that extension is not available.</para>
+
+<para>Lines from “six” to “twelve” of <filename>../lines-of-text.txt</filename>,
+exclusive, trimmed on the top and the bottom and stripped:
+(Using XPointer “<xi:include xpointer="xmlns(xi=http://www.w3.org/2001/XInclude)
+xpath(//xi:include[@href!='']/@xpointer)"/>”)
+</para>
+
+<literallayout>----------------------------------------
+<xi:include href="../lines-of-text.txt" xpointer="search=/six/;trim,/twelve/;trim;strip"
+ parse="text"/>----------------------------------------</literallayout>
+
+<para>(The dashes are for reference; they are not in the XIncluded file.)</para>
+
+</article>

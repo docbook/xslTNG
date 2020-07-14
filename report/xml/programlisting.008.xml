@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: programlisting.008</title>
+
+<para>This test checks that the line numbering control PIs are handled
+correctly.</para>
+
+<programlisting><?db linenumbering-everyNth="2" linenumbering-first='false'
+?>Line one
+Line two
+Line three
+Line four
+Line five
+Line six
+Line seven
+Line eight
+Line nine
+Line ten
+Line eleven
+Line twelve
+Line thirteen
+Line fourteen
+Line fifteen
+Line sixteen</programlisting>
+
+
+<programlisting><?db linenumbering-everyNth="1" linenumbering-minlines="10"
+?>Line one
+Line two
+Line three
+Line four
+Line five
+Line six
+Line seven
+Line eight
+Line nine</programlisting>
+</article>

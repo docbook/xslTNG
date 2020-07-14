@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" xml:id="book" version="5.0">
+<info>
+  <?db navigation="false"?>
+  <title>Unit Test: chunk.001</title>
+</info>
+
+<chapter xml:id="c1">
+<?db filename="ch01.html"?>
+<info>
+<title>First<footnote><para>foo</para></footnote> chapter</title>
+</info>
+
+<para annotations="c1p1">This paragraph has a footnote<footnote xml:id="f1">
+<para>Right here, you can’t miss it!</para></footnote>.
+</para>
+
+<para annotations="c2p1">This paragraph has a footnote
+reference<footnoteref linkend="f2"/>
+to the paragraph in Chapter 2.</para>
+
+<para annotations="c1p1">This paragraph is also annotated with the same
+annotation as the first paragraph.</para>
+
+<annotation xml:id="c1p1">
+<para>Annotation on the first paragraph of Chapter 1.</para>
+</annotation>
+</chapter>
+
+<chapter>
+<info>
+<?db filename="ch02.html"?>
+<title>Second <link linkend="c1">chapter</link></title>
+</info>
+
+<para annotations="c2p1">This paragraph has a footnote<footnote xml:id="f2">
+<para>Right here in Chapter 2, you can’t miss it!</para></footnote>.
+</para>
+
+<para annotations="c1p1">This paragraph has a footnote
+reference<footnoteref linkend="f1"/>
+to the paragraph in Chapter 1.</para>
+
+<annotation xml:id="c2p1">
+<para>Annotation on the first paragraph of Chapter 2.</para>
+</annotation>
+</chapter>
+
+</book>

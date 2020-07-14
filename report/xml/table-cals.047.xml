@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: table-cals.047</title>
+
+<table frame="all">
+<info>
+<title>Computed align-char-width</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>Computed align-char-width with terminal decimal point</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row A’</entry>
+    <entry>10.</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>Computed align-char-width with alternate pad character</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<?db align-char-pad="0"?>
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>align-char-width=2</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<?db align-char-width="2"?>
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>align-char-width=3</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<?db align-char-width="3"?>
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>align-char-width=4</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<?db align-char-width="4"?>
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>align-char-width=4 and alternate pad char</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<?db align-char-width="4" align-char-pad="0"?>
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>Multiple occurrences of the pad character</title>
+</info>
+<tgroup cols="2" colsep="1" rowsep="1">
+<colspec/>
+<colspec align="char" char="."/>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row A’</entry>
+    <entry>1.10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>2.0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>3.0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>4.0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<table frame="all">
+<info>
+<title>Column-specific widths and pads</title>
+</info>
+<tgroup cols="4" colsep="1" rowsep="1">
+<colspec/>
+<colspec align="char" char="."/>
+<?db align-char-width="4"?>
+<colspec align="char" char=","/>
+<?db align-char-width="5" align-char-pad="⸳"?>
+<colspec align="char" char="."/>
+<?db align-char-width="6" align-char-pad="0"?>
+<tbody>
+  <row>
+    <entry>Row A</entry>
+    <entry>10</entry>
+    <entry>10</entry>
+    <entry>10</entry>
+  </row>
+  <row>
+    <entry>Row B</entry>
+    <entry>0.1</entry>
+    <entry>0,1</entry>
+    <entry>0.1</entry>
+  </row>
+  <row>
+    <entry>Row C</entry>
+    <entry>0.12</entry>
+    <entry>0,12</entry>
+    <entry>0.12</entry>
+  </row>
+  <row>
+    <entry>Row D</entry>
+    <entry>0.123</entry>
+    <entry>0,123</entry>
+    <entry>0.123</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+</article>

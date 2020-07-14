@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: programlistingco.003</title>
+
+<programlistingco>
+<areaspec>
+<?db starting-callout-number="5"?>
+<area xml:id="first" coords="1 30">
+  <alt>The first line</alt>
+</area>
+<area linkends="link" xml:id="second" coords="2 30"/>
+</areaspec>
+<programlisting>The first line
+The second line
+The third line
+The fourth line
+The fifth line
+</programlisting>
+</programlistingco>
+
+<para>An interstitial para.</para>
+
+<programlistingco>
+<areaspec>
+<?db starting-callout-number="continues"?>
+<area xml:id="ninth" coords="4 30">
+  <alt>The ninth line</alt>
+</area>
+<area linkends="link" xml:id="tenth" coords="5 30"/>
+</areaspec>
+<programlisting continuation="continues">The sixth line
+The seventh line
+The eighth line
+The ninth line
+The tenth line</programlisting>
+</programlistingco>
+
+<calloutlist>
+  <callout arearefs="first">
+    <para>The first line.</para>
+  </callout>
+  <callout xml:id="link" arearefs="second">
+    <para>The second line.</para>
+  </callout>
+  <callout arearefs="ninth">
+    <para>The ninth line.</para>
+  </callout>
+  <callout arearefs="tenth">
+    <para>The tenth line.</para>
+  </callout>
+</calloutlist>
+
+</article>

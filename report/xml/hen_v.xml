@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" remap="PLAY" version="5.0">
+
+<!-- THIS IS FOR STYLESHEET TESTING. IT HAS BEEN TRUNCATED AT ABOUT 200 LINES -->
+<!-- Also, some of the tagging is structured a little oddly in order to avoid
+     irrelevant whitespace differences from confusing the XSpec comparator. -->
+
+<title remap="TITLE">The Life of Henry the Fifth</title>
+<info remap="FM"
+      xmlns:dc="http://purl.org/dc/terms/"
+      xmlns:dcterms="http://purl.org/dc/terms/">
+  <dc:title>The Life of Henry the Fifth</dc:title>
+      <dc:creator>William Shakespeare</dc:creator>
+      <dc:contributor>ASCII text placed in the public domain by Moby Lexical Tools, 1992.</dc:contributor>
+      <dc:contributor>SGML markup by Jon Bosak, 1992-1994.</dc:contributor>
+      <dc:contributor>XML version by Jon Bosak, 1996-1999.</dc:contributor>
+      <dc:contributor>DocBook version by Scott Hudson, 2008.</dc:contributor>
+      <dcterms:license>Bosak and Hudson license this work for worldwide use under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License. 
+            (http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode).</dcterms:license>
+      <dc:source>http://metalab.unc.edu/bosak/xml/eg/shaks200.zip</dc:source>
+</info>
+<preface remap="PERSONAE">
+   <title remap="TITLE">Dramatis Personae</title>
+   <para><personname remap="PERSONA">KING HENRY, the Fifth. </personname></para>
+   <simplelist remap="PGROUP" columns="2">
+      <member><personname remap="PERSONA">DUKE OF GLOUCESTER</personname
+><personname remap="PERSONA">DUKE OF BEDFORD</personname></member>
+      <member>brothers to the King.</member>
+   </simplelist>
+   <para><personname remap="PERSONA">DUKE OF EXETER, uncle to the King.</personname></para>
+   <para><personname remap="PERSONA">DUKE OF YORK, cousin to the King.</personname></para>
+   <para><personname remap="PERSONA">EARL OF SALISBURY</personname></para>
+   <para><personname remap="PERSONA">EARL OF WESTMORELAND</personname></para>
+   <para><personname remap="PERSONA">EARL OF WARWICK</personname></para>
+   <para><personname remap="PERSONA">BISHOP OF CANTERBURY</personname></para>
+   <para><personname remap="PERSONA">BISHOP OF ELY</personname></para>
+   <para><personname remap="PERSONA">EARL OF CAMBRIDGE</personname></para>
+   <para><personname remap="PERSONA">LORD SCROOP</personname></para>
+   <para><personname remap="PERSONA">SIR THOMAS GREY</personname></para>
+   <simplelist remap="PGROUP" columns="2">
+      <member><personname remap="PERSONA">SIR THOMAS ERPINGHAM</personname
+><personname remap="PERSONA">GOWER</personname
+><personname remap="PERSONA">FLUELLEN</personname
+><personname remap="PERSONA">MACMORRIS</personname
+><personname remap="PERSONA">JAMY</personname></member>
+<member>Officers in King Henry's army.</member>
+   </simplelist>
+   <simplelist remap="PGROUP" columns="2">
+      <member><personname remap="PERSONA">BATES</personname
+><personname remap="PERSONA">COURT</personname
+><personname remap="PERSONA">WILLIAMS</personname></member>
+      <member>soldiers in the same.</member>
+   </simplelist>
+   <para><personname remap="PERSONA">PISTOL</personname></para>
+   <para><personname remap="PERSONA">NYM</personname></para>
+   <para><personname remap="PERSONA">BARDOLPH</personname></para>
+   <para><personname remap="PERSONA">Boy</personname></para>
+   <para><personname remap="PERSONA">A Herald.</personname></para>
+   <para><personname remap="PERSONA">CHARLES the Sixth, King of France. </personname></para>
+   <para><personname remap="PERSONA">LEWIS, the Dauphin. </personname></para>
+   <para><personname remap="PERSONA">DUKE OF BURGUNDY</personname></para>
+   <para><personname remap="PERSONA">DUKE OF ORLEANS</personname></para>
+   <para><personname remap="PERSONA">DUKE OF BOURBON</personname></para>
+   <para><personname remap="PERSONA">The Constable of France. </personname></para>
+   <simplelist remap="PGROUP" columns="2">
+      <member><personname remap="PERSONA">RAMBURES</personname
+><personname remap="PERSONA">GRANDPRE</personname></member>
+      <member>French Lords.</member>
+   </simplelist>
+   <para><personname remap="PERSONA">GOVERNOR, of Harfleur.</personname></para>
+   <para><personname remap="PERSONA">MONTJOY, a French Herald.</personname></para>
+   <para><personname remap="PERSONA">Ambassadors to the King of England.</personname></para>
+   <para><personname remap="PERSONA">ISABEL, Queen of France. </personname></para>
+   <para><personname remap="PERSONA">KATHARINE, daughter to Charles and Isabel.</personname></para>
+   <para><personname remap="PERSONA">ALICE, a lady attending on her.</personname></para>
+   <para><personname remap="PERSONA">Hostess of a tavern in Eastcheap formerly Mistress Quickly, and now married to Pistol.</personname></para>
+   <para><personname remap="PERSONA">Lords, Ladies, Officers, Soldiers, Citizens, Messengers, and Attendants. Chorus.</personname></para>
+   <para remap="SCNDESCR">SCENE  England; afterwards France.</para>
+</preface>
+<chapter remap="ACT">
+   <title remap="TITLE">ACT I</title>
+   <section remap="PROLOGUE">
+      <title remap="TITLE">PROLOGUE</title>
+      <para remap="STAGEDIR">Enter Chorus</para>
+      <dialogue remap="SPEECH">
+         <linegroup>
+            <speaker remap="SPEAKER">Chorus</speaker>
+            <line remap="LINE">O for a Muse of fire, that would ascend</line>
+            <line remap="LINE">The brightest heaven of invention,</line>
+            <line remap="LINE">A kingdom for a stage, princes to act</line>
+            <line remap="LINE">And monarchs to behold the swelling scene!</line>
+            <line remap="LINE">Then should the warlike Harry, like himself,</line>
+            <line remap="LINE">Assume the port of Mars; and at his heels,</line>
+            <line remap="LINE">Leash'd in like hounds, should famine, sword and fire</line>
+            <line remap="LINE">Crouch for employment. But pardon, and gentles all,</line>
+            <line remap="LINE">The flat unraised spirits that have dared</line>
+            <line remap="LINE">On this unworthy scaffold to bring forth</line>
+            <line remap="LINE">So great an object: can this cockpit hold</line>
+            <line remap="LINE">The vasty fields of France? or may we cram</line>
+            <line remap="LINE">Within this wooden O the very casques</line>
+            <line remap="LINE">That did affright the air at Agincourt?</line>
+            <line remap="LINE">O, pardon! since a crooked figure may</line>
+            <line remap="LINE">Attest in little place a million;</line>
+            <line remap="LINE">And let us, ciphers to this great accompt,</line>
+            <line remap="LINE">On your imaginary forces work.</line>
+            <line remap="LINE">Suppose within the girdle of these walls</line>
+            <line remap="LINE">Are now confined two mighty monarchies,</line>
+            <line remap="LINE">Whose high upreared and abutting fronts</line>
+            <line remap="LINE">The perilous narrow ocean parts asunder:</line>
+            <line remap="LINE">Piece out our imperfections with your thoughts;</line>
+            <line remap="LINE">Into a thousand parts divide on man,</line>
+            <line remap="LINE">And make imaginary puissance;</line>
+            <line remap="LINE">Think when we talk of horses, that you see them</line>
+            <line remap="LINE">Printing their proud hoofs i' the receiving earth;</line>
+            <line remap="LINE">For 'tis your thoughts that now must deck our kings,</line>
+            <line remap="LINE">Carry them here and there; jumping o'er times,</line>
+            <line remap="LINE">Turning the accomplishment of many years</line>
+            <line remap="LINE">Into an hour-glass: for the which supply,</line>
+            <line remap="LINE">Admit me Chorus to this history;</line>
+            <line remap="LINE">Who prologue-like your humble patience pray,</line>
+            <line remap="LINE">Gently to hear, kindly to judge, our play.</line>
+         </linegroup>
+      </dialogue>
+      <para remap="STAGEDIR">Exit</para>
+   </section>
+</chapter>
+<!-- TRUNCATED -->
+</book>

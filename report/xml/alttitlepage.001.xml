@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: alttitlepage.001.xml</title>
+  <subtitle>Ignored in this test</subtitle>
+  <authorgroup>
+    <author>
+      <personname>
+        <firstname>Jane</firstname>
+        <surname>Doe</surname>
+      </personname>
+      <affiliation>
+        <jobtitle>President</jobtitle>
+        <orgname>Acme, Inc.</orgname>
+        <orgdiv>Research &amp; Development</orgdiv>
+      </affiliation>
+    </author>
+  </authorgroup>
+  <abstract>
+    <para>This is the abstract.</para>
+    <para>It has several paras.</para>
+    <para>It has several paras.</para>
+  </abstract>
+
+  <tmp:titlepage-template xmlns:tmp="http://docbook.org/ns/docbook/templates"
+                          xmlns="http://www.w3.org/1999/xhtml"
+                          xmlns:db="http://docbook.org/ns/docbook">
+    <header>
+      <tmp:apply-templates select="db:title">
+        <h1><tmp:content/></h1>
+      </tmp:apply-templates>
+      <tmp:apply-templates select="db:authorgroup">
+        <div class="authorgroup">
+          <tmp:apply-templates select="db:author">
+            <div class="author">
+              <h3><tmp:content/></h3>
+              <tmp:apply-templates select="db:affiliation">
+                <div class="affiliation">
+                  <h4><tmp:apply-templates select="db:jobtitle"/>,
+                      <tmp:apply-templates select="db:orgname"/>
+                      (<tmp:apply-templates select="db:orgdiv"/>)</h4>
+                </div>
+              </tmp:apply-templates>
+            </div>
+          </tmp:apply-templates>
+        </div>
+      </tmp:apply-templates>
+      <tmp:apply-templates select="db:pubdate">
+        <p class="pubdate"><tmp:content/></p>
+      </tmp:apply-templates>
+      <tmp:apply-templates select="db:copyright"/>
+      <tmp:apply-templates select="db:abstract"/>
+    </header>
+  </tmp:titlepage-template>
+</info>
+<para>This is an article tests.</para>
+</article>

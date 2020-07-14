@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+
+<para>This article contains three diagrams.</para>
+
+<para>An svg with fallback.</para>
+
+<mediaobject>
+  <imageobject>
+    <imagedata fileref="../media/svg-001.svg"
+               format="SVG"
+               align="center"
+               depth="250"
+               width="600"/>
+  </imageobject>
+  <imageobject>
+    <imagedata fileref="../media/svg-001-fallback.png"
+               align="center"
+               depth="250"
+               width="600"/>
+  </imageobject>
+  <textobject>
+    <phrase>Example SVG polygons</phrase>
+  </textobject>
+  <caption>
+    <para>Polygons (with fallback)</para>
+  </caption>
+</mediaobject>
+
+<para>An svg without fallback.</para>
+
+<mediaobject>
+  <imageobject>
+    <imagedata fileref="../media/svg-001.svg"
+               format="SVG"
+               align="center"
+               depth="250"
+               width="600"/>
+  </imageobject>
+  <textobject>
+    <phrase>Example SVG polygons</phrase>
+  </textobject>
+  <caption>
+    <para>Polygons (without fallback)</para>
+  </caption>
+</mediaobject>
+
+<para>And an inline svg without fallback.</para>
+
+<mediaobject>
+  <imageobject>
+    <imagedata depth="250" width="600">
+      <svg:svg xmlns:svg="http://www.w3.org/2000/svg">
+        <svg:g transform="scale(0.25)">
+          <svg:polygon points="350, 75 379,161 469,161 397,215
+                               423,301 350,250 277,301 303,215
+                               231,161 321,161"
+                       style="fill:red; stroke:blue; stroke-width:10"/>
+          <svg:polygon points="850,75  958,137.5 958,262.5
+                               850,325 742,262.6 742,137.5"
+                       style="fill:lime; stroke:blue; stroke-width:10"/>
+        </svg:g>
+      </svg:svg>
+    </imagedata>
+  </imageobject>
+  <textobject>
+    <phrase>Example SVG polygons</phrase>
+  </textobject>
+  <caption>
+    <para>Polygons (inline)</para>
+  </caption>
+</mediaobject>
+</article>

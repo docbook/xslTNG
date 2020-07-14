@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <info>
+      <title>Unit Test: info</title>
+      <dc:subject xmlns:dc="http://purl.org/dc/elements/1.1/"
+                  xmlns:x="http://www.jenitennison.com/xslt/xspec">testing</dc:subject>
+      <bibliocoverage spatial="iso3166">GB</bibliocoverage>
+      <bibliocoverage temporal="w3c-dtf">2009-11-30T13:15:00Z</bibliocoverage>
+      <bibliomisc role="testing">misc</bibliomisc>
+      <bibliorelation type="haspart" class="uri" role="testing">#chap1</bibliorelation>
+      <bibliosource class="uri" role="testing">chap1</bibliosource>
+      <subjectset>
+         <subject>
+            <subjectterm>term</subjectterm>
+         </subject>
+      </subjectset>
+      <itermset>
+         <indexterm zone="chap1">
+            <primary>chapter</primary>
+         </indexterm>
+      </itermset>
+   </info>
+   <chapter xml:id="chap1">
+      <title>First Chapter</title>
+      <para>blah blah blah.</para>
+   </chapter>
+</book>

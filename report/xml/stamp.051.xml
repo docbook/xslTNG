@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: stamp.051</title>
+
+<para>The stamp image has a natural size of 200x128 pixels and can be
+referenced by various more or less silly URLs. Note that none of these
+tests place the image outside the “mediaobject input base URI”. Doing
+so results in absolute paths that won’t produce consistent results on
+different platforms.</para>
+
+<mediaobject xml:base="../media/">
+   <imageobject>
+      <imagedata fileref="path/to/image/no-image-here.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="../media/">
+   <imageobject>
+      <imagedata fileref="stamp.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="../media/">
+   <imageobject>
+      <imagedata fileref="./stamp.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="../media/">
+   <imageobject>
+      <imagedata fileref="./no-image-here.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="..">
+   <imageobject xml:base="media/">
+      <imagedata fileref="stamp.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="..">
+   <imageobject xml:base="media/">
+      <imagedata fileref="no-image-here.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="http://example.com/foo">
+   <imageobject>
+      <imagedata fileref="no-image-here.png"/>
+   </imageobject>
+</mediaobject>
+<mediaobject xml:base="http://example.com/foo">
+   <imageobject>
+      <imagedata fileref="http://example.org/no-image-here.png"/>
+   </imageobject>
+</mediaobject>
+
+</article>

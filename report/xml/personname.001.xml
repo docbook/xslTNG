@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: personname.001.xml</title>
+</info>
+
+<para>The first-last style:
+<personname role="first-last">
+      <givenname>Norman</givenname>
+      <surname>Walsh</surname>
+      <othername>David</othername>
+   </personname>.</para>
+
+<para>The last-first style:
+<personname role="last-first">
+      <givenname>Norman</givenname>
+      <surname>Walsh</surname>
+      <othername>David</othername>
+   </personname>.</para>
+
+<para>The FAMILY-given style:
+<personname role="FAMILY-given">
+      <givenname>Norman</givenname>
+      <surname>Walsh</surname>
+      <othername>David</othername>
+   </personname>.</para>
+
+</article>

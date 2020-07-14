@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: dynprof.001</title>
+</info>
+
+<para>This is an ordinary paragraph.</para>
+
+<para condition="$not-test-harness">This document tests dynamic
+profiling. The XSpec test harness configures several variables for
+dynamic profiling that don’t otherwise exist in the stylesheets.
+Consequently, the results you get if you process this document outside
+the test harness will differ from the expected results.
+This document was processed outside the test harness.</para>
+
+<para condition="$this-variable-does-not-exist">The dynamic
+profiling expression should raise an error. Consequently, this
+paragraph should be included unless <parameter>$dynamic-profile-error</parameter>
+is “exclude”.</para>
+
+<para condition="win">This is a paragraph that should be
+included if “condition:win”.</para>
+
+<para condition="$isthree=3;win">This is a paragraph that should be
+included if “condition:win” and <parameter>$isthree</parameter> is 3.</para>
+
+<para condition="win;$isthree=5">This is a paragraph that should be
+included if “condition:win” and <parameter>$isthree</parameter> is 5.</para>
+
+<para condition="mac">This is a paragraph that should be
+included if “condition:mac”.</para>
+
+<para condition="$isthree=3;mac">This is a paragraph that should be
+included if “condition:mac” and <parameter>$isthree</parameter> is 3.</para>
+
+<para condition="$thingy=enabled">This is a paragraph that should be
+included if <parameter>$thingy</parameter> is “enabled”.</para>
+
+<para condition="$thingy=&quot;enabled&quot;">This is a paragraph that
+should be included if <parameter>$thingy</parameter> is
+“enabled”.</para>
+
+<para condition="$thingy='disabled'">This is a paragraph that
+should be included if <parameter>$thingy</parameter> is
+“disabled”.</para>
+
+<para xml:id="contradiction" condition="$thingy='enabled';$thingy=disabled"
+>This is a paragraph should be included if
+<parameter>$thingy</parameter> is simultaneously “enabled” and
+“disabled”. Maybe in some future quantum computer, but not here, not
+now.</para>
+
+<para condition="$istrue">This is a paragraph that should be
+included if the effective boolean value of <varname>$istrue</varname>
+is true.</para>
+
+<para condition="$isfalse">This is a paragraph that should be
+included if the effective boolean value of <varname>$isfalse</varname>
+is true.</para>
+
+<para condition="$isempty">This is a paragraph that should be
+included if the effective boolean value of <varname>$isempty</varname>
+is true.</para>
+
+<para condition="$isthree">This is a paragraph that should be
+included if the effective boolean value of <varname>$isthree</varname>
+is true.</para>
+
+<para>This is an ordinary paragraph.</para>
+
+</article>

@@ -1,0 +1,247 @@
+/* style.css */
+
+@media screen {
+    @import url("https://fonts.googleapis.com/css?family=B612+Mono&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
+}
+
+:root {
+    --tng-blue: rgb(11, 0, 89);
+    -moz-osx-font-smoothing: grayscale;
+    max-width: 40rem;
+    background-color: #fffff8;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Noto Serif", serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+h4 { 
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Noto Sans", sans-serif;
+    color: var(--tng-blue);
+}
+
+header {
+    line-height: 1.0;
+}
+
+.fixed {
+    display: table;
+    width: 100%;
+    background-color: #fffff8;
+    opacity: 1;
+}
+
+.scrolled {
+    border-bottom: 3px solid var(--tng-blue);
+}
+
+h1 {
+    display: table-row;
+    font-size: 3.0rem;
+    font-style: italic;
+}
+
+h1 span {
+    display: table-cell;
+    text-align: right;
+    vertical-align: bottom;
+}
+
+h1 .text {
+    text-align: left;
+    vertical-align: bottom;
+}
+
+h1 .logo {
+    text-align: right;
+    margin-top: 0rem;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    margin-top: 0;
+    margin-bottom:0;
+    font-style: italic;
+}
+
+code {
+    font-family: "B612 Mono", monospace;
+}
+
+.logo {
+    max-height: 52px;
+    vertical-align: baseline;
+}
+
+main {
+}
+
+footer {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0;
+    font-size: 0.8rem;
+}
+
+footer hr {
+    max-width: 1in;
+    margin: 0;
+}
+
+a,
+a:visited {
+    color: inherit;
+}
+
+sup a,
+sup a:visited {
+    text-decoration: none;
+}
+
+cite {
+    font-style: italic;
+}
+
+.passing {
+    background-color: #cfffcf;
+}
+
+.failing {
+    background-color: #ffcfcf;
+}
+
+.pending {
+    background-color: #ffffcf;
+}
+
+.figure {
+    border-radius: 0.5em;
+    border: 1px solid #7f7f7f;
+}
+
+.twoup {
+    display: table;
+    border-spacing: 1em;
+}
+
+.twouprow {
+    display: table-row;
+}
+
+.twouprow .figure {
+    display: table-cell;
+    padding-bottom: 1em;
+    
+}
+
+.screenshot {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 85%;
+}
+
+.pgwide img {
+    display: block;
+    margin: auto;
+    max-width: 85%;
+    border: 2px solid #f0f0f0;
+    padding: 1em;
+}
+
+@media screen and (max-width: 1024px) {
+    .twoup {
+        display: block;
+    }
+
+    .twouprow {
+        display: block;
+    }
+
+    .twouprow .figure {
+        display: block;
+    }
+
+    .figure {
+        margin-bottom: 1em;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .logo {
+        max-height: 44px;
+    }
+
+    h1 {
+        font-size: 58px;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .logo {
+        display: none;
+    }
+}

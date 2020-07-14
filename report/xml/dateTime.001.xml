@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: dateTime.001.xml</title>
+</info>
+<para>This article tests the <tag class="pi">current-dateTime</tag>
+processing instruction. (All of the examples use an explicit dateTime
+so that the results are consistent for comparisons.)</para>
+
+<para>The Unix epoch:
+<?current-dateTime dateTime="1970-01-01T00:00:00Z"
+                   format="midnight on [D01] [MNn,*-3] [Y0001]"?>.</para>
+
+<para>One week later:
+<?current-dateTime dateTime="1970-01-01" offset="P7D"
+                   format="[D01] [MNn,*-3] [Y0001]"?>.</para>
+
+<para>One month earlier:
+<?current-dateTime dateTime="1970-01-01T00:00:00Z" offset="-P1M"
+                   format="[D01] [MNn,*-3] [Y0001]"?>.</para>
+
+<para>Lunch at noon three days later:
+<?current-dateTime dateTime="1970-01-01T00:00:00Z" offset="P3DT12H"
+                   format="[D01] [MNn,*-3] [Y0001] at [H01]:[m01]"?>.</para>
+
+</article>

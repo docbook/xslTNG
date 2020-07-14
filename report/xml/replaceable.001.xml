@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Article wrapper</title>
+   <para>Testing <tag>orgname</tag>.</para>
+   <itemizedlist>
+      <listitem>
+         <para>
+            <replaceable>replaceable</replaceable>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <replaceable class="command">command replaceable</replaceable>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <replaceable class="function">function replaceable</replaceable>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <replaceable class="option">option replaceable</replaceable>
+         </para>
+      </listitem>
+      <listitem>
+         <para>
+            <replaceable class="parameter">parameter replaceable</replaceable>
+         </para>
+      </listitem>
+   </itemizedlist>
+</article>

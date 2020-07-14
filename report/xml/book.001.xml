@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" xml:id="book" version="5.0">
+   <info>
+      <title>Unit Test: book.001</title>
+      <authorgroup>
+         <author>
+            <orgname>SomeCorp</orgname>
+         </author>
+         <author>
+            <personname>
+               <firstname>Norman</firstname>
+               <surname>Walsh</surname>
+            </personname>
+            <email>ndw@nwalsh.com</email>
+         </author>
+         <editor>
+            <personname>
+               <firstname>Jane</firstname>
+               <surname>Doe</surname>
+            </personname>
+         </editor>
+      </authorgroup>
+      <legalnotice>
+         <para>Some legal notice. Some legal notice. Some legal notice.
+Some legal notice. Some legal notice. Some legal notice.</para>
+      </legalnotice>
+      <copyright>
+         <year>1998</year>
+         <year>1999</year>
+         <year>2000</year>
+         <year>2001</year>
+         <year>2002</year>
+         <year>2020</year>
+         <holder>Norman Walsh</holder>
+      </copyright>
+      <pubdate>5 May 2020</pubdate>
+      <abstract>
+         <para>Some abstract. Some abstract. Some abstract. Some abstract.</para>
+         <para>Some abstract. Some abstract. Some abstract. Some abstract.
+Some abstract. Some abstract. Some abstract. Some abstract.</para>
+      </abstract>
+      <revhistory>
+         <revision>
+            <revnumber>1.2</revnumber>
+            <date>5 May 2002</date>
+            <authorinitials>ndw</authorinitials>
+            <revremark>Added colophon. Reworked some metadata.</revremark>
+         </revision>
+         <revision>
+            <revnumber>1.1</revnumber>
+            <date>18 Jan 2002</date>
+            <authorinitials>ndw</authorinitials>
+            <revremark>Reworked.</revremark>
+         </revision>
+         <revision>
+            <revnumber>1.0</revnumber>
+            <date>20 Nov 1998</date>
+            <authorinitials>ndw</authorinitials>
+            <revremark>Some remark about the revision</revremark>
+         </revision>
+         <revision>
+            <revnumber>0.9</revnumber>
+            <date>19 Nov 1998</date>
+            <authorinitials>ndw</authorinitials>
+            <revremark>Some remark about the revision</revremark>
+         </revision>
+         <revision>
+            <revnumber>0.4</revnumber>
+            <date>18 Nov 1998</date>
+            <authorinitials>ndw</authorinitials>
+            <revremark>Some remark about the revision</revremark>
+         </revision>
+      </revhistory>
+   </info>
+   <dedication xml:id="ded1">
+      <title>First Dedication</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+      <para>Curabitur pretium tincidunt lacus. Nulla gravida orci a
+      odio. Nullam varius, turpis et commodo pharetra, est eros
+      bibendum elit, nec luctus magna felis sollicitudin mauris.
+      Integer in mauris eu nibh euismod gravida. Duis ac tellus et
+      risus vulputate vehicula. Donec lobortis risus a elit. Etiam
+      tempor. Ut ullamcorper, ligula eu tempor congue, eros est
+      euismod turpis, id tincidunt sapien risus a quam. Maecenas
+      fermentum consequat mi. Donec fermentum. Pellentesque malesuada
+      nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
+      consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
+      felis nisl adipiscing sapien, sed malesuada diam lacus eget
+      erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam
+      consequat. Curabitur augue lorem, dapibus quis, laoreet et,
+      pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
+      feugiat in, orci. In hac habitasse platea dictumst.</para>
+   </dedication>
+   <dedication xml:id="ded2">
+      <para>A second dedication without a title.</para>
+   </dedication>
+   <preface xml:id="forward">
+      <title>Foreword</title>
+      <para>A preface.</para>
+   </preface>
+   <preface xml:id="preface">
+      <title>Preface</title>
+      <para>Another preface.</para>
+   </preface>
+   <part xml:id="partI">
+      <title>Part One Title</title>
+      <partintro xml:id="pIpintro">
+         <title>PartIntro Title</title>
+         <para>Partintro content<footnote>
+               <para>This is a footnote in a partintro.</para>
+            </footnote>.</para>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         <sect1 xml:id="pIpis1">
+            <title>PartIntro Section</title>
+            <para>PartIntros can actually have section content as well.</para>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </sect1>
+      </partintro>
+      <chapter xml:id="chap1">
+         <title>First Chapter</title>
+         <titleabbrev>F. Chap</titleabbrev>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         <section xml:id="c1s1">
+            <title>First Section</title>
+            <titleabbrev>F. Sect</titleabbrev>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+         <section xml:id="c1s2">
+            <title>Second Section</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+         <section xml:id="c1s3">
+            <title>Third Section</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+      </chapter>
+      <chapter xml:id="chap2">
+         <title>Second Chapter</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         <section xml:id="c2s1">
+            <title>First Section</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+         <section xml:id="c2s2">
+            <title>Second Section</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+         <section xml:id="c2s3">
+            <title>Third Section</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+      </chapter>
+   </part>
+   <part xml:id="partII">
+      <title>Appendixes</title>
+      <appendix xml:id="app1">
+         <title>First Appendix</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         <section xml:id="a1s1">
+            <title>First Section</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+         </section>
+      </appendix>
+      <appendix xml:id="app2">
+         <title>Second Appendix</title>
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+      </appendix>
+   </part>
+   <colophon>
+     <title>Colophon</title>
+     <para>This is the colophon.</para>
+   </colophon>
+</book>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+
+<para>Here's a <tag>methodsynopsis</tag> in a <tag>classsynopsis</tag>:</para>
+
+<classsynopsis xml:id="class">
+   <ooclass>
+      <classname>Foo</classname>
+   </ooclass>
+   <methodsynopsis>
+      <modifier>public</modifier>
+      <modifier>static</modifier>
+      <type>double</type>
+      <methodname>getQuote</methodname>
+      <methodparam>
+         <type>String</type>
+         <parameter>symbol</parameter>
+      </methodparam>
+      <methodparam>
+         <type>double</type>
+         <parameter>price</parameter>
+      </methodparam>
+   </methodsynopsis>
+</classsynopsis>
+
+<para>Here's a <tag>methodsynopsis</tag> <emphasis>outside</emphasis>
+a <tag>classsynopsis</tag>:</para>
+
+<methodsynopsis xml:id="method">
+   <modifier>public</modifier>
+   <modifier>static</modifier>
+   <type>double</type>
+   <methodname>getQuote</methodname>
+   <methodparam>
+      <type>String</type>
+      <parameter>symbol</parameter>
+   </methodparam>
+   <methodparam>
+      <type>double</type>
+      <parameter>price</parameter>
+   </methodparam>
+</methodsynopsis>
+
+</article>

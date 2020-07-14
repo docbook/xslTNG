@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Article wrapper</title>
+   <para>This paragraph contains a footnote<footnote>
+         <para>This is a footnote.</para>
+      </footnote>.</para>
+   <table>
+      <title>A table</title>
+      <tgroup cols="3">
+         <tbody>
+            <row>
+               <entry>A Cell<footnoteref linkend="f3"/></entry>
+               <entry>A Cell<footnote xml:id="f1">
+                     <para>First footnote.</para>
+                  </footnote>
+               </entry>
+               <entry>A Cell</entry>
+            </row>
+            <row>
+               <entry>A Cell<footnote xml:id="f2">
+                     <simpara>Second footnote.</simpara>
+                  </footnote>
+               </entry>
+               <entry>A Cell<footnoteref linkend="f2"/></entry>
+               <entry>A Cell</entry>
+            </row>
+            <row>
+               <entry>A Cell</entry>
+               <entry>A Cell</entry>
+               <entry>A Cell<footnoteref linkend="f1"/><footnote xml:id="f3">
+                     <address>100 Any Street
+East Yahoo, XX</address>
+                  </footnote>
+               </entry>
+            </row>
+         </tbody>
+      </tgroup>
+   </table>
+   <para xml:id="p1">This is a longer paragraph.
+It will eventually contain a footnote, but first
+it has enough text to make the footnote appear in the middle of the paragraph.
+This is so we can test the effect of changing the
+<property>line-height-shift-adjustment</property> property. This paragraph
+contains a footnote<footnote xml:id="pf1">
+         <para>This is a footnote.</para>
+      </footnote> (see, I said it would).
+Now it has more text to make the footnote appear in the middle of the paragraph.
+Now it has more text to make the footnote appear in the middle of the paragraph.
+</para>
+   <para>This paragraph contains a footnoteref<footnoteref linkend="pf1"/>
+to the footnote in the <link linkend="p1">preceding paragraph</link>.
+</para>
+</article>

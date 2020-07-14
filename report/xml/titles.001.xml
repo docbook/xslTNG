@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+<info xmlns:v="http://docbook.org/ns/docbook/variables"
+      xmlns:db="http://docbook.org/ns/docbook">
+<title>Unit Test: titles.001.xml</title>
+<abstract xml:id="abstract">
+<title>An abstract</title>
+<para>…</para>
+</abstract>
+</info>
+
+<!--
+<article xml:id="article">
+<title>article</title>
+<para>...</para>
+</article>
+
+<indexdiv xml:id="indexdiv">
+<title>indexdiv</title>
+<para>...</para>
+</indexdiv>
+
+<legalnotice xml:id="legalnotice">
+<title>legalnotice</title>
+<para>...</para>
+</legalnotice>
+
+<reference xml:id="reference">
+<title>reference</title>
+<para>...</para>
+</reference>
+
+<refsect1 xml:id="refsect1">
+<title>refsect1</title>
+<para>...</para>
+</refsect1>
+
+<refsect2 xml:id="refsect2">
+<title>refsect2</title>
+<para>...</para>
+</refsect2>
+
+<refsect3 xml:id="refsect3">
+<title>refsect3</title>
+<para>...</para>
+</refsect3>
+
+<refsection xml:id="refsection">
+<title>refsection</title>
+<para>...</para>
+</refsection>
+
+<refsynopsisdiv xml:id="refsynopsisdiv">
+<title>refsynopsisdiv</title>
+<para>...</para>
+</refsynopsisdiv>
+
+<revhistory xml:id="revhistory">
+<title>revhistory</title>
+<para>...</para>
+</revhistory>
+
+<set xml:id="set">
+<title>set</title>
+<para>...</para>
+</set>
+
+<setindex xml:id="setindex">
+<title>setindex</title>
+<para>...</para>
+</setindex>
+
+<task xml:id="task">
+<title>task</title>
+<para>...</para>
+</task>
+
+<taskprerequisites xml:id="taskprerequisites">
+<title>taskprerequisites</title>
+<para>...</para>
+</taskprerequisites>
+
+<taskrelated xml:id="taskrelated">
+<title>taskrelated</title>
+<para>...</para>
+</taskrelated>
+
+<tasksummary xml:id="tasksummary">
+<title>tasksummary</title>
+<para>...</para>
+</tasksummary>
+
+<topic xml:id="topic">
+<title>topic</title>
+<para>...</para>
+</topic>
+--> 
+
+<dedication xml:id="dedication">
+<title>The Dedication</title>
+
+<para>book:                 <xref linkend="book"/></para>
+<para>abstract:             <xref linkend="abstract"/></para>
+<para>dedication:           <xref linkend="dedication"/></para>
+<para>preface:              <xref linkend="preface"/></para>
+<para>preface-section:      <xref linkend="preface-section"/></para>
+<para>simplesect:           <xref linkend="simplesect"/></para>
+<para>part:                 <xref linkend="part"/></para>
+<para>partintro:            <xref linkend="partintro"/></para>
+<para>ch1:                  <xref linkend="ch1"/></para>
+<para>sidebar:              <xref linkend="sidebar"/></para>
+<para>blockquote:           <xref linkend="blockquote"/></para>
+<para>fig:                  <xref linkend="fig"/></para>
+<para>ex:                   <xref linkend="ex"/></para>
+<para>table:                <xref linkend="table"/></para>
+<para>eq:                   <xref linkend="eq"/></para>
+<para>procedure:            <xref linkend="procedure"/></para>
+<para>step2:                <xref linkend="step2"/></para>
+<para>step3:                <xref linkend="step3"/></para>
+<para>subsubstep:           <xref linkend="subsubstep"/></para>
+<para>screenshot:           <xref linkend="screenshot"/></para>
+<para>formal:               <xref linkend="formal"/></para>
+<para>subfig2:              <xref linkend="subfig2"/></para>
+<para>ch2:                  <xref linkend="ch2"/></para>
+<para>ch2.1:                <xref linkend="ch2.1"/></para>
+<para>ch2.1.1:              <xref linkend="ch2.1.1"/></para>
+<para>ch2.1.2:              <xref linkend="ch2.1.2"/></para>
+<para>ch3:                  <xref linkend="ch3"/></para>
+<para>chlists:              <xref linkend="chlists"/></para>
+<para>itemizedlist:         <xref linkend="itemizedlist"/></para>
+<para>orderedlist:          <xref linkend="orderedlist"/></para>
+<para>o1:                   <xref linkend="o1"/></para>
+<para>o1.1:                 <xref linkend="o1.1"/></para>
+<para>variablelist:         <xref linkend="variablelist"/></para>
+<para>vli:                  <xref linkend="vli"/></para>
+<para>first:                <xref linkend="first"/></para>
+<para>note:                 <xref linkend="note"/></para>
+<para>tip:                  <xref linkend="tip"/></para>
+<para>important:            <xref linkend="important"/></para>
+<para>caution:              <xref linkend="caution"/></para>
+<para>warning:              <xref linkend="warning"/></para>
+<para>danger:               <xref linkend="danger"/></para>
+<para>set1:                 <xref linkend="set1"/></para>
+<para>ebnf.mult:            <xref linkend="ebnf.mult"/></para>
+<para>set2:                 <xref linkend="set2"/></para>
+<para>ebnf.expression:      <xref linkend="ebnf.expression"/></para>
+<para>ebnf.arith:           <xref linkend="ebnf.arith"/></para>
+<para>ebnf.number:          <xref linkend="ebnf.number"/></para>
+<para>div0:                 <xref linkend="div0"/></para>
+<para>qandaset:             <xref linkend="qandaset"/></para>
+<para>qandadiv:             <xref linkend="qandadiv"/></para>
+<para>qandaentry:           <xref linkend="qandaentry"/></para>
+<para>question:             <xref linkend="question"/></para>
+<para>answer:               <xref linkend="answer"/></para>
+<para>app:                  <xref linkend="app"/></para>
+<para>app2:                 <xref linkend="app2"/></para>
+<para>bibliolist:           <xref linkend="bibliolist"/></para>
+<para>bibliomixed:          <xref linkend="bibliomixed"/></para>
+<para>glosslist:            <xref linkend="glosslist"/></para>
+<para>bibliography:         <xref linkend="bibliography"/></para>
+<para>bibliodiv:            <xref linkend="bibliodiv"/></para>
+<para>bibliomixed2:         <xref linkend="bibliomixed2"/></para>
+<para>glossary:             <xref linkend="glossary"/></para>
+<para>glossdiv:             <xref linkend="glossdiv"/></para>
+<para>index:                <xref linkend="index"/></para>
+<para>acknowledgements:     <xref linkend="acknowledgements"/></para>
+<para>colophon:             <xref linkend="colophon"/></para>
+
+</dedication>
+
+<preface xml:id="preface">
+<title>Preface</title>
+
+<para>See the <xref linkend="preface"/>.</para>
+<para>See the <xref linkend="preface-section"/>.</para>
+<para>See <xref linkend="ch1"/>.</para>
+<para>See <xref linkend="ch2"/>.</para>
+<para>See <xref linkend="app"/>.</para>
+
+<section xml:id="preface-section">
+<title>First Section</title>
+
+<para>See <xref linkend="fig"/>.</para>
+<para>See <xref linkend="ex"/>.</para>
+<para>See <xref linkend="table"/>.</para>
+<para>See <xref linkend="eq"/>.</para>
+
+<simplesect xml:id="simplesect">
+<title>A simplesect</title>
+<para>…</para>
+</simplesect>
+</section>
+</preface>
+
+<part xml:id="part">
+<title>The Main Part</title>
+<partintro xml:id="partintro">
+<title>The part intro</title>
+<para>…</para>
+</partintro>
+
+<chapter xml:id="ch1">
+<title>One<indexterm><primary>one</primary>
+</indexterm> <link xlink:href="https://nwalsh.com/">link</link></title>
+
+<sidebar xml:id="sidebar">
+<title>A sidebar</title>
+<para>...</para>
+</sidebar>
+
+<blockquote xml:id="blockquote">
+<title>A Blockquote</title>
+<para>…</para>
+</blockquote>
+
+<formalpara>
+<title>A Formal Paragraph</title>
+<para>…</para>
+</formalpara>
+
+<figure xml:id="fig">
+<title>Figure</title>
+<para>…</para>
+</figure>
+
+<example xml:id="ex">
+<title>Example</title>
+<para>…</para>
+</example>
+
+<table xml:id="table">
+<title>Table</title>
+<tgroup cols="2">
+<tbody>
+<row><entry>1</entry><entry>3</entry></row>
+<row><entry>2</entry><entry>4</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+<equation xml:id="eq">
+<title>Equation</title>
+<mathphrase>x<superscript>n</superscript>
++ y<superscript>n</superscript>
+≠ z<superscript>n</superscript>
+∀ n ≠ 2</mathphrase>
+</equation>
+
+<procedure xml:id="procedure">
+<title>Procedure</title>
+<step><para>First</para></step>
+<step xml:id="step2">
+<para>Second</para>
+<substeps>
+<step>
+<para>Substep</para>
+<substeps>
+<step xml:id="subsubstep">
+<para>Sub-substep
+</para>
+</step>
+</substeps>
+</step>
+</substeps>
+</step>
+<step xml:id="step3">
+<title>Third step</title>
+<para>…</para>
+</step>
+</procedure>
+
+<screenshot xml:id="screenshot">
+<title>screenshot</title>
+<mediaobject>
+<textobject>
+<para>…</para>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<formalgroup xml:id="formal">
+<title>Formal group</title>
+<figure>
+<title>First subfigure</title>
+<para>…</para>
+</figure>
+<figure xml:id="subfig2">
+<title>Second subfigure</title>
+<para>…</para>
+</figure>
+<figure>
+<title>Third subfigure</title>
+<para>…</para>
+</figure>
+</formalgroup>
+
+</chapter>
+
+<chapter xml:id="ch2">
+<title>Two<indexterm><primary>one</primary>
+</indexterm><footnote><para>Yeah, really.</para></footnote></title>
+
+<section xml:id="ch2.1">
+<title>One</title>
+<section xml:id="ch2.1.1">
+<title>One Dot One</title>
+<para/>
+</section>
+<section xml:id="ch2.1.2">
+<title>One Dot Two</title>
+<para/>
+</section>
+</section>
+</chapter>
+
+<chapter xml:id="ch3">
+<title>Three</title>
+<para>…</para>
+<sect1>
+<title>A sect1</title>
+<para>…</para>
+<sect2>
+<title>A sect2</title>
+<para>…</para>
+<sect3>
+<title>A sect3</title>
+<para>…</para>
+<sect4>
+<title>A sect4</title>
+<para>…</para>
+<sect5>
+<title>A sect5</title>
+<para>…</para>
+</sect5>
+</sect4>
+</sect3>
+</sect2>
+</sect1>
+</chapter>
+
+
+<chapter xml:id="chlists">
+<title>Lists chapter</title>
+
+<itemizedlist xml:id="itemizedlist">
+<title>An itemized list</title>
+<listitem xml:id="i1">
+<para>…</para>
+</listitem>
+</itemizedlist>
+
+<orderedlist xml:id="orderedlist">
+<title>An ordered list</title>
+<listitem xml:id="o1">
+<para>…</para>
+<orderedlist>
+<title>A nested ordered list</title>
+<listitem xml:id="o1.1">
+<para>…</para>
+</listitem>
+</orderedlist>
+</listitem>
+</orderedlist>
+
+<variablelist xml:id="variablelist">
+<title>A variable list</title>
+<varlistentry xml:id="vli">
+<term>Term</term>
+<listitem>
+<para>...</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+   <segmentedlist>
+      <?db segmentedlist-style='list'?>
+      <title>State Capitals</title>
+      <segtitle>State</segtitle>
+      <segtitle>Capital</segtitle>
+      <seglistitem>
+         <seg>Alabama</seg>
+         <seg>Montgomery</seg>
+      </seglistitem>
+      <seglistitem>
+         <seg>Alaska</seg>
+         <seg>Anchorage</seg>
+      </seglistitem>
+      <seglistitem>
+         <seg>Arkansas</seg>
+         <seg>Little Rock</seg>
+      </seglistitem>
+   </segmentedlist>
+
+<programlistingco>
+  <areaspec>
+    <area xml:id="first" coords="1 5">
+      <alt>The first line</alt>
+    </area>
+  </areaspec>
+  <programlisting>The first line
+The second line
+The third line</programlisting>
+<calloutlist>
+  <info>
+    <title>Calloutlist</title>
+  </info>
+  <callout arearefs="first">
+    <para>The first line.</para>
+  </callout>
+</calloutlist>
+</programlistingco>
+</chapter>
+
+<chapter>
+<title>Admonitions</title>
+
+<note xml:id="note">
+  <title>Note</title>
+  <para>This note has a title.</para>
+</note>
+
+
+
+<tip xml:id="tip">
+  <title>Tip</title>
+  <para>This tip has a title.</para>
+</tip>
+
+<important xml:id="important">
+  <title>Important</title>
+  <para>This important has a title.</para>
+</important>
+
+<caution xml:id="caution">
+  <title>Caution</title>
+  <para>This caution has a title.</para>
+</caution>
+
+<warning xml:id="warning">
+  <title>Warning</title>
+  <para>This warning has a title.</para>
+</warning>
+
+<danger xml:id="danger">
+  <title>Danger</title>
+  <para>This danger has a title.</para>
+</danger>
+</chapter>
+
+<chapter>
+<title>Productions</title>
+
+<productionset xml:id="set1">
+<title>First production set</title>
+<production xml:id="ebnf.mult">
+  <lhs>MultExpression</lhs>
+  <rhs><nonterminal def="#ebnf.mult">MultExpression</nonterminal>
+       '*'
+       <nonterminal def="#ebnf.mult">MultExpression</nonterminal> <sbr/>|
+       <nonterminal def="#ebnf.mult">MultExpression</nonterminal>
+       '/'
+       <nonterminal def="#ebnf.mult">MultExpression</nonterminal> <sbr/>|
+       <nonterminal def="#ebnf.number">Number</nonterminal>
+  </rhs>
+  <constraint linkend="div0"/>
+</production>
+</productionset>
+
+<para>The full grammar follows:</para>
+
+<productionset xml:id="set2">
+<title>Arithemetic Expressions</title>
+<production xml:id="ebnf.expression">
+  <lhs>Expression</lhs>
+  <rhs><nonterminal def="#ebnf.arith">ArithExpression</nonterminal> |
+       <nonterminal def="#ebnf.mult">MultExpression</nonterminal>
+  </rhs>
+  <rhs>Second RHS for testing.
+  <lineannotation>/* This isn’t grammatical! */</lineannotation></rhs>
+</production>
+<production xml:id="ebnf.arith">
+  <lhs>ArithExpression</lhs>
+  <rhs><nonterminal def="#ebnf.expression">Expression</nonterminal>
+       '+'
+       <nonterminal def="#ebnf.mult">MultExpression</nonterminal> |
+       <nonterminal def="#ebnf.expression">Expression</nonterminal>
+       '-'
+       <nonterminal def="#ebnf.mult">MultExpression</nonterminal>
+  </rhs>
+</production>
+<productionrecap linkend="ebnf.mult"/>
+<production xml:id="ebnf.number">
+  <lhs>Number</lhs>
+  <rhs>[0-9]+</rhs>
+</production>
+</productionset>
+
+<constraintdef xml:id="div0">
+<title>Division by Zero</title>
+<para>Division by zero is an error.</para>
+</constraintdef>
+</chapter>
+
+<chapter>
+<title>Q&amp;A</title>
+
+<qandaset defaultlabel="number" xml:id="qandaset">
+<title>QandAset</title>
+<qandadiv xml:id="qandadiv">
+<title>QandAdiv</title>
+<qandaentry xml:id="qandaentry">
+<title>QandAantry</title>
+<question xml:id="question">
+<para>Question one.</para>
+</question>
+<answer xml:id="answer">
+<para>Answer one.
+</para>
+</answer>
+</qandaentry>
+</qandadiv>
+</qandaset>
+</chapter>
+</part>
+
+<appendix xml:id="app">
+<title>Appendix</title>
+<para>…</para>
+</appendix>
+
+<appendix xml:id="app2">
+<title>Appendix Two</title>
+<bibliolist xml:id="bibliolist">
+<title>bibliolist</title>
+<bibliomixed xml:id="bibliomixed">a bibliomixed</bibliomixed>
+</bibliolist>
+<glosslist xml:id="glosslist">
+<title>Gloss list</title>
+<glossentry>
+<glossterm>Thing</glossterm>
+<glossdef>
+<para>…</para>
+</glossdef>
+</glossentry>
+</glosslist>
+</appendix>
+
+<bibliography xml:id="bibliography">
+<title>Bibliography</title>
+<bibliodiv xml:id="bibliodiv">
+<title>Bibliography division</title>
+<bibliomixed xml:id="bibliomixed2">a bibliomixed</bibliomixed>
+</bibliodiv>
+</bibliography>
+
+<glossary xml:id="glossary">
+<title>Glossary</title>
+<glossdiv xml:id="glossdiv">
+<title>Glossary division</title>
+<glossentry>
+<glossterm>Thing</glossterm>
+<glossdef>
+<para>…</para>
+</glossdef>
+</glossentry>
+</glossdiv>
+</glossary>
+
+<index xml:id="index">
+<title>Index</title>
+</index>
+
+<acknowledgements xml:id="acknowledgements">
+<title>Acknowledgements</title>
+<para>…</para>
+</acknowledgements>
+
+<colophon xml:id="colophon">
+<title>Colophon</title>
+<para>…</para>
+</colophon>
+
+</book>

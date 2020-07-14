@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<title>Unit Test: guiicon.001</title>
+</info>
+
+<para>This example is from <citetitle>DocBook: The Definitive Guide</citetitle>.
+It isn’t supposed to make a whole lot of sense in this context.</para>
+
+<example>
+<title>An example of a <tag>guiicon</tag> with an <tag>inlinemediaobject</tag></title>
+<para>The exact text of the <guilabel>Legend</guilabel> and other labels on the
+graph is dependent upon the language of the current locale.  Likewise,
+the text of the <guibutton>OK</guibutton> button and other buttons may vary.
+The <guiicon><inlinemediaobject>
+<imageobject>
+<imagedata fileref="../media/db5d_reficon01.png"/>
+</imageobject>
+</inlinemediaobject></guiicon>
+icon and the other icons on the left side of the display may be
+configured by the local administrator, but they are not
+generally expected to vary from locale to locale.
+</para>
+</example>
+
+</article>

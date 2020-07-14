@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<title>Unit Test: bibliolist.004</title>
+</info>
+
+<para>More examples cribbed from <citetitle>The Definitive Guide</citetitle>.
+</para>
+
+<section xml:id="res-books">
+<info>
+<title>Books and Printed Resources</title></info>
+
+<bibliolist>
+<bibliomixed xml:id="Fitz04"><abbrev>Fitz04</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Fitzgerald</surname>
+
+<firstname>Michael</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle>XML Hacks:</citetitle> <subtitle>100
+Industrial-Strength Tips and Tools</subtitle>. <address>Sebastopol, CA</address>:<publishername>O’Reilly</publishername>,
+<pubdate>July 2004</pubdate>, ISBN: <biblioid class="isbn">978-0596007119</biblioid>. </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Harold03"><abbrev>Harold03</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Harold</surname>
+
+<firstname>Elliotte</firstname>
+
+<othername>Rusty</othername>
+</personname>
+</author>
+</authorgroup>. <citetitle>Effective XML:</citetitle> <subtitle>50 Specific
+Ways to Improve Your XML</subtitle>. <address>Boston</address>:<publishername>Addison-Wesley</publishername>,
+<pubdate>October 2003</pubdate>, ISBN: <biblioid class="isbn">978-0321150400</biblioid>. </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Harold04"><abbrev>Harold04</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Harold</surname>
+
+<firstname>Elliotte</firstname>
+
+<othername>Rusty</othername>
+</personname>
+</author>
+
+<author>
+<personname>
+<surname>Means</surname>
+
+<firstname role="orm:initial">W</firstname>
+
+<othername>Scott</othername>
+</personname>
+</author>
+</authorgroup>. <citetitle>XML in a Nutshell</citetitle>. <address>Sebastopol, CA</address>:<publishername>O’Reilly</publishername>,
+<pubdate>October 2003</pubdate>, ISBN: <biblioid class="isbn">978-0596007645</biblioid>. </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Kay08"><abbrev>Kay08</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Kay</surname>
+
+<firstname>Michael</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle>XSLT 2.0 and XPath 2.0 Programmer’s
+Reference</citetitle>. <address>Indianapolis, IN</address>:<publishername>Wrox</publishername>,
+<pubdate>May 2008</pubdate>, ISBN: <biblioid class="isbn">978-0470192740</biblioid>. </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Maler95"><abbrev>Maler95</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Maler</surname>
+
+<firstname>Eve</firstname>
+</personname>
+</author>
+
+<author>
+<personname>
+<surname>El Andaloussi</surname>
+
+<firstname>Jeanne</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle>Developing SGML DTDs</citetitle>: <subtitle>From
+Text to Model to Markup</subtitle>. <publishername>Prentice
+Hall</publishername>, <pubdate>December 1995</pubdate>, ISBN: <biblioid class="isbn">978-0596004200</biblioid>. <bibliomisc>This book is out of
+print. However, the information on document schema modeling is still
+relevant and has not been superseded to date. Although the book is out
+of print, the authors have made an online version available at:
+</bibliomisc> <bibliosource xlink:href="https://www.xmlgrrl.com/publications/DSDTD/index.html">https://www.xmlgrrl.com/publications/DSDTD/index.html</bibliosource>.
+</bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Ray03"><abbrev>Ray03</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Ray</surname>
+
+<firstname>Erik</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle>Learning XML</citetitle>. <edition>Second
+Edition</edition>, <address>Sebastopol, CA</address>:<publishername>O’Reilly</publishername>,
+<pubdate>September 2003</pubdate>, ISBN: <biblioid class="isbn">978-0596004200</biblioid>. </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Stayton07"><abbrev>Stayton07</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Stayton</surname>
+
+<firstname>Bob</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle>DocBook XSL: The Complete Guide</citetitle>. Fourth
+Edition, <publisher>
+<publishername>Sagehill Enterprises</publishername>
+</publisher>, <pubdate>2007</pubdate>, ISBN: <biblioid class="isbn">978-0974152134</biblioid>. <bibliomisc>The essential guide
+to the DocBook XSL stylesheets.</bibliomisc> </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="Tidwell08"><abbrev>Tidwell08</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>Tidwell</surname>
+
+<firstname>Doug</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle><acronym>XSLT</acronym></citetitle>.
+<edition>Second Edition</edition>, <address>Sebastopol, CA</address>:<publishername>O’Reilly</publishername>,
+<pubdate>June 2008</pubdate>, ISBN: <biblioid class="isbn">978-0596527211</biblioid>. </bibliomset></bibliomixed>
+
+<bibliomixed xml:id="VLIST03"><abbrev>Vlist03</abbrev> <bibliomset relation="book"><authorgroup>
+<author>
+<personname>
+<surname>van der Vlist</surname>
+
+<firstname>Eric</firstname>
+</personname>
+</author>
+</authorgroup>. <citetitle>RELAX NG</citetitle>. <address>Sebastopol, CA</address>:<publishername>O’Reilly</publishername>,
+<pubdate>July 2003</pubdate>, ISBN: <biblioid class="isbn">978-0596004217</biblioid>. </bibliomset></bibliomixed>
+</bibliolist>
+</section>
+</article>

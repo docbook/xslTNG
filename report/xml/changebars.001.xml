@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: changebars.001</title>
+
+<para>This article tests change bars.</para>
+
+<section>
+<title>Change bars displayed</title>
+<para revisionflag="added">This paragraph was added.</para>
+<para revisionflag="deleted">This paragraph was deleted.</para>
+<para>This paragraph contains
+<phrase revisionflag="changed">changed</phrase><phrase revisionflag="deleted">,</phrase>
+<phrase revisionflag="added">and </phrase>
+added<phrase revisionflag="deleted">, and deleted</phrase> inlines.</para>
+</section>
+
+<section revisionflag="off">
+<title>Change bars suppressed</title>
+<para revisionflag="added">This paragraph was added.</para>
+<para revisionflag="deleted">This paragraph was deleted.</para>
+<para>This paragraph contains
+<phrase revisionflag="changed">changed</phrase><phrase revisionflag="deleted">,</phrase>
+<phrase revisionflag="added">and </phrase>
+added<phrase revisionflag="deleted">, and deleted</phrase> inlines.</para>
+</section>
+</article>

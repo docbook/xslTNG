@@ -1,0 +1,218 @@
+/* DocBook xslTNG version 0.9.5
+ *
+ * This is docbook-screen.css.
+ *
+ * See https://xsltng.docbook.org/
+ *
+ */
+
+@media screen {
+    @import url("https://fonts.googleapis.com/css?family=B612+Mono&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+    @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
+}
+
+:root {
+    background-color: #fffff8;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    line-height: 1.75rem;
+    font-size: 13.5pt;
+    scroll-padding-top: 40px;
+}
+
+body {
+    min-height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 100%;
+}
+
+main,
+footer {
+    width: 100%;
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+main {
+    padding-top: 3rem;
+}
+
+.book + .book {
+    border-top: 4px solid #abcdef;
+    margin-top: 6em;
+    padding-top: 6em;
+}
+
+.refentry + .refentry {
+    border-top: 4px solid #abcdef;
+    margin-top: 6em;
+    padding-top: 6em;
+}
+
+.book > .dedication > header,
+.article > .dedication > header,
+.book .chapter > header,
+.book .preface > header,
+.book .appendix > header,
+.book .part > header {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 0.25rem solid var(--border-grey);
+}
+
+.dedication + .dedication > header {
+    border-top: inherit;
+}
+
+.colophon {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+    border: 1px solid var(--border-grey);
+    border-radius: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+}
+
+.set header h1,
+.book header h1 {
+    text-align: center;
+}
+
+.footnotes {
+    margin-top: 2em;
+}
+
+.footnotes div.footnote-number {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0;
+    margin-left: -0.75rem;
+    margin-top: 0.5rem;
+    vertical-align: top;
+}
+
+.footnotes div.footnote-body {
+    display: inline-block;
+}
+
+.footnotes .footnote {
+    margin-left: 0.75rem;
+}
+
+.footnote p {
+    margin-bottom: 0;
+}
+
+.footnotes hr {
+    max-width: 1in;
+    margin: 0;
+}
+
+.calloutlist dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+.calloutlist dl dt {
+    float: none;
+    width: inherit;
+    grid-column-start: 1;
+}
+
+.calloutlist dl dd {
+    margin-left: 1em;
+    grid-column-start: 2;
+}
+
+/* ============================================================ */
+
+nav table td.previous {
+    text-align: left;
+}
+
+nav table td.up {
+    text-align: center;
+}
+
+nav table td.next {
+    text-align: right;
+}
+
+nav.bottom {
+    background-color: var(--nav-background-color);
+}
+
+nav.bottom table {
+    border-top: 2px solid var(--border-grey);
+    margin-bottom: 1rem;
+}
+
+nav.bottom table .previous {
+    padding-left: 4rem;
+}
+
+nav.bottom table .next {
+    padding-right: 4rem;
+}
+
+nav.top {
+    position: fixed;
+    width: 100%;
+    background-color: var(--nav-background-color);
+    opacity: 1;
+}
+
+body.home nav.top {
+    display: none;
+}
+
+nav.top div {
+    border-bottom: 1px solid var(--border-grey);
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+@media screen and (max-width: 1199px) {
+    nav.top div {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    nav.bottom table .previous {
+        padding-left: 2rem;
+    }
+
+    nav.bottom table .next {
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    nav.top div {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    nav.bottom table .previous {
+        padding-left: 1rem;
+    }
+
+    nav.bottom table .next {
+        padding-right: 1rem;
+    }
+}

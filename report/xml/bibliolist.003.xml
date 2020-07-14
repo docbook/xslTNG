@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<title>Unit Test: bibliolist.003</title>
+</info>
+
+<para>More examples cribbed from <citetitle>The Definitive Guide</citetitle>.
+</para>
+
+<section xml:id="res-web">
+<info>
+<title>References and Technical Notes on the Web</title></info>
+
+<bibliolist>
+<bibliomixed xml:id="XML-CAT"><abbrev>XML-CAT</abbrev
+><bibliomset relation="standard"><authorgroup>
+<editor>
+<personname>
+<surname>Walsh</surname>
+<firstname>Norman<indexterm>
+<primary>XML catalogs</primary>
+<secondary>OASIS standard</secondary>
+</indexterm><indexterm>
+<primary>standards</primary>
+<secondary>OASIS XML catalogs</secondary>
+</indexterm></firstname>
+</personname>
+</editor>
+</authorgroup>, ed. <citetitle><acronym>XML</acronym> Catalogs: OASIS
+Standard V1.1</citetitle>. Organization for the Advancement of Structured
+Information Standards (OASIS), <pubdate>2005-10-07</pubdate>,
+<bibliosource xlink:href="https://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html">https://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html</bibliosource>.
+</bibliomset></bibliomixed>
+
+<bibliomixed xml:id="CALS"><abbrev>CALS</abbrev
+><bibliomset relation="standard"><authorgroup>
+<author>
+<personname>
+<surname>Severson</surname>
+<firstname>Eric<indexterm>
+<primary>standards</primary>
+<secondary>OASIS CALS tables</secondary>
+</indexterm><indexterm>
+<primary>CALS tables</primary>
+<secondary>OASIS standard</secondary>
+</indexterm></firstname>
+</personname>
+</author>
+<author>
+<personname>
+<surname>Bingham</surname>
+<firstname>Harvey</firstname>
+</personname>
+</author>
+</authorgroup>, ed. <citetitle>Table Interoperability: Issues for the
+<acronym>CALS</acronym> Table Model</citetitle>. Organization for the
+Advancement of Structured Information Standards (OASIS),
+<pubdate>1995-11-21</pubdate>, <bibliomisc>OASIS Technical Research Paper
+9501:1995</bibliomisc>,
+<bibliosource xlink:href="https://www.oasis-open.org/html/a501.htm">https://www.oasis-open.org/html/a501.htm</bibliosource>.
+</bibliomset></bibliomixed>
+
+<bibliomixed xml:id="calsdtd"><abbrev>calsdtd</abbrev
+><bibliomset relation="standard"><authorgroup>
+<author>
+<personname>
+<surname>Bingham</surname>
+<firstname>Harvey<indexterm>
+<primary>standards</primary>
+<secondary>CALS table model</secondary>
+</indexterm><indexterm>
+<primary>CALS tables</primary>
+<secondary>table model</secondary>
+</indexterm></firstname>
+</personname>
+</author>
+</authorgroup>, ed. <citetitle><acronym>CALS</acronym> Table Model
+Document Type Definition</citetitle>. Organization for the Advancement of
+Structured Information Standards (OASIS), <pubdate>1995-10-19</pubdate>,
+<bibliomisc>OASIS Technical Memorandum TM 9502:1995</bibliomisc>,
+<bibliosource xlink:href="https://www.oasis-open.org/html/a502.htm">https://www.oasis-open.org/html/a502.htm</bibliosource>.
+</bibliomset></bibliomixed>
+
+<bibliomixed xml:id="cals-xchg"><abbrev>cals-xchg</abbrev> <bibliomset relation="standard"><authorgroup>
+<author>
+<personname>
+<surname>Bingham</surname>
+<firstname>Harvey</firstname>
+</personname>
+</author>
+</authorgroup>, ed. <citetitle>Exchange Table Model Document Type
+Definition</citetitle>. Organization for the Advancement of Structured
+Information Standards (OASIS), <pubdate>1996-05-08</pubdate>,
+<bibliomisc>OASIS Technical Resolution TR 9503:1995</bibliomisc>,
+<bibliosource xlink:href="https://www.oasis-open.org/specs/a503.htm">https://www.oasis-open.org/specs/a503.htm</bibliosource>.
+</bibliomset></bibliomixed>
+
+<bibliomixed xml:id="TGN"><bibliomset relation="standard"
+><citetitle>Thesaurus of Geographic
+Names Online</citetitle>. J. Paul Getty Trust, <bibliosource xlink:href="https://www.getty.edu/research/tools/vocabulary/tgn">https://www.getty.edu/research/tools/vocabulary/tgn</bibliosource>.
+</bibliomset></bibliomixed>
+</bibliolist>
+</section>
+</article>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<informaltable xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e1268" frame="all">
+         <tgroup cols="4" colsep="1" rowsep="1" align="center">
+            <colspec colname="one" align="center"/>
+            <colspec colname="two" align="center"/>
+            <colspec colname="three" align="center"/>
+            <colspec colname="four" align="center"/>
+            <spanspec namest="two" nameend="four" spanname="thespan" align="right"/>
+            <tbody>
+               <row>
+                  <entry>A</entry>
+                  <entry>B</entry>
+                  <entry>C</entry>
+                  <entry>D</entry>
+               </row>
+               <row>
+                  <entry>E</entry>
+                  <entry spanname="thespan">F</entry>
+               </row>
+            </tbody>
+         </tgroup>
+      </informaltable>

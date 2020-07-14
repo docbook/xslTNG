@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+
+<para>This is a procedure.</para>
+
+<procedure>
+  <step>
+    <para>First step.</para>
+  </step>
+  <step>
+    <para>Seconds step.</para>
+  </step>
+  <step>
+    <para>Third step.</para>
+  </step>
+</procedure>
+
+<para>This is a procedure with a designated result.</para>
+
+<procedure>
+  <step>
+    <para>First step.</para>
+  </step>
+  <step>
+    <para>Seconds step.</para>
+  </step>
+  <step>
+    <para>Third step.</para>
+  </step>
+  <result>
+    <para>This is the expected result of the procedure: nothing happens.</para>
+  </result>
+</procedure>
+
+</article>
