@@ -18,6 +18,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
+            - "cc:ad:40:0f:66:d9:d9:ae:7b:48:6e:65:9f:e6:ac:be"
             - "c9:3f:d7:23:7a:36:05:cf:f2:ad:08:68:0b:16:57:4b"
 
       - run: python3 -m pip install pygments==2.6.1 click
