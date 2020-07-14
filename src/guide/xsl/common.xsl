@@ -122,20 +122,6 @@
         </div>
       </div>
     </div>
-    <span class="todo">
-      <xsl:variable name="unfinished"
-                    select="count(//db:refentry[db:refnamediv/db:refpurpose='…'])"/>
-      <xsl:variable name="total"
-                    select="count(//db:refentry)"/>
-
-      <xsl:text>(</xsl:text>
-      <xsl:sequence select="$total - $unfinished"/>
-      <xsl:text> of </xsl:text>
-      <xsl:sequence select="$total"/>
-      <xsl:text> reference pages written: </xsl:text>
-      <xsl:sequence select="format-number(($total - $unfinished) div $total, '#.#%')"/>
-      <xsl:text> done.)</xsl:text>
-    </span>
   </header>
 </xsl:template>
 
