@@ -9,7 +9,7 @@
 :root {
     --tng-blue: rgb(11, 0, 89);
     -moz-osx-font-smoothing: grayscale;
-    max-width: 40rem;
+    max-width: 40em;
     background-color: #fffff8;
 }
 
@@ -23,20 +23,20 @@ html {
     margin-left: auto;
     margin-right: auto;
     font-family: "Noto Serif", serif;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     line-height: 1.5;
 }
 
 body {
     padding-top: 0;
     padding-bottom: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1em;
+    padding-right: 1em;
     margin-top: 0;
     margin-bottom: 0;
     min-height: 100%;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 1em;
+    margin-right: 1em;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
@@ -44,25 +44,25 @@ body {
 
 h1 {
     font-weight: 800;
-    font-size: 2.2rem;
+    font-size: 2.2em;
     line-height: 1;
 }
 
 h2 {
     font-weight: 600;
-    font-size: 1.7rem;
+    font-size: 1.7em;
     line-height: 1;
 }
 
 h3 {
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     line-height: 1;
 }
 
 h4 { 
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1;
 }
 
@@ -88,7 +88,7 @@ header {
 
 h1 {
     display: table-row;
-    font-size: 3.0rem;
+    font-size: 3.0em;
     font-style: italic;
 }
 
@@ -105,7 +105,7 @@ h1 .text {
 
 h1 .logo {
     text-align: right;
-    margin-top: 0rem;
+    margin-top: 0em;
 }
 
 h1 {
@@ -132,10 +132,10 @@ main {
 }
 
 footer {
-    margin-top: 4rem;
-    margin-bottom: 1rem;
+    margin-top: 4em;
+    margin-bottom: 1em;
     padding-bottom: 0;
-    font-size: 0.8rem;
+    font-size: 0.8em;
 }
 
 footer hr {
@@ -236,7 +236,7 @@ cite {
     }
 
     h3 {
-        font-size: 1.25rem;
+        font-size: 1.25em;
     }
 }
 
