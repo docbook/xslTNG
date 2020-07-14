@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:array="http://www.w3.org/2005/xpath-functions/array"
                 xmlns:f="http://nwalsh.com/ns/xsl/functions"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                exclude-result-prefixes="xs"
+                exclude-result-prefixes="array f xs"
                 version="2.0">
 
 <xsl:output method="html" encoding="utf-8" indent="no" html-version="5"/>
 
-<xsl:param name="xsltng-version" required="yes"/>
+<xsl:param name="build-tag" as="xs:string" select="''"/>
+<xsl:param name="org" as="xs:string" select="'docbook'"/>
+<xsl:param name="repo" as="xs:string" select="'xslTNG'"/>
+<xsl:variable name="reluri" as="xs:string"
+              select="'https://api.github.com/repos/' || $org || '/' || $repo || '/releases'"/>
+
+<xsl:variable name="release" as="map(*)">
+  <xsl:variable name="releases" select="parse-json(unparsed-text($reluri))"/>
+  <xsl:sequence select="array:get($releases, 1)"/>
+</xsl:variable>
+
+<xsl:template match="/">
+  <xsl:message select="$build-tag, $build-tag eq ''"/>
+  <xsl:apply-templates/>
+</xsl:template>
 
 <xsl:variable name="summary" as="map(*)">
   <xsl:map>
@@ -86,17 +101,29 @@
 </xsl:template>
 
 <xsl:template match="processing-instruction('xsltng-version')">
-  <xsl:sequence select="$xsltng-version"/>
+  <xsl:if test="$build-tag eq ''">
+    <xsl:message select="'GitHub API reports latest build:', string($release?tag_name)"/>
+  </xsl:if>
+  <xsl:sequence select="if ($build-tag eq '')
+                        then string($release?tag_name)
+                        else $build-tag"/>
 </xsl:template>
 
 <xsl:template match="processing-instruction('pubdate')">
+  <xsl:if test="$build-tag eq ''">
+    <xsl:message select="'GitHub API reports latest build date:',
+                         xs:dateTime($release?published_at)"/>
+  </xsl:if>
+  <xsl:variable name="date" select="if ($build-tag eq '')
+                                    then xs:dateTime($release?published_at)
+                                    else current-dateTime()"/>
   <xsl:variable name="Z" select="xs:dayTimeDuration('PT0H')"/>
-  <xsl:variable name="now"
-                select="adjust-dateTime-to-timezone(current-dateTime(), $Z)"/>
-  <xsl:sequence select="format-dateTime(current-dateTime(),
+  <xsl:variable name="pubdate"
+                select="adjust-dateTime-to-timezone($date, $Z)"/>
+  <xsl:sequence select="format-dateTime($pubdate,
                                         'at [H01]:[m01] ')"/>
   <a href="https://www.timeanddate.com/time/zones/gmt">GMT</a>
-  <xsl:sequence select="format-dateTime(current-dateTime(),
+  <xsl:sequence select="format-dateTime($pubdate,
                                         ' on [D01] [MNn,*-3] [Y0001]')"/>
 </xsl:template>
 
