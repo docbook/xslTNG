@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 0.9.9
+/* DocBook xslTNG version 0.9.10
  *
  * This is annotations.js providing support for popup annotations.
  *
