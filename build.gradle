@@ -61,6 +61,14 @@ dependencies {
 
 defaultTasks 'report'
 
+if (!hasProperty("sonatypeUsername")) {
+  ext.sonatypeUsername=""
+}
+
+if (!hasProperty("sonatypePassword")) {
+  ext.sonatypePassword=""
+}
+
 // These are the top-level XSpec test drivers
 def testDrivers = ['docbook.xspec', 'main.xspec', '00_logstruct.xspec',
                    '20_db4to5.xspec', 'local_conventions.xspec']
