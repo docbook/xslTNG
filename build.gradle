@@ -1,5 +1,7 @@
 plugins {
   id "java"
+  id "maven-publish"
+  id "signing"
   id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta1'
   id "de.undercouch.download" version "4.0.4"
   id 'com.github.gmazzo.buildconfig' version "2.0.2"
@@ -8,9 +10,9 @@ plugins {
 sourceSets {
   main {
     resources {
-      exclude '**'
+      srcDirs "build/stage/jar"
     }
-  }	
+  }
 }
 
 import com.github.eerohele.SaxonXsltTask
@@ -38,6 +40,8 @@ configurations.all {
 configurations {
   saxonee.extendsFrom(implementation)
   validateRuntime.extendsFrom(implementation)
+  projectImplementationClasspath.extendsFrom(implementation)
+  projectRuntimeClasspath.extendsFrom(runtimeOnly)
 }
 
 dependencies {
@@ -50,7 +54,8 @@ dependencies {
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
-    [group: 'junit', name: 'junit', version: '4.13']
+    [group: 'junit', name: 'junit', version: '4.13'],
+    [group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion ]
   )
 }
 
@@ -66,7 +71,7 @@ def pdfTests = ['article.003', 'book.001', 'book.003',
                 'calloutlist.001', 'changebars.001', 'mediaobject.001'];
 
 buildConfig {
-  packageName("com.nwalsh.xslt")
+  packageName("org.docbook.xsltng")
   buildConfigField('String', 'TITLE', "\"${xslTNGtitle}\"")
   buildConfigField('String', 'VERSION', "\"${xslTNGversion}\"")
   buildConfigField('String', 'SAXON_VERSION', "\"${saxonVersion}\"")
@@ -288,7 +293,7 @@ task setupXsltExplorer(dependsOn: ['unzipXsltExplorer']) {
 }
 
 task copyResources(type: Copy, dependsOn: ['copyTestMedia', 'makePrintCSS']) {
-  from "src/main/resources"
+  from "src/main/web"
   include "css/**"
   include "js/**"
   into "${buildDir}/actual"
@@ -337,14 +342,14 @@ task copyBin(type: Copy) {
 }
 
 task makePrintCSS(type: Exec, dependsOn: ['copyTestMedia']) {
-  inputs.file("src/main/resources/css/docbook.css")
-  inputs.file("src/main/resources/css/docbook-paged.css")
+  inputs.file("src/main/web/css/docbook.css")
+  inputs.file("src/main/web/css/docbook-paged.css")
   inputs.file("tools/flattencss.py")
   outputs.file("build/actual/css/print.css")
   commandLine "python3", "tools/flattencss.py",
     "--version", xslTNGversion, "--title", xslTNGtitle,
-    "--source", "src/main/resources/css/docbook.css",
-    "--source", "src/main/resources/css/docbook-paged.css",
+    "--source", "src/main/web/css/docbook.css",
+    "--source", "src/main/web/css/docbook-paged.css",
     "--output", "build/actual/css/print.css"
   doFirst {
     mkdir "${buildDir}/actual/css"
@@ -401,7 +406,7 @@ task copyReportSources(type: Copy) {
 }
 
 task copyExpectedResources(type: Copy, dependsOn: ['copyExpectedMedia']) {
-  from "src/main/resources"
+  from "src/main/web"
   include "css/**"
   include "js/**"
   into "${buildDir}/report/expected"
@@ -704,10 +709,10 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     inputs.files fileTree(dir: "src/test/resources")
     outputs.file("${buildDir}/actual/${base}.html")
     commandLine "java",
-      "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
       "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.extensions.xslt.Register",
+      "-init:org.docbook.xsltng.extensions.Register",
       xml.toString(),
       "-xsl:${buildDir}/xslt/docbook.xsl",
       "-o:${buildDir}/actual/${base}.html",
@@ -724,10 +729,10 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     inputs.files fileTree(dir: "src/test/resources")
     outputs.file("src/test/resources/expected/${base}.html")
     commandLine "java",
-      "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
       "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.extensions.xslt.Register",
+      "-init:org.docbook.xsltng.extensions.Register",
       xml.toString(),
       "-xsl:${buildDir}/xslt/xspec-driver.xsl",
       "-o:src/test/resources/expected/${base}.html",
@@ -756,10 +761,10 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     inputs.files fileTree(dir: "src/test/resources")
     outputs.file("${buildDir}/actual/index.html")
     commandLine "java",
-      "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
       "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.extensions.xslt.Register",
+      "-init:org.docbook.xsltng.extensions.Register",
       xml.toString(),
       "-xsl:${buildDir}/xslt/docbook.xsl",
       "mediaobject-input-base-uri=file:${projectDir}/src/test/resources/media/",
@@ -786,10 +791,10 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     inputs.files fileTree(dir: "src/test/resources")
     outputs.file("${buildDir}/actual/${base}.pdf.html")
     commandLine "java",
-      "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
       "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.extensions.xslt.Register",
+      "-init:org.docbook.xsltng.extensions.Register",
       xml.toString(),
       "-xsl:${buildDir}/xslt/print.xsl",
       "-o:${buildDir}/actual/${base}.pdf.html",
@@ -913,10 +918,10 @@ testDrivers.each { driver ->
           inputs.file("${buildDir}/generated-xml/${basename}.xml")
           outputs.file("${buildDir}/actual/${basename}.html")
           commandLine "java",
-            "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+            "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
             "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
             "-cp", EXCP, "net.sf.saxon.Transform",
-            "-init:org.docbook.extensions.xslt.Register",
+            "-init:org.docbook.xsltng.extensions.Register",
             "${buildDir}/generated-xml/${basename}.xml",
             "-xsl:${buildDir}/xslt/docbook.xsl",
             "-o:${buildDir}/actual/${basename}.html",
@@ -930,10 +935,10 @@ testDrivers.each { driver ->
           inputs.file("${buildDir}/generated-xml/${basename}.xml")
           outputs.file("src/test/resources/expected/${basename}.html")
           commandLine "java",
-            "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+            "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
             "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
             "-cp", EXCP, "net.sf.saxon.Transform",
-            "-init:org.docbook.extensions.xslt.Register",
+            "-init:org.docbook.xsltng.extensions.Register",
             "${buildDir}/generated-xml/${basename}.xml",
             "-xsl:${buildDir}/xslt/xspec-driver.xsl",
             "-o:src/test/resources/expected/${basename}.html",
@@ -951,12 +956,12 @@ testDrivers.each { driver ->
 // ============================================================
 
 // Generate tasks to generate the locale files
-fileTree(dir: "src/main/resources/locale-10", include: "*.xml").each { xml ->
+fileTree(dir: "src/main/locales/locale-10", include: "*.xml").each { xml ->
   // Work out the base filename of the test
   def base = xml.toString()
-  def pos = base.indexOf("/resources/locale-10/")
+  def pos = base.indexOf("/locales/locale-10/")
   if (pos > 0) {
-    base = base.substring(pos+21)
+    base = base.substring(pos+19)
   }
 
   // The following is only needed while we're generating
@@ -969,10 +974,10 @@ fileTree(dir: "src/main/resources/locale-10", include: "*.xml").each { xml ->
     inputs.files "tools/xform-10-tng.xsl"
     outputs.file(localetng)
     commandLine "java",
-      "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
       "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.extensions.xslt.Register",
+      "-init:org.docbook.xsltng.extensions.Register",
       xml.toString(),
       "-xsl:tools/xform-10-tng.xsl",
       "-o:${localetng}"
@@ -984,10 +989,10 @@ fileTree(dir: "src/main/resources/locale-10", include: "*.xml").each { xml ->
     inputs.files "tools/xform-locale.xsl"
     outputs.file("${buildDir}/xslt/locale/${base}")
     commandLine "java",
-      "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
       "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.extensions.xslt.Register",
+      "-init:org.docbook.xsltng.extensions.Register",
       localetng,
       "-xsl:tools/xform-locale.xsl",
       "-o:${buildDir}/xslt/locale/${base}"
@@ -1000,7 +1005,7 @@ task makeVersion(type: Exec) {
   inputs.file("tools/version.xsl")
   outputs.file("build/xslt/VERSION.xsl")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
     "tools/version.xsl",
@@ -1015,7 +1020,7 @@ task makeParameterMaps(type: Exec) {
   inputs.file("src/main/xslt/param.xsl")
   outputs.file("build/xslt/parameter-maps.xsl")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
     "src/main/xslt/param.xsl",
@@ -1091,10 +1096,10 @@ task report(type: Exec,
   inputs.file("tools/report.xsl")
   outputs.file("${buildDir}/report/index.html")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "${buildDir}/docbook-result.xml",
     "-xsl:tools/report.xsl",
     "-o:${buildDir}/report/index.html",
@@ -1118,20 +1123,8 @@ clean.dependsOn cleanXSpec
 
 // ============================================================
 
-jar {
-  archiveBaseName = "docbook-xslTNG-${xslTNGversion}"
-  manifest {
-    attributes "Built-By": "Norman Walsh"
-    attributes "Implementation-Vendor": "Norman Walsh"
-    attributes "Implementation-Title": "DocBook xslTNG Stylesheets"
-    attributes "Implementation-Version": project.ext.xslTNGversion
-  }
-}
-
-// ============================================================
-
 task distCopyResources(type: Copy) {
-  from "src/main/resources"
+  from "src/main/web"
   include "css/**"
   include "js/**"
   into "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/resources"
@@ -1207,10 +1200,10 @@ task tdg(type: Exec, dependsOn: ['makeXslt']) {
   inputs.file("tdg/book.xsl")
   outputs.file("tdg/html/index.html")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "tdg/book.xml",
     "-xsl:tdg/book.xsl",
     "-o:tdg/html/index.html",
@@ -1230,10 +1223,10 @@ task explorer(type: Exec,
   outputs.file("build/explorer/index.html")
   outputs.file("build/docbook-xslTNG.xml")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "build/xslt/docbook.xsl",
     "-l",
     "-xsl:build/xsltexplorer-${xsltExplorerVersion}/xslt/explorer.xsl",
@@ -1281,18 +1274,18 @@ task guideCustomResources(type: Copy) {
 }
 
 task guidePrintCSS(type: Exec, dependsOn: ['guideDocBookResources']) {
-  inputs.file("src/main/resources/css/docbook.css")
-  inputs.file("src/main/resources/css/docbook-paged.css")
-  inputs.file("src/guide/resources/css/guide.css")
-  inputs.file("src/guide/resources/css/guide-paged.css")
+  inputs.file("src/main/web/css/docbook.css")
+  inputs.file("src/main/web/css/docbook-paged.css")
+  inputs.file("src/guide/web/css/guide.css")
+  inputs.file("src/guide/web/css/guide-paged.css")
   inputs.file("tools/flattencss.py")
   outputs.file("build/guide/css/print.css")
   commandLine "python3", "tools/flattencss.py",
     "--version", xslTNGversion, "--title", xslTNGtitle,
-    "--source", "src/main/resources/css/docbook.css",
-    "--source", "src/main/resources/css/docbook-paged.css",
-    "--source", "src/guide/resources/css/guide.css",
-    "--source", "src/guide/resources/css/guide-paged.css",
+    "--source", "src/main/web/css/docbook.css",
+    "--source", "src/main/web/css/docbook-paged.css",
+    "--source", "src/guide/web/css/guide.css",
+    "--source", "src/guide/web/css/guide-paged.css",
     "--output", "build/guide/css/print.css"
   doFirst {
     mkdir "${buildDir}/guide/css"
@@ -1304,10 +1297,10 @@ task xincludeGuide(type: Exec, dependsOn: ['guideResources']) {
   inputs.file("tools/xinclude.xsl")
   outputs.file("build/guide.xml")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "src/guide/xml/guide.xml",
     "-xsl:tools/xinclude.xsl",
     "-o:build/guide.xml"
@@ -1321,7 +1314,7 @@ task copyGuide(type: Exec, dependsOn: ['xincludeGuide']) {
   inputs.file("tools/guide-pis.xsl")
   outputs.file("build/guide/guide.xml")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
     "build/guide.xml",
@@ -1347,10 +1340,10 @@ task guide(type: Exec, dependsOn: ['makeXslt', 'validateGuide', 'explorer']) {
   inputs.file("build/guide/guide.xml")
   outputs.file("build/guide/index.html")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "build/guide/guide.xml",
     "-xsl:src/guide/xsl/guide.xsl",
     "-o:build/guide/out.html",
@@ -1375,10 +1368,10 @@ task "guide.pdf.html"(type: Exec, dependsOn: ['makeXslt', 'validateGuide', 'expl
   inputs.files fileTree(dir: "src/guide/xsl")
   outputs.file("build/guide/guide.pdf.html")
   commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "build/guide/guide.xml",
     "-xsl:src/guide/xsl/print.xsl",
     "-o:build/guide/guide.pdf.html",
@@ -1483,13 +1476,168 @@ task webHomepage(type: SaxonXsltTask, dependsOn: ['testSummary']) {
 
 // ============================================================
 
+task stageJarXslt(type: Copy, dependsOn: [ "makeXslt", "makeVersionProperties",
+                                       "makeUris"]) {
+  from "build/xslt"
+  into "build/stage/jar/xslt"
+  doFirst {
+    mkdir ("build/stage/jar/xslt")
+  }
+}
+
+task stageJarEtc(type: Copy) {
+  from "tools/make-catalog.xsl"
+  into "build/stage/jar/etc"
+  doFirst {
+    mkdir ("build/stage/jar/etc")
+  }
+}
+
+task stageJar(type: Copy, dependsOn: ["stageJarXslt", "stageJarEtc"]) {
+  // nop
+}
+processResources.dependsOn stageJar
+
+task copyLib(type: Copy) {
+  FileCollection runtimeOnly  = configurations.projectRuntimeClasspath
+  FileCollection implementation  = configurations.projectImplementationClasspath
+  FileCollection localLib = fileTree(dir: 'lib').include("*.jar")
+  FileCollection lib = implementation + runtimeOnly - localLib
+  String path = ""
+  lib.each {
+    File file -> path += " lib/" + file.name
+  }
+  project.ext.runtimeClasspath = path.trim()
+
+  from lib
+  into { "build/libs/lib" }
+}
+jar.dependsOn copyLib
+
+task makeVersionProperties() {
+  doFirst {
+    mkdir("build/stage/jar/etc")
+  }
+  doLast {
+    new File("build/stage/jar/etc/version.properties").text = """version=${xslTNGversion}
+"""
+  }
+}
+
+task makeUris(dependsOn: [ "makeXslt" ]) {
+  inputs.files  fileTree(dir: "build/xslt/")
+  outputs.file "build/stage/jar/etc/uris.xml"
+
+  mkdir ("build/stage/jar/etc")
+  def uris = new PrintStream(new File(buildDir.toString() + "/stage/jar/etc/uris.xml"))
+  uris.println("<catalog>")
+  fileTree(dir: "build/xslt").each { fn ->
+    def name = fn.getAbsolutePath()
+    name = name.substring(buildDir.toString().length())
+    uris.println("  <uri name='" + name + "'/>")
+  }
+  uris.println("</catalog>")
+  uris.close()
+}
+
+jar {
+  archiveBaseName = "docbook-xslTNG-${xslTNGversion}"
+  manifest {
+    attributes "Built-By": "Norman Walsh"
+    attributes "Implementation-Vendor": "Norman Walsh"
+    attributes "Implementation-Title": "DocBook xslTNG Stylesheets"
+    attributes "Implementation-Version": xslTNGversion
+    attributes "Main-Class": "org.docbook.xsltng.Main"
+    attributes "Bundle-SymbolicName": "org.docbook.xsltng"
+    attributes "Bundle-RequiredExecutionEnvironment": "J2SE-1.7"
+    attributes "Export-Package": "*: etc"
+    attributes "Import-Package": "net.sf.saxon.*;version=${saxonVersion}:\
+  javax.xml.*:\
+  *;resolution:=optional"
+    attributes "DynamicImport-Package": "*"
+    // This is a bit of a hack; special case the three most likely
+    // commercial jar files for printing with CSS or FO.
+    attributes "Class-Path": project.ext.runtimeClasspath \
+              + " lib/XfoJavaCtl.jar lib/xep.jar lib/prince.jar"
+  }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+// ============================================================
+
+signing {
+  sign publishing.publications
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      pom {
+        name = xslTNGtitle
+        packaging = 'jar'
+        description = 'DocBook xslTNG Stylesheets'
+        url = 'https://github.com/docbook/xslTNG'
+
+        scm {
+          url = 'scm:git@github.com:docbook/xslTNG.git'
+          connection = 'scm:git@github.com:docbook/xslTNG.git'
+          developerConnection = 'scm:git@github.com:docbook/xslTNG.git'
+        }
+
+        licenses {
+          license {
+            name = 'Apache License version 2.0'
+            url = 'https://www.apache.org/licenses/LICENSE-2.0'
+            distribution = 'repo'
+          }
+        }
+
+        developers {
+          developer {
+            id = 'ndw'
+            name = 'Norman Walsh'
+          }
+        }
+      }
+
+      groupId = "org.docbook"
+      artifactId = "docbook-xslTNG"
+      version = xslTNGversion
+      from components.java
+      artifact javadocJar
+      artifact sourcesJar
+    }
+  }
+
+  repositories {
+    maven {
+      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      credentials {
+        username = sonatypeUsername
+        password = sonatypePassword
+      }
+    }
+  }
+}
+
+// ============================================================
+
 task xsltest(type: Exec) {
     inputs.files fileTree(dir: "scratch")
     commandLine "java",
-    "-Dorg.docbook.extensions.xslt.verbose=${verbose}",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
     "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
     "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.extensions.xslt.Register",
+    "-init:org.docbook.xsltng.extensions.Register",
     "scratch/test.xml",
     "-xsl:scratch/test.xsl"
 }

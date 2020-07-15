@@ -1,4 +1,4 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import net.sf.saxon.lib.Logger;
 import net.sf.saxon.lib.StandardLogger;
@@ -13,7 +13,7 @@ public class DebuggingLogger extends StandardLogger {
     public static final String PYGMENTIZE_SHOW_RESULTS = "pygmentize-show-results";
     public static final String PYGMENTIZE_ERRORS = "pygmentize-errors";
 
-    private static final String propertyName = "org.docbook.extensions.xslt.verbose";
+    private static final String propertyName = "org.docbook.xsltng.verbose";
     private Logger logger = null;
     private boolean noisy = false;
     private HashSet<String> flags = new HashSet<> ();
@@ -38,8 +38,26 @@ public class DebuggingLogger extends StandardLogger {
         }
     }
 
-    public boolean enabled(String flag) {
+    public boolean getFlag(String flag) {
         return flags.contains(flag);
+    }
+
+    public void setFlag(String flag) {
+        if ("1".equals(flag) || "yes".equals(flag) || "true".equals(flag)) {
+            noisy = true;
+        } else {
+            flags.add(flag);
+        }
+    }
+
+    public boolean unsetFlag(String flag) {
+        if ("1".equals(flag) || "yes".equals(flag) || "true".equals(flag)) {
+            boolean wasNoisy = noisy;
+            noisy = false;
+            return wasNoisy;
+        } else {
+            return flags.remove(flag);
+        }
     }
 
     public void debug(String flag, String message) {

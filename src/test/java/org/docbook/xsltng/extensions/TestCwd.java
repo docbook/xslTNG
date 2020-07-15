@@ -1,4 +1,4 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import junit.framework.TestCase;
 import net.sf.saxon.s9api.Processor;
@@ -9,6 +9,7 @@ import net.sf.saxon.s9api.XdmValue;
 import net.sf.saxon.s9api.XsltCompiler;
 import net.sf.saxon.s9api.XsltExecutable;
 import net.sf.saxon.s9api.XsltTransformer;
+import org.docbook.xsltng.extensions.Cwd;
 import org.xml.sax.InputSource;
 
 import javax.xml.transform.sax.SAXSource;

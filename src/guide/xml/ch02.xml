@@ -76,13 +76,13 @@ file is on your class path and use the Saxon <code>-init</code> option to
 load them:</para>
 
 <screen><?db verbatim-style="plain"
-?><userinput>-init:org.docbook.extensions.xslt.Register</userinput></screen>
+?><userinput>-init:org.docbook.xsltng.extensions.Register</userinput></screen>
 
 <section xml:id="ext-debug">
 <title>Extension function debugging</title>
 
 <para>You can enable the following trace events by setting
-the system property <property>org.docbook.extensions.xslt.verbose</property>:</para>
+the system property <property>org.docbook.xsltng.verbose</property>:</para>
 
 <screen>    public static final String REGISTRATION = "registration";
     public static final String IMAGE_PROPERTIES = "image-properties";

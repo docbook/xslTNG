@@ -1,4 +1,4 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import com.drew.metadata.icc.IccDirectory;
 import net.sf.saxon.Configuration;

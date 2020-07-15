@@ -1,8 +1,8 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.metadata.Metadata;
-import com.nwalsh.xslt.BuildConfig;
+import org.docbook.xsltng.BuildConfig;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.lib.Initializer;
 
