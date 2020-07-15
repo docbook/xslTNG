@@ -42,6 +42,9 @@ rm -rf release/xsltng/current
 mkdir -p release/xsltng/current
 rsync -ar ../repo/build/docbook-xslTNG-$CIRCLE_TAG/ release/xsltng/current/
 
+# generate indexes
+perl bin/make-indexes.pl release/xsltng
+
 git add .
 git commit -m "Deploy xsltng CDN for ${CIRCLE_PROJECT_USERNAME}: ${SHA}"
 git push -q origin HEAD
