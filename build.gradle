@@ -1048,6 +1048,22 @@ task makeXslt(type: Copy,
 
 // ============================================================
 
+task testJarMain(type: Exec, dependsOn: jar) {
+    commandLine "java",
+      "-jar", "build/libs/docbook-xslTNG-${xslTNGversion}.jar",
+      "src/test/resources/xml/article.001.xml",
+      "-o:/dev/null"
+}
+test.dependsOn testJarMain
+
+task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin"]) {
+    commandLine "build/bin/docbook",
+      "src/test/resources/xml/article.001.xml",
+      "-xsl:build/xslt/docbook.xsl",
+      "-o:/dev/null"
+}
+test.dependsOn testDocBookPy
+
 task testConsoleSummary(type: SummarizeTestResults, dependsOn: testDrivers) {
   resultFiles = testDrivers
 }
