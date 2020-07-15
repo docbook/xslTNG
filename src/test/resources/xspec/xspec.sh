@@ -85,20 +85,20 @@ else
             -Dxspec.coverage.ignore="${TEST_DIR}" \
             -Dxspec.coverage.xml="${COVERAGE_XML}" \
             -Dxspec.xspecfile="${XSPEC}" \
-            -Dorg.docbook.extensions.pygmentize=${PYGMENTIZE} \
-            -Dorg.docbook.extensions.xslt.verbose=${VERBOSE} \
+            -Dorg.docbook.xsltng.extensions.pygmentize=${PYGMENTIZE} \
+            -Dorg.docbook.xsltng.verbose=${VERBOSE} \
             -cp "$CP" net.sf.saxon.Transform ${CATALOG:+"$CATALOG"} \
-                -init:org.docbook.extensions.xslt.Register "$@"
+                -init:org.docbook.xsltng.extensions.Register "$@"
     }
     xquery() {
         java \
             -Dxspec.coverage.ignore="${TEST_DIR}" \
             -Dxspec.coverage.xml="${COVERAGE_XML}" \
             -Dxspec.xspecfile="${XSPEC}" \
-            -Dorg.docbook.extensions.pygmentize=${PYGMENTIZE} \
-            -Dorg.docbook.extensions.xslt.verbose=${VERBOSE} \
+            -Dorg.docbook.xsltng.extensions.pygmentize=${PYGMENTIZE} \
+            -Dorg.docbook.xsltng.verbose=${VERBOSE} \
             -cp "$CP" net.sf.saxon.Query ${CATALOG:+"$CATALOG"} \
-                -init:org.docbook.extensions.xslt.Register "$@"
+                -init:org.docbook.xsltng.extensions.Register "$@"
     }
 fi
 

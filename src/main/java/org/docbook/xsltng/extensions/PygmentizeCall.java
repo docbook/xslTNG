@@ -1,4 +1,4 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import net.sf.saxon.Configuration;
 import net.sf.saxon.lib.ExtensionFunctionCall;
@@ -6,7 +6,7 @@ import net.sf.saxon.lib.ExtensionFunctionCall;
 import java.io.File;
 
 abstract public class PygmentizeCall extends ExtensionFunctionCall {
-    public static final String PYGMENTIZE = "org.docbook.extensions.pygmentize";
+    public static final String PYGMENTIZE = "org.docbook.xsltng.extensions.pygmentize";
 
     protected DebuggingLogger logger = null;
 

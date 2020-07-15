@@ -1,4 +1,4 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.lib.ExtensionFunctionCall;
@@ -127,7 +127,7 @@ public class Pygmentize extends PygmentizeDefinition {
                 cmdline.add(key + "=" + pyoptions.get(key));
             }
 
-            if (logger.enabled(DebuggingLogger.PYGMENTIZE_SHOW_COMMAND)) {
+            if (logger.getFlag(DebuggingLogger.PYGMENTIZE_SHOW_COMMAND)) {
                 StringBuilder sb = new StringBuilder();
                 for (String s : cmdline) {
                     sb.append(s);
@@ -139,7 +139,7 @@ public class Pygmentize extends PygmentizeDefinition {
             try {
                 String html = runPygmentize(cmdline, source);
 
-                if (logger.enabled(DebuggingLogger.PYGMENTIZE_SHOW_RESULTS)) {
+                if (logger.getFlag(DebuggingLogger.PYGMENTIZE_SHOW_RESULTS)) {
                     logger.debug(DebuggingLogger.PYGMENTIZE_SHOW_RESULTS, "Highlighted: " + html);
                 }
 

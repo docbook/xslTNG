@@ -36,7 +36,7 @@ class JavaClassRunner:
                                    "https://maven.restlet.com"],
             "maven-packages": [],
             "pin-packages": ["xml-apis:xml-apis:1.4.01"],
-            "args": ["-init:org.docbook.extensions.xslt.Register"],
+            "args": ["-init:org.docbook.xsltng.extensions.Register"],
             "classpath": [],
             "class": "net.sf.saxon.Transform"
         }

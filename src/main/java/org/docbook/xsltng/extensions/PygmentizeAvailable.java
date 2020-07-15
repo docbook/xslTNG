@@ -1,29 +1,28 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.lib.ExtensionFunctionCall;
-import net.sf.saxon.lib.ExtensionFunctionDefinition;
 import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.StructuredQName;
-import net.sf.saxon.trans.XPathException;
-import net.sf.saxon.value.AnyURIValue;
+import net.sf.saxon.value.BooleanValue;
 import net.sf.saxon.value.SequenceType;
 
 /**
- * Saxon extension to get the current working directory.
+ * Saxon extension to run the pygments source highlighter.
  *
  * This class provides a
  * <a href="http://saxonica.com/">Saxon</a>
- * extension to return the current working directory (the user.dir system property).
+ * extension to run report if pygmentize is available.
  *
- * <p>Copyright © 2011-2020 Norman Walsh.
+ * <p>Copyright © 2019-2020 Norman Walsh.</p>
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
  */
-public class Cwd extends ExtensionFunctionDefinition {
+
+public class PygmentizeAvailable extends PygmentizeDefinition {
     private static final StructuredQName qName =
-            new StructuredQName("", "http://docbook.org/extensions/xslt", "cwd");
+            new StructuredQName("", "http://docbook.org/extensions/xslt", "pygmentize-available");
 
     @Override
     public StructuredQName getFunctionQName() {
@@ -48,20 +47,20 @@ public class Cwd extends ExtensionFunctionDefinition {
 
     @Override
     public SequenceType getResultType(SequenceType[] suppliedArgumentTypes) {
-        return SequenceType.SINGLE_ATOMIC;
+        return SequenceType.SINGLE_BOOLEAN;
     }
 
     public ExtensionFunctionCall makeCallExpression() {
-        return new CwdCall();
+        return new PygmentizeAvailable.CallPygmentize();
     }
 
-    private class CwdCall extends ExtensionFunctionCall {
-        public Sequence call(XPathContext xPathContext, Sequence[] sequences) throws XPathException {
-            String dir = System.getProperty("user.dir");
-            if (!dir.endsWith("/")) {
-                dir += "/";
+    private class CallPygmentize extends PygmentizeCall {
+        public Sequence call(XPathContext xpathContext, Sequence[] sequences) {
+            logger = new DebuggingLogger(xpathContext.getConfiguration().getLogger());
+            if (foundPygmentize == null) {
+                foundPygmentize = (findPygmentize(xpathContext.getConfiguration(), executable, true) != null);
             }
-            return new AnyURIValue(dir);
+            return BooleanValue.get(foundPygmentize);
         }
     }
 }

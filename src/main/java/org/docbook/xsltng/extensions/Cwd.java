@@ -1,28 +1,29 @@
-package org.docbook.extensions.xslt;
+package org.docbook.xsltng.extensions;
 
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.lib.ExtensionFunctionCall;
+import net.sf.saxon.lib.ExtensionFunctionDefinition;
 import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.StructuredQName;
-import net.sf.saxon.value.BooleanValue;
+import net.sf.saxon.trans.XPathException;
+import net.sf.saxon.value.AnyURIValue;
 import net.sf.saxon.value.SequenceType;
 
 /**
- * Saxon extension to run the pygments source highlighter.
+ * Saxon extension to get the current working directory.
  *
  * This class provides a
  * <a href="http://saxonica.com/">Saxon</a>
- * extension to run report if pygmentize is available.
+ * extension to return the current working directory (the user.dir system property).
  *
- * <p>Copyright © 2019-2020 Norman Walsh.</p>
+ * <p>Copyright © 2011-2020 Norman Walsh.
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
  */
-
-public class PygmentizeAvailable extends PygmentizeDefinition {
+public class Cwd extends ExtensionFunctionDefinition {
     private static final StructuredQName qName =
-            new StructuredQName("", "http://docbook.org/extensions/xslt", "pygmentize-available");
+            new StructuredQName("", "http://docbook.org/extensions/xslt", "cwd");
 
     @Override
     public StructuredQName getFunctionQName() {
@@ -47,20 +48,20 @@ public class PygmentizeAvailable extends PygmentizeDefinition {
 
     @Override
     public SequenceType getResultType(SequenceType[] suppliedArgumentTypes) {
-        return SequenceType.SINGLE_BOOLEAN;
+        return SequenceType.SINGLE_ATOMIC;
     }
 
     public ExtensionFunctionCall makeCallExpression() {
-        return new PygmentizeAvailable.CallPygmentize();
+        return new CwdCall();
     }
 
-    private class CallPygmentize extends PygmentizeCall {
-        public Sequence call(XPathContext xpathContext, Sequence[] sequences) {
-            logger = new DebuggingLogger(xpathContext.getConfiguration().getLogger());
-            if (foundPygmentize == null) {
-                foundPygmentize = (findPygmentize(xpathContext.getConfiguration(), executable, true) != null);
+    private class CwdCall extends ExtensionFunctionCall {
+        public Sequence call(XPathContext xPathContext, Sequence[] sequences) throws XPathException {
+            String dir = System.getProperty("user.dir");
+            if (!dir.endsWith("/")) {
+                dir += "/";
             }
-            return BooleanValue.get(foundPygmentize);
+            return new AnyURIValue(dir);
         }
     }
 }
