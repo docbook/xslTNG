@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+<info>
+<title>Unit Test: olink.001.xml</title>
+</info>
+<para>This test requires olink databases.</para>
+
+<para>Instructions for getting the stylesheets are available
+<olink targetdoc="website" targetptr="getting">on the website</olink>.
+</para>
+
+<para>See also <olink targetdoc="Guide" targetptr="getting"/>.
+</para>
+
+<para>This is expected to fail: <olink targetdoc="Guide" targetptr="NoSuchPtr"/>.
+</para>
+
+<para>This is also expected to fail: <olink targetdoc="NoDoc" targetptr="NoPtr"/>.
+</para>
+
+</article>
