@@ -204,6 +204,10 @@ cite {
     padding: 1em;
 }
 
+img.badge {
+    margin-left: 1em;
+}
+
 @media screen and (max-width: 1024px) {
     .twoup {
         display: block;
@@ -225,6 +229,10 @@ cite {
 @media screen and (max-width: 640px) {
     .logo {
         max-height: 44px;
+    }
+
+    img.badge {
+        margin-left: 0.25em;
     }
 
     h1 {
