@@ -294,6 +294,7 @@
 <xsl:param name="annotation-collection" as="xs:string" select="''"/>
 <xsl:param name="glossary-collection" as="xs:string" select="''"/>
 <xsl:param name="bibliography-collection" as="xs:string" select="''"/>
+<xsl:param name="olink-databases" as="xs:string" select="''"/>
 
 <xsl:param name="transclusion-prefix-separator" select="'---'"/>
 

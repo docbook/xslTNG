@@ -315,6 +315,26 @@ the heading in this mode. This mode is responsible for removing markup from the 
 </refsection>
 </refentry>
 
+<refentry xml:id="m_chunk-write">
+<?db filename="m_chunk-write.html"?>
+<refmeta>
+<refentrytitle>m:chunk-write</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-write</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:chunk-write</refname>
+<refpurpose>Create result documents for chunks</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When all of the chunk processing is finished, each chunk is
+processed in <mode>m:chunk-write</mode> mode. By default, this mode
+creates XSL result documents for each chunk.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_copyright-years">
 <?db filename="m_copyright-years.html"?>
 <refmeta>

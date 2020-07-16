@@ -63,6 +63,12 @@
   </xsl:map>
 </xsl:variable>
 
+<xsl:variable
+    name="v:olink-databases"
+    select="(doc(resolve-uri('../actual/guide.olinkdb'))/*,
+             doc(resolve-uri('../actual/fit.001.olinkdb'))/*,
+             doc(resolve-uri('../../src/website/resources/olinkdb/website.olinkdb'))/*)"/>
+
 <xsl:template match="*">
   <!-- Turn the inital element into a document. -->
   <xsl:variable name="document">

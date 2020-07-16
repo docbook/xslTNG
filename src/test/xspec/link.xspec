@@ -21,4 +21,10 @@
    <x:expect label="expect links to be rendrered" href="../resources/expected/link.003.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming olink.001">
+   <x:context href="../resources/xml/olink.001.xml"/>
+   <x:expect label="expect links to be rendrered"
+             href="../resources/expected/olink.001.html"/>
+</x:scenario>
+
 </x:description>
