@@ -767,6 +767,25 @@ parsed as a length (see <xref linkend="units"/>).</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_olink-databases">
+<?db filename="v_olink-databases.html"?>
+<refmeta>
+<refentrytitle>$v:olink-databases</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}olink-databases</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:olink-databases</refname>
+<refpurpose>External olink databases</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <varname>v:olink-databases</varname> variable is usually derived from the
+<parameter>olink-databases</parameter> parameter. It must contain a sequence of
+olink target databases.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_personal-name-styles">
 <?db filename="v_personal-name-styles.html"?>
 <refmeta>

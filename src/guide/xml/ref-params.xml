@@ -1799,6 +1799,25 @@ single appendix.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_olink-databases">
+<?db filename="p_olink-databases.html"?>
+<refmeta>
+<refentrytitle>$olink-databases</refentrytitle>
+<refmiscinfo>{}olink-databases</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$olink-databases</refname>
+<refpurpose>External olink databases</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>olink-databases</parameter> parameter is a comma separated
+list of URIs. Each URI should contain an <tag>olink</tag> target database.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_orderedlist-item-numeration">
 <?db filename="p_orderedlist-item-numeration.html"?>
 <refmeta>
