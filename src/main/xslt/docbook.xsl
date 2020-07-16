@@ -64,13 +64,20 @@
 
   <xsl:for-each select="map:keys($result)">
     <xsl:if test=". != 'output'">
-      <xsl:result-document href="{.}">
-        <xsl:sequence select="map:get($result, .)"/>
-      </xsl:result-document>
+      <xsl:apply-templates select="map:get($result, .)" mode="m:chunk-write">
+        <xsl:with-param name="href" select="."/>
+      </xsl:apply-templates>
     </xsl:if>
   </xsl:for-each>
 
   <xsl:sequence select="$result?output"/>
+</xsl:template>
+
+<xsl:template match="node()" mode="m:chunk-write">
+  <xsl:param name="href" as="xs:string" required="yes"/>
+  <xsl:result-document href="{$href}">
+    <xsl:sequence select="."/>
+  </xsl:result-document>
 </xsl:template>
 
 </xsl:stylesheet>

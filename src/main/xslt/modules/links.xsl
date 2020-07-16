@@ -2,14 +2,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+                xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f m t tp xlink xs"
+                exclude-result-prefixes="db f h m t tp v xlink xs"
                 version="3.0">
 
 <xsl:template match="db:anchor">
@@ -215,6 +217,38 @@
 
       <a href="#{f:id($target)}" class="xref xref-{local-name($target)}">
         <xsl:sequence select="$content"/>
+      </a>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="db:olink">
+  <xsl:variable name="targetdoc" select="@targetdoc/string()"/>
+  <xsl:variable name="targetptr" select="@targetptr/string()"/>
+  <xsl:variable name="targetdb" select="($v:olink-databases[@targetdoc = $targetdoc])[1]"/>
+  <xsl:variable name="obj" select="key('targetptr', $targetptr, root($targetdb))"/>
+
+  <xsl:choose>
+    <xsl:when test="empty($targetdb)">
+      <xsl:message select="'olink: no targetdoc:', $targetdoc"/>
+      <span class="error">
+        <xsl:sequence select="'olink: ' || $targetdoc || '/' || $targetptr"/>
+      </span>
+    </xsl:when>
+    <xsl:when test="empty($obj)">
+      <xsl:message select="'olink: no targetptr: ' || $targetdoc || '/' || $targetptr"/>
+      <span class="error">
+        <xsl:sequence select="'olink: ' || $targetdoc || '/' || $targetptr"/>
+      </span>
+    </xsl:when>
+    <xsl:when test="empty(node())">
+      <a href="{$obj/@href}">
+        <xsl:sequence select="$obj/h:xreftext/node()"/>
+      </a>
+    </xsl:when>
+    <xsl:otherwise>
+      <a href="{$obj/@href}">
+        <xsl:apply-templates/>
       </a>
     </xsl:otherwise>
   </xsl:choose>

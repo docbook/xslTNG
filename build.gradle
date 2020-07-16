@@ -389,6 +389,7 @@ task copyReportResources(type: Copy,
 task copyReportImages(type: Copy) {
   from "src/website/resources"
   include "img/**"
+  exclude "olinkdb/**"
   into "${buildDir}/report"
   doFirst {
     mkdir "${buildDir}/report/css"
@@ -679,6 +680,10 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     opt2 = "relax-ng-grammar=${projectDir}/build/docbook-${docbookVersion}/rng/docbook.rng"
   }
 
+  if (base.startsWith("olink.")) {
+    opt1 = "olink-databases=${buildDir}/actual/guide.olinkdb,${buildDir}/actual/fit.001.olinkdb,${projectDir}/src/website/resources/olinkdb/website.olinkdb"
+  }
+
   def schemaPath = "docbook"
   def schema = "docbook"
   def schemaVersion = docbookVersion
@@ -752,6 +757,32 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
       "${opt3}"
   }
   allExpectedDocuments.dependsOn t
+
+  if (base == "fit.001") {
+    opt1 = "chunk=index.html"
+    opt2 = "chunk-output-base-uri=https://xsltng.docbook.org/samples/fit/"
+  }
+
+  t = task "${base}.olinkdb"(type: Exec, dependsOn: htmlDependsOn) {
+    inputs.files fileTree(dir: "src/main/xslt")
+    inputs.files fileTree(dir: "src/test/resources")
+    outputs.file("${buildDir}/actual/${base}.olinkdb")
+    commandLine "java",
+      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
+      "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
+      "-cp", EXCP, "net.sf.saxon.Transform",
+      "-init:org.docbook.xsltng.extensions.Register",
+      xml.toString(),
+      "-xsl:${buildDir}/xslt/olinkdb.xsl",
+      "-o:${buildDir}/actual/${base}.olinkdb",
+      "mediaobject-input-base-uri=file:${projectDir}/src/test/resources/media/",
+      "mediaobject-output-base-uri=media/",
+      "dynamic-profiles=true",
+      "olink-targetdoc=${base}",
+      "${opt1}",
+      "${opt2}",
+      "${opt3}"
+  }
 
   opt1="not-really-a-parameter1=1"
   opt2="not-really-a-parameter2=2"
@@ -853,6 +884,30 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
         "-d", "${buildDir}/actual/${base}.pdf.html",
         "-o", "src/test/resources/expectedpdf/${pdftool}/${base}.pdf"
     }
+  }
+}
+
+// Now that we have the html olink targets
+tasks.findByName("docbook.xspec").dependsOn "fit.001.olinkdb"
+tasks.findByName("docbook.xspec").dependsOn "guide.olinkdb"
+
+fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
+  // Work out the base filename of the test
+  def base = xml.toString()
+  def pos = base.indexOf("/resources/xml/")
+  if (pos > 0) {
+    base = base.substring(pos+15)
+      .replace("/", "_")
+      .replace(".xml", "")
+  }
+  if (base.startsWith("olink.")) {
+    Task t = tasks.findByName("${base}.html")
+    t.dependsOn "fit.001.olinkdb"
+    t.dependsOn "guide.olinkdb"
+
+    t = tasks.findByName("${base}.expected")
+    t.dependsOn "fit.001.olinkdb"
+    t.dependsOn "guide.olinkdb"
   }
 }
 
@@ -1431,6 +1486,31 @@ if (pdftool == "prince") {
   }
 }
 
+task "guide.olinkdb"(type: Exec, dependsOn: ['guide']) {
+  inputs.files fileTree(dir: "src/guide/xml")
+  inputs.files fileTree(dir: "build/xslt")
+  inputs.files fileTree(dir: "src/guide/xsl")
+  inputs.file("build/docbook-xslTNG.xml")
+  inputs.file("build/guide/guide.xml")
+  outputs.file("build/guide/index.html")
+  commandLine "java",
+    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
+    "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
+    "-cp", EXCP, "net.sf.saxon.Transform",
+    "-init:org.docbook.xsltng.extensions.Register",
+    "build/guide/guide.xml",
+    "-xsl:build/xslt/olinkdb.xsl",
+    "-o:build/actual/guide.olinkdb",
+    "explorer.xml=${buildDir}/docbook-xslTNG.xml",
+    "bookVersion=${guideVersion}",
+    "xslTNGversion=${xslTNGversion}",
+    "mediaobject-input-base-uri=file:${buildDir}/guide/",
+    "mediaobject-output-base-uri=./",
+    "profile-outputformat=online",
+    "chunk=index.html",
+    "chunk-output-base-uri=https://xsltng.docbook.org/guide/",
+    "olink-targetdoc=Guide"
+}
 
 // ============================================================
 
@@ -1468,6 +1548,7 @@ task webResources(type: Copy, dependsOn: ['report']) {
   from "src/website/resources/"
   into "build/website"
   exclude "images/**"
+  exclude "olinkdb/**"
   doFirst {
     mkdir "build/website"
   }

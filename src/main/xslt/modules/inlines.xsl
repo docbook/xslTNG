@@ -472,10 +472,6 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="db:olink">
-  <xsl:call-template name="t:inline"/>
-</xsl:template>
-
 <xsl:template match="db:ooclass">
   <xsl:call-template name="t:inline"/>
 </xsl:template>

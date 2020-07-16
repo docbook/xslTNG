@@ -4,13 +4,14 @@
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db ext f fp m v vp xs"
+                exclude-result-prefixes="db ext f fp h m v vp xs"
                 version="3.0">
 
 <!-- Note: These are variables used by the stylesheet. Many are
@@ -138,6 +139,24 @@
 
 <xsl:variable name="v:toc-close" as="element()">
   <span>╳</span>
+</xsl:variable>
+
+<xsl:variable name="v:olink-databases" as="element(h:targetdb)*">
+  <xsl:if test="normalize-space($olink-databases) != ''">
+    <xsl:for-each select="tokenize($olink-databases, ',\s*') ! normalize-space(.)">
+      <xsl:variable name="db" select="."/>
+      <xsl:try>
+        <xsl:variable name="olinkdb" select="doc($db)/h:targetdb"/>
+        <xsl:if test="empty($olinkdb)">
+          <xsl:message select="'No targets in olinkdb:', $db"/>
+        </xsl:if>
+        <xsl:sequence select="$olinkdb"/>
+        <xsl:catch>
+          <xsl:message select="'Failed to load olinkdb:', $db"/>
+        </xsl:catch>
+      </xsl:try>
+    </xsl:for-each>
+  </xsl:if>
 </xsl:variable>
 
 </xsl:stylesheet>
