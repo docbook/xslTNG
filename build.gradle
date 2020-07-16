@@ -320,6 +320,7 @@ task copyResources(type: Copy, dependsOn: ['copyTestMedia', 'makePrintCSS']) {
 
 task copyBin(type: Copy) {
   def pkglist = ["net.sf.saxon:Saxon-HE:${saxonVersion}",
+                 "org.docbook:docbook-xslTNG:${xslTNGversion}",
                  "com.drewnoakes:metadata-extractor:${metadataExtractorVersion}",
                  "org.relaxng:jing:${jingVersion}",
                  "org.xmlresolver:xmlresolver:${xmlresolverVersion}",
@@ -1202,11 +1203,11 @@ clean.dependsOn cleanXSpec
 
 // ============================================================
 
-task distCopyResources(type: Copy) {
+task zipStageResources(type: Copy) {
   from "src/main/web"
   include "css/**"
   include "js/**"
-  into "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/resources"
+  into "${buildDir}/stage/zip/resources"
   filter { String line ->
     if (line.indexOf("@@") >= 0) {
       line = line
@@ -1216,54 +1217,77 @@ task distCopyResources(type: Copy) {
     line
   }
   doFirst {
-    mkdir "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/resources"
+    mkdir "${buildDir}/stage/zip/resources"
   }
 }
 
-task distCopyXslt(type: Copy, dependsOn: ['makeXslt']) {
-  from "${buildDir}/xslt"
-  into "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/xslt"
+task zipStageSampleResources(type: Copy, dependsOn: ["zipStageResources"]) {
+  from "${buildDir}/stage/zip/resources"
+  into "${buildDir}/stage/zip/samples"
   doFirst {
-    mkdir "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/xslt"
+    mkdir "${buildDir}/stage/zip/samples"
   }
 }
 
-task distCopyMisc(type: Copy) {
+task zipStageSamples(type: Copy, dependsOn: ["zipStageSampleResources"]) {
+  from "src/main/samples"
+  into "${buildDir}/stage/zip/samples"
+}
+
+task zipStageXslt(type: Copy, dependsOn: ['makeXslt']) {
+  from "${buildDir}/xslt"
+  into "${buildDir}/stage/zip/xslt"
+  doFirst {
+    mkdir "${buildDir}/stage/zip/xslt"
+  }
+}
+
+task zipStageMisc(type: Copy, dependsOn: ["zipStageSamples"]) {
   from "."
-  into "${buildDir}/${xslTNGbaseName}-${xslTNGversion}"
+  into "${buildDir}/stage/zip"
   include "README.org"
   include "LICENSE"
-  doFirst {
-    mkdir "${buildDir}/${xslTNGbaseName}-${xslTNGversion}"
-  }
 }
 
-task distCopyJar(type: Copy, dependsOn: ['jar']) {
+task zipStageJar(type: Copy, dependsOn: ['jar']) {
   from "${buildDir}/libs/docbook-xslTNG-${xslTNGversion}.jar"
-  into "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/lib"
+  into "${buildDir}/stage/zip/lib"
   doFirst {
-    mkdir "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/lib"
+    mkdir "${buildDir}/stage/zip/lib"
   }
 }
 
-task distCopyBin(type: Copy, dependsOn: ['copyBin']) {
+task zipStageLib(type: Copy, dependsOn: ['zipStageJar', 'copyLib']) {
+  from "${buildDir}/libs/lib"
+  into "${buildDir}/stage/zip/lib/lib"
+  doFirst {
+    mkdir "${buildDir}/stage/zip/lib/lib"
+  }
+}
+
+task zipStageBin(type: Copy, dependsOn: ['copyBin']) {
   from "${buildDir}/bin"
-  into "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/bin"
+  into "${buildDir}/stage/zip/bin"
   doFirst {
-    mkdir "${buildDir}/${xslTNGbaseName}-${xslTNGversion}/bin"
+    mkdir "${buildDir}/stage/zip/bin"
   }
 }
 
-task zipDist(type: Zip,
-             dependsOn: ['distCopyResources','distCopyMisc','distCopyXslt',
-                         'distCopyJar', 'distCopyBin']) {
-  from("${buildDir}/${xslTNGbaseName}-${xslTNGversion}")
+task zipStage(type: Copy, dependsOn: ['zipStageBin', 'zipStageLib', 'zipStageMisc',
+                                      'zipStageXslt']) {
+  // nop
+}
+
+task zipDist(type: Zip, dependsOn: ['zipStage']) {
+  from("${buildDir}/stage/zip")
   into "${xslTNGbaseName}-${xslTNGversion}"
   archiveFileName = "${xslTNGbaseName}-${xslTNGversion}.zip"
   doFirst {
     mkdir "${buildDir}/distributions"
   }
 }
+
+// ============================================================
 
 task dist(dependsOn: ['requirePassingTests', 'zipDist', 'website']) {
   doLast {
