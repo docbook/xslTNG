@@ -3,6 +3,7 @@
                 xmlns:array="http://www.w3.org/2005/xpath-functions/array"
                 xmlns:f="http://nwalsh.com/ns/xsl/functions"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="array f xs"
                 version="2.0">
 
@@ -124,7 +125,7 @@
                                         'at [H01]:[m01] ')"/>
   <a href="https://www.timeanddate.com/time/zones/gmt">GMT</a>
   <xsl:sequence select="format-dateTime($pubdate,
-                                        ' on [D01] [MNn,*-3] [Y0001]')"/>
+                                        ' on [D01] [MNn,*-3] [Y0001]')"/>
 </xsl:template>
 
 <xsl:template match="attribute()|text()|comment()|processing-instruction()">
