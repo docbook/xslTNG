@@ -29,6 +29,12 @@ SHA=$(git rev-parse --verify HEAD)
 
 # Save the website files
 cd build/website
+
+if [[ ! -v CIRCLE_TAG ]]; then
+    # Only update the guide on tagged builds
+    rm -rf guide
+fi
+
 tar cf - . | gzip > /tmp/website.$$.tar.gz
 cd ../..
 
