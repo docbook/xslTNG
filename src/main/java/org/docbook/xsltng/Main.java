@@ -31,7 +31,7 @@ import java.util.Vector;
 
 public class Main extends Transform {
     Vector<String> userArgs = new Vector<>();
-    private String userCatalogFile = null;
+    private Vector<String> userCatalogFiles = new Vector<> ();
     private boolean userStylesheet = false;
     private boolean uriResolver = false;
     private boolean sourceReader = false;
@@ -55,7 +55,7 @@ public class Main extends Transform {
         for (String arg : args) {
             if (arg.startsWith("-catalog:")) {
                 pos = arg.indexOf(":");
-                userCatalogFile = arg.substring(pos+1);
+                userCatalogFiles.add(arg.substring(pos+1));
             } else {
                 uriResolver = uriResolver || arg.startsWith("-r:");
                 sourceReader = sourceReader || arg.startsWith("-x:");
@@ -107,7 +107,14 @@ public class Main extends Transform {
             System.exit(1);
         }
 
-        System.setProperty("xml.catalog.files", catalogFile);
+        StringBuilder catBuilder = new StringBuilder();
+        catBuilder.append(catalogFile);
+        for (String cat : userCatalogFiles) {
+            catBuilder.append(";");
+            catBuilder.append(cat);
+        }
+
+        System.setProperty("xml.catalog.files", catBuilder.toString());
         userArgs.add("-x:org.xmlresolver.tools.ResolvingXMLReader");
         userArgs.add("-y:org.xmlresolver.tools.ResolvingXMLReader");
         userArgs.add("-r:org.xmlresolver.Resolver");
@@ -118,6 +125,14 @@ public class Main extends Transform {
 
         String[] args = new String[userArgs.size()];
         userArgs.toArray(args);
+
+        if (logger.getFlag("java-args")) {
+            logger.debug("java-args", "xml.catalog.files=" + System.getProperty("xml.catalog.files"));
+            for (String arg : args) {
+                logger.debug("java-args", arg);
+            }
+        }
+
         doTransform(args, "java org.docbook.xsltng.Main");
         System.exit(0);
     }
@@ -154,11 +169,6 @@ public class Main extends Transform {
 
             transformer.setParameter(new QName("", "jarloc"), new XdmAtomicValue(jarLoc));
             transformer.setParameter(new QName("", "version"), new XdmAtomicValue(version()));
-            if (userCatalogFile != null) {
-                File cwd = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "irrelevant");
-                String catalog = cwd.toURI().resolve(userCatalogFile).toASCIIString();
-                transformer.setParameter(new QName("", "catalog"), new XdmAtomicValue(catalog));
-            }
             transformer.setInitialContextNode(uris);
 
             XdmDestination xresult = new XdmDestination();
