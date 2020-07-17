@@ -320,7 +320,6 @@ task copyResources(type: Copy, dependsOn: ['copyTestMedia', 'makePrintCSS']) {
 
 task copyBin(type: Copy) {
   def pkglist = ["net.sf.saxon:Saxon-HE:${saxonVersion}",
-                 "org.docbook:docbook-xslTNG:${xslTNGversion}",
                  "com.drewnoakes:metadata-extractor:${metadataExtractorVersion}",
                  "org.relaxng:jing:${jingVersion}",
                  "org.xmlresolver:xmlresolver:${xmlresolverVersion}",
@@ -1273,8 +1272,20 @@ task zipStageBin(type: Copy, dependsOn: ['copyBin']) {
   }
 }
 
+task zipStageCatalog(type: Exec, dependsOn: ['makeUris', 'zipStageXslt']) {
+  inputs.file("build/stage/jar/etc/uris.xml")
+  inputs.file("tools/make-catalog.xsl")
+  outputs.file("${buildDir}/stage/zip/xslt/catalog.xml")
+  commandLine "java",
+    "-cp", EXCP, "net.sf.saxon.Transform",
+    "build/stage/jar/etc/uris.xml",
+    "-xsl:tools/make-catalog.xsl",
+    "-o:${buildDir}/stage/zip/xslt/catalog.xml",
+    "version=${xslTNGversion}"
+}
+
 task zipStage(type: Copy, dependsOn: ['zipStageBin', 'zipStageLib', 'zipStageMisc',
-                                      'zipStageXslt']) {
+                                      'zipStageCatalog']) {
   // nop
 }
 
@@ -1605,8 +1616,8 @@ task webHomepage(type: SaxonXsltTask, dependsOn: ['testSummary']) {
 
 // ============================================================
 
-task stageJarXslt(type: Copy, dependsOn: [ "makeXslt", "makeVersionProperties",
-                                       "makeUris"]) {
+task stageJarXslt(type: Copy, dependsOn: ["makeXslt", "makeVersionProperties",
+                                          "makeUris"]) {
   from "build/xslt"
   into "build/stage/jar/xslt"
   doFirst {
