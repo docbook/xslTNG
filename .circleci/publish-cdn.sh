@@ -35,12 +35,14 @@ git clone --depth 1 -c core.sshCommand="/usr/bin/ssh -i $IDRSA" git@github.com:d
 # We should never be republishing to the same tag, but just in case...
 rm -rf release/xsltng/$CIRCLE_TAG
 mkdir -p release/xsltng/$CIRCLE_TAG
-rsync -ar ../repo/build/docbook-xslTNG-$CIRCLE_TAG/ release/xsltng/$CIRCLE_TAG/
+rsync -ar --exclude bin --exclude lib --exclude samples \
+      ../repo/build/stage/zip/ release/xsltng/$CIRCLE_TAG/
 
 # Make this the current release too
 rm -rf release/xsltng/current
 mkdir -p release/xsltng/current
-rsync -ar ../repo/build/docbook-xslTNG-$CIRCLE_TAG/ release/xsltng/current/
+rsync -ar --exclude bin --exclude lib --exclude samples \
+      ../repo/build/stage/zip/ release/xsltng/current/
 
 # generate indexes
 perl bin/make-indexes.pl release/xsltng
