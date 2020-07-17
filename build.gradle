@@ -1244,7 +1244,7 @@ task zipStageXslt(type: Copy, dependsOn: ['makeXslt']) {
 task zipStageMisc(type: Copy, dependsOn: ["zipStageSamples"]) {
   from "."
   into "${buildDir}/stage/zip"
-  include "README.org"
+  include "README.md"
   include "LICENSE"
 }
 
