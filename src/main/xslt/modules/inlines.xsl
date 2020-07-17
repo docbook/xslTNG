@@ -744,15 +744,15 @@
   <!-- drop these on the floor -->
 </xsl:template>
 
-<xsl:template match="processing-instruction('DocBook-xslTNG-version')" as="xs:string">
-  <xsl:sequence select="$v:VERSION"/>
+<xsl:template match="processing-instruction('DocBook-xslTNG-version')" as="text()">
+  <xsl:value-of select="$v:VERSION"/>
 </xsl:template>
 
-<xsl:template match="processing-instruction('system-property')" as="xs:string">
-  <xsl:sequence select="system-property(normalize-space(.))"/>
+<xsl:template match="processing-instruction('system-property')" as="text()">
+  <xsl:value-of select="system-property(normalize-space(.))"/>
 </xsl:template>
 
-<xsl:template match="processing-instruction('current-dateTime')" as="xs:string">
+<xsl:template match="processing-instruction('current-dateTime')" as="text()">
   <xsl:variable name="attr" select="f:pi-attributes(.)"/>
   <xsl:variable name="then" as="xs:dateTime">
     <xsl:choose>
@@ -790,7 +790,7 @@
   </xsl:variable>
   <xsl:variable name="format"
                 select="($attr/@format, $date-dateTime-format)[1]"/>
-  <xsl:sequence select="format-dateTime($then + $offset, $format)"/>
+  <xsl:value-of select="format-dateTime($then + $offset, $format)"/>
 </xsl:template>
 
 <xsl:template match="processing-instruction('eval')" as="item()*">

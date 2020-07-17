@@ -8,9 +8,169 @@
 </info>
 
 <para>In principle, the stylesheets will run with any conformant XSLT
-3.0 processor. In practice, that means
+3.0 processor. For many users, that means
 <link xlink:href="http://saxonica.com/">Saxon</link>. Although earlier versions
 may work, Saxon 10.1 or later is recommended.</para>
+
+<para>In principle, the instructions for using the stylesheets are
+straightforward: using your XSLT 3.0 processor of choice, transform your
+DocBook source documents with the <filename>docbook.xsl</filename>
+stylesheet in the <filename class="directory">xslt</filename>
+directory of the distribution.</para>
+
+<para>In practice, for most users, running the stylesheets will
+require getting a Java environment configured appropriately. For many,
+one of the most significant challenges is getting all of the
+dependencies sorted out. Modern software development, for better or
+worse, often consists of one library relying on another which relies
+on another, etc.</para>
+
+<para>The <citetitle>DocBook xslTNG</citetitle> stylesheets attempt to
+simplify this process, especially for the “out of the box” experience
+by providing two convenience methods for running the stylesheets: a
+jar file with a <classname>Main</classname> class, and a Python script
+that attempts, among other things, to make sure all of the
+dependencies are available.</para>
+
+<para>If you’re an experience Java user, you may prefer to simply run
+the stylesheets
+<link linkend="run-with-java">directly with Java</link>.</para>
+
+<section xml:id="java-main">
+<title>Using the Jar</title>
+
+<para>The <link linkend="get-github">ZIP distribution</link> includes a
+JAR file that you can run directly. That
+JAR file is
+<filename><replaceable>$ROOT</replaceable
+>/lib/docbook-xslTNG-<replaceable>version</replaceable>.jar</filename>
+where “<replaceable>$ROOT</replaceable>” is whatever directory you chose
+to unzip the distribution into and <replaceable>version</replaceable> is the
+stylesheet version.</para>
+
+<para>Assuming you unzipped the version <?DocBook-xslTNG-version?> distribution into
+<filename class="directory">/home/ndw/xsltng</filename>, you can run
+the JAR like this:</para>
+
+<para><code>java -jar /home/ndw/xsltng/lib/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar</code></para>
+
+<para>Let’s try it out. Open a shell window and change to the samples directory,
+<filename class="directory">/home/ndw/xsltng/samples</filename> assuming you unzipped
+it as described above. Now run the java command:</para>
+
+<screen role="monochrome border"
+><userinput>$ java -jar ../lib/docbook-xslTNG-0.9.12.jar article.xml</userinput>
+<computeroutput><![CDATA[<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+…more HTML here...
+<nav class="bottom"></nav></body></html>]]></computeroutput></screen>
+
+<para>That big splash of HTML was your first DocBook document
+formatted by the stylesheets! Slightly more usefully, you can save
+that HTML in a file:
+</para>
+
+<screen><userinput
+>$ java -jar ../lib/docbook-xslTNG-0.9.12.jar article.xml \
+        -o:article.html</userinput
+></screen>
+
+<para>If you now open <filename>article.html</filename> in your
+favorite web browser, you’ll see the transformed sample document
+which should look like <xref linkend="fig-sample"/>.
+</para>
+
+<figure xml:id="fig-sample">
+<title>The sample document: article.xml</title>
+<mediaobject>
+<alt>A rendering of the sample document</alt>
+<imageobject>
+<imagedata fileref="media/sample.png"/>
+</imageobject>
+<textobject>
+<para>This is a rendering of the sample document. It consists of the
+title “Sample Article” centered on the screen with a short paragraph
+of text below it. The text reads: This is a very simple DocBook
+document. It serves as a kind of "smoke test" to demonstrate that the
+stylesheets are working.
+</para>
+</textobject>
+</mediaobject>
+</figure>
+
+<para xml:id="caveats">The JAR file, run this way, accepts the same
+<link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with a few caveats:</para>
+
+<variablelist>
+<varlistentry><term>No <code>-x</code>, <code>-y</code>, or <code>-r</code> options</term>
+<listitem>
+<para>The executable in the JAR file automatically configures Saxon to
+use a catalog-based resolver and points the resolver at a catalog that
+includes the files in the distribution.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>No <code>-init</code> option</term>
+<listitem>
+<para>The <citetitle>DocBook xslTNG</citetitle>
+<link xlink:href="extensions">extension functions</link> will be registered
+automatically.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>Multiple <code>-catalog</code> options</term>
+<listitem>
+<para>You can repeat the <code>-catalog</code> option. All of the catalogs
+you specify will be searched before the default catalog.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>Default stylesheet</term>
+<listitem>
+<para>If you do not specify a stylesheet with the <code>-xsl</code> option,
+the <filename>xslt/docbook.xsl</filename> stylesheet will be used automatically.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+
+<section xml:id="python-script">
+<title>Using the Python script</title>
+
+<para>The <link linkend="get-github">ZIP distribution</link> includes a
+Python script in the <filename class="directory">bin</filename> directory.
+This script behaves much like the JAR file described in
+<xref linkend="java-main"/>. In particular,
+it accepts the same
+<link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with
+<link linkend="caveats">the same caveats</link>.</para>
+
+<para>The significant feature of the Python script is that it will attempt
+to sort out the dependencies for you. You <emphasis>must</emphasis> have
+Maven (the <command>mvn</command> command) installed in order to use this
+script.</para>
+
+<para>The first time you run the script, it will attempt to work out all of
+the necessary dependencies and will then arrange for the Java class path
+to include them all.</para>
+
+<para>The script stores its configuration in
+<code>.docbook-xsltng.json</code> in your home directory in order to avoid
+having to download all of the dependency information each time.</para>
+
+<para>FIXME: describe the other options of the python script.</para>
+</section>
+
+<section xml:id="run-with-java">
+<title>Run with Java</title>
+
+<para>Assuming you’ve organized your class path so that all of the
+dependencies are available (you may find that using a tool like Gradle
+or Maven simplifies this process), simply run the Saxon class.</para>
+
+<para>For Saxon HE, the class is <classname>net.sf.saxon.Transform</classname>.
+For Saxon PE and EE, the class is <classname>com.saxonica.Transform</classname>.</para>
+
+</section>
+
 
 <section xml:id="extensions">
 <title>Extension functions</title>

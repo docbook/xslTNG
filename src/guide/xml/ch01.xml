@@ -7,22 +7,74 @@
   <title>Getting the stylesheets</title>
 </info>
 
-<para>The easiest way to get the stylesheets is to download the most
-recent distribution from GitHub. They are also available via Maven.
+<para>There are three ways to get the stylesheets: you can
+<link linkend="get-github">download the latest release</link> from
+GitHub, you can <link linkend="get-maven">get them from Maven</link>,
+or you can clone
+<link xlink:href="https://github.com/docbook/xslTNG">the repository</link>
+and  <link linkend="building">build them yourself</link>. We’ll cover
+the first two options in this chapter; <xref linkend="building"/> covers
+the last option in detail.</para>
+
+<section xml:id="get-github">
+<title>Download the latest release</title>
+
+<para>The latest release is always available from the
+<link xlink:href="https://github.com/docbook/xslTNG/releases">GitHub
+releases page</link>. At the time of publication, the latest release was
+version <?DocBook-xslTNG-version?>.</para>
+
+<para>Distributed this way, you’ll get a ZIP file that contains the stylesheets
+plus a number of ancillary files and tools. These are mostly covered in
+the next chapter <xref linkend="using"/>.</para>
+
+<para>You can unzip the file anywhere that’s convenient: in your home
+directory or in a system-wide location.</para>
+
+</section>
+
+<section xml:id="get-maven">
+<title>Getting the release from Maven</title>
+
+<para>The latest release is always available
+<link xlink:href="https://search.maven.org/search?q=org.docbook.docbook-xslTNG">from
+Maven</link><footnote><para>With the caveat that it sometimes takes a few
+hours for the releases to make their way from the registry onto the website.
+If you’re chasing the very latest release and it’s just been published, it
+may be available before it appears on the website.</para></footnote>.
 </para>
 
-<para>If you wish, you can also clone the distribution and build them
-yourself. The distribution is designed to be self contained. Running:
+<para>The group, artifact, and version ID for the latest release at
+the time of publication is:</para>
+
+<para role="center"
+><code>org.docbook:docbook-xslTNG:<?DocBook-xslTNG-version?></code></para>
+
+<para>If you’re comfortable using Maven, I’m going to assume that’s all you
+need to know.</para>
+
+<para>The Maven distribution differs from the zip file in a couple of ways:</para>
+
+<orderedlist>
+<listitem>
+<para>It doesn’t bundle any of the dependencies. The
+<link linkend="get-github">ZIP file</link> is more akin
+to
+<link xlink:href="https://stackoverflow.com/questions/11947037/what-is-an-uber-jar">an
+“uber” or “fat” jar</link>; it includes (some of) the core dependencies so
+that it works out-of-the-box. Maven is designed to resolve dependencies,
+so that shouldn’t be necessary here.</para>
+</listitem>
+<listitem>
+<para>The Maven jar doesn’t include the Python script or the extra resources
+(CSS and JavaScript files) because it doesn’t seem like it would be convenient
+to extract them from the Maven jar (which will probably be installed deep in
+some repository hierarchy well out of sight). Consequently, you may want to
+<link linkend="get-github">download the distribution</link> periodically as well.
 </para>
+</listitem>
+</orderedlist>
 
-<screen><?db verbatim-style="plain"
-?><userinput>./gradlew makeXslt</userinput></screen>
-
-<para>should build the stylesheets in <filename>build/xslt</filename>.
-(Use <userinput>.\gradlew.bat makeXslt</userinput> on
-Windows<footnote><para>In the spirit of full disclosure, builds are very
-rarely tested on Windows. If you encounter problems, please file an issue.</para>
-</footnote>.)</para>
-
+</section>
 </chapter>
 

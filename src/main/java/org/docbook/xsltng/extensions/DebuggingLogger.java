@@ -39,7 +39,7 @@ public class DebuggingLogger extends StandardLogger {
     }
 
     public boolean getFlag(String flag) {
-        return flags.contains(flag);
+        return noisy || flags.contains(flag);
     }
 
     public void setFlag(String flag) {
