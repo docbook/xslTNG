@@ -7,8 +7,8 @@
 
 <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
-<xsl:param name="jarloc" as="xs:string" required="yes"/>
 <xsl:param name="version" as="xs:string" required="yes"/>
+<xsl:param name="jarloc" as="xs:string?" select="()"/>
 <xsl:param name="catalog" as="xs:string?" select="()"/>
 
 <xsl:variable name="https" select="'https://cdn.docbook.org/'"/>
@@ -28,7 +28,10 @@
     <xsl:variable name="path" select="'release/xsltng/' ||  . ||  $name"/>
     <uri xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
       <xsl:attribute name="name" select="concat($https, $path)"/>
-      <xsl:attribute name="uri" select="concat($jarloc, $name)"/>
+      <xsl:attribute name="uri"
+                     select="if (exists($jarloc))
+                             then $jarloc || $name
+                             else substring-after($name, '/xslt/')"/>
     </uri>
   </xsl:for-each>
 </xsl:template>

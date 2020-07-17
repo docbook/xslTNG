@@ -14,39 +14,56 @@ from xml.dom.minidom import parseString, Node
 import requests
 
 
+class JavaClassRunnerException(Exception):
+    """Subclass of Exception for errors raised by the runner."""
+
+
 class JavaClassRunner:
     """Executes a java process based on a set of parameters read from a
     configuration file. It uses `mvn` to download dependencies and constructs
     a class path that contains the transitive closure of all dependencies
     rooted at the modules listed in `maven-packages`.
     """
+
     # Yes, I have a lot of instance attributes. I'm also using camelCase names,
     # which aren't the Pythonic way, but they are the POM way. And I know some
     # methods could be functions.
     # pylint: disable=R0902,C0103,R0201
 
-
     def __init__(self):
         # The ~ just makes it sort last
         self.depkey = "~depends"
+        self.version = "@@VERSION@@"
         self.seeds = set(["@@PACKAGE_LIST@@"])
         self.config = {
             "maven-local": str(Path.home()) + "/.m2/repository",
-            "maven-repositories": ["https://repo1.maven.org/maven2",
-                                   "https://maven.restlet.com"],
+            "maven-repositories": [
+                "https://repo1.maven.org/maven2",
+                "https://maven.restlet.com",
+            ],
             "maven-packages": [],
             "pin-packages": ["xml-apis:xml-apis:1.4.01"],
-            "args": ["-init:org.docbook.xsltng.extensions.Register"],
+            "args": [],
             "classpath": [],
-            "class": "net.sf.saxon.Transform"
+            "class": "net.sf.saxon.Transform",
         }
         self.mvn_dep = "org.apache.maven.plugins:maven-dependency-plugin:2.1:get"
         self._cp = {}
         self._seen = {}
 
         self.config_file = str(Path.home()) + "/.docbook-xsltng.json"
+
+        # Assume this script is in /path/to/somewhere/docbook/bin/python
+        # where "docbook" is the root of the distribution. If you move
+        # this script into /usr/local/bin or something, that won't work.
+        self.root = os.path.abspath(__file__)
+        self.root = self.root[0:self.root.rfind(os.sep)]  # strip /docbook
+        self.root = self.root[0:self.root.rfind(os.sep)]  # strip /bin
+
         self.verbose = False
         self.debug = False
+        self.catalogs = [f"{self.root}/xslt/catalog.xml"]
+        self.stylesheet = f"-xsl:{self.root}/xslt/docbook.xsl"
         self._mvn = None
         self._java = None
         self._app_args = []
@@ -64,24 +81,28 @@ class JavaClassRunner:
         if not self._mvn:
             self._mvn = self.config.get("mvn", shutil.which("mvn"))
             if not self._mvn:
-                raise RuntimeError("The Maven 'mvn' command is not on your path.")
+                raise JavaClassRunnerException(
+                    "The Maven 'mvn' command is not on your path."
+                )
 
         if not self._java:
             self._java = self.config.get("java", shutil.which("java"))
             if not self._java:
-                raise RuntimeError("The 'java' command is not on your path.")
+                raise JavaClassRunnerException(
+                    "The 'java' command is not on your path."
+                )
 
         for key in ["maven-local", "maven-repositories"]:
             if not key in self.config:
-                raise RuntimeError(f"Configuration must specify '{key}'")
+                raise JavaClassRunnerException(f"Configuration must specify '{key}'")
 
         for pkg in self.config.get("maven-packages", []):
             self.seeds.add(pkg)
 
-        # Unify the config file with the 
+        # Unify the config file with the
 
         if "class" not in self.config:
-            raise RuntimeError(f"Configuration must specify 'class'")
+            raise JavaClassRunnerException("Configuration must specify 'class'")
 
         if "verbose" not in self.config:
             self.config["verbose"] = False
@@ -95,7 +116,7 @@ class JavaClassRunner:
         done = False
         for arg in sys.argv[1:]:
             if done:
-                self._app_args.append(arg)
+                self._check_arg(arg)
             else:
                 if arg == "--":
                     done = True
@@ -105,13 +126,31 @@ class JavaClassRunner:
                     self._mvn = arg[6:]
                 elif arg.startswith("--java:"):
                     self._java = arg[7:]
+                elif arg.startswith("--root:"):
+                    self.root = arg[7:]
                 elif arg == "--verbose":
                     self.verbose = True
                 elif arg == "--debug":
                     self.debug = True
                 else:
-                    self._app_args.append(arg)
-                    done = True
+                    self._check_arg(arg)
+        if self.stylesheet:
+            self._app_args.append(self.stylesheet)
+            self.stylesheet = None
+
+    def _check_arg(self, arg):
+        if ":" in arg:
+            pos = arg.index(":")
+            name = arg[0:pos]
+            value = arg[(pos + 1):]
+            if name in ("-x", "-y", "-r", "-init"):
+                raise JavaClassRunnerException(
+                    f"The {arg} option cannot be specified")
+            if name == "-catalog":
+                self.catalogs.append(value)
+            elif name == "-xsl":
+                self.stylesheet = None
+        self._app_args.append(arg)
 
     def _message(self, message):
         if self.verbose:
@@ -142,9 +181,14 @@ class JavaClassRunner:
         return None
 
     def _skip(self, groupId, artifactId, version):
-        return (groupId is None or "${" in groupId
-                or artifactId is None or "R{" in artifactId
-                or version is None or "${" in version)
+        return (
+            groupId is None
+            or "${" in groupId
+            or artifactId is None
+            or "R{" in artifactId
+            or version is None
+            or "${" in version
+        )
 
     def _install(self, groupId, artifactId, version):
         # I'm not really sure how mvn works.
@@ -153,10 +197,12 @@ class JavaClassRunner:
             return "SKIPPED"
 
         for repo in self.config["maven-repositories"]:
-            run = ["mvn",
-                   self.mvn_dep,
-                   f"-DrepoUrl={repo}",
-                   f"-Dartifact={groupId}:{artifactId}:{version}"]
+            run = [
+                "mvn",
+                self.mvn_dep,
+                f"-DrepoUrl={repo}",
+                f"-Dartifact={groupId}:{artifactId}:{version}",
+            ]
             returnCode = subprocess.run(run, capture_output=True, check=True)
             if returnCode == 0:
                 break
@@ -203,7 +249,9 @@ class JavaClassRunner:
                 break
 
         if not pom:
-            print(f"Error: failed to get {artifactId} POM for {groupId} version {version}")
+            print(
+                f"Error: failed to get {artifactId} POM for {groupId} version {version}"
+            )
             return
 
         self._message(f"Checking {groupId}:{artifactId}:{version}")
@@ -219,7 +267,7 @@ class JavaClassRunner:
                 depGroupId = self._get_value(node, "groupId")
                 depArtifactId = self._get_value(node, "artifactId")
                 depVersion = self._get_value(node, "version")
-                #print(depGroupId, depArtifactId, depVersion)
+                # print(depGroupId, depArtifactId, depVersion)
                 if depGroupId is None or depArtifactId is None or depVersion is None:
                     pass
                 else:
@@ -255,10 +303,10 @@ class JavaClassRunner:
 
             if cur != new:
                 if cur.isdigit() and new.isdigit():
-                    #print(f"{curver}/{newver}: {cur}/{new}: {int(new)>int(cur)}")
+                    # print(f"{curver}/{newver}: {cur}/{new}: {int(new)>int(cur)}")
                     return int(new) > int(cur)
-                # Meh. We could try to do better, but..
-                #print(f"{curver}/{newver}: {cur}/{new}: {new>cur}")
+                # Meh. We could try to do better, but...
+                # print(f"{curver}/{newver}: {cur}/{new}: {new>cur}")
                 return new > cur
 
         # If there are more pieces in the new version, call it newer
@@ -292,7 +340,7 @@ class JavaClassRunner:
             usever = None
             for pkg in self.config.get("pinned-packages", []):
                 if pkg.startswith(basepkg):
-                    usever = pkg[len(basepkg)+1:]
+                    usever = pkg[len(basepkg) + 1 :]
 
             if usever:
                 pass
@@ -326,26 +374,34 @@ class JavaClassRunner:
         # some package and then later we replace 1.4 with 1.5.2 which
         # no longer has a dependency on x:y. I'm assuming that'll be
         # harmless.
-        if "dependencies" in self.config[self.depkey][group][artifact][version]:
-            for dep in self.config[self.depkey][group][artifact][version]["dependencies"]:
-                self._add_to_classpath(dep)
+        depends = self.config[self.depkey][group][artifact][version]
+        for dep in depends.get("dependencies", []):
+            self._add_to_classpath(dep)
 
     def classpath(self):
         """Compute the class path for this run."""
         for package in self.seeds:
             self._add_to_classpath(package)
 
+        # Work out what jar files are included in the distribution
+        distlibs = []
+        for (_, _, filenames) in os.walk(self.root + "/lib/lib"):
+            distlibs += filenames
+
         cplist = []
+        if "CLASSPATH" in os.environ:
+            for path in os.environ["CLASSPATH"].split(os.pathsep):
+                cplist.append(path)
+
         for group in self._cp:
             for archive in self._cp[group]:
                 for version in self._cp[group][archive]:
-                    cplist.append(self._cp[group][archive][version])
+                    cpjar = self._cp[group][archive][version]
+                    if os.path.basename(cpjar) not in distlibs:
+                        cplist.append(cpjar)
 
         # Where is the distribution jar file?
-        libpath = os.path.abspath(__file__)
-        libpath = libpath[0:libpath.rfind(os.sep)] # strip /docbook
-        libpath = libpath[0:libpath.rfind(os.sep)] # strip /bin
-        libpath = os.sep.join([libpath, "lib/docbook-xslTNG-0.1.14.jar"])
+        libpath = os.sep.join([self.root, f"lib/docbook-xslTNG-{self.version}.jar"])
         cplist.append(libpath)
 
         for path in self.config.get("classpath", []):
@@ -360,12 +416,12 @@ class JavaClassRunner:
         for arg in self._app_args:
             args.append(arg)
             if ":" in arg:
-                argset.add(arg[0:arg.index(":")])
+                argset.add(arg[0 : arg.index(":")])
             else:
                 argset.add(arg)
         for arg in self.config.get("args", []):
             if ":" in arg:
-                key = arg[0:arg.index(":")]
+                key = arg[0 : arg.index(":")]
             else:
                 key = arg
             if key not in argset:
@@ -376,7 +432,8 @@ class JavaClassRunner:
         """Run the process."""
         cp = self.classpath()
         args = self.args()
-        jopt = self.config.get("java-options", [])
+        jopt = ["-Dxml.catalog.files=" + ";".join(self.catalogs)]
+        jopt = jopt + self.config.get("java-options", [])
         if self.debug:
             print(self._java)
             for item in jopt:
@@ -384,18 +441,23 @@ class JavaClassRunner:
             print("-cp")
             for item in cp.split(os.pathsep):
                 print(f"\t{item}")
-            print(self.config['class'])
+            print(self.config["class"])
             for item in args:
                 print(f"\t{item}")
         else:
-            cmd = [self._java] + jopt + ["-cp", cp] + [self.config['class']] + args
+            cmd = [self._java] + jopt + ["-cp", cp] + [self.config["class"]] + args
             subprocess.call(cmd)
+
 
 if __name__ == "__main__":
     # I'm perfectly happy with the name 'docbook'
     # pylint: disable=C0103
 
     # N.B. JavaClassRunner parses sys.argv!
-    docbook = JavaClassRunner()
-    docbook.download_dependencies()
-    docbook.run()
+    try:
+        docbook = JavaClassRunner()
+        docbook.download_dependencies()
+        docbook.run()
+    except JavaClassRunnerException as err:
+        print(str(err))
+        sys.exit(1)
