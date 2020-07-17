@@ -115,3 +115,18 @@ p .refpurpose-sep {
 .property-table tr th {
     border: 1px solid #7f7f7f;
 }
+
+.center {
+    text-align: center;
+}
+
+pre.border {
+    border: 1px solid var(--border-grey);
+    border-radius: 4px;
+    overflow: scroll;
+    width: 99%;
+}
+
+pre.border .line .ld {
+    padding-left: 4px;
+}
