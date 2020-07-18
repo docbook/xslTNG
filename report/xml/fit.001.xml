@@ -12,12 +12,18 @@
     </personname>
     <email>ndw@nwalsh.com</email>
   </author>
-  <pubdate>2020-06-21</pubdate>
+  <pubdate>2020-07-18</pubdate>
   <abstract>
     <para>This book highlights five interesting things about the
     <citetitle>DocBook xslTNG Stylesheets</citetitle>.</para>
   </abstract>
   <revhistory>
+    <revision>
+      <revnumber>1.1.0</revnumber>
+      <date>2020-07-18</date>
+      <authorinitials>ndw</authorinitials>
+      <revremark>Renamed chapter 1 and chapter 5 on the advice of a reviewer.</revremark>
+    </revision>
     <revision>
       <revnumber>1.0.1</revnumber>
       <date>2020-06-29</date>
@@ -45,7 +51,7 @@
 </info>
 
 <chapter xml:id="look">
-<title>New Look and Feel</title>
+<title>Clean Look and Feel</title>
 
 <para>The output from the <citetitle>DocBook xslTNG
 Stylesheets</citetitle> is designed to be clean, semantic
@@ -329,7 +335,7 @@ Alternatively, elements can point to their annotations.</para>
 </chapter>
 
 <chapter xml:id="xlink">
-<title>XLink Extended Links</title>
+<title>Extended Links</title>
 
 <para xml:id="xlinkpara"><biblioref linkend="XLink"/> extended links, like
 <link xlink:href="annotations">annotations</link>, can be non-local.
