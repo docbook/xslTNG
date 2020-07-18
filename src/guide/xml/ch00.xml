@@ -20,6 +20,79 @@ of the XSLT 3.0 Recommendation.</para>
 
 <para>Why did it take so long?</para>
 
-<para>…</para>
+  <para>To answer that question, we need to reflect for a moment on XSLT and
+    its place in the XML ecosystem. When XSLT arrived on the scene, we
+    were near the peak of XML enthusiasm. Not only was XML supported
+    everywhere, it was possible to imagine XSLT everywhere as well.
+    Certainly, the presence of XSLT in the browser felt significant at
+    the time.
+  </para>
+  <para>The ubiquity of XML and the fact that XSLT was “just an XML
+    vocabulary” may have contributed to another significant phenomenon:
+    lots of users who did not self identify as programmers were learning
+    to use XSLT and doing significant things with it.
+  </para>
+  <para>There were other tools available for transforming markup at the
+    time, and arguably some of them were better than XSLT, but they were
+    programming languages and you had to be a programmer to use them.
+    They were also mostly commercial applications not widely available
+    to casual users.
+  </para>
+  <para>XSLT was free, it was everywhere, and it was used by everyone, not
+    “just” programmers. It was the clear winner than and remains the
+    clear winner today in terms of markup transformation.
+  </para>
+  <para>You could do a lot of things with <xref linkend="XSLT10"/>. You could do a lot more
+    things than you might at first even have thought possible. (In fact,
+    you could do all things, but the
+    Turing complete nature of XSLT isn’t relevant here.) Some very
+    common tasks, like grouping, were possible but difficult. Lots of
+    very useful things were either not possible or required extensions:
+    regular expressions, functions, date and time formatting, creating
+    special characters in the output, to name just a few.
+  </para>
+  <para><xref linkend="XSLT20"/> solved all of these problems (and more). Significantly, I
+    think, all of these new features appealed directly to almost all
+    users of XSLT 1.0. Everyone had encountered a grouping problem
+    (building an index, for example). Everyone had wanted regular
+    expression matching or date formatting. Lots of users wanted to
+    write more sophisticated predicates (and many were willing to learn
+    how to use functions to achieve that result).
+  </para>
+  <para><xref linkend="XSLT30"/> arguably introduces larger and
+  more dramatic features than XSLT 2.0 did. There are a bunch of new
+  features designed to enable streaming processing; there are
+  significant software engineering improvements: packaging, exception
+  handling, and assertions; there are common programming language
+  constructs like maps and arrays. There is also a selection of
+  features inherited from updates to XPath (new functions, a subset of
+  <code>let</code> syntax, and support for higher order
+  functions, for example).
+  </para>
+  <para>What’s curious, I think, is that many of these features are probably
+    less immediately appealing to many (most?) current users. XSLT 2.0
+    doesn’t feel constraining in the same way that XSLT 1.0 did, and the
+    features in XSLT 3.0 don’t immediately and obviously solve problems
+    that most users have.
+  </para>
+  <para>Streaming, for example, is incredibly powerful and it’s an important
+    and significant milestone in markup processing. It makes it possible
+    to solve whole classes of problems that were previously impossible
+    to solve or required enormously expensive hardware. But my laptop
+    will quite easily process a book full of complex markup that runs to
+    hundreds of pages. I don’t have any problems that require a
+    streaming processor.
+  </para>
+  <para>Likewise, packaging is useful and important. The <emphasis>DocBook
+    xslTNG</emphasis> stylesheets should absolutely be a package. But
+    that’s not true of a lot of stylesheets. There might be software
+    engineering benefit in making a package even for stylesheets that
+    you don’t intend to distribute, but that’s more likely to appeal to
+    people who think of what they’re doing is programming.
+  </para>
+  <para>Nevertheless, there are lots of good reasons to use XSLT 3.0 even if
+    you are “only” transforming documents and even if you don’t think of
+    writing transformations as programming.
+  </para>
 
 </preface>
