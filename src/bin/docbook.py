@@ -10,8 +10,7 @@ import json
 import shutil
 import subprocess
 from pathlib import Path
-from xml.dom.minidom import parseString, Node
-import requests
+from xml.dom.minidom import parse, Node
 
 
 class JavaClassRunnerException(Exception):
@@ -30,28 +29,29 @@ class JavaClassRunner:
     # methods could be functions.
     # pylint: disable=R0902,C0103,R0201
 
-    def __init__(self):
-        # The ~ just makes it sort last
-        self.depkey = "~depends"
+    def __init__(self, args):
         self.version = "@@VERSION@@"
+
+        # The obvious thing to do here would be to make the seed
+        # org.docbook:docbook-xslTNG:@@VERSION@@, but if we do that
+        # then it's very hard to run the script in the build
+        # environment because that version may not be published yet.
+        # Instead, we rely on the fact that we can get the
+        # docbook-xslTNG package from the distribution environment and
+        # we seed with its dependencies.
         self.seeds = set(["@@PACKAGE_LIST@@"])
+
         self.config = {
             "maven-local": str(Path.home()) + "/.m2/repository",
-            "maven-repositories": [
-                "https://repo1.maven.org/maven2",
-                "https://maven.restlet.com",
-            ],
             "maven-packages": [],
-            "pin-packages": ["xml-apis:xml-apis:1.4.01"],
+            "pinned-packages": ["xml-apis:xml-apis:1.4.01"],
             "args": [],
             "classpath": [],
             "class": "net.sf.saxon.Transform",
         }
-        self.mvn_dep = "org.apache.maven.plugins:maven-dependency-plugin:2.1:get"
+        self.depends = {}
         self._cp = {}
         self._seen = {}
-
-        self.config_file = str(Path.home()) + "/.docbook-xsltng.json"
 
         # Assume this script is in /path/to/somewhere/docbook/bin/python
         # where "docbook" is the root of the distribution. If you move
@@ -60,14 +60,20 @@ class JavaClassRunner:
         self.root = self.root[0:self.root.rfind(os.sep)]  # strip /docbook
         self.root = self.root[0:self.root.rfind(os.sep)]  # strip /bin
 
+        self.config_file = str(Path.home()) + "/.docbook-xsltng.json"
+        self.stylesheet = None
+        self.catalogs = []
         self.verbose = False
         self.debug = False
-        self.catalogs = [f"{self.root}/xslt/catalog.xml"]
-        self.stylesheet = f"-xsl:{self.root}/xslt/docbook.xsl"
-        self._mvn = None
         self._java = None
         self._app_args = []
-        self._parse_args()
+
+        self._parse_args(args)
+
+        self.catalogs.append(f"{self.root}/xslt/catalog.xml")
+        if not self.stylesheet:
+            self.stylesheet = f"-xsl:{self.root}/xslt/docbook.xsl"
+            self._app_args.append(self.stylesheet)
 
         try:
             with open(self.config_file, "r") as depfile:
@@ -78,13 +84,6 @@ class JavaClassRunner:
 
         self.verbose = self.verbose or self.config.get("verbose", False)
 
-        if not self._mvn:
-            self._mvn = self.config.get("mvn", shutil.which("mvn"))
-            if not self._mvn:
-                raise JavaClassRunnerException(
-                    "The Maven 'mvn' command is not on your path."
-                )
-
         if not self._java:
             self._java = self.config.get("java", shutil.which("java"))
             if not self._java:
@@ -92,14 +91,8 @@ class JavaClassRunner:
                     "The 'java' command is not on your path."
                 )
 
-        for key in ["maven-local", "maven-repositories"]:
-            if not key in self.config:
-                raise JavaClassRunnerException(f"Configuration must specify '{key}'")
-
         for pkg in self.config.get("maven-packages", []):
             self.seeds.add(pkg)
-
-        # Unify the config file with the
 
         if "class" not in self.config:
             raise JavaClassRunnerException("Configuration must specify 'class'")
@@ -107,14 +100,11 @@ class JavaClassRunner:
         if "verbose" not in self.config:
             self.config["verbose"] = False
 
-        if self.depkey not in self.config:
-            self.config[self.depkey] = {}
-
-    def _parse_args(self):
+    def _parse_args(self, args):
         # Can't use any of the nice arg parsers here because these
-        # are mostly args for some other application
+        # are mostly args for Saxon.
         done = False
-        for arg in sys.argv[1:]:
+        for arg in args:
             if done:
                 self._check_arg(arg)
             else:
@@ -122,21 +112,52 @@ class JavaClassRunner:
                     done = True
                 elif arg.startswith("--config:"):
                     self.config_file = arg[9:]
-                elif arg.startswith("--mvn:"):
-                    self._mvn = arg[6:]
                 elif arg.startswith("--java:"):
                     self._java = arg[7:]
                 elif arg.startswith("--root:"):
                     self.root = arg[7:]
+                elif arg == "--help":
+                    self._help()
+                    sys.exit(0)
                 elif arg == "--verbose":
                     self.verbose = True
                 elif arg == "--debug":
                     self.debug = True
                 else:
                     self._check_arg(arg)
-        if self.stylesheet:
-            self._app_args.append(self.stylesheet)
-            self.stylesheet = None
+
+    def _help(self):
+        print(f"""DocBook xslTNG version @@VERSION@@
+
+Usage: {sys.argv[0]} [options]
+
+This helper script is a convenience wrapper around Saxon. It sets up
+the Java classpath and automatically configures a catalog resolver and
+the DocBook extension functions.
+
+The initial options, all introduced by two hyphens, are interpreted by
+this script. All the remaining options are passed directly to Saxon.
+
+Options:
+  --help         Print this message
+  --config:file  Use 'file' as the configuration file. The default
+                 configuration file is .docbook-xsltng.json in your
+                 home directory.
+  --java:file    Use 'file' as the Java executable. The default
+                 java executable is the first one on your PATH.
+  --home:dir     Use 'dir' as the "DocBook xslTNG" home directory.
+                 This should be the location where you unzipped the
+                 distribution.
+  --help         Print this help message
+  --verbose      Enable 'verbose' mode. This prints more messages.
+  --debug        Enable 'debug' mode. Instead of running the
+                 transformation, print out the command that would
+                 have been run.
+  --             Immediately stop interpreting options.
+
+The Saxon options -x, -y, -r, and -init may not be specified as the
+wrapper sets these automatically.
+""")
 
     def _check_arg(self, arg):
         if ":" in arg:
@@ -148,26 +169,30 @@ class JavaClassRunner:
                     f"The {arg} option cannot be specified")
             if name == "-catalog":
                 self.catalogs.append(value)
+                return
             elif name == "-xsl":
-                self.stylesheet = None
+                self.stylesheet = arg
         self._app_args.append(arg)
 
     def _message(self, message):
         if self.verbose:
             print(message)
 
-    def _pom(self, repo, groupId, artifactId, version):
+    def _pom(self, groupId, artifactId, version):
         groupPath = groupId.replace(".", "/")
-        uri = f"{repo}/{groupPath}/{artifactId}/{version}/{artifactId}-{version}.pom"
-        # print(uri)
-        resp = requests.get(uri)
-        if resp.status_code == 200:
-            return parseString(resp.text)
-        return None
+        pom = f"{self.config['maven-local']}/"
+        pom += f"{groupPath}/{artifactId}/{version}/{artifactId}-{version}.pom"
+        try:
+            with open(pom, "r") as pomfile:
+                return parse(pomfile)
+        except IOError:
+            return None
 
     def _get_value(self, node, tag):
         for child in node.childNodes:
-            if child.nodeType == Node.ELEMENT_NODE and child.tagName == tag:
+            if child.nodeType == Node.ELEMENT_NODE \
+              and child.tagName == tag \
+              and child.childNodes.length == 1:
                 return child.childNodes[0].nodeValue
         return None
 
@@ -181,106 +206,97 @@ class JavaClassRunner:
         return None
 
     def _skip(self, groupId, artifactId, version):
-        return (
-            groupId is None
-            or "${" in groupId
-            or artifactId is None
-            or "R{" in artifactId
-            or version is None
-            or "${" in version
-        )
-
-    def _install(self, groupId, artifactId, version):
-        # I'm not really sure how mvn works.
-        if self._skip(groupId, artifactId, version):
-            self._message(f"Skipping {groupId}:{artifactId}:{version}")
-            return "SKIPPED"
-
-        for repo in self.config["maven-repositories"]:
-            run = [
-                "mvn",
-                self.mvn_dep,
-                f"-DrepoUrl={repo}",
-                f"-Dartifact={groupId}:{artifactId}:{version}",
-            ]
-            returnCode = subprocess.run(run, capture_output=True, check=True)
-            if returnCode == 0:
-                break
-
-        jar = self._jar(groupId, artifactId, version)
-        if not jar:
-            self._message(f"Failed {groupId}:{artifactId}:{version}")
-            return "NOTFOUND"
-
-        self._message(f"Downloaded {groupId}:{artifactId}:{version}")
-        return jar
+        return (groupId is None or "${" in groupId
+                or artifactId is None or "${" in artifactId
+                or version is None or "${" in version)
 
     def _save_config(self):
         with open(self.config_file, "w") as depfile:
             depfile.write(json.dumps(self.config, indent=2, sort_keys=True))
 
     def _update_dependencies(self, groupId, artifactId, version):
-        if groupId not in self.config[self.depkey]:
-            self.config[self.depkey][groupId] = {}
+        #self._message(f"Update {groupId}:{artifactId}:{version}")
 
-        if artifactId not in self.config[self.depkey][groupId]:
-            self.config[self.depkey][groupId][artifactId] = {}
+        if groupId not in self.depends:
+            self.depends[groupId] = {}
 
-        if version in self.config[self.depkey][groupId][artifactId]:
+        if artifactId not in self.depends[groupId]:
+            self.depends[groupId][artifactId] = {}
+
+        if version in self.depends[groupId][artifactId]:
             return
 
         jar = self._jar(groupId, artifactId, version)
         if not jar:
-            jar = self._install(groupId, artifactId, version)
+            self._message(f"No jar: {groupId}:{artifactId}:{version}")
+            return
 
         pkgconfig = {}
         pkgconfig["jar"] = jar
         pkgconfig["dependencies"] = []
-        self.config[self.depkey][groupId][artifactId][version] = pkgconfig
+        self.depends[groupId][artifactId][version] = pkgconfig
 
         if self._skip(groupId, artifactId, version):
             self._message(f"Skipping: {groupId}:{artifactId}:{version}")
             return
 
         # Get the dependencies from the POM
-        for repo in self.config["maven-repositories"]:
-            pom = self._pom(repo, groupId, artifactId, version)
-            if pom:
-                break
-
-        if not pom:
-            print(
-                f"Error: failed to get {artifactId} POM for {groupId} version {version}"
-            )
+        if not self._pom(groupId, artifactId, version):
+            self._message(f"No pom: {groupId}:{artifactId}:{version}")
             return
 
-        self._message(f"Checking {groupId}:{artifactId}:{version}")
-        pkgconfig["dependencies"] = self._artifact_dependencies(pom)
-        self.config[self.depkey][groupId][artifactId][version] = pkgconfig
+        #self._message(f"Checking {groupId}:{artifactId}:{version}")
+        pkgconfig["dependencies"] = self._artifact_dependencies(groupId, artifactId, version)
+        self.depends[groupId][artifactId][version] = pkgconfig
         self._save_config()
 
-    def _artifact_dependencies(self, pom):
+    def _artifact_dependencies(self, groupId, artifactId, version):
         # Note: we blindly assume the POM will be formatted the way we expect
+        # I don't care that this method has 16 local variables.
+        # pylint: disable=R0914
+        pom = self._pom(groupId, artifactId, version)
+        project = pom.documentElement
+
+        properties = {"project.groupId": groupId,
+                      "project.artifactId": artifactId,
+                      "project.version": version}
+        for node in project.childNodes:
+            if node.nodeType == Node.ELEMENT_NODE and node.tagName == "properties":
+                for child in node.childNodes:
+                    if child.nodeType == Node.ELEMENT_NODE and child.childNodes.length == 1:
+                        properties[child.tagName] = child.childNodes[0].nodeValue
+
         deps = []
-        for dependencies in pom.getElementsByTagName("dependencies"):
-            for node in dependencies.getElementsByTagName("dependency"):
-                depGroupId = self._get_value(node, "groupId")
-                depArtifactId = self._get_value(node, "artifactId")
-                depVersion = self._get_value(node, "version")
-                # print(depGroupId, depArtifactId, depVersion)
-                if depGroupId is None or depArtifactId is None or depVersion is None:
-                    pass
-                else:
-                    scope = self._get_value(node, "scope")
-                    if not scope or scope != "test":
-                        depkey = f"{depGroupId}:{depArtifactId}:{depVersion}"
-                        deps.append(depkey)
-                        self._update_dependencies(depGroupId, depArtifactId, depVersion)
+        for node in project.childNodes:
+            if node.nodeType == Node.ELEMENT_NODE and node.tagName == "dependencies":
+                for depnode in node.getElementsByTagName("dependency"):
+                    depGroupId = self._get_value(depnode, "groupId")
+                    depArtifactId = self._get_value(depnode, "artifactId")
+                    depVersion = self._get_value(depnode, "version")
+                    if depGroupId is None or depArtifactId is None or depVersion is None:
+                        pass
+                    else:
+                        depGroupId = self._expandProperties(depGroupId, properties)
+                        depArtifactId = self._expandProperties(depArtifactId, properties)
+                        depVersion = self._expandProperties(depVersion, properties)
+                        scope = self._get_value(depnode, "scope")
+                        if not scope or scope != "test":
+                            depkey = f"{depGroupId}:{depArtifactId}:{depVersion}"
+                            deps.append(depkey)
+                            self._update_dependencies(depGroupId, depArtifactId, depVersion)
+
         return deps
 
-    def download_dependencies(self):
-        """Download all missing packages, including packages that any of the
-        downloaded packages depend on.
+    def _expandProperties(self, value, properties):
+        for prop in properties:
+            repl = "${" + prop + "}"
+            if repl in value:
+                value = value.replace(repl, properties[prop])
+        return value
+
+    def compute_dependencies(self):
+        """Find all the (transitive closure) of available dependencies
+        among the packages that we're going to use.
         """
         for package in self.seeds:
             group, artifact, version = package.split(":")
@@ -361,7 +377,7 @@ class JavaClassRunner:
                 # We already have this version of this package
                 return
 
-            jar = self.config[self.depkey][group][artifact][usever]["jar"]
+            jar = self.depends[group][artifact][usever]["jar"]
             if jar not in ("SKIPPED", "NOTFOUND"):
                 self._cp[group][artifact] = {}
                 self._cp[group][artifact][usever] = jar
@@ -374,18 +390,24 @@ class JavaClassRunner:
         # some package and then later we replace 1.4 with 1.5.2 which
         # no longer has a dependency on x:y. I'm assuming that'll be
         # harmless.
-        depends = self.config[self.depkey][group][artifact][version]
-        for dep in depends.get("dependencies", []):
-            self._add_to_classpath(dep)
+        try:
+            depends = self.depends[group][artifact][version]
+            for dep in depends.get("dependencies", []):
+                self._add_to_classpath(dep)
+        except KeyError:
+            pass
 
     def classpath(self):
         """Compute the class path for this run."""
         for package in self.seeds:
             self._add_to_classpath(package)
 
-        # Work out what jar files are included in the distribution
+        # Work out what jar files are included in the distribution.
+        # We don't want to put them on the class path because then
+        # there are two copies of them and SLF4J screams bloody
+        # murder about that.
         distlibs = []
-        for (_, _, filenames) in os.walk(self.root + "/lib/lib"):
+        for (_, _, filenames) in os.walk(self.root + "/libs/lib"):
             distlibs += filenames
 
         cplist = []
@@ -401,7 +423,7 @@ class JavaClassRunner:
                         cplist.append(cpjar)
 
         # Where is the distribution jar file?
-        libpath = os.sep.join([self.root, f"lib/docbook-xslTNG-{self.version}.jar"])
+        libpath = os.sep.join([self.root, f"libs/docbook-xslTNG-{self.version}.jar"])
         cplist.append(libpath)
 
         for path in self.config.get("classpath", []):
@@ -416,16 +438,29 @@ class JavaClassRunner:
         for arg in self._app_args:
             args.append(arg)
             if ":" in arg:
-                argset.add(arg[0 : arg.index(":")])
+                argset.add(arg[0:arg.index(":")])
             else:
                 argset.add(arg)
+
         for arg in self.config.get("args", []):
             if ":" in arg:
-                key = arg[0 : arg.index(":")]
+                key = arg[0:arg.index(":")]
             else:
                 key = arg
             if key not in argset:
                 args.append(arg)
+
+        for arg in ["-x:org.xmlresolver.tools.ResolvingXMLReader",
+                    "-y:org.xmlresolver.tools.ResolvingXMLReader",
+                    "-r:org.xmlresolver.Resolver",
+                    "-init:org.docbook.xsltng.extensions.Register"]:
+            if ":" in arg:
+                key = arg[0:arg.index(":")]
+            else:
+                key = arg
+            if key not in argset:
+                args.append(arg)
+
         return args
 
     def run(self):
@@ -453,10 +488,9 @@ if __name__ == "__main__":
     # I'm perfectly happy with the name 'docbook'
     # pylint: disable=C0103
 
-    # N.B. JavaClassRunner parses sys.argv!
     try:
-        docbook = JavaClassRunner()
-        docbook.download_dependencies()
+        docbook = JavaClassRunner(sys.argv[1:])
+        docbook.compute_dependencies()
         docbook.run()
     except JavaClassRunnerException as err:
         print(str(err))

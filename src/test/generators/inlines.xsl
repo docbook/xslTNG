@@ -87,7 +87,7 @@
   'productname': 'span',
   'productnumber': 'span',
   'prompt': 'code',
-  'property': 'span',
+  'property': 'code',
   'replaceable': 'em',
   'returnvalue': 'span',
   'revnumber': 'span',

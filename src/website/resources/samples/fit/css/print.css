@@ -1,6 +1,6 @@
 /* Automatically generated, do not edit. */
 
-/* DocBook xslTNG version 0.1.14
+/* DocBook xslTNG version 0.9.14a
  *
  * This is docbook.css.
  *
@@ -56,6 +56,10 @@ span.error::after {
 
 span.error.broken-link::after {
     content: " 🔗 ";
+}
+
+span.nobreak {
+    white-space: nowrap;
 }
 
 .xlink-arc-list {
@@ -1054,7 +1058,7 @@ em em me em em em {
 /* ============================================================ */
 
 
-/* DocBook xslTNG version 0.1.14
+/* DocBook xslTNG version 0.9.14a
  *
  * This is docbook-paged.css.
  *

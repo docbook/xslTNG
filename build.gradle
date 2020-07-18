@@ -318,13 +318,14 @@ task copyResources(type: Copy, dependsOn: ['copyTestMedia', 'makePrintCSS']) {
   }
 }
 
+def pkglist = ["net.sf.saxon:Saxon-HE:${saxonVersion}",
+               "com.drewnoakes:metadata-extractor:${metadataExtractorVersion}",
+               "org.relaxng:jing:${jingVersion}",
+               "org.xmlresolver:xmlresolver:${xmlresolverVersion}",
+               "com.nwalsh:sinclude:${sincludeVersion}",
+               "org.slf4j:slf4j-simple:${slf4jVersion}"]
+
 task copyBin(type: Copy) {
-  def pkglist = ["net.sf.saxon:Saxon-HE:${saxonVersion}",
-                 "com.drewnoakes:metadata-extractor:${metadataExtractorVersion}",
-                 "org.relaxng:jing:${jingVersion}",
-                 "org.xmlresolver:xmlresolver:${xmlresolverVersion}",
-                 "com.nwalsh:sinclude:${sincludeVersion}",
-                 "org.slf4j:slf4j-simple:${slf4jVersion}"]
   def packages = ""
   pkglist.each { pkg ->
     if (packages != "") {
@@ -346,6 +347,28 @@ task copyBin(type: Copy) {
   }
   doFirst {
     mkdir "${buildDir}/bin"
+  }
+}
+
+task copyDocker(type: Copy) {
+  def commands = ""
+  pkglist.each { pkg ->
+    commands += "RUN mvn org.apache.maven.plugins:maven-dependency-plugin:2.4:get \\\n"
+    commands += "        -Dartifact=${pkg}\n"
+  }
+
+  from "src/docker"
+  into "${buildDir}/docker"
+  filter { String line ->
+    if (line.indexOf("@@") >= 0) {
+      line = line
+        .replace("@@MAVEN-COMMANDS@@", commands)
+        .replace("@@VERSION@@", xslTNGversion)
+    }
+    line
+  }
+  doFirst {
+    mkdir "${buildDir}/docker"
   }
 }
 
@@ -1032,30 +1055,24 @@ fileTree(dir: "src/main/locales/locale-10", include: "*.xml").each { xml ->
   def localetng = xml.toString().replace("/locale-10/", "/locale/")
   // I'd like these to be SaxonXsltTask tasks, but they run in 
   // parallel and get a "Metaspace" exception, whatever that is.
-  Task t = task "locale10_${base}"(type: Exec, dependsOn: ['compileJava']) {
+  Task t = task "locale10_${base}"(type: Exec) {
     inputs.files xml.toString()
     inputs.files "tools/xform-10-tng.xsl"
     outputs.file(localetng)
     commandLine "java",
-      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
-      "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.xsltng.extensions.Register",
       xml.toString(),
       "-xsl:tools/xform-10-tng.xsl",
       "-o:${localetng}"
   }
   generateXslTNGLocales.dependsOn t
 
-  Task u = task "locale_${base}"(type: Exec, dependsOn: ['compileJava']) {
+  Task u = task "locale_${base}"(type: Exec) {
     inputs.files localetng
     inputs.files "tools/xform-locale.xsl"
     outputs.file("${buildDir}/xslt/locale/${base}")
     commandLine "java",
-      "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
-      "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
       "-cp", EXCP, "net.sf.saxon.Transform",
-      "-init:org.docbook.xsltng.extensions.Register",
       localetng,
       "-xsl:tools/xform-locale.xsl",
       "-o:${buildDir}/xslt/locale/${base}"
@@ -1111,7 +1128,7 @@ task testJarMain(type: Exec, dependsOn: jar) {
 }
 test.dependsOn testJarMain
 
-task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin"]) {
+task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin", "copyDocker"]) {
     commandLine "build/bin/docbook",
       "src/test/resources/xml/article.001.xml",
       "-xsl:build/xslt/docbook.xsl",
@@ -1250,17 +1267,17 @@ task zipStageMisc(type: Copy, dependsOn: ["zipStageSamples"]) {
 
 task zipStageJar(type: Copy, dependsOn: ['jar']) {
   from "${buildDir}/libs/docbook-xslTNG-${xslTNGversion}.jar"
-  into "${buildDir}/stage/zip/lib"
+  into "${buildDir}/stage/zip/libs"
   doFirst {
-    mkdir "${buildDir}/stage/zip/lib"
+    mkdir "${buildDir}/stage/zip/libs"
   }
 }
 
 task zipStageLib(type: Copy, dependsOn: ['zipStageJar', 'copyLib']) {
   from "${buildDir}/libs/lib"
-  into "${buildDir}/stage/zip/lib/lib"
+  into "${buildDir}/stage/zip/libs/lib"
   doFirst {
-    mkdir "${buildDir}/stage/zip/lib/lib"
+    mkdir "${buildDir}/stage/zip/libs/lib"
   }
 }
 
@@ -1269,6 +1286,14 @@ task zipStageBin(type: Copy, dependsOn: ['copyBin']) {
   into "${buildDir}/stage/zip/bin"
   doFirst {
     mkdir "${buildDir}/stage/zip/bin"
+  }
+}
+
+task zipStageDocker(type: Copy, dependsOn: ['copyDocker']) {
+  from "${buildDir}/docker"
+  into "${buildDir}/stage/zip/docker"
+  doFirst {
+    mkdir "${buildDir}/stage/zip/docker"
   }
 }
 
@@ -1284,8 +1309,8 @@ task zipStageCatalog(type: Exec, dependsOn: ['makeUris', 'zipStageXslt']) {
     "version=${xslTNGversion}"
 }
 
-task zipStage(type: Copy, dependsOn: ['zipStageBin', 'zipStageLib', 'zipStageMisc',
-                                      'zipStageCatalog']) {
+task zipStage(type: Copy, dependsOn: ['zipStageBin', 'zipStageDocker', 'zipStageLib',
+                                      'zipStageMisc', 'zipStageCatalog']) {
   // nop
 }
 

@@ -540,7 +540,9 @@
 </xsl:template>
 
 <xsl:template match="db:property">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:quote">

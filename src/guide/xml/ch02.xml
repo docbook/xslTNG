@@ -43,8 +43,8 @@ the stylesheets
 JAR file that you can run directly. That
 JAR file is
 <filename><replaceable>$ROOT</replaceable
->/lib/docbook-xslTNG-<replaceable>version</replaceable>.jar</filename>
-where “<replaceable>$ROOT</replaceable>” is whatever directory you chose
+>/libs/docbook-xslTNG-<replaceable>version</replaceable>.jar</filename>
+where “<code><replaceable>$ROOT</replaceable></code>” is whatever directory you chose
 to unzip the distribution into and <replaceable>version</replaceable> is the
 stylesheet version.</para>
 
@@ -52,14 +52,14 @@ stylesheet version.</para>
 <filename class="directory">/home/ndw/xsltng</filename>, you can run
 the JAR like this:</para>
 
-<para><code>java -jar /home/ndw/xsltng/lib/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar</code></para>
+<para><code>java -jar /home/ndw/xsltng/libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar</code></para>
 
 <para>Let’s try it out. Open a shell window and change to the samples directory,
 <filename class="directory">/home/ndw/xsltng/samples</filename> assuming you unzipped
 it as described above. Now run the java command:</para>
 
 <screen role="monochrome border"
-><userinput>$ java -jar ../lib/docbook-xslTNG-0.9.12.jar article.xml</userinput>
+>$ <userinput>java -jar ../libs/docbook-xslTNG-0.9.12.jar article.xml</userinput>
 <computeroutput><![CDATA[<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
 …more HTML here...
 <nav class="bottom"></nav></body></html>]]></computeroutput></screen>
@@ -69,8 +69,8 @@ formatted by the stylesheets! Slightly more usefully, you can save
 that HTML in a file:
 </para>
 
-<screen><userinput
->$ java -jar ../lib/docbook-xslTNG-0.9.12.jar article.xml \
+<screen role="monochrome border">$ <userinput
+>java -jar ../libs/docbook-xslTNG-0.9.12.jar article.xml \
         -o:article.html</userinput
 ></screen>
 
@@ -137,26 +137,106 @@ the <filename>xslt/docbook.xsl</filename> stylesheet will be used automatically.
 
 <para>The <link linkend="get-github">ZIP distribution</link> includes a
 Python script in the <filename class="directory">bin</filename> directory.
-This script behaves much like the JAR file described in
+This helper script is a convenience wrapper around Saxon. It sets up
+the Java classpath and automatically configures a catalog resolver and
+the DocBook extension functions.</para>
+
+<para>This script behaves much like the JAR file described in
 <xref linkend="java-main"/>. In particular,
 it accepts the same
 <link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with
 <link linkend="caveats">the same caveats</link>.</para>
 
-<para>The significant feature of the Python script is that it will attempt
-to sort out the dependencies for you. You <emphasis>must</emphasis> have
-Maven (the <command>mvn</command> command) installed in order to use this
-script.</para>
+<para>The significant feature of the Python script is that it will
+attempt to sort out the dependencies for you. It assumes that you’ve
+used Maven to install the package and it’s dependencies, so you’ll
+have <link xlink:href="http://maven.apache.org/">installed
+Maven</link>. How you do that varies by platform, but your package
+manager probably has it.</para>
 
-<para>The first time you run the script, it will attempt to work out all of
-the necessary dependencies and will then arrange for the Java class path
-to include them all.</para>
+<para>The following command will assure that you’ve downloaded all of
+the necessary dependencies. You only have to do this once.</para>
+
+<screen role="monochrome border">$ <userinput
+>mvn org.apache.maven.plugins:maven-dependency-plugin:2.4:get \
+      -Dartifact=org.docbook:docbook-xslTNG:<?DocBook-xslTNG-version?></userinput
+></screen>
+
+<para>That might take a while.</para>
+
+<para>The script will work through the dependencies that you have
+installed, and the things that they depend on, and construct a Java
+class path that includes them all.</para>
 
 <para>The script stores its configuration in
-<code>.docbook-xsltng.json</code> in your home directory in order to avoid
-having to download all of the dependency information each time.</para>
+<code>.docbook-xsltng.json</code> in your home directory.</para>
 
-<para>FIXME: describe the other options of the python script.</para>
+<para>Options passed to the script are processed as follows: the
+initial options, all introduced by two hyphens, are interpreted by
+this script; all the remaining options are passed directly to
+Saxon.</para>
+
+<para>The script options are:</para>
+
+<variablelist>
+<varlistentry>
+<term><option>--help</option></term>
+<listitem>
+<para>Prints a usage message.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--config:<replaceable>filename</replaceable></option></term>
+<listitem>
+<para>Use <replaceable>filename</replaceable> as the configuration
+file. The default configuration file is
+<filename>.docbook-xsltng.json</filename> in your home directory.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--java:<replaceable>javaexec</replaceable></option></term>
+<listitem>
+<para>Use <replaceable>javaexec</replaceable> as the Java executable.
+The default java executable is the first one on your <envar>PATH</envar>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--home:<replaceable>dir</replaceable></option></term>
+<listitem>
+<para>Use <replaceable>dir</replaceable> as the <citetitle>DocBook
+xslTNG</citetitle> home directory. This should be the location where
+you unzipped the distribution. (You probably shouldn’t change this.)
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--verbose</option></term>
+<listitem>
+<para>Enables <emphasis>verbose</emphasis> mode; it prints more
+messages about what it finds.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--debug</option></term>
+<listitem>
+<para>Enables <emphasis>debug</emphasis> mode. Instead of running the
+transformation, it will print out the command that would have been run.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--</option></term>
+<listitem>
+<para>Immediately stop interpreting options. Everything that follows this option
+will be passed to Saxon, even if it begins with two hyphens.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </section>
 
 <section xml:id="run-with-java">
@@ -171,6 +251,85 @@ For Saxon PE and EE, the class is <classname>com.saxonica.Transform</classname>.
 
 </section>
 
+<section xml:id="run-with-docker">
+<title>Run with Docker</title>
+
+<para>This is experimental.</para>
+
+<para>The <filename class="directory">docker</filename> directory
+contains an experimental Dockerfile. Using docker allows you to
+isolate the environment necessary to run the <citetitle>DocBook xslTNG
+Stylesheets</citetitle> from your local environment.</para>
+
+<para>Using Docker is a three step process. Step 0, you have to have
+installed Docker!</para>
+
+<orderedlist>
+<listitem>
+<para>Build the docker image. In the <filename
+class="directory">docker</filename> directory, run the docker build
+command:</para>
+
+<screen role="monochrome border">$ <userinput
+>docker build -t docbook-xslt .</userinput
+></screen>
+
+<para>The “<option>-t</option>” option provides a tag for the image;
+you can make this anything you want. There’s a <code>VERSION</code>
+build argument if you want to build a particular release. For example,</para>
+
+<screen role="monochrome border">$ <userinput
+>docker build --build-arg VERSION=0.9.14 -t docbook-xslt .</userinput
+></screen>
+
+<para>will build a Docker image for the 0.9.14 release of the
+stylesheets irrespective of the version in the Dockerfile.</para>
+</listitem>
+<listitem>
+<para>Run the image, for example:</para>
+
+<screen role="monochrome border">$ <userinput
+>docker run docbook-xsltng samples/article.xml</userinput
+></screen>
+
+<para>If you chose a different tag when you built the image, use that
+tag in place of <quote><code>docbook-xsltng</code></quote> in the <command>run</command>
+command. Everything after the container tag becomes options to the
+<link linkend="python-script"><command>docbook</command> Python script</link>.
+</para>
+</listitem>
+</orderedlist>
+
+<note>
+<para>The context the script runs in is <emphasis>inside</emphasis>
+the container. It can’t for example, see your local filesystem. The
+example above works because the distribution is unpacked inside the
+container. So the <filename>article.xml</filename> document isn’t the
+one on your local filesystem.</para>
+</note>
+
+<para>You can use the Docker facilities for mounting directories to
+change what documents the script can access. For example:
+</para>
+
+<screen role="monochrome border">$ <userinput
+>docker run -v /tmp:/output -v /path/to/samples:/input \
+       docbook-xsltng /input/article.xml chunk=index.html \
+       chunk-output-base-uri=/output/</userinput
+></screen>
+
+<para>Assuming that the “samples” directory in the distribution is
+located at <filename class="directory">/path/to/samples</filename>, this will chunk the
+<filename>article.xml</filename> sample document that the script sees
+in <filename class="directory">/input</filename>
+(which is where you mounted samples) and it will write the
+output to <filename class="directory">/output</filename> (which is where you mounted
+<filename class="directory">/tmp</filename>).</para>
+
+<para>When the script finishes, the chunked output will be in
+<filename class="directory">/tmp</filename>.</para>
+
+</section>
 
 <section xml:id="extensions">
 <title>Extension functions</title>
@@ -241,18 +400,59 @@ load them:</para>
 <section xml:id="ext-debug">
 <title>Extension function debugging</title>
 
-<para>You can enable the following trace events by setting
-the system property <property>org.docbook.xsltng.verbose</property>:</para>
+<para>When an extension function fails, or produces result other than
+what you expect, it can be difficult sometimes to work out what
+happened. You can enable debugging messages by setting the the system
+property <property>org.docbook.xsltng.verbose</property>.</para>
 
-<screen>    public static final String REGISTRATION = "registration";
-    public static final String IMAGE_PROPERTIES = "image-properties";
-    public static final String IMAGE_ERRORS = "image-errors";
-    public static final String PYGMENTIZE_SHOW_COMMAND = "pygmentize-show-command";
-    public static final String PYGMENTIZE_SHOW_RESULTS = "pygmentize-show-results";
-    public static final String PYGMENTIZE_ERRORS = "pygmentize-errors";
-            -Dorg.docbook.extensions.pygmentize=${PYGMENTIZE} \
+<para>Setting the property to the value “<code>true</code>” enables
+all of the debugging messages. For a more selective approach, set it
+to a comma separated list of keyword values.</para>
 
-</screen>
+<para>The following keywords are recognized:</para>
+
+<variablelist>
+<varlistentry><term><literal>registration</literal></term>
+<listitem>
+<para>Enables messages related to function registration.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>image-properties</literal></term>
+<listitem>
+<para>Enables messages related to image properties.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>image-errors</literal></term>
+<listitem>
+<para>Enables messages related to image properties, but only when the
+function was unable to find the properties or encountered some sort of error
+condition.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pygmentize-show-command</literal></term>
+<listitem>
+<para>Enables a message that will show the pygmentize command as it was run.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pygmentize-show-results</literal></term>
+<listitem>
+<para>Enables a message that will show the output of the pygmentize command,
+before it is processed by the function.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pygmentize-errors</literal></term>
+<listitem>
+<para>Enables messages related to errors encountered attempting to highlight
+listings with pygmentize.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </section>
 
 </section>
@@ -426,11 +626,6 @@ and profile parameters that are empty don’t exclude any elements.</para>
 <title>Dynamic profiling</title>
 <para>FIXME: finish this section</para>
 </section>
-</section>
-
-<section xml:id="docbook.py">
-<title>The docbook script</title>
-<para>FIXME: finish this section</para>
 </section>
 
 </chapter>
