@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 0.9.14
+/* DocBook xslTNG version 0.9.15
  *
  * This is xlink.css providing support for multi-targeted links.
  * The "js" class is added by JavaScript. This enables graceful
@@ -7,6 +7,11 @@
  * See https://xsltng.docbook.org/
  *
  */
+
+.xlink .source {
+    border-bottom: 1px dotted black;
+    cursor: pointer;
+}
 
 .xlink-arc-list {
     display: inline;

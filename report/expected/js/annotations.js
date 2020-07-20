@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 0.9.14
+/* DocBook xslTNG version 0.9.15
  *
  * This is annotations.js providing support for popup annotations.
  *
@@ -39,7 +39,7 @@
   // it from showing up spuriously all over screen readers and other
   // user agents that don't support JavaScript. Find it and copy it
   // into the annotations.
-  let annoClose = document.querySelector("script.annotation-closex");
+  let annoClose = document.querySelector("script.annotation-close");
   if (!annoClose) {
     // I have a bad feeling about this...
     annoClose = document.createElement("span");
