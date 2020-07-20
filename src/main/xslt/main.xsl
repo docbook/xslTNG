@@ -90,6 +90,16 @@
           <script src="{$resource-base-uri}{$annotations-js}"/>
         </db-annotation-script>
         <db-xlink-script>
+          <xsl:if test="$xlink-icon-open">
+            <script type="text/html" class="xlink-icon-open">
+              <xsl:sequence select="$xlink-icon-open"/>
+            </script>
+          </xsl:if>
+          <xsl:if test="$xlink-icon-closed">
+            <script type="text/html" class="xlink-icon-closed">
+              <xsl:sequence select="$xlink-icon-closed"/>
+            </script>
+          </xsl:if>
           <script src="{$resource-base-uri}{$xlink-js}"/>
         </db-xlink-script>
         <db-toc-script>
@@ -101,6 +111,11 @@
                         then $mathml-js
                         else $resource-base-uri || $mathml-js}"/>
         </db-mathml-script>
+        <db-script>
+          <xsl:if test="exists($chunk) and f:is-true($chunk-nav)">
+            <script src="{$resource-base-uri}{$chunk-nav-js}"/>
+          </xsl:if>
+        </db-script>
       </xsl:if>
     </html>
   </xsl:document>

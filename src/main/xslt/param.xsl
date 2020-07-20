@@ -162,6 +162,8 @@
 
 <xsl:param name="xlink-style" select="'document'"/>
 <xsl:param name="xlink-style-default" select="'inline'"/>
+<xsl:param name="xlink-icon-open" select="()"/>
+<xsl:param name="xlink-icon-closed" select="()"/>
 
 <!-- 'list' or 'table' -->
 <xsl:param name="revhistory-style" select="'table'"/>
@@ -221,9 +223,12 @@
            select="'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML'"/>
 
 <xsl:param name="chunk" as="xs:string?" select="()"/>
+<xsl:param name="chunk-nav" as="xs:string" select="'true'"/>
+<xsl:param name="chunk-nav-js" as="xs:string" select="'js/chunk-nav.js'"/>
 
 <xsl:variable name="v:chunk" as="xs:boolean"
               select="not(normalize-space($chunk) = '')"/>
+
 <xsl:param name="chunk-output-base-uri" as="xs:string">
   <xsl:choose>
     <xsl:when test="not($v:chunk)">

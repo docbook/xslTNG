@@ -224,52 +224,52 @@
       <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
-      <span class="source">
-        <xsl:apply-templates/>
-      </span>
-      <span class="xlink-arc-list" db-arcs="{f:generate-id(.)}-arcs"/>
-      <span class="nhrefs" id="{f:generate-id(.)}-arcs">
-        <span class="xlink-arc-delim before">
-          <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-before')"/>
+      <span class="xlink">
+        <span class="source">
+          <xsl:apply-templates/>
         </span>
-        <span class="xlink-arc-title">
-          <xsl:if test="$to/../@xlink:title">
-            <xsl:sequence select="$to/../@xlink:title/string()"/>
-          </xsl:if>
-        </span>
-        <xsl:if test="$to/../@xlink:title">
-          <span class="xlink-arc-delim sep">
-            <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-titlesep')"/>
+        <span class="xlink-arc-list" db-arcs="{f:generate-id(.)}-arcs"/>
+        <span class="nhrefs" id="{f:generate-id(.)}-arcs">
+          <span class="xlink-arc-delim before">
+            <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-before')"/>
           </span>
-        </xsl:if>
-        <xsl:for-each select="$to">
-          <xsl:if test="position() gt 1">
+          <span class="xlink-arc-title">
+            <xsl:if test="$to/../@xlink:title">
+              <xsl:sequence select="$to/../@xlink:title/string()"/>
+            </xsl:if>
+          </span>
+          <xsl:if test="$to/../@xlink:title">
             <span class="xlink-arc-delim sep">
-              <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-sep')"/>
+              <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-titlesep')"/>
             </span>
           </xsl:if>
-          <span class="arc">
-            <a href="{@xlink:href}">
-              <xsl:choose>
-                <xsl:when test="*[@xlink:type='title']">
-                  <xsl:apply-templates select="*[@xlink:type='title'][1]"/>
-                </xsl:when>
-                <xsl:when test="@xlink:title">
-                  <xsl:sequence select="@xlink:title/string()"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:message>
-                    <xsl:text>Warning: inline extended link locator without title</xsl:text>
-                    <xsl:sequence select="."/>
-                  </xsl:message>
-                  <xsl:text>???</xsl:text>
-                </xsl:otherwise>
-              </xsl:choose>
-            </a>
+          <xsl:for-each select="$to">
+            <xsl:if test="position() gt 1">
+              <span class="xlink-arc-delim sep">
+                <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-sep')"/>
+              </span>
+            </xsl:if>
+            <span class="arc">
+              <a href="{@xlink:href}">
+                <xsl:choose>
+                  <xsl:when test="*[@xlink:type='title']">
+                    <xsl:apply-templates select="*[@xlink:type='title'][1]"/>
+                  </xsl:when>
+                  <xsl:when test="@xlink:title">
+                    <xsl:sequence select="@xlink:title/string()"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:message
+                        select="'Warning: inline extended link locator without title', ."/>
+                    <xsl:text>???</xsl:text>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </a>
+            </span>
+          </xsl:for-each>
+          <span class="xlink-arc-delim after">
+            <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-after')"/>
           </span>
-        </xsl:for-each>
-        <span class="xlink-arc-delim after">
-          <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-after')"/>
         </span>
       </span>
     </xsl:otherwise>

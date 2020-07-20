@@ -10,11 +10,14 @@
   const ESC = 27;
   const SPACE = 32;
   const toc = document.querySelector("nav.toc");
+  let navPersist = false;
 
   const showToC = function(event) {
     toc.style.width = "300px";
     toc.style["padding-left"] = "1em";
     toc.style["padding-right"] = "1em";
+
+    navPersist = event && event.shiftKey;
 
     if (event) {
       event.preventDefault();
@@ -45,6 +48,7 @@
       
       pos = url.indexOf("?");
       if (pos >= 0) {
+        navPersist = true;
         url = url.substring(0, pos);
       }
       url = url + hash;
@@ -77,6 +81,10 @@
   };
 
   const patchLink = function(event, anchor) {
+    if (!navPersist) {
+      return false;
+    }
+
     let href = anchor.getAttribute("href");
     let pos = href.indexOf("#");
     if (pos >= 0) {

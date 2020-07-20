@@ -535,6 +535,77 @@ be in-scope when this expression is evaluated.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_chunk-nav">
+<?db filename="p_chunk-nav.html"?>
+<refmeta>
+<refentrytitle>$chunk-nav</refentrytitle>
+<refmiscinfo>{}chunk-nav</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-nav</refname>
+<refpurpose>Add keyboard navigation to chunks?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>chunk-nav</parameter> <glossterm>is true</glossterm>,
+keyboard navigation will be added to chunked output. This is accomplished by
+adding the <parameter>chunk-nav-js</parameter> script to the generated HTML.
+</para>
+
+<table>
+<title>Default keyboard navigation keys</title>
+<tgroup cols="2">
+<thead>
+<row><entry>Key</entry><entry>Navigation</entry>
+</row>
+</thead>
+<tbody>
+<row>
+  <entry><keycap>N</keycap> or <keycap>→</keycap></entry>
+  <entry>Next sibling</entry>
+</row>
+<row>
+  <entry><keycap>P</keycap> or <keycap>←</keycap></entry>
+  <entry>Previous sibling</entry>
+</row>
+<row>
+  <entry><keycap>U</keycap> or <keycap>↑</keycap></entry>
+  <entry>Parent</entry>
+</row>
+<row>
+  <entry><keycap>H</keycap> or <keycap>Home</keycap></entry>
+  <entry>Home</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<para>In addition, if the speaker notes extension is used,
+<keycap>S</keycap> will toggle between the normal view and the speaker
+notes view.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_chunk-nav-js">
+<?db filename="p_chunk-nav-js.html"?>
+<refmeta>
+<refentrytitle>$chunk-nav-js</refentrytitle>
+<refmiscinfo>{}chunk-nav-js</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$chunk-nav-js</refname>
+<refpurpose>Script to support keyboard navigation</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If chunk navigation is enabled, this script is added to each chunk to
+support keyboard navigation.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_chunk-output-base-uri">
 <?db filename="p_chunk-output-base-uri.html"?>
 <refmeta>
@@ -1878,14 +1949,22 @@ as the person’s “middle” name. See <template>t:person-name</template>.</pa
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If this value <glossterm>is true</glossterm>, then a copy of the Table of Contents (ToC)
-will be added to every file produced. This Table of Contents is read by JavaScript when
-displayed in the browser and provides a “popup” ToC on every page.
+<para>If this value <glossterm>is true</glossterm>, then a copy of the
+Table of Contents (ToC) will be added to every file produced. This
+Table of Contents is read by JavaScript when displayed in the browser
+and provides a “popup” ToC on every page.
 </para>
-<para>The Table of Contents is secreted away in a
-<tag namespace="http://www.w3.org/1999/xhtml">script</tag> element so that it will
-be ignored by screen readers and other user agents that don’t support JavaScript or CSS.
+<note>
+<para>The Table of Contents is secreted away in a <tag
+namespace="http://www.w3.org/1999/xhtml">script</tag> element so that
+it will be ignored by screen readers and other user agents that don’t
+support JavaScript or CSS.
 </para>
+</note>
+<para>The persistent ToC popup is transient by default, meaning that
+it will disappear if you use it to navigate to a different page. If
+you open the popup by “shift-clicking” on it, the ToC will persist
+until you dismiss it.</para>
 </refsection>
 </refentry>
 
@@ -3238,6 +3317,53 @@ the end of verbatim environments.</para>
 <title>Description</title>
 <para>If the extended XLinks are used, a link to this
 CSS file will be added to the HTML HEAD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xlink-icon-closed">
+<?db filename="p_xlink-icon-closed.html"?>
+<refmeta>
+<refentrytitle>$xlink-icon-closed</refentrytitle>
+<refmiscinfo>{}xlink-icon-closed</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xlink-icon-closed</refname>
+<refpurpose>Icon indicating hidden XLink links</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the JavaScript presentation of extended XLinks is used, this
+icon marks the place where a multi-ended link can be revealed. The
+default icon is <quote>▶</quote> (&amp;#x25B6;).
+See also: <parameter>xlink-icon-open</parameter>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_xlink-icon-open">
+<?db filename="p_xlink-icon-open.html"?>
+<refmeta>
+<refentrytitle>$xlink-icon-open</refentrytitle>
+<refmiscinfo>{}xlink-icon-open</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$xlink-icon-open</refname>
+<refpurpose>XLink CSS</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the JavaScript presentation of extended XLinks is used, this
+icon marks the place where a multi-ended link has been revealed. The
+default icon is <quote>▼</quote> (&amp;#x25BC;).</para>
+<note>
+<para>The default icons are quite large compared to running text of
+the same size. To compensate, they’re styled at a
+<code>font-size</code> of 70%. If you select different icons, you may
+need to adjust the <code>font-size</code> associated with the
+<literal>xlink-arc-list</literal> class.</para>
+</note>
 </refsection>
 </refentry>
 

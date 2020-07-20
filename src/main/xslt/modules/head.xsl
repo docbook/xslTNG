@@ -44,12 +44,10 @@
     </xsl:if>
 
     <xsl:apply-templates select="." mode="mp:html-head-script"/>
-    <xsl:call-template name="t:html-head-script"/>
-
-    <xsl:call-template name="t:html-head"/>
-
+    <xsl:apply-templates select="." mode="m:html-head-script"/>
+    <xsl:apply-templates select="." mode="m:html-head-links"/>
     <xsl:apply-templates select="h:*" mode="m:html-head"/>
-    <xsl:apply-templates select="." mode="mp:html-head-last"/>
+    <xsl:apply-templates select="." mode="m:html-head-last"/>
   </head>
 </xsl:template>
 
@@ -120,9 +118,6 @@
                  || ' ' || system-property('xsl:product-version')}"/>
 </xsl:template>
 
-<xsl:template name="t:html-head">
-</xsl:template>
-
 <xsl:template match="*" mode="mp:html-head-script">
   <xsl:if test="exists($resource-base-uri) and /*/db:annotation">
     <xsl:if test="f:annotation-style(/) = 'javascript'">
@@ -140,13 +135,16 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template name="t:html-head-script">
+<xsl:template match="*" mode="m:html-head-script">
 </xsl:template>
 
-<xsl:template match="*" mode="mp:html-head-last">
+<xsl:template match="*" mode="m:html-head-links">
 </xsl:template>
 
-<xsl:template name="t:html-body-script">
+<xsl:template match="*" mode="m:html-head-last">
+</xsl:template>
+
+<xsl:template match="*" mode="m:html-body-script">
   <xsl:param name="rootbaseuri" as="xs:anyURI" required="yes"/>
   <xsl:param name="chunkbaseuri" as="xs:anyURI" required="yes"/>
 </xsl:template>

@@ -167,69 +167,6 @@ it appears.
 </refsection>
 </refentry>
 
-<refentry xml:id="t_html-body-script">
-<?db filename="t_html-body-script.html"?>
-<refmeta>
-<refentrytitle>t:html-body-script</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}html-body-script</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:html-body-script</refname>
-<refpurpose>Add script elements to the end of a document</refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>One way to assure that JavaScript will only be invoked by the user agent
-after the DOM tree has been constructed is to put the script elements for that
-code at the end of the file.</para>
-<para>Any elements constructed in the <template>t:html-body-script</template>
-template will be added to the end of the HTML BODY.
-The built-in implementation does nothing; this template exists as an extensibility
-point. See also <template>t:html-head-script</template>.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="t_html-head">
-<?db filename="t_html-head.html"?>
-<refmeta>
-<refentrytitle>t:html-head</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}html-head</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:html-head</refname>
-<refpurpose>Add elements to the head of a document</refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Any elements constructed in the <template>t:html-head</template>
-template will be added to the HTML HEAD element of the result.
-The built-in implementation does nothing; this template exists as an extensibility
-point.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="t_html-head-script">
-<?db filename="t_html-head-script.html"?>
-<refmeta>
-<refentrytitle>t:html-head-script</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}html-head-script</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:html-head-script</refname>
-<refpurpose>Add script elements to the head of a document</refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Any elements constructed in the <template>t:html-head-script</template>
-template will be added to the HTML HEAD element of the result.
-The built-in implementation does nothing; this template exists as an extensibility
-point. See also <template>t:html-body-script</template>.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="t_imagemap">
 <?db filename="t_imagemap.html"?>
 <refmeta>
