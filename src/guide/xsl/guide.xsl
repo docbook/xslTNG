@@ -16,6 +16,8 @@
 
 <!-- ============================================================ -->
 
+<xsl:param name="chunk-nav" select="'true'"/>
+
 <xsl:param name="persistent-toc" select="'true'"/>
 <xsl:param name="persistent-toc-css"
            select="'css/guide-toc.css'"/>
@@ -61,7 +63,8 @@
   <xsl:call-template name="t:docbook"/>
 </xsl:template>
 
-<xsl:template name="t:html-head">
+<xsl:template match="*" mode="m:html-head-links">
+  <xsl:next-match/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="css/guide.css"/>
   <link rel="stylesheet" href="css/guide-online.css"/>
