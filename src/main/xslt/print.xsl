@@ -23,7 +23,7 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="*" mode="mp:html-head-last">
+<xsl:template match="*" mode="m:html-head-last">
   <xsl:variable name="page-style"
                 select="f:pi(/*/db:info, 'page-style', $page-style)"/>
   <link rel="stylesheet" href="{$resource-base-uri}css/print.css"/>

@@ -1415,16 +1415,16 @@ task guideCustomResources(type: Copy) {
 task guidePrintCSS(type: Exec, dependsOn: ['guideDocBookResources']) {
   inputs.file("src/main/web/css/docbook.css")
   inputs.file("src/main/web/css/docbook-paged.css")
-  inputs.file("src/guide/web/css/guide.css")
-  inputs.file("src/guide/web/css/guide-paged.css")
+  inputs.file("src/guide/resources/css/guide.css")
+  inputs.file("src/guide/resources/css/guide-paged.css")
   inputs.file("tools/flattencss.py")
   outputs.file("build/guide/css/print.css")
   commandLine "python3", "tools/flattencss.py",
     "--version", xslTNGversion, "--title", xslTNGtitle,
     "--source", "src/main/web/css/docbook.css",
     "--source", "src/main/web/css/docbook-paged.css",
-    "--source", "src/guide/web/css/guide.css",
-    "--source", "src/guide/web/css/guide-paged.css",
+    "--source", "src/guide/resources/css/guide.css",
+    "--source", "src/guide/resources/css/guide-paged.css",
     "--output", "build/guide/css/print.css"
   doFirst {
     mkdir "${buildDir}/guide/css"
