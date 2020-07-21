@@ -635,5 +635,23 @@ and profile parameters that are empty don’t exclude any elements.</para>
 </section>
 </section>
 
+<section xml:id="print">
+<title>Print output (dead tree editions)</title>
+
+<para>Formatters, the tools that turn markup of any sort into
+aesthetically pleasing (or even passably acceptable) printed pages are
+fiendishly difficult to write.</para>
+
+<para>In the XML space, there have been a number of standards and
+vendor-specific solutions to this problem. The current standards are
+<biblioref linkend="XSLFO"/> and <biblioref linkend="CSS"/>.
+</para>
+
+<para>At present, the <citetitle>DocBook xslTNG Stylesheets</citetitle>
+are focused on CSS for print output. There’s a customization layer
+that produces “paged-media-ready” HTML that can be processed with
+a CSS formatter such as <biblioref linkend="AntennaHouse"/>
+or <biblioref linkend="Prince"/>.</para>
+</section>
 </chapter>
 
