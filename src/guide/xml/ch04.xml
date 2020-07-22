@@ -12,7 +12,18 @@
 <section xml:id="custom-chunking">
 <title>Customizing chunking</title>
 
-<para>FIXME: finish this section</para>
+<para>Chunking is controlled by the <parameter>chunk-include</parameter> and
+<parameter>chunk-exclude</parameter> parameters. These parameters are both
+strings that must contain an XPath expression.</para>
+
+<para>For each node in the document, the <parameter>chunk-include</parameter>
+parameter is evaluated. If it does not return an empty sequence, the element
+is considered a chunking candidate. In this case, the
+<parameter>chunk-exclude</parameter> parameter is evaluated. If the exclude
+expression <emphasis>does</emphasis> return an empty sequence, then the element identified
+becomes a chunk. (If the exclude expression returns a non-empty value, the element
+will not become a chunk.)</para>
+
 </section>
 
 <section xml:id="units">
@@ -53,18 +64,98 @@ SVG images is not available.</para>
 <section xml:id="verbstyle">
 <title>Verbatim styles</title>
 
-<para>plain, lines, …</para>
+<para>There are three verbatim styles: <literal>lines</literal>, <literal>plain</literal>,
+and <literal>raw</literal>.</para>
 
-<para>FIXME: finish this section</para>
+<variablelist>
+<varlistentry><term><literal>lines</literal></term>
+<listitem>
+<para>In the lines style, each line of the verbatim environment is marked up
+individually. In this style, lines can be numbered and callouts can be inserted.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>plain</literal></term>
+<listitem>
+<para>In the plain style, callouts can be inserted, but additional markup is not
+added (except for the callouts). Consequently, it isn’t possible to do line numbering
+or syntax highlighting. (It may be possible to provide these features with JavaScript
+libraries in the browser, however.)
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>raw</literal></term>
+<listitem>
+<para>In the raw style, no changes are made to the verbatim content. It’s output as
+it appears. Inline markup that it contains, <tag>emphasis</tag> or other elements, will
+be processed, but you cannot add line numbers, callouts, or syntax highlighting.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Consult <xref linkend="params"/> for a variety of parameters that control
+aspects of verbatim processing.</para>
 </section>
 
 <section xml:id="mediaobject-uris">
 <title>Mediaobject URIs</title>
-<para>FIXME: finish this section</para>
+
+<para>Media object (images, video, audio) URIs are tricky to handle. It’s most
+convenient if the URIs in the source documents point to the actual media files.
+This allows extensions, like the image properties
+<link linkend="extensions">extension function</link>, to access the files.
+At the same time, the references generated in the HTML have to point to the
+locations where they will be published.</para>
+
+<para>The stylesheets attempt to handle this by using
+<parameter>mediaobject-input-base-uri</parameter> to locate the files from the
+XML sources and <parameter>mediaobject-output-base-uri</parameter> to create
+the HTML links.</para>
+
+<para>If you need a completely different organization of images in the
+input and output, you may need to define your own <function>f:resolve-object-uri</function>
+function.</para>
+
 </section>
 
 <section xml:id="header-templates">
 <title>Templates</title>
-<para>FIXME: finish this section</para>
+
+<para>It’s difficult to make title pages for documents easy to customize. There
+is <emphasis>a lot</emphasis> of variation between documents and the styles can
+have very precise design constraints. At the end of the day, if you need complete control,
+you can define a template that matches the element in the
+<mode>m:generate-titlepage</mode> mode and generate all of the markup you wish.</para>
+
+<para>The default title page handling attempts to make some declarative customization
+possible by using templates. A typical header template looks like this:</para>
+
+<programlisting language="xml"><![CDATA[<db:section>
+  <header>
+    <tmp:apply-templates select="db:title">
+      <h2><tmp:content/></h2>
+    </tmp:apply-templates>
+    <tmp:apply-templates select="db:subtitle">
+      <h3><tmp:content/></h3>
+    </tmp:apply-templates>
+  </header>
+</db:section>]]></programlisting>
+
+<para>Any HTML element in the template will be copied to the output. The semantics
+of a “template apply templates” element (<tag>tmp:apply-templates</tag>) is that
+it runs the ordinary <tag>xsl:apply-templates</tag> instruction on the elements that
+match its select expression. If they result is the empty sequence (e.g, if there is no 
+<tag>subtitle</tag>), nothing is output. If there is a result, the content of the
+<tag>tmp:apply-templates</tag> element is processed. Anywhere that
+<tag>tmp:content</tag> appears, the result of applying templates will be output.</para>
+
+<para>In this example, if the title is “H<subscript>2</subscript>O” and there is no subtitle,
+the resulting HTML title page will be:</para>
+
+<programlisting language="xml"><![CDATA[<header>
+  <h2>H<sub>2</sub>O</h2>
+</header>]]></programlisting>
+
 </section>
 </chapter>
