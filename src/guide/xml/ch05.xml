@@ -39,16 +39,20 @@ just makes the main entry points easier to find.</para>
 location. You must build them first with the
 <buildtarget>makeXslt</buildtarget> build target.</para>
 
-<screen role="monochrome">src/main/resources
-src/main/resources/css
-src/main/resources/js
-src/main/resources/locale-10
-src/main/resources/locale</screen>
+<screen role="monochrome">src/main/web
+src/main/web/resources/css
+src/main/web/resources/js</screen>
 
-<para>These are extra resoures. The CSS and JavaScript files are needed by the browser.
-The <dir>local-10</dir> directory holds copies of the localization files from the XSLT 1.0
-stylesheets. They’re transformed into the <dir>locale</dir> versions by the build system.
-This whole area is one that needs work.</para>
+<para>These are the CSS and JavaScript files needed for accurate rendering in the
+browser or formatter process.</para>
+
+<screen role="monochrome">src/main/locales/locale-10
+src/main/locales/locale</screen>
+
+<para>The <dir>local-10</dir> directory holds copies of the
+localization files from the XSLT 1.0 stylesheets. They’re transformed
+into the <dir>locale</dir> versions by the build system. This whole
+area is one that needs work.</para>
 
 <screen role="monochrome">src/test/xspec
 src/test/generators
