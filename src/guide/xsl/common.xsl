@@ -248,7 +248,7 @@
         <xsl:for-each select="$objects">
           <xsl:variable name="param" as="element()*">
             <xsl:for-each select="a:param">
-              <!-- FIXME: XSLT Explorer doesn't pass us the select expressions -->
+              <!-- XSLT Explorer doesn't pass us the select expressions -->
               <wrapper xsl:expand-text="yes">
                 <xsl:text>  &lt;xsl:param name="{@name/string()}"</xsl:text>
                 <xsl:if test="@as">

@@ -36,6 +36,43 @@ dependencies are available.</para>
 the stylesheets
 <link linkend="run-with-java">directly with Java</link>.</para>
 
+<para>Irrespective of which method you choose, running the stylesheets
+is simply a matter of processing your input document
+<quote><replaceable>myfile.xml</replaceable></quote> with
+<quote><filename>xslt/docbook.xsl</filename></quote>. For example:
+</para>
+
+<screen role="monochrome border"
+>$ <userinput>saxon myfile.xml -xsl:xslt/docbook.xsl -o:myfile.html</userinput>
+</screen>
+
+<para>The exact path to <filename>docbook.xsl</filename> will vary, of course,
+but it’s in the <filename class="directory">xslt</filename> directory of the
+distribution.</para>
+
+<note>
+<para>The resulting HTML document contains references to CSS stylesheets
+and possibly JavaScript libraries. The output won’t look as nice in your browser
+if those resources aren’t available. They’re in the <filename class="directory">resources</filename> directory of the distribution. A quick and easy way to see the
+results is simply to send the output to the <filename class="directory">samples</filename>
+directory from the distribution. The resources have already been copied into
+that directory. In the longer run, you’ll want to make sure that they get
+copied into the output directory for each of your projects.</para>
+<para>Alternatively, you can copy them to a web location of your choosing and
+point to them there. You can even point to them in
+<link xlink:href="https://cdn.docbook.org/release/xsltng/current/resources">the
+DocBook CDN</link>, but beware that those are not immutable. The “current”
+version will change with every release and versioned releases will not persist
+indefinitely.</para>
+<para>Change the <parameter>resource-base-uri</parameter> to adjust the paths
+used in the output document.</para>
+</note>
+
+<para>Many aspects of the transformation can be controlled simply by
+setting parameters (see <link linkend="params"/>). It’s also possible
+to change the transformation by writing your own customization layer
+(see <link linkend="customization"/>).</para>
+
 <section xml:id="java-main">
 <title>Using the Jar</title>
 
@@ -329,6 +366,12 @@ output to <filename class="directory">/output</filename> (which is where you mou
 <para>When the script finishes, the chunked output will be in
 <filename class="directory">/tmp</filename>.</para>
 
+<tip>
+<para>If you choose to use Docker, you don’t have to rebuild the container
+everytime a new stylesheet release occurs. You can simply mount the new
+<filename class="directory">xslt</filename> directory into the container
+like any other directory.</para>
+</tip>
 </section>
 
 <section xml:id="extensions">
@@ -460,14 +503,137 @@ listings with pygmentize.
 <section xml:id="chunking">
 <title>“Chunked” output</title>
 
-<para>FIXME: finish this section.
+<para>Transforming <quote><filename>myfile.xml</filename></quote> with
+<filename>docbook.xsl</filename> usually produces a single HTML
+document. For large documents, books like this one for example, it’s
+sometimes desirable to break the input document into a collection of
+web pages. You can achieve this with the
+<citetitle>DocBook xslTNG Stylesheets</citetitle> by setting
+two parameters:
 </para>
+
+<variablelist>
+<varlistentry><term><parameter>chunk</parameter></term>
+<listitem>
+<para>This parameter should be set to the name that you want to use for the
+first, or top, page of the result. The name
+<quote><filename>index.html</filename></quote> is a common choice.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>chunk-output-base-uri</parameter></term>
+<listitem>
+<para>This parameter should be set to the absolute path where you want
+to use as the base URI for the result documents, for example
+<filename class="directory">/home/ndw/output/guide/</filename>.</para>
+<note>
+<para>The trailing slash is important, this is a URI. If you specify
+only <filename class="directory">/home/ndw/output/guide</filename>, the
+base URI will be taken to be <filename class="directory">/home/ndw/output/</filename>,
+and the documents won’t have the URIs you expect.</para>
+</note>
+<para>This output URI has nothing to do with where your documents are
+ultimately published and the documents themselves won’t contain any references
+to it. It simply establishes the root of output. If you’re running your
+XSLT processor from the command line, it’s likely that the documents will
+be written to that location. If you’re running an XProc pipeline, it simply
+controls the URIs that appear on the secondary result port.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Many aspects of chunking can be easily customized. A few of the most
+relevant parameters and templates are:
+</para>
+
+<variablelist>
+<varlistentry><term><parameter>chunk-include</parameter> and 
+<parameter>chunk-exclude</parameter></term>
+<listitem>
+<para>Taken together, these two parameters determine what elements in your
+source document will be considered “chunks” in the output.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>persistent-toc</parameter></term>
+<listitem>
+<para>If this parameter <glossterm>is true</glossterm>, then a JavaScript
+“fly-out” table of contents will be available on every page.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>chunk-nav</parameter></term>
+<listitem>
+<para>This parameter, discussed more thoroughly in
+<link linkend="speaker-notes"/> enables keyboard navigation between
+chunks.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><template>t:top-nav</template> and
+<template>t:bottom-nav</template></term>
+<listitem>
+<para>These templates control how the top-of-page and bottom-of-page
+navigation aids are constructed.</para>
+</listitem>
+</varlistentry>
+</variablelist>
 
 <section xml:id="speaker-notes">
 <title>Keyboard navigation and speaker notes</title>
 
-<para>FIXME: finish this section.
+<para>If the <parameter>chunk-nav</parameter> parameter <glossterm>is
+true</glossterm>, a reference to an additional JavaScript library will
+be included in the resulting pages. This library supports keyboard
+navigation between the pages. The navigation keys are described in the
+<link linkend="p_chunk-nav">parameter reference page</link>.
 </para>
+
+<para>There is an additional customization layer
+(<filename>xslt/spaeker-notes.xsl</filename>) provided for adding
+speaker notes to the pages. This is provided both as an example of a
+customization layer and because the author finds it convenient.</para>
+
+<para>If you use the speaker notes customization layer, the any top-level
+element in a chunk with the role “<literal>speaker-notes</literal>” will
+be suppressed from the default presentation. If you press “<keycap>S</keycap>”
+on the page, then you’ll get a “speaker notes” view of the page.</para>
+
+<para>This can be combined with another extension, the use of browser
+local storage, to create a simple presentation system. Add this
+<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> tag to the
+<tag>info</tag> element of your document:</para>
+
+<screen role="monochrome border"
+><![CDATA[<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="keyname"/>]]></screen>
+
+<para>That will cause the pages to keep track of their location using the
+“<literal>keyname</literal>” property in local storage. This is important
+because it enables the following trick:</para>
+
+<orderedlist>
+<listitem><para>Configure keyboard navigation, speaker notes, and local storage
+in your document.</para>
+</listitem>
+<listitem><para>Arrange for your document to be served up from a web server.
+You can do this by running one locally or by putting the documents on a web
+server somewhere else.</para>
+</listitem>
+<listitem><para>Open up the main page of your document in a browser.
+</para></listitem>
+<listitem><para>Open up a second browser <emphasis>window</emphasis> pointing
+to the same page. Navigate back and forth between the pages. You should see
+that the two windows stay in sync.
+</para></listitem>
+<listitem><para>Now press “<keycap>S</keycap>” in one of the windows and
+navigate around. You should see that the two windows stay in sync and that your
+speaker notes are consistently presented in one of the windows.</para>
+</listitem>
+</orderedlist>
+
+<para>I often use this trick when I’m giving presentations. I can project the
+slides in one browser window and keep the other browser window on my laptop.
+This allows me to see my notes while easily projecting the “real” content.</para>
+
 </section>
 </section>
 
@@ -631,7 +797,42 @@ and profile parameters that are empty don’t exclude any elements.</para>
 
 <section xml:id="dynprofiling">
 <title>Dynamic profiling</title>
-<para>FIXME: finish this section</para>
+
+<para>Dynamic profiling is a feature that allows you to profile the output
+of the stylesheets according to the runtime values of stylesheet parameters.
+You can, for example, produce different output depending on whether or not
+chunking is enabled or JavaScript is being used for annotations.</para>
+
+<para>To enable dynamic profiling, set the <parameter>dynamic-profiles</parameter>
+parameter to “<glossterm baseform="is true">true</glossterm>”.</para>
+
+<para>In the interest of performance, security, and legibility,
+dynamic profiles don’t support arbitrary expressions.
+You can use a variable name by itself, <code>$flag</code>, which tests
+if that variable <glossterm>is true</glossterm>, or you can use a
+simple comparison, <code>$var=value</code> which tests if (the string value of)
+<code>$var</code> has the value <code>value</code>.
+(If <code>$var</code> is a list, it’s an existential
+test.) You also can’t use boolean operators or any other fancy expressions.
+</para>
+
+<para>If you really need to have a dynamic profile based on some
+arbitrary condition, you can do it by making a customization layer
+that stores that computation in a variable and then testing that
+variable in your dynamic profile.</para>
+
+<sidebar>
+<title>Backwards incompatibility</title>
+<para>This is slightly backwards
+incompatible in that profile values that begin with a dollar sign are
+now interpreted differently. This is only true if dynamic profiling is
+enabled.</para>
+</sidebar>
+
+<para>An element with dynamic profiling will be published if none of
+it’s profile expressions evaluate to false. This is slightly different
+from the ordinary profiling semantic which publishes the element if
+any of it’s values match.</para>
 </section>
 </section>
 

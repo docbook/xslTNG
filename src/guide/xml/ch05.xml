@@ -251,7 +251,11 @@ a bunch of the build machinery in Gradle.
 <section xml:id="xspec">
 <title>Running XSpec</title>
 
-<para>FIXME: There’s a special driver.</para>
-</section>
+<para>In order to get consistent results across different runs and in different
+environments, the XSpec tests run a driver stylesheet, <filename>xspec-driver.xsl</filename>.
+</para>
 
+<para>Note also that the XSpec shell script is modified by the stylesheets.</para>
+
+</section>
 </chapter>
