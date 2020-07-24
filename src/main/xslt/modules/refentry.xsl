@@ -30,14 +30,14 @@
     <xsl:apply-templates select="." mode="m:attributes"/>
 
     <xsl:choose>
-      <xsl:when test="$refentry.generate.name">
+      <xsl:when test="$refentry-generate-name">
         <h2>
           <xsl:sequence
               select="f:gentext(., 'label', 'refname')"/>
         </h2>
       </xsl:when>
 
-      <xsl:when test="$refentry.generate.title">
+      <xsl:when test="$refentry-generate-title">
         <h2>
           <xsl:choose>
             <xsl:when test="../db:refmeta/db:refentrytitle">

@@ -975,6 +975,28 @@ if this is true and simply “2” if it’s false.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_docbook-transclusion">
+<?db filename="p_docbook-transclusion.html"?>
+<refmeta>
+<refentrytitle>$docbook-transclusion</refentrytitle>
+<refmiscinfo>{}docbook-transclusion</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$docbook-transclusion</refname>
+<refpurpose>Enable DocBook transclusion processing</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>docbook-transclusion</parameter> controls whether or not
+DocBook transclusion processing (see <biblioref linkend="transclusion"/>) is
+performed. The default at present is false because I don’t believe it’s in widespread
+use and transclusion processing on large documents can be quite slow. If either
+of those conditions change, the default may become true in some future version
+of the stylesheets.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_dynamic-profile-error">
 <?db filename="p_dynamic-profile-error.html"?>
 <refmeta>
@@ -2455,48 +2477,48 @@ Validation is the last step of the
 </refsection>
 </refentry>
 
-<refentry xml:id="p_refentry.generate.name">
-<?db filename="p_refentry.generate.name.html"?>
+<refentry xml:id="p_refentry-generate-name">
+<?db filename="p_refentry-generate-name.html"?>
 <refmeta>
-<refentrytitle>$refentry.generate.name</refentrytitle>
-<refmiscinfo>{}refentry.generate.name</refmiscinfo>
+<refentrytitle>$refentry-generate-name</refentrytitle>
+<refmiscinfo>{}refentry-generate-name</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>$refentry.generate.name</refname>
+<refname>$refentry-generate-name</refname>
 <refpurpose>Use “Name” as the title of a <tag>refentry</tag></refpurpose>
 <refclass>param</refclass>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If <parameter>refentry.generate.name</parameter> is true, the
+<para>If <parameter>refentry-generate-name</parameter> is true, the
 title of the refentry page will be the word “Name”. Otherwise it will
 be the title of the subject of the reference page. Generally, exactly one
-of <parameter>refentry.generate.name</parameter> or 
-<parameter>refentry.generate.title</parameter> should
+of <parameter>refentry-generate-name</parameter> or 
+<parameter>refentry-generate-title</parameter> should
 <glossterm baseform="is true">be true</glossterm>.
 </para>
 </refsection>
 </refentry>
 
-<refentry xml:id="p_refentry.generate.title">
-<?db filename="p_refentry.generate.title.html"?>
+<refentry xml:id="p_refentry-generate-title">
+<?db filename="p_refentry-generate-title.html"?>
 <refmeta>
-<refentrytitle>$refentry.generate.title</refentrytitle>
-<refmiscinfo>{}refentry.generate.title</refmiscinfo>
+<refentrytitle>$refentry-generate-title</refentrytitle>
+<refmiscinfo>{}refentry-generate-title</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>$refentry.generate.title</refname>
+<refname>$refentry-generate-title</refname>
 <refpurpose>Use the subject of the page as the title of a <tag>refentry</tag></refpurpose>
 <refclass>param</refclass>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If <parameter>refentry.generate.title</parameter> is true, the
+<para>If <parameter>refentry-generate-title</parameter> is true, the
 title of the refentry page will be the subject of the page (the
 <tag>refentrytitle</tag>, <tag>refdescriptor</tag>, or the first
 <tag>refname</tag>). Generally, exactly one
-of <parameter>refentry.generate.name</parameter> or 
-<parameter>refentry.generate.title</parameter> should
+of <parameter>refentry-generate-name</parameter> or 
+<parameter>refentry-generate-title</parameter> should
 <glossterm baseform="is true">be true</glossterm>.
 </para>
 </refsection>
