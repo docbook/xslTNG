@@ -56,15 +56,22 @@
   </xsl:variable>
 
   <xsl:variable name="source" as="document-node()">
-    <xsl:message use-when="'pipeline' = $v:debug"
-                 select="'Preprocess: transclude'"/>
-    <xsl:sequence select="transform(map {
-      'stylesheet-location': 'transforms/30-transclude.xsl',
-      'source-node': $source,
-      'stylesheet-params': map {
-         QName('', 'psep'): $transclusion-prefix-separator
-        }
-      })?output"/>
+    <xsl:choose>
+      <xsl:when test="f:is-true($docbook-transclusion)">
+        <xsl:message use-when="'pipeline' = $v:debug"
+                     select="'Preprocess: transclude'"/>
+        <xsl:sequence select="transform(map {
+          'stylesheet-location': 'transforms/30-transclude.xsl',
+          'source-node': $source,
+          'stylesheet-params': map {
+             QName('', 'psep'): $transclusion-prefix-separator
+            }
+          })?output"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$source"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <!-- Profiling *isn't* done with an external transform
@@ -212,11 +219,15 @@
   </xsl:variable>
 
   <xsl:variable name="result" as="document-node()">
+    <xsl:message use-when="'pipeline' = $v:debug"
+                 select="'Process…'"/>
     <xsl:call-template name="t:process">
       <xsl:with-param name="source" select="$source"/>
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:message use-when="'pipeline' = $v:debug"
+               select="'Postprocess…'"/>
   <xsl:call-template name="t:postprocess">
     <xsl:with-param name="docbook" select="$source"/>
     <xsl:with-param name="source" select="$result"/>
