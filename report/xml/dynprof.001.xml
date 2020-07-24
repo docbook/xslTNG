@@ -18,20 +18,20 @@ profiling expression should raise an error. Consequently, this
 paragraph should be included unless <parameter>$dynamic-profile-error</parameter>
 is “exclude”.</para>
 
-<para condition="win">This is a paragraph that should be
-included if “condition:win”.</para>
+<para os="win">This is a paragraph that should be
+included if “os:win”.</para>
 
-<para condition="$isthree=3;win">This is a paragraph that should be
-included if “condition:win” and <parameter>$isthree</parameter> is 3.</para>
+<para os="$isthree=3;win">This is a paragraph that should be
+included if “os:win” and <parameter>$isthree</parameter> is 3.</para>
 
-<para condition="win;$isthree=5">This is a paragraph that should be
-included if “condition:win” and <parameter>$isthree</parameter> is 5.</para>
+<para os="win;$isthree=5">This is a paragraph that should be
+included if “os:win” and <parameter>$isthree</parameter> is 5.</para>
 
-<para condition="mac">This is a paragraph that should be
-included if “condition:mac”.</para>
+<para os="mac">This is a paragraph that should be
+included if “os:mac”.</para>
 
-<para condition="$isthree=3;mac">This is a paragraph that should be
-included if “condition:mac” and <parameter>$isthree</parameter> is 3.</para>
+<para os="$isthree=3;mac">This is a paragraph that should be
+included if “os:mac” and <parameter>$isthree</parameter> is 3.</para>
 
 <para condition="$thingy=enabled">This is a paragraph that should be
 included if <parameter>$thingy</parameter> is “enabled”.</para>
