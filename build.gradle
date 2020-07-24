@@ -234,7 +234,7 @@ task setupXSpec(dependsOn: ['fixXSpecDriver', 'fixXSpecUtils']) {
 }
 
 task downloadDocBook(type: Download) {
-  src "${docbookBaseURI}/docbook-${docbookVersion}.zip"
+  src "${docbookBaseURI}/${docbookVersion}/docbook-${docbookVersion}.zip"
   dest file("${buildDir}/docbook-${docbookVersion}.zip")
   doFirst {
     mkdir(buildDir)
@@ -255,7 +255,7 @@ unzip_docbook.onlyIf {
 }
 
 task downloadPublishers(type: Download) {
-  src "${publishersBaseURI}/publishers-${publishersVersion}.zip"
+  src "${docbookBaseURI}/${publishersVersion}/publishers-${publishersVersion}.zip"
   dest file("${buildDir}/publishers-${publishersVersion}.zip")
   doFirst {
     mkdir(buildDir)
