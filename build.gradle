@@ -1237,7 +1237,25 @@ task zipStageResources(type: Copy) {
   }
 }
 
-task zipStageSampleResources(type: Copy, dependsOn: ["zipStageResources"]) {
+task zipStagePrintCSS(type: Copy, dependsOn: ['makePrintCSS']) {
+  from "build/actual"
+  include "css/print.css"
+  into "${buildDir}/stage/zip/resources"
+  filter { String line ->
+    if (line.indexOf("@@") >= 0) {
+      line = line
+        .replace("@@TITLE@@", xslTNGtitle)
+        .replace("@@VERSION@@", xslTNGversion)
+    }
+    line
+  }
+  doFirst {
+    mkdir "${buildDir}/stage/zip/resources"
+  }
+}
+
+task zipStageSampleResources(type: Copy,
+                             dependsOn: ["zipStageResources", "zipStagePrintCSS"]) {
   from "${buildDir}/stage/zip/resources"
   into "${buildDir}/stage/zip/samples"
   doFirst {
