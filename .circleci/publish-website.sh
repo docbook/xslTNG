@@ -3,8 +3,8 @@
 if [[ -v CIRCLE_TAG ]]; then
     echo "Deploying website updates for $CIRCLE_TAG"
 else
-    if [ "$CIRCLE_BRANCH" = "master" ]; then
-        echo "Deploying website updates for master branch"
+    if [ "$CIRCLE_BRANCH" = "main" ]; then
+        echo "Deploying website updates for main branch"
     else
         echo "Website updates are not published for $CIRCLE_BRANCH commits"
         exit
@@ -52,5 +52,5 @@ git add .
 git commit -m "Deploy gh-pages for ${CIRCLE_PROJECT_USERNAME}: ${SHA}"
 git push -q origin HEAD
 
-# Go back to the master branch
-git checkout master
+# Go back to the main branch
+git checkout main
