@@ -24,6 +24,13 @@ html {
     scroll-padding-top: 40px;
 }
 
+/* https://www.smashingmagazine.com/2020/07/css-techniques-legibility/ */
+@supports (font-size-adjust: 1;) {
+    html {
+        font-size-adjust: 0.5;
+    }
+}
+
 body {
     min-height: 100%;
     padding-left: 0;

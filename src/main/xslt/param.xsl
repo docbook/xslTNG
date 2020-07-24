@@ -183,8 +183,8 @@
 <xsl:param name="procedure-step-numeration" select="'1aiAI'"/>
 <xsl:param name="orderedlist-item-numeration" select="'1aiAI'"/>
 
-<xsl:param name="refentry.generate.name" select="true()"/>
-<xsl:param name="refentry.generate.title" select="true()"/>
+<xsl:param name="refentry-generate-name" select="true()"/>
+<xsl:param name="refentry-generate-title" select="true()"/>
 <xsl:param name="annotate-toc" select="'true'"/>
 
 <xsl:param name="callout-unicode-start" select="9311"/>
@@ -286,7 +286,7 @@
 <xsl:param name="profile-role" select="''"/>
 <xsl:param name="profile-arch" select="''"/>
 <xsl:param name="profile-audience" select="''"/>
-<xsl:param name="profile-condition" select="'win'"/>
+<xsl:param name="profile-condition" select="''"/>
 <xsl:param name="profile-conformance" select="''"/>
 <xsl:param name="profile-os" select="''"/>
 <xsl:param name="profile-outputformat" select="''"/>
@@ -301,6 +301,7 @@
 <xsl:param name="bibliography-collection" as="xs:string" select="''"/>
 <xsl:param name="olink-databases" as="xs:string" select="''"/>
 
+<xsl:param name="docbook-transclusion" select="'false'"/>
 <xsl:param name="transclusion-prefix-separator" select="'---'"/>
 
 <xsl:param name="local-conventions" as="xs:string?" select="()"/>
