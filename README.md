@@ -1,11 +1,20 @@
-# DocBook xsltNG README
+# DocBook xsltNG
 
 Build status: [![Build Status](https://circleci.com/gh/docbook/xslTNG.svg?style=shield)](https://circleci.com/gh/docbook/xslTNG.svg?style=shield)
 
-Hello. You’ve found this repository during it’s “soft opening.” It’s
-public and it should all work, but I haven’t made any announcements
-about it.
+This is *The Next Generation* of DocBook stylesheets in XSLT. It is a
+complete reimplementation of the stylesheets for transforming
+[DocBook](https://docbook.org/) into modern, clean, semantically rich
+HTML. The presentation is supported by CSS and (if you wish, a small amount of) JavaScript.
+The expectation for paginated output is to use HTML+CSS.
 
-It’s not a secret, but [keep it under your hat](https://www.merriam-webster.com/dictionary/keep+%28something%29+under+one's+hat), ok?
+The project home page is [https://xsltng.docbook.org/](https://xsltng.docbook.org/).
+Documentation can be found in the [DocBook xslTNG Reference](https://xsltng.docbook.org/guide/).
+The [latest release](https://github.com/docbook/xslTNG/releases/tag/1.0.0) is probably
+the place start.
 
-P.S. The home page for the project is published at [https://xsltng.docbook.org/](https://xsltng.docbook.org/).
+Building the project, if you clone the repository, is described in
+[Chapter 5](https://xsltng.docbook.org/guide/ch05.html). In brief, you’ll want to build the XSLT
+with `gradle makeXslt` and the jar file (for the extension functions) with `gradle jar`. You can build
+the whole distribution with `gradle zipStage` which will put all of the build artifacts in
+`build/stage/zip`.
