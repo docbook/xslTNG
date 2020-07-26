@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.0.0
+/* DocBook xslTNG version 1.1.0
  *
  * This is docbook.css.
  *
@@ -156,6 +156,10 @@ pre code {
 
 a, a:visited {
     color: inherit;
+}
+
+a.pmuj {
+    text-decoration: none;
 }
 
 .xref-area,
