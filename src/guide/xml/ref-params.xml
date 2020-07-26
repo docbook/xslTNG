@@ -836,6 +836,144 @@ will be formatted with the <parameter>date-dateTime-format</parameter>.
 <para>The <parameter>debug</parameter> parameter contains a space
 separated list of flags. Depending on which flags are enabled, various additional
 debugging messages will be emitted during processing.</para>
+
+<para>The following flags are supported:</para>
+
+<variablelist>
+<varlistentry><term><literal>callouts</literal></term>
+<listitem>
+<para>Display additional information about callout processing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>cals-align-char</literal></term>
+<listitem>
+<para>Display additional information about the computation of character alignment
+processing in CALS tables.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>chunk-cleanup</literal></term>
+<listitem>
+<para>Display additional information about chunk cleanup processing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>chunks</literal></term>
+<listitem>
+<para>Display additional information about chunk selection.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>db4to5</literal></term>
+<listitem>
+<para>Display additional information about the DocBook 4.x to 5.x upgrade process.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>dynamic-profile</literal></term>
+<listitem>
+<para>Display additional information about
+<link linkend="dynprofiling">dynamic profiling</link>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>dynamic-profile-suppress</literal></term>
+<listitem>
+<para>Display additional information about what elements are suppressed by
+dynamic profiling.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>image-properties</literal></term>
+<listitem>
+<para>Display additional information about the results of the extracting
+properties from images. This will display all of the properties available from
+each image.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>intra-chunk-links</literal></term>
+<listitem>
+<para>Display additional information about the resolution of intra-chunk references.
+to links.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>intra-chunk-refs</literal></term>
+<listitem>
+<para>Display additional information about intra-chunk references.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>mediaobject-uris</literal></term>
+<listitem>
+<para>Display additional information about how media object URIs are constructed.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>objects</literal></term>
+<listitem>
+<para>Display additional information about how media objects are selected.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pipeline</literal></term>
+<listitem>
+<para>Display additional information about the pipeline processing stages.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>profile</literal></term>
+<listitem>
+<para>Display additional information about <link linkend="profiling">profiling</link>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>profile-suppress</literal></term>
+<listitem>
+<para>Display additional information about what elements are suppressed by
+profiling.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>properties</literal></term>
+<listitem>
+<para>Display additional information about the properties associated
+with a verbatim environment.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>render-verbatim</literal></term>
+<listitem>
+<para>Display additional information about how verbatim environments are rendered.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>template-matches</literal></term>
+<listitem>
+<para>Display additional information about how title page templates are selected.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>templates</literal></term>
+<listitem>
+<para>Display additional information about title page templates.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>verbatim</literal></term>
+<listitem>
+<para>Display additional information about how verbatim elements are processed.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>xlink</literal></term>
+<listitem>
+<para>Display additional information about XLink resolution.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </refsection>
 </refentry>
 
