@@ -255,82 +255,63 @@ be ignored.
 <para>When <tag>annotation</tag>s are rendered, the
 <parameter>annotation-mark</parameter> is inserted at each location
 where an annotation occurs.</para>
-<para>If JavaScript is used for annotations (see <parameter>annotations</parameter>),
+<para>If JavaScript is used for annotations (see <parameter>annotation-style</parameter>),
 clicking on the mark will bring up the annotation; if JavaScript is not used, the marks
 are numbered and the annotations appear as a form of footnote.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="p_annotations">
-<?db filename="p_annotations.html"?>
+<refentry xml:id="p_annotation-style">
+<?db filename="p_annotation-style.html"?>
 <refmeta>
-<refentrytitle>$annotations</refentrytitle>
-<refmiscinfo>{}annotations</refmiscinfo>
+<refentrytitle>$annotation-style</refentrytitle>
+<refmiscinfo>{}annotation-style</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>$annotations</refname>
+<refname>$annotation-style</refname>
 <refpurpose>Selects the annotation style</refpurpose>
 <refclass>param</refclass>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>An <tag>annotation</tag> can be used to add annotations
-to arbitrary elements. When formatted, these can be presented in one
-of two ways:</para>
-<variablelist>
-<varlistentry><term>javascript</term>
-<listitem>
-<para>If “<literal>javascript</literal>” is selected, markers are introduced
-at each point where an annotation occurs. Clicking on the marker will reveal
-the annotation. Obviously, this requires a user-agent with JavaScript.
+<para>An <tag>annotation</tag> can be used to add annotations to
+arbitrary elements. Annotations are formatted something like
+footnotes, they appear at the bottom of the page and are linked from
+the point of the annotation. There are two annotation styles,
+“<literal>javascript</literal>” and “<literal>inline</literal>”.
 </para>
-<para>The roles “<literal>wide</literal>” and “<literal>tall</literal>” can be used
-to increase the size of a particular annotation when it’s popped up.</para>
-</listitem>
-</varlistentry>
-<varlistentry><term>inline</term>
-<listitem>
-<para>The “<literal>inline</literal>” rendering places the annotation text
-near each reference and numbers them, something like footnotes.</para>
-</listitem>
-</varlistentry>
-</variablelist>
+
+<para>If the annotation style is “<literal>javascript</literal>”, a
+script reference will be added. The script hides the annotations at the
+bottom of the page and instead renders them as modal dialogs when the
+marks are clicked. The presentation is accessible in the absence of
+JavaScript.</para>
+
+<para>If the annotation style is “<literal>inline</literal>”, then the
+script is not included and the default presentation is used. No other values
+are supported at this time.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="p_annotations-inline-css">
-<?db filename="p_annotations-inline-css.html"?>
+<refentry xml:id="p_annotations-css">
+<?db filename="p_annotations-css.html"?>
 <refmeta>
-<refentrytitle>$annotations-inline-css</refentrytitle>
-<refmiscinfo>{}annotations-inline-css</refmiscinfo>
+<refentrytitle>$annotations-css</refentrytitle>
+<refmiscinfo>{}annotations-css</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>$annotations-inline-css</refname>
-<refpurpose>Inline annotation CSS</refpurpose>
+<refname>$annotations-css</refname>
+<refpurpose>Annotation CSS</refpurpose>
 <refclass>param</refclass>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If inline annotations appear in the document, a link to this
-CSS file will be added to the HTML HEAD.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="p_annotations-javascript-css">
-<?db filename="p_annotations-javascript-css.html"?>
-<refmeta>
-<refentrytitle>$annotations-javascript-css</refentrytitle>
-<refmiscinfo>{}annotations-javascript-css</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$annotations-javascript-css</refname>
-<refpurpose>Javascript annotation CSS</refpurpose>
-<refclass>param</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>If popup (JavaScript) annotations appear in the document, a link to this
-CSS file will be added to the HTML HEAD.</para>
+<para>This CSS stylesheet is added to documents that contain annotations.
+The selectors that match “popup-” classes are enabled by the annotation JavaScript
+if that <link linkend="p_annotation-style">style of annotation</link> is selected.
+The CSS file will be added to the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag>.
+</para>
 </refsection>
 </refentry>
 
@@ -855,6 +836,144 @@ will be formatted with the <parameter>date-dateTime-format</parameter>.
 <para>The <parameter>debug</parameter> parameter contains a space
 separated list of flags. Depending on which flags are enabled, various additional
 debugging messages will be emitted during processing.</para>
+
+<para>The following flags are supported:</para>
+
+<variablelist>
+<varlistentry><term><literal>callouts</literal></term>
+<listitem>
+<para>Display additional information about callout processing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>cals-align-char</literal></term>
+<listitem>
+<para>Display additional information about the computation of character alignment
+processing in CALS tables.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>chunk-cleanup</literal></term>
+<listitem>
+<para>Display additional information about chunk cleanup processing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>chunks</literal></term>
+<listitem>
+<para>Display additional information about chunk selection.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>db4to5</literal></term>
+<listitem>
+<para>Display additional information about the DocBook 4.x to 5.x upgrade process.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>dynamic-profile</literal></term>
+<listitem>
+<para>Display additional information about
+<link linkend="dynprofiling">dynamic profiling</link>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>dynamic-profile-suppress</literal></term>
+<listitem>
+<para>Display additional information about what elements are suppressed by
+dynamic profiling.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>image-properties</literal></term>
+<listitem>
+<para>Display additional information about the results of the extracting
+properties from images. This will display all of the properties available from
+each image.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>intra-chunk-links</literal></term>
+<listitem>
+<para>Display additional information about the resolution of intra-chunk references.
+to links.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>intra-chunk-refs</literal></term>
+<listitem>
+<para>Display additional information about intra-chunk references.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>mediaobject-uris</literal></term>
+<listitem>
+<para>Display additional information about how media object URIs are constructed.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>objects</literal></term>
+<listitem>
+<para>Display additional information about how media objects are selected.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pipeline</literal></term>
+<listitem>
+<para>Display additional information about the pipeline processing stages.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>profile</literal></term>
+<listitem>
+<para>Display additional information about <link linkend="profiling">profiling</link>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>profile-suppress</literal></term>
+<listitem>
+<para>Display additional information about what elements are suppressed by
+profiling.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>properties</literal></term>
+<listitem>
+<para>Display additional information about the properties associated
+with a verbatim environment.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>render-verbatim</literal></term>
+<listitem>
+<para>Display additional information about how verbatim environments are rendered.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>template-matches</literal></term>
+<listitem>
+<para>Display additional information about how title page templates are selected.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>templates</literal></term>
+<listitem>
+<para>Display additional information about title page templates.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>verbatim</literal></term>
+<listitem>
+<para>Display additional information about how verbatim elements are processed.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>xlink</literal></term>
+<listitem>
+<para>Display additional information about XLink resolution.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </refsection>
 </refentry>
 
@@ -1061,6 +1180,39 @@ returned a value of “false”.</para>
 <title>Description</title>
 <para>If this parameter <glossterm>is true</glossterm>, dynamic profiling
 will be applied to the document. See <xref linkend="dynprofiling"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_experimental-pmuj">
+<?db filename="p_experimental-pmuj.html"?>
+<refmeta>
+<refentrytitle>$experimental-pmuj</refentrytitle>
+<refmiscinfo>{}experimental-pmuj</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$experimental-pmuj</refname>
+<refpurpose>Insert reverse links</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>experimental-pmuj</parameter> <glossterm>is
+true</glossterm>, then links will be inserted from link targets back
+to link sources. In other words, if clicking on “A” jumps
+you to “B”, the stylesheets will add a link at “B” that jumps you back
+back to “A”. (Pmuj is jump spelled backwards.)
+</para>
+<caution>
+<para>This feature is entirely experimental. It may change in
+arbitrary ways or it may be abandoned.
+</para>
+</caution>
+<para>Support is limited at the moment to inlines and formal objects
+that have title pages. There’s currently no where to insert markup for
+every possible element that could be a link target.
+</para>
+<para>Pmuj’s from title pages should probably be inserted in the
+heading, not above it, just because the styling would be nicer.</para>
 </refsection>
 </refentry>
 

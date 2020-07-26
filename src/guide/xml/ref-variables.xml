@@ -1315,6 +1315,11 @@ debugging option.
 </varlistentry>
 </variablelist>
 
+<note>
+<para>Syntax highlighting with Pygments requires spawning an external
+process for each highlighted environment. This can add significantly
+to the processing time if there are many such environments.</para>
+</note>
 </refsection>
 </refentry>
 

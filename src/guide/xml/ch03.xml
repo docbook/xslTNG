@@ -96,7 +96,19 @@ for that element in your customization layer. Consider this DocBook document:
 
 <para>Suppose that you decided you wanted to have the
 <tag>productname</tag> element link automatically to the vendor
-webpage. One way to do that would be to redefine the template that processes the
+webpage.</para>
+
+<important>
+<para>The <citetitle>DocBook xslTNG Stylesheets</citetitle> process
+<emphasis>all</emphasis> DocBook elements in the
+<mode>m:docbook</mode> mode. This is different from previous XSLT stylesheets for DocBook
+which simply used the default mode.</para>
+<para>You must either specify a default mode in your customization layer
+or remember to specify the mode on match templates and template applications.
+If you forget the mode, you’ll get unexpected results!</para>
+</important>
+
+<para>One way to do that would be to redefine the template that processes the
 <tag>productname</tag> element:</para>
 
 <programlistingco>
@@ -148,8 +160,6 @@ processing. The effect of this template is to wrap an HTML
 <att>xlink:href</att> attribute, that will generate an HTML
 <code>a</code> as well. A more robust stylesheet would check for that,
 but I’m trying to keep the example simple.</para>
-
-<para>This is paragraph number: <?eval count(preceding::*:para intersect ../..//*:para)?>.</para>
 
 </section>
 </chapter>

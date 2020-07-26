@@ -157,7 +157,7 @@
   </xsl:choose>
 </xsl:param>
 
-<xsl:param name="annotations" select="'javascript'"/>
+<xsl:param name="annotation-style" select="'javascript'"/>
 <xsl:param name="annotation-mark"><sup>⌖</sup></xsl:param>
 
 <xsl:param name="xlink-style" select="'document'"/>
@@ -209,10 +209,8 @@
 <xsl:param name="css-links" select="'css/docbook.css css/docbook-screen.css'"/>
 <xsl:param name="verbatim-syntax-highlight-css" select="'css/pygments.css'"/>
 <xsl:param name="xlink-css" select="'css/xlink.css'"/>
-<xsl:param name="annotations-javascript-css"
-           select="'css/docbook-annotations-javascript.css'"/>
-<xsl:param name="annotations-inline-css"
-           select="'css/docbook-annotations-inline.css'"/>
+<xsl:param name="annotations-css"
+           select="'css/docbook-annotations.css'"/>
 <xsl:param name="persistent-toc-css"
            select="'css/docbook-toc.css'"/>
 
@@ -310,5 +308,7 @@
 <xsl:param name="allow-eval" as="xs:string" select="'false'"/>
 <xsl:param name="dynamic-profiles" as="xs:string" select="'false'"/>
 <xsl:param name="dynamic-profile-error" select="'ignore'"/>
+
+<xsl:param name="experimental-pmuj" select="'false'"/>
 
 </xsl:stylesheet>

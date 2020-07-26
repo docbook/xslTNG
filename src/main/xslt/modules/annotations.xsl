@@ -11,18 +11,10 @@
                 exclude-result-prefixes="db f ghost m v xs"
                 version="3.0">
 
-<xsl:function name="f:annotation-style" as="xs:string" cache="yes">
-  <xsl:param name="context" as="document-node()"/>
-  <xsl:sequence select="f:pi($context/*/db:info,
-                             'annotations', $annotations)"/>
-</xsl:function>
-
 <xsl:template match="ghost:annotation">
-  <xsl:variable name="style" select="f:annotation-style(/)"/>
   <xsl:variable name="number"
                 select="count(key('id', @linkend)/preceding::db:annotation)+1"/>
   <db-annotation-marker target="{@linkend}"
-                        style="{$style}"
                         db-annotation="{$number}">
     <a class="annomark" href="#{@linkend}"
        db-annotation="{@linkend}">
@@ -36,7 +28,6 @@
 
 <xsl:template match="db:annotation">
   <db-annotation id="{f:generate-id(.)}"
-                 style="{f:annotation-style(/)}"
                  db-annotation="{count(preceding::db:annotation)+1}">
     <xsl:apply-templates select="." mode="m:annotation-content"/>
   </db-annotation>
@@ -58,13 +49,6 @@
             </sup>
             <xsl:text> </xsl:text>
           </span>
-<!--
-          <xsl:if test="f:annotation-style(/) = 'inline'">
-            <xsl:sequence select="$annotation-mark"/>
-            <xsl:value-of select="count(preceding::db:annotation)+1"/>
-            <xsl:text> </xsl:text>
-          </xsl:if>
--->
           <xsl:apply-templates select="." mode="m:headline-title"/>
         </div>
       </div>

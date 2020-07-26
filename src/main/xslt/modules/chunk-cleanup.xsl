@@ -152,10 +152,8 @@
             <xsl:variable name="style"
                           select="key('hanno', $annotations[1])[1]/@style/string()"/>
             <div class="annotations">
-              <xsl:if test="not($style = 'inline')">
-                <div class="annotation-wrapper"
-                     >The following are annotations used elsewhere.</div>
-              </xsl:if>
+              <div class="annotation-wrapper title"
+                   >Annotations</div>
               <xsl:for-each select="$annotations">
                 <xsl:apply-templates select="key('hanno', ., root($self))/node()"
                                      mode="m:docbook"/>
@@ -182,8 +180,7 @@
       </nav>
 
       <!-- We save the annotation-style on the root div -->
-      <xsl:if test="exists($annotations)
-                    and /h:html/h:div/@db-annotations/string() = 'javascript'">
+      <xsl:if test="exists($annotations) and $annotation-style = 'javascript'">
         <xsl:apply-templates select="/h:html/h:db-annotation-script/*">
           <xsl:with-param name="rootbaseuri" select="$rbu"/>
           <xsl:with-param name="chunkbaseuri" select="$cbu"/>

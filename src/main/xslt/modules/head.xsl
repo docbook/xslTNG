@@ -120,14 +120,8 @@
 
 <xsl:template match="*" mode="mp:html-head-script">
   <xsl:if test="exists($resource-base-uri) and /*/db:annotation">
-    <xsl:if test="f:annotation-style(/) = 'javascript'">
-      <link rel="stylesheet"
-            href="{$resource-base-uri}{$annotations-javascript-css}"/>
-    </xsl:if>
-    <xsl:if test="f:annotation-style(/) = 'inline'">
-      <link rel="stylesheet"
-            href="{$resource-base-uri}{$annotations-inline-css}"/>
-    </xsl:if>
+    <link rel="stylesheet"
+          href="{$resource-base-uri}{$annotations-css}"/>
   </xsl:if>
   <xsl:if test="f:is-true($persistent-toc)">
     <link rel="stylesheet"

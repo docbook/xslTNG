@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.1"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<?db pmuj="true"?>
+<title>Pmuj Links</title>
+<extendedlink xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+  <locator xlink:title="here"
+           xlink:label="source"
+           xlink:href="#here"
+           xlink:type="locator"/>
+  <locator xlink:title="elsewhere"
+           xlink:label="source"
+           xlink:href="http://example.com/not/really/a/link"
+           xlink:type="locator"/>
+  <locator xlink:title="there"
+           xlink:label="target"
+           xlink:href="#there"
+           xlink:type="locator"/>
+  <arc xlink:to="target" xlink:from="source" xlink:type="arc"/>
+</extendedlink>
+</info>
+
+<para>Pmuj is jump spelled backwards.</para>
+
+<para>This is a link from <phrase xml:id="here">here</phrase> to there.
+Or <link linkend="there">there</link>. Or <link xlink:href="#there">there</link> even.
+</para>
+<para>This is <phrase xml:id="there">there</phrase>.</para>
+
+</article>
