@@ -149,7 +149,5 @@ processing. The effect of this template is to wrap an HTML
 <code>a</code> as well. A more robust stylesheet would check for that,
 but I’m trying to keep the example simple.</para>
 
-<para>This is paragraph number: <?eval count(preceding::*:para intersect ../..//*:para)?>.</para>
-
 </section>
 </chapter>
