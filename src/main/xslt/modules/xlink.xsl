@@ -23,6 +23,8 @@
      XLink processing. -->
 
 <xsl:key name="exlink" match="*" use="@xlink:type"/>
+<xsl:key name="linkend" match="*" use="@linkend"/>
+<xsl:key name="href" match="*" use="@xlink:href"/>
 
 <!-- N.B. parens in the scheme expression are not handled! -->
 <xsl:variable name="vp:xmlns-scheme"
@@ -38,6 +40,14 @@
   <xsl:document>
     <xsl:apply-templates select="key('exlink', 'extended', $document)"
                          mode="mp:xlink-sources"/>
+  </xsl:document>
+</xsl:function>
+
+<xsl:function name="fp:xlink-targets" as="document-node()" cache="yes">
+  <xsl:param name="document" as="document-node()"/>
+  <xsl:document>
+    <xsl:apply-templates select="key('exlink', 'extended', $document)"
+                         mode="mp:xlink-targets"/>
   </xsl:document>
 </xsl:function>
 
@@ -61,10 +71,52 @@
   </xsl:choose>
 </xsl:function>
 
+<xsl:function name="fp:pmuj-enabled" as="xs:boolean" cache="yes">
+  <xsl:param name="context" as="node()"/>
+  <xsl:sequence select="f:is-true(f:pi(root($context)/*/db:info,
+                                  'pmuj', $experimental-pmuj))"/>
+</xsl:function>
+
+<xsl:function name="fp:pmuj">
+  <xsl:param name="node" as="element()"/>
+  <xsl:param name="id" as="xs:string"/>
+
+  <xsl:variable name="sources" as="xs:string*">
+    <xsl:for-each select="(key('linkend', $id, root($node)),
+                           key('href', '#'||$id, root($node)))">
+      <xsl:if test="not(@xlink:type='locator')">
+        <xsl:sequence select="'#' || f:generate-id(.)"/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:variable name="xlinks" select="fp:xlink-targets(root($node))"/>
+    <xsl:variable name="sources" select="key('id', generate-id($node), $xlinks)"/>
+    <xsl:if test="$sources">
+      <xsl:variable name="locators" as="element()*">
+        <xsl:apply-templates select="$node" mode="mp:out-of-line-pmuj">
+          <xsl:with-param name="document" select="root($node)"/>
+          <xsl:with-param name="locators" select="$sources"/>
+        </xsl:apply-templates>
+      </xsl:variable>
+      <xsl:for-each select="$locators[self::db:locator]">
+        <xsl:sequence select="@xlink:href/string()"/>
+      </xsl:for-each>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:for-each select="distinct-values($sources)">
+    <a class="pmuj" href="{.}">◎</a>
+  </xsl:for-each>
+</xsl:function>
+
 <xsl:template name="t:xlink">
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
+
+  <xsl:if test="fp:pmuj-enabled(/)">
+    <xsl:sequence select="@xml:id ! fp:pmuj(./parent::*, ./string())"/>
+  </xsl:if>
 
   <xsl:variable name="xlinks" select="fp:xlink-sources(root(.))"/>
 
@@ -135,6 +187,10 @@
                       and (not(@xlink:type)
                            or @xlink:type='simple')">
         <a>
+          <xsl:if test="fp:pmuj-enabled(/)">
+            <xsl:attribute name="id" select="f:generate-id(.)"/>
+          </xsl:if>
+
           <xsl:if test="@xlink.title">
             <xsl:attribute name="title" select="@xlink:title"/>
           </xsl:if>
@@ -276,6 +332,38 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- An "out-of-line" pmuj. That is, this element is identified as the
+     target of an arc. -->
+<xsl:template match="*" mode="mp:out-of-line-pmuj">
+  <xsl:param name="document" as="document-node()" required="yes"/>
+  <xsl:param name="locators" as="element()+" required="yes"/>
+
+  <xsl:variable name="context" select="."/>
+  <xsl:variable name="arcs"
+                select="$locators/@arc ! key('genid', ., $document)"/>
+
+  <xsl:variable name="from" as="node()*">
+    <xsl:for-each select="$arcs">
+      <xsl:variable name="arc" select="."/>
+      <xsl:variable name="locators"
+                    select="$arc/../*[@xlink:label = $arc/@xlink:from]"/>
+      <xsl:for-each select="$locators">
+        <xsl:choose>
+          <xsl:when test="@xlink:type = 'locator'">
+            <xsl:sequence select="."/>
+          </xsl:when>
+          <xsl:when test="@xlink:type = 'resource'">
+            <generated xlink:type="locator"
+                       xlink:href="{f:href($context, .)}"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:sequence select="$from"/>
+</xsl:template>
+
 <xsl:function name="f:xpointer-idref" as="xs:string?">
   <xsl:param name="xpointer"/>
 
@@ -306,6 +394,44 @@
 
     <xsl:variable name="sources" as="element()*">
       <xsl:for-each select="$from-locator">
+        <xsl:choose>
+          <xsl:when test="@xlink:href">
+            <xsl:sequence
+                select="fp:find-xlink-nodes(root(.), @xlink:href, map { })"/>
+          </xsl:when>
+          <xsl:when test="@xlink:type='resource'">
+            <source>
+              <xsl:attribute name="xml:id" select="generate-id(.)"/>
+            </source>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>XLink locator without @xlink:href </xsl:text>
+              <xsl:text>that isn’t a resource? </xsl:text>
+              <xsl:sequence select="."/>
+            </xsl:message>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:for-each select="$sources">
+      <xsl:copy>
+        <xsl:sequence select="@*"/>
+        <xsl:attribute name="arc" select="generate-id($arc)"/>
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template match="*" mode="mp:xlink-targets">
+  <xsl:for-each select="*[@xlink:type='arc' and @xlink:from and @xlink:to]">
+    <xsl:variable name="arc" select="."/>
+    <xsl:variable name="to-label" select="@xlink:to"/>
+    <xsl:variable name="to-locator" select="../*[@xlink:label = $to-label]"/>
+
+    <xsl:variable name="sources" as="element()*">
+      <xsl:for-each select="$to-locator">
         <xsl:choose>
           <xsl:when test="@xlink:href">
             <xsl:sequence

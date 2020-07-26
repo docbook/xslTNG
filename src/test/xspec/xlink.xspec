@@ -32,4 +32,9 @@
    <x:expect label="expect links" href="../resources/expected/xlink.006.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming pmuj.001">
+   <x:context href="../resources/xml/pmuj.001.xml"/>
+   <x:expect label="expect links" href="../resources/expected/pmuj.001.html"/>
+</x:scenario>
+
 </x:description>

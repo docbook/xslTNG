@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
@@ -11,7 +12,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f h m t tp v xlink xs"
+                exclude-result-prefixes="db f fp h m t tp v xlink xs"
                 version="3.0">
 
 <xsl:template match="db:anchor">
@@ -125,6 +126,9 @@
         <xsl:if test="$primary-markup">
           <xsl:apply-templates select="." mode="m:attributes"/>
         </xsl:if>
+        <xsl:if test="fp:pmuj-enabled(/)">
+          <xsl:attribute name="id" select="f:generate-id(.)"/>
+        </xsl:if>
         <xsl:if test="exists($title)">
           <xsl:attribute name="title" select="$title"/>
         </xsl:if>
@@ -216,6 +220,9 @@
       </xsl:variable>
 
       <a href="#{f:id($target)}" class="xref xref-{local-name($target)}">
+        <xsl:if test="fp:pmuj-enabled(/)">
+          <xsl:attribute name="id" select="f:generate-id(.)"/>
+        </xsl:if>
         <xsl:sequence select="$content"/>
       </a>
     </xsl:otherwise>

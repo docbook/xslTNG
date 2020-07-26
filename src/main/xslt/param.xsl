@@ -309,4 +309,6 @@
 <xsl:param name="dynamic-profiles" as="xs:string" select="'false'"/>
 <xsl:param name="dynamic-profile-error" select="'ignore'"/>
 
+<xsl:param name="experimental-pmuj" select="'false'"/>
+
 </xsl:stylesheet>

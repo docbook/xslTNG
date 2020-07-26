@@ -1183,6 +1183,39 @@ will be applied to the document. See <xref linkend="dynprofiling"/>.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_experimental-pmuj">
+<?db filename="p_experimental-pmuj.html"?>
+<refmeta>
+<refentrytitle>$experimental-pmuj</refentrytitle>
+<refmiscinfo>{}experimental-pmuj</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$experimental-pmuj</refname>
+<refpurpose>Insert reverse links</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>experimental-pmuj</parameter> <glossterm>is
+true</glossterm>, then links will be inserted from link targets back
+to link sources. In other words, if clicking on “A” jumps
+you to “B”, the stylesheets will add a link at “B” that jumps you back
+back to “A”. (Pmuj is jump spelled backwards.)
+</para>
+<caution>
+<para>This feature is entirely experimental. It may change in
+arbitrary ways or it may be abandoned.
+</para>
+</caution>
+<para>Support is limited at the moment to inlines and formal objects
+that have title pages. There’s currently no where to insert markup for
+every possible element that could be a link target.
+</para>
+<para>Pmuj’s from title pages should probably be inserted in the
+heading, not above it, just because the styling would be nicer.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_footnote-numeration">
 <?db filename="p_footnote-numeration.html"?>
 <refmeta>

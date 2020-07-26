@@ -158,6 +158,10 @@
 </xsl:variable>
 
 <xsl:template match="*" mode="m:generate-titlepage">
+  <xsl:if test="fp:pmuj-enabled(/)">
+    <xsl:sequence select="@xml:id ! fp:pmuj(./parent::*, ./string())"/>
+  </xsl:if>
+
   <xsl:variable name="template"
                 select="if (db:info/tmp:titlepage-template)
                         then db:info/tmp:titlepage-template
