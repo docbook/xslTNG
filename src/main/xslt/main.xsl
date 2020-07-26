@@ -75,8 +75,7 @@
       <xsl:apply-templates select="(/*/db:info,/*)[1]" mode="m:html-head"/>
       <!-- N.B. Any filename specified in a PI is ignored for the root -->
       <div db-chunk="{$chunk}"
-           db-xlink="{f:xlink-style(/)}"
-           db-annotations="{f:annotation-style(/)}">
+           db-xlink="{f:xlink-style(/)}">
         <xsl:sequence select="fp:chunk-navigation(/*)"/>
         <xsl:apply-templates/>
       </div>

@@ -31,33 +31,6 @@ of pixels. For a discussion of units, see <xref linkend="units"/>.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_annotation-style">
-<?db filename="f_annotation-style.html"?>
-<refmeta>
-<refentrytitle>f:annotation-style</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}annotation-style#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:annotation-style</refname>
-<refpurpose>Returns the annotation style for this document</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>The default annotation style is defined by the
-<parameter>annotations</parameter> parameter. An individual document may
-override that style by specifying a
-<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
-</indexterm> processing instruction with a
-<literal>annotations</literal><indexterm>
-<primary>db processing instruction</primary>
-<secondary>annotations pseudo-attribute</secondary>
-</indexterm> pseudo-attribute in the <tag>info</tag> element at the
-beginning of the document.</para>
-<para>Annotation styles cannot vary across a single document.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_attributes">
 <?db filename="f_attributes.html"?>
 <refmeta>
