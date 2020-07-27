@@ -57,6 +57,7 @@ jobs:
 
       - store_artifacts:
           path: build/website
+          path: build/stage
 
       - run: ./.circleci/publish-website.sh
 
@@ -112,6 +113,7 @@ jobs:
 
       - store_artifacts:
           path: build/website
+          path: build/stage
 
       - run: ./.circleci/publish-website.sh
       - run: ./.circleci/publish-cdn.sh
