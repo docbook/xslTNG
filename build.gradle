@@ -1708,19 +1708,21 @@ task makeVersionProperties() {
 }
 
 task makeUris(dependsOn: [ "makeXslt" ]) {
-  inputs.files  fileTree(dir: "build/xslt/")
-  outputs.file "build/stage/jar/etc/uris.xml"
+  doLast {
+    inputs.files  fileTree(dir: "build/xslt/")
+    outputs.file "build/stage/jar/etc/uris.xml"
 
-  mkdir ("build/stage/jar/etc")
-  def uris = new PrintStream(new File(buildDir.toString() + "/stage/jar/etc/uris.xml"))
-  uris.println("<catalog>")
-  fileTree(dir: "build/xslt").each { fn ->
-    def name = fn.getAbsolutePath()
-    name = name.substring(buildDir.toString().length())
-    uris.println("  <uri name='" + name + "'/>")
+    mkdir ("build/stage/jar/etc")
+    def uris = new PrintStream(new File(buildDir.toString() + "/stage/jar/etc/uris.xml"))
+    uris.println("<catalog>")
+    fileTree(dir: "build/xslt").each { fn ->
+      def name = fn.getAbsolutePath()
+      name = name.substring(buildDir.toString().length())
+      uris.println("  <uri name='" + name + "'/>")
+    }
+    uris.println("</catalog>")
+    uris.close()
   }
-  uris.println("</catalog>")
-  uris.close()
 }
 
 jar {
