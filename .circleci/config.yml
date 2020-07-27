@@ -53,6 +53,7 @@ jobs:
           paths:
             - distributions
             - website
+            - stage
 
       - store_artifacts:
           path: build/website
@@ -107,6 +108,7 @@ jobs:
           paths:
             - distributions
             - website
+            - stage
 
       - store_artifacts:
           path: build/website
