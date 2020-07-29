@@ -20,7 +20,7 @@
      variable.xsl) for use in the stylesheets. Often, they're defined
      as strings here and as more useful data types in the variables. -->
 
-<!-- 'pipeline', 'objects', 'templates', 'template-matches',
+<!-- 'pipeline', 'objects', 'templates', 'template-matches', 'tables',
      'callouts', 'verbatim', 'render-verbatim', 'profile', 'properties',
      'xlink' 'chunks', 'chunk-cleanup', 'intra-chunk-refs', 'intra-chunk-links',
      'structure', 'mediaobject-uris', 'cals-align-char', 'image-properties',
@@ -76,7 +76,7 @@
            select="('summary', 'details')"/>
 
 <xsl:param name="align-char-default" as="xs:string" select="'.'"/>
-<xsl:param name="align-char-width" select="()"/>
+<xsl:param name="align-char-width" select="2"/>
 <xsl:param name="align-char-pad" select="'&#x2002;'"/> <!-- en space -->
 
 <xsl:param name="mediaobject-exclude-extensions"
