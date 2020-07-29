@@ -266,6 +266,8 @@
            select="('self::db:partintro',
                     'self::*[ancestor::db:partintro]',
                     'self::db:annotation',
+                    'self::db:section[not(preceding-sibling::db:section)]',
+                    'self::db:sect1[not(preceding-sibling::db:sect1)]',
                     'self::db:toc')"/>
 
 <xsl:param name="html-extension" select="'.html'"/>
