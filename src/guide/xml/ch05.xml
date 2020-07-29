@@ -12,14 +12,67 @@ yourself. The distribution is designed to be self contained. Running:
 </para>
 
 <screen><?db verbatim-style="plain"
-?><userinput>./gradlew makeXslt</userinput></screen>
+?><userinput>./gradlew dist</userinput></screen>
 
-<para>should build the stylesheets in <filename>build/xslt</filename>.
-(Use <userinput>.\gradlew.bat makeXslt</userinput> on
+<para>
+will build the stylesheets.
+(Use <userinput>.\gradlew.bat dist</userinput> on
 Windows<footnote><para>In the spirit of full disclosure, builds are very
 rarely tested on Windows. If you encounter problems, please file an issue.</para>
-</footnote>.)</para>
+</footnote>.) Building will:</para>
 
+<orderedlist>
+<listitem>
+<para>Compile the stylesheets and run the unit tests. The compiled stylesheets
+will be available in <filename>build/xslt</filename>.
+</para>
+<para>Running all the tests requires building the reference guide and
+a few other things. You can build the stylesheets without running any
+of the tests with the <buildtarget>makeXslt</buildtarget> task.</para>
+</listitem>
+<listitem>
+<para>Compile the extension functions. The compiled extension functions will be
+available in <filename>build/libs</filename>.
+</para>
+</listitem>
+<listitem>
+<para>“Compile” <link xlink:href="python-script">the Python script</link> that helps run
+the stylesheets. (It’s not really compiled, but several stylesheet-version-specific
+strings are interpolated.)
+</para>
+</listitem>
+</orderedlist>
+
+<section xml:id="buildpre">
+<title>Prerequisites</title>
+
+<para>In order to build the stylesheets, you must configure your
+system with several prerequisites:</para>
+
+<itemizedlist>
+<listitem>
+<para><link xlink:href="https://gradle.org/">Gradle</link>. The stylesheet
+builds use <link xlink:href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">the
+Gradle wrapper</link> to assure a consistent environment across systems, it’ll
+be downloaded automatically the first time you build.
+</para>
+</listitem>
+<listitem>
+<para>A modern version of Java. (Java 1.8 or later, for example.)
+</para>
+</listitem>
+<listitem>
+<para><link xlink:href="https://www.python.org/">Python</link> 3 and
+the <link xlink:href="https://click.palletsprojects.com/en/7.x/">click</link> module.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>If you discover other prerequisites that have been overlooked,
+or have questions or suggestions about how best to manage them, please
+let us know.</para>
+
+</section>
 <section xml:id="repostruct">
 <title>Repository structure</title>
 
