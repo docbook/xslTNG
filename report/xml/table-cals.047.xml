@@ -4,95 +4,6 @@
 
 <table frame="all">
 <info>
-<title>Computed align-char-width</title>
-</info>
-<tgroup cols="2" colsep="1" rowsep="1">
-<colspec/>
-<colspec align="char" char="."/>
-<tbody>
-  <row>
-    <entry>Row A</entry>
-    <entry>10</entry>
-  </row>
-  <row>
-    <entry>Row B</entry>
-    <entry>0.1</entry>
-  </row>
-  <row>
-    <entry>Row C</entry>
-    <entry>0.12</entry>
-  </row>
-  <row>
-    <entry>Row D</entry>
-    <entry>0.123</entry>
-  </row>
-</tbody>
-</tgroup>
-</table>
-
-<table frame="all">
-<info>
-<title>Computed align-char-width with terminal decimal point</title>
-</info>
-<tgroup cols="2" colsep="1" rowsep="1">
-<colspec/>
-<colspec align="char" char="."/>
-<tbody>
-  <row>
-    <entry>Row A</entry>
-    <entry>10</entry>
-  </row>
-  <row>
-    <entry>Row A’</entry>
-    <entry>10.</entry>
-  </row>
-  <row>
-    <entry>Row B</entry>
-    <entry>0.1</entry>
-  </row>
-  <row>
-    <entry>Row C</entry>
-    <entry>0.12</entry>
-  </row>
-  <row>
-    <entry>Row D</entry>
-    <entry>0.123</entry>
-  </row>
-</tbody>
-</tgroup>
-</table>
-
-<table frame="all">
-<info>
-<title>Computed align-char-width with alternate pad character</title>
-</info>
-<tgroup cols="2" colsep="1" rowsep="1">
-<?db align-char-pad="0"?>
-<colspec/>
-<colspec align="char" char="."/>
-<tbody>
-  <row>
-    <entry>Row A</entry>
-    <entry>10</entry>
-  </row>
-  <row>
-    <entry>Row B</entry>
-    <entry>0.1</entry>
-  </row>
-  <row>
-    <entry>Row C</entry>
-    <entry>0.12</entry>
-  </row>
-  <row>
-    <entry>Row D</entry>
-    <entry>0.123</entry>
-  </row>
-</tbody>
-</tgroup>
-</table>
-
-<table frame="all">
-<info>
 <title>align-char-width=2</title>
 </info>
 <tgroup cols="2" colsep="1" rowsep="1">
@@ -212,6 +123,7 @@
 <title>Multiple occurrences of the pad character</title>
 </info>
 <tgroup cols="2" colsep="1" rowsep="1">
+<?db align-char-width="3"?>
 <colspec/>
 <colspec align="char" char="."/>
 <tbody>
@@ -248,7 +160,7 @@
 <colspec align="char" char="."/>
 <?db align-char-width="4"?>
 <colspec align="char" char=","/>
-<?db align-char-width="5" align-char-pad="⸳"?>
+<?db align-char-width="5" align-char-pad="·"?>
 <colspec align="char" char="."/>
 <?db align-char-width="6" align-char-pad="0"?>
 <tbody>
