@@ -64,130 +64,79 @@
 </xsl:template>
 
 <xsl:template match="db:tbody|db:thead|db:tfoot">
-  <xsl:variable name="this" select="."/>
-
-  <xsl:variable name="structure" as="array(*)">
-    <xsl:apply-templates select="db:row[1]" mode="mp:structcals">
-      <xsl:with-param name="structure" select="[]"/>
-      <xsl:with-param name="rownum" select="1"/>
-    </xsl:apply-templates>
-  </xsl:variable>
-
-  <xsl:variable name="table-height" select="array:size($structure)"/>
-
-  <xsl:variable name="row-widths" as="xs:integer*">
-    <xsl:for-each select="1 to array:size($structure)">
-      <xsl:sequence select="array:size($structure(.))"/>
-    </xsl:for-each>
-  </xsl:variable>
-  <xsl:variable name="table-width" select="max($row-widths)"/>
-
-  <xsl:variable name="tgroup-cols" as="xs:integer"
-                select="xs:integer(../@cols)"/>
-
-  <xsl:if test="$table-width gt $tgroup-cols">
-    <xsl:sequence select="error($dbe:INVALID-CALS, 'Columns exceed @cols')"/>
-  </xsl:if>
-
-  <xsl:variable name="table-width" select="max(($table-width, $tgroup-cols))"/>
-  
-  <xsl:variable name="structure" select="fp:pad-rows($structure, $table-width)"/>
-
-  <!--
-  <xsl:result-document href="struct.html">
-    <xsl:sequence select="fp:dump-structure($structure)"/>
-  </xsl:result-document>
-  <xsl:message select="node-name(parent::*)"/>
-  <xsl:sequence select="fp:dump-structure-text($structure)"/>
-  -->
-
-  <xsl:variable name="table"
-                select="(ancestor::db:table|ancestor::db:informaltable)[last()]"/>
-
-  <xsl:element name="{if (self::db:thead)
-                      then 'thead'
-                      else if (self::db:tfoot)
-                           then 'tfoot'
-                           else 'tbody'}"
-               namespace="http://www.w3.org/1999/xhtml">
-    <xsl:for-each select="1 to array:size($structure)">
-      <xsl:variable name="rownum" select="."/>
-      <xsl:variable name="row" select="$structure(.)"/>
-      
-      <!--
-      <xsl:message select="'ROW: ' || $rownum"/>
-      -->
-
-      <tr>
-        <xsl:for-each select="1 to array:size($row)">
-          <xsl:variable name="colnum" select="."/>
-          <xsl:variable name="cell" select="$row(.)"/>
-          <xsl:if test="not($cell?span)">
-            <xsl:choose>
-              <xsl:when test="exists($cell?node)">
-                <xsl:apply-templates select="$cell?node">
-                  <xsl:with-param name="structure" select="$structure"/>
-                  <xsl:with-param name="cell" select="$cell"/>
-                  <xsl:with-param name="table" select="$table"/>
-                  <xsl:with-param name="table-height" select="$table-height"/>
-                  <xsl:with-param name="table-width" select="$table-width"/>
-                </xsl:apply-templates>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:call-template name="tp:cell">
-                  <xsl:with-param name="table-part" select="$this"/>
-                  <xsl:with-param name="structure" select="$structure"/>
-                  <xsl:with-param name="cell" select="map {
-                   'rownum': $rownum,
-                   'colnum': $colnum,
-                   'width': 1,
-                   'height': 1,
-                   'span': false()
-                  }"/>
-                  <xsl:with-param name="table" select="$table"/>
-                  <xsl:with-param name="table-height" select="$table-height"/>
-                  <xsl:with-param name="table-width" select="$table-width"/>
-                </xsl:call-template>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:if>
-        </xsl:for-each>
-      </tr>
-    </xsl:for-each>
+  <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
+    <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
 
 <xsl:template match="db:row">
+  <xsl:variable name="row" select="."/>
+  <xsl:variable name="overhang" select="fcals:overhang-into-row($row)"/>
+
+  <xsl:variable name="cells" as="map(*)*">
+    <xsl:for-each select="*">
+      <xsl:variable name="colnum" select="fcals:column-number(., $overhang)"/>
+      <xsl:variable name="colspan" select="fcals:colspan(., $colnum)"/>
+      <xsl:variable name="rowspan" select="fcals:rowspan(., $colnum)"/>
+      <xsl:sequence select="map {
+        'row': $row,
+        'node': .,
+        'span': false(),
+        'colspan': $colspan,
+        'rowspan': $rowspan,
+        'first-column': $colnum,
+        'last-column': $colnum + $colspan - 1
+      }"/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:message use-when="'tables' = $debug"
+               select="'========================================'"/>
   <tr>
-    <xsl:apply-templates/>
+    <xsl:for-each select="1 to fcals:table-columns($row)">
+      <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
+      <xsl:choose>
+        <xsl:when test="$cell?span">
+          <xsl:message use-when="'tables' = $debug"
+                       select="., '--span--'"/>
+        </xsl:when>
+        <xsl:when test="empty($cell?node)">
+          <xsl:message use-when="'tables' = $debug"
+                       select="., '--empty--'"/>
+          <xsl:call-template name="tp:cell">
+            <xsl:with-param name="properties" select="map {
+              'row': $row,
+              'span': false(),
+              'colspan': 1,
+              'rowspan': 1,
+              'first-column': .,
+              'last-column': .
+            }"/>
+            <xsl:with-param name="td" select="if ($row/parent::db:thead) then 'th' else 'td'"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message use-when="'tables' = $debug"
+                       select="., $cell?node/string()
+                                  =&gt; normalize-space()
+                                  =&gt; substring(1, 10)"/>
+          <xsl:apply-templates select="$cell?node">
+            <xsl:with-param name="properties" select="$cell"/>
+          </xsl:apply-templates>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </tr>
 </xsl:template>
 
 <xsl:template match="db:entry|db:entrytbl">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="cell" as="map(*)?"/>
-  <xsl:param name="table" as="element()"/>
-  <xsl:param name="table-width" as="xs:integer"/>
-  <xsl:param name="table-height" as="xs:integer"/>
-
-  <xsl:variable name="pi-properties"
-                select="f:pi-attributes(./processing-instruction('db'))"/>
+  <xsl:param name="properties" as="map(*)"/>
 
   <xsl:call-template name="tp:cell">
-    <xsl:with-param name="table-part"
-                    select="(ancestor::db:thead
-                             |ancestor::db:tbody
-                             |ancestor::db:tfoot)[last()]"/>
-    <xsl:with-param name="structure" select="$structure"/>
-    <xsl:with-param name="cell" select="$cell"/>
-    <xsl:with-param name="table" select="$table"/>
-    <xsl:with-param name="table-height" select="$table-height"/>
-    <xsl:with-param name="table-width" select="$table-width"/>
-    <xsl:with-param name="pi-properties" select="$pi-properties"/>
-    <xsl:with-param name="td"
-                    select="if (parent::*/parent::db:thead)
-                            then 'th'
-                            else 'td'"/>
+    <xsl:with-param name="properties" select="$properties"/>
+    <xsl:with-param name="pi-properties"
+                    select="f:pi-attributes(./processing-instruction('db'))"/>
+    <xsl:with-param name="td" select="if (parent::*/parent::db:thead) then 'th' else 'td'"/>
     <xsl:with-param name="content" as="item()*">
       <xsl:choose>
         <xsl:when test="self::db:entrytbl">
@@ -201,25 +150,26 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:choose>
-            <xsl:when test="$cell?align = 'char' and not(*)">
+            <xsl:when test="$properties?align = 'char' and not(*)">
               <!-- This is all a bit fiddly. If you want to use ?db? PIs to
                    set the alignment details, they must follow the colspec for
                    the column in question. If there's no PI following the colspec,
                    we fall back to PIs following the tgroup. -->
               <xsl:variable name="piroot"
-                            select="fcals:colspec-for-column(ancestor::db:tgroup[1], $cell?colnum)"/>
+                            select="fcals:colspec-for-column(fcals:tgroup(.),
+                                       $properties?first-column)"/>
 
               <xsl:variable name="pis"
                             select="if (empty($piroot)
                                         or empty($piroot/following-sibling::processing-instruction()))
-                                    then ancestor::db:tgroup/node()
+                                    then fcals:tgroup(.)/node()
                                     else $piroot/following-sibling::node()"/>
 
               <xsl:variable name="pis" select="fp:only-initial-pis($pis)"/>
 
               <xsl:variable name="achar-width"
                             select="fp:pi-from-list($pis, 'align-char-width',
-                                                    $align-char-width/string())"/>
+                                                    string($align-char-width))"/>
 
               <xsl:variable name="achar-width" as="xs:integer?">
                 <xsl:choose>
@@ -242,13 +192,13 @@
 
               <xsl:variable name="content" select="normalize-space(.)"/>
               <xsl:variable name="char"
-                            select="if ($cell?char)
-                                    then $cell?char
+                            select="if ($properties?char)
+                                    then $properties?char
                                     else $align-char-default"/>
               <xsl:variable name="width"
                             select="if (exists($achar-width))
                                     then $achar-width
-                                    else fp:align-char-width($structure, $cell?colnum, $char)"/>
+                                    else $align-char-width"/>
 
               <xsl:variable name="parts"
                             select="f:tokenize-on-char($content, $char)"/>
@@ -275,10 +225,6 @@
               <xsl:variable name="after"
                             select="fp:align-char-pad($after, $width, $achar-pad)"/>
 
-              <xsl:message use-when="$v:debug = 'cals-align-char'"
-                           select="$cell?rownum,$cell?colnum,$content,':',
-                                   $width,':',$char,$before,$after"/>
-
               <xsl:value-of select="$before || $after"/>
             </xsl:when>
             <xsl:otherwise>
@@ -291,129 +237,78 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:function name="fp:only-initial-pis" as="processing-instruction()*">
-  <xsl:param name="nodes" as="node()*"/>
-
-  <xsl:iterate select="$nodes">
-    <xsl:param name="pis" select="()"/>
-    <xsl:choose>
-      <xsl:when test="self::processing-instruction()">
-        <xsl:next-iteration>
-          <xsl:with-param name="pis" select="($pis, .)"/>
-        </xsl:next-iteration>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$pis"/>
-        <xsl:break/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:iterate>
-</xsl:function>
-
-<xsl:function name="fp:align-char-width" as="xs:integer" cache="true">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="colnum" as="xs:integer"/>
-  <xsl:param name="char" as="xs:string"/>
-
-  <xsl:variable name="widths" as="xs:integer*">
-    <xsl:for-each select="1 to array:size($structure)">
-      <xsl:variable name="content" select="$structure(.)($colnum)?node"/>
-      <xsl:choose>
-        <xsl:when test="$content/*">
-          <xsl:sequence select="0"/>
-        </xsl:when> 
-        <xsl:otherwise>
-          <xsl:variable name="content" select="normalize-space($content)"/>
-          <xsl:choose>
-            <xsl:when test="not(contains($content, $char))">
-              <xsl:sequence select="0"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:variable name="frag" select="f:tokenize-on-char($content, $char)[last()]"/>
-              <xsl:sequence select="string-length($frag)"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <xsl:sequence select="max($widths)"/>
-</xsl:function>
-
 <xsl:template name="tp:cell">
-  <xsl:param name="table-part" as="element()"/>
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="cell" as="map(*)" required="yes"/>
-  <xsl:param name="table" as="element()"/>
-  <xsl:param name="table-width" as="xs:integer"/>
-  <xsl:param name="table-height" as="xs:integer"/>
+  <xsl:param name="properties" as="map(*)"/>
   <xsl:param name="pi-properties" as="element()?"/>
   <xsl:param name="td" as="xs:string" select="'td'"/>
   <xsl:param name="content" as="item()*" select="()"/>
 
-  <xsl:if test="not($cell?span)">
-    <xsl:variable name="frame" select="$table/@frame"/>
-    <xsl:variable name="btop"
-                  select="$frame = 'all' or $frame = 'top' or $frame = 'topbot'"/>
+  <xsl:variable name="row" select="$properties?row"/>
+  <xsl:variable name="table"
+                select="($row/ancestor::db:table
+                         |$row/ancestor::db:informaltable)[last()]"/>
+  
+  <xsl:variable name="table-part"
+                select="($row/ancestor::db:thead
+                         |$row/ancestor::db:tbody
+                         |$row/ancestor::db:tfoot)[last()]"/>
 
-    <!-- bbot:
-         1. The frame includes the bottom border
-         2. We're in the last row of a section and the cell has a rowsep
-            and either this is a thead or it's a tbody and there is a tfoot
-    -->
-    <xsl:variable name="bbot"
-                  select="$frame = 'all' or $frame = 'bot' or $frame = 'topbot'
-                          or ($cell?rowsep
-                              and $cell?rownum = $table-height
-                              and ($table-part/self::db:thead
-                                   or ($table-part/self::db:tbody
-                                       and $table-part/preceding-sibling::db:tfoot)))"/>
-    <xsl:variable name="bleft"
-                  select="$frame = 'all' or $frame = 'sides'"/>
-    <xsl:variable name="bright"
-                  select="$frame = 'all' or $frame = 'sides'"/>
+  <xsl:variable name="frame" select="$table/@frame"/>
+  <xsl:variable name="btop"
+                select="$frame = 'all' or $frame = 'top' or $frame = 'topbot'"/>
 
-    <xsl:variable name="classes" as="xs:string*">
-      <xsl:sequence select="if ($cell?colnum = 1 and $bleft)
-                            then 'bleft'
-                            else ()"/>
-      <xsl:sequence select="if ($cell?rownum = 1 and $btop)
-                            then 'btop'
-                            else ()"/>
-      <xsl:sequence select="f:cals-rowsep($structure, $cell, $bbot)"/>
-      <xsl:sequence select="f:cals-colsep($structure, $cell, $bright)"/>
-      <xsl:sequence select="if ($cell?node)
-                            then ()
-                            else 'empty'"/>
-      <xsl:sequence select="$cell?align"/>
-      <xsl:sequence select="$cell?valign"/>
-    </xsl:variable>
+  <!-- bbot:
+       1. The frame includes the bottom border
+       2. We're in the last row of a section and the cell has a rowsep
+          and either this is a thead or it's a tbody and there is a tfoot
+  -->
+  <xsl:variable name="bbot"
+                select="$frame = 'all' or $frame = 'bot' or $frame = 'topbot'
+                        or ($properties?rowsep
+                            and empty($row/following-sibling::db:row)
+                            and ($table-part/self::db:thead
+                                 or ($table-part/self::db:tbody
+                                     and $table-part/preceding-sibling::db:tfoot)))"/>
+  <xsl:variable name="bleft"
+                select="$frame = 'all' or $frame = 'sides'"/>
+  <xsl:variable name="bright"
+                select="$frame = 'all' or $frame = 'sides'"/>
 
-    <!--
-    <xsl:message select="($cell?rownum||','||$cell?colnum, $classes)"/>
-    -->
+  <xsl:variable name="classes" as="xs:string*">
+    <xsl:sequence select="if ($properties?first-column = 1 and $bleft)
+                          then 'bleft'
+                          else ()"/>
+    <xsl:sequence select="if (empty($row/preceding-sibling::db:row) and $btop)
+                          then 'btop'
+                          else ()"/>
+    <xsl:sequence select="f:cals-rowsep($row, $properties, $bbot)"/>
+    <xsl:sequence select="f:cals-colsep($row, $properties, $bright)"/>
+    <xsl:sequence select="if ($properties?node)
+                          then ()
+                          else 'empty'"/>
+    <xsl:sequence select="$properties?align"/>
+    <xsl:sequence select="$properties?valign"/>
+  </xsl:variable>
 
-    <xsl:element name="{$td}" namespace="http://www.w3.org/1999/xhtml">
-      <xsl:if test="exists($classes)">
-        <xsl:variable name="sorted" as="xs:string+">
-          <xsl:for-each select="$classes">
-            <xsl:sort select="."/>
-            <xsl:sequence select="."/>
-          </xsl:for-each>
-        </xsl:variable>
-        <xsl:attribute name="class" select="string-join($sorted, ' ')"/>
-      </xsl:if>
-      <xsl:if test="$cell?width gt 1">
-        <xsl:attribute name="colspan" select="$cell?width"/>
-      </xsl:if>
-      <xsl:if test="$cell?height gt 1">
-        <xsl:attribute name="rowspan" select="$cell?height"/>
-      </xsl:if>
-      <xsl:copy-of select="$pi-properties/@style"/>
-      <xsl:sequence select="$content"/>
-    </xsl:element>
-  </xsl:if>
+  <xsl:element name="{$td}" namespace="http://www.w3.org/1999/xhtml">
+    <xsl:if test="exists($classes)">
+      <xsl:variable name="sorted" as="xs:string+">
+        <xsl:for-each select="$classes">
+          <xsl:sort select="."/>
+          <xsl:sequence select="."/>
+        </xsl:for-each>
+      </xsl:variable>
+      <xsl:attribute name="class" select="string-join($sorted, ' ')"/>
+    </xsl:if>
+    <xsl:if test="$properties?colspan gt 1">
+      <xsl:attribute name="colspan" select="$properties?colspan"/>
+    </xsl:if>
+    <xsl:if test="$properties?rowspan gt 1">
+      <xsl:attribute name="rowspan" select="$properties?rowspan"/>
+    </xsl:if>
+    <xsl:copy-of select="$pi-properties/@style"/>
+    <xsl:sequence select="$content"/>
+  </xsl:element>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -540,337 +435,118 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="db:row" mode="mp:structcals" as="array(*)">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  <xsl:param name="rownum" as="xs:integer" required="yes"/>
+<xsl:function name="fcals:cell" as="map(*)" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="column" as="xs:integer"/>
+  <xsl:param name="overhang" as="array(xs:integer)"/>
+  <xsl:param name="cells" as="map(*)*"/>
 
-  <xsl:variable name="structure"
-                select="fp:extend-table($structure, $rownum)"/>
-
-  <xsl:variable name="structure" as="array(*)">
-    <xsl:apply-templates select="db:entry[1]" mode="mp:structcals">
-      <xsl:with-param name="structure" select="$structure"/>
-      <xsl:with-param name="rownum" select="$rownum"/>
-    </xsl:apply-templates>
+  <xsl:variable name="cell" as="map(*)?">
+    <xsl:for-each select="$cells">
+      <xsl:if test="$column ge .?first-column
+                    and $column le .?last-column">
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="following-sibling::*">
-      <xsl:apply-templates select="following-sibling::*[1]"
-                           mode="mp:structcals">
-        <xsl:with-param name="structure" select="$structure"/>
-        <xsl:with-param name="rownum" select="$rownum + 1"/>
-      </xsl:apply-templates>
+    <xsl:when test="array:get($overhang, $column) ne 0
+                    or (exists($cell) and $cell?first-column ne $column)">
+      <xsl:sequence select="map { 'span': true() }"/>
+    </xsl:when>
+    <xsl:when test="empty($cell)">
+      <xsl:sequence select="fcals:cell-decoration($row, $cell?node, $column)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="$structure"/>
+      <xsl:sequence select="map:merge(($cell,
+                                       fcals:cell-decoration($row, $cell?node, $column)))"/>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
+</xsl:function>
 
-<xsl:template match="db:entry|db:entrytbl" mode="mp:structcals" as="array(*)">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  <xsl:param name="rownum" as="xs:integer" required="yes"/>
+<xsl:function name="fcals:overhang-into-row" as="array(xs:integer)" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:choose>
+    <xsl:when test="empty($row/preceding-sibling::*)">
+      <xsl:sequence select="fcals:zeros($row)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="fcals:overhang($row/preceding-sibling::db:row[1])"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
 
-  <xsl:variable name="colnum"
-                select="fcals:column-number(., $structure, $rownum)"/>
+<xsl:function name="fcals:overhang" as="array(xs:integer)" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
 
-  <xsl:variable name="structure"
-                select="fp:place-cell(., $structure, $rownum, $colnum,
-                                      fcals:cell-width(., $colnum),
-                                      fcals:cell-height(., $colnum))"/>
+  <xsl:variable name="overhang"
+                select="if (empty($row/preceding-sibling::*))
+                        then fcals:zeros($row)
+                        else fcals:decrement-overhang(fcals:overhang($row/preceding-sibling::*[1]))"/>
 
-<!--
-  <xsl:variable name="structure" as="array(*)">
-    <xsl:apply-templates select="db:entry[1]" mode="mp:structcals">
-      <xsl:with-param name="structure" select="$structure"/>
-      <xsl:with-param name="row" select="$row + 1"/>
-    </xsl:apply-templates>
+  <xsl:variable name="colmap" as="map(xs:integer, node())">
+    <xsl:map>
+      <xsl:for-each select="$row/*">
+        <xsl:map-entry key="fcals:column-number(., $overhang)" select="."/>
+      </xsl:for-each>
+    </xsl:map>
   </xsl:variable>
--->
 
+  <xsl:variable name="newoverhang" as="xs:integer*">
+    <xsl:for-each select="array:flatten($overhang)">
+      <xsl:sequence select=". + fcals:cell-overhang($colmap, position())"/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:sequence select="array { $newoverhang }"/>
+</xsl:function>
+
+<xsl:function name="fcals:cell-overhang" cache="yes">
+  <xsl:param name="colmap" as="map(xs:integer, node())"/>
+  <xsl:param name="column" as="xs:integer"/>
+
+  <xsl:variable name="over" as="xs:integer?">
+    <xsl:for-each select="map:keys($colmap)">
+      <xsl:variable name="fcol" select="."/>
+      <xsl:variable name="cell" select="map:get($colmap, .)"/>
+      <xsl:variable name="width" select="fcals:colspan($cell, .)"/>
+      <xsl:variable name="lcol" select="$fcol + $width - 1"/>
+      <xsl:if test="$column ge $fcol and $column le $lcol">
+        <xsl:sequence select="fcals:rowspan($cell, .)"/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:sequence select="if (exists($over)) then $over - 1 else 0"/>
+</xsl:function>
+
+<xsl:function name="fcals:next-empty-cell" cache="yes">
+  <xsl:param name="column" as="xs:integer"/>
+  <xsl:param name="overhang" as="array(xs:integer)"/>
   <xsl:choose>
-    <xsl:when test="following-sibling::*">
-      <xsl:apply-templates select="following-sibling::*[1]"
-                           mode="mp:structcals">
-        <xsl:with-param name="structure" select="$structure"/>
-        <xsl:with-param name="rownum" select="$rownum"/>
-      </xsl:apply-templates>
+    <xsl:when test="$column gt array:size($overhang)">
+      <xsl:sequence select="error($dbe:INVALID-CALS, 'Columns exceed @cols')"/>
+    </xsl:when>
+    <xsl:when test="array:get($overhang, $column) eq 0">
+      <xsl:sequence select="$column"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="$structure"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<xsl:template match="db:x-entrytbl" mode="mp:structcals" as="array(*)">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  <xsl:param name="rownum" as="xs:integer" required="yes"/>
-
-  <xsl:choose>
-    <xsl:when test="following-sibling::*">
-      <xsl:apply-templates select="following-sibling::*[1]"
-                           mode="mp:structcals">
-        <xsl:with-param name="structure" select="$structure"/>
-        <xsl:with-param name="rownum" select="$rownum"/>
-      </xsl:apply-templates>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="$structure"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<!-- ============================================================ -->
-
-<xsl:function name="fp:find-row-element" as="element()" cache="yes">
-  <xsl:param name="row" as="array(*)"/>
-  <xsl:choose>
-    <xsl:when test="$row(1)?node">
-      <xsl:sequence select="$row(1)?node/parent::*"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="fp:find-row-element(array:remove($row, 1))"/>
+      <xsl:sequence select="fcals:next-empty-cell($column + 1, $overhang)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
 
-<!-- ============================================================ -->
-
-<xsl:function name="f:cals-rowsep" as="xs:string?" cache="yes">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="cell" as="map(*)"/>
-  <xsl:param name="last-row-rowsep" as="xs:boolean"/>
-
-  <xsl:variable name="row" select="$cell?rownum + $cell?height - 1"/>
-
-  <xsl:variable name="rowsep"
-                select="if ($cell?node)
-                        then $cell?rowsep
-                        else fcals:empty-cell-rowsep($structure, $cell)"/>
-
-  <!--
-  <xsl:message>
-    <xsl:value-of select="$cell?rownum"/>, <xsl:value-of select="$cell?colnum"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$row"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="array:size($structure)"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$last-row-rowsep"/>
-    <xsl:text>, </xsl:text>
-    <xsl:value-of select="$cell?height"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="($rowsep and $row lt array:size($structure)
-                or ($row eq array:size($structure) and $last-row-rowsep)"/>
-  </xsl:message>
-  -->
-
-  <xsl:if test="($rowsep and $row lt array:size($structure))
-                or ($row eq array:size($structure) and $last-row-rowsep)">
-    <xsl:sequence select="'rowsep'"/>
-  </xsl:if>
-</xsl:function>
-
-<xsl:function name="f:cals-colsep" as="xs:string?" cache="yes">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="cell" as="map(*)"/>
-  <xsl:param name="last-col-colsep" as="xs:boolean"/>
-
-  <xsl:variable name="col" select="$cell?colnum + $cell?width - 1"/>
-
-  <xsl:variable name="colsep"
-                select="if ($cell?node)
-                        then $cell?colsep
-                        else fcals:empty-cell-colsep($structure, $cell)"/>
-
-  <!--
-  <xsl:message>
-    <xsl:value-of select="$cell?node"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="$cell?colsep"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="$col"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="array:size($structure(1))"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="$last-col-colsep"/>
-    <xsl:text> = </xsl:text>
-    <xsl:value-of select="$colsep
-                          and ($col lt array:size($structure(1)))
-                          or ($col eq array:size($structure(1)) and $last-col-colsep)"/>
-  </xsl:message>
-  -->
-
-  <xsl:if test="($colsep and $col lt array:size($structure(1)))
-                or ($col eq array:size($structure(1)) and $last-col-colsep)">
-    <xsl:sequence select="'colsep'"/>
-  </xsl:if>
-</xsl:function>
-
-<!-- ============================================================ -->
-
-<xsl:function name="fp:extend-table">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  <xsl:param name="rows" as="xs:integer" required="yes"/>
-
-  <xsl:sequence select="if (array:size($structure) lt $rows)
-                        then fp:extend-table(array:append($structure, []), $rows)
-                        else $structure"/>
-</xsl:function>
-
-<xsl:function name="fp:extend-row" as="array(*)">
-  <xsl:param name="row" as="array(*)"/>
-  <xsl:param name="cols" as="xs:integer"/>
-
-  <xsl:sequence select="if (array:size($row) lt $cols)
-                        then fp:extend-row(array:append($row, ()), $cols)
-                        else $row"/>
-</xsl:function>
-
-<xsl:function name="fp:pad-rows" as="array(*)">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="width" as="xs:integer"/>
-  <xsl:sequence select="fp:pad-rows($structure, $width, [])"/>
-</xsl:function>
-
-<xsl:function name="fp:pad-rows" as="array(*)">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="width" as="xs:integer"/>
-  <xsl:param name="newstructure" as="array(*)"/>
-
-  <xsl:choose>
-    <xsl:when test="array:size($structure) = 0">
-      <xsl:sequence select="$newstructure"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="fp:pad-rows(array:remove($structure, 1), $width,
-                                        array:append($newstructure,
-                                          fp:extend-row($structure(1), $width)))"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="fp:place-cell">
-  <xsl:param name="node" as="element()" required="yes"/>
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  <xsl:param name="rownum" as="xs:integer" required="yes"/>
-  <xsl:param name="colnum" as="xs:integer" required="yes"/>
-  <xsl:param name="width" as="xs:integer" required="yes"/>
-  <xsl:param name="height" as="xs:integer" required="yes"/>
-
-  <xsl:variable name="cell" select="map {
-    'node': $node,
-    'rownum': $rownum,
-    'colnum': $colnum,
-    'width': $width,
-    'height': $height,
-    'colsep': fcals:colsep($node, $colnum),
-    'rowsep': fcals:rowsep($node),
-    'align': fcals:align($node, $colnum),
-    'char': fcals:char($node, $colnum),
-    'valign': fcals:valign($node)
+<xsl:function name="fcals:decrement-overhang" as="array(xs:integer)" cache="yes">
+  <xsl:param name="overhang" as="array(xs:integer)"/>
+  <xsl:sequence select="array {
+    for $hang in array:flatten($overhang) return max((0, $hang - 1))
   }"/>
-
-  <xsl:variable name="row" select="$structure($rownum)"/>
-  <xsl:variable name="row" select="fp:extend-row($row, $colnum)"/>
-  <xsl:variable name="row" select="fp:replace-element($row, $colnum, $cell)"/>
-
-  <xsl:variable name="structure"
-                select="fp:replace-element($structure, $rownum, $row)"/>
-
-  <xsl:variable name="structure"
-                select="if ($width gt 1 or $height gt 1)
-                        then fp:span($structure, $rownum, $colnum, $cell,
-                                     $width, $height, true())
-                        else $structure"/>
-
-  <xsl:sequence select="$structure"/>
 </xsl:function>
 
-<xsl:function name="fp:span">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="rownum" as="xs:integer"/>
-  <xsl:param name="colnum" as="xs:integer"/>
-  <xsl:param name="cell" as="map(*)"/>
-  <xsl:param name="width" as="xs:integer"/>
-  <xsl:param name="height" as="xs:integer"/>
-  <xsl:param name="first" as="xs:boolean"/>
-  
-  <!--
-  <xsl:message>==================================================</xsl:message>
-  <xsl:message>span(<xsl:value-of select="$rownum"
-     />,<xsl:value-of select="$colnum"
-     />,<xsl:value-of select="$width"
-     />,<xsl:value-of select="$height"
-     />)</xsl:message>
-  <xsl:sequence select="fp:dump-structure-text($structure)"/>
-  <xsl:message>= = = = = = = = = = = = = = = = = = = = = = = = = =</xsl:message>
-  -->
-
-  <xsl:variable name="cell" select="map:put($cell, 'span', not($first))"/>
-
-  <xsl:variable name="structure" as="array(*)">
-    <xsl:choose>
-      <xsl:when test="$width gt 1 or not($first)">
-        <xsl:variable name="structure"
-                      select="fp:extend-table($structure, $rownum)"/>
-        <xsl:variable name="row" select="$structure($rownum)"/>
-        <xsl:variable name="row"
-                      select="fp:morecols($row, $colnum, $cell, $width, $first)"/>
-        <xsl:sequence select="fp:replace-element($structure, $rownum, $row)"/>
-      </xsl:when>
-      <xsl:when test="$height gt 1">
-        <xsl:variable name="structure"
-                      select="fp:extend-table($structure, $rownum)"/>
-        <xsl:variable name="row" select="$structure($rownum)"/>
-        <xsl:variable name="row" select="fp:extend-row($row, $colnum)"/>
-        <xsl:variable name="row" select="fp:replace-element($row, $colnum, $cell)"/>
-        <xsl:sequence select="fp:replace-element($structure, $rownum, $row)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$structure"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$height gt 1">
-      <xsl:sequence select="fp:span($structure, $rownum + 1, $colnum,
-                                    $cell, $width, $height - 1, false())"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="$structure"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="fp:morecols">
-  <xsl:param name="row" as="array(*)"/>
-  <xsl:param name="colnum" as="xs:integer"/>
-  <xsl:param name="cell" as="map(*)"/>
-  <xsl:param name="width" as="xs:integer"/>
-  <xsl:param name="first" as="xs:boolean"/>
-
-  <xsl:variable name="cell" select="map:put($cell, 'span', not($first))"/>
-
-  <xsl:choose>
-    <xsl:when test="$width = 0">
-      <xsl:sequence select="$row"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="row" select="fp:extend-row($row, $colnum)"/>
-      <xsl:variable name="row" select="fp:replace-element($row, $colnum, $cell)"/>
-      <xsl:sequence select="fp:morecols($row, $colnum + 1, $cell, $width - 1, false())"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="fcals:column-number">
-  <xsl:param name="node" as="element()" required="yes"/>
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  <xsl:param name="rownum" as="xs:integer" required="yes"/>
-
-  <xsl:variable name="row" select="$structure($rownum)"/>
+<xsl:function name="fcals:column-number" as="xs:integer" cache="yes">
+  <xsl:param name="node" as="element()"/>
+  <xsl:param name="overhang" as="array(xs:integer)"/>
 
   <xsl:choose>
     <xsl:when test="$node/@namest">
@@ -883,48 +559,16 @@
           select="fcals:colspec-column-number(
                      fcals:colspec($node, $node/@colname))"/>
     </xsl:when>
-    <xsl:otherwise>
-      <!--
-      <xsl:message select="'ROW: ' || $rownum"/>
-      -->
-      <xsl:sequence select="fcals:first-empty-cell($row)"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="fcals:first-empty-cell">
-  <xsl:param name="row" as="array(*)" required="yes"/>
-  <!--
-  <xsl:sequence select="fp:dump-row-text($row)"/>
-  <xsl:message select="concat('found: ',fcals:first-empty-cell($row, 1, ()))"/>
-  -->
-  <xsl:sequence select="fcals:first-empty-cell($row, 1, ())"/>
-</xsl:function>
-
-<xsl:function name="fcals:first-empty-cell">
-  <xsl:param name="row" as="array(*)" required="yes"/>
-  <xsl:param name="pos" as="xs:integer" required="yes"/>
-  <xsl:param name="found" as="xs:integer?" required="yes"/>
-
-  <!-- find the first empty cell that's to the right of the last
-       occupied cell (if there is an occupied cell).
-  -->
-
-  <xsl:choose>
-    <xsl:when test="$pos gt array:size($row)">
-      <xsl:sequence select="if ($found)
-                            then $found
-                            else $pos"/>
-    </xsl:when>
-    <xsl:when test="empty($row($pos))">
-      <xsl:sequence select="fcals:first-empty-cell($row, $pos + 1,
-                               if ($found) then $found else $pos)"/>
-    </xsl:when>
-    <xsl:when test="$row($pos)?span">
-      <xsl:sequence select="fcals:first-empty-cell($row, $pos + 1, $found)"/>
+    <xsl:when test="$node/preceding-sibling::*">
+      <xsl:variable name="pcell" select="$node/preceding-sibling::*[1]"/>
+      <xsl:variable name="column"
+                    select="fcals:column-number($pcell, $overhang)"/>
+      <xsl:variable name="nextcolumn"
+                    select="$column + fcals:colspan($pcell, $column)"/>
+      <xsl:sequence select="fcals:next-empty-cell($nextcolumn, $overhang)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="fcals:first-empty-cell($row, $pos + 1, ())"/>
+      <xsl:sequence select="fcals:next-empty-cell(1, $overhang)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
@@ -951,11 +595,8 @@
   <xsl:param name="node" as="element()" required="yes"/>
   <xsl:param name="colname" as="xs:string" required="yes"/>
 
-  <xsl:variable name="table"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
-
-  <xsl:variable name="colspec" select="$table/db:colspec[@colname=$colname]"/>
+  <xsl:variable name="colspec"
+                select="fcals:tgroup($node)/db:colspec[@colname=$colname]"/>
 
   <xsl:if test="empty($colspec)">
     <xsl:sequence select="error($dbe:INVALID-CALS, 'No colspec named ' || $colname)"/>
@@ -968,11 +609,8 @@
   <xsl:param name="node" as="element()" required="yes"/>
   <xsl:param name="spanname" as="xs:string" required="yes"/>
 
-  <xsl:variable name="table"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
-
-  <xsl:variable name="spanspec" select="$table/db:spanspec[@spanname=$spanname]"/>
+  <xsl:variable name="spanspec"
+                select="fcals:tgroup($node)/db:spanspec[@spanname=$spanname]"/>
 
   <xsl:if test="empty($spanspec)">
     <xsl:sequence select="error($dbe:INVALID-CALS, 'No spanspec named ' || $spanname)"/>
@@ -981,7 +619,7 @@
   <xsl:sequence select="$spanspec"/>
 </xsl:function>
 
-<xsl:function name="fcals:cell-width" as="xs:integer" cache="yes">
+<xsl:function name="fcals:colspan" as="xs:integer" cache="yes">
   <xsl:param name="node" as="element()" required="yes"/>
   <xsl:param name="colnum" as="xs:integer" required="yes"/>
 
@@ -1005,7 +643,7 @@
   </xsl:choose>
 </xsl:function>
 
-<xsl:function name="fcals:cell-height" as="xs:integer" cache="yes">
+<xsl:function name="fcals:rowspan" as="xs:integer" cache="yes">
   <xsl:param name="node" as="element()" required="yes"/>
   <xsl:param name="colnum" as="xs:integer" required="yes"/>
 
@@ -1019,13 +657,29 @@
   </xsl:choose>
 </xsl:function>
 
+<!-- ============================================================ -->
+
+<xsl:function name="fcals:cell-decoration" as="map(*)">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="cell" as="element()?"/>
+  <xsl:param name="column" as="xs:integer"/>
+  <xsl:sequence select="map {
+    'colsep': fcals:colsep($row, $cell, $column),
+    'rowsep': fcals:rowsep($row, $cell, $column),
+    'char': fcals:char($row, $cell, $column),
+    'align': fcals:align($row, $cell, $column),
+    'valign': fcals:valign($row, $cell)
+  }"/>
+<!--
+-->
+</xsl:function>
+
 <xsl:function name="fcals:colsep" as="xs:boolean" cache="yes">
-  <xsl:param name="node" as="element()"/>
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="node" as="element()?"/>
   <xsl:param name="colnum" as="xs:integer"/>
 
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
+  <xsl:variable name="tgroup" select="fcals:tgroup($row)"/>
 
   <xsl:choose>
     <xsl:when test="$node/@colsep">
@@ -1062,9 +716,7 @@
 
   <xsl:variable name="colspec" select="fcals:colspec($node, $name)"/>
 
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
+  <xsl:variable name="tgroup" select="fcals:tgroup($node)"/>
 
   <xsl:choose>
     <xsl:when test="$colspec/@colsep">
@@ -1100,21 +752,17 @@
 </xsl:function>
 
 <xsl:function name="fcals:empty-cell-colsep" as="xs:boolean" cache="yes">
-  <xsl:param name="structure" as="array(*)"/>
+  <xsl:param name="row" as="element(db:row)"/>
   <xsl:param name="cell" as="map(*)"/>
-  <xsl:variable name="row" select="$structure($cell?rownum)"/>
-  <xsl:variable name="node" select="fp:find-row-element($row)"/>
 
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
+  <xsl:variable name="tgroup" select="fcals:tgroup($row)"/>
 
   <xsl:choose>
-    <xsl:when test="fcals:colspec-for-column($tgroup, $cell?colnum)/@colsep">
-      <xsl:sequence select="fcals:colspec-for-column($tgroup, $cell?colnum)/@colsep = '1'"/>
+    <xsl:when test="fcals:colspec-for-column($tgroup, $cell?first-column)/@colsep">
+      <xsl:sequence select="fcals:colspec-for-column($tgroup, $cell?first-column)/@colsep = '1'"/>
     </xsl:when>
     <xsl:when test="$tgroup/@colsep">
-      <xsl:sequence select="$node/ancestor::db:tgroup[1]/@colsep = '1'"/>
+      <xsl:sequence select="$tgroup/@colsep = '1'"/>
     </xsl:when>
     <xsl:when test="$tgroup/parent::*[not(self::db:entry)]/@colsep">
       <xsl:sequence select="$tgroup/parent::*[not(self::db:entry)]/@colsep = '1'"/>
@@ -1125,12 +773,14 @@
   </xsl:choose>
 </xsl:function>
 
-<xsl:function name="fcals:rowsep" as="xs:boolean" cache="yes">
-  <xsl:param name="node" as="element()" required="yes"/>
+<!-- ============================================================ -->
 
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
+<xsl:function name="fcals:rowsep" as="xs:boolean" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="node" as="element()?"/>
+  <xsl:param name="colnum" as="xs:integer"/>
+
+  <xsl:variable name="tgroup" select="fcals:tgroup($row)"/>
 
   <xsl:choose>
     <xsl:when test="$node/@rowsep">
@@ -1205,40 +855,12 @@
   </xsl:choose>
 </xsl:function>
 
-<xsl:function name="fcals:empty-cell-rowsep" as="xs:boolean" cache="yes">
-  <xsl:param name="structure" as="array(*)"/>
-  <xsl:param name="cell" as="map(*)"/>
-  <xsl:variable name="row" select="$structure($cell?rownum)"/>
-  <xsl:variable name="node" select="fp:find-row-element($row)"/>
-
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
-
-  <xsl:choose>
-    <xsl:when test="$node/@rowsep">
-      <xsl:sequence select="$node/@rowsep = '1'"/>
-    </xsl:when>
-    <xsl:when test="$tgroup/@rowsep">
-      <xsl:sequence select="$tgroup/@rowsep = '1'"/>
-    </xsl:when>
-    <xsl:when test="$tgroup/parent::*[not(self::db:entry)]/@rowsep">
-      <xsl:sequence select="$tgroup/parent::*[not(self::db:entry)]/@rowsep = '1'"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="false()"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
 <xsl:function name="fcals:align" as="xs:string?" cache="yes">
-  <xsl:param name="node" as="element()" required="yes"/>
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="node" as="element()?"/>
   <xsl:param name="colnum" as="xs:integer"/>
 
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
-
+  <xsl:variable name="tgroup" select="fcals:tgroup($row)"/>
   <xsl:choose>
     <xsl:when test="$node/@align">
       <xsl:sequence select="$node/@align"/>
@@ -1310,12 +932,11 @@
 </xsl:function>
 
 <xsl:function name="fcals:char" as="xs:string?" cache="yes">
-  <xsl:param name="node" as="element()" required="yes"/>
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="node" as="element()?"/>
   <xsl:param name="colnum" as="xs:integer"/>
 
-  <xsl:variable name="tgroup"
-                select="($node/ancestor::db:tgroup
-                         |$node/ancestor::db:entrytbl)[last()]"/>
+  <xsl:variable name="tgroup" select="fcals:tgroup($row)"/>
 
   <xsl:choose>
     <xsl:when test="$node/@char">
@@ -1388,7 +1009,8 @@
 </xsl:function>
 
 <xsl:function name="fcals:valign" as="xs:string?" cache="yes">
-  <xsl:param name="node" as="element()" required="yes"/>
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="node" as="element()?"/>
 
   <xsl:choose>
     <xsl:when test="$node/@valign">
@@ -1406,6 +1028,89 @@
   </xsl:choose>
 </xsl:function>
 
+<!-- ============================================================ -->
+
+<xsl:function name="f:cals-rowsep" as="xs:string?" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="cell" as="map(*)"/>
+  <xsl:param name="last-row-rowsep" as="xs:boolean"/>
+
+  <xsl:variable name="last-row"
+                select="count($row/following-sibling::db:row) lt $cell?rowspan"/>
+
+  <xsl:variable name="rowsep"
+                select="if ($cell?node)
+                        then $cell?rowsep
+                        else fcals:empty-cell-rowsep($row)"/>
+
+  <xsl:if test="($rowsep and not($last-row))
+                or ($last-row and $last-row-rowsep)">
+    <xsl:sequence select="'rowsep'"/>
+  </xsl:if>
+</xsl:function>
+
+<xsl:function name="f:cals-colsep" as="xs:string?" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:param name="cell" as="map(*)"/>
+  <xsl:param name="last-col-colsep" as="xs:boolean"/>
+
+  <xsl:variable name="last-col"
+                select="$cell?first-column + $cell?colspan
+                        gt fcals:table-columns($row)"/>
+
+  <xsl:variable name="colsep"
+                select="if ($cell?node)
+                        then $cell?colsep
+                        else fcals:empty-cell-colsep($row, $cell)"/>
+
+  <xsl:if test="($colsep and not($last-col))
+                or ($last-col and $last-col-colsep)">
+    <xsl:sequence select="'colsep'"/>
+  </xsl:if>
+</xsl:function>
+
+<xsl:function name="fcals:empty-cell-rowsep" as="xs:boolean" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+
+  <xsl:variable name="tgroup" select="fcals:tgroup($row)"/>
+
+  <xsl:choose>
+    <xsl:when test="$row/@rowsep">
+      <xsl:sequence select="$row/@rowsep = '1'"/>
+    </xsl:when>
+    <xsl:when test="$tgroup/@rowsep">
+      <xsl:sequence select="$tgroup/@rowsep = '1'"/>
+    </xsl:when>
+    <xsl:when test="$tgroup/parent::*[not(self::db:entry)]/@rowsep">
+      <xsl:sequence select="$tgroup/parent::*[not(self::db:entry)]/@rowsep = '1'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="false()"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<!-- ============================================================ -->
+
+<xsl:function name="fp:only-initial-pis" as="processing-instruction()*">
+  <xsl:param name="nodes" as="node()*"/>
+
+  <xsl:iterate select="$nodes">
+    <xsl:param name="pis" select="()"/>
+    <xsl:choose>
+      <xsl:when test="self::processing-instruction()">
+        <xsl:next-iteration>
+          <xsl:with-param name="pis" select="($pis, .)"/>
+        </xsl:next-iteration>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$pis"/>
+        <xsl:break/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:iterate>
+</xsl:function>
+
 <xsl:function name="fp:align-char-pad" as="xs:string">
   <!-- FIXME: optimize this -->
   <xsl:param name="text" as="xs:string"/>
@@ -1418,122 +1123,21 @@
 
 <!-- ============================================================ -->
 
-<xsl:function name="fp:dump-structure">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-  
-  <xsl:choose>
-    <xsl:when test="array:size($structure) gt 0">
-      <div>
-        <xsl:value-of select="'Size: ' || array:size($structure) || 'x' || array:size($structure(1))"/>
-        <table border="1" width="100%">
-          <xsl:sequence select="fp:dump-structure-rows($structure)"/>
-        </table>
-      </div>
-    </xsl:when>
-    <xsl:otherwise>
-      <div>Empty table</div>
-    </xsl:otherwise>
-  </xsl:choose>
+<xsl:function name="fcals:table-columns" as="xs:integer" cache="yes">
+  <xsl:param name="node" as="element()"/>
+  <xsl:sequence select="xs:integer(fcals:tgroup($node)/@cols)"/>
 </xsl:function>
 
-<xsl:function name="fp:dump-structure-rows">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-
-  <xsl:choose>
-    <xsl:when test="array:size($structure) = 0">
-      <xsl:sequence select="()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <tr>
-        <xsl:sequence select="fp:dump-structure-columns($structure(1))"/>
-      </tr>
-      <xsl:sequence select="fp:dump-structure-rows(array:remove($structure, 1))"/>
-    </xsl:otherwise>
-  </xsl:choose>
+<xsl:function name="fcals:tgroup" as="element()" cache="yes">
+  <xsl:param name="node" as="element()"/>
+  <xsl:sequence select="($node/ancestor::db:tgroup
+                         |$node/ancestor::db:entrytbl)[last()]"/>
 </xsl:function>
 
-<xsl:function name="fp:dump-structure-columns">
-  <xsl:param name="row" as="array(*)" required="yes"/>
-
-  <xsl:choose>
-    <xsl:when test="array:size($row) = 0">
-      <xsl:sequence select="()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <td>
-        <xsl:variable name="map" select="$row(1)"/>
-        <xsl:choose>
-          <xsl:when test="exists($map)">
-
-            <xsl:variable name="style" as="xs:string*">
-              <xsl:sequence select="if ($map?colsep)
-                                    then 'border-right: 1px solid black;'
-                                    else ()"/>
-              <xsl:sequence select="if ($map?rowsep)
-                                    then 'border-bottom: 1px solid black;'
-                                    else ()"/>
-            </xsl:variable>
-
-            <xsl:if test="exists($style)">
-              <xsl:attribute name="style" select="string-join($style)"/>
-            </xsl:if>
-
-            <xsl:value-of select="$map?rownum || ',' || $map?colnum"/>
-            <xsl:text> | </xsl:text>
-            <xsl:value-of select="$map?width || 'x' || $map?height"/>
-            <xsl:text> | </xsl:text>
-            <xsl:value-of select="generate-id($map?node)"/>
-            <br/>
-            <xsl:choose>
-              <xsl:when test="$map?span">
-                <xsl:text>(span)</xsl:text>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="$map?node"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise>EMPTY</xsl:otherwise>
-        </xsl:choose>
-      </td>
-      <xsl:sequence select="fp:dump-structure-columns(array:remove($row, 1))"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="fp:dump-structure-text">
-  <xsl:param name="structure" as="array(*)" required="yes"/>
-
-  <xsl:for-each select="1 to array:size($structure)">
-    <xsl:variable name="row" select="$structure(.)"/>
-    <xsl:sequence select="fp:dump-row-text($row, .)"/>
-  </xsl:for-each>
-</xsl:function>
-
-<xsl:function name="fp:dump-row-text">
-  <xsl:param name="row" as="array(*)" required="yes"/>
-  <xsl:sequence select="fp:dump-row-text($row, ())"/>
-</xsl:function>
-
-<xsl:function name="fp:dump-row-text">
-  <xsl:param name="row" as="array(*)" required="yes"/>
-  <xsl:param name="rownum" as="xs:integer?"/>
-
-  <xsl:variable name="dump-row" as="xs:string*">
-    <xsl:for-each select="1 to array:size($row)">
-      <xsl:choose>
-        <xsl:when test="empty($row(.))">·</xsl:when>
-        <xsl:when test="$row(.)?span">O</xsl:when>
-        <xsl:otherwise>X</xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <xsl:message>
-    <xsl:value-of select="$rownum"/>
-    <xsl:text>: </xsl:text>
-    <xsl:value-of select="string-join($dump-row,'|')"/>
-  </xsl:message>
+<xsl:function name="fcals:zeros" cache="yes">
+  <xsl:param name="row" as="element(db:row)"/>
+  <xsl:variable name="cols" select="fcals:table-columns($row)"/>
+  <xsl:sequence select="array { for $col in 1 to $cols return 0 }"/>
 </xsl:function>
 
 </xsl:stylesheet>
