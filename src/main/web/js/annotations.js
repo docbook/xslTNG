@@ -89,7 +89,7 @@
   document.querySelectorAll("a.annomark").forEach(function(mark) {
     let id = mark.getAttribute("href");
     // Escape characters that confuse querySelector
-    id = id.replaceAll(".", "\\.");
+    id = id.replace(/\./g, "\\.");
     mark.onclick = function (event) {
       showAnnotation(event, id);
     };
@@ -105,7 +105,7 @@
     let id = anno.getAttribute("id");
     if (id) {
       // Escape characters that confuse querySelector
-      id = id.replaceAll(".", "\\.");
+      id = id.replace(/\./g, "\\.");
       anno.onclick = function (event) {
         hideAnnotation(event, `#${id}`);
       };
