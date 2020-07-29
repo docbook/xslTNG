@@ -368,4 +368,9 @@
     <x:context href="../resources/xml/table-cals.048.xml"/>
     <x:expect label="expect rowsep between thead and tbody" href="../resources/expected/table-cals.048.html"/>
   </x:scenario>
+
+  <x:scenario label="When transforming table-cals.049.xml">
+    <x:context href="../resources/xml/table-cals.049.xml"/>
+    <x:expect label="expect very large tables to succeed" href="../resources/expected/table-cals.049.html"/>
+  </x:scenario>
 </x:description>
