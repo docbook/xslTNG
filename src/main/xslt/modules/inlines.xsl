@@ -281,7 +281,9 @@
 </xsl:template>
 
 <xsl:template match="db:errorcode">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:errorname">
@@ -429,7 +431,9 @@
 </xsl:template>
 
 <xsl:template match="db:markup">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:mathphrase">
@@ -505,7 +509,9 @@
 </xsl:template>
 
 <xsl:template match="db:package">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:parameter">
@@ -560,7 +566,9 @@
 </xsl:template>
 
 <xsl:template match="db:returnvalue">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:revnumber">
@@ -692,7 +700,9 @@
 </xsl:template>
 
 <xsl:template match="db:token">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:trademark">
@@ -702,7 +712,9 @@
 </xsl:template>
 
 <xsl:template match="db:type">
-  <xsl:call-template name="t:inline"/>
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:typedefname">

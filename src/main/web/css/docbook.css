@@ -29,6 +29,25 @@
     --revdeleted-background-color: #ffcfcf;
     --revdeleted-before: "<del>";
     --revdeleted-after: "</del>";
+
+    --note-border-color: #d3d3d3;
+    --note-border-style: 2pt solid var(--note-border-color);
+    --note-background-color: inherit;
+    --tip-border-color: #d3d3d3;
+    --tip-border-style: 2pt solid var(--tip-border-color);
+    --tip-background-color: inherit;
+    --important-border-color: #ffd300;
+    --important-border-style: 2pt solid var(--important-border-color);
+    --important-background-color: #ffffe0;
+    --caution-border-color: #ffd300;
+    --caution-border-style: 2pt solid var(--caution-border-color);
+    --caution-background-color: #ffffe0;
+    --warning-border-color: #d30000;
+    --warning-border-style: 2pt solid var(--warning-border-color);
+    --warning-background-color: #ffe0e0;
+    --danger-border-color: #d30000;
+    --danger-border-style: 2pt solid var(--danger-border-color);
+    --danger-background-color: #ffe0e0;
 }
 
 html {
@@ -78,8 +97,45 @@ span.error.broken-link::after {
     content: " 🔗 ";
 }
 
-span.nobreak {
+.firstterm {
+    font-weight: bold;
+}
+
+.trademark::after {
+    content: "™";
+}
+
+.trademark.trade::after {
+    content: "™";
+}
+
+.trademark.copyright::after {
+    content: "©";
+    vertical-align: super;
+    font-size: 85%;
+}
+
+.trademark.registered::after {
+    content: "®";
+    vertical-align: super;
+    font-size: 85%;
+}
+
+.trademark.service::after {
+    content: "℠";
+    vertical-align: super;
+}
+
+.literal {
     white-space: nowrap;
+}
+
+.nobreak {
+    white-space: nowrap;
+}
+
+.break {
+    white-space: normal;
 }
 
 .xlink-arc-list {
@@ -512,46 +568,87 @@ th.char {
 }
 
 .note {
-    border: 2pt solid #d3d3d3;
+    border: var(--note-border-style);
+    background-color: var(--note-background-color);
 } 
+
+.note .icon {
+    color: var(--note-border-color);
+}    
+
+.note code {
+    border-color: var(--note-border-color);
+}
 
 .tip {
-    border: 2pt solid #d3d3d3;
+    border: var(--tip-border-style);
+    background-color: var(--tip-background-color);
 } 
 
+.tip .icon {
+    color: var(--tip-border-color);
+}    
+
+.note code {
+    border-color: var(--tip-border-color);
+}
+
 .important {
-    background-color: #ffffe0;
-    border: 2pt solid #ffd300;
+    border: var(--important-border-style);
+    background-color: var(--important-background-color);
 } 
 
 .important .icon {
     padding-top: 2rem;
-    color: #ffd300;
+    color: var(--important-border-color);
+}
+
+.important code {
+    background-color: var(--important-background-color);
+    border-color: var(--important-border-color);
 }
 
 .caution {
-    background-color: #ffffe0;
-    border: 2pt solid #ffd300;
+    border: var(--caution-border-style);
+    background-color: var(--caution-background-color);
 } 
 
 .caution .icon {
-    color: #ffd300;
+    color: var(--caution-border-color);
+}
+
+.caution code {
+    background-color: var(--caution-background-color);
+    border-color: var(--caution-border-color);
 }
 
 .warning {
-    background-color: #ffe0e0;
-    border: 2pt solid #d30000;
+    border: var(--warning-border-style);
+    background-color: var(--warning-background-color);
 } 
+
+.warning .icon {
+    color: var(--warning-border-color);
+}
+
+.warning code {
+    background-color: var(--warning-background-color);
+    border-color: var(--warning-border-color);
+}
 
 .danger {
-    background-color: #ffe0e0;
-    border: 2pt solid #d30000;
+    border: var(--danger-border-style);
+    background-color: var(--danger-background-color);
 } 
 
-.warning .icon,
 .danger .icon {
-    color: #d30000;
+    color: var(--danger-border-color);
 }    
+
+.danger code {
+    background-color: var(--danger-background-color);
+    border-color: var(--danger-border-color);
+}
 
 /* ============================================================ */
 
