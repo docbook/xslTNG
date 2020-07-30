@@ -8,18 +8,15 @@
 </info>
 
 <para>If you wish, you can also clone the distribution and build them
-yourself. The distribution is designed to be self contained. Running:
+yourself. The distribution is designed to be self contained. In a Unix
+or Mac environment, running:
 </para>
 
 <screen><?db verbatim-style="plain"
 ?><userinput>./gradlew dist</userinput></screen>
 
 <para>
-will build the stylesheets.
-(Use <userinput>.\gradlew.bat dist</userinput> on
-Windows<footnote><para>In the spirit of full disclosure, builds are very
-rarely tested on Windows. If you encounter problems, please file an issue.</para>
-</footnote>.) Building will:</para>
+will build the stylesheets. Building will:</para>
 
 <orderedlist>
 <listitem>
@@ -32,16 +29,30 @@ of the tests with the <buildtarget>makeXslt</buildtarget> task.</para>
 </listitem>
 <listitem>
 <para>Compile the extension functions. The compiled extension functions will be
-available in <filename>build/libs</filename>.
+available in <filename>build/libs</filename>. The <buildtarget>jar</buildtarget> task
+will compile the extensions without running the tests.
 </para>
 </listitem>
 <listitem>
 <para>“Compile” <link xlink:href="python-script">the Python script</link> that helps run
 the stylesheets. (It’s not really compiled, but several stylesheet-version-specific
 strings are interpolated.)
+The <buildtarget>copyBin</buildtarget> task will setup the Python script
+without running the tests.
 </para>
 </listitem>
 </orderedlist>
+
+<important>
+<para>In principle, it should be possible to build the stylesheets on <trademark>Windows</trademark>.
+In practice, it doesn’t work. One would imagine that mapping path (“:”→“;”)
+and filename (“\”→“/”) separators and constructing URIs for paths
+(“<literal>C:\Users\…</literal>”→“<literal>file:///C:/Users/…</literal>”) would
+make it work. In the author’s experience, that is not the case. Pull requests are welcome.
+It may be more expedient to build in the Linux subsystem on Windows 10 or in a Docker
+container.
+</para>
+</important>
 
 <section xml:id="buildpre">
 <title>Prerequisites</title>
@@ -64,6 +75,8 @@ be downloaded automatically the first time you build.
 <listitem>
 <para><link xlink:href="https://www.python.org/">Python</link> 3 and
 the <link xlink:href="https://click.palletsprojects.com/en/7.x/">click</link> module.
+The <link xlink:href="https://pygments.org/">Pygmentize</link> program is also
+required for syntax highlighting, though that’s not technically a build requirement.
 </para>
 </listitem>
 </itemizedlist>
@@ -255,6 +268,13 @@ none of the automated tests create chunked output.
 <para>Runs the <replaceable>testset</replaceable> set of XSpec tests. These don’t
 all work reliably because of different parameter settings. But it can be useful for quick
 testing of a particular set of features.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>jar</buildtarget></term>
+<listitem>
+<para>Compiles the extension functions and creates the jar file in
+<dir>build/libs</dir>.
 </para>
 </listitem>
 </varlistentry>
