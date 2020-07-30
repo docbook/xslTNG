@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info>
+<title>Unit test: admonitions.001</title>
+</info>
+
+<para>This test just shows all the admonitions on the same page.</para>
+
+<note xml:id="note">
+  <title>Note!</title>
+  <para>This <tag>note</tag> has a title.</para>
+</note>
+
+<tip xml:id="tip">
+  <title>Tip!</title>
+  <para>This <tag>tip</tag> has a title.</para>
+</tip>
+
+<important xml:id="important">
+  <title>Important!</title>
+  <para>This <tag>important</tag> has a title.</para>
+</important>
+
+<caution xml:id="caution">
+  <info>
+    <title>Caution!</title>
+  </info>
+  <para>This <tag>caution</tag> has a title.</para>
+</caution>
+
+<warning xml:id="warning">
+  <title>Warning!</title>
+  <para>This <tag>warning</tag> has a title.</para>
+</warning>
+
+<danger xml:id="danger">
+  <title>Danger!</title>
+  <para>This <tag>danger</tag> has a title.</para>
+</danger>
+
+</article>
