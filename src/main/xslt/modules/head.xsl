@@ -119,10 +119,6 @@
 </xsl:template>
 
 <xsl:template match="*" mode="mp:html-head-script">
-  <xsl:if test="exists($resource-base-uri) and /*/db:annotation">
-    <link rel="stylesheet"
-          href="{$resource-base-uri}{$annotations-css}"/>
-  </xsl:if>
   <xsl:if test="f:is-true($persistent-toc)">
     <link rel="stylesheet"
           href="{$resource-base-uri}{$persistent-toc-css}"/>

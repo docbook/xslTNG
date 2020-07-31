@@ -209,8 +209,6 @@
 <xsl:param name="css-links" select="'css/docbook.css css/docbook-screen.css'"/>
 <xsl:param name="verbatim-syntax-highlight-css" select="'css/pygments.css'"/>
 <xsl:param name="xlink-css" select="'css/xlink.css'"/>
-<xsl:param name="annotations-css"
-           select="'css/docbook-annotations.css'"/>
 <xsl:param name="persistent-toc-css"
            select="'css/docbook-toc.css'"/>
 
