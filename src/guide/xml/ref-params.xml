@@ -293,28 +293,6 @@ are supported at this time.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="p_annotations-css">
-<?db filename="p_annotations-css.html"?>
-<refmeta>
-<refentrytitle>$annotations-css</refentrytitle>
-<refmiscinfo>{}annotations-css</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$annotations-css</refname>
-<refpurpose>Annotation CSS</refpurpose>
-<refclass>param</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This CSS stylesheet is added to documents that contain annotations.
-The selectors that match “popup-” classes are enabled by the annotation JavaScript
-if that <link linkend="p_annotation-style">style of annotation</link> is selected.
-The CSS file will be added to the HTML
-<tag namespace="http://www.w3.org/1999/xhtml">head</tag>.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="p_annotations-js">
 <?db filename="p_annotations-js.html"?>
 <refmeta>

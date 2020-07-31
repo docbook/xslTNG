@@ -259,10 +259,6 @@
            stylesheet in all of the ancestors of a chunk that
            has a highlighted listing. -->
     </xsl:when>
-    <xsl:when test="contains(@href, '/css/docbook-annotations')
-                    and empty(../..//h:db-annotation-marker)">
-      <!-- We don't need this one in this chunk. -->
-    </xsl:when>
     <xsl:otherwise>
       <xsl:copy>
         <xsl:attribute name="href"
