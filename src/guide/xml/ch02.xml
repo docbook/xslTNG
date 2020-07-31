@@ -187,7 +187,7 @@ it accepts the same
 <para>The significant feature of the Python script is that it will
 attempt to sort out the dependencies for you. It assumes that you’ve
 used Maven to install the package and it’s dependencies, so you’ll
-have <link xlink:href="http://maven.apache.org/">installed
+have to have <link xlink:href="http://maven.apache.org/">installed
 Maven</link>. How you do that varies by platform, but your package
 manager probably has it.</para>
 
@@ -229,6 +229,18 @@ Saxon.</para>
 <para>Use <replaceable>filename</replaceable> as the configuration
 file. The default configuration file is
 <filename>.docbook-xsltng.json</filename> in your home directory.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--resources<replaceable>:dir</replaceable></option></term>
+<listitem>
+<para>This option will copy the resources directory (the CSS and JavaScript files)
+from the distribution into the directory where your output files are going,
+<replaceable>dir</replaceable>. If
+<replaceable>dir</replaceable> is not specified, the script attempts to
+work out the directory from the <option>-o</option> option provided to Saxon.
+If no directory is specified and it can’t work out what the directory is, it does nothing.
 </para>
 </listitem>
 </varlistentry>
