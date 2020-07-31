@@ -41,8 +41,7 @@ rsync -ar --exclude bin --exclude libs --exclude samples --exclude docker \
 # Make this the current release too
 rm -rf release/xsltng/current
 mkdir -p release/xsltng/current
-rsync -ar --exclude bin --exclude lib --exclude samples \
-      ../repo/build/stage/zip/ release/xsltng/current/
+rsync -ar release/xsltng/$CIRCLE_TAG/ release/xsltng/current/
 
 # generate indexes
 perl bin/make-indexes.pl release/xsltng
