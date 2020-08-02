@@ -38,11 +38,6 @@
       <link rel="stylesheet" href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
     </xsl:if>
 
-    <xsl:if test="exists($resource-base-uri)
-                  and f:xlink-style(/) = 'javascript'">
-      <link rel="stylesheet" href="{$resource-base-uri}{$xlink-css}"/>
-    </xsl:if>
-
     <xsl:apply-templates select="." mode="mp:html-head-script"/>
     <xsl:apply-templates select="." mode="m:html-head-script"/>
     <xsl:apply-templates select="." mode="m:html-head-links"/>

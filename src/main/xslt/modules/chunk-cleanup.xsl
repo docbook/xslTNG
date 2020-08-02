@@ -83,6 +83,9 @@
   <xsl:variable name="cbu" select="fp:chunk-output-filename(.)"/>
 
   <html db-chunk="{fp:chunk-output-filename(.)}">
+    <xsl:if test="normalize-space($default-theme) ne ''">
+      <xsl:attribute name="class" select="$default-theme"/>
+    </xsl:if>
     <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
     <xsl:variable name="title" select="$head/h:title"/>
     <head>

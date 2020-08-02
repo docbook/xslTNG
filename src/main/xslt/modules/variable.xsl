@@ -23,7 +23,7 @@
      better. -->
 
 <xsl:variable name="v:debug" static="yes" as="xs:string*"
-              select="tokenize($debug, ',') ! normalize-space(.)"/>
+              select="tokenize($debug, '[,\s]+') ! normalize-space(.)"/>
 
 <xsl:variable name="v:verbatim-line-style"
               select="tokenize($verbatim-line-style, '\s+')"/>
@@ -157,6 +157,61 @@
       </xsl:try>
     </xsl:for-each>
   </xsl:if>
+</xsl:variable>
+
+<xsl:variable name="v:theme-list" as="element()*">
+  <theme name="Materials dark" id="materials-dark" dark="true"/>
+  <theme name="Materials light" id="materials-light" dark="false"/>
+</xsl:variable>
+
+<xsl:variable name="vp:js-controls" as="element()*">
+  <xsl:variable name="chars"
+                select="('a','b','c','d','e','f','_','_','_','1','2','3','4','5','6')"/>
+  <xsl:variable name="random"
+                select="string-join(random-number-generator()?permute($chars), '')"/>
+  <span class="controls-open">☰</span>
+  <div class="js-controls-wrapper">
+    <xsl:if test="$v:theme-list[@dark='true']">
+      <xsl:attribute name="db-dark-theme"
+                     select="($v:theme-list[@dark='true'])[1]/@id"/>
+    </xsl:if>
+    <div class="js-controls-body">
+      <div class="js-controls-header">
+        <div class="js-controls-close">╳</div>
+        <div class="js-controls-title">
+          <xsl:text>Settings</xsl:text>
+        </div>
+      </div>
+      <div class="js-controls-content">
+        <fieldset db-random="{$random}" class="js-controls-toggles">
+          <legend>Select options:</legend>
+          <input id="db-js-annotations_{$random}" type="checkbox" value="js" />
+          <label for="db-js-annotations_{$random}">JavaScript annotations</label><br/>
+          <input id="db-js-xlinks_{$random}" type="checkbox" value="js" />
+          <label for="db-js-xlinks_{$random}">JavaScript extended links</label><br/>
+        </fieldset>
+        <div id="db-js-controls-reload_{$random}" class="js-controls-reload"></div>
+        <fieldset>
+          <legend>Choose a theme:</legend>
+          <input id="db-default-theme_{$random}" type="radio" name="db-theme" value="default" />
+          <label for="db-default-theme_{$random}">Default</label><br/>
+          <xsl:for-each select="$v:theme-list">
+            <input id="db-theme-{@id}-{$random}"
+                   type="radio" name="db-theme" value="{@id}" />
+            <label for="db-theme-{@id}-{$random}">
+              <xsl:sequence select="@name/string()"/>
+            </label>
+            <br/>
+          </xsl:for-each>
+        </fieldset>
+      </div>
+      <div class="js-controls-buttons">
+        <button id="js-controls-cancel">✗</button>
+        <xsl:text> </xsl:text>
+        <button id="js-controls-ok">✓</button>
+      </div>
+    </div>
+  </div>
 </xsl:variable>
 
 </xsl:stylesheet>

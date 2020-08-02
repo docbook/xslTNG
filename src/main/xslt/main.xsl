@@ -9,10 +9,11 @@
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f fp h m map mp t v xs"
+                exclude-result-prefixes="db f fp h m map mp t v vp xs"
                 version="3.0">
 
 <xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
@@ -80,6 +81,14 @@
         <xsl:apply-templates/>
       </div>
 
+      <xsl:if test="f:is-true($theme-picker) and $vp:js-controls">
+        <db-script>
+          <script type="text/html" id="db-js-controls">
+            <xsl:sequence select="$vp:js-controls"/>
+          </script>
+        </db-script>
+      </xsl:if>
+
       <!-- These get copied into the chunks that need them... -->
       <xsl:if test="exists($resource-base-uri)">
         <db-annotation-script>
@@ -113,6 +122,9 @@
         <db-script>
           <xsl:if test="exists($chunk) and f:is-true($chunk-nav)">
             <script src="{$resource-base-uri}{$chunk-nav-js}"/>
+          </xsl:if>
+          <xsl:if test="f:is-true($theme-picker) and $vp:js-controls">
+            <script src="{$resource-base-uri}{$control-js}"/>
           </xsl:if>
         </db-script>
       </xsl:if>
