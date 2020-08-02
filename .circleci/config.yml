@@ -90,7 +90,7 @@ workflows:
               only: /.+/
       - publish-github-release:
           requires:
-            - deploybuild
+            - build
           filters:
             branches:
               ignore: /.*/
