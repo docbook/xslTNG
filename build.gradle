@@ -69,6 +69,13 @@ if (!hasProperty("sonatypePassword")) {
   ext.sonatypePassword=""
 }
 
+// If this is running on the CI infrastructure and it's not
+// a tagged build, add -SNAPSHOT to the version.
+if (System.getenv()["CIRCLECI"] == "true"
+    && System.getenv()["CIRCLE_TAG"] == null) {
+  xslTNGversion = xslTNGversion + "-SNAPSHOT"
+}
+
 // These are the top-level XSpec test drivers
 def testDrivers = ['docbook.xspec', 'main.xspec', '00_logstruct.xspec',
                    '20_db4to5.xspec', 'local_conventions.xspec']
@@ -1828,6 +1835,7 @@ task xsltest(type: Exec) {
 
 task helloWorld() {
   doLast {
-    println('Hello, world: ' + pygmentize)
+    println('Hello, world: ' + xslTNGversion)
+    println("Tag: " + System.getenv()["CIRCLE_TAG"])
   }
 }
