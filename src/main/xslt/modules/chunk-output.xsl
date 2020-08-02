@@ -138,6 +138,7 @@
           <xsl:apply-templates
               select="$list-of-titles/h:div[contains-token(@class, 'toc')]/h:ul"
               mode="mp:copy-patch-toc">
+            <xsl:with-param name="source" select="."/>
             <xsl:with-param name="prefix" select="$path"/>
           </xsl:apply-templates>
         </div>
@@ -160,21 +161,36 @@
 <!-- ============================================================ -->
 
 <xsl:template match="h:a[@href]" mode="mp:copy-patch-toc">
+  <xsl:param name="source" as="element()"/>
   <xsl:param name="prefix" as="xs:string"/>
+
+  <xsl:variable name="href" as="xs:string">
+    <xsl:choose>
+      <xsl:when test="starts-with(@href, '#')">
+        <xsl:sequence select="fp:patch-toc-href($source, @href/string())"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="@href/string()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:copy>
     <xsl:copy-of select="@* except @href"/>
-    <xsl:attribute name="href" select="concat($prefix, @href)"/>
+    <xsl:attribute name="href" select="concat($prefix, $href)"/>
     <xsl:apply-templates select="node()" mode="mp:copy-patch-toc">
+      <xsl:with-param name="source" select="$source"/>
       <xsl:with-param name="prefix" select="$prefix"/>
     </xsl:apply-templates>
   </xsl:copy>
 </xsl:template>
 
 <xsl:template match="element()" mode="mp:copy-patch-toc">
+  <xsl:param name="source" as="element()"/>
   <xsl:param name="prefix" as="xs:string"/>
   <xsl:copy>
     <xsl:apply-templates select="@*,node()" mode="mp:copy-patch-toc">
+      <xsl:with-param name="source" select="$source"/>
       <xsl:with-param name="prefix" select="$prefix"/>
     </xsl:apply-templates>
   </xsl:copy>
@@ -182,9 +198,49 @@
 
 <xsl:template match="attribute()|text()|comment()|processing-instruction()"
               mode="mp:copy-patch-toc">
+  <xsl:param name="source" as="element()"/>
   <xsl:param name="prefix" as="xs:string"/>
   <xsl:copy/>
 </xsl:template>
+
+<xsl:function name="fp:patch-toc-href">
+  <xsl:param name="here" as="element()"/>
+  <xsl:param name="href" as="xs:string"/>
+
+  <xsl:variable name="id" select="substring-after($href, '#')"/>
+  <xsl:variable name="target" select="key('hid', $id, root($here))"/>
+  <xsl:variable name="pchunk"
+                select="($here/ancestor::*[@db-chunk])[last()]"/>
+  <xsl:variable name="tchunk"
+                select="($target/ancestor-or-self::*[@db-chunk])[last()]"/>
+
+  <xsl:choose>
+    <xsl:when test="empty($target)">
+      <!-- this will already have been reported -->
+      <xsl:sequence select="$href"/>
+    </xsl:when>
+    <xsl:when test="$pchunk is $tchunk">
+      <xsl:if test="'intra-chunk-refs' = $v:debug">
+        <xsl:message select="'ToC link:', $href, 'in same chunk as target'"/>
+      </xsl:if>
+      <xsl:sequence select="$href"/>
+    </xsl:when>
+    <xsl:when test="$tchunk/@id = $id">
+      <xsl:if test="'intra-chunk-refs' = $v:debug">
+        <xsl:message select="'ToC link:', $href,
+                             'to root of', $tchunk/@db-chunk/string()"/>
+      </xsl:if>
+      <xsl:sequence select="fp:relative-link($pchunk, $tchunk)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="'intra-chunk-refs' = $v:debug">
+        <xsl:message select="'ToC link:', $href,
+                             'in chunk', $tchunk/@db-chunk/string()"/>
+      </xsl:if>
+      <xsl:sequence select="fp:relative-link($pchunk, $tchunk)||$href"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
 
 <!-- ============================================================ -->
 
