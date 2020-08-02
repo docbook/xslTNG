@@ -82,7 +82,7 @@
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
   <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
 
-  <p xsl:use-when="'render-verbatim' = $debug"
+  <p xsl:use-when="'render-verbatim' = $v:debug"
      class="debug" xsl:expand-text="yes">Verbatim environment formatted with
   <code>style={$style}</code>, <code>numbered={$numbered}</code>, and
   <code>highlight={string-join($highlight, ',')}</code>.</p>
