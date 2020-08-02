@@ -307,19 +307,10 @@ task setupXsltExplorer(dependsOn: ['unzipXsltExplorer']) {
   // nop
 }
 
-task copyResources(type: Copy, dependsOn: ['copyTestMedia', 'makePrintCSS']) {
-  from "src/main/web"
-  include "css/**"
-  include "js/**"
+task copyResources(type: Copy,
+                   dependsOn: ['copyTestMedia', 'makePrintCSS', 'zipStageResources']) {
+  from "build/stage/zip/resources"
   into "${buildDir}/actual"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
-    }
-    line
-  }
   doFirst {
     mkdir "${buildDir}/actual"
   }
@@ -444,19 +435,9 @@ task copyReportSources(type: Copy) {
   }
 }
 
-task copyExpectedResources(type: Copy, dependsOn: ['copyExpectedMedia']) {
-  from "src/main/web"
-  include "css/**"
-  include "js/**"
+task copyExpectedResources(type: Copy, dependsOn: ['copyExpectedMedia', 'zipStageResources']) {
+  from "build/stage/zip/resources"
   into "${buildDir}/report/expected"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
-    }
-    line
-  }
   doFirst {
     mkdir "${buildDir}/report/expected"
   }
@@ -701,8 +682,13 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     opt1 = "profile-os=win;linux"
   }
 
-  if (base == "remark.001" || base == "remark.002") {
+  if (base.startsWith("remark.")) {
     opt1 = "show-remarks=true"
+  }
+
+  if (base.startsWith("colors.")) {
+    opt1 = "show-remarks=true"
+    opt2 = "theme-picker=true"
   }
 
   if (base.startsWith("local.")) {
@@ -1226,7 +1212,16 @@ clean.dependsOn cleanXSpec
 
 // ============================================================
 
-task zipStageResources(type: Copy) {
+task zipStagePygments(type: Exec) {
+  commandLine "python3", "tools/generate-pygments.py",
+    "--version", xslTNGversion, "--title", xslTNGtitle,
+    "--output", "build/stage/zip/resources/css/pygments.css"
+  doFirst {
+    mkdir "${buildDir}/stage/zip/resources/css"
+  }
+}
+
+task zipStageResources(type: Copy, dependsOn: ["zipStagePygments"]) {
   from "src/main/web"
   include "css/**"
   include "js/**"
@@ -1238,9 +1233,6 @@ task zipStageResources(type: Copy) {
         .replace("@@VERSION@@", xslTNGversion)
     }
     line
-  }
-  doFirst {
-    mkdir "${buildDir}/stage/zip/resources"
   }
 }
 
