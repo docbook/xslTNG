@@ -36,9 +36,6 @@ cd cdn
 git clone --depth 1 -c core.sshCommand="/usr/bin/ssh -i $IDRSA" git@github.com:docbook/cdn.git .
 
 if [[ -v CIRCLE_TAG ]]; then
-    mkdir -p release/xsltng/snapshot
-    cp ../repo/build/distributions/*.zip release/xsltng/snapshot/
-else
     # We should never be republishing to the same tag, but just in case...
     rm -rf release/xsltng/$CIRCLE_TAG
     mkdir -p release/xsltng/$CIRCLE_TAG
@@ -49,6 +46,9 @@ else
     rm -rf release/xsltng/current
     mkdir -p release/xsltng/current
     rsync -ar release/xsltng/$CIRCLE_TAG/ release/xsltng/current/
+else
+    mkdir -p release/xsltng/snapshot
+    cp ../repo/build/distributions/*.zip release/xsltng/snapshot/
 fi
 
 # generate indexes
