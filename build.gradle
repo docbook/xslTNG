@@ -686,6 +686,12 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     opt1 = "show-remarks=true"
   }
 
+  if (base.startsWith("colors.")) {
+    opt1 = "show-remarks=true"
+    opt2 = "theme-picker=true"
+    opt3 = "persistent-toc=true"
+  }
+
   if (base.startsWith("local.")) {
     opt1 = "local-conventions=${projectDir}/src/test/resources/local.xsl"
     opt2 = "relax-ng-grammar=${projectDir}/build/docbook-${docbookVersion}/rng/docbook.rng"
@@ -746,6 +752,13 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
       "${opt1}",
       "${opt2}",
       "${opt3}"
+  }
+
+  if (base.startsWith("colors.")) {
+    // disable for expected results
+    opt1="not-really-a-parameter1=1"
+    opt2="not-really-a-parameter2=2"
+    opt3="not-really-a-parameter3=3"
   }
 
   t = task "${base}.expected"(type: Exec, dependsOn: htmlDependsOn) {
