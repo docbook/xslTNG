@@ -161,7 +161,7 @@
 <xsl:param name="annotation-mark"><sup>⌖</sup></xsl:param>
 
 <xsl:param name="xlink-style" select="'document'"/>
-<xsl:param name="xlink-style-default" select="'javascript'"/>
+<xsl:param name="xlink-style-default" select="'inline'"/>
 <xsl:param name="xlink-icon-open" select="()"/>
 <xsl:param name="xlink-icon-closed" select="()"/>
 
