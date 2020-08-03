@@ -1,0 +1,80 @@
+/* "Book" style; recto/verso pages, chapters start on the right */
+
+@page normal-flow::right {
+    @top-center {
+        content: string(ComponentTitle);
+    }
+    @bottom-right {
+        content: counter(page);
+    }
+}
+
+@page normal-flow::left {
+    @top-center {
+        content: string(ComponentTitle);
+    }
+    @bottom-left {
+        content: counter(page);
+    }
+}
+
+@page normal-flow:first::right {
+    @top-center {
+        content: "";
+    }
+    @bottom-right {
+        content: counter(page);
+    }
+}
+
+@page normal-flow:first::left {
+    @top-center {
+        content: "";
+    }
+    @bottom-left {
+        content: counter(page);
+    }
+}
+
+html {
+    page: title;
+}
+
+main {
+    page: normal-flow;
+}
+
+body > header {
+    page-break-after: right;
+}
+
+.book > header .revhistory {
+    page-break-before: always;
+}
+
+.book > header .copyright {
+    float: bottom;
+}
+
+main {
+    page-break-before: always;
+}
+
+.book .list-of-titles {
+    break-before: right;
+}
+
+.book .chapter,
+.book .preface,
+.book .appendix,
+.book .refentry,
+.book .part,
+.book .partintro,
+.book .dedication,
+.book .glossary,
+.book .bibliography,
+.book .index,
+.book .colophon {
+    break-before: right;
+    page: normal-flow;
+}

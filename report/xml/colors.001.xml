@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink" 
+         xml:id="article" version="5.0">
+<info>
+<title>Theme selection</title>
+<abstract>
+<para>A contrived example of some colored output.</para>
+</abstract>
+</info>
+<para>This article contains (contrived) examples of all the markup
+that gets presented in different colors by default today. You are, of course,
+free to add your own CSS which uses color in other places. The primary
+purpose of this document is to test various themes, so it’s most useful
+if the theme picker is enabled.</para>
+<para xml:id="ordinary">This is a paragraph of ordinary text.</para>
+<annotation annotates="ordinary">
+<title>An annotation title</title>
+<para>This annotation applies to the ordinary paragraph.</para>
+</annotation>
+<table frame="all">
+<title>A Table</title>
+<tgroup cols="3" rowsep="1" colsep="1">
+<thead>
+<row><entry>n</entry><entry>n<superscript>2</superscript></entry>
+<entry>n<superscript>3</superscript></entry></row>
+</thead>
+<tbody>
+<row><entry>1</entry><entry>1</entry><entry>1</entry></row>
+<row><entry>2</entry><entry>4</entry><entry>8</entry></row>
+<row><entry>3</entry><entry>9</entry><entry>27</entry></row>
+</tbody>
+</tgroup>
+</table>
+<para annotations="another">Another paragraph.</para>
+<annotation xml:id="another">
+<para>Another annotation.</para>
+</annotation>
+
+<programlisting language="python"><![CDATA[def _parse_args(self, args):
+    done = False
+    for arg in args:
+        if done:
+            self._check_arg(arg)
+        else:
+            if arg == "--":
+                done = True
+            elif arg.startswith("--config:"):
+                self.config_file = arg[9:]
+            elif arg.startswith("--java:"):
+                self._java = arg[7:]
+            elif arg.startswith("--root:"):
+                self.root = arg[7:]
+            elif arg == "--help":
+                self._help()
+                sys.exit(0)
+            elif arg == "--verbose":
+                self.verbose = True
+            elif arg == "--debug":
+                self.debug = True
+            else:
+                self._check_arg(arg)]]></programlisting>
+
+<sidebar>
+<title>Sections</title>
+<para>Should the color theme support titles in alternate colors?
+Yeah, that seems like a fine idea.</para>
+</sidebar>
+
+<para>Sections follow, just for the titles.
+Revision <phrase revisionflag="deleted">markp</phrase
+><phrase revisionflag="added">markup</phrase> is also
+<phrase revisionflag="changed">coloured</phrase>.
+</para>
+
+<para><phrase role="error">This is a phrase with the error class.</phrase>
+</para>
+
+<para role="debug">
+This is a paragraph with the debug class.</para>
+
+<para><remark>Here is a remark.</remark>
+The <keycap>keycap</keycap> rendering has a drop shadow.
+There’s also color in <code>code</code>.</para>
+
+<programlistingco>
+<?db verbatim-highlight="lineranges-first"?>
+<areaspec>
+<area xml:id="two-three" coords="2 3" units="linerange"/>
+</areaspec>
+<programlisting>Line one
+Line two
+Line three
+Line four</programlisting>
+</programlistingco>
+
+<para>There’s also the “monochrome” listing:</para>
+
+<programlisting role="monochrome" linenumbering="unnumbered" language="lisp"
+>(defun ndw/insert-date-time (with-tz)
+  "Insert current date-time string in ISO 8601 format.
+If WITH-TZ is nil, the time is printed without the timezone;
+if WITH-TZ is t, the time is printed with the timezone;
+if WITH-TZ has any other value, that value is interpreted as
+a timezone and the current time in that timezone is inserted.
+Example: 2010-11-29T23:23:35-08:00"
+  (interactive)
+  (let ((tz (cond ((eq with-tz nil) nil)
+                  ((eq with-tz t) (current-time-zone))
+                  (t (current-time-zone () with-tz)))))
+    (insert
+     (if (eq tz nil)
+         (format-time-string "%Y-%m-%dT%T")
+       (concat
+        (format-time-string "%Y-%m-%dT%T" () tz)
+        ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))
+         (format-time-string "%z" () tz)))))))</programlisting>
+
+<section>
+<title>Links</title>
+<para>With JavaScript enabled, this link to
+<phrase xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended"
+        xlink:title="Links to DocBook resources">
+  <link xlink:title="DocBook.org"
+        xlink:label="target"
+        xlink:href="http://docbook.org/"
+        xlink:type="locator"/>
+  <link xlink:title="DocBook on Wikipedia"
+        xlink:label="target"
+        xlink:href="http://en.wikipedia.org/wiki/DocBook"
+        xlink:type="locator"/>
+  <citetitle xlink:label="source" xlink:type="resource">DocBook</citetitle>
+  <link xlink:to="target" xlink:from="source" xlink:type="arc"/>
+</phrase> has a popup menu to select the link target. Rendered without JavaScript,
+the link choices are presented as alternatives after the link.
+<phrase outputformat="print">In print media, the link URIs are also shown in
+parenthesis.</phrase></para>
+</section>
+
+<section>
+<title>Admonitions</title>
+<note xml:id="note">
+  <title>Note!</title>
+  <para>This <tag>note</tag> has a title.</para>
+</note>
+
+<tip xml:id="tip">
+  <title>Tip!</title>
+  <para>This <tag>tip</tag> has a title.</para>
+</tip>
+
+<important xml:id="important">
+  <title>Important!</title>
+  <para>This <tag>important</tag> has a title.</para>
+</important>
+
+<caution xml:id="caution">
+  <info>
+    <title>Caution!</title>
+  </info>
+  <para>This <tag>caution</tag> has a title.</para>
+</caution>
+
+<warning xml:id="warning">
+  <title>Warning!</title>
+  <para>This <tag>warning</tag> has a title.</para>
+</warning>
+
+<danger xml:id="danger">
+  <title>Danger!</title>
+  <para>This <tag>danger</tag> has a title.</para>
+</danger>
+</section>
+</article>

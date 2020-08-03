@@ -7,6 +7,7 @@
  */
 
 (function() {
+  const html = document.querySelector("html");
   let OPEN = "▼";
   let CLOSED = "▶";
 
@@ -14,12 +15,10 @@
   // Put them in a script element so that they get ignored
   // by screen readers and other non-JS presentations
   let arrow = document.querySelector("script.xlink-icon-open");
-  console.log("arrow open:", arrow);
   if (arrow) {
     OPEN = arrow.innerHTML;
   }
   arrow = document.querySelector("script.xlink-icon-closed");
-  console.log("arrow closed:", arrow);
   if (arrow) {
     CLOSED = arrow.innerHTML;
   }
@@ -92,6 +91,12 @@
       }
     }
   };
+
+  let jsxlinks = window.localStorage.getItem("docbook-js-xlinks");
+  if (jsxlinks === "false") {
+    return;
+  }
+  html.classList.add("js-xlinks");
 
   // Process XLink multi-targeted links.
   // 1. The link source is a target, but the JS has to operate

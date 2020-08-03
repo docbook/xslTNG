@@ -7,6 +7,8 @@
  */
 
 (function() {
+  const html = document.querySelector("html");
+
   const showAnnotation = function(event, id) {
     let div = document.querySelector(id);
     div.style.display = "block";
@@ -59,6 +61,12 @@
     });
   };
 
+  let jsannotations = window.localStorage.getItem("docbook-js-annotations");
+  if (jsannotations === "false") {
+    return;
+  }
+  html.classList.add("js-annotations");
+
   // Turn off the display of the individual annotations
   document.querySelectorAll("footer .annotations > div").forEach(function(div) {
     div.style.display = "none";
@@ -101,14 +109,14 @@
   });
 
   // If an annotation is displayed, make clicking on the page hide it
-  document.querySelectorAll(".annotation-wrapper").forEach(function(anno) {
-    let id = anno.getAttribute("id");
-    if (id) {
-      // Escape characters that confuse querySelector
-      id = id.replace(/\./g, "\\.");
-      anno.onclick = function (event) {
-        hideAnnotation(event, `#${id}`);
-      };
-    }
+  document.querySelectorAll("div.annotation-close").forEach(function(anno) {
+    // Carefully walk up the tree; this might just be the close tag lying
+    // around in the footer not actually inside an annotation.
+    let id = anno.parentNode.parentNode.parentNode.getAttribute("id");
+    // Escape characters that confuse querySelector
+    id = id.replace(/\./g, "\\.");
+    anno.onclick = function (event) {
+      hideAnnotation(event, `#${id}`);
+    };
   });
 })();

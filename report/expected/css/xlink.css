@@ -34,10 +34,11 @@
     margin-left: 4px;
     margin-right: 0;
     padding-bottom: 1em;
-    border: 2px solid #afafaf;
+    border: 2px solid var(--primary-variant-color);
     border-radius: 4px;
     z-index: 2;
-    background-color: #fffff8;
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
 }
 
 .nhrefs.js .arc {
