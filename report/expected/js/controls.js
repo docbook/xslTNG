@@ -60,12 +60,16 @@
 
     let check = document.querySelector(toggleAnnotations);
     check.onchange = function (event) {
+      let check = document.querySelector(toggleAnnotations);
+      window.localStorage.setItem("docbook-js-annotations", check.checked);
       checkReload(event);
     };
     check.checked = html.classList.contains("js-annotations");
 
     check = document.querySelector(toggleXLinks);
     check.onchange = function (event) {
+      let check = document.querySelector(toggleXLinks);
+      window.localStorage.setItem("docbook-js-xlinks", check.checked);
       checkReload(event);
     };
     check.checked = html.classList.contains("js-xlinks");
@@ -143,12 +147,6 @@
       setTheme(newTheme.value);
       window.localStorage.setItem("docbook-theme", newTheme.value);
     }
-
-    let check = document.querySelector(toggleAnnotations);
-    window.localStorage.setItem("docbook-js-annotations", check.checked);
-
-    check = document.querySelector(toggleXLinks);
-    window.localStorage.setItem("docbook-js-xlinks", check.checked);
   };
 
   const hideMenu = function(event) {
