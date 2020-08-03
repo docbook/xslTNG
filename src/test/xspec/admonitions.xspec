@@ -10,7 +10,14 @@
 
 <x:scenario label="When transforming admonitions.001">
    <x:context href="../resources/xml/admonitions.001.xml"/>
-   <x:expect label="expect them to be rendered" href="../resources/expected/admonitions.001.html"/>
+   <x:expect label="expect them to be rendered"
+             href="../resources/expected/admonitions.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming admonitions.002">
+   <x:context href="../resources/xml/admonitions.002.xml"/>
+   <x:expect label="expect them to be rendered"
+             href="../resources/expected/admonitions.002.html"/>
 </x:scenario>
 
 </x:description>
