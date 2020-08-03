@@ -686,11 +686,6 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     opt1 = "show-remarks=true"
   }
 
-  if (base.startsWith("colors.")) {
-    opt1 = "show-remarks=true"
-    opt2 = "theme-picker=true"
-  }
-
   if (base.startsWith("local.")) {
     opt1 = "local-conventions=${projectDir}/src/test/resources/local.xsl"
     opt2 = "relax-ng-grammar=${projectDir}/build/docbook-${docbookVersion}/rng/docbook.rng"
@@ -808,6 +803,12 @@ fileTree(dir: "src/test/resources/xml", include: "*.xml").each { xml ->
     opt1 = "persistent-toc=true"
     opt2 = "annotation-style=javascript"
     opt3 = "profile-outputformat=online"
+  }
+
+  if (base.startsWith("colors.")) {
+    opt1 = "show-remarks=true"
+    opt2 = "theme-picker=true"
+    opt3 = "persistent-toc=true"
   }
 
   t = task "${base}.chunk"(type: Exec,
