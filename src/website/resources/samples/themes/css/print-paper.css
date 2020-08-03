@@ -1,0 +1,45 @@
+/* "Paper" style; symmetrical pages breaks between chapters */
+
+@page normal-flow {
+    @top-center {
+        content: string(ComponentTitle);
+    }
+    @bottom-center {
+        content: counter(page);
+    }
+}
+
+@page normal-flow:first {
+    @top-center {
+        content: "";
+    }
+}
+
+.book > header {
+    page-break-after: always;
+}
+
+.book .list-of-titles {
+    break-before: always;
+}
+
+.book .list-of-titles div .title {
+    string-set: ComponentTitle content()
+}
+
+.book .article,
+.book .chapter,
+.book .preface,
+.book .appendix,
+.book .refentry,
+.book .part,
+.book .partintro,
+.book .dedication,
+.book .glossary,
+.book .bibliography,
+.book .index,
+.book .colophon {
+    break-before: always;
+    page: normal-flow;
+}
+
