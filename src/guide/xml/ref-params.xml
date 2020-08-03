@@ -680,6 +680,25 @@ if this is true and simply “1” if it’s false.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_control-js">
+<?db filename="p_control-js.html"?>
+<refmeta>
+<refentrytitle>$control-js</refentrytitle>
+<refmiscinfo>{}control-js</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$control-js</refname>
+<refpurpose>Script to support theme selection</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <parameter>theme-picker</parameter> is enabled, a link to
+this script will be added to the document. This script must contain the JavaScript
+necessary to support the theme controls.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_copyright-collapse-years">
 <?db filename="p_copyright-collapse-years.html"?>
 <refmeta>
@@ -1052,6 +1071,30 @@ Absent any indication of what style to use, the
 <parameter>default-personal-name-style</parameter> will be used;
 see
 <template>t:person-name</template>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_default-theme">
+<?db filename="p_default-theme.html"?>
+<refmeta>
+<refentrytitle>$default-theme</refentrytitle>
+<refmiscinfo>{}default-theme</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$default-theme</refname>
+<refpurpose>Default theme</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If a <parameter>default-theme</parameter> is specified, its
+value will be added to the class attribute on the
+<tag namespace="http://www.w3.org/1999/xhtml">html</tag> element(s)
+generated. The actual theme implementation is performed in CSS.
+See <varname>theme-list</varname> for a list of themes. You can add
+your own themes with custom CSS (with <mode>m:html-head-links</mode> mode, for
+example).
+</para>
 </refsection>
 </refentry>
 
@@ -2518,6 +2561,28 @@ the values in the <att>wordsize</att> attribute. See <xref linkend="profiling"/>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_theme-picker">
+<?db filename="p_theme-picker.html"?>
+<refmeta>
+<refentrytitle>$theme-picker</refentrytitle>
+<refmiscinfo>{}theme-picker</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$theme-picker</refname>
+<refpurpose>Allow users to select themes?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, a JavaScript
+“theme picker” will be included in the document. This is provided through
+a <quote><glossterm>hamburger menu</glossterm></quote> in the upper-right
+corner. Given that one of the ostensible goals of providing themes
+is accessibility, it’s somewhat ironic that this feature is not especially
+accessible. Suggestions welcome.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_transclusion-prefix-separator">
 <?db filename="p_transclusion-prefix-separator.html"?>
 <refmeta>
@@ -3457,24 +3522,6 @@ If trailing newlines aren’t significant, setting
 <parameter>verbatim-trim-trailing-blank-lines</parameter> will cause
 the stylesheets to trim blank (that is, entirely empty) lines from
 the end of verbatim environments.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="p_xlink-css">
-<?db filename="p_xlink-css.html"?>
-<refmeta>
-<refentrytitle>$xlink-css</refentrytitle>
-<refmiscinfo>{}xlink-css</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$xlink-css</refname>
-<refpurpose>XLink CSS</refpurpose>
-<refclass>param</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>If the extended XLinks are used, a link to this
-CSS file will be added to the HTML HEAD.</para>
 </refsection>
 </refentry>
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<x:scenario label="When converting colors.001">
+   <x:context href="../resources/xml/colors.001.xml"/>
+   <x:expect label="expect themed HTML"
+             href="../resources/expected/colors.001.html"/>
+</x:scenario>
+
+</x:description>

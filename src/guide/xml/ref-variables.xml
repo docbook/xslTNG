@@ -828,6 +828,39 @@ exist.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_theme-list">
+<?db filename="v_theme-list.html"?>
+<refmeta>
+<refentrytitle>$v:theme-list</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}theme-list</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:theme-list</refname>
+<refpurpose>Enumerates available themes</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable is part of the experimental themes feature. It
+enumerates the available themes. Each theme has three parts, a name,
+an ID, and (optionally) an indication of whether or not it’s a “dark”
+theme.</para>
+<para>Themes are implemented in CSS. If the
+<parameter>theme-picker</parameter> is enabled, it will be possible
+for the reader to select a theme. The theme names are used for this
+purpose.</para>
+<para>The ID value is used as a class on the
+<tag namespace="http://www.w3.org/1999/xhtml">html</tag> element.
+Everything else about the theme is implemented in CSS. To add a new theme,
+provide a set of CSS rules that apply when the ID class is in effect.</para>
+<para>The dark mode setting is only used as a default. If the document
+does not specify a <parameter>default-theme</parameter>, if the user
+has never selected a theme, if the user has enabled dark mode at the
+operating system level, and if the browser makes this fact available,
+the first “dark” theme will automatically be selected.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_title-properties">
 <?db filename="v_title-properties.html"?>
 <refmeta>

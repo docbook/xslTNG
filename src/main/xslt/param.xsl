@@ -208,7 +208,6 @@
 
 <xsl:param name="css-links" select="'css/docbook.css css/docbook-screen.css'"/>
 <xsl:param name="verbatim-syntax-highlight-css" select="'css/pygments.css'"/>
-<xsl:param name="xlink-css" select="'css/xlink.css'"/>
 <xsl:param name="persistent-toc-css"
            select="'css/docbook-toc.css'"/>
 
@@ -217,6 +216,9 @@
 <xsl:param name="persistent-toc-js" select="'js/persistent-toc.js'"/>
 <xsl:param name="mathml-js"
            select="'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML'"/>
+
+<xsl:param name="control-js" as="xs:string" select="'js/controls.js'"/>
+<xsl:param name="theme-picker" as="xs:string" select="'false'"/>
 
 <xsl:param name="chunk" as="xs:string?" select="()"/>
 <xsl:param name="chunk-nav" as="xs:string" select="'true'"/>
@@ -310,5 +312,7 @@
 <xsl:param name="dynamic-profile-error" select="'ignore'"/>
 
 <xsl:param name="experimental-pmuj" select="'false'"/>
+
+<xsl:param name="default-theme" as="xs:string" select="''"/>
 
 </xsl:stylesheet>
