@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 0.9.14a
+/* DocBook xslTNG version 1.3.0a1
  *
  * This is persistent-toc.js providing support for the ToC popup
  *
@@ -10,11 +10,16 @@
   const ESC = 27;
   const SPACE = 32;
   const toc = document.querySelector("nav.toc");
+  let navPersist = false;
+  let borderLeftColor = "white";
 
   const showToC = function(event) {
     toc.style.width = "300px";
     toc.style["padding-left"] = "1em";
     toc.style["padding-right"] = "1em";
+    toc.style["border-left"] = `1px solid ${borderLeftColor}`;
+
+    navPersist = event && event.shiftKey;
 
     if (event) {
       event.preventDefault();
@@ -45,6 +50,7 @@
       
       pos = url.indexOf("?");
       if (pos >= 0) {
+        navPersist = true;
         url = url.substring(0, pos);
       }
       url = url + hash;
@@ -72,11 +78,16 @@
     toc.style.width = "0px";
     toc.style["padding-left"] = "0";
     toc.style["padding-right"] = "0";
+    toc.style["border-left"] = "none";
     event.preventDefault();
     return false;
   };
 
   const patchLink = function(event, anchor) {
+    if (!navPersist) {
+      return false;
+    }
+
     let href = anchor.getAttribute("href");
     let pos = href.indexOf("#");
     if (pos >= 0) {
@@ -89,6 +100,13 @@
     window.location.href = href;
     return false;
   };
+
+  // Setting the border-left-style in CSS will put a thin border-colored
+  // stripe down the right hand side of the window. Here we get the color
+  // of that stripe and then remove it. We'll put it back when we
+  // expand the ToC.
+  borderLeftColor = window.getComputedStyle(toc)["border-left-color"];
+  toc.style["border-left"] = "none";
 
   const tocOpenScript = document.querySelector("script.tocopen");
   const tocOpen = document.querySelector("nav.tocopen");

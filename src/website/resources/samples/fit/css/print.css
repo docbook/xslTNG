@@ -1,6 +1,6 @@
 /* Automatically generated, do not edit. */
 
-/* DocBook xslTNG version 0.9.14a
+/* DocBook xslTNG version 1.3.0a1
  *
  * This is docbook.css.
  *
@@ -9,6 +9,39 @@
  */
 
 :root {
+
+    /* The default theme. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+/* These choices are inspired by the material design system. Someone
+   with actual graphical design skills would do it better. Pull
+   requests gleefully accepted.
+*/
+
+html.materials-dark {
+}
+
+html.materials-light {
 }
 
 html {
@@ -32,15 +65,15 @@ body {
 }
 
 .error * {
-    background-color: #ffafaf;
-    color: black;
+    background-color: #b00020;
+    color: #ffffff;
     padding-left: 2px;
     padding-right: 2px;
 }
 
 span.error {
     display: inline-block;
-    border: 1px solid #ff0000;
+    border: 1px solid #cf6679;
     border-radius: 4px;
     padding: 2px;
     margin-right: 0.5em;
@@ -58,8 +91,45 @@ span.error.broken-link::after {
     content: " 🔗 ";
 }
 
-span.nobreak {
+.firstterm {
+    font-weight: bold;
+}
+
+.trademark::after {
+    content: "™";
+}
+
+.trademark.trade::after {
+    content: "™";
+}
+
+.trademark.copyright::after {
+    content: "©";
+    vertical-align: super;
+    font-size: 85%;
+}
+
+.trademark.registered::after {
+    content: "®";
+    vertical-align: super;
+    font-size: 85%;
+}
+
+.trademark.service::after {
+    content: "℠";
+    vertical-align: super;
+}
+
+.literal {
     white-space: nowrap;
+}
+
+.nobreak {
+    white-space: nowrap;
+}
+
+.break {
+    white-space: normal;
 }
 
 .xlink-arc-list {
@@ -73,20 +143,22 @@ span.nobreak {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 1em;
-    background-color: #ffdfdf;
+    background-color: #b00020;
+    color: #ffffff;
 }
 
 .remark {
-    border: 1px solid #ffdfdf;
+    border: 1px solid #6200ee;
     border-radius: 3px;
     padding-left: 4px;
     padding-right: 4px;
+    color: #000000;
     background: repeating-linear-gradient(
         135deg,
-        transparent,
-        transparent 5px,
-        #ffefef 5px,
-        #ffefef 10px
+        rgb(221,221,221),
+        rgb(221,221,221) 5px,
+        rgb(240,240,240) 5px,
+        rgb(240,240,240) 10px
     );
 }
 
@@ -95,10 +167,24 @@ span.remark {
     margin-right: 0.5em;
 }
 
+.keycap {
+    font-family: "B612 Mono", monospace, "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
+    background-color: rgb(235,235,235);
+    border: 1px solid #000000;
+    border-radius: 3px;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    margin: 0;
+    font-size: 85%;
+    box-shadow: 1px 1px 1px 0px rgba(255,255,255,0.75);
+}
+
 code {
     font-family: "B612 Mono", monospace, "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
-    background-color: #f4f4f4;
-    border: 1px solid #dfdfdf;
+    background-color: rgb(235,235,235);
+    border: 1px solid #000000;
     border-radius: 6px;
     padding-top: 0.1em;
     padding-bottom: 0.1em;
@@ -122,6 +208,10 @@ pre code {
 
 a, a:visited {
     color: inherit;
+}
+
+a.pmuj {
+    text-decoration: none;
 }
 
 .xref-area,
@@ -157,6 +247,8 @@ a, a:visited {
 /* ============================================================ */
 
 h1, h2, h3, h4, h5, h6 {
+    color: #000000;
+    background-color: #ffffff;
     font-family: "Noto Sans", sans-serif, "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
     font-weight: 600;
     font-style: normal;
@@ -204,7 +296,9 @@ h6 { font-weight: 400;
      line-height: 1;
    }
 
-div .title {
+.title {
+    color: #000000;
+    background-color: #ffffff;
     font-weight: bold;
     font-family: "Noto Sans", sans-serif, "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
     margin-bottom: 0.5em;
@@ -234,7 +328,7 @@ header .authorgroup {
     text-align: left;
     margin-left: 5em;
     margin-right: 5em;
-    border: 1px solid #afafaf;
+    border: 1px solid #6200ee;
     padding-left: 1em;
     padding-right: 1em;
     border-radius: 0.5em;
@@ -247,7 +341,7 @@ header .authorgroup {
     padding-right: 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border: 1px solid #afafaf;
+    border: 1px solid #6200ee;
     border-radius: 0.5em;
 }
 
@@ -256,7 +350,7 @@ header .authorgroup {
 }
 
 .revhistory .title {
-    border-bottom: 1px solid #afafaf;
+    border-bottom: 1px solid #6200ee;
 }
 
 .revhistory td p {
@@ -371,22 +465,22 @@ th.empty {
 
 td.btop,
 th.btop {
-    border-top: 1px solid black;
+    border-top: 1px solid #6200ee;
 }
 
 td.bleft,
 th.bleft {
-    border-left: 1px solid black;
+    border-left: 1px solid #6200ee;
 }
 
 td.colsep,
 th.colsep {
-    border-right: 1px solid black;
+    border-right: 1px solid #6200ee;
 }
 
 td.rowsep,
 th.rowsep {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #6200ee;
 }
 
 td.char,
@@ -436,7 +530,6 @@ th.char {
 }
 
 .admonition {
-    /* background-color: #ffafaf; */
     border-radius: 0.5rem;
     min-height: 3rem;
     padding-top: 0;
@@ -448,23 +541,20 @@ th.char {
 }
 
 .admonition > div {
-    /* background-color: #afffaf; */
     display: table-row;
 }
 
 .admonition .icon {
-    /* background-color: #afffff; */
     display: table-cell;
     padding-top: 1.5rem;
     width: 4.5rem;
     text-align: center;
     vertical-align: top;
     font-size: 3rem;
-    color: #d3d3d3;
+    color: #6200ee;
 }
 
 .admonition .body {
-    /* background-color: #ffafff; */
     display: table-cell;
     padding-right: 1rem;
 }
@@ -474,52 +564,127 @@ th.char {
 }
 
 .note {
-    border: 2pt solid #d3d3d3;
+    border: 2pt solid #6200ee;
+    background-color: #ffffff;
+    color: #000000;
 } 
+
+.note .icon {
+    color: #6200ee;
+}    
+
+.note .title {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.note code {
+    border-color: #6200ee;
+    background-color: #ffffff;
+}
 
 .tip {
-    border: 2pt solid #d3d3d3;
+    border: 2pt solid #6200ee;
+    background-color: #ffffff;
+    color: #000000;
 } 
 
+.tip .icon {
+    color: #6200ee;
+}    
+
+.tip .title {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.tip code {
+    border-color: #6200ee;
+    background-color: #ffffff;
+}
+
 .important {
-    background-color: #ffffe0;
-    border: 2pt solid #ffd300;
+    border: 2pt solid #03dac6;
+    background-color: #ffffff;
+    color: #000000;
 } 
 
 .important .icon {
     padding-top: 2rem;
-    color: #ffd300;
+    color: #03dac6;
+}
+
+.important .title {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.important code {
+    background-color: #ffffff;
+    border-color: #03dac6;
 }
 
 .caution {
-    background-color: #ffffe0;
-    border: 2pt solid #ffd300;
+    border: 2pt solid #03dac6;
+    background-color: #ffffff;
+    color: #000000;
 } 
 
 .caution .icon {
-    color: #ffd300;
+    color: #03dac6;
+}
+
+.caution .title {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.caution code {
+    background-color: #ffffff;
+    border-color: #03dac6;
 }
 
 .warning {
-    background-color: #ffe0e0;
-    border: 2pt solid #d30000;
+    border: 2pt solid #cf6679;
+    background-color: #b00020;
+    color: #ffffff;
 } 
+
+.warning .icon {
+    color: #cf6679;
+}
+
+.warning .title {
+    background-color: #b00020;
+    color: #ffffff;
+}
+
+.warning code {
+    background-color: #b00020;
+    border-color: #cf6679;
+}
 
 .danger {
-    background-color: #ffe0e0;
-    border: 2pt solid #d30000;
+    border: 2pt solid #cf6679;
+    background-color: #b00020;
+    color: #ffffff;
 } 
 
-.warning .icon,
 .danger .icon {
-    color: #d30000;
+    color: #cf6679;
 }    
 
-/* ============================================================ */
-
-.line.highlight {
-    background-color: #ffe0e0;
+.danger .title {
+    background-color: #b00020;
+    color: #ffffff;
 }
+
+.danger code {
+    background-color: #b00020;
+    border-color: #cf6679;
+}
+
+/* ============================================================ */
 
 .pre-wrap {
     overflow-x: scroll;
@@ -549,17 +714,17 @@ pre.screen {
 /* Adapted from https://stackoverflow.com/questions/41306797/html-how-to-add-line-numbers-to-a-source-code-block */
 
 pre.verbatim span.line:nth-child(odd) {
-    background-color: #f4f4f4;
+    background-color: rgb(235,235,235);
 }
 
 pre.verbatim span.line:nth-child(even) {
-    background-color: inherit;
+    background-color: rgb(240,240,240);
 }
 
 /* Make the background of even lines the same as odd lines for
    "monochrome" listings. */
 pre.verbatim.monochrome span.line:nth-child(even) {
-    background-color: #f4f4f4;
+    background-color: rgb(235,235,235);
 }
 
 pre.address span.line:nth-child(odd),
@@ -596,7 +761,7 @@ pre.verbatim span.ln {
 }
 
 pre.numbered span.ln {
-    background-color: #f0f0f0;
+    background-color: rgb(221,221,221);
     user-select: none;
 }
 
@@ -612,8 +777,13 @@ pre.verbatim span.ld {
 }
 
 pre.numbered span.ld {
-    border-left: 1px solid #dfdfdf;
+    border-left: 1px solid #6200ee;
     padding-left: 0.25em;
+}
+
+pre.verbatim span.line.highlight {
+    background-color: #6200ee;
+    color: #ffffff;
 }
 
 /* ============================================================ */
@@ -816,7 +986,7 @@ blockquote p + .attribution {
 
 .figure,
 .example {
-    border: 1px solid #afafaf;
+    border: 1px solid #6200ee;
 }
 
 .figure .title {
@@ -908,7 +1078,8 @@ a.callout-bug:visited {
 /* ============================================================ */
 
 .revadded {
-    background-color: #cfffcf;
+    background-color: #6200ee;
+    color: #ffffff;
 }
 
 .revadded::before {
@@ -920,7 +1091,8 @@ a.callout-bug:visited {
 }
 
 .revchanged {
-    background-color: #ffffcf;
+    background-color: #03dac6;
+    color: #000000;
 }
 
 .revchanged::before {
@@ -932,7 +1104,8 @@ a.callout-bug:visited {
 }
 
 .revdeleted {
-    background-color: #ffcfcf;
+    background-color: #b00020;
+    color: #ffffff;
 }
 
 .revdeleted::before {
@@ -1002,13 +1175,18 @@ li[db-mark='box'] {
 /* ============================================================ */
 
 .sidebar {
-    margin-left: 4rem;
-    background-color: #f0f0f0;
+    background-color: #6200ee;
+    color: #ffffff;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
     padding-top: 1em;
     border-radius: 0.5em;
+}
+
+.sidebar .title {
+    background-color: #6200ee;
+    color: #ffffff;
 }
 
 /* ============================================================ */
@@ -1056,9 +1234,103 @@ em em me em em em {
 }
 
 /* ============================================================ */
+/* Inline annotations */
 
+.annotations {
+    border-top: 2px dashed #6200ee;
+    padding-top: 1em;
+    margin-top: 6em;
+}
 
-/* DocBook xslTNG version 0.9.14a
+a.annomark,
+a.annomark:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.annotation-wrapper {
+    margin-bottom: 1em;
+}
+
+.annotation-body {
+    border: 1px solid #6200ee;
+    border-bottom-left-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;;
+}
+
+.annotation-header {
+    height: 2em;
+    background-color: #ffffff;
+    color: #000000;
+    padding-left: 1em;
+    padding-right: 0.5em;
+    border-bottom: 1px solid #6200ee;
+}
+
+.annotation-header .annotation-close {
+    float: right;
+}
+
+.annotation-content {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+/* ============================================================ */
+/* XLink extended links. The ".js" classes only apply if
+   JavaScript XLink processing is available and enabled.
+*/
+
+.xlink .source {
+    border-bottom: 1px dotted black;
+    cursor: pointer;
+}
+
+.xlink-arc-list {
+    display: inline;
+    font-style: normal;
+    cursor: pointer;
+    font-size: 70%;
+}
+
+.xlink-arc-list.js::before {
+    content: " "; /* thin space */
+}
+
+.nhrefs.js .xlink-arc-delim {
+    display: none;
+}
+
+.nhrefs.js {
+    font-style: normal;
+    display: none;
+    margin-left: 4px;
+    margin-right: 0;
+    padding-bottom: 1em;
+    border: 2px solid #3700b3;
+    border-radius: 4px;
+    z-index: 2;
+    background-color: #6200ee;
+    color: #ffffff;
+}
+
+.nhrefs.js .arc {
+    display: list-item;
+    margin-left: 1.5em;
+    padding-right: 1em;
+}
+
+.nhrefs.js .xlink-arc-title {
+    display: block;
+    background-color: #3700b3;
+    color: #ffffff;
+    margin-left: 0;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+/* DocBook xslTNG version 1.3.0a1
  *
  * This is docbook-paged.css.
  *

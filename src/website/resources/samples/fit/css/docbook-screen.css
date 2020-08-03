@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 0.9.14a
+/* DocBook xslTNG version 1.3.0a1
  *
  * This is docbook-screen.css.
  *
@@ -13,15 +13,39 @@
 }
 
 :root {
-    background-color: #fffff8;
+    --popup-annotation-color: var(--surface-color);
+    --on-popup-annotation-color: var(--on-surface-color);
+    --popup-annotation-border-color: var(--primary-color);
+    --popup-annotation-border-style: 1px solid var(--popup-annotation-border-color);
+
+    --popup-annotation-header-color: var(--primary-color);
+    --on-popup-annotation-header-color: var(--on-primary-color);
+    --popup-annotation-header-separator-border-style: 1px solid var(--popup-annotation-border-color);
+
+    --js-controls-border-color: var(--primary-color);
+    --js-controls-border-style: 1px solid var(--js-controls-border-color);
+    --js-controls-header-color: var(--primary-color);
+    --on-js-controls-header-color: var(--on-primary-color);
+    --js-controls-header-separator-border-style: 1px solid var(--popup-annotation-border-color);
+    --js-controls-color: var(--surface-color);
+    --on-js-controls-color: var(--on-surface-color);
 }
 
 html {
+    color: var(--on-background-color);
+    background-color: var(--background-color);
     height: 100%;
     width: 100%;
     line-height: 1.75rem;
     font-size: 13.5pt;
     scroll-padding-top: 40px;
+}
+
+/* https://www.smashingmagazine.com/2020/07/css-techniques-legibility/ */
+@supports (font-size-adjust: 1;) {
+    html {
+        font-size-adjust: 0.5;
+    }
 }
 
 body {
@@ -50,13 +74,13 @@ main {
 }
 
 .book + .book {
-    border-top: 4px solid #abcdef;
+    border-top: var(--division-separator-border-style);
     margin-top: 6em;
     padding-top: 6em;
 }
 
 .refentry + .refentry {
-    border-top: 4px solid #abcdef;
+    border-top: var(--division-separator-border-style);
     margin-top: 6em;
     padding-top: 6em;
 }
@@ -69,7 +93,7 @@ main {
 .book .part > header {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 0.25rem solid var(--border-grey);
+    border-top: 0.25rem solid var(--border-color);
 }
 
 .dedication + .dedication > header {
@@ -81,7 +105,7 @@ main {
     margin-bottom: 6rem;
     margin-left: 6rem;
     margin-right: 6rem;
-    border: 1px solid var(--border-grey);
+    border: 1px solid var(--border-color);
     border-radius: 1em;
     padding-left: 2em;
     padding-right: 2em;
@@ -158,7 +182,7 @@ nav.bottom {
 }
 
 nav.bottom table {
-    border-top: 2px solid var(--border-grey);
+    border-top: 2px solid var(--border-color);
     margin-bottom: 1rem;
 }
 
@@ -182,10 +206,155 @@ body.home nav.top {
 }
 
 nav.top div {
-    border-bottom: 1px solid var(--border-grey);
+    border-bottom: 1px solid var(--border-color);
     padding-left: 4rem;
     padding-right: 4rem;
 }
+
+/* ============================================================ */
+/* Javascript annotations */
+
+.popup-annotation-wrapper {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--modal-overlay-color);
+}
+
+.popup-annotation-body {
+    background-color: var(--popup-annotation-color);
+    color: var(--on-popup-annotation-color);
+    border: var(--popup-annotation-border-style);
+    width: 50%;
+    min-height: 40%;
+    max-height: 50%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.15em;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 100%;
+}
+
+.wide .popup-annotation-body {
+    width: 80%;
+}
+
+.tall .popup-annotation-body {
+    max-height: 80%;
+}
+
+.popup-annotation-header {
+    height: 2em;
+    background-color: var(--popup-annotation-header-color);
+    color: var(--on-popup-annotation-header-color);
+    padding-left: 1em;
+    padding-right: 0.5em;
+    border-bottom: var(--popup-annotation-header-separator-border-style);
+}
+
+.popup-annotation-header .annotation-close {
+    float: right;
+    cursor: pointer;
+    font-size: 125%;
+}
+
+.popup-annotation-header .annotation-title {
+    padding-top: 0.1em;
+}
+
+.popup-annotation-content {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    overflow: scroll;
+}
+
+.annotation-close {
+    padding-top: 4px;
+}
+
+/* ============================================================ */
+/* Javascript controls */
+
+.js-controls-wrapper {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--modal-overlay-color);
+}
+
+.js-controls-body {
+    background-color: var(--js-controls-color);
+    color: var(--on-js-controls-color);
+    border: var(--js-controls-border-style);
+    max-width: 300px;
+    margin-top: 5px;
+    margin-left: 10px;
+    opacity: 1;
+}
+
+.js-controls-header {
+    height: 2em;
+    background-color: var(--js-controls-header-color);
+    color: var(--on-js-controls-header-color);
+    padding-left: 1em;
+    padding-right: 0.5em;
+    border-bottom: var(--js-controls-header-separator-border-style);
+}
+
+.js-controls-header .js-controls-close {
+    float: right;
+    cursor: pointer;
+    font-size: 125%;
+}
+
+.js-controls-header .js-controls-title {
+    padding-top: 0.1em;
+}
+
+.js-controls-content {
+    background-color: var(--js-controls-color);
+    color: var(--on-js-controls-color);
+    padding: 1em;
+}
+
+.js-controls-buttons {
+    text-align: center;
+    padding-bottom: 0.5em;
+}
+
+.js-controls-buttons button {
+    display: inline-block;
+    text-align: center;
+    font-size: 14pt;
+    background-color: var(--enabled-color);
+    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+    color: var(--on-surface-color);
+    text-align: center;
+    padding: 5px;
+    width: 3em;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.js-controls-reload {
+    text-align: center;
+    background-color: var(--error-color);
+    color: var(--on-error-color);
+}
+
+/* ============================================================ */
 
 @media screen and (max-width: 1199px) {
     nav.top div {
