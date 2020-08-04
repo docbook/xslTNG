@@ -118,6 +118,19 @@
     <link rel="stylesheet"
           href="{$resource-base-uri}{$persistent-toc-css}"/>
   </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$verbatim-syntax-highlighter = ('', 'none')"/>
+    <xsl:when test="$verbatim-syntax-highlighter = 'pygments'"/>
+    <xsl:when test="$verbatim-syntax-highlighter = 'highlight.js'">
+      <xsl:sequence select="$v:highlight-js-head-elements"/>
+    </xsl:when>
+    <xsl:when test="$verbatim-syntax-highlighter = ('prism', 'prism.js')">
+      <xsl:sequence select="$v:prism-js-head-elements"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message select="'Unrecognized syntax highlighter:', $verbatim-syntax-highlighter"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="*" mode="m:html-head-script">

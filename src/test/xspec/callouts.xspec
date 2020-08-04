@@ -17,6 +17,12 @@
   <x:expect label="expect the character counting to be correct" href="../resources/expected/programlistingco.003.html"/>
 </x:scenario>
 
+<x:scenario label="When converting programlistingco.004">
+  <x:context href="../resources/xml/programlistingco.004.xml"/>
+  <x:expect label="expect the character counting to be correct"
+            href="../resources/expected/programlistingco.004.html"/>
+</x:scenario>
+
 <x:scenario label="When converting screenco.001">
   <x:context href="../resources/xml/screenco.001.xml"/>
   <x:expect label="expect the character counting to be correct" href="../resources/expected/screenco.001.html"/>

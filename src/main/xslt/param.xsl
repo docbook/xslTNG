@@ -60,6 +60,7 @@
 <xsl:param name="verbatim-callouts" as="xs:string"
            select="'linecolumn lines lineranges-first'"/>
 
+<xsl:param name="verbatim-syntax-highlighter" as="xs:string" select="'pygments'"/>
 <xsl:param name="verbatim-syntax-highlight-languages"
            select="'python perl html xml xslt xquery javascript json'"/>
 
