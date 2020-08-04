@@ -63,4 +63,10 @@
             href="../resources/expected/programlisting.011.html"/>
 </x:scenario>
 
+<x:scenario label="When converting programlisting.012">
+  <x:context href="../resources/xml/programlisting.012.xml"/>
+  <x:expect label="expect a correctly rendered pre"
+            href="../resources/expected/programlisting.012.html"/>
+</x:scenario>
+
 </x:description>
