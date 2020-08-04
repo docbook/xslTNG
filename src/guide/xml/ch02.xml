@@ -836,6 +836,32 @@ any of it’s values match.</para>
 </section>
 </section>
 
+<section xml:id="syntax-highlighting">
+<title>Syntax highlighting</title>
+
+<para>Program listings and other verbatim environments can be “syntax highlighted”,
+that is, the significant tokens in the listing can be colored differently (keywords in red,
+quoted strings in blue, that sort of thing).</para>
+
+<para>The default syntax highlighter is <biblioref linkend="Pygments"/>, an external
+Python program. This has the advantage that the highlighted listing is available to
+the stylesheets. The stylesheets can then render line numbers, call outs, and other
+features.</para>
+
+<para>But running an external program for every verbatim environment requires
+<emphasis>having</emphasis> the external program and also, if there are many verbatim
+environments, may slow down the formatting process</para>
+
+<para>An alternative is to use a JavaScript highlighter in the browser such as
+<biblioref linkend="highlight.js"/> or <biblioref linkend="Prism"/>. This approach
+has no impact on formatting and doesn’t require an external process. However, it means the
+<citetitle>xslTNG Stylesheets</citetitle> have no control over the process. Most of the 
+verbatim options only apply when Pygments is used.</para>
+
+<para>The choice of syntax highlighter is determined by the
+<parameter>verbatim-syntax-highlighter</parameter> parameter.</para>
+</section>
+
 <section xml:id="print">
 <title>Print output (dead tree editions)</title>
 

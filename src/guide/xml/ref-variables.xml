@@ -621,6 +621,26 @@ element (local) names to placements. The placement is either
 </refsection>
 </refentry>
 
+<refentry xml:id="v_highlight-js-head-elements">
+<?db filename="v_highlight-js-head-elements.html"?>
+<refmeta>
+<refentrytitle>$v:highlight-js-head-elements</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}highlight-js-head-elements</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:highlight-js-head-elements</refname>
+<refpurpose>CSS and JavaScript to support highlight.js</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <quote><literal>highlight.js</literal></quote> syntax highlighter is
+selected (see <parameter>verbatim-syntax-highlighter</parameter>), these elements are
+added to the <tag namespace="http://www.w3.org/1999/xhtml">head</tag> element to
+load and configure the highlighter.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_image-nominal-height">
 <?db filename="v_image-nominal-height.html"?>
 <refmeta>
@@ -803,6 +823,26 @@ olink target databases.</para>
 This variable contains the list of known ways, see
 <template>t:person-name</template>.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_prism-js-head-elements">
+<?db filename="v_prism-js-head-elements.html"?>
+<refmeta>
+<refentrytitle>$v:prism-js-head-elements</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}prism-js-head-elements</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:prism-js-head-elements</refname>
+<refpurpose>CSS and JavaScript to support Prism</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <quote><literal>prism</literal></quote> syntax highlighter is
+selected (see <parameter>verbatim-syntax-highlighter</parameter>), these elements are
+added to the <tag namespace="http://www.w3.org/1999/xhtml">head</tag> element to
+load and configure the highlighter.</para>
 </refsection>
 </refentry>
 

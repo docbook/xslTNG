@@ -3496,7 +3496,69 @@ program listing; the embedded markup will be ignored.</para>
 
 <para>See also <varname>v:verbatim-syntax-highlight-options</varname>
 and <varname>v:verbatim-syntax-highlight-pygments-options</varname>.</para>
+</refsection>
+</refentry>
 
+<refentry xml:id="p_verbatim-syntax-highlighter">
+<?db filename="p_verbatim-syntax-highlighter.html"?>
+<refmeta>
+<refentrytitle>$verbatim-syntax-highlighter</refentrytitle>
+<refmiscinfo>{}verbatim-syntax-highlighter</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-syntax-highlighter</refname>
+<refpurpose>Selects the syntax highlighter</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter specifies the syntax highlighter to use. Most of
+the parameters related to syntax highlighting only work if the
+<quote><literal>pygments</literal></quote> highlighter is selected.
+However, that requires running an external process which might not be
+available and which, even if it is available, has an impact on
+performance. Using Pygments has the advantage that the stylesheets
+have more control over the process and it is available both for online
+and paged media formats.
+</para>
+
+<para>The alternative to running an external program is to use
+JavaScript to highlight the listing in the browser. This is faster at
+formatting time, but limits syntax highlighting to those environments where
+JavaScript is available.</para>
+
+<para>The following options are supported:</para>
+<variablelist>
+<varlistentry><term><literal>pygments</literal></term>
+<listitem>
+<para>This is the default highlighter.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>highlight.js</literal></term>
+<listitem>
+<para>Uses the <biblioref linkend="highlight.js"/> JavaScript library to perform
+syntax highlighting. The <varname>highlight-js-head-elements</varname> variable
+determines what CSS stylesheets and JavaScript libraries are loaded for this option.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>prism</literal></term>
+<listitem>
+<para>Uses the <biblioref linkend="Prism"/> JavaScript library to perform
+syntax highlighting. The <varname>prism-js-head-elements</varname> variable
+determines what CSS stylesheets and JavaScript libraries are loaded for this option.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>none</literal></term>
+<listitem>
+<para>Disables syntax highlighting but also suppresses messages about features
+that are not available because syntax highlighting is disabled.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </refsection>
 </refentry>
 
