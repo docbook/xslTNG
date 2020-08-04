@@ -82,6 +82,17 @@
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
   <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
 
+  <xsl:variable name="areaspec" as="element(db:areaspec)?">
+    <xsl:choose>
+      <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
+        <xsl:message select="'Processing', local-name(.), 'is only supported with Pygments'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="db:areaspec"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <p xsl:use-when="'render-verbatim' = $v:debug"
      class="debug" xsl:expand-text="yes">Verbatim environment formatted with
   <code>style={$style}</code>, <code>numbered={$numbered}</code>, and
@@ -101,7 +112,7 @@
       <xsl:with-param name="style" select="$style"/>
       <xsl:with-param name="highlight" select="$highlight"/>
       <xsl:with-param name="numbered" select="$numbered"/>
-      <xsl:with-param name="inject" select="db:areaspec"/>
+      <xsl:with-param name="inject" select="$areaspec"/>
       <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
     </xsl:apply-templates>
 
@@ -1323,19 +1334,28 @@
 
 <xsl:function name="f:verbatim-style" as="xs:string">
   <xsl:param name="context" as="element()"/>
-  <xsl:sequence
-      select="f:pi($context, 'verbatim-style',
-                   fp:verbatim-properties($context)?style)"/>
+  <xsl:choose>
+    <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
+      <xsl:sequence select="'raw'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence
+          select="f:pi($context, 'verbatim-style',
+                       fp:verbatim-properties($context)?style)"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:function>
 
 <xsl:function name="f:verbatim-highlight" as="xs:string*">
   <xsl:param name="context" as="element()"/>
 
-  <!-- If there's a PI that explicitly selects plain formatting,
-       disable highlighting automatically. This avoids a warning
-       about highlighting not being supported. -->
+  <!-- If we aren't using Pygments, or if there's a PI that explicitly
+       selects plain formatting, disable highlighting automatically.
+       This avoids a warning about highlighting not being supported.
+  -->
   <xsl:variable name="value" as="xs:string*"
-      select="if (f:pi($context, 'verbatim-style') = 'plain')
+      select="if ($verbatim-syntax-highlighter != 'pygments'
+                  or f:pi($context, 'verbatim-style') = 'plain')
               then ()
               else f:pi($context, 'verbatim-highlight',
                         fp:verbatim-properties($context)?highlight)"/>
@@ -1351,6 +1371,9 @@
   <xsl:param name="context" as="element()"/>
 
   <xsl:choose>
+    <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
+      <xsl:sequence select="false()"/>
+    </xsl:when>
     <xsl:when test="$context/@linenumbering">
       <xsl:sequence select="$context/@linenumbering = 'numbered'"/>
     </xsl:when>
