@@ -160,21 +160,24 @@ The initial options, all introduced by two hyphens, are interpreted by
 this script. All the remaining options are passed directly to Saxon.
 
 Options:
-  --help         Print this message
-  --config:file  Use 'file' as the configuration file. The default
-                 configuration file is .docbook-xsltng.json in your
-                 home directory.
-  --java:file    Use 'file' as the Java executable. The default
-                 java executable is the first one on your PATH.
-  --home:dir     Use 'dir' as the "DocBook xslTNG" home directory.
-                 This should be the location where you unzipped the
-                 distribution.
-  --help         Print this help message
-  --verbose      Enable 'verbose' mode. This prints more messages.
-  --debug        Enable 'debug' mode. Instead of running the
-                 transformation, print out the command that would
-                 have been run.
-  --             Immediately stop interpreting options.
+  --help            Print this message
+  --config:file     Use 'file' as the configuration file. The default
+                    configuration file is .docbook-xsltng.json in your
+                    home directory.
+  --java:file       Use 'file' as the Java executable. The default
+                    java executable is the first one on your PATH.
+  --root:dir        Use 'dir' as the "DocBook xslTNG" root directory.
+                    This should be the location where you unzipped the
+                    distribution.
+  --resources[:dir] Copy stylesheet resources (CSS and JS files) to the
+                    output 'dir'. If 'dir' is not specified, the output
+                    directory is determined from the -o: option to Saxon.
+  --help            Print this help message
+  --verbose         Enable 'verbose' mode. This prints more messages.
+  --debug           Enable 'debug' mode. Instead of running the
+                    transformation, print out the command that would
+                    have been run.
+  --                Immediately stop interpreting options.
 
 The Saxon options -x, -y, -r, and -init may not be specified as the
 wrapper sets these automatically.
