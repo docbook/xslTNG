@@ -53,15 +53,16 @@ class JavaClassRunner:
         self._cp = {}
         self._seen = {}
 
-        # Assume this script is in /path/to/somewhere/docbook/bin/python
+        # This script assumes it's in /path/to/somewhere/docbook/bin/python
         # where "docbook" is the root of the distribution. If you move
-        # this script into /usr/local/bin or something, that won't work.
+        # this script into /usr/local/bin or something, it won't work.
         self.root = os.path.abspath(__file__)
         self.root = self.root[0:self.root.rfind(os.sep)]  # strip /docbook
         self.root = self.root[0:self.root.rfind(os.sep)]  # strip /bin
 
         self.config_file = str(Path.home()) + "/.docbook-xsltng.json"
         self.stylesheet = None
+        self.output = None
         self.catalogs = []
         self.verbose = False
         self.debug = False
@@ -100,7 +101,11 @@ class JavaClassRunner:
         if "verbose" not in self.config:
             self.config["verbose"] = False
 
+    # No, pylint, there aren't too many branches in this method.
+    # pylint: disable=R0912
     def _parse_args(self, args):
+        resources = None
+
         # Can't use any of the nice arg parsers here because these
         # are mostly args for Saxon.
         done = False
@@ -116,6 +121,11 @@ class JavaClassRunner:
                     self._java = arg[7:]
                 elif arg.startswith("--root:"):
                     self.root = arg[7:]
+                elif arg.startswith("--resources"):
+                    if arg.startswith("--resources:"):
+                        resources = arg[12:]
+                    else:
+                        resources = ""
                 elif arg == "--help":
                     self._help()
                     sys.exit(0)
@@ -125,6 +135,17 @@ class JavaClassRunner:
                     self.debug = True
                 else:
                     self._check_arg(arg)
+
+        if resources is not None:
+            if resources == "" and not self.output:
+                self._message(f"Cannot determine output directory; ignoring --resources")
+            else:
+                if resources == "":
+                    resources = os.path.abspath(self.output)
+                    resources = os.path.dirname(resources)
+                else:
+                    resources = os.path.abspath(resources)
+                self._configure_resources(resources)
 
     def _help(self):
         print(f"""DocBook xslTNG version @@VERSION@@
@@ -170,13 +191,45 @@ wrapper sets these automatically.
             if name == "-catalog":
                 self.catalogs.append(value)
                 return
-            elif name == "-xsl":
+            if name == "-xsl":
                 self.stylesheet = arg
+            elif name == "-o":
+                self.output = value
         self._app_args.append(arg)
 
     def _message(self, message):
         if self.verbose:
             print(message)
+
+    def _configure_resources(self, path):
+        if os.path.isdir(f"{self.root}/resources/css"):
+            rsrcroot = f"{self.root}/resources"
+        elif os.path.isdir(f"{self.root}/stage/zip/resources/css"):
+            rsrcroot = f"{self.root}/stage/zip/resources"
+        else:
+            self._message(f"Failed to find CSS under {self.root}: ignoring --resources")
+            return
+
+        # Make sure this is likely to succeed
+        for fdir in (path, f"{path}/css"): ##, f"{path}/js"):
+            try:
+                if not os.path.isdir(fdir):
+                    os.makedirs(fdir)
+            except:
+                self._message(f"Failed to create output directory: {path}")
+                return
+
+        pos = len(rsrcroot)
+        for (root, dirs, files) in os.walk(rsrcroot):
+            targetdir = path + root[pos:]
+            for name in dirs:
+                target = f"{targetdir}/{name}"
+                if not os.path.isdir(target):
+                    os.makedirs(target)
+            for name in files:
+                source = f"{root}/{name}"
+                target = f"{targetdir}/{name}"
+                shutil.copy2(source, target)
 
     def _pom(self, groupId, artifactId, version):
         groupPath = groupId.replace(".", "/")
