@@ -65,6 +65,7 @@
 
 <xsl:template match="db:tbody|db:thead|db:tfoot">
   <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
+    <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>

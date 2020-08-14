@@ -14,6 +14,8 @@
                 exclude-result-prefixes="db ext f m map mp t v vp xs"
                 version="3.0">
 
+
+
 <xsl:template name="t:preprocess" as="document-node()">
   <xsl:param name="source" as="document-node()" select="."/>
 
@@ -153,6 +155,22 @@
     <xsl:message select="'Ignoring validation, extension unavailable'"/>
   </xsl:if>
 
+  <xsl:variable name="source" as="document-node()">
+    <xsl:choose>
+      <xsl:when test="exists($source//processing-instruction()[starts-with(name(), 'oxy_')])">
+        <xsl:message use-when="'pipeline' = $v:debug"
+                     select="'Preprocess: oxy-markup'"/>
+        <xsl:sequence select="transform(map {
+                          'stylesheet-location': 'transforms/80-oxy-markup.xsl',
+                          'source-node': $source
+                          })?output"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$source"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  
   <xsl:sequence select="$source"/>
 </xsl:template>
 
