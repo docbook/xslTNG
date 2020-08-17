@@ -45,6 +45,7 @@ class JavaClassRunner:
             "maven-local": str(Path.home()) + "/.m2/repository",
             "maven-packages": [],
             "pinned-packages": ["xml-apis:xml-apis:1.4.01"],
+            "excluded-packages": ["xml-resolver:xml-resolver:1.2"],
             "args": [],
             "classpath": [],
             "class": "net.sf.saxon.Transform",
@@ -280,6 +281,10 @@ wrapper sets these automatically.
             self.depends[groupId][artifactId] = {}
 
         if version in self.depends[groupId][artifactId]:
+            return
+
+        if f"{groupId}:{artifactId}:{version}" in self.config["excluded-packages"] \
+            or f"{groupId}:{artifactId}:*" in self.config["excluded-packages"]:
             return
 
         jar = self._jar(groupId, artifactId, version)
