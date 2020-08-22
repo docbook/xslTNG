@@ -82,13 +82,19 @@
   <xsl:variable name="rbu" select="fp:root-base-uri(.)"/>
   <xsl:variable name="cbu" select="fp:chunk-output-filename(.)"/>
 
-  <html db-chunk="{fp:chunk-output-filename(.)}">
+  <html class="no-js" db-chunk="{fp:chunk-output-filename(.)}">
     <xsl:if test="normalize-space($default-theme) ne ''">
       <xsl:attribute name="class" select="$default-theme"/>
     </xsl:if>
     <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
     <xsl:variable name="title" select="$head/h:title"/>
     <head>
+      <xsl:if test="f:is-true($theme-picker)">
+        <!-- https://www.paulirish.com/2009/avoiding-the-fouc-v3/ -->
+        <style>html.js { display: none; }</style>
+        <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+      </xsl:if>
+
       <xsl:apply-templates select="$ctype"/>
       <title>
         <xsl:value-of select="f:chunk-title(.)"/>
