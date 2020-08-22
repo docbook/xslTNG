@@ -10,7 +10,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db dbe f m t v xs"
+                exclude-result-prefixes="db dbe f m t tp v xs"
                 version="3.0">
 
 <xsl:template match="db:productionset">
