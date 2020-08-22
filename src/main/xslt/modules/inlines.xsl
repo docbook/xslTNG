@@ -318,9 +318,7 @@
 </xsl:template>
 
 <xsl:template match="db:foreignphrase">
-  <xsl:call-template name="t:inline">
-    <xsl:with-param name="namemap" select="'i'"/>
-  </xsl:call-template>
+  <xsl:call-template name="t:inline"/>
 </xsl:template>
 
 <xsl:template match="db:function">
