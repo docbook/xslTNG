@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.3.0a2-SNAPSHOT
+/* DocBook xslTNG version 1.3.0
  *
  * This is chunk-nav.js providing support for keyboard
  * navigation between chunks.
@@ -17,6 +17,17 @@
  * 4. The S key can be used to switch between a normal view and a
  *    speaker notes view. This requires a stylesheet customization
  *    that renders the speaker notes view.
+ * 5. If the HTML pages contain a meta element with the name
+ *    "progressiveReveal.key", then navigation interacts with lists in
+ *    the following way: if the in-scope class for a list is 'reveal',
+ *    then each list item will be progressively revealed by "next"
+ *    navigation (and progressively hidden by "previous" navigation.
+ *    You can use 'A' to reveal them all, and 'R' to toggle the
+ *    progressive reveal behavior.
+ *
+ *    You can avoid flicker if you configure CSS to hide the things
+ *    that should be hidden by default. This JavaScript will handle
+ *    that case, even when progressiveReveal is disabled.
  */
 
 (function() {
@@ -32,36 +43,73 @@
   const KEY_H = 72;
   const KEY_HOME = 36;
 
+  const KEY_A = 65;
+  const KEY_R = 82;
   const KEY_S = 83;
 
-  const meta = document.querySelector("head meta[name='localStorage.key']");
+  const KEY_SPACE = 32;
+  const KEY_DOWN = 40;
+
+  const KEY_SHIFT = 16;
+  const KEY_QUESTION = 191;
+
+  const body = document.querySelector("body");
+
+  let meta = document.querySelector("head meta[name='localStorage.key']");
   const localStorageKey = meta && meta.getAttribute("content");
   const notesKey = "viewingNotes";
   let notesView = false;
+
+  meta = document.querySelector("head meta[name='progressiveReveal.key']");
+  const progressiveRevealKey = meta && meta.getAttribute("content");
+  let progressiveReveal = "true"; // String because it goes in localStorage
+  let revealedKey = "revealedKey";
+  let toBeRevealed = false;
+  let threeDots = null;
 
   const nav = function(event) {
     event = event || window.event;
     let keyCode = event.keyCode || event.which;
 
-    if (keyCode === KEY_N || keyCode === KEY_RIGHT) {
-      return nav_to(event, "next");
-    }
-
-    if (keyCode === KEY_P || keyCode === KEY_LEFT) {
-      return nav_to(event, "prev");
-    }
-
-    if (keyCode === KEY_U || keyCode === KEY_UP) {
-      return nav_to(event, "up");
-    }
-
-    if (keyCode === KEY_H || keyCode == KEY_HOME) {
-      return nav_to(event, "home");
-    }
-
-    if (localStorageKey && keyCode === KEY_S) {
-      viewNotes(!notesView);
-      return false;
+    switch (keyCode) {
+      case KEY_A:
+        return revealAll();
+      case KEY_N:
+      case KEY_RIGHT:
+        if (toBeRevealed && !event.shiftKey) {
+          return revealNext();
+        } else {
+          return nav_to(event, "next");
+        }
+      case KEY_P:
+      case KEY_LEFT:
+        return nav_to(event, "prev");
+      case KEY_U:
+      case KEY_UP:
+        return nav_to(event, "up");
+      case KEY_H:
+      case KEY_HOME:
+        return nav_to(event, "home");
+      case KEY_SPACE:
+      case KEY_DOWN:
+        return revealNext();
+      case KEY_S:
+        if (localStorageKey) {
+          viewNotes(!notesView);
+          return false;
+        }
+      case KEY_R:
+        if (event.shiftKey) {
+          return resetProgressiveReveal();
+        } else {
+          return toggleProgressiveReveal();
+        }
+      case KEY_QUESTION:
+        return debugInfo();
+      case KEY_SHIFT:
+        break;
+      default:
+        console.log("Pressed:", keyCode);
     }
 
     return true;
@@ -103,6 +151,243 @@
       }
     }
   };
+
+  const configureRevealList = function(list) {
+    let revealThisList = false;
+    let elem = list;
+    while (elem) {
+      if (elem.classList && elem.classList.contains("reveal")) {
+        revealThisList = true;
+        elem = null;
+      } else if (elem.classList && elem.classList.contains("noreveal")) {
+        elem = null;
+      } else {
+        elem = elem.parentNode;
+      }
+    }
+
+    if (revealThisList) {
+      let itemnum = 0;
+      list.querySelectorAll("li").forEach(function(item) {
+        itemnum++;
+
+        if (item.classList.contains("noreveal")) {
+          item.style.display = "list-item";
+        } else {
+          if (itemnum > 1) {
+            item.classList.add("toberevealed");
+            item.style.display = "none";
+            if (progressiveReveal !== "true") {
+              reveal(item);
+            }
+          }
+        }
+      });
+    }
+
+    toBeRevealed = (progressiveReveal === "true") && (toBeRevealed || revealThisList);
+  };
+
+  const configureReveal = function(elem) {
+    if (elem.tagName == "UL" || elem.tagName == "OL") {
+      // Lists are special; hide all but the first item by default
+      configureRevealList(elem);
+    } else {
+      if (elem.classList.contains("reveal")) {
+        elem.classList.add("toberevealed");
+        elem.style.display = "none";
+        if (progressiveReveal !== "true") {
+          reveal(elem);
+        }
+      } else {
+        elem.querySelectorAll(":scope > *").forEach(function(item) {
+          configureReveal(item);
+        });
+      }
+    }
+  };
+
+  const reveal = function(item) {
+    // We're about to reveal something, hide any currently revealed
+    // elements that are also marked as transitory.
+    document.querySelectorAll(".revealed.transitory").forEach(function(item) {
+      item.style.display = "none";
+    });
+
+    item.classList.replace("toberevealed", "revealed");
+    if (item.tagName === "LI") {
+      item.style.display = "list-item";
+    } else if (item.tagName === "SPAN") {
+      item.style.display = "inline";
+    } else {
+      item.style.display = "block";
+    }
+  };
+
+  const revealAll = function() {
+    document.querySelectorAll(".toberevealed").forEach(function(item) {
+      reveal(item);
+    });
+    toBeRevealed = false;
+    if (threeDots) {
+      threeDots.style.display = "none";
+    }
+
+    saveRevealed();
+    return false;
+  };
+
+  const revealNext = function() {
+    let revealed = false;
+    let item = document.querySelector(".toberevealed");
+    if (item) {
+      reveal(item);
+    }
+    item = document.querySelector(".toberevealed");
+    toBeRevealed = (item !== null);
+    if (!toBeRevealed) {
+      if (threeDots) {
+        threeDots.style.display = "none";
+      }
+      saveRevealed();
+    }
+    return false;
+  };
+
+  const toggleProgressiveReveal = function() {
+    if (!progressiveRevealKey) {
+      return false;
+    }
+
+    if (progressiveReveal === "true") {
+      revealAll();
+      progressiveReveal = "false";
+    } else {
+      progressiveReveal = "true";
+    }
+    window.localStorage.setItem(progressiveRevealKey, progressiveReveal);
+
+    let message = document.createElement("DIV");
+    if (progressiveReveal === "true") {
+      message.innerHTML = "Progressive reveal: on";
+    } else {
+      message.innerHTML = "Progressive reveal: off";
+    }
+    message.style.position = "absolute";
+    message.style.bottom = 0;
+    message.style.left = 0;
+    message.style.opacity = 1;
+    message.style.transition = "opacity 1s linear";
+    body.appendChild(message);
+
+    // Wait a moment and then turn off the opacity to trigger the transition.
+    window.setTimeout(function () {
+      message.style.opacity = 0;
+    }, 25);
+
+    return false;
+  };
+
+  const resetProgressiveReveal = function() {
+    if (progressiveRevealKey) {
+      progressiveReveal = "true";
+      window.localStorage.setItem(progressiveRevealKey, progressiveReveal);
+      window.localStorage.setItem(revealedKey, "");
+    }
+    return false;
+  };
+
+  const saveRevealed = function() {
+    if (progressiveRevealKey) {
+      let loc = window.location.toString().replace(",", "%2C");
+      let curlocs = window.localStorage.getItem(revealedKey);
+      if (!curlocs) {
+        curlocs = [];
+      } else {
+        curlocs = curlocs.split(",");
+      }
+      if (!curlocs.includes(loc)) {
+        curlocs.push(loc);
+        window.localStorage.setItem(revealedKey, curlocs.join(","));
+      }
+    }
+  };
+
+  const hasBeenRevealed = function() {
+    if (progressiveRevealKey) {
+      let loc = window.location.toString().replace(",", "%2C");
+      let curlocs = window.localStorage.getItem(revealedKey);
+      if (!curlocs) {
+        curlocs = [];
+      } else {
+        curlocs = curlocs.split(",");
+      }
+      return curlocs.includes(loc);
+    }
+    return false;
+  };
+
+  const debugInfo = function() {
+    console.log("Progressive reveal:", progressiveReveal);
+    console.log("Progressive reveal key:", progressiveRevealKey);
+    console.log("Local storage key:", localStorageKey);
+
+    let count = 0;
+    document.querySelectorAll(".toberevealed").forEach(function(item) {
+      console.log(item);
+      count += 1;
+    });
+    console.log(count, "items to be revealed on this page.");
+
+    if (progressiveRevealKey) {
+      let curlocs = window.localStorage.getItem(revealedKey);
+      if (!curlocs) {
+        curlocs = [];
+      } else {
+        curlocs = curlocs.split(",");
+      }
+      console.log("Pages revealed:", curlocs.length);
+      if (hasBeenRevealed()) {
+        console.log("This page has been revealed.");
+      } else {
+        console.log("This page has not been revealed.");
+      }
+    }
+
+    return false;
+  };
+
+  if (progressiveRevealKey) {
+    if (window.localStorage.getItem(progressiveRevealKey) === null) {
+      window.localStorage.setItem(progressiveRevealKey, progressiveReveal);
+      window.localStorage.setItem(revealedKey, "");
+    } else {
+      progressiveReveal = window.localStorage.getItem(progressiveRevealKey);
+    }
+
+    configureReveal(body);
+
+    if (toBeRevealed) {
+      threeDots = document.createElement("DIV");
+      threeDots.innerHTML = "⋮";
+      threeDots.style.position = "absolute";
+      threeDots.style.bottom = 0;
+      threeDots.style.left = 0;
+
+      if (progressiveReveal !== "true") {
+        threeDots.style.display = "none";
+      }
+
+      body.appendChild(threeDots);
+    }
+
+    if (hasBeenRevealed()) {
+      revealAll();
+    }
+  } else {
+    progressiveReveal = "false";
+    configureReveal(body);
+  }
 
   if (localStorageKey) {
     if (!window.localStorage.getItem(localStorageKey)

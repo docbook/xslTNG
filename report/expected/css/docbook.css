@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.3.0a2-SNAPSHOT
+/* DocBook xslTNG version 1.3.0
  *
  * This is docbook.css.
  *
@@ -1313,6 +1313,10 @@ li[db-mark='box'] {
 }
 
 /* ============================================================ */
+
+.foreignphrase {
+    font-style: italic;
+}
 
 .bold {
     font-weight: bold;

@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.2.0
+/* DocBook xslTNG version 1.3.0
  *
  * This is docbook.css.
  *
@@ -7,47 +7,158 @@
  */
 
 :root {
-    --table-border-style: 1px solid black;
-    --numbered-separator-style: 1px solid #dfdfdf;
-    --numbered-number-color: #dfdfdf;
-    --numbered-background-color: #f0f0f0;
-    --verbatim-odd-background-color: #f4f4f4;
-    --verbatim-even-background-color: inherit;
-    --sidebar-background-color: #f0f0f0;
-    --nav-background-color: #fdfdfd;
-    --border-grey: #afafaf;
     --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
     --body-family: "Noto Serif", serif, var(--symbol-fonts);
     --title-family: "Noto Sans", sans-serif, var(--symbol-fonts);
     --mono-family: "B612 Mono", monospace, var(--symbol-fonts);
-    --revadded-background-color: #cfffcf;
+
+    /* The default theme. */
+    --background-color: #fffff8;
+    --surface-color: #fffff8;
+    --primary-color: #7f7f7f;
+    --primary-variant-color: #5f5f5f;
+    --secondary-color: #ffbc42;
+    --error-color: #ffafaf;
+    --error-border-color: #b00020;
+    --on-background-color: #000000;
+    --on-surface-color: #000000;
+    --on-primary-color: #ffffff;
+    --on-primary-variant-color: #ffffff;
+    --on-secondary-color: #000000;
+    --on-error-color: #000000;
+    --enabled-color: rgb(240,240,240);
+    --hovered-color: rgb(235,235,235);
+    --focused-color: rgb(221,221,221);
+    --modal-overlay-color: rgba(255,255,255,0.85);
+
+    --border-color: var(--primary-color);
+
+    --header-color: var(--background-color);
+    --on-header-color: var(--on-background-color);
+
+    --sidebar-color: var(--primary-color);
+    --on-sidebar-color: var(--on-primary-color);
+
+    --table-border-style: 1px solid var(--primary-color);
+
+    --numbered-separator-style: 1px solid var(--primary-color);
+    --numbered-number-color: var(--on-surface-color);
+    --numbered-background-color: var(--focused-color);
+    --verbatim-odd-background-color: var(--hovered-color);
+    --verbatim-even-background-color: var(--enabled-color);
+
+    --verbatim-line-highlight-background-color: var(--primary-color);
+    --verbatim-line-highlight-color: var(--on-primary-color);
+
+    --revadded-background-color: var(--primary-color);
+    --revadded-color: var(--on-primary-color);
     --revadded-before: "<ins>";
     --revadded-after: "</ins>";
-    --revchanged-background-color: #ffffcf;
+
+    --revchanged-background-color: var(--secondary-color);
+    --revchanged-color: var(--on-secondary-color);
     --revchanged-before: "<chg>";
     --revchanged-after: "</chg>";
-    --revdeleted-background-color: #ffcfcf;
+
+    --revdeleted-background-color: var(--error-color);
+    --revdeleted-color: var(--on-error-color);
     --revdeleted-before: "<del>";
     --revdeleted-after: "</del>";
 
-    --note-border-color: #d3d3d3;
+    --note-border-color: var(--primary-color);
     --note-border-style: 2pt solid var(--note-border-color);
-    --note-background-color: inherit;
-    --tip-border-color: #d3d3d3;
+    --note-color: var(--surface-color);
+    --on-note-color: var(--on-surface-color);
+
+    --tip-border-color: var(--primary-color);
     --tip-border-style: 2pt solid var(--tip-border-color);
-    --tip-background-color: inherit;
-    --important-border-color: #ffd300;
+    --tip-color: var(--surface-color);
+    --on-tip-color: var(--on-surface-color);
+
+    --important-border-color: var(--secondary-color);
     --important-border-style: 2pt solid var(--important-border-color);
-    --important-background-color: #ffffe0;
-    --caution-border-color: #ffd300;
+    --important-color: var(--surface-color);
+    --on-important-color: var(--on-surface-color);
+
+    --caution-border-color: var(--secondary-color);
     --caution-border-style: 2pt solid var(--caution-border-color);
-    --caution-background-color: #ffffe0;
-    --warning-border-color: #d30000;
+    --caution-color: var(--surface-color);
+    --on-caution-color: var(--on-surface-color);
+
+    --warning-border-color: var(--error-border-color);
     --warning-border-style: 2pt solid var(--warning-border-color);
-    --warning-background-color: #ffe0e0;
-    --danger-border-color: #d30000;
+    --warning-color: var(--error-color);
+    --on-warning-color: var(--on-error-color);
+
+    --danger-border-color: var(--error-border-color);
     --danger-border-style: 2pt solid var(--danger-border-color);
-    --danger-background-color: #ffe0e0;
+    --danger-color: var(--error-color);
+    --on-danger-color: var(--on-error-color);
+
+    --debug-background-color: var(--error-color);
+    --debug-color: var(--on-error-color);
+
+    --remark-background-color: var(--primary-color);
+    --remark-color: var(--on-primary-color);
+    --remark-border-color: var(--primary-color);
+    --remark-border-style: 1px solid var(--remark-border-color);
+
+    --annotation-separator-border-style: 2px dashed var(--border-color);
+
+    --annotation-header-background-color: var(--surface-color);
+    --annotation-header-color: var(--on-surface-color);
+    --annotation-header-separator-border-style: 1px solid var(--primary-color);
+    --annotation-body-border-style: 1px solid var(--primary-color);
+
+    --nav-background-color: var(--surface-color);
+    --error-border-style: 1px solid var(--error-border-color);
+    --keycap-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+/* These choices are inspired by the material design system. Someone
+   with actual graphical design skills would do it better. Pull
+   requests gleefully accepted.
+*/
+
+html.materials-dark {
+    --background-color: #121212;
+    --surface-color: #121212;
+    --primary-color: #bb86fc;
+    --primary-variant-color: #3700b3;
+    --secondary-color: #03dac6;
+    --error-color: #cf6679;
+    --error-border-color: #b00020;
+    --on-background-color: #ffffff;
+    --on-surface-color: #ffffff;
+    --on-primary-color: #000000;
+    --on-primary-variant-color: #ffffff;
+    --on-secondary-color: #000000;
+    --on-error-color: #000000;
+    --enabled-color: rgb(44,33,56);
+    --hovered-color: rgb(49,38,63);
+    --focused-color: rgb(63,51,74);
+    --modal-overlay-color: rgba(18,18,18,0.85);
+    --keycap-box-shadow: 1px 1px 1px 0px rgba(255,255,255,0.75);
+}
+
+html.materials-light {
+    --background-color: #ffffff;
+    --surface-color: #ffffff;
+    --primary-color: #6200ee;
+    --primary-variant-color: #3700b3;
+    --secondary-color: #03dac6;
+    --error-color: #b00020;
+    --error-border-color: #cf6679;
+    --on-background-color: #000000;
+    --on-surface-color: #000000;
+    --on-primary-color: #ffffff;
+    --on-primary-variant-color: #ffffff;
+    --on-secondary-color: #000000;
+    --on-error-color: #ffffff;
+    --enabled-color: rgb(240,240,240);
+    --hovered-color: rgb(235,235,235);
+    --focused-color: rgb(221,221,221);
+    --modal-overlay-color: rgba(255,255,255,0.85);
 }
 
 html {
@@ -71,15 +182,15 @@ body {
 }
 
 .error * {
-    background-color: #ffafaf;
-    color: black;
+    background-color: var(--error-color);
+    color: var(--on-error-color);
     padding-left: 2px;
     padding-right: 2px;
 }
 
 span.error {
     display: inline-block;
-    border: 1px solid #ff0000;
+    border: var(--error-border-style);
     border-radius: 4px;
     padding: 2px;
     margin-right: 0.5em;
@@ -149,20 +260,22 @@ span.error.broken-link::after {
     padding-top: 1em;
     padding-bottom: 1em;
     padding-left: 1em;
-    background-color: #ffdfdf;
+    background-color: var(--debug-background-color);
+    color: var(--debug-color);
 }
 
 .remark {
-    border: 1px solid #ffdfdf;
+    border: var(--remark-border-style);
     border-radius: 3px;
     padding-left: 4px;
     padding-right: 4px;
+    color: var(--on-surface-color);
     background: repeating-linear-gradient(
         135deg,
-        transparent,
-        transparent 5px,
-        #ffefef 5px,
-        #ffefef 10px
+        var(--focused-color),
+        var(--focused-color) 5px,
+        var(--enabled-color) 5px,
+        var(--enabled-color) 10px
     );
 }
 
@@ -182,7 +295,7 @@ span.remark {
     padding-right: 0.3em;
     margin: 0;
     font-size: 85%;
-    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    box-shadow: var(--keycap-box-shadow);
 }
 
 code {
@@ -251,6 +364,8 @@ a.pmuj {
 /* ============================================================ */
 
 h1, h2, h3, h4, h5, h6 {
+    color: var(--on-header-color);
+    background-color: var(--header-color);
     font-family: var(--title-family);
     font-weight: 600;
     font-style: normal;
@@ -298,7 +413,9 @@ h6 { font-weight: 400;
      line-height: 1;
    }
 
-div .title {
+.title {
+    color: var(--on-header-color);
+    background-color: var(--header-color);
     font-weight: bold;
     font-family: var(--title-family);
     margin-bottom: 0.5em;
@@ -328,7 +445,7 @@ header .authorgroup {
     text-align: left;
     margin-left: 5em;
     margin-right: 5em;
-    border: 1px solid var(--border-grey);
+    border: 1px solid var(--border-color);
     padding-left: 1em;
     padding-right: 1em;
     border-radius: 0.5em;
@@ -341,7 +458,7 @@ header .authorgroup {
     padding-right: 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border: 1px solid var(--border-grey);
+    border: 1px solid var(--border-color);
     border-radius: 0.5em;
 }
 
@@ -350,7 +467,7 @@ header .authorgroup {
 }
 
 .revhistory .title {
-    border-bottom: 1px solid var(--border-grey);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .revhistory td p {
@@ -530,7 +647,6 @@ th.char {
 }
 
 .admonition {
-    /* background-color: #ffafaf; */
     border-radius: 0.5rem;
     min-height: 3rem;
     padding-top: 0;
@@ -542,23 +658,20 @@ th.char {
 }
 
 .admonition > div {
-    /* background-color: #afffaf; */
     display: table-row;
 }
 
 .admonition .icon {
-    /* background-color: #afffff; */
     display: table-cell;
     padding-top: 1.5rem;
     width: 4.5rem;
     text-align: center;
     vertical-align: top;
     font-size: 3rem;
-    color: #d3d3d3;
+    color: var(--note-border-color);
 }
 
 .admonition .body {
-    /* background-color: #ffafff; */
     display: table-cell;
     padding-right: 1rem;
 }
@@ -569,33 +682,48 @@ th.char {
 
 .note {
     border: var(--note-border-style);
-    background-color: var(--note-background-color);
+    background-color: var(--note-color);
+    color: var(--on-note-color);
 } 
 
 .note .icon {
     color: var(--note-border-color);
 }    
 
+.note .title {
+    background-color: var(--note-color);
+    color: var(--on-note-color);
+}
+
 .note code {
     border-color: var(--note-border-color);
+    background-color: var(--note-color);
 }
 
 .tip {
     border: var(--tip-border-style);
-    background-color: var(--tip-background-color);
+    background-color: var(--tip-color);
+    color: var(--on-tip-color);
 } 
 
 .tip .icon {
     color: var(--tip-border-color);
 }    
 
-.note code {
+.tip .title {
+    background-color: var(--tip-color);
+    color: var(--on-tip-color);
+}
+
+.tip code {
     border-color: var(--tip-border-color);
+    background-color: var(--tip-color);
 }
 
 .important {
     border: var(--important-border-style);
-    background-color: var(--important-background-color);
+    background-color: var(--important-color);
+    color: var(--on-important-color);
 } 
 
 .important .icon {
@@ -603,58 +731,77 @@ th.char {
     color: var(--important-border-color);
 }
 
+.important .title {
+    background-color: var(--important-color);
+    color: var(--on-important-color);
+}
+
 .important code {
-    background-color: var(--important-background-color);
+    background-color: var(--important-color);
     border-color: var(--important-border-color);
 }
 
 .caution {
     border: var(--caution-border-style);
-    background-color: var(--caution-background-color);
+    background-color: var(--caution-color);
+    color: var(--on-caution-color);
 } 
 
 .caution .icon {
     color: var(--caution-border-color);
 }
 
+.caution .title {
+    background-color: var(--caution-color);
+    color: var(--on-caution-color);
+}
+
 .caution code {
-    background-color: var(--caution-background-color);
+    background-color: var(--caution-color);
     border-color: var(--caution-border-color);
 }
 
 .warning {
     border: var(--warning-border-style);
-    background-color: var(--warning-background-color);
+    background-color: var(--warning-color);
+    color: var(--on-warning-color);
 } 
 
 .warning .icon {
     color: var(--warning-border-color);
 }
 
+.warning .title {
+    background-color: var(--warning-color);
+    color: var(--on-warning-color);
+}
+
 .warning code {
-    background-color: var(--warning-background-color);
+    background-color: var(--warning-color);
     border-color: var(--warning-border-color);
 }
 
 .danger {
     border: var(--danger-border-style);
-    background-color: var(--danger-background-color);
+    background-color: var(--danger-color);
+    color: var(--on-danger-color);
 } 
 
 .danger .icon {
     color: var(--danger-border-color);
 }    
 
+.danger .title {
+    background-color: var(--danger-color);
+    color: var(--on-danger-color);
+}
+
 .danger code {
-    background-color: var(--danger-background-color);
+    background-color: var(--danger-color);
     border-color: var(--danger-border-color);
 }
 
 /* ============================================================ */
-
-.line.highlight {
-    background-color: #ffe0e0;
-}
 
 .pre-wrap {
     overflow-x: scroll;
@@ -749,6 +896,11 @@ pre.verbatim span.ld {
 pre.numbered span.ld {
     border-left: var(--numbered-separator-style);
     padding-left: 0.25em;
+}
+
+pre.verbatim span.line.highlight {
+    background-color: var(--verbatim-line-highlight-background-color);
+    color: var(--verbatim-line-highlight-color);
 }
 
 /* ============================================================ */
@@ -951,7 +1103,7 @@ blockquote p + .attribution {
 
 .figure,
 .example {
-    border: 1px solid #afafaf;
+    border: 1px solid var(--border-color);
 }
 
 .figure .title {
@@ -1044,6 +1196,7 @@ a.callout-bug:visited {
 
 .revadded {
     background-color: var(--revadded-background-color);
+    color: var(--revadded-color);
 }
 
 .revadded::before {
@@ -1056,6 +1209,7 @@ a.callout-bug:visited {
 
 .revchanged {
     background-color: var(--revchanged-background-color);
+    color: var(--revchanged-color);
 }
 
 .revchanged::before {
@@ -1068,6 +1222,7 @@ a.callout-bug:visited {
 
 .revdeleted {
     background-color: var(--revdeleted-background-color);
+    color: var(--revdeleted-color);
 }
 
 .revdeleted::before {
@@ -1137,13 +1292,18 @@ li[db-mark='box'] {
 /* ============================================================ */
 
 .sidebar {
-    margin-left: 4rem;
-    background-color: var(--sidebar-background-color);
+    background-color: var(--sidebar-color);
+    color: var(--on-sidebar-color);
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
     padding-top: 1em;
     border-radius: 0.5em;
+}
+
+.sidebar .title {
+    background-color: var(--sidebar-color);
+    color: var(--on-sidebar-color);
 }
 
 /* ============================================================ */
@@ -1153,6 +1313,10 @@ li[db-mark='box'] {
 }
 
 /* ============================================================ */
+
+.foreignphrase {
+    font-style: italic;
+}
 
 .bold {
     font-weight: bold;
@@ -1191,3 +1355,99 @@ em em me em em em {
 }
 
 /* ============================================================ */
+/* Inline annotations */
+
+.annotations {
+    border-top: var(--annotation-separator-border-style);
+    padding-top: 1em;
+    margin-top: 6em;
+}
+
+a.annomark,
+a.annomark:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.annotation-wrapper {
+    margin-bottom: 1em;
+}
+
+.annotation-body {
+    border: var(--annotation-body-border-style);
+    border-bottom-left-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;;
+}
+
+.annotation-header {
+    height: 2em;
+    background-color: var(--annotation-header-background-color);
+    color: var(--annotation-header-color);
+    padding-left: 1em;
+    padding-right: 0.5em;
+    border-bottom: var(--annotation-header-separator-border-style);
+}
+
+.annotation-header .annotation-close {
+    float: right;
+}
+
+.annotation-content {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+/* ============================================================ */
+/* XLink extended links. The ".js" classes only apply if
+   JavaScript XLink processing is available and enabled.
+*/
+
+.xlink .source {
+    border-bottom: 1px dotted black;
+    cursor: pointer;
+}
+
+.xlink-arc-list {
+    display: inline;
+    font-style: normal;
+    cursor: pointer;
+    font-size: 70%;
+}
+
+.xlink-arc-list.js::before {
+    content: " "; /* thin space */
+}
+
+.nhrefs.js .xlink-arc-delim {
+    display: none;
+}
+
+.nhrefs.js {
+    font-style: normal;
+    display: none;
+    margin-left: 4px;
+    margin-right: 0;
+    padding-bottom: 1em;
+    border: 2px solid var(--primary-variant-color);
+    border-radius: 4px;
+    z-index: 2;
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+}
+
+.nhrefs.js .arc {
+    display: list-item;
+    margin-left: 1.5em;
+    padding-right: 1em;
+}
+
+.nhrefs.js .xlink-arc-title {
+    display: block;
+    background-color: var(--primary-variant-color);
+    color: var(--on-primary-variant-color);
+    margin-left: 0;
+    margin-bottom: 0.5em;
+    text-align: center;
+}

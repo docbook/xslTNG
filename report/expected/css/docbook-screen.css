@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.3.0a2-SNAPSHOT
+/* DocBook xslTNG version 1.3.0
  *
  * This is docbook-screen.css.
  *
@@ -352,6 +352,30 @@ nav.top div {
     text-align: center;
     background-color: var(--error-color);
     color: var(--on-error-color);
+}
+
+/* ============================================================ */
+/* For progressive reveals in chunked content. */
+
+.reveal {
+    display: none;
+}
+
+ul.reveal,
+ol.reveal {
+    display: inherit;
+}
+
+.reveal > li {
+    display: none;
+}
+
+.reveal > li:first-child {
+    display: list-item;
+}
+
+.noreveal {
+    display: inherit;
 }
 
 /* ============================================================ */

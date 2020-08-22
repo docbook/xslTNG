@@ -3,7 +3,7 @@
           xmlns:x="http://www.jenitennison.com/xslt/xspec"
           xmlns:xs="http://www.w3.org/2001/XMLSchema"
           stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-          date="2020-08-17T20:23:59.436Z"
+          date="2020-08-22T17:14:43.227Z"
           xspec="file:/home/circleci/repo/build/xspec/main.xspec">
    <x:scenario xmlns:db="http://docbook.org/ns/docbook"
                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
@@ -333,10 +333,7 @@
                  mode="m:docbook"
                  select="//*[@xml:id='ansi1']"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="ansi1"
-              class="funcsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="ansi1" class="funcsynopsis">
             <div class="pre-wrap">
                <pre class="funcsynopsisinfo verbatim">
                   <code>#include &lt;varargs.h&gt;</code>
@@ -422,10 +419,7 @@
                  mode="m:docbook"
                  select="//*[@xml:id='ansi2']"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="ansi2"
-              class="funcsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="ansi2" class="funcsynopsis">
             <div class="funcprototype">
                <table class="prototype">
                   <tbody>
@@ -493,10 +487,7 @@
                  mode="m:docbook"
                  select="//*[@xml:id='ansi3']"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="ansi3"
-              class="funcsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="ansi3" class="funcsynopsis">
             <div class="funcprototype">
                <table class="prototype">
                   <tbody>
@@ -568,10 +559,7 @@
                  mode="m:docbook"
                  select="//*[@xml:id='kr1']"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="kr1"
-              class="funcsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="kr1" class="funcsynopsis">
             <div class="pre-wrap">
                <pre class="funcsynopsisinfo verbatim">
                   <code>#include &lt;varargs.h&gt;</code>
@@ -677,10 +665,7 @@
                  mode="m:docbook"
                  select="//*[@xml:id='kr2']"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="kr2"
-              class="funcsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="kr2" class="funcsynopsis">
             <div class="funcprototype">
                <table class="prototype">
                   <tbody>
@@ -806,10 +791,7 @@
                  mode="m:docbook"
                  select="//*[@xml:id='kr3']"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="kr3"
-              class="funcsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="kr3" class="funcsynopsis">
             <div class="funcprototype">
                <table class="prototype">
                   <tbody>
@@ -1500,10 +1482,7 @@
                  select="//*[@xml:id='class']"
                  mode="m:docbook"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="class"
-              class="classsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="class" class="classsynopsis">
             <div class="pre-wrap">
                <pre class="classsynopsisinfo verbatim">
                   <code>// This is just a made up example.
@@ -1553,10 +1532,7 @@
                  select="//*[@xml:id='class']"
                  mode="m:docbook"/>
       <x:result select="/element()">
-         <div xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:tp="http://docbook.org/ns/docbook/templates/private"
-              id="class"
-              class="classsynopsis">
+         <div xmlns="http://www.w3.org/1999/xhtml" id="class" class="classsynopsis">
             <pre>class Foo {
   <span class="methodsynopsis">public static double getQuote(<span class="methodparam">String symbol</span>,
                                 <span class="methodparam">double price</span>);</span>

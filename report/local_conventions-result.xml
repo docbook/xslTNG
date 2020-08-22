@@ -3,14 +3,14 @@
           xmlns:x="http://www.jenitennison.com/xslt/xspec"
           xmlns:xs="http://www.w3.org/2001/XMLSchema"
           stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-          date="2020-08-17T20:23:44.444Z"
+          date="2020-08-22T17:14:28.699Z"
           xspec="file:/home/circleci/repo/build/xspec/local_conventions.xspec">
    <x:scenario id="scenario1"
                xspec="file:/home/circleci/repo/build/xspec/local_conventions.xspec">
       <x:label>When transforming local.001</x:label>
       <x:context href="file:/home/circleci/repo/src/test/resources/xml/local.001.xml"/>
       <x:result select="/self::document-node()">
-         <html xmlns="http://www.w3.org/1999/xhtml">
+         <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
             <head>
                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                <title>Unit Test: local.001.xml</title>
@@ -43,7 +43,7 @@ this is the <code class="mode">main</code> mode; this is an
       <x:test id="scenario1-expect1" successful="true">
          <x:label>expect the local conventions to be handled</x:label>
          <x:expect select="/self::document-node()">
-            <html xmlns="http://www.w3.org/1999/xhtml">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
                <head>
                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                   <title>Unit Test: local.001.xml</title>
