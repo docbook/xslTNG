@@ -355,6 +355,30 @@ nav.top div {
 }
 
 /* ============================================================ */
+/* For progressive reveals in chunked content. */
+
+.reveal {
+    display: none;
+}
+
+ul.reveal,
+ol.reveal {
+    display: inherit;
+}
+
+.reveal > li {
+    display: none;
+}
+
+.reveal > li:first-child {
+    display: list-item;
+}
+
+.noreveal {
+    display: inherit;
+}
+
+/* ============================================================ */
 
 @media screen and (max-width: 1199px) {
     nav.top div {

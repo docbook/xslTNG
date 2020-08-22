@@ -179,5 +179,7 @@
         setTheme(dark);
       }
     }
+
+    html.style.display = "block";
   }
 })();

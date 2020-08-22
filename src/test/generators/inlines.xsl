@@ -45,7 +45,7 @@
   'exceptionname': 'code',
   'filename': 'code',
   'firstterm': 'span',
-  'foreignphrase': 'i',
+  'foreignphrase': 'span',
   'function': 'code',
   'glossterm': 'span',
   'guibutton': 'span',
