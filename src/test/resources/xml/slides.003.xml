@@ -1,0 +1,153 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      version="5.1">
+<info>
+<title>An Example of a Presentation</title>
+<author><personname>Norm Tovey-Walsh</personname></author>
+<pubdate>2020-08-18</pubdate>
+<revhistory>
+  <revision>
+    <revnumber>1.0.0</revnumber>
+    <date>2020-08-18</date>
+    <authorinitials>ndw</authorinitials>
+    <revremark>Initial publication.</revremark>
+  </revision>
+</revhistory>
+<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="windowLocation"/>
+<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="progressiveReveal.key" content="progressiveReveal"/>
+</info>
+
+<article role="foil">
+<title>Progressive reveal list</title>
+<itemizedlist role="reveal">
+<listitem><para>First item
+</para></listitem>
+<listitem><para>Second item
+</para></listitem>
+<listitem><para>Third item
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Transitory item</title>
+<itemizedlist role="reveal">
+<listitem><para>First item
+</para></listitem>
+<listitem role="transitory"><para>Second item
+</para></listitem>
+<listitem><para>Third item
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Transitory item, initially visible</title>
+<itemizedlist role="reveal">
+<listitem><para>First item
+</para></listitem>
+<listitem><para>Second item
+</para></listitem>
+<listitem role="noreveal transitory"><para>Third item
+</para></listitem>
+<listitem><para>Fourth item
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Nested reveal list</title>
+<itemizedlist role="reveal">
+<listitem><para>First item
+</para></listitem>
+<listitem><para>Second item
+</para>
+<itemizedlist>
+<listitem><para>Not reveal
+</para></listitem>
+<listitem><para>Also not reveal
+</para></listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Third item
+</para>
+<itemizedlist role="reveal">
+<listitem><para>Reveal
+</para></listitem>
+<listitem><para>Also reveal
+</para></listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Fourth item
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Nested reveal list, transitory</title>
+<itemizedlist role="reveal">
+<listitem><para>First item
+</para></listitem>
+<listitem><para>Second item
+</para>
+<itemizedlist>
+<listitem><para>Not reveal
+</para></listitem>
+<listitem><para>Also not reveal
+</para></listitem>
+</itemizedlist>
+</listitem>
+<listitem role="transitory"><para>Third item
+</para>
+<itemizedlist role="reveal">
+<listitem><para>Reveal
+</para></listitem>
+<listitem><para>Also reveal
+</para></listitem>
+</itemizedlist>
+</listitem>
+<listitem><para>Fourth item
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Non-list reveal</title>
+<para>Introductory para
+</para>
+<para role="reveal">First para
+</para>
+<para role="reveal">Second para
+</para>
+<para role="reveal">Third para
+</para>
+</article>
+
+<article role="foil">
+<title>Transitory non-list</title>
+<para>Introductory para
+</para>
+<para role="reveal">First para
+</para>
+<para role="reveal transitory">Second para
+</para>
+<para role="reveal">Third para
+</para>
+</article>
+
+<article role="foil">
+<title>Transitory, initially visible</title>
+<para>Introductory para
+</para>
+<para role="reveal">First para
+</para>
+<para role="transitory">Second para
+</para>
+<para role="reveal">Third para
+</para>
+</article>
+
+</book>
