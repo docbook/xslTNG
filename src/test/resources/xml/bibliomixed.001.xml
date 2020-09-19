@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+  <title>Unit Test: bibliomixed.001</title>
+</info>
+
+<para>Test case for
+<link xlink:href="https://github.com/docbook/xslTNG/issues/76">issue 76</link>.</para>
+
+<bibliolist>
+  <title>Bibliography List</title>
+
+  <bibliomixed><biblioid>GCRT5021</biblioid>, <title>Track System Requirements</title>. Issue number: <edition>5</edition>. Issue date: <pubdate>December 2011</pubdate>. In-force date: <releaseinfo>March 2012</releaseinfo>. <bibliomisc>Application conditions: Part 5</bibliomisc>. </bibliomixed>
+
+</bibliolist>
+
+</article>
