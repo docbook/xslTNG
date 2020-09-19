@@ -115,6 +115,13 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="db:releaseinfo" mode="m:bibliomixed">
+  <span>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:apply-templates mode="m:biblioentry"/>
+  </span>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="db:biblioset" mode="m:biblioentry">
