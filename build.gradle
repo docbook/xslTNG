@@ -29,6 +29,9 @@ import de.undercouch.gradle.tasks.download.Download
 repositories {
   mavenLocal()
   mavenCentral()
+  maven {
+    url "https://dev.saxonica.com/maven"
+  }
 }
 
 configurations.all {
@@ -38,17 +41,14 @@ configurations.all {
 }
 
 configurations {
-  saxonee.extendsFrom(implementation)
   validateRuntime.extendsFrom(implementation)
   projectImplementationClasspath.extendsFrom(implementation)
   projectRuntimeClasspath.extendsFrom(runtimeOnly)
 }
 
 dependencies {
-  saxonee fileTree(dir: "lib/${saxonVersion}").include("*.jar")
-  implementation fileTree(dir: "lib").include("*.jar")
   implementation (
-    [group: 'net.sf.saxon', name: 'Saxon-HE', version: saxonVersion],
+    [group: saxonGroup, name: saxonEdition, version: saxonVersion],
     [group: 'com.drewnoakes', name: 'metadata-extractor',
      version: metadataExtractorVersion],
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
@@ -164,32 +164,10 @@ def findPygmentize() {
   return script
 }
 
-def heAvailable=true
-def eeAvailable=false
-def peAvailable=false
-configurations.saxonee.each { it ->
-  eeAvailable = eeAvailable || it.toString().contains("saxon-ee")
-  peAvailable = peAvailable || it.toString().contains("saxon-pe")
-}
-configurations.compileClasspath.each { it ->
-  eeAvailable = eeAvailable || it.toString().contains("saxon-ee")
-  peAvailable = peAvailable || it.toString().contains("saxon-pe")
-}
-
-if (saxonEE == "true" && !(eeAvailable || peAvailable)) {
-  println("Request for SAXON EE ignored; neither EE nor PE appear to be available")
-}
-
 // This is all a complete hack that I worked out by trial and error
 def EXCP="${projectDir}/build/classes/java/main"
-if (saxonEE != "false" && (eeAvailable || peAvailable)) {
-  configurations.saxonee.each { it ->
-    EXCP += ":" + it
-  }
-} else {
-  configurations.compileClasspath.each { it ->
-    EXCP += ":" + it
-  }
+configurations.compileClasspath.each { it ->
+  EXCP += ":" + it
 }
 
 task configureEnvironment() {
@@ -410,6 +388,7 @@ task copyReportResources(type: Copy,
 task copyReportImages(type: Copy) {
   from "src/website/resources"
   include "img/**"
+  include "media/**"
   exclude "olinkdb/**"
   into "${buildDir}/report"
   doFirst {
