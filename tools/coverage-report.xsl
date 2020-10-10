@@ -96,7 +96,7 @@
       <header>
         <h1><span class="text">DocBook xslTNG</span
         ><span class="img"
-        ><img class="logo" alt="[xslTNG logo]" src="../img/DocBookXslTNG.png"/></span></h1>
+        ><img class="logo" alt="[xslTNG logo]" src="../media/DocBookXslTNG.png"/></span></h1>
         <h2>Coverage Report</h2>
       </header>
       <main>
