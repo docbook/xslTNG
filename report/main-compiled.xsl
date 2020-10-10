@@ -2059,8 +2059,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d167e1" select="('a', 'b', '3')"/>
-            <xsl:sequence select="f:spaces($impl:param-d167e1)"/>
+            <xsl:variable name="impl:param-d166e1" select="('a', 'b', '3')"/>
+            <xsl:sequence select="f:spaces($impl:param-d166e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -2103,8 +2103,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d175e1" select="('0', '1', '0')"/>
-            <xsl:sequence select="f:spaces($impl:param-d175e1)"/>
+            <xsl:variable name="impl:param-d172e1" select="('0', '1', '0')"/>
+            <xsl:sequence select="f:spaces($impl:param-d172e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -2151,7 +2151,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d183e0-doc"
+                          name="impl:context-d178e0-doc"
                           as="document-node()">
                <xsl:document>
                   <anchor>
@@ -2161,14 +2161,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d183e0"
+                          name="impl:context-d178e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d183e0-doc">
+               <xsl:for-each select="$impl:context-d178e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d183e0"
+                                 select="$impl:context-d178e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -2478,7 +2478,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d207e0-doc"
+                          name="impl:context-d196e0-doc"
                           as="document-node()">
                <xsl:document>
                   <emphasis>
@@ -2488,14 +2488,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d207e0"
+                          name="impl:context-d196e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d207e0-doc">
+               <xsl:for-each select="$impl:context-d196e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d207e0"
+                                 select="$impl:context-d196e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -2556,7 +2556,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d215e0-doc"
+                          name="impl:context-d202e0-doc"
                           as="document-node()">
                <xsl:document>
                   <code>
@@ -2565,14 +2565,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d215e0"
+                          name="impl:context-d202e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d215e0-doc">
+               <xsl:for-each select="$impl:context-d202e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d215e0"
+                                 select="$impl:context-d202e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -2828,7 +2828,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d235e0-doc"
+                          name="impl:context-d217e0-doc"
                           as="document-node()">
                <xsl:document>
                   <code>
@@ -2839,14 +2839,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d235e0"
+                          name="impl:context-d217e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d235e0-doc">
+               <xsl:for-each select="$impl:context-d217e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d235e0"
+                                 select="$impl:context-d217e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -3157,7 +3157,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d259e0-doc"
+                          name="impl:context-d235e0-doc"
                           as="document-node()">
                <xsl:document>
                   <quote>
@@ -3166,14 +3166,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d259e0"
+                          name="impl:context-d235e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d259e0-doc">
+               <xsl:for-each select="$impl:context-d235e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d259e0"
+                                 select="$impl:context-d235e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -3429,7 +3429,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d279e0-doc"
+                          name="impl:context-d250e0-doc"
                           as="document-node()">
                <xsl:document>
                   <quote>
@@ -3440,14 +3440,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d279e0"
+                          name="impl:context-d250e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d279e0-doc">
+               <xsl:for-each select="$impl:context-d250e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d279e0"
+                                 select="$impl:context-d250e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -3758,7 +3758,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d303e0-doc"
+                          name="impl:context-d268e0-doc"
                           as="document-node()">
                <xsl:document>
                   <subscript>
@@ -3767,14 +3767,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d303e0"
+                          name="impl:context-d268e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d303e0-doc">
+               <xsl:for-each select="$impl:context-d268e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d303e0"
+                                 select="$impl:context-d268e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -4030,7 +4030,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d323e0-doc"
+                          name="impl:context-d283e0-doc"
                           as="document-node()">
                <xsl:document>
                   <subscript>
@@ -4041,14 +4041,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d323e0"
+                          name="impl:context-d283e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d323e0-doc">
+               <xsl:for-each select="$impl:context-d283e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d323e0"
+                                 select="$impl:context-d283e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -4359,7 +4359,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d347e0-doc"
+                          name="impl:context-d301e0-doc"
                           as="document-node()">
                <xsl:document>
                   <superscript>
@@ -4368,14 +4368,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d347e0"
+                          name="impl:context-d301e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d347e0-doc">
+               <xsl:for-each select="$impl:context-d301e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d347e0"
+                                 select="$impl:context-d301e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -4631,7 +4631,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d367e0-doc"
+                          name="impl:context-d316e0-doc"
                           as="document-node()">
                <xsl:document>
                   <superscript>
@@ -4642,14 +4642,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d367e0"
+                          name="impl:context-d316e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d367e0-doc">
+               <xsl:for-each select="$impl:context-d316e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d367e0"
+                                 select="$impl:context-d316e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -4960,7 +4960,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d391e0-doc"
+                          name="impl:context-d334e0-doc"
                           as="document-node()">
                <xsl:document>
                   <tag>
@@ -4969,14 +4969,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d391e0"
+                          name="impl:context-d334e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d391e0-doc">
+               <xsl:for-each select="$impl:context-d334e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d391e0"
+                                 select="$impl:context-d334e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -5232,7 +5232,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d411e0-doc"
+                          name="impl:context-d349e0-doc"
                           as="document-node()">
                <xsl:document>
                   <tag>
@@ -5243,14 +5243,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d411e0"
+                          name="impl:context-d349e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d411e0-doc">
+               <xsl:for-each select="$impl:context-d349e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d411e0"
+                                 select="$impl:context-d349e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -5561,7 +5561,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d435e0-doc"
+                          name="impl:context-d367e0-doc"
                           as="document-node()">
                <xsl:document>
                   <personname>
@@ -5570,14 +5570,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d435e0"
+                          name="impl:context-d367e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d435e0-doc">
+               <xsl:for-each select="$impl:context-d367e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d435e0"
+                                 select="$impl:context-d367e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -5833,7 +5833,7 @@
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d455e0-doc"
+                          name="impl:context-d382e0-doc"
                           as="document-node()">
                <xsl:document>
                   <personname>
@@ -5844,14 +5844,14 @@
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d455e0"
+                          name="impl:context-d382e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d455e0-doc">
+               <xsl:for-each select="$impl:context-d382e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d455e0"
+                                 select="$impl:context-d382e0"
                                  mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6160,16 +6160,16 @@
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:context-d479e0-uri" as="xs:anyURI">file:/home/circleci/repo/src/test/resources/xml/classsynopsis.001.xml</xsl:variable>
-            <xsl:variable name="impl:context-d479e0-doc"
+            <xsl:variable name="impl:context-d400e0-uri" as="xs:anyURI">file:/home/circleci/repo/src/test/resources/xml/classsynopsis.001.xml</xsl:variable>
+            <xsl:variable name="impl:context-d400e0-doc"
                           as="document-node()"
-                          select="doc($impl:context-d479e0-uri)"/>
-            <xsl:variable name="impl:context-d479e0" as="item()*">
-               <xsl:for-each select="$impl:context-d479e0-doc">
+                          select="doc($impl:context-d400e0-uri)"/>
+            <xsl:variable name="impl:context-d400e0" as="item()*">
+               <xsl:for-each select="$impl:context-d400e0-doc">
                   <xsl:sequence select="//*[@xml:id='class']"/>
                </xsl:for-each>
             </xsl:variable>
-            <xsl:apply-templates select="$impl:context-d479e0" mode="m:docbook"/>
+            <xsl:apply-templates select="$impl:context-d400e0" mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6222,16 +6222,16 @@
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:context-d487e0-uri" as="xs:anyURI">file:/home/circleci/repo/src/test/resources/xml/methodsynopsis.001.xml</xsl:variable>
-            <xsl:variable name="impl:context-d487e0-doc"
+            <xsl:variable name="impl:context-d406e0-uri" as="xs:anyURI">file:/home/circleci/repo/src/test/resources/xml/methodsynopsis.001.xml</xsl:variable>
+            <xsl:variable name="impl:context-d406e0-doc"
                           as="document-node()"
-                          select="doc($impl:context-d487e0-uri)"/>
-            <xsl:variable name="impl:context-d487e0" as="item()*">
-               <xsl:for-each select="$impl:context-d487e0-doc">
+                          select="doc($impl:context-d406e0-uri)"/>
+            <xsl:variable name="impl:context-d406e0" as="item()*">
+               <xsl:for-each select="$impl:context-d406e0-doc">
                   <xsl:sequence select="//*[@xml:id='class']"/>
                </xsl:for-each>
             </xsl:variable>
-            <xsl:apply-templates select="$impl:context-d487e0" mode="m:docbook"/>
+            <xsl:apply-templates select="$impl:context-d406e0" mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6283,8 +6283,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d495e1" select="'1.0in'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d495e1)"/>
+            <xsl:variable name="impl:param-d412e1" select="'1.0in'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d412e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6328,8 +6328,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d503e1" select="'1.0m'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d503e1)"/>
+            <xsl:variable name="impl:param-d418e1" select="'1.0m'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d418e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6373,8 +6373,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d511e1" select="'1.0cm'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d511e1)"/>
+            <xsl:variable name="impl:param-d424e1" select="'1.0cm'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d424e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6418,8 +6418,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d519e1" select="'1.0mm'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d519e1)"/>
+            <xsl:variable name="impl:param-d430e1" select="'1.0mm'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d430e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6463,8 +6463,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d527e1" select="'1.0pc'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d527e1)"/>
+            <xsl:variable name="impl:param-d436e1" select="'1.0pc'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d436e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6508,8 +6508,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d535e1" select="'1.0pt'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d535e1)"/>
+            <xsl:variable name="impl:param-d442e1" select="'1.0pt'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d442e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6553,8 +6553,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d543e1" select="'3.14barleycorn'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d543e1)"/>
+            <xsl:variable name="impl:param-d448e1" select="'3.14barleycorn'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d448e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6598,8 +6598,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d551e1" select="'1.0smoot'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d551e1)"/>
+            <xsl:variable name="impl:param-d454e1" select="'1.0smoot'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d454e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6643,8 +6643,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d559e1" select="'25%'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d559e1)"/>
+            <xsl:variable name="impl:param-d460e1" select="'25%'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d460e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6688,8 +6688,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d567e1" select="'100%'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d567e1)"/>
+            <xsl:variable name="impl:param-d466e1" select="'100%'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d466e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6733,8 +6733,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d575e1" select="'125%'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d575e1)"/>
+            <xsl:variable name="impl:param-d472e1" select="'125%'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d472e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6778,8 +6778,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d583e1" select="'3*+0.5in'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d583e1)"/>
+            <xsl:variable name="impl:param-d478e1" select="'3*+0.5in'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d478e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6823,8 +6823,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d591e1" select="'75'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d591e1)"/>
+            <xsl:variable name="impl:param-d484e1" select="'75'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d484e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6868,8 +6868,8 @@
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d599e1" select="'2.5*'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d599e1)"/>
+            <xsl:variable name="impl:param-d490e1" select="'2.5*'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d490e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6924,7 +6924,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d607e0-doc"
+                          name="impl:context-d496e0-doc"
                           as="document-node()">
                <xsl:document>
                   <address>
@@ -6937,15 +6937,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d607e0"
+                          name="impl:context-d496e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d607e0-doc">
+               <xsl:for-each select="$impl:context-d496e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d607e0"
+                                 select="$impl:context-d496e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7023,7 +7023,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d615e0-doc"
+                          name="impl:context-d502e0-doc"
                           as="document-node()">
                <xsl:document>
                   <literallayout>
@@ -7036,15 +7036,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d615e0"
+                          name="impl:context-d502e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d615e0-doc">
+               <xsl:for-each select="$impl:context-d502e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d615e0"
+                                 select="$impl:context-d502e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7122,7 +7122,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d623e0-doc"
+                          name="impl:context-d508e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -7135,15 +7135,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d623e0"
+                          name="impl:context-d508e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d623e0-doc">
+               <xsl:for-each select="$impl:context-d508e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d623e0"
+                                 select="$impl:context-d508e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7225,7 +7225,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d631e0-doc"
+                          name="impl:context-d514e0-doc"
                           as="document-node()">
                <xsl:document>
                   <screen>
@@ -7238,15 +7238,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d631e0"
+                          name="impl:context-d514e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d631e0-doc">
+               <xsl:for-each select="$impl:context-d514e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d631e0"
+                                 select="$impl:context-d514e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7326,7 +7326,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d639e0-doc"
+                          name="impl:context-d520e0-doc"
                           as="document-node()">
                <xsl:document>
                   <synopsis>
@@ -7339,15 +7339,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d639e0"
+                          name="impl:context-d520e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d639e0-doc">
+               <xsl:for-each select="$impl:context-d520e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d639e0"
+                                 select="$impl:context-d520e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7435,7 +7435,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d647e0-doc"
+                          name="impl:context-d526e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -7456,15 +7456,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d647e0"
+                          name="impl:context-d526e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d647e0-doc">
+               <xsl:for-each select="$impl:context-d526e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d647e0"
+                                 select="$impl:context-d526e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7554,7 +7554,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d655e0-doc"
+                          name="impl:context-d532e0-doc"
                           as="document-node()">
                <xsl:document>
                   <address>
@@ -7567,15 +7567,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d655e0"
+                          name="impl:context-d532e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d655e0-doc">
+               <xsl:for-each select="$impl:context-d532e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d655e0"
+                                 select="$impl:context-d532e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7653,7 +7653,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d663e0-doc"
+                          name="impl:context-d538e0-doc"
                           as="document-node()">
                <xsl:document>
                   <literallayout>
@@ -7666,15 +7666,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d663e0"
+                          name="impl:context-d538e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d663e0-doc">
+               <xsl:for-each select="$impl:context-d538e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d663e0"
+                                 select="$impl:context-d538e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7752,7 +7752,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d671e0-doc"
+                          name="impl:context-d544e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -7765,15 +7765,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d671e0"
+                          name="impl:context-d544e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d671e0-doc">
+               <xsl:for-each select="$impl:context-d544e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d671e0"
+                                 select="$impl:context-d544e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7855,7 +7855,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d679e0-doc"
+                          name="impl:context-d550e0-doc"
                           as="document-node()">
                <xsl:document>
                   <screen>
@@ -7868,15 +7868,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d679e0"
+                          name="impl:context-d550e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d679e0-doc">
+               <xsl:for-each select="$impl:context-d550e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d679e0"
+                                 select="$impl:context-d550e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -7956,7 +7956,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d687e0-doc"
+                          name="impl:context-d556e0-doc"
                           as="document-node()">
                <xsl:document>
                   <synopsis>
@@ -7969,15 +7969,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d687e0"
+                          name="impl:context-d556e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d687e0-doc">
+               <xsl:for-each select="$impl:context-d556e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d687e0"
+                                 select="$impl:context-d556e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8069,7 +8069,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d695e0-doc"
+                          name="impl:context-d562e0-doc"
                           as="document-node()">
                <xsl:document>
                   <div>
@@ -8093,15 +8093,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d695e0"
+                          name="impl:context-d562e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d695e0-doc">
+               <xsl:for-each select="$impl:context-d562e0-doc">
                   <xsl:sequence select="/*/*"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d695e0"
+                                 select="$impl:context-d562e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8195,7 +8195,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d703e0-doc"
+                          name="impl:context-d568e0-doc"
                           as="document-node()">
                <xsl:document>
                   <address>
@@ -8208,15 +8208,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d703e0"
+                          name="impl:context-d568e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d703e0-doc">
+               <xsl:for-each select="$impl:context-d568e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d703e0"
+                                 select="$impl:context-d568e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8354,7 +8354,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d711e0-doc"
+                          name="impl:context-d574e0-doc"
                           as="document-node()">
                <xsl:document>
                   <literallayout>
@@ -8367,15 +8367,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d711e0"
+                          name="impl:context-d574e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d711e0-doc">
+               <xsl:for-each select="$impl:context-d574e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d711e0"
+                                 select="$impl:context-d574e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8513,7 +8513,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d719e0-doc"
+                          name="impl:context-d580e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -8526,15 +8526,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d719e0"
+                          name="impl:context-d580e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d719e0-doc">
+               <xsl:for-each select="$impl:context-d580e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d719e0"
+                                 select="$impl:context-d580e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8688,7 +8688,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d727e0-doc"
+                          name="impl:context-d586e0-doc"
                           as="document-node()">
                <xsl:document>
                   <screen>
@@ -8701,15 +8701,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d727e0"
+                          name="impl:context-d586e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d727e0-doc">
+               <xsl:for-each select="$impl:context-d586e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d727e0"
+                                 select="$impl:context-d586e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8857,7 +8857,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d735e0-doc"
+                          name="impl:context-d592e0-doc"
                           as="document-node()">
                <xsl:document>
                   <synopsis>
@@ -8870,15 +8870,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d735e0"
+                          name="impl:context-d592e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d735e0-doc">
+               <xsl:for-each select="$impl:context-d592e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d735e0"
+                                 select="$impl:context-d592e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -9034,7 +9034,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d743e0-doc"
+                          name="impl:context-d598e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9055,15 +9055,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d743e0"
+                          name="impl:context-d598e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d743e0-doc">
+               <xsl:for-each select="$impl:context-d598e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d743e0"
+                                 select="$impl:context-d598e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -9236,7 +9236,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d751e0-doc"
+                          name="impl:context-d604e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9259,15 +9259,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d751e0"
+                          name="impl:context-d604e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d751e0-doc">
+               <xsl:for-each select="$impl:context-d604e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d751e0"
+                                 select="$impl:context-d604e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -9450,7 +9450,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d759e0-doc"
+                          name="impl:context-d610e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9463,15 +9463,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d759e0"
+                          name="impl:context-d610e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d759e0-doc">
+               <xsl:for-each select="$impl:context-d610e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d759e2-doc"
+                          name="impl:param-d610e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -9491,12 +9491,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d759e2-doc">
+               <xsl:for-each select="$impl:param-d610e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d759e0"
+                                 select="$impl:context-d610e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -9691,7 +9691,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d767e0-doc"
+                          name="impl:context-d616e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9704,15 +9704,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d767e0"
+                          name="impl:context-d616e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d767e0-doc">
+               <xsl:for-each select="$impl:context-d616e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d767e2-doc"
+                          name="impl:param-d616e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -9732,12 +9732,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d767e2-doc">
+               <xsl:for-each select="$impl:param-d616e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d767e0"
+                                 select="$impl:context-d616e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -9977,7 +9977,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d775e0-doc"
+                          name="impl:context-d622e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9990,15 +9990,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d775e0"
+                          name="impl:context-d622e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d775e0-doc">
+               <xsl:for-each select="$impl:context-d622e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d775e2-doc"
+                          name="impl:param-d622e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -10018,12 +10018,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d775e2-doc">
+               <xsl:for-each select="$impl:param-d622e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d775e0"
+                                 select="$impl:context-d622e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -10157,7 +10157,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d783e0-doc"
+                          name="impl:context-d628e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -10170,15 +10170,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d783e0"
+                          name="impl:context-d628e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d783e0-doc">
+               <xsl:for-each select="$impl:context-d628e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d783e2-doc"
+                          name="impl:param-d628e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -10208,12 +10208,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d783e2-doc">
+               <xsl:for-each select="$impl:param-d628e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d783e0"
+                                 select="$impl:context-d628e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -10348,7 +10348,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d791e0-doc"
+                          name="impl:context-d634e0-doc"
                           as="document-node()">
                <xsl:document>
                   <div>
@@ -10371,15 +10371,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d791e0"
+                          name="impl:context-d634e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d791e0-doc">
+               <xsl:for-each select="$impl:context-d634e0-doc">
                   <xsl:sequence select="/*/*"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d791e2-doc"
+                          name="impl:param-d634e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -10399,12 +10399,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d791e2-doc">
+               <xsl:for-each select="$impl:param-d634e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d791e0"
+                                 select="$impl:context-d634e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
