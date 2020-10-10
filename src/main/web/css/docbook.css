@@ -1242,9 +1242,13 @@ a.callout-bug:visited {
 }
 
 .revoff .revadded,
-.revoff .revchanged,
-.revoff .revdeleted {
+.revoff .revchanged {
     background-color: inherit;
+    color: inherit;
+}
+
+.revoff .revdeleted {
+    display: none;
 }
 
 .revoff .revadded::before,

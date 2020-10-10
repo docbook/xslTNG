@@ -59,7 +59,7 @@ through some other means, it’s often more convenient to pass string values.
 This saves the user from having to use whatever extra syntactic mechanisms
 would be required to identify the type of the variable.</para>
 <para>To this end, many “boolean” parameters are actually strings. A string
-value <literal>is true</literal> if it contains one of the strings “true”,
+value <literal>is true</literal> if it consists of one of the strings “true”,
 “yes”, or “1”.</para>
 </glossdef>
 </glossentry>

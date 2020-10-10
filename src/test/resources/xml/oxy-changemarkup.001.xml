@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xml:id="article" version="5.0">
+   <info>
+      <?db toc="yes" oxy-markup="yes"?>
+      <title>Unit Test:
+         <?oxy_delete author="ndw" timestamp="20201010T092132+0100" content="article"?><?oxy_insert_start author="ndw" timestamp="20201010T092132+0100"?>oxy-changemarkup<?oxy_insert_end?>.00<?oxy_delete author="ndw" timestamp="20201010T092137+0100" content="3"?><?oxy_insert_start author="ndw" timestamp="20201010T092137+0100"?>1<?oxy_insert_end?>.xml</title>
+      <authorgroup>
+         <author>
+            <personname>
+               <firstname>Norman</firstname>
+               <surname>Walsh</surname>
+            </personname>
+            <email>ndw@nwalsh.com</email>
+         </author>
+      </authorgroup>
+      <abstract>
+         <para>This is the abstract.</para>
+         <?oxy_insert_start author="ndw" timestamp="20201010T092140+0100"?>
+         <para>In the following two paragraphs, I'm going to delete the end of one paragraph and the
+            beginning of the next.</para>
+         <?oxy_insert_end?>
+         <para>It has several
+            <?oxy_delete author="ndw" timestamp="20201010T092205+0100" content="paras."?></para>
+         <para><?oxy_delete author="ndw" timestamp="20201010T092205+0100" content="It h"?><?oxy_insert_start author="ndw" timestamp="20201010T092208+0100"?>H<?oxy_insert_end?>as
+            several paras.<?oxy_insert_start author="ndw" timestamp="20201010T092211+0100"?> Oxygen
+            kept the markup balanced. nice.<?oxy_insert_end?></para>
+         <para>This is the last paragraph of the abstract.</para>
+      </abstract>
+   </info>
+   <para>Some preambulatory paragraph.</para>
+   <section>
+      <title>Section One</title>
+      <para>Some other paragraph.</para>
+      <section>
+         <title>Section One.Two</title>
+         <para>Some other paragraph.</para>
+      </section>
+      <section>
+         <title>Section One.Three</title>
+         <para>Some other paragraph.</para>
+      </section>
+   </section>
+   <section>
+      <title>Section Two</title>
+      <para>Some other paragraph.</para>
+   </section>
+   <?oxy_delete author="ndw" timestamp="20201010T092242+0100" content="&lt;appendix&gt;&lt;title&gt;Appendix One&lt;/title&gt;&lt;para&gt;Some other paragraph.&lt;/para&gt;&lt;section&gt;&lt;title&gt;Section One&lt;/title&gt;&lt;para&gt;Some other paragraph.&lt;/para&gt;&lt;section&gt;&lt;title&gt;Section One.Two&lt;/title&gt;&lt;para&gt;Some other paragraph.&lt;/para&gt;&lt;/section&gt;&lt;section&gt;&lt;title&gt;Section One.Three&lt;/title&gt;&lt;para&gt;Some other paragraph.&lt;/para&gt;&lt;/section&gt;&lt;/section&gt;&lt;/appendix&gt;"?>
+</article>
+<?oxy_options track_changes="on"?>

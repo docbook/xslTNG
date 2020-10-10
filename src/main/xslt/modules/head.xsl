@@ -33,6 +33,11 @@
       <link rel="stylesheet" href="{$resource-base-uri}{.}"/>
     </xsl:for-each>
 
+    <xsl:if test="exists($oxy-markup-css)
+                  and //processing-instruction()[starts-with(name(), 'oxy_')]">
+      <link rel="stylesheet" href="{$resource-base-uri}{$oxy-markup-css}"/>
+    </xsl:if>
+
     <xsl:if test="exists($v:verbatim-syntax-highlight-languages)
                   and normalize-space($verbatim-syntax-highlight-css) != ''">
       <link rel="stylesheet" href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
