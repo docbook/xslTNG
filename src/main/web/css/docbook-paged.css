@@ -16,13 +16,13 @@
 }
 
 @page title {
-    @top-center: {
+    @top-center {
         content: "";
     }
-    @bottom-right: {
+    @bottom-right {
         content: "";
     }
-    @bottom-left: {
+    @bottom-left {
         content: "";
     }
 }
@@ -37,13 +37,13 @@
 }
 
 @page normal-flow:blank {
-    @top-center: {
+    @top-center {
         content: "";
     }
-    @bottom-right: {
+    @bottom-right {
         content: "";
     }
-    @bottom-left: {
+    @bottom-left {
         content: "";
     }
 }
