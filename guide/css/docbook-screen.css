@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.3.0
+/* DocBook xslTNG version 1.3.1
  *
  * This is docbook-screen.css.
  *
@@ -357,13 +357,14 @@ nav.top div {
 /* ============================================================ */
 /* For progressive reveals in chunked content. */
 
+
 .reveal {
     display: none;
 }
 
 ul.reveal,
 ol.reveal {
-    display: inherit;
+    display: block;
 }
 
 .reveal > li {
@@ -376,6 +377,31 @@ ol.reveal {
 
 .noreveal {
     display: inherit;
+}
+
+.speaker-notes .reveal {
+    display: inherit;
+    background-color: #ffeeee;
+}
+
+.speaker-notes ul.reveal,
+.speaker-notes ol.reveal {
+    display: block;
+    background-color: #ffeeee;
+}
+
+.speaker-notes .reveal > li {
+    display: list-item;
+    background-color: #ffeeee;
+}
+
+.speaker-notes li.reveal {
+    display: list-item;
+    background-color: #ffeeee;
+}
+
+.speaker-notes .transitory {
+    display: none;
 }
 
 /* ============================================================ */

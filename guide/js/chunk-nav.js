@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.3.0
+/* DocBook xslTNG version 1.3.1
  *
  * This is chunk-nav.js providing support for keyboard
  * navigation between chunks.
@@ -73,46 +73,54 @@
 
     switch (keyCode) {
       case KEY_A:
-        return revealAll();
+        revealAll();
+        break;
       case KEY_N:
       case KEY_RIGHT:
         if (toBeRevealed && !event.shiftKey) {
-          return revealNext();
+          revealNext();
         } else {
-          return nav_to(event, "next");
+          nav_to(event, "next");
         }
+        break;
       case KEY_P:
       case KEY_LEFT:
-        return nav_to(event, "prev");
+        nav_to(event, "prev");
+        break;
       case KEY_U:
       case KEY_UP:
-        return nav_to(event, "up");
+        nav_to(event, "up");
+        break;
       case KEY_H:
       case KEY_HOME:
-        return nav_to(event, "home");
+        nav_to(event, "home");
+        break;
       case KEY_SPACE:
       case KEY_DOWN:
-        return revealNext();
+        revealNext();
+        break;
       case KEY_S:
         if (localStorageKey) {
           viewNotes(!notesView);
-          return false;
         }
+        break;
       case KEY_R:
         if (event.shiftKey) {
-          return resetProgressiveReveal();
+          resetProgressiveReveal();
         } else {
-          return toggleProgressiveReveal();
+          toggleProgressiveReveal();
         }
+        break;
       case KEY_QUESTION:
-        return debugInfo();
+        debugInfo();
+        break;
       case KEY_SHIFT:
         break;
       default:
         console.log("Pressed:", keyCode);
     }
 
-    return true;
+    return false;
   };
 
   const nav_to = function(event, rel) {
@@ -121,7 +129,6 @@
     if (link && link.hasAttribute("href")) {
       window.location.href = link.getAttribute("href");
     }
-    return false;
   };
 
   const viewNotes = function(view) {
@@ -153,22 +160,10 @@
   };
 
   const configureRevealList = function(list) {
-    let revealThisList = false;
-    let elem = list;
-    while (elem) {
-      if (elem.classList && elem.classList.contains("reveal")) {
-        revealThisList = true;
-        elem = null;
-      } else if (elem.classList && elem.classList.contains("noreveal")) {
-        elem = null;
-      } else {
-        elem = elem.parentNode;
-      }
-    }
-
+    const revealThisList = list.classList.contains("reveal");
     if (revealThisList) {
       let itemnum = 0;
-      list.querySelectorAll("li").forEach(function(item) {
+      list.querySelectorAll(":scope > li").forEach(function(item) {
         itemnum++;
 
         if (item.classList.contains("noreveal")) {
@@ -182,21 +177,40 @@
             }
           }
         }
+
+        // Now process the descendants of the list items
+        item.querySelectorAll(":scope > *").forEach(function(child) {
+          configureReveal(child);
+        });
+      });
+    } else {
+      // If the list doesn't have a reveal, check its children
+      list.querySelectorAll("li").forEach(function(item) {
+        configureReveal(item);
       });
     }
 
-    toBeRevealed = (progressiveReveal === "true") && (toBeRevealed || revealThisList);
+    toBeRevealed = (progressiveReveal === "true")
+      && (toBeRevealed || revealThisList);
   };
 
   const configureReveal = function(elem) {
-    if (elem.tagName == "UL" || elem.tagName == "OL") {
+    if (elem.tagName === "UL" && elem.classList.contains("toc")) {
+      // nop; don't attempt to do reveal processing on tables of contents
+    } else if (elem.tagName === "UL" || elem.tagName === "OL") {
       // Lists are special; hide all but the first item by default
       configureRevealList(elem);
+    } else if (elem.tagName === "SCRIPT") {
+      // don't look in script elements
+    } else if (elem.classList.contains("speaker-notes")) {
+      // don't do reveals in speaker-notes
     } else {
       if (elem.classList.contains("reveal")) {
         elem.classList.add("toberevealed");
         elem.style.display = "none";
-        if (progressiveReveal !== "true") {
+        if (progressiveReveal === "true") {
+          toBeRevealed = true;
+        } else {
           reveal(elem);
         }
       } else {
@@ -208,12 +222,6 @@
   };
 
   const reveal = function(item) {
-    // We're about to reveal something, hide any currently revealed
-    // elements that are also marked as transitory.
-    document.querySelectorAll(".revealed.transitory").forEach(function(item) {
-      item.style.display = "none";
-    });
-
     item.classList.replace("toberevealed", "revealed");
     if (item.tagName === "LI") {
       item.style.display = "list-item";
@@ -225,38 +233,48 @@
   };
 
   const revealAll = function() {
-    document.querySelectorAll(".toberevealed").forEach(function(item) {
-      reveal(item);
-    });
-    toBeRevealed = false;
-    if (threeDots) {
-      threeDots.style.display = "none";
+    while (document.querySelector(".toberevealed")) {
+      revealNext();
     }
-
-    saveRevealed();
-    return false;
   };
 
   const revealNext = function() {
-    let revealed = false;
-    let item = document.querySelector(".toberevealed");
-    if (item) {
-      reveal(item);
+    if (document.querySelector(".toberevealed")) {
+      revealNextWalk(body);
     }
-    item = document.querySelector(".toberevealed");
-    toBeRevealed = (item !== null);
-    if (!toBeRevealed) {
-      if (threeDots) {
-        threeDots.style.display = "none";
+  };
+
+  const revealNextWalk = function(elem) {
+    if (elem.classList.contains("toberevealed")) {
+      reveal(elem);
+      toBeRevealed = (document.querySelector(".toberevealed") !== null);
+      if (!toBeRevealed) {
+        if (threeDots) {
+          threeDots.style.display = "none";
+        }
+        saveRevealed();
       }
-      saveRevealed();
+      return true;
     }
-    return false;
+
+    let found = false;
+    elem.querySelectorAll(":scope > *").forEach(function(child) {
+      if (!found) {
+        found = revealNextWalk(child);
+      }
+      if (!found) {
+        if (child.classList.contains("transitory")) {
+          child.style.display = "none";
+        }
+      }
+    });
+
+    return found;
   };
 
   const toggleProgressiveReveal = function() {
     if (!progressiveRevealKey) {
-      return false;
+      return;
     }
 
     if (progressiveReveal === "true") {
@@ -284,8 +302,6 @@
     window.setTimeout(function () {
       message.style.opacity = 0;
     }, 25);
-
-    return false;
   };
 
   const resetProgressiveReveal = function() {
@@ -294,7 +310,6 @@
       window.localStorage.setItem(progressiveRevealKey, progressiveReveal);
       window.localStorage.setItem(revealedKey, "");
     }
-    return false;
   };
 
   const saveRevealed = function() {
