@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- ============================================================ -->
+<!-- change markup tests -->
+
+<x:scenario label="When converting content with revisionflag markup">
+  <x:context href="../resources/xml/changebars.001.xml"/>
+  <x:expect label="expect the revisions to be encoded in classes" href="../resources/expected/changebars.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting oxy-changemarkup.001">
+  <x:context href="../resources/xml/oxy-changemarkup.001.xml"/>
+  <x:expect label="expect changemarkup to be displayed"
+            href="../resources/expected/oxy-changemarkup.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting oxy-changemarkup.002">
+  <x:context href="../resources/xml/oxy-changemarkup.002.xml"/>
+  <x:expect label="expect changemarkup to be suppressed"
+            href="../resources/expected/oxy-changemarkup.002.html"/>
+</x:scenario>
+
+</x:description>

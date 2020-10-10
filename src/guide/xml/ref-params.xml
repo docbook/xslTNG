@@ -159,7 +159,7 @@ as necessary.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If this parameter is true, XPath expressions contained in the
+<para>If this parameter <glossterm>is true</glossterm>, XPath expressions contained in the
 <tag class="pi">eval</tag> processing instruction will be evaluated,
 otherwise the processing instruction is silently ignored.</para>
 <para>If the eval is performed, the result of the evaluation is
@@ -2134,6 +2134,54 @@ numeration, etc.</para>
 <para>If <parameter>othername-in-middle</parameter> is true, then
 the first <tag>othername</tag> in a <tag>personname</tag> will be presented
 as the person’s “middle” name. See <template>t:person-name</template>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_oxy-markup">
+<?db filename="p_oxy-markup.html"?>
+<refmeta>
+<refentrytitle>$oxy-markup</refentrytitle>
+<refmiscinfo>{}oxy-markup</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$oxy-markup</refname>
+<refpurpose>Is Oxygen change tracking markup rendered?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>oxy-markup</parameter> is true, then
+the change tracking processing instructions that Oxygen inserts into
+the document will be transformed into elements marked with CSS classes
+for rendering in the output. See <parameter>oxy-markup-css</parameter>.
+</para>
+<para>Rendering Oxygen change markup can be specified on a document-by-document
+bases with a <literal>db</literal><indexterm><primary>db processing
+instruction</primary> </indexterm> processing instruction.
+If the <literal>oxy-markup</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>oxy-markup pseudo-attribute</secondary></indexterm>
+pseudo-attribute <glossterm>is true</glossterm>, the markup will be rendered.
+This processing instruction must be in the <tag>info</tag> element of the document
+element.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_oxy-markup-css">
+<?db filename="p_oxy-markup-css.html"?>
+<refmeta>
+<refentrytitle>$oxy-markup-css</refentrytitle>
+<refmiscinfo>{}oxy-markup-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$oxy-markup-css</refname>
+<refpurpose>CSS markup for Oxygen changebar markup</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If Oxygen change markup is rendered, this CSS file is added to the output
+for styling the added and deleted regions.</para>
 </refsection>
 </refentry>
 

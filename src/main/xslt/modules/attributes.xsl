@@ -64,7 +64,8 @@
                                       ())"/>
 </xsl:template>
 
-<xsl:template match="db:listitem|db:para|db:member"
+<xsl:template match="db:listitem|db:para|db:member
+                    |db:tbody|db:thead|db:tfoot"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" as="attribute()*">
     <xsl:apply-templates select="@*"/>
@@ -356,6 +357,7 @@
   </xsl:variable>
   <xsl:sequence select="f:attributes(., $attr)"/>
 </xsl:template>
+
 
 <!-- ============================================================ -->
 

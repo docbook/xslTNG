@@ -129,11 +129,6 @@
   </x:expect>
 </x:scenario>
 
-<x:scenario label="When converting content with revisionflag markup">
-  <x:context href="../resources/xml/changebars.001.xml"/>
-  <x:expect label="expect the revisions to be encoded in classes" href="../resources/expected/changebars.001.html"/>
-</x:scenario>
-
 <x:scenario label="When converting sidebar.001">
   <x:context href="../resources/xml/sidebar.001.xml"/>
   <x:expect label="expect sidebars" href="../resources/expected/sidebar.001.html"/>
