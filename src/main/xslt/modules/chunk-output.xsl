@@ -19,7 +19,14 @@
   <xsl:choose>
     <xsl:when test="not($v:chunk)">
       <xsl:variable name="result">
-        <xsl:apply-templates select="/h:html/h:html"/>
+        <xsl:choose>
+          <xsl:when test="/h:html/h:html">
+            <xsl:apply-templates select="/h:html/h:html"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:variable>
       <xsl:sequence select="map {'output': $result}"/>
     </xsl:when>

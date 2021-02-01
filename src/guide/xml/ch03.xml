@@ -162,4 +162,52 @@ processing. The effect of this template is to wrap an HTML
 but I’m trying to keep the example simple.</para>
 
 </section>
+
+<section xml:id="different">
+<title>Creating something completely different</title>
+
+<para>Your input documents go through several pre-processing steps
+before they are rendered into HTML. If you want to produce completely
+different outputs, the place to start is with root template in the
+<mode>m:docbook</mode> mode.</para>
+
+<para>Consider, <link xlink:href="https://github.com/docbook/xslTNG/issues/84">for example</link>,
+the task of creating a JSON version of the Table of Contents. In principle, you could
+write your own stylesheet to do this, but leveraging the
+<citetitle>DocBook xslTNG Stylesheets</citetitle> means you can make use of functions like
+<function>f:generate-id</function> to create links.</para>
+
+<para>To produce completely different results, override the root template in the
+<mode>m:docbook</mode> mode:</para>
+
+<programlisting language="xml"><![CDATA[<xsl:template match="/" mode="m:docbook">
+  <xsl:document>
+    <!-- your processing here -->
+  </xsl:document>
+</xsl:template>]]></programlisting>
+
+<para>This template <emphasis>must</emphasis> return a document node.</para>
+
+<para>Note that you can mix-and-match your processing with default
+processing by processing DocBook elements in the
+<mode>m:docbook</mode> mode.</para>
+
+<para>Here is a simple example of a stylesheet that produces a JSON version of the
+Table of Contents for a DocBook document:</para>
+
+<programlisting language="xml"
+><xi:include href="examples/issue84.xsl" parse="text"/></programlisting>
+
+<note>
+<para>This example is meant as a starting point; it’s not robust as it only handles
+a few of the possible elements that might appear in a Table of Contents.</para>
+</note>
+
+<para>When processing documents this way, be aware that you are transforming the pre-processed,
+normalized versions of your input documents. For example, whether or not you put
+<tag>info</tag> wrappers around the titles of your sections, in the pre-processed input,
+<tag>title</tag>s <emphasis>always</emphasis> appear inside <tag>info</tag> wrappers.
+This normalization greatly simplifies processing in many places.</para>
+</section>
+
 </chapter>
