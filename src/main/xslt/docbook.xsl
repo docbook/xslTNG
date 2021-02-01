@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:ext="http://docbook.org/extensions/xslt"
+                xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
@@ -12,7 +13,7 @@
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db ext h m map mp t tp v vp xs"
+                exclude-result-prefixes="db ext f h m map mp t tp v vp xs"
                 version="3.0">
 
 <!-- This will all be in XProc 3.0 eventually, hack for now... -->
@@ -70,13 +71,30 @@
     </xsl:if>
   </xsl:for-each>
 
-  <xsl:sequence select="$result?output"/>
+  <xsl:choose>
+    <xsl:when test="f:is-true($generate-html-page)">
+      <xsl:sequence select="$result?output"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$result?output/h:html/h:body/node()
+                            except $result?output/h:html/h:body/h:script"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="node()" mode="m:chunk-write">
   <xsl:param name="href" as="xs:string" required="yes"/>
+
   <xsl:result-document href="{$href}">
-    <xsl:sequence select="."/>
+    <xsl:choose>
+      <xsl:when test="f:is-true($generate-html-page)">
+        <xsl:sequence select="."/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>Attempting to generate raw output</xsl:message>
+        <xsl:sequence select="/h:html/h:body/node() except /h:html/h:body/h:script"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:result-document>
 </xsl:template>
 

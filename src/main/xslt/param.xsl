@@ -319,4 +319,6 @@
 
 <xsl:param name="default-theme" as="xs:string" select="''"/>
 
+<xsl:param name="generate-html-page" as="xs:string" select="'true'"/>
+
 </xsl:stylesheet>
