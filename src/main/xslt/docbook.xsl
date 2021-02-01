@@ -72,6 +72,9 @@
   </xsl:for-each>
 
   <xsl:choose>
+    <xsl:when test="not($result?output/h:html)">
+      <xsl:sequence select="$result?output"/>
+    </xsl:when>
     <xsl:when test="f:is-true($generate-html-page)">
       <xsl:sequence select="$result?output"/>
     </xsl:when>
@@ -87,6 +90,9 @@
 
   <xsl:result-document href="{$href}">
     <xsl:choose>
+      <xsl:when test="not(/h:html)">
+        <xsl:sequence select="$result?output"/>
+      </xsl:when>
       <xsl:when test="f:is-true($generate-html-page)">
         <xsl:sequence select="."/>
       </xsl:when>
