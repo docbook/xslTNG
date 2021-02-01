@@ -1359,6 +1359,33 @@ C and other languages that use “;” as statement separator.
 </refsection>
 </refentry>
 
+<refentry xml:id="p_generate-html-page">
+<?db filename="p_generate-html-page.html"?>
+<refmeta>
+<refentrytitle>$generate-html-page</refentrytitle>
+<refmiscinfo>{}generate-html-page</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generate-html-page</refname>
+<refpurpose>Generate the HTML page structure around the styled document</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then a
+complete HTML page will be generated for the transformed document: an
+<tag>html</tag> tag, <tag>head</tag> and <tag>body</tag> tags, etc. If
+it’s false, then only the “raw” transformed content will be
+produced. This is true for both the primary output and any secondary result documents.</para>
+<note>
+<para>When the “raw” output option is selected, links to the CSS
+stylesheets, scripts, and other interactive features will not be
+generated. You must make sure those are provided in some other way.
+</para>
+</note>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_generate-index">
 <?db filename="p_generate-index.html"?>
 <refmeta>

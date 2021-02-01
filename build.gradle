@@ -933,6 +933,7 @@ task generateXSpecSources() {
 }
 testDrivers.each { driver ->
   tasks.findByName(driver).dependsOn generateXSpecSources
+  tasks.findByName(driver).dependsOn "makeXslt"
 }
 
 // Generate programlistingco/screeco results with all the possible stylings
