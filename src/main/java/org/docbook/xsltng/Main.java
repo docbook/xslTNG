@@ -71,7 +71,6 @@ public class Main extends Transform {
         findJarLocation();
         logger.debug("main", "jarLoc=" + jarLoc);
         createCatalog(System.getProperty("org.docbook.xsltng.catalog-file"));
-        run();
     }
 
     public void findJarLocation() {
