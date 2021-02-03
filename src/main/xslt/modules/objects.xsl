@@ -150,7 +150,7 @@
   <!-- those elements have the same set of attributes, so we can -->
   <!-- handle them all in one place.                             -->
 
-  <xsl:variable name="href" select="resolve-uri(@fileref, base-uri(.))"/>
+  <xsl:variable name="href" select="if (f:is-true($resolve-object-paths)) then (resolve-uri(@fileref, base-uri(.))) else (@fileref)"/>
 
   <xsl:if use-when="'mediaobject-uris' = $v:debug"
           test="@fileref">

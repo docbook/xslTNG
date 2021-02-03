@@ -2800,6 +2800,26 @@ of <parameter>refentry-generate-name</parameter> or
 </refsection>
 </refentry>
 
+<refentry xml:id="p_resolve-object-paths">
+<?db filename="p_resolve-object-paths.html"?>
+<refmeta>
+<refentrytitle>$resolve-object-paths</refentrytitle>
+<refmiscinfo>{}resolve-object-paths</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$resolve-object-paths</refname>
+<refpurpose>Resolve file paths for referenced objects to absolute URIs</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then a
+path to a referenced object will be resolved to an absolute URI
+(which is the absolute location of the object on disk at the time of conversion).
+If it’s false, then the original URI specified in the fileref attribute will be kept.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_resource-base-uri">
 <?db filename="p_resource-base-uri.html"?>
 <refmeta>
