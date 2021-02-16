@@ -59,16 +59,4 @@
    <x:expect label="expect section markup" href="../resources/expected/simplesect.001.html"/>
 </x:scenario>
 
-<!-- ============================================================ -->
-
-<x:scenario label="When converting legalsection.001">
-   <x:context href="../resources/xml/legalsection.001.xml"/>
-   <x:expect label="expect section markup" href="../resources/expected/legalsection.001.html"/>
-</x:scenario>
-
-<x:scenario label="When converting legalsection.002">
-   <x:context href="../resources/xml/legalsection.002.xml"/>
-   <x:expect label="expect section markup" href="../resources/expected/legalsection.002.html"/>
-</x:scenario>
-
 </x:description>

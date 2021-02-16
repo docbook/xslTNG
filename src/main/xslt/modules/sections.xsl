@@ -13,7 +13,7 @@
                 version="3.0">
 
 <xsl:template match="db:sect1|db:sect2|db:sect3|db:sect4|db:sect5
-                     |db:section|db:simplesect|db:legalsection">
+                     |db:section|db:simplesect">
   <section>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>

@@ -41,16 +41,14 @@
               xmlns:db="http://docbook.org/ns/docbook">
   <xsl:sequence select="$v:user-title-properties"/>
 
-  <title xpath="self::db:section[ancestor::db:preface]
-                |self::db:legalsection[ancestor::db:preface]"
+  <title xpath="self::db:section[ancestor::db:preface]"
          label="false"/>
 
-  <title xpath="self::db:section[parent::db:section or parent::db:legalsection]
-                |self::db:legalsection[parent::db:section or parent::db:legalsection]"
+  <title xpath="self::db:section[parent::db:section]"
          number-format="{$section-numbers}"
          inherit="{$section-numbers-inherit}"/>
 
-  <title xpath="self::db:section|self::db:legalsection"
+  <title xpath="self::db:section"
          number-format="{$section-numbers}"
          inherit="{$component-numbers-inherit}"/>
 
@@ -224,13 +222,6 @@
   <xsl:sequence select="f:gentext(., 'label')"/>
 </xsl:template>
 
-<xsl:template match="db:legalsection" mode="m:headline-label">
-  <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:param name="number" as="node()*" required="yes"/>
-  <xsl:param name="title" as="node()*" required="yes"/>
-  <xsl:sequence select="f:gentext(., 'label', 'section')"/>
-</xsl:template>
-
 <xsl:template match="db:formalgroup
                      |db:figure|db:example|db:table
                      |db:equation|db:procedure"
@@ -394,11 +385,7 @@
   <xsl:number value="$number" format="{$properties?number-format}"/>
 </xsl:template>
 
-<xsl:variable name="vp:section-names"
-              select="(xs:QName('db:section'),
-                       xs:QName('db:legalsection'))"/>
-
-<xsl:template match="db:section|db:legalsection" mode="m:headline-number">
+<xsl:template match="db:section" mode="m:headline-number">
   <xsl:param name="purpose" as="xs:string" required="yes"/>
 
   <xsl:variable name="properties" select="fp:title-properties(.)"/>
@@ -418,8 +405,7 @@
   </xsl:if>
 
   <xsl:variable name="number"
-                select="count(preceding-sibling::*
-                              [node-name(.) = $vp:section-names]) + 1"/>
+                select="count(preceding-sibling::db:section) + 1"/>
 
   <xsl:number value="$number" format="{$properties?number-format}"/>
 </xsl:template>

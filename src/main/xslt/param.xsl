@@ -263,7 +263,6 @@
                     'parent::db:reference',
                     'self::db:refentry',
                     'self::db:section',
-                    'self::db:legalsection',
                     'self::db:sect1')"/>
 
 <xsl:param name="chunk-exclude" as="xs:string*"

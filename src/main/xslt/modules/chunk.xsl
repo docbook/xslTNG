@@ -51,11 +51,9 @@
         <xsl:when test="$node/self::db:sect5">
           <xsl:sequence select="$chunk-section-depth gt 5"/>
         </xsl:when>
-        <xsl:when test="$node/self::db:section
-                        or $node/self::db:legalsection">
+        <xsl:when test="$node/self::db:section">
           <xsl:variable name="depth"
-                        select="count($node/ancestor::db:section)
-                                + count($node/ancestor::db:legalsection)"/>
+                        select="count($node/ancestor::db:section)"/>
           <xsl:sequence select="$chunk-section-depth gt $depth"/>
         </xsl:when>
         <xsl:otherwise>
@@ -377,10 +375,10 @@
   <xsl:sequence select="string-join(($parent, 's', $number), '')"/>
 </xsl:template>
 
-<xsl:template match="db:section|db:legalsection" mode="m:chunk-filename">
+<xsl:template match="db:section" mode="m:chunk-filename">
   <xsl:variable name="number" as="xs:string">
     <xsl:number format="01" level="single"
-                count="db:section|db:legalsection"/>
+                count="db:section"/>
   </xsl:variable>
   <xsl:variable name="parent" as="xs:string?">
     <xsl:apply-templates select="parent::*" mode="m:chunk-filename"/>
