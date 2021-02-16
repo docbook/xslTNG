@@ -612,7 +612,6 @@
 <xsl:function name="f:section" as="xs:boolean" visibility="public">
   <xsl:param name="node" as="element()"/>
   <xsl:sequence select="$node/self::db:section
-                        or $node/self::db:legalsection
                         or $node/self::db:sect1
                         or $node/self::db:sect2
                         or $node/self::db:sect3
@@ -627,9 +626,8 @@
     <xsl:when test="empty($node)">
       <xsl:value-of select="0"/>
     </xsl:when>
-    <xsl:when test="$node/self::db:section or $node/self::db:legalsection">
-      <xsl:value-of select="count($node/ancestor::db:section
-                                  |$node/ancestor::db:legalsection) + 1"/>
+    <xsl:when test="$node/self::db:section">
+      <xsl:value-of select="count($node/ancestor::db:section) + 1"/>
     </xsl:when>
     <xsl:when test="$node/self::db:sect1 or $node/self::db:sect2
                     or $node/self::db:sect3 or $node/self::db:sect4

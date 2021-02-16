@@ -63,8 +63,7 @@
               xmlns:db="http://docbook.org/ns/docbook">
   <xsl:sequence select="$v:user-xref-properties"/>
 
-  <crossref xpath="self::db:section[ancestor::db:preface]
-                   |self::db:legalsection[ancestor::db:preface]"
+  <crossref xpath="self::db:section[ancestor::db:preface]"
             prefix-key="sectioncalled"
             label="false"
             number="false"
@@ -72,8 +71,7 @@
             inherit="ancestor::db:preface[1]"
             inherit-separator="in the"/>
 
-  <crossref xpath="self::db:section
-                   |self::db:legalsection"
+  <crossref xpath="self::db:section"
             label="true"
             number="true"
             title="true"/>

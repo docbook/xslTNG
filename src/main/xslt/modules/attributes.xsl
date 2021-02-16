@@ -33,7 +33,7 @@
                      |db:dedication|db:acknowledgements|db:colophon
                      |db:preface|db:chapter|db:appendix
                      |db:sect1|db:sect2|db:sect3|db:sect4|db:sect5|db:section
-                     |db:legalsection|db:topic"
+                     |db:topic"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" as="attribute()*">
     <xsl:apply-templates select="@*"/>

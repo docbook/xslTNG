@@ -378,9 +378,7 @@
 
 <!-- h5/h6 is small enough ... -->
 <db:section
-    context="(parent::db:section|parent::db:legalsection)
-             /(parent::db:section|parent::db:legalsection)
-             /(parent::db:section|parent::db:legalsection)">
+    context="parent::db:section/parent::db:section/parent::db:section">
   <header>
     <tmp:apply-templates select="db:title">
       <h5><tmp:content/></h5>
@@ -390,24 +388,9 @@
     </tmp:apply-templates>
   </header>
 </db:section>
-
-<db:legalsection
-    context="(parent::db:section|parent::db:legalsection)
-             /(parent::db:section|parent::db:legalsection)
-             /(parent::db:section|parent::db:legalsection)">
-  <header>
-    <tmp:apply-templates select="db:title">
-      <h5><tmp:content/></h5>
-    </tmp:apply-templates>
-    <tmp:apply-templates select="db:subtitle">
-      <h6><tmp:content/></h6>
-    </tmp:apply-templates>
-  </header>
-</db:legalsection>
 
 <db:section
-    context="(parent::db:section|parent::db:legalsection)
-             /(parent::db:section|parent::db:legalsection)">
+    context="parent::db:section/parent::db:section">
   <header>
     <tmp:apply-templates select="db:title">
       <h4><tmp:content/></h4>
@@ -418,20 +401,7 @@
   </header>
 </db:section>
 
-<db:legalsection
-    context="(parent::db:section|parent::db:legalsection)
-             /(parent::db:section|parent::db:legalsection)">
-  <header>
-    <tmp:apply-templates select="db:title">
-      <h4><tmp:content/></h4>
-    </tmp:apply-templates>
-    <tmp:apply-templates select="db:subtitle">
-      <h5><tmp:content/></h5>
-    </tmp:apply-templates>
-  </header>
-</db:legalsection>
-
-<db:section context="(parent::db:section|parent::db:legalsection)">
+<db:section context="parent::db:section">
   <header>
     <tmp:apply-templates select="db:title">
       <h3><tmp:content/></h3>
@@ -441,17 +411,6 @@
     </tmp:apply-templates>
   </header>
 </db:section>
-
-<db:legalsection context="(parent::db:section|parent::db:legalsection)">
-  <header>
-    <tmp:apply-templates select="db:title">
-      <h3><tmp:content/></h3>
-    </tmp:apply-templates>
-    <tmp:apply-templates select="db:subtitle">
-      <h4><tmp:content/></h4>
-    </tmp:apply-templates>
-  </header>
-</db:legalsection>
 
 <db:section>
   <header>
@@ -463,17 +422,6 @@
     </tmp:apply-templates>
   </header>
 </db:section>
-
-<db:legalsection>
-  <header>
-    <tmp:apply-templates select="db:title">
-      <h2><tmp:content/></h2>
-    </tmp:apply-templates>
-    <tmp:apply-templates select="db:subtitle">
-      <h3><tmp:content/></h3>
-    </tmp:apply-templates>
-  </header>
-</db:legalsection>
 
 <db:refsect3>
   <header>

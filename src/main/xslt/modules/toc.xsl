@@ -91,7 +91,7 @@
   <xsl:apply-templates select="." mode="mp:toc">
     <xsl:with-param name="nested" select="$nested"/>
     <xsl:with-param name="entries"
-                    select="db:section|db:legalsection|db:sect1|db:appendix
+                    select="db:section|db:sect1|db:appendix
                             |db:refentry"/>
   </xsl:apply-templates>
 </xsl:template>
@@ -102,7 +102,7 @@
     <xsl:with-param name="nested" select="$nested"/>
     <xsl:with-param name="entries"
                     select="db:bibliography|db:glossary|db:index
-                            |db:section|db:legalsection|db:sect1|db:simplesect
+                            |db:section|db:sect1|db:simplesect
                             |db:refentry"/>
   </xsl:apply-templates>
 </xsl:template>
@@ -113,7 +113,7 @@
   <xsl:apply-templates select="." mode="mp:toc">
     <xsl:with-param name="nested" select="$nested"/>
     <xsl:with-param name="entries"
-                    select="db:section|db:legalsection|db:sect1|db:article
+                    select="db:section|db:sect1|db:article
                             |db:topic|db:appendix"/>
   </xsl:apply-templates>
 </xsl:template>
@@ -146,14 +146,14 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="db:section|db:legalsection|db:sect1|db:sect2|db:sect3
+<xsl:template match="db:section|db:sect1|db:sect2|db:sect3
                      |db:sect4|db:sect5"
               mode="m:toc">
   <xsl:param name="nested" select="false()"/>
   <xsl:apply-templates select="." mode="mp:toc">
     <xsl:with-param name="nested" select="$nested"/>
     <xsl:with-param name="entries"
-                select="db:section|db:legalsection|db:sect1
+                select="db:section|db:sect1
                         |db:sect2|db:sect3|db:sect4|db:sect5"/>
   </xsl:apply-templates>
 </xsl:template>

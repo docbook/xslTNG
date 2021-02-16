@@ -478,14 +478,13 @@ deeply.</para>
  'parent::db:reference',
  'self::db:refentry',
  'self::db:section',
- 'self::db:legalsection',
  'self::db:sect1')</programlisting>
 
 <para>In other words all of the direct children of <tag>set</tag>,
 <tag>book</tag>, <tag>part</tag>, <tag>reference</tag> will become
 chunks (the special case of <tag>info</tag> is automatically
 excluded); <tag>refentry</tag>, <tag>section</tag>,
-<tag>legalsection</tag>, and <tag>sect1</tag> become chunks anywhere
+and <tag>sect1</tag> become chunks anywhere
 they appear. In the case of recursive sections,
 <parameter>chunk-section-depth</parameter> also applies.</para>
 
@@ -624,16 +623,15 @@ will be renumbered within chunks. See <varname>v:chunk-renumber-footnotes</varna
 <para>This parameter is only relevant when chunking is being performed,
 see <xref linkend="chunking"/>.
 For recursive sections (<tag>section</tag>,
-<tag>legalsection</tag>, and <tag>refsection</tag>), if the section would be a chunk
+and <tag>refsection</tag>), if the section would be a chunk
 according to <parameter>chunk-include</parameter>, it is further tested against
 <parameter>chunk-section-depth</parameter>. If it is nested more deeply than
 <parameter>chunk-section-depth</parameter>, it will not be considered for chunking.
 </para>
 <note>
 <para>In principle, this parameter is unnecessary as it could be represented
-by <parameter>chunk-exclude</parameter> expressions. However, the interchangeability
-of <tag>section</tag> and <tag>legalsection</tag> makes those expressions quite complicated
-and changing the section depth is a common customization, so it’s handled
+by <parameter>chunk-exclude</parameter> expressions. However,
+changing the section depth is a common customization, so it’s handled
 as a separate parameter.</para>
 </note>
 </refsection>
