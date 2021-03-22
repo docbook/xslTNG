@@ -91,43 +91,85 @@
     </xsl:for-each>
   </xsl:variable>
 
-  <xsl:message use-when="'tables' = $debug"
-               select="'========================================'"/>
-  <tr>
-    <xsl:for-each select="1 to fcals:table-columns($row)">
-      <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
-      <xsl:choose>
-        <xsl:when test="$cell?span">
-          <xsl:message use-when="'tables' = $debug"
-                       select="., '--span--'"/>
-        </xsl:when>
-        <xsl:when test="empty($cell?node)">
-          <xsl:message use-when="'tables' = $debug"
-                       select="., '--empty--'"/>
-          <xsl:call-template name="tp:cell">
-            <xsl:with-param name="properties" select="map {
-              'row': $row,
-              'span': false(),
-              'colspan': 1,
-              'rowspan': 1,
-              'first-column': .,
-              'last-column': .
-            }"/>
-            <xsl:with-param name="td" select="if ($row/parent::db:thead) then 'th' else 'td'"/>
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:message use-when="'tables' = $debug"
-                       select="., $cell?node/string()
-                                  =&gt; normalize-space()
-                                  =&gt; substring(1, 10)"/>
-          <xsl:apply-templates select="$cell?node">
-            <xsl:with-param name="properties" select="$cell"/>
-          </xsl:apply-templates>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </tr>
+  <xsl:message use-when="'tables' = $debug" select="'========================================'"/>
+  <xsl:choose>
+    <xsl:when test="not(@xml:id)">
+      <tr>
+        <xsl:for-each select="1 to fcals:table-columns($row)">
+          <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
+          <xsl:choose>
+            <xsl:when test="$cell?span">
+              <xsl:message use-when="'tables' = $debug" select="., '--span--'"/>
+            </xsl:when>
+            <xsl:when test="empty($cell?node)">
+              <xsl:message use-when="'tables' = $debug" select="., '--empty--'"/>
+              <xsl:call-template name="tp:cell">
+                <xsl:with-param name="properties" select="
+                    map {
+                      'row': $row,
+                      'span': false(),
+                      'colspan': 1,
+                      'rowspan': 1,
+                      'first-column': .,
+                      'last-column': .
+                    }"/>
+                <xsl:with-param name="td" select="
+                    if ($row/parent::db:thead) then
+                      'th'
+                    else
+                      'td'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message use-when="'tables' = $debug"
+                select="., $cell?node/string() =&gt; normalize-space() =&gt; substring(1, 10)"/>
+              <xsl:apply-templates select="$cell?node">
+                <xsl:with-param name="properties" select="$cell"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </tr>
+    </xsl:when>
+    <xsl:otherwise>
+      <tr id="{@xml:id}">
+        <xsl:for-each select="1 to fcals:table-columns($row)">
+          <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
+          <xsl:choose>
+            <xsl:when test="$cell?span">
+              <xsl:message use-when="'tables' = $debug" select="., '--span--'"/>
+            </xsl:when>
+            <xsl:when test="empty($cell?node)">
+              <xsl:message use-when="'tables' = $debug" select="., '--empty--'"/>
+              <xsl:call-template name="tp:cell">
+                <xsl:with-param name="properties" select="
+                    map {
+                      'row': $row,
+                      'span': false(),
+                      'colspan': 1,
+                      'rowspan': 1,
+                      'first-column': .,
+                      'last-column': .
+                    }"/>
+                <xsl:with-param name="td" select="
+                    if ($row/parent::db:thead) then
+                      'th'
+                    else
+                      'td'"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message use-when="'tables' = $debug"
+                select="., $cell?node/string() =&gt; normalize-space() =&gt; substring(1, 10)"/>
+              <xsl:apply-templates select="$cell?node">
+                <xsl:with-param name="properties" select="$cell"/>
+              </xsl:apply-templates>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </tr>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:entry|db:entrytbl">
@@ -248,7 +290,7 @@
   <xsl:variable name="table"
                 select="($row/ancestor::db:table
                          |$row/ancestor::db:informaltable)[last()]"/>
-  
+
   <xsl:variable name="table-part"
                 select="($row/ancestor::db:thead
                          |$row/ancestor::db:tbody
