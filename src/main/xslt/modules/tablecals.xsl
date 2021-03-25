@@ -94,6 +94,9 @@
   <xsl:message use-when="'tables' = $debug"
                select="'========================================'"/>
   <tr>
+    <xsl:if test="@xml:id">
+      <xsl:attribute name="id" select="@xml:id"/>
+    </xsl:if>
     <xsl:for-each select="1 to fcals:table-columns($row)">
       <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
       <xsl:choose>
@@ -248,7 +251,7 @@
   <xsl:variable name="table"
                 select="($row/ancestor::db:table
                          |$row/ancestor::db:informaltable)[last()]"/>
-  
+
   <xsl:variable name="table-part"
                 select="($row/ancestor::db:thead
                          |$row/ancestor::db:tbody
