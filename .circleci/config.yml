@@ -3,11 +3,12 @@ jobs:
   build:
     machine:
       image: ubuntu-1604:202004-01
+    resource_class: 2xlarge
 
     working_directory: ~/repo
 
     environment:
-      JVM_OPTS: -Xmx8g
+      JVM_OPTS: -Xmx16g
       TERM: dumb
 
     steps:

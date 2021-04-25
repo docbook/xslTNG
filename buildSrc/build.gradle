@@ -1,0 +1,42 @@
+plugins {
+  id "java"
+}
+
+repositories {
+  mavenCentral()
+}
+
+apply from: "${rootDir.parentFile}/properties.gradle"
+
+dependencies {
+  implementation (
+    [group: saxonGroup, name: saxonEdition, version: saxonVersion],
+    [group: 'com.drewnoakes', name: 'metadata-extractor',
+     version: metadataExtractorVersion],
+    [group: 'org.relaxng', name: 'jing', version: jingVersion ],
+    [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
+  )
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs = ['src', 'build/generated/sources/buildconfig']
+    }
+  }
+}
+
+// Cheap and cheerful alternative to the BuildConfig plugin
+mkdir "${buildDir}/generated/sources/buildconfig/main/java/org/docbook/xsltng"
+new File("${buildDir}/generated/sources/buildconfig/main/java/org/docbook/xsltng/BuildConfig.java")
+  .withWriter("utf-8") { writer ->
+    writer.writeLine("package org.docbook.xsltng;")
+    writer.writeLine("// Generated code, do not edit")
+    writer.writeLine("public final class BuildConfig {")
+    writer.writeLine("  public static final String TITLE = \"${xslTNGtitle}\";")
+    writer.writeLine("  public static final String VERSION = \"${xslTNGversion}\";")
+    writer.writeLine("  public static final String SAXON_VERSION = \"${saxonVersion}\";")
+    writer.writeLine("  private BuildConfig() {}")
+    writer.writeLine("}")
+  }
+
