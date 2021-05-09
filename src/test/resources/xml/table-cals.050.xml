@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>CALS table with IDs</title>
+<para>Tests that IDs appear on the resulting HTML table.</para>
+
+<informaltable frame="all" xml:id="inftable">
+<tgroup cols="3" colsep="1" rowsep="1" xml:id="tgroup1">
+   <colspec colname="c1"/>
+   <colspec colname="c2"/>
+   <colspec colname="c3"/>
+   <thead xml:id="thead1">
+     <row xml:id="thead1r1">
+       <entry xml:id="thead1r1c1">Left</entry>
+       <entry xml:id="thead1r1c2">Middle</entry>
+       <entry xml:id="thead1r1c3">Right</entry>
+     </row>
+   </thead>
+   <tfoot xml:id="tfoot1">
+     <row xml:id="tfoot1r1">
+       <entry xml:id="tfoot1r1c1">Left</entry>
+       <entry namest="c3" xml:id="tfoot1r1c3">Right</entry>
+     </row>
+   </tfoot>
+   <tbody xml:id="tbody1">
+     <row xml:id="tbody1r1">
+       <entry xml:id="tbody1r1c1">←</entry>
+       <entry xml:id="tbody1r1c2">·</entry>
+       <entry xml:id="tbody1r1c3">→</entry>
+     </row>
+     <row>
+       <entry xml:id="tbody1r2c1">←</entry>
+       <entry>·</entry>
+       <entry xml:id="tbody1r2c3">→</entry>
+     </row>
+   </tbody>
+</tgroup>
+
+</informaltable>
+</article>

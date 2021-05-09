@@ -373,4 +373,9 @@
     <x:context href="../resources/xml/table-cals.049.xml"/>
     <x:expect label="expect very large tables to succeed" href="../resources/expected/table-cals.049.html"/>
   </x:scenario>
+
+  <x:scenario label="When transforming table-cals.050.xml">
+    <x:context href="../resources/xml/table-cals.050.xml"/>
+    <x:expect label="expect row/entry xml:ids to become id attributes" href="../resources/expected/table-cals.050.html"/>
+  </x:scenario>
 </x:description>

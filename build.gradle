@@ -746,8 +746,6 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
     stylesheetParams['mediaobject-output-base-uri'] = "media/"
     stylesheetParams['dynamic-profiles'] = true
 
-    //println("Task ${base}.expected: ${stylesheetParams}")
-
     input xml
     stylesheet "${buildDir}/xslt/xspec-driver.xsl"
     output "${projectDir}/src/test/resources/expected/${base}.html"
@@ -1702,7 +1700,7 @@ publishing {
 task helloWorld() {
   doLast {
     println('Hello, world: ' + xslTNGversion)
-    project.objects.fileCollection().each { path ->
+    configurations.validateRuntime.each { path ->
       println("CP: ${path}")
     }
 

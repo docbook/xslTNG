@@ -94,6 +94,7 @@
   <xsl:message use-when="'tables' = $debug"
                select="'========================================'"/>
   <tr>
+    <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:for-each select="1 to fcals:table-columns($row)">
       <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
       <xsl:choose>
@@ -292,6 +293,13 @@
   </xsl:variable>
 
   <xsl:element name="{$td}" namespace="http://www.w3.org/1999/xhtml">
+    <!-- Can't (easily) use the m:attributes mode here because we need
+         to output the appropriate attributes even when there is no
+         DocBook node. (For example, when a cell is omitted.) -->
+    <xsl:if test="map:contains($properties, 'node')
+                  and $properties?node/@xml:id">
+      <xsl:attribute name="id" select="$properties?node/@xml:id"/>
+    </xsl:if>
     <xsl:if test="exists($classes)">
       <xsl:variable name="sorted" as="xs:string+">
         <xsl:for-each select="$classes">
