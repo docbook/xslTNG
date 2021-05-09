@@ -90,15 +90,19 @@
 
   <xsl:result-document href="{$href}">
     <xsl:choose>
-      <xsl:when test="not(/h:html)">
+      <xsl:when test="not(self::h:html)">
+        <!-- If this happens not to be an h:html element, just output it. -->
         <xsl:sequence select="."/>
       </xsl:when>
       <xsl:when test="f:is-true($generate-html-page)">
+        <!-- If this is an h:html element, and generate-html-page is true,
+             output just output it. -->
         <xsl:sequence select="."/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>Attempting to generate raw output</xsl:message>
-        <xsl:sequence select="/h:html/h:body/node() except /h:html/h:body/h:script"/>
+        <!-- We got an h:html, but the user has requested 'raw' output.
+             Attempt to strip out the generated html page wrapper. -->
+        <xsl:sequence select="h:body/node() except h:body/h:script"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:result-document>

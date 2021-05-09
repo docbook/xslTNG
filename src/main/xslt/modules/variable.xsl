@@ -214,6 +214,12 @@
   </div>
 </xsl:variable>
 
+<!-- N.B. There's a bit of a hack in the variables below. We put the
+     link and script elements in the same variable, but we use them in
+     two different places so that the h:link element(s) precede the
+     DocBook CSS files (in order to support overrides with cascade).
+     -->
+
 <xsl:variable name="v:highlight-js-head-elements" as="element()*">
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css" />

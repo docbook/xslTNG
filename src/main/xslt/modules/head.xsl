@@ -27,6 +27,23 @@
     <xsl:apply-templates select="db:keywordset|db:subjectset"
                          mode="m:html-head"/>
 
+    <xsl:choose>
+      <xsl:when test="$verbatim-syntax-highlighter = 'highlight.js'">
+        <xsl:sequence select="$v:highlight-js-head-elements/self::h:link"/>
+      </xsl:when>
+      <xsl:when test="$verbatim-syntax-highlighter = ('prism', 'prism.js')">
+        <xsl:sequence select="$v:prism-js-head-elements/self::h:link"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- nop -->
+      </xsl:otherwise>
+    </xsl:choose>
+
+    <xsl:if test="exists($v:verbatim-syntax-highlight-languages)
+                  and normalize-space($verbatim-syntax-highlight-css) != ''">
+      <link rel="stylesheet" href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
+    </xsl:if>
+
     <xsl:apply-templates select="." mode="mp:html-head"/>
 
     <xsl:for-each select="$v:css-links">
@@ -36,11 +53,6 @@
     <xsl:if test="exists($oxy-markup-css)
                   and //processing-instruction()[starts-with(name(), 'oxy_')]">
       <link rel="stylesheet" href="{$resource-base-uri}{$oxy-markup-css}"/>
-    </xsl:if>
-
-    <xsl:if test="exists($v:verbatim-syntax-highlight-languages)
-                  and normalize-space($verbatim-syntax-highlight-css) != ''">
-      <link rel="stylesheet" href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="mp:html-head-script"/>
@@ -127,10 +139,12 @@
     <xsl:when test="$verbatim-syntax-highlighter = ('', 'none')"/>
     <xsl:when test="$verbatim-syntax-highlighter = 'pygments'"/>
     <xsl:when test="$verbatim-syntax-highlighter = 'highlight.js'">
-      <xsl:sequence select="$v:highlight-js-head-elements"/>
+      <xsl:sequence select="$v:highlight-js-head-elements/self::*
+                            except $v:highlight-js-head-elements/self::h:link"/>
     </xsl:when>
     <xsl:when test="$verbatim-syntax-highlighter = ('prism', 'prism.js')">
-      <xsl:sequence select="$v:prism-js-head-elements"/>
+      <xsl:sequence select="$v:prism-js-head-elements/self::*
+                            except $v:prism-js-head-elements/self::h:link"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message select="'Unrecognized syntax highlighter:', $verbatim-syntax-highlighter"/>

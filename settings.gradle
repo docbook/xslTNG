@@ -1,0 +1,13 @@
+pluginManagement {
+  // includeBuild "/Users/ndw/Projects/xml/saxon-gradle/"
+  buildscript {
+    repositories {
+      mavenCentral()
+      flatDir { dirs "libs" }
+    }
+    dependencies {
+      classpath "net.sf.saxon:Saxon-HE:10.5"
+      classpath ':com.nwalsh.saxon-gradle:0.9.1-beta3'
+    }
+  }
+}

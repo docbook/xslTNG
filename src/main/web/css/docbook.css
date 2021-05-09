@@ -327,6 +327,10 @@ pre code {
     margin: inherit;
 }
 
+pre > code {
+    padding: initial;
+}
+
 .userinput {
     font-weight: bold;
 }

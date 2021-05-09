@@ -182,6 +182,14 @@
                                      (local-name(.), $pgwide, $landscape, $style), ())"/>
 </xsl:template>
 
+<xsl:template match="db:row"
+              mode="m:attributes" as="attribute()*">
+  <xsl:variable name="attr" as="attribute()*">
+    <xsl:apply-templates select="@*"/>
+  </xsl:variable>
+  <xsl:sequence select="f:attributes(., $attr, (), ())"/>
+</xsl:template>
+
 <xsl:template match="db:imagedata|db:videodata|db:audiodata"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" as="attribute()*">
