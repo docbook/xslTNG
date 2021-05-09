@@ -638,6 +638,11 @@ element (local) names to placements. The placement is either
 selected (see <parameter>verbatim-syntax-highlighter</parameter>), these elements are
 added to the <tag namespace="http://www.w3.org/1999/xhtml">head</tag> element to
 load and configure the highlighter.</para>
+<para>Starting with the <citetitle>DocBook xslTNG Stylesheets</citetitle> version 1.4.1,
+any <tag namespace="http://www.w3.org/1999/xhtml">link</tag> elements will be
+added to the <tag namespace="http://www.w3.org/1999/xhtml">head</tag> element
+<emphasis>before</emphasis> links to user-defined CSS files so that property overrides
+may be specified.</para>
 </refsection>
 </refentry>
 
@@ -843,6 +848,11 @@ This variable contains the list of known ways, see
 selected (see <parameter>verbatim-syntax-highlighter</parameter>), these elements are
 added to the <tag namespace="http://www.w3.org/1999/xhtml">head</tag> element to
 load and configure the highlighter.</para>
+<para>Starting with the <citetitle>DocBook xslTNG Stylesheets</citetitle> version 1.4.1,
+any <tag namespace="http://www.w3.org/1999/xhtml">link</tag> elements will be
+added to the <tag namespace="http://www.w3.org/1999/xhtml">head</tag> element
+<emphasis>before</emphasis> links to user-defined CSS files so that property overrides
+may be specified.</para>
 </refsection>
 </refentry>
 
