@@ -9,11 +9,16 @@
 
 <xsl:param name="version" as="xs:string" required="yes"/>
 <xsl:param name="jarloc" as="xs:string?" select="()"/>
+<xsl:param name="jarpath" as="xs:string" select="''"/>
 <xsl:param name="catalog" as="xs:string?" select="()"/>
 
 <xsl:variable name="https" select="'https://cdn.docbook.org/'"/>
 
 <xsl:template match="catalog">
+  <xsl:if test="contains($jarloc, 'classpath:')">
+    <xsl:comment> This catalog requires XML Resolver 2.0.0 or later </xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
   <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <xsl:apply-templates select="@*,node()"/>
     <xsl:if test="exists($catalog)">
@@ -23,15 +28,16 @@
 </xsl:template>
 
 <xsl:template match="uri">
-  <xsl:variable name="name" select="@name"/>
+  <xsl:variable name="name" select="substring-after(@name, '/xsltng/')"/>
+
   <xsl:for-each select="('current', $version)">
-    <xsl:variable name="path" select="'release/xsltng/' ||  . ||  $name"/>
+    <xsl:variable name="path" select="'release/xsltng/' ||  . || '/' || $name"/>
     <uri xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
       <xsl:attribute name="name" select="concat($https, $path)"/>
       <xsl:attribute name="uri"
                      select="if (exists($jarloc))
-                             then $jarloc || $name
-                             else substring-after($name, '/xslt/')"/>
+                             then $jarloc || $jarpath || $name
+                             else '../' || $name"/>
     </uri>
   </xsl:for-each>
 </xsl:template>
