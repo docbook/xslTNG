@@ -653,7 +653,9 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
 }
 
 // Generate tasks to format each resource/xml document
-fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { xml ->
+fileTree(dir: "${projectDir}/src/test/resources/xml",
+         include: "*.xml",
+         exclude: "tran-caution.xml").each { xml ->
   // Work out the base filename of the test
   def base = xml.toString()
   def pos = base.indexOf("/resources/xml/")
@@ -728,12 +730,27 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
     // This won't pass validation...
     htmlDependsOn = ['makeXslt']
   } else {
-    t = task "validate_${base}"(type: JavaExec) {
-      classpath = configurations.validateRuntime
-      main = "com.thaiopensource.relaxng.util.Driver"
-      args "-i", "${buildDir}/${schema}", xml.toString()
+    t = task "validate_${base}"() {
+      inputs.file xml
+      inputs.file "${buildDir}/${schema}"
+      outputs.file "${buildDir}/validated/${base}"
+      
       if (base.contains("transclusion")) {
         dependsOn setup_transclusion
+      }
+
+      doLast {
+        javaexec {
+          classpath = configurations.validateRuntime
+          main = "com.thaiopensource.relaxng.util.Driver"
+          args "-i", "${buildDir}/${schema}", xml.toString()
+        }
+      }
+
+      doLast {
+        new File("${buildDir}/validated/${base}").withWriter("utf-8") { writer ->
+          writer.writeLine("validated")
+        }
       }
     }
     t.dependsOn tasks.findByName("setup_${schemaPath}")
@@ -791,7 +808,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
 
   t = task "${base}.olinkdb"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+    inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: "expected")
     inputs.file file("${buildDir}/xslt/olinkdb.xsl")
 
     pluginConfiguration "docbook"
