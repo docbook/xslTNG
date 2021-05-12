@@ -216,7 +216,7 @@ configurations.compileClasspath.each { it ->
 
 // Set system properties
 System.setProperty("org.docbook.xsltng.extensions.verbose", verbose)
-System.setProperty("Dorg.docbook.extensions.pygmentize", pygmentize)
+System.setProperty("org.docbook.extensions.pygmentize", pygmentize)
 
 task configureEnvironment() {
   def envVars = [:]
@@ -1696,6 +1696,38 @@ publishing {
 }
 
 // ============================================================
+
+task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  doFirst {
+    if (dbsource = '') {
+      throw new GradleException("You must specify -Pdbsource=...")
+    }
+    if (dboutput = '') {
+      throw new GradleException("You must specify -Pdboutput=...")
+    }
+  }
+
+  def ssparams = [:]
+  doFirst {
+    dbparams.split(/\s+/).each { param ->
+      def pos = param.indexOf('=')
+      if (pos <= 0) {
+        throw new GradleException("Malformed parameter: ${param}")
+      } else {
+        def name = param.substring(0, pos).replace(/%20/, ' ')
+        def value = param.substring(pos+1).replace(/%20/, ' ')
+        ssparams[name] = value
+      }
+    }
+  }
+
+  pluginConfiguration "docbook"
+
+  input "${dbsource}"
+  stylesheet "${buildDir}/xslt/docbook.xsl"
+  output "${dboutput}"
+  parameters(ssparams)
+}
 
 task helloWorld() {
   doLast {
