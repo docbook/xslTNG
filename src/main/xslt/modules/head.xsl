@@ -102,7 +102,7 @@
   <xsl:variable name="Z" select="xs:dayTimeDuration('PT0H')"/>
 
  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- <link rel="schema.dc" href="https://purl.org/dc/elements/1.1/"/>
+ <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/"/>
  <meta name="dc.modified"
        content="{format-dateTime(adjust-dateTime-to-timezone(current-dateTime(), $Z),
                                  '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z')}"/>
