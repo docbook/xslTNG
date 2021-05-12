@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+  <x:param name="docbook-transclusion" select="'true'"/>
+  
+  <x:scenario label="When transcluding with no fixup">
+    <x:context href="../resources/xml/transclusion.001.xml"/>
+    <x:expect label="expect it to produce the right results"
+              href="../resources/expected/transclusion.001.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transcluding with auto fixup">
+    <x:context href="../resources/xml/transclusion.002.xml"/>
+    <x:expect label="expect it to produce the right results"
+              href="../resources/expected/transclusion.002.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transcluding with suffix fixup">
+    <x:context href="../resources/xml/transclusion.003.xml"/>
+    <x:expect label="expect it to produce the right results"
+              href="../resources/expected/transclusion.003.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transcluding with local suffix fixup">
+    <x:context href="../resources/xml/transclusion.004.xml"/>
+    <x:expect label="expect it to produce the right results"
+              href="../resources/expected/transclusion.004.html"/>
+  </x:scenario>
+
+</x:description>
