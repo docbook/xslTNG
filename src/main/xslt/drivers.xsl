@@ -14,8 +14,6 @@
                 exclude-result-prefixes="db ext f m map mp t v vp xs"
                 version="3.0">
 
-
-
 <xsl:template name="t:preprocess" as="document-node()">
   <xsl:param name="source" as="document-node()" select="."/>
 

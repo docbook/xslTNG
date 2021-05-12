@@ -171,10 +171,6 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="db:coref">
-  <xsl:call-template name="t:inline"/>
-</xsl:template>
-
 <xsl:template match="db:database">
   <xsl:call-template name="t:inline">
     <xsl:with-param name="class" select="@class"/>

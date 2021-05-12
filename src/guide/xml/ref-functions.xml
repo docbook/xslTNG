@@ -356,6 +356,7 @@ directly comparable. This function returns true if two lengths are equal.</para>
 <refmeta>
 <refentrytitle>f:generate-id</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}generate-id#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}generate-id#2</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:generate-id</refname>
@@ -369,9 +370,13 @@ generated from the names of the ancestors and preceding siblings of
 the element. This value will be consistent across different
 transformations as long as the ancestors and preceding siblings remain
 unchanged.</para>
-<para>If there’s an element with a <att>xml:id</att> attribute among
+<para>If <code>use-xml-id</code> is true
+and there’s an element with a <att>xml:id</att> attribute among
 the ancestors, the unique identifier is rooted at that element, rather
-than traversing all the way to the root of the document..</para>
+than traversing all the way to the root of the document.</para>
+<para>Disabling this feature by setting <parameter>use-xml-id</parameter>
+to false allows for the creation of globally unique IDs with
+<function>f:unique-id</function>.</para>
 </refsection>
 </refentry>
 
@@ -1405,6 +1410,26 @@ If no template is found, returns the <code>$default</code> template.</para>
 <para>This function tokenizes a string at a specific character (not a regular
 expression). If the specified character is a regular expression meta-character, it
 is automatically escaped.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_unique-id">
+<?db filename="f_unique-id.html"?>
+<refmeta>
+<refentrytitle>f:unique-id</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}unique-id#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:unique-id</refname>
+<refpurpose>Returns an ID for the element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns a globally unique ID for the element. This allows
+a transformation to disambiguate between different elements that happen to have
+the same <att>xml:id</att>, as can occur if transclusion is performed.
+</para>
 </refsection>
 </refentry>
 

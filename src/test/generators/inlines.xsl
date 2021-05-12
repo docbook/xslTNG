@@ -29,7 +29,6 @@
   'command': 'code',
   'computeroutput': 'code',
   'constant': 'code',
-  'coref': 'span',
   'database': 'span',
   'date': 'span',
   'editor': 'span',

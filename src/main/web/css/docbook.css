@@ -482,6 +482,11 @@ header .authorgroup {
     border-bottom: 1px solid var(--border-color);
 }
 
+.revhistory table tr th,
+.revhistory table tr td {
+    vertical-align: top;
+}
+
 .revhistory td p {
     margin: 0;
     padding: 0;

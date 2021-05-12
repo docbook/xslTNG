@@ -29,8 +29,7 @@ plugins {
   id "maven-publish"
   id "signing"
   //id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta3'
-  //id 'com.nwalsh.saxon-gradle' version '0.9.1-beta2'
-  id 'com.nwalsh.saxon-gradle'
+  id 'com.nwalsh.saxon-gradle' version '0.9.1-beta3'
   id "de.undercouch.download" version "4.0.4"
 }
 
@@ -75,6 +74,7 @@ dependencies {
     [group: saxonGroup, name: saxonEdition, version: saxonVersion],
     [group: 'com.drewnoakes', name: 'metadata-extractor', version: metadataExtractorVersion],
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
+    [group: 'org.relaxng', name: 'trang', version: "20181222" ],
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
     [group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion ],
@@ -113,7 +113,8 @@ if (System.getenv()["CIRCLECI"] == "true"
 
 // These are the top-level XSpec test drivers
 def testDrivers = ['docbook.xspec', 'main.xspec', '00_logstruct.xspec',
-                   '20_db4to5.xspec', 'local_conventions.xspec']
+                   '20_db4to5.xspec', 'local_conventions.xspec',
+                   'transclude.xspec']
 
 // I'm not sure I want to generate *all* the PDF files.
 // This is a kind of random list...
@@ -216,7 +217,7 @@ configurations.compileClasspath.each { it ->
 
 // Set system properties
 System.setProperty("org.docbook.xsltng.extensions.verbose", verbose)
-System.setProperty("Dorg.docbook.extensions.pygmentize", pygmentize)
+System.setProperty("org.docbook.extensions.pygmentize", pygmentize)
 
 task configureEnvironment() {
   def envVars = [:]
@@ -314,6 +315,27 @@ task setupXsltExplorer(type: Download) {
   }
 
   onlyIf { !file("${buildDir}/xsltexplorer-${xsltExplorerVersion}/README.org").exists() }
+}
+
+task setup_transclusion(type: JavaExec, dependsOn: ["setup_docbook"]) {
+  inputs.file "${projectDir}/src/test/resources/transclude.rnc"
+  outputs.file "${buildDir}/transclude.rng"
+
+  doFirst {
+    copy {
+      into buildDir
+      from ("${projectDir}/src/test/resources") {
+        include "transclude.rnc"
+      }
+      filter { String line ->
+        line = line.replace("@@DOCBOOK-VERSION@@", docbookVersion)
+      }
+    }
+  }
+
+  classpath = configurations.validateRuntime
+  main = "com.thaiopensource.relaxng.translate.Driver"
+  args "${buildDir}/transclude.rnc", "${buildDir}/transclude.rng"
 }
 
 task copyResources(type: Copy,
@@ -682,17 +704,22 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
   }
 
   def schemaPath = "docbook"
-  def schema = "docbook"
   def schemaVersion = docbookVersion
+  def schema = "${schemaPath}-${schemaVersion}/rng/docbook.rng"
 
   if (base.contains("xinclude") || base == "fit.001") {
-    schema = "docbookxi";
+    schema = "${schemaPath}-${schemaVersion}/rng/docbookxi.rng"
+  }
+
+  if (base.contains('transclusion')) {
+    schema = "transclude.rng";
+    stylesheetParams['docbook-transclusion'] = 'true'
   }
 
   if (publishersDocuments.contains(base)) {
     schemaPath = "publishers"
-    schema = "publishers"
     schemaVersion = publishersVersion
+    schema = "${schemaPath}-${schemaVersion}/rng/publishers.rng"
   }
   
   Task t = null
@@ -704,7 +731,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
     t = task "validate_${base}"(type: JavaExec) {
       classpath = configurations.validateRuntime
       main = "com.thaiopensource.relaxng.util.Driver"
-      args "-i", "${buildDir}/${schemaPath}-${schemaVersion}/rng/${schema}.rng", xml.toString()
+      args "-i", "${buildDir}/${schema}", xml.toString()
+      if (base.contains("transclusion")) {
+        dependsOn setup_transclusion
+      }
     }
     t.dependsOn tasks.findByName("setup_${schemaPath}")
     validateAll.dependsOn t
@@ -737,7 +767,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
 
   t = task "${base}.expected"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+    inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
     inputs.file file("${buildDir}/xslt/xspec-driver.xsl")
 
     pluginConfiguration "docbook"
@@ -1696,6 +1726,38 @@ publishing {
 }
 
 // ============================================================
+
+task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  doFirst {
+    if (dbsource = '') {
+      throw new GradleException("You must specify -Pdbsource=...")
+    }
+    if (dboutput = '') {
+      throw new GradleException("You must specify -Pdboutput=...")
+    }
+  }
+
+  def ssparams = [:]
+  doFirst {
+    dbparams.split(/\s+/).each { param ->
+      def pos = param.indexOf('=')
+      if (pos <= 0) {
+        throw new GradleException("Malformed parameter: ${param}")
+      } else {
+        def name = param.substring(0, pos).replace(/%20/, ' ')
+        def value = param.substring(pos+1).replace(/%20/, ' ')
+        ssparams[name] = value
+      }
+    }
+  }
+
+  pluginConfiguration "docbook"
+
+  input "${dbsource}"
+  stylesheet "${buildDir}/xslt/docbook.xsl"
+  output "${dboutput}"
+  parameters(ssparams)
+}
 
 task helloWorld() {
   doLast {

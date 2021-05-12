@@ -32,7 +32,7 @@
     </xsl:element>
   </xsl:variable>
 
-  <xsl:variable name="toc" as="item()">
+  <xsl:variable name="toc" as="item()?">
     <xsl:choose xmlns:vp="http://docbook.org/ns/docbook/variables/private">
       <xsl:when test="$nested">
         <xsl:evaluate context-item="." xpath="$generate-nested-toc"

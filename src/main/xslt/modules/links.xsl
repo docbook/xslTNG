@@ -75,6 +75,13 @@
   <xsl:param name="content" as="item()*"/>
 
   <xsl:choose>
+    <xsl:when test="@linkend">
+      <xsl:call-template name="tp:link">
+        <xsl:with-param name="primary-markup" select="$primary-markup"/>
+        <xsl:with-param name="href" select="'#' || @linkend"/>
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:when>
     <xsl:when test="@xlink:href">
       <xsl:call-template name="tp:link">
         <xsl:with-param name="primary-markup" select="$primary-markup"/>
