@@ -10,13 +10,15 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
+                xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
+	        xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="array db dbe f fp g h m map mp tp v vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <!-- N.B. There's no winning here. It would be nice to inject callouts
@@ -1178,6 +1180,50 @@
     </xsl:choose>
   </xsl:variable>
   <xsl:value-of select="codepoints-to-string($callout-unicode-start + xs:integer($conum))"/>
+</xsl:template>
+
+<xsl:template match="db:coref">
+  <xsl:variable name="coid" as="xs:string?">
+    <xsl:choose>
+      <xsl:when test="@linkend">
+        <xsl:sequence select="@linkend/string()"/>
+      </xsl:when>
+      <xsl:when test="@xlink:href[starts-with(., '#')]">
+        <xsl:sequence select="substring(@xlink:href, 2)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="empty($coid)">
+      <xsl:message>Cannot find callout ID on coref</xsl:message>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="co" select="key('id', $coid)"/>
+      <xsl:if test="count($co) gt 1">
+        <xsl:message>Callout ID on coref is not unique: <xsl:sequence select="$coid"/></xsl:message>
+      </xsl:if>
+      <xsl:variable name="co" select="$co[1]"/>
+      <xsl:choose>
+        <xsl:when test="empty($co)">
+          <xsl:message>Callout ID on coref does not exist: <xsl:sequence select="$coid"/></xsl:message>
+          <xsl:call-template name="t:inline"/>
+        </xsl:when>
+        <xsl:when test="not($co/self::db:co)">
+          <xsl:message>
+            <xsl:text>Callout ID on coref does not point to a co: </xsl:text>
+            <xsl:sequence select="$coid"/>
+          </xsl:message>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="$co"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:areaspec" mode="m:callout-bug" as="xs:integer">
