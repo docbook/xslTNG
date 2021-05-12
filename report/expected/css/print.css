@@ -1,6 +1,6 @@
 /* Automatically generated, do not edit. */
 
-/* DocBook xslTNG version 1.4.1
+/* DocBook xslTNG version 1.4.2-SNAPSHOT
  *
  * This is docbook.css.
  *
@@ -363,6 +363,11 @@ header .authorgroup {
 
 .revhistory .title {
     border-bottom: 1px solid #6200ee;
+}
+
+.revhistory table tr th,
+.revhistory table tr td {
+    vertical-align: top;
 }
 
 .revhistory td p {
@@ -1350,7 +1355,7 @@ a.annomark:visited {
     margin-bottom: 0.5em;
     text-align: center;
 }
-/* DocBook xslTNG version 1.4.1
+/* DocBook xslTNG version 1.4.2-SNAPSHOT
  *
  * This is docbook-paged.css.
  *

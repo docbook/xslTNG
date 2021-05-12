@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.4.1
+/* DocBook xslTNG version 1.4.2-SNAPSHOT
  *
  * This is docbook.css.
  *
@@ -480,6 +480,11 @@ header .authorgroup {
 
 .revhistory .title {
     border-bottom: 1px solid var(--border-color);
+}
+
+.revhistory table tr th,
+.revhistory table tr td {
+    vertical-align: top;
 }
 
 .revhistory td p {

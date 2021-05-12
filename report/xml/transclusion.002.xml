@@ -1,0 +1,46 @@
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:trans="http://docbook.org/ns/transclusion"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+         trans:idfixup="auto">
+<title>Transclusion 001</title>
+
+<para>In this document, all transcluded IDs are resolved with the ‘auto’ fixup.</para>
+
+<para>In a document where the same fragment is included (for example,
+with XInclude) more than once, any ID values in that fragment will
+be duplicated in the resulting document. Duplicate IDs should be avoided.
+</para>
+
+<para>The DocBook <citetitle
+xlink:href="https://docbook.org/docs/transclusion/">Transclusion</citetitle>
+specification is intended to address this problem by providing “fixup”
+mechanisms.</para>
+
+<para>In this document, we use the following <tag linkend="caution">caution</tag>
+element as an example:</para>
+
+<xi:include href="tran-caution.xml"/>
+
+<para>Here it is <link linkend="caution">repeated</link>:</para>
+
+<xi:include href="tran-caution.xml"/>
+
+<section>
+<title>Subsection One</title>
+
+<para>Here it is <link linkend="caution">repeated</link> in a subsection:</para>
+
+<xi:include href="tran-caution.xml"/>
+
+</section>
+
+<section>
+<title>Subsection Two</title>
+
+<para>Here it is <link xlink:href="#caution">repeated</link> in another subsection:</para>
+
+<xi:include href="tran-caution.xml"/>
+
+</section>
+</article>
