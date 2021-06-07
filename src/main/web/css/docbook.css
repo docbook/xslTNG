@@ -307,7 +307,8 @@ code.email {
     padding-right: 0;
 }
 
-pre code {
+pre code,
+cmdsynopsis code {
     border: none;
     background-color: inherit;
     padding: inherit;
