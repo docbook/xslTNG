@@ -208,39 +208,10 @@
   <xsl:sequence select="f:attributes(., $attr, (local-name(.), 'admonition'), ())"/>
 </xsl:template>  
 
-<xsl:template match="db:programlisting"
-              mode="m:attributes" as="attribute()*">
-  <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
-  <xsl:param name="long" as="xs:boolean" select="false()"/>
-
-  <xsl:variable name="attr" as="attribute()*">
-    <xsl:apply-templates select="@*"/>
-    <xsl:sequence select="f:chunk(.)"/>
-  </xsl:variable>
-
-  <xsl:variable name="lang"
-                select="if (@language)
-                        then 'language-' || @language
-                        else 'language-none'"/>
-
-  <xsl:variable name="long"
-                select="if ($long and $numbered)
-                        then 'long'
-                        else ()"/>
-
-  <xsl:variable name="numbered"
-                select="if ($numbered)
-                        then 'numbered'
-                        else ()"/>
-
-  <xsl:sequence
-      select="f:attributes(., $attr,
-                 (local-name(.), 'verbatim', $lang, $numbered, $long), ())"/>
-</xsl:template>
-
-<xsl:template match="db:screen|db:address|db:literallayout
+<xsl:template match="db:programlisting|db:screen|db:address|db:literallayout
                      |db:synopsis|db:funcsynopsisinfo|db:classsynopsisinfo"
               mode="m:attributes" as="attribute()*">
+  <xsl:param name="style" as="xs:string" select="f:verbatim-style(.)"/>
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
   <xsl:param name="long" as="xs:boolean" select="false()"/>
 
@@ -249,19 +220,31 @@
     <xsl:sequence select="f:chunk(.)"/>
   </xsl:variable>
 
-  <xsl:variable name="long"
+  <xsl:variable name="lang" as="xs:string?"
+                select="if (@language)
+                        then 'language-' || @language
+                        else if (self::db:programlisting)
+                             then 'language-none'
+                             else ()"/>
+
+  <xsl:variable name="style" as="xs:string*"
+                select="if ($style = 'lines')
+                        then ('verbatim', 'verblines')
+                        else 'verbatim'"/>
+
+  <xsl:variable name="long" as="xs:string?"
                 select="if ($long and $numbered)
                         then 'long'
                         else ()"/>
 
-  <xsl:variable name="numbered"
+  <xsl:variable name="numbered" as="xs:string?"
                 select="if ($numbered)
                         then 'numbered'
                         else ()"/>
 
   <xsl:sequence
       select="f:attributes(., $attr,
-                 (local-name(.), @class, 'verbatim', $numbered, $long), ())"/>
+                 (local-name(.), $lang, @class, $style, $numbered, $long), ())"/>
 </xsl:template>
 
 <xsl:template match="db:lhs" mode="m:attributes" as="attribute()*">
