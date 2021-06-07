@@ -689,6 +689,12 @@
   <xsl:call-template name="t:inline"/>
 </xsl:template>
 
+<xsl:template match="db:templatename">
+  <xsl:call-template name="t:inline">
+    <xsl:with-param name="namemap" select="'code'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template match="db:termdef">
   <xsl:call-template name="t:inline"/>
 </xsl:template>
