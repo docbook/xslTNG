@@ -237,18 +237,6 @@ span.error.broken-link::after {
     vertical-align: super;
 }
 
-.literal {
-    white-space: nowrap;
-}
-
-.nobreak {
-    white-space: nowrap;
-}
-
-.break {
-    white-space: normal;
-}
-
 .xlink-arc-list {
     display: none;
 }
@@ -329,6 +317,18 @@ pre code {
 
 pre > code {
     padding: initial;
+}
+
+.literal {
+    white-space: nowrap;
+}
+
+.nobreak {
+    white-space: nowrap;
+}
+
+.break {
+    white-space: normal;
 }
 
 .userinput {
