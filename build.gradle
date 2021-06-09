@@ -2,9 +2,8 @@ buildscript {
   repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-      url "https://dev.saxonica.com/maven"
-    }
+    maven { url "https://dev.saxonica.com/maven" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
   }
 
   apply from: 'properties.gradle'
@@ -29,7 +28,7 @@ plugins {
   id "maven-publish"
   id "signing"
   //id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta3'
-  id 'com.nwalsh.saxon-gradle' version '0.9.1-beta3'
+  id 'com.nwalsh.saxon-gradle' version '0.9.1-beta4'
   id "de.undercouch.download" version "4.0.4"
 }
 
@@ -49,9 +48,8 @@ import de.undercouch.gradle.tasks.download.Download
 repositories {
   mavenLocal()
   mavenCentral()
-  maven {
-    url "https://dev.saxonica.com/maven"
-  }
+  maven { url "https://dev.saxonica.com/maven" }
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 apply from: 'properties.gradle'
@@ -78,6 +76,8 @@ dependencies {
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
     [group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion ],
+    [group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'],
+    [group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT'],
     files("${projectDir}/buildSrc/build/classes/java/main")
   )
   testImplementation (
