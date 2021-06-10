@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                xmlns:m="http://docbook.org/ns/docbook/modes"
                 exclude-result-prefixes="xs"
                 version="2.0">
 
@@ -27,7 +28,8 @@
         <xsl:variable name="id" select="generate-id($elem)"/>
 
         <x:scenario label="When converting an {$n} in the {$s} style">
-          <x:context xmlns="http://docbook.org/ns/docbook">
+          <x:context xmlns="http://docbook.org/ns/docbook" select="*" mode="m:docbook">
+            <x:param name="verbatim-style-default" select="'{$s}'"/>
             <x:param name="style" select="'{$s}'"/>
             <xsl:element name="{$n}" namespace="http://docbook.org/ns/docbook">
               <xsl:attribute name="xml:id" select="$id"/>
@@ -36,24 +38,29 @@
             </xsl:element>
           </x:context>
           <x:expect label="it should return a single div element"
-                    test="count(/h:body/h:main/*) = 1 and /h:body/h:main/h:div"/>
+                    test="count(/h:div) = 1"/>
           <x:expect label="it should return the xml:id in the id"
-                    test="/h:body/h:main/h:div/h:pre/@id = '{$id}'"/>
+                    test="/h:div/h:pre/@id = '{$id}'"/>
 
           <xsl:variable name="lang" select="if ($n = 'programlisting')
                                             then ('language-none', 'numbered')
                                             else ()"/>
+
+          <xsl:variable name="lines" select="if ($s = 'lines')
+                                             then 'verblines'
+                                             else ()"/>
+
           <xsl:variable name="classes" as="xs:string+">
-            <xsl:for-each select="($n, $lang, 'a', 'b', 'c', 'verbatim')">
+            <xsl:for-each select="($n, $lang, 'a', 'b', 'c', 'verbatim', $lines)">
               <xsl:sort select="."/>
               <xsl:sequence select="."/>
             </xsl:for-each>
           </xsl:variable>
 
           <x:expect label="it should return the roles as classes"
-                    test="/h:body/h:main/h:div/h:pre/@class = '{string-join($classes, ' ')}'"/>
+                    test="/h:div/h:pre/@class = '{string-join($classes, ' ')}'"/>
           <x:expect label="it should not return any other attributes"
-                    test="empty(/h:body/h:main/h:div/*/@* except (/h:body/h:main/h:div/*/@id | /h:body/h:main/h:div/*/@class))"/>
+                    test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
         </x:scenario>
       </xsl:for-each>
     </xsl:for-each>

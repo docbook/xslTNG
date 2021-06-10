@@ -238,7 +238,7 @@ Line four
 Line five</address>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap"><pre class="address verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap"><pre class="address verbatim verblines"><span class="line" db-line="1">
       <span class="ln"/>
       <span class="ld">Line one</span>
    </span>
@@ -272,7 +272,7 @@ Line four
 Line five</literallayout>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap"><pre class="literallayout verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap"><pre class="literallayout verbatim verblines"><span class="line" db-line="1">
       <span class="ln"/>
       <span class="ld">Line one</span>
    </span>
@@ -305,7 +305,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
       <span class="ln">1</span>
       <span class="ld">
          <code>Line one</code>
@@ -349,7 +349,7 @@ Line four
 Line five</screen>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-   <div class="pre-wrap"><pre class="screen verbatim"><span class="line" db-line="1">
+   <div class="pre-wrap"><pre class="screen verbatim verblines"><span class="line" db-line="1">
       <span class="ln"/>
       <span class="ld">
          <code>Line one</code>
@@ -393,7 +393,7 @@ Line four
 Line five</synopsis>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap"><pre class="synopsis verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap"><pre class="synopsis verbatim verblines"><span class="line" db-line="1">
       <span class="ln"/>
       <span class="ld">
          <code>Line one</code>
@@ -437,7 +437,7 @@ Start of line</emphasis> four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the inline markup should not cross line boundaries.">
-   <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><span class="line" db-line="1">
+   <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
       <span class="ln">1</span>
       <span class="ld">
          <code>Line one</code></span></span>
@@ -470,7 +470,7 @@ Start of line</emphasis> four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="ID attributes should not be repeated.">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
       <span class="ln">1</span>
       <span class="ld">
          <code>Line one</code></span></span>
@@ -512,7 +512,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="they should appear in the output">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
       <span class="ln">1</span>
       <span class="ld"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one</code></span></span>
 <span class="line" db-line="2">
@@ -551,7 +551,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="they can extend the listing">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="8"><pre class="language-none long numbered programlisting verbatim"><span class="line" db-line="1">
+     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="8"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
       <span class="ln">1</span>
       <span class="ld">
          <code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one</code></span>
