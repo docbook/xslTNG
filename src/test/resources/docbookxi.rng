@@ -1,0 +1,5 @@
+<!-- Vacuous wrapper around docbook.rng so that the resolver can get the base schema -->
+<grammar ns="http://docbook.org/ns/docbook"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="https://cdn.docbook.org/schema/5.2/rng/docbookxi.rng"/>
+</grammar>

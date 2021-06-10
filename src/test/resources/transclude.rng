@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="http://docbook.org/ns/docbook"
+         xmlns:trans="http://docbook.org/ns/transclusion"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="docbookxi.rng">
+    <define name="db.common.base.attributes" combine="choice">
+      <interleave>
+        <optional>
+          <ref name="db.trans.idfixup"/>
+        </optional>
+        <optional>
+          <ref name="db.trans.suffix"/>
+        </optional>
+        <optional>
+          <ref name="db.trans.linkscope"/>
+        </optional>
+      </interleave>
+    </define>
+  </include>
+  <define name="db.trans.idfixup">
+    <attribute name="trans:idfixup">
+      <choice>
+        <value>none</value>
+        <value>suffix</value>
+        <value>auto</value>
+      </choice>
+    </attribute>
+  </define>
+  <define name="db.trans.suffix">
+    <attribute name="trans:suffix"/>
+  </define>
+  <define name="db.trans.linkscope">
+    <attribute name="trans:linkscope">
+      <choice>
+        <value>user</value>
+        <value>local</value>
+        <value>near</value>
+        <value>global</value>
+      </choice>
+    </attribute>
+  </define>
+</grammar>
