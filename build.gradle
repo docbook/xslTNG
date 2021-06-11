@@ -20,6 +20,7 @@ buildscript {
     classpath group: saxonGroup, name: saxonEdition, version: saxonVersion
     classpath group: 'com.drewnoakes', name: 'metadata-extractor', version: metadataExtractorVersion
     classpath group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion
+    classpath group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion
     classpath group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'
     classpath group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT'
   }
@@ -84,12 +85,12 @@ dependencies {
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
     [group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion ],
-    [group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'],
-    [group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT'],
     files("${projectDir}/buildSrc/build/classes/java/main")
   )
   testImplementation (
-    [group: 'junit', name: 'junit', version: '4.13']
+    [group: 'junit', name: 'junit', version: '4.13'],
+    [group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'],
+    [group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT']
   )
 }
 
@@ -110,6 +111,10 @@ saxon.configure("docbook") {
   sourceSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
   stylesheetSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
   initializer 'org.docbook.xsltng.extensions.Register'
+}
+
+relaxng_validate.configure {
+  classpath configurations.validateRuntime
 }
 
 // If this is running on the CI infrastructure and it's not
@@ -1644,7 +1649,9 @@ publishing {
 
   repositories {
     maven {
-      url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      url = xslTNGversion.contains("SNAPSHOT") ?
+        "https://oss.sonatype.org/content/repositories/snapshots/" :
+        "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
       credentials {
         username = findProperty("sonatypeUsername") ?: ""
         password = findProperty("sonatypePassword") ?: ""
@@ -1703,7 +1710,7 @@ task helloWorld() {
     configurations.compileClasspath.each { cp ->
       println("CCP: ${cp}")
     }
-*/
     println("${EXCP}")
+*/
   }
 }
