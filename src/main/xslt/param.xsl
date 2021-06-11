@@ -150,7 +150,7 @@
       <xsl:sequence select="max((0, xs:integer($section-toc-depth)))"/>
     </xsl:when>
     <xsl:when test="string($section-toc-depth) = 'unbounded'">
-      <xsl:sequence select="-1"/>
+      <xsl:sequence select="2147483647"/> <!-- 0x7fffffff -->
     </xsl:when>
     <xsl:otherwise>
       <xsl:sequence select="0"/>
