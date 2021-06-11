@@ -11,7 +11,8 @@ buildscript {
   configurations.all {
     resolutionStrategy {
       force 'xml-apis:xml-apis:1.4.01',
-        "${saxonGroup}:${saxonEdition}:${saxonVersion}"
+        "${saxonGroup}:${saxonEdition}:${saxonVersion}",
+        "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
     }
   }
 
@@ -19,6 +20,8 @@ buildscript {
     classpath group: saxonGroup, name: saxonEdition, version: saxonVersion
     classpath group: 'com.drewnoakes', name: 'metadata-extractor', version: metadataExtractorVersion
     classpath group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion
+    classpath group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'
+    classpath group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT'
   }
 }
 
@@ -29,6 +32,8 @@ plugins {
   id "signing"
   //id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta3'
   id 'com.nwalsh.saxon-gradle' version '0.9.1-beta4'
+  id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
+  id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
   id "de.undercouch.download" version "4.0.4"
 }
 
@@ -42,6 +47,8 @@ sourceSets {
 
 //import com.github.eerohele.SaxonXsltTask
 import com.nwalsh.SaxonXsltTask
+import com.nwalsh.gradle.relaxng.validate.RelaxNGValidateTask
+import com.nwalsh.gradle.relaxng.translate.RelaxNGTranslateTask
 
 import de.undercouch.gradle.tasks.download.Download
 
@@ -57,7 +64,8 @@ apply from: 'properties.gradle'
 configurations.all {
   resolutionStrategy {
     force 'xml-apis:xml-apis:1.4.01',
-      "${saxonGroup}:${saxonEdition}:${saxonVersion}"
+      "${saxonGroup}:${saxonEdition}:${saxonVersion}",
+      "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
   }
 }
 
@@ -260,45 +268,6 @@ task setupXSpec(type: Download) {
   onlyIf { !file("${buildDir}/xspec-${xspecVersion}/README.md").exists() }
 }
 
-task setupDocBook(type: Download) {
-  src "${docbookBaseURI}/${docbookVersion}/docbook-${docbookVersion}.zip"
-  dest file("${buildDir}/docbook-${docbookVersion}.zip")
-  doFirst {
-    mkdir(buildDir)
-  }
-  doLast {
-    copy {
-      from zipTree("${buildDir}/docbook-${docbookVersion}.zip")
-      into buildDir
-    }
-  }
-  onlyIf { !file("${buildDir}/docbook-${docbookVersion}/catalog.xml").exists() }
-}
-
-task setup_docbook(dependsOn: "setupDocBook") {
-  // just an alias for computed reference
-}
-
-task setupPublishers(type: Download) {
-  src "${docbookBaseURI}/${publishersVersion}/publishers-${publishersVersion}.zip"
-  dest file("${buildDir}/publishers-${publishersVersion}.zip")
-  doFirst {
-    mkdir(buildDir)
-  }
-  doLast {
-    copy {
-      from zipTree("${buildDir}/publishers-${publishersVersion}.zip")
-      into buildDir
-    }
-  }
-
-  onlyIf { !file("${buildDir}/publishers-${publishersVersion}/catalog.xml").exists() }
-}
-
-task setup_publishers(dependsOn: "setupPublishers") {
-  // just an alias for computed reference
-}
-
 task setupXsltExplorer(type: Download) {
   outputs.file "${buildDir}/xsltexplorer-${xsltExplorerVersion}/xslt/explorer.xsl"
 
@@ -315,27 +284,6 @@ task setupXsltExplorer(type: Download) {
   }
 
   onlyIf { !file("${buildDir}/xsltexplorer-${xsltExplorerVersion}/README.org").exists() }
-}
-
-task setup_transclusion(type: JavaExec, dependsOn: ["setup_docbook"]) {
-  inputs.file "${projectDir}/src/test/resources/transclude.rnc"
-  outputs.file "${buildDir}/transclude.rng"
-
-  doFirst {
-    copy {
-      into buildDir
-      from ("${projectDir}/src/test/resources") {
-        include "transclude.rnc"
-      }
-      filter { String line ->
-        line = line.replace("@@DOCBOOK-VERSION@@", docbookVersion)
-      }
-    }
-  }
-
-  classpath = configurations.validateRuntime
-  main = "com.thaiopensource.relaxng.translate.Driver"
-  args "${buildDir}/transclude.rnc", "${buildDir}/transclude.rng"
 }
 
 task copyResources(type: Copy,
@@ -630,7 +578,7 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
 
   Task g = task "${generator}"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
     input xsl
-    stylesheet xsl.toString()
+    stylesheet xsl
     output "${buildDir}/xspec/${base}.xspec"
   }
 
@@ -705,55 +653,32 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['olink-databases'] = dirs.join(",")
   }
 
-  def schemaPath = "docbook"
-  def schemaVersion = docbookVersion
-  def schema = "${schemaPath}-${schemaVersion}/rng/docbook.rng"
-
+  def schemaFn = "${projectDir}/src/test/resources/docbook.rng"
   if (base.contains("xinclude") || base == "fit.001") {
-    schema = "${schemaPath}-${schemaVersion}/rng/docbookxi.rng"
+    schemaFn = "${projectDir}/src/test/resources/docbookxi.rng"
   }
 
   if (base.contains('transclusion')) {
-    schema = "transclude.rng";
+    schemaFn = "${projectDir}/src/test/resources/transclude.rng"
     stylesheetParams['docbook-transclusion'] = 'true'
   }
 
   if (publishersDocuments.contains(base)) {
-    schemaPath = "publishers"
-    schemaVersion = publishersVersion
-    schema = "${schemaPath}-${schemaVersion}/rng/publishers.rng"
+    schemaFn = "${projectDir}/src/test/resources/publishers.rng"
   }
-  
+
   Task t = null
   def htmlDependsOn = []
   if (base.startsWith("local.")) {
     // This won't pass validation...
     htmlDependsOn = ['makeXslt']
   } else {
-    t = task "validate_${base}"() {
-      inputs.file xml
-      inputs.file "${buildDir}/${schema}"
-      outputs.file "${buildDir}/validated/${base}"
-      
-      if (base.contains("transclusion")) {
-        dependsOn setup_transclusion
-      }
-
-      doLast {
-        javaexec {
-          classpath = configurations.validateRuntime
-          main = "com.thaiopensource.relaxng.util.Driver"
-          args "-i", "${buildDir}/${schema}", xml.toString()
-        }
-      }
-
-      doLast {
-        new File("${buildDir}/validated/${base}").withWriter("utf-8") { writer ->
-          writer.writeLine("validated")
-        }
-      }
+    t = task "validate_${base}"(type: RelaxNGValidateTask) {
+      input xml
+      output "${buildDir}/validated/${base}"
+      schema schemaFn
+      idref !invalidIdrefDocuments.contains(base)
     }
-    t.dependsOn tasks.findByName("setup_${schemaPath}")
     validateAll.dependsOn t
     htmlDependsOn = ['makeXslt', "validate_${base}"]
   }
@@ -1433,24 +1358,10 @@ task copyGuide(type: SaxonXsltTask, dependsOn: ['xincludeGuide']) {
   output "${buildDir}/guide/guide.xml"
 }
 
-task validateGuide(dependsOn: ['copyGuide', 'setupDocBook']) {
-  inputs.file "${buildDir}/guide/guide.xml"
-  outputs.file "${buildDir}/guide/validated"
-
-  doLast {
-    javaexec {
-      classpath = configurations.validateRuntime
-      main = "com.thaiopensource.relaxng.util.Driver"
-      args "-i", "${buildDir}/docbook-${docbookVersion}/rng/docbook.rng",
-        "${buildDir}/guide/guide.xml"
-    }
-  }
-
-  doLast {
-    new File("${buildDir}/guide/validated").withWriter("utf-8") { writer ->
-      writer.writeLine("validated")
-    }
-  }
+task validateGuide(type: RelaxNGValidateTask, dependsOn: ['copyGuide']) {
+  input "${buildDir}/guide/guide.xml"
+  schema "${projectDir}/src/test/resources/docbook.rng"
+  output "${buildDir}/guide/validated.xml"
 }
 
 task guide(type: SaxonXsltTask, dependsOn: ['makeXslt', 'validateGuide', 'explorer']) {
@@ -1779,11 +1690,10 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
 task helloWorld() {
   doLast {
     println('Hello, world: ' + xslTNGversion)
+/*
     configurations.validateRuntime.each { path ->
       println("CP: ${path}")
     }
-
-/*
     configurations.projectRuntimeClasspath.each { path ->
       println("R: ${path}")
     }
@@ -1793,7 +1703,7 @@ task helloWorld() {
     configurations.compileClasspath.each { cp ->
       println("CCP: ${cp}")
     }
-    println("${EXCP}")
 */
+    println("${EXCP}")
   }
 }
