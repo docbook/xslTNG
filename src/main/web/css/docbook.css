@@ -299,6 +299,12 @@ code {
     font-size: 85%;
 }
 
+.toc code {
+    background-color: inherit;
+    border: none;
+    padding: inherit;
+}
+
 code.email {
     background-color: inherit;
     border: inherit;
