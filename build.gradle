@@ -1540,6 +1540,14 @@ task jarStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList']) {
     'version': xslTNGversion,
     'jarloc': 'classpath:org/docbook/xsltng/'
   )
+  doLast {
+    copy {
+      into "${buildDir}/resources/main/org/xmlresolver"
+      from ("${buildDir}/resources/main/org/docbook/xsltng") {
+        include "catalog.xml"
+      }
+    }
+  }
 }
 
 task stageJar(
