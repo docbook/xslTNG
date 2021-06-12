@@ -21,8 +21,8 @@ buildscript {
     classpath group: 'com.drewnoakes', name: 'metadata-extractor', version: metadataExtractorVersion
     classpath group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion
     classpath group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion
-    classpath group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'
-    classpath group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT'
+    classpath group: 'org.docbook', name: 'schemas-docbook', version: docbookSchemaVersion
+    classpath group: 'org.docbook', name: 'schemas-publishers', version: docbookSchemaVersion
   }
 }
 
@@ -89,8 +89,8 @@ dependencies {
   )
   testImplementation (
     [group: 'junit', name: 'junit', version: '4.13'],
-    [group: 'org.docbook', name: 'schemas-docbook', version: '5.2b10-SNAPSHOT'],
-    [group: 'org.docbook', name: 'schemas-publishers', version: '5.2b10-SNAPSHOT']
+    [group: 'org.docbook', name: 'schemas-docbook', version: docbookSchemaVersion],
+    [group: 'org.docbook', name: 'schemas-publishers', version: docbookSchemaVersion]
   )
 }
 
@@ -648,7 +648,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
 
   if (base.startsWith('local.')) {
     stylesheetParams['local-conventions'] = "${projectDir}/src/test/resources/local.xsl"
-    stylesheetParams['relax-ng-grammar'] = "${projectDir}/build/docbook-${docbookVersion}/rng/docbook.rng"
+    stylesheetParams['relax-ng-grammar'] = "${projectDir}/src/test/resources/docbook.rng"
   }
 
   if (base.startsWith("olink.")) {

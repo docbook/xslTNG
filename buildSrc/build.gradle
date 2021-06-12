@@ -5,17 +5,29 @@ plugins {
 repositories {
   mavenLocal()
   mavenCentral()
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 apply from: "${rootDir.parentFile}/properties.gradle"
+
+configurations.all {
+  resolutionStrategy {
+    force 'xml-apis:xml-apis:1.4.01',
+      "${saxonGroup}:${saxonEdition}:${saxonVersion}",
+      "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
+  }
+}
 
 dependencies {
   implementation (
     [group: saxonGroup, name: saxonEdition, version: saxonVersion],
     [group: 'com.drewnoakes', name: 'metadata-extractor',
      version: metadataExtractorVersion],
+    [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
+    [group: 'org.docbook', name: 'schemas-docbook', version: docbookSchemaVersion],
+    [group: 'org.docbook', name: 'schemas-publishers', version: docbookSchemaVersion]
   )
 }
 
