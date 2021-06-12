@@ -82,19 +82,24 @@
   <xsl:variable name="rbu" select="fp:root-base-uri(.)"/>
   <xsl:variable name="cbu" select="fp:chunk-output-filename(.)"/>
 
+  <!-- class=no-js is a hook for setting CSS styles when js isn't available,
+       see the script element a few lines below -->
   <html class="no-js" db-chunk="{fp:chunk-output-filename(.)}">
     <xsl:if test="normalize-space($default-theme) ne ''">
       <xsl:attribute name="class" select="$default-theme"/>
     </xsl:if>
-    <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
-    <xsl:variable name="title" select="$head/h:title"/>
     <head>
+      <!-- If js is available, turn that no-js class into a js class, per
+           https://www.paulirish.com/2009/avoiding-the-fouc-v3/ -->
+      <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
       <xsl:if test="f:is-true($theme-picker)">
-        <!-- https://www.paulirish.com/2009/avoiding-the-fouc-v3/ -->
+        <!-- If the theme picker is being used, don't display any unthemed content.
+             The theme picker will select a style which will be displayed. -->
         <style>html.js { display: none; }</style>
-        <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
       </xsl:if>
 
+      <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
+      <xsl:variable name="title" select="$head/h:title"/>
       <xsl:apply-templates select="$ctype"/>
       <title>
         <xsl:value-of select="f:chunk-title(.)"/>
