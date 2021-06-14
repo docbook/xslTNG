@@ -7,6 +7,7 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
+                xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -235,7 +236,7 @@
     <xsl:value-of select="db:primary"/>
     <xsl:for-each-group select="$refs[not(db:secondary) and not(db:see)]"
                         group-by="concat(fp:primary(.), ' ', fp:nearest-section-id(.))">
-      <xsl:call-template name="t:indexed-section">
+      <xsl:call-template name="tp:indexed-section">
         <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
@@ -300,7 +301,7 @@
     <xsl:value-of select="db:secondary"/>
     <xsl:for-each-group select="$refs[not(db:tertiary) and not(db:see)]"
                         group-by="concat($key, ' ', fp:nearest-section-id(.))">
-      <xsl:call-template name="t:indexed-section">
+      <xsl:call-template name="tp:indexed-section">
         <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
@@ -366,7 +367,7 @@
     <xsl:value-of select="db:tertiary"/>
     <xsl:for-each-group select="$refs[not(db:see)]"
                         group-by="concat($key, ' ', fp:nearest-section-id(.))">
-      <xsl:call-template name="t:indexed-section">
+      <xsl:call-template name="tp:indexed-section">
         <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
@@ -408,7 +409,7 @@
   </li>
 </xsl:template>
 
-<xsl:template name="t:indexed-section">
+<xsl:template name="tp:indexed-section">
   <xsl:param name="nodes" as="element()+" required="yes"/>
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
