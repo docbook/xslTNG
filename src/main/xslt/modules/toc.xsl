@@ -92,6 +92,8 @@
     <xsl:with-param name="nested" select="$nested"/>
     <xsl:with-param name="entries"
                     select="db:section|db:sect1|db:appendix
+                            |db:bibliography|db:index|db:glossary
+                            |db:acknowledgements|db:colophon|db:dedication
                             |db:refentry"/>
   </xsl:apply-templates>
 </xsl:template>
