@@ -196,6 +196,7 @@
 <xsl:param name="generate-index" select="'true'"/>
 <xsl:param name="index-on-role" select="'true'"/>
 <xsl:param name="index-on-type" select="'true'"/>
+<xsl:param name="indexed-section-groups" select="'true'"/>
 
 <xsl:param name="glossary-sort-entries" select="true()"/>
 
