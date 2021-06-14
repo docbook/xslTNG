@@ -181,9 +181,7 @@
   const tocScript = document.querySelector("script.toc");
   toc.innerHTML = tocScript.innerHTML;
 
-  if (!document.querySelector("body.home")) {
-    tocOpen.style.display = "inline";
-  }
+  tocOpen.style.display = "inline";
 
   document.querySelectorAll("nav.toc div a").forEach(function (anchor) {
     anchor.onclick = function(event) {
