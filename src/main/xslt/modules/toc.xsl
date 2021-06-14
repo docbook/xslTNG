@@ -301,8 +301,9 @@
       <xsl:variable name="l-o-p" as="element(h:div)?">
         <xsl:apply-templates select="." mode="m:list-of-procedures"/>
       </xsl:variable>
-      <xsl:if test="$entries or $l-o-f or $l-o-t
-                    or $l-o-ex or $l-o-eq or $l-o-p">
+      <xsl:if test="f:is-true($generate-trivial-toc)
+                    or count($entries/descendant-or-self::h:li) gt 1
+                    or $l-o-f or $l-o-t or $l-o-ex or $l-o-eq or $l-o-p">
         <div class="list-of-titles">
           <xsl:if test="$entries">
             <div class="lot toc">

@@ -140,6 +140,8 @@
   or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)
 </xsl:param>
 
+<xsl:param name="generate-trivial-toc" as="xs:string" select="'false'"/>
+
 <xsl:param name="section-toc-depth" select="'unbounded'"/>
 <xsl:param name="vp:section-toc-depth" as="xs:integer">
   <xsl:choose>
