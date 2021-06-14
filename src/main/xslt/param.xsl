@@ -285,6 +285,7 @@
 <xsl:param name="table-footnote-numeration" select="('a')"/>
 
 <xsl:param name="persistent-toc" select="'false'"/>
+<xsl:param name="persistent-toc-search" select="'true'"/>
 
 <xsl:param name="profile-separator" select="';'"/>
 <xsl:param name="profile-lang" select="''"/>

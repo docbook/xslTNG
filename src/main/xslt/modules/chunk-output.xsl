@@ -118,6 +118,11 @@
           </span>
         </header>
         <div>
+          <xsl:if test="$persistent-toc-search">
+            <p class="ptoc-search">
+              <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
+            </p>
+          </xsl:if>
           <!-- If this chunk and the "root" chunk are in different directories,
                work out what prefix (how many '../') is required to get back
                to the root level. Prefix all of the relative URIs in the ToC

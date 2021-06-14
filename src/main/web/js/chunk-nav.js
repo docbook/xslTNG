@@ -71,6 +71,11 @@
     event = event || window.event;
     let keyCode = event.keyCode || event.which;
 
+    if (event.srcElement && event.srcElement.classList.contains("ptoc-search")) {
+      // Don't navigate if the user is typing in the persistent toc search box
+      return true;
+    }
+
     switch (keyCode) {
       case KEY_A:
         revealAll();
@@ -117,7 +122,7 @@
       case KEY_SHIFT:
         break;
       default:
-        console.log("Pressed:", keyCode);
+        break;
     }
 
     return false;

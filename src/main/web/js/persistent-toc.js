@@ -12,6 +12,8 @@
   const toc = document.querySelector("nav.toc");
   let navPersist = false;
   let borderLeftColor = "white";
+  let curpress = null;
+  let searchListener = false;
 
   const showToC = function(event) {
     toc.style.width = "300px";
@@ -28,15 +30,22 @@
     // Give the current click event a chance to settle?
     window.setTimeout(function () {
       const tocClose = toc.querySelector("header .close");
-      const curpress = document.onkeyup;
+      curpress = document.onkeyup;
       tocClose.onclick = function (event) {
-        hideToC(event, curpress);
+        hideToC(event);
       };
       document.onkeyup = function (event) {
         event = event || window.event;
-        let charCode = event.keyCode || event.which;
-        if (charCode == SPACE || charCode == ESC) {
-          hideToC(event, curpress);
+        if (event.srcElement && event.srcElement.classList.contains("ptoc-search")) {
+          // Don't navigate if the user is typing in the persistent toc search box
+          return false;
+        } else {
+          let charCode = event.keyCode || event.which;
+          if (charCode == SPACE || charCode == ESC) {
+            hideToC(event);
+            return false;
+          }
+          return true;
         }
       };
 
@@ -64,6 +73,10 @@
       let target = document.querySelector("nav.toc div a[href='"+url+"']");
       if (target) {
         target.scrollIntoView();
+        if (!searchListener) {
+          configureSearch();
+          searchListener = true;
+        }
       } else {
         console.log("No target:" + url);
       }
@@ -72,7 +85,7 @@
     return false;
   };
 
-  const hideToC = function(event, curpress) {
+  const hideToC = function(event) {
     document.onkeyup = curpress;
     toc.classList.add("slide");
     toc.style.width = "0px";
@@ -80,6 +93,18 @@
     toc.style["padding-right"] = "0";
     toc.style["border-left"] = "none";
     event.preventDefault();
+
+    const searchp = toc.querySelector(".ptoc-search");
+    if (searchp) {
+      const search = searchp.querySelector("input");
+      if (search) {
+        search.value = "";
+      }
+    }
+    toc.querySelectorAll("li").forEach(function (li) {
+      li.style.display = "list-item";
+    });
+
     return false;
   };
 
@@ -96,9 +121,49 @@
       href = href + "?toc";
     }
 
-    event.preventDefault();
+    event = event || window.event;
+    if (event) {
+      event.preventDefault();
+    }
     window.location.href = href;
     return false;
+  };
+
+  const configureSearch = function() {
+    const searchp = toc.querySelector(".ptoc-search");
+    if (searchp == null) {
+      return;
+    }
+    const search = searchp.querySelector("input");
+    search.onkeyup = function (event) {
+      event = event || window.event;
+      if (event) {
+        event.preventDefault();
+      }
+      let charCode = event.keyCode || event.which;
+      if (charCode == ESC) {
+        hideToC(event);
+        return false;
+      }
+
+      const value = search.value.toLowerCase();
+      let restr = "";
+      for (let pos = 0; pos < value.length; pos++) {
+        restr += value.charAt(pos).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        restr += '.*';
+      }
+      const regex = RegExp(restr);
+
+      toc.querySelectorAll("li").forEach(function (li) {
+        if (li.textContent.toLowerCase().match(regex)) {
+          li.style.display = "list-item";
+        } else {
+          li.style.display = "none";
+        }
+      });
+
+      return false;
+    };
   };
 
   // Setting the border-left-style in CSS will put a thin border-colored

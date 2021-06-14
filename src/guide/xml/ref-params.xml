@@ -2327,6 +2327,33 @@ necessary to support the persistent ToC feature.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_persistent-toc-search">
+<?db filename="p_persistent-toc-search.html"?>
+<refmeta>
+<refentrytitle>$persistent-toc-search</refentrytitle>
+<refmiscinfo>{}persistent-toc-search</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$persistent-toc-search</refname>
+<refpurpose>Generate a search box in the persistent ToC</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this value <glossterm>is true</glossterm>, then a search box
+is added to the top of the persistent Table of Contents (ToC).
+Any string typed into this search box will be used to filter the entries
+shown below it.
+</para>
+<para>The filter is a case-insensitive regular expression match against the text of
+each line in the ToC where arbitrary characters may occur anywhere in the string.
+In other words, the text “cat” will generate the regular expression “c.*a.*t.*” for
+the purpose of searching.</para>
+<para>This setting has no effect if <parameter>persistent-toc</parameter> is
+false.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_pixels-per-inch">
 <?db filename="p_pixels-per-inch.html"?>
 <refmeta>
