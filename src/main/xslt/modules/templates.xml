@@ -226,6 +226,10 @@
   <tmp:insert ref="titlepage-component-nested"/>
 </db:preface>
 
+<db:preface context="parent::db:article">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:preface>
+
 <db:preface>
   <tmp:insert ref="titlepage-component"/>
 </db:preface>
@@ -239,6 +243,10 @@
 </db:chapter>
 
 <db:appendix context="parent::db:book">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:appendix>
+
+<db:appendix context="parent::db:article">
   <tmp:insert ref="titlepage-component-nested"/>
 </db:appendix>
 
@@ -280,11 +288,19 @@
   <tmp:insert ref="titlepage-component-nested"/>
 </db:glossary>
 
+<db:glossary context="parent::db:article">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:glossary>
+
 <db:glossary>
   <tmp:insert ref="titlepage-component"/>
 </db:glossary>
 
 <db:index context="parent::db:book">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:index>
+
+<db:index context="parent::db:article">
   <tmp:insert ref="titlepage-component-nested"/>
 </db:index>
 
@@ -300,6 +316,10 @@
   <tmp:insert ref="titlepage-component-nested"/>
 </db:acknowledgements>
 
+<db:acknowledgements context="parent::db:article">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:acknowledgements>
+
 <db:acknowledgements>
   <tmp:insert ref="titlepage-component"/>
 </db:acknowledgements>
@@ -308,11 +328,19 @@
   <tmp:insert ref="titlepage-component-nested"/>
 </db:dedication>
 
+<db:dedication context="parent::db:article">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:dedication>
+
 <db:dedication>
   <tmp:insert ref="titlepage-component"/>
 </db:dedication>
 
 <db:colophon context="parent::db:book">
+  <tmp:insert ref="titlepage-component-nested"/>
+</db:colophon>
+
+<db:colophon context="parent::db:article">
   <tmp:insert ref="titlepage-component-nested"/>
 </db:colophon>
 
