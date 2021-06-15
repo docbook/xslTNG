@@ -646,6 +646,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['persistent-toc'] = true
   }
 
+  if (base.startsWith('ptoc.')) {
+    stylesheetParams['persistent-toc'] = true
+  }
+
   if (base.startsWith('local.')) {
     stylesheetParams['local-conventions'] = "${projectDir}/src/test/resources/local.xsl"
     stylesheetParams['relax-ng-grammar'] = "${projectDir}/src/test/resources/docbook.rng"
@@ -770,6 +774,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['persistent-toc'] = true
   }
 
+  if (base.startsWith('ptoc.')) {
+    stylesheetParams['persistent-toc'] = true
+  }
+
   t = task "${base}.chunk"(type: SaxonXsltTask,
                            dependsOn: ['makeXslt', "validate_${base}"]) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
@@ -784,11 +792,13 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['chunk-output-base-uri'] = "${buildDir}/actual/"
     stylesheetParams['dynamic-profiles'] = true
 
-    //println("Task ${base}.chunk: ${stylesheetParams}")
-
     input xml
     stylesheet "${buildDir}/xslt/docbook.xsl"
     parameters(stylesheetParams)
+
+    //doFirst { 
+    //  println("Task ${base}.chunk: ${stylesheetParams}")
+    //}
   }
 
   stylesheetParams = [:]
