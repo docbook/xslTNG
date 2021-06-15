@@ -3,7 +3,7 @@
           xmlns:x="http://www.jenitennison.com/xslt/xspec"
           xmlns:xs="http://www.w3.org/2001/XMLSchema"
           stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-          date="2021-05-12T15:49:11.278Z"
+          date="2021-06-15T12:07:30.298Z"
           xspec="file:/home/circleci/repo/build/xspec/local_conventions.xspec">
    <x:scenario id="scenario1"
                xspec="file:/home/circleci/repo/build/xspec/local_conventions.xspec">
@@ -13,6 +13,7 @@
          <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
             <head>
                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+               <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
                <title>Unit Test: local.001.xml</title>
                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
@@ -46,6 +47,7 @@ this is the <code class="mode">main</code> mode; this is an
             <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
                <head>
                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
                   <title>Unit Test: local.001.xml</title>
                   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>

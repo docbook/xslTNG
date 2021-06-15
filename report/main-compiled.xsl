@@ -8241,7 +8241,7 @@ Line five</xsl:text>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="address verbatim"/>
+                  <xsl:attribute name="class" select="'', ''" separator="address verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -8400,7 +8400,9 @@ Line five</xsl:text>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="literallayout verbatim"/>
+                  <xsl:attribute name="class"
+                                 select="'', ''"
+                                 separator="literallayout verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -8563,7 +8565,7 @@ Line five</xsl:text>
                <pre>
                   <xsl:attribute name="class"
                                  select="'', ''"
-                                 separator="language-none long numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -8734,7 +8736,7 @@ Line five</xsl:text>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="screen verbatim"/>
+                  <xsl:attribute name="class" select="'', ''" separator="screen verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -8903,7 +8905,9 @@ Line five</xsl:text>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="synopsis verbatim"/>
+                  <xsl:attribute name="class"
+                                 select="'', ''"
+                                 separator="synopsis verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -9092,7 +9096,7 @@ Line five</xsl:text>
                <pre>
                   <xsl:attribute name="class"
                                  select="'', ''"
-                                 separator="language-none long numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -9296,7 +9300,7 @@ Line five</xsl:text>
                <pre>
                   <xsl:attribute name="class"
                                  select="'', ''"
-                                 separator="language-none long numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -9526,7 +9530,7 @@ Line five</xsl:text>
                <pre>
                   <xsl:attribute name="class"
                                  select="'', ''"
-                                 separator="language-none long numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>
@@ -9767,7 +9771,7 @@ Line five</xsl:text>
                <pre>
                   <xsl:attribute name="class"
                                  select="'', ''"
-                                 separator="language-none long numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim verblines"/>
                   <span>
                      <xsl:attribute name="class" select="'', ''" separator="line"/>
                      <xsl:attribute name="db-line" select="'', ''" separator="1"/>

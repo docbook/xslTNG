@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.4.2
+/* DocBook xslTNG version 1.5.0-SNAPSHOT
  *
  * This is docbook.css.
  *
@@ -237,18 +237,6 @@ span.error.broken-link::after {
     vertical-align: super;
 }
 
-.literal {
-    white-space: nowrap;
-}
-
-.nobreak {
-    white-space: nowrap;
-}
-
-.break {
-    white-space: normal;
-}
-
 .xlink-arc-list {
     display: none;
 }
@@ -301,7 +289,7 @@ span.remark {
 code {
     font-family: var(--mono-family);
     background-color: var(--verbatim-odd-background-color);
-    border: 1px solid var(--numbered-number-color);
+    border: 1px solid var(--focused-color);
     border-radius: 6px;
     padding-top: 0.1em;
     padding-bottom: 0.1em;
@@ -309,6 +297,12 @@ code {
     padding-right: 0.3em;
     margin: 0;
     font-size: 85%;
+}
+
+.toc code {
+    background-color: inherit;
+    border: none;
+    padding: inherit;
 }
 
 code.email {
@@ -319,7 +313,8 @@ code.email {
     padding-right: 0;
 }
 
-pre code {
+pre code,
+cmdsynopsis code {
     border: none;
     background-color: inherit;
     padding: inherit;
@@ -329,6 +324,18 @@ pre code {
 
 pre > code {
     padding: initial;
+}
+
+.literal {
+    background-color: inherit;
+}
+
+.nobreak {
+    white-space: nowrap;
+}
+
+.break {
+    white-space: normal;
 }
 
 .userinput {
@@ -847,17 +854,17 @@ pre.screen {
 
 /* Adapted from https://stackoverflow.com/questions/41306797/html-how-to-add-line-numbers-to-a-source-code-block */
 
-pre.verbatim span.line:nth-child(odd) {
+pre.verblines span.line:nth-child(odd) {
     background-color: var(--verbatim-odd-background-color);
 }
 
-pre.verbatim span.line:nth-child(even) {
+pre.verblines span.line:nth-child(even) {
     background-color: var(--verbatim-even-background-color);
 }
 
 /* Make the background of even lines the same as odd lines for
    "monochrome" listings. */
-pre.verbatim.monochrome span.line:nth-child(even) {
+pre.verblines.monochrome span.line:nth-child(even) {
     background-color: var(--verbatim-odd-background-color);
 }
 
@@ -871,7 +878,7 @@ pre.literallayout span.line:nth-child(even) {
     background-color: inherit;
 }
 
-pre.verbatim span.ln {
+pre.verblines span.ln {
     font-family: var(--mono-family);
     width: 0;
     padding-top: 4px;
@@ -879,18 +886,18 @@ pre.verbatim span.ln {
     text-align: right;
 }
 
-pre.verbatim {
+pre.verblines {
     display: table;
     table-layout: fixed;
     width: 100%; /* anything but auto, otherwise fixed layout not guaranteed */
     white-space: pre;
 }
 
-pre.verbatim span.line {
+pre.verblines span.line {
     display: table-row;
 }
 
-pre.verbatim span.ln {
+pre.verblines span.ln {
     display: table-cell;
 }
 
@@ -904,18 +911,18 @@ pre.numbered span.ln {
     padding-right: 0.5em;
 }
 
-pre.verbatim span.ld {
+pre.verblines span.ld {
     display: table-cell;
     padding-top: 4px;
     padding-bottom: 4px;
 }
 
-pre.numbered span.ld {
+pre.verblines.numbered span.ld {
     border-left: var(--numbered-separator-style);
     padding-left: 0.25em;
 }
 
-pre.verbatim span.line.highlight {
+pre.verblines span.line.highlight {
     background-color: var(--verbatim-line-highlight-background-color);
     color: var(--verbatim-line-highlight-color);
 }

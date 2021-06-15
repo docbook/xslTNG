@@ -3,7 +3,7 @@
           xmlns:x="http://www.jenitennison.com/xslt/xspec"
           xmlns:xs="http://www.w3.org/2001/XMLSchema"
           stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-          date="2021-05-12T15:49:17.588Z"
+          date="2021-06-15T12:07:35.419Z"
           xspec="file:/home/circleci/repo/build/xspec/main.xspec">
    <x:scenario xmlns:db="http://docbook.org/ns/docbook"
                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
@@ -2284,7 +2284,7 @@ Line five</address>
       </x:context>
       <x:result select="/element()">
          <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-            <pre class="address verbatim">
+            <pre class="address verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln"/>
                   <span class="ld">Line one</span>
@@ -2324,7 +2324,7 @@ Line five</address>
          <x:label>you should get all the lines</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap">
-               <pre class="address verbatim">
+               <pre class="address verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln"/>
                      <span class="ld">Line one</span>
@@ -2375,7 +2375,7 @@ Line five</literallayout>
       </x:context>
       <x:result select="/element()">
          <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-            <pre class="literallayout verbatim">
+            <pre class="literallayout verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln"/>
                   <span class="ld">Line one</span>
@@ -2415,7 +2415,7 @@ Line five</literallayout>
          <x:label>you should get all the lines</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap">
-               <pre class="literallayout verbatim">
+               <pre class="literallayout verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln"/>
                      <span class="ld">Line one</span>
@@ -2469,7 +2469,7 @@ Line five</programlisting>
               class="pre-wrap"
               db-startinglinenumber="1"
               db-numberoflines="5">
-            <pre class="language-none long numbered programlisting verbatim">
+            <pre class="language-none long numbered programlisting verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln">1</span>
                   <span class="ld">
@@ -2519,7 +2519,7 @@ Line five</programlisting>
          <x:label>you should get all the lines</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
-               <pre class="language-none long numbered programlisting verbatim">
+               <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1</span>
                      <span class="ld">
@@ -2580,7 +2580,7 @@ Line five</screen>
       </x:context>
       <x:result select="/element()">
          <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-            <pre class="screen verbatim">
+            <pre class="screen verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln"/>
                   <span class="ld">
@@ -2630,7 +2630,7 @@ Line five</screen>
          <x:label>you should get all the lines</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap">
-               <pre class="screen verbatim">
+               <pre class="screen verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln"/>
                      <span class="ld">
@@ -2691,7 +2691,7 @@ Line five</synopsis>
       </x:context>
       <x:result select="/element()">
          <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-            <pre class="synopsis verbatim">
+            <pre class="synopsis verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln"/>
                   <span class="ld">
@@ -2741,7 +2741,7 @@ Line five</synopsis>
          <x:label>you should get all the lines</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap">
-               <pre class="synopsis verbatim">
+               <pre class="synopsis verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln"/>
                      <span class="ld">
@@ -2805,7 +2805,7 @@ Line five</programlisting>
               class="pre-wrap"
               db-startinglinenumber="1"
               db-numberoflines="5">
-            <pre class="language-none long numbered programlisting verbatim">
+            <pre class="language-none long numbered programlisting verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln">1</span>
                   <span class="ld">
@@ -2858,7 +2858,7 @@ Line five</programlisting>
          <x:label>the inline markup should not cross line boundaries.</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
-               <pre class="language-none long numbered programlisting verbatim">
+               <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1</span>
                      <span class="ld">
@@ -2925,7 +2925,7 @@ Line five</programlisting>
               class="pre-wrap"
               db-startinglinenumber="1"
               db-numberoflines="5">
-            <pre class="language-none long numbered programlisting verbatim">
+            <pre class="language-none long numbered programlisting verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln">1</span>
                   <span class="ld">
@@ -2978,7 +2978,7 @@ Line five</programlisting>
          <x:label>ID attributes should not be repeated.</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
-               <pre class="language-none long numbered programlisting verbatim">
+               <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1</span>
                      <span class="ld">
@@ -3052,7 +3052,7 @@ Line five</programlisting>
               class="pre-wrap"
               db-startinglinenumber="1"
               db-numberoflines="5">
-            <pre class="language-none long numbered programlisting verbatim">
+            <pre class="language-none long numbered programlisting verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln">1</span>
                   <span class="ld">
@@ -3113,7 +3113,7 @@ Line five</programlisting>
          <x:label>they should appear in the output</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5">
-               <pre class="language-none long numbered programlisting verbatim">
+               <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1</span>
                      <span class="ld">
@@ -3195,7 +3195,7 @@ Line five</programlisting>
               class="pre-wrap"
               db-startinglinenumber="1"
               db-numberoflines="8">
-            <pre class="language-none long numbered programlisting verbatim">
+            <pre class="language-none long numbered programlisting verbatim verblines">
                <span class="line" db-line="1">
                   <span class="ln">1</span>
                   <span class="ld">
@@ -3286,7 +3286,7 @@ Line five</programlisting>
          <x:label>they can extend the listing</x:label>
          <x:expect select="/element()">
             <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="8">
-               <pre class="language-none long numbered programlisting verbatim">
+               <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1</span>
                      <span class="ld">
