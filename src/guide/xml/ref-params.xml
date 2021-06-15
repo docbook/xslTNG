@@ -1450,6 +1450,30 @@ will be generated automatically at the beginning of that element.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_generate-trivial-toc">
+<?db filename="p_generate-trivial-toc.html"?>
+<refmeta>
+<refentrytitle>$generate-trivial-toc</refentrytitle>
+<refmiscinfo>{}generate-trivial-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generate-trivial-toc</refname>
+<refpurpose>Generate a trivial table-of-contents?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <parameter>generate-trivial-toc</parameter> parameter
+<glossterm>is true</glossterm>, a table of contents will be generated even if it
+consists of only a single entry. Otherwise, such “trivial” tables of contents will be elided.</para>
+<para>A trivial table of contents will always be generated if there
+are other lists of titles (for example, a list of figures). This
+parameter applies only to top-level tables of contents. Nested tables
+of contents will be generated even if they consist of only a single
+entry.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_generated-id-root">
 <?db filename="p_generated-id-root.html"?>
 <refmeta>
@@ -1723,6 +1747,30 @@ will be generated based on <att>role</att> values.
 <para>If this value is non-empty, small markers will be left in the text
 where <tag>indexterm</tag> elements appear. This is probably not appropriate for
 final publication, but it can be a useful way to review the level of indexing.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_indexed-section-groups">
+<?db filename="p_indexed-section-groups.html"?>
+<refmeta>
+<refentrytitle>$indexed-section-groups</refentrytitle>
+<refmiscinfo>{}indexed-section-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$indexed-section-groups</refname>
+<refpurpose>Generate index entries grouped by section</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Before the introduction of this parameter, an automatically generated index
+contained only one index entry for any given section.
+If the <parameter>indexed-section-groups</parameter> parameter
+<glossterm>is true</glossterm>, an index entry will be generated for every 
+<tag>indexterm</tag>, with a
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag> surrounding all
+of the entries for each section. This results in a more complete index while
+still preserving the ability to see in which sections the terms occur.</para>
 </refsection>
 </refentry>
 
@@ -2276,6 +2324,33 @@ CSS file will be added to the HTML HEAD.</para>
 <para>If the persistent ToC is enabled, a link to this script will be
 added to the document. This script must contain the JavaScript
 necessary to support the persistent ToC feature.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_persistent-toc-search">
+<?db filename="p_persistent-toc-search.html"?>
+<refmeta>
+<refentrytitle>$persistent-toc-search</refentrytitle>
+<refmiscinfo>{}persistent-toc-search</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$persistent-toc-search</refname>
+<refpurpose>Generate a search box in the persistent ToC</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this value <glossterm>is true</glossterm>, then a search box
+is added to the top of the persistent Table of Contents (ToC).
+Any string typed into this search box will be used to filter the entries
+shown below it.
+</para>
+<para>The filter is a case-insensitive regular expression match against the text of
+each line in the ToC where arbitrary characters may occur anywhere in the string.
+In other words, the text “cat” will generate the regular expression “c.*a.*t.*” for
+the purpose of searching.</para>
+<para>This setting has no effect if <parameter>persistent-toc</parameter> is
+false.</para>
 </refsection>
 </refentry>
 

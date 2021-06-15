@@ -116,6 +116,11 @@
           <span class="close">
             <xsl:sequence select="$v:toc-close"/>
           </span>
+          <xsl:if test="$persistent-toc-search">
+            <p class="ptoc-search">
+              <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
+            </p>
+          </xsl:if>
         </header>
         <div>
           <!-- If this chunk and the "root" chunk are in different directories,

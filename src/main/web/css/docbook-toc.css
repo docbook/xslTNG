@@ -40,7 +40,7 @@ nav.toc.slide {
 }
 
 nav.toc header {
-    height: 40px;
+    height: 4rem;
     font-family: var(--title-family);
     font-size: 1.25em;
 }
@@ -54,7 +54,7 @@ nav.toc header .close {
 
 nav.toc div {
     overflow: scroll;
-    height: calc(100% - 40px);
+    height: calc(100% - 4rem);
 }
 
 nav.toc a,
@@ -70,4 +70,14 @@ nav.toc .refpurpose {
 nav.toc li {
     text-indent: -1em;
     padding-left: 1em;
+}
+
+nav.toc li a.found::before {
+    color: #ff7f7f;
+    content: "►";
+}
+
+.ptoc-search {
+    margin: 0;
+    padding: 0;
 }

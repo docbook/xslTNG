@@ -1,5 +1,19 @@
 package org.docbook.xsltng.extensions;
 
+import com.thaiopensource.resolver.AbstractResolver;
+import com.thaiopensource.resolver.BasicResolver;
+import com.thaiopensource.resolver.Identifier;
+import com.thaiopensource.resolver.Input;
+import com.thaiopensource.resolver.ResolverException;
+import com.thaiopensource.resolver.catalog.ResolverIOException;
+import com.thaiopensource.resolver.xml.ExternalDTDSubsetIdentifier;
+import com.thaiopensource.resolver.xml.ExternalEntityIdentifier;
+import com.thaiopensource.resolver.xml.ExternalIdentifier;
+import com.thaiopensource.util.PropertyMapBuilder;
+import com.thaiopensource.validate.SchemaReader;
+import com.thaiopensource.validate.ValidateProperty;
+import com.thaiopensource.validate.ValidationDriver;
+import com.thaiopensource.validate.prop.rng.RngProperty;
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.lib.ExtensionFunctionCall;
 import net.sf.saxon.lib.ExtensionFunctionDefinition;
@@ -20,20 +34,21 @@ import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.type.BuiltInAtomicType;
 import net.sf.saxon.value.SequenceType;
 import net.sf.saxon.value.StringValue;
-import org.iso_relax.verifier.Schema;
-import org.iso_relax.verifier.Verifier;
-import org.iso_relax.verifier.VerifierConfigurationException;
-import org.iso_relax.verifier.VerifierFactory;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import org.xmlresolver.Resolver;
+import org.xmlresolver.XMLResolverConfiguration;
+import org.xmlresolver.sources.ResolverInputSource;
+import org.xmlresolver.sources.ResolverSAXSource;
 
+import javax.xml.transform.TransformerException;
 import java.io.ByteArrayInputStream;
 import java.io.CharArrayWriter;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -72,11 +87,15 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
     }
 
     private class PropertiesCall extends ExtensionFunctionCall {
+        NodeInfo source = null;
+        NodeInfo schema = null;
+        String schemaFile = null;
+        boolean assertValid = false;
+        boolean dtdCompatibility = false;
+
         public Sequence call(XPathContext context, Sequence[] sequences) throws XPathException {
-            NodeInfo source = (NodeInfo) sequences[0].head();
+            source = (NodeInfo) sequences[0].head();
             HashMap<String,String> options = new HashMap<>();
-            NodeInfo schema = null;
-            String schemaFile = null;
             Item item = null;
 
             if (sequences.length > 2) {
@@ -101,9 +120,65 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
                 }
             }
 
-            boolean assertValid = getBooleanOption(options, "assert-valid", true);
-            boolean dtdCompatibility = getBooleanOption(options, "dtd-compatibility", false);
+            assertValid = getBooleanOption(options, "assert-valid", true);
+            dtdCompatibility = getBooleanOption(options, "dtd-compatibility", false);
 
+            XdmMap map = jingValid(context);
+            return map.getUnderlyingValue();
+        }
+
+        private XdmMap jingValid(XPathContext context) {
+            boolean valid = false;
+            RNGErrorHandler handler = new RNGErrorHandler();
+
+            PropertyMapBuilder properties = new PropertyMapBuilder();
+            properties.put(ValidateProperty.ERROR_HANDLER, handler);
+
+            RngProperty.CHECK_ID_IDREF.add(properties);
+            if (!dtdCompatibility) {
+                properties.put(RngProperty.CHECK_ID_IDREF, null);
+            }
+
+            JingResolver resolver = new JingResolver();
+            properties.put(ValidateProperty.RESOLVER, resolver);
+
+            SchemaReader sr = null;
+            try {
+                ValidationDriver driver = new ValidationDriver(properties.toPropertyMap(),
+                        properties.toPropertyMap(), sr);
+                InputSource insrc = null;
+                if (schema == null) {
+                    insrc = ValidationDriver.uriOrFileInputSource(schemaFile);
+                } else {
+                    insrc = nodeInfoToInputSource(context, schema);
+                }
+                boolean loaded = driver.loadSchema(insrc);
+                if (loaded) {
+                    insrc = nodeInfoToInputSource(context, source);
+                    valid = driver.validate(insrc);
+                } else {
+                    throw new IllegalArgumentException("Failed to load schema");
+                }
+            } catch (SAXException | IOException ioe) {
+                throw new IllegalArgumentException(ioe);
+            }
+
+            if (!valid && assertValid) {
+                throw new RuntimeException("Invalid document: " + handler.getError().getMessage());
+            }
+
+            XdmMap map = new XdmMap();
+            map = map.put(new XdmAtomicValue("valid"), new XdmAtomicValue(valid));
+            map = map.put(new XdmAtomicValue("document"), new XdmNode(source));
+            if (!valid) {
+                map = map.put(new XdmAtomicValue("errors"), handler.getErrors());
+            }
+
+            return map;
+        }
+
+        /*
+        private XdmMap msvValid(XPathContext context) {
             boolean valid = false;
             RNGErrorHandler handler = new RNGErrorHandler();
 
@@ -134,12 +209,7 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
                     docSchema = factory.compileSchema(istream, schema.getBaseURI());
                 }
 
-                writer = new CharArrayWriter();
-                serializer = processor.newSerializer();
-                serializer.setOutputWriter(writer);
-                serializer.serialize(source);
-                istream = new ByteArrayInputStream(writer.toString().getBytes(StandardCharsets.UTF_8));
-                InputSource docSource = new InputSource(istream);
+                InputSource docSource = nodeInfoToInputSource(context, source);
 
                 Verifier verifier = docSchema.newVerifier();
                 verifier.setErrorHandler(handler);
@@ -158,8 +228,25 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
             if (!valid) {
                 map = map.put(new XdmAtomicValue("errors"), handler.getErrors());
             }
-    
-            return map.getUnderlyingValue();
+
+            return map;
+        }
+    */
+    }
+
+    private InputSource nodeInfoToInputSource(XPathContext context, NodeInfo source) {
+        // This is a horrible hack
+        try {
+            Processor processor = (Processor) context.getConfiguration().getProcessor();
+            CharArrayWriter writer = new CharArrayWriter();
+            Serializer serializer = processor.newSerializer();
+            serializer.setOutputWriter(writer);
+            serializer.serialize(source);
+            ByteArrayInputStream istream = new ByteArrayInputStream(writer.toString().getBytes(StandardCharsets.UTF_8));
+            return new InputSource(istream);
+        } catch (SaxonApiException se) {
+            // I don't think this can actually happen here.
+            throw new IllegalArgumentException(se);
         }
     }
 
@@ -195,7 +282,7 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
         return options;
     }
 
-    class RNGErrorHandler implements ErrorHandler {
+    static class RNGErrorHandler implements ErrorHandler {
         SAXParseException error = null;
         XdmArray errors = new XdmArray();
 
@@ -237,6 +324,147 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
         public void fatalError(SAXParseException exception) throws SAXException {
             addError(exception, "fatal-error");
             error = exception;
+        }
+    }
+
+    class JingResolver extends AbstractResolver {
+        private final Resolver resolver;
+
+        public JingResolver() {
+            XMLResolverConfiguration config = new XMLResolverConfiguration();
+            resolver = new Resolver(config);
+        }
+
+        public void resolve(Identifier id, Input input) throws IOException, ResolverException {
+            // Largely copied from the com.thaiopensource classes, by way of the relaxng-gradle
+            // plugin: https://github.com/ndw/relaxng-gradle
+
+            if (input.isResolved()) {
+                return;
+            }
+
+            String absoluteUri = null;
+            try {
+                absoluteUri = BasicResolver.resolveUri(id);
+                if (id.getUriReference().equals(absoluteUri)) {
+                    absoluteUri = null;
+                }
+            } catch (ResolverException ex) {
+                // ignore
+            }
+
+            boolean isExternalIdentifier = (id instanceof ExternalIdentifier);
+
+            try {
+                if (isExternalIdentifier) {
+                    ResolverInputSource resolved = null;
+                    if (absoluteUri != null) {
+                        resolved = (ResolverInputSource) resolver.resolveEntity(null, absoluteUri);
+                    }
+                    if (resolved == null) {
+                        if (id instanceof ExternalEntityIdentifier) {
+                            ExternalEntityIdentifier xid = (ExternalEntityIdentifier) id;
+                            resolved = (ResolverInputSource) resolver.resolveEntity(xid.getEntityName(), xid.getPublicId(),
+                                    null, xid.getUriReference());
+                        } else if (id instanceof ExternalDTDSubsetIdentifier) {
+                            ExternalDTDSubsetIdentifier xid = (ExternalDTDSubsetIdentifier) id;
+                            resolved = (ResolverInputSource) resolver.getExternalSubset(xid.getDoctypeName(), xid.getUriReference());
+                        } else {
+                            ExternalIdentifier xid = (ExternalIdentifier) id;
+                            resolved = (ResolverInputSource) resolver.resolveEntity(xid.getPublicId(), xid.getUriReference());
+                        }
+                    }
+
+                    if (resolved != null) {
+                        input.setUri(resolved.getSystemId());
+                        input.setByteStream(resolved.getByteStream());
+                    }
+                } else {
+                    ResolverSAXSource resolved = null;
+                    if (absoluteUri != null) {
+                        resolved = ((ResolverSAXSource) resolver.resolve(absoluteUri, (String) null));
+                    }
+
+                    if (resolved == null) {
+                        resolved = (ResolverSAXSource) resolver.resolve(id.getUriReference(), null);
+                    }
+
+                    if (resolved != null) {
+                        input.setUri(resolved.getInputSource().getSystemId());
+                        input.setByteStream(resolved.getInputSource().getByteStream());
+                    }
+                }
+            } catch (SAXException | TransformerException se) {
+                throw new RuntimeException(se);
+            } catch (ResolverIOException e) {
+                throw e.getResolverException();
+            }
+            try {
+                if (isExternalIdentifier) {
+                    ResolverInputSource resolved = null;
+                    if (absoluteUri != null) {
+                        resolved = (ResolverInputSource) resolver.resolveEntity(null, absoluteUri);
+                    }
+                    if (resolved == null) {
+                        if (id instanceof ExternalEntityIdentifier) {
+                            ExternalEntityIdentifier xid = (ExternalEntityIdentifier) id;
+                            resolved = (ResolverInputSource) resolver.resolveEntity(xid.getEntityName(), xid.getPublicId(),
+                                    null, xid.getUriReference());
+                        } else if (id instanceof ExternalDTDSubsetIdentifier) {
+                            ExternalDTDSubsetIdentifier xid = (ExternalDTDSubsetIdentifier) id;
+                            resolved = (ResolverInputSource) resolver.getExternalSubset(xid.getDoctypeName(), xid.getUriReference());
+                        } else {
+                            ExternalIdentifier xid = (ExternalIdentifier) id;
+                            resolved = (ResolverInputSource) resolver.resolveEntity(xid.getPublicId(), xid.getUriReference());
+                        }
+                    }
+
+                    if (resolved != null) {
+                        input.setUri(resolved.getSystemId());
+                        input.setByteStream(resolved.getByteStream());
+                    }
+                } else {
+                    ResolverSAXSource resolved = null;
+                    if (absoluteUri != null) {
+                        resolved = ((ResolverSAXSource) resolver.resolve(absoluteUri, (String) null));
+                    }
+
+                    if (resolved == null) {
+                        resolved = (ResolverSAXSource) resolver.resolve(id.getUriReference(), null);
+                    }
+
+                    if (resolved != null) {
+                        input.setUri(resolved.getInputSource().getSystemId());
+                        input.setByteStream(resolved.getInputSource().getByteStream());
+                    }
+                }
+            } catch (SAXException | TransformerException se) {
+                throw new RuntimeException(se);
+            } catch (ResolverIOException e) {
+                throw e.getResolverException();
+            }
+        }
+
+        public void open(Input input) throws IOException, ResolverException {
+            if (!input.isUriDefinitive()) {
+                return;
+            }
+
+            URI uri;
+            try {
+                uri = new URI(input.getUri());
+            } catch (URISyntaxException e) {
+                throw new ResolverException(e);
+            }
+
+            if (!uri.isAbsolute()) {
+                throw new ResolverException("cannot open relative URI: " + uri);
+            }
+
+            URL url = new URL(uri.toASCIIString());
+            // XXX should set the encoding properly
+            // XXX if this is HTTP and we've been redirected, should do input.setURI with the new URI
+            input.setByteStream(url.openStream());
         }
     }
 }

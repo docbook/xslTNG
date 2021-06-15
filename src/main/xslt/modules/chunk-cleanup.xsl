@@ -82,27 +82,36 @@
   <xsl:variable name="rbu" select="fp:root-base-uri(.)"/>
   <xsl:variable name="cbu" select="fp:chunk-output-filename(.)"/>
 
+  <!-- class=no-js is a hook for setting CSS styles when js isn't available,
+       see the script element a few lines below -->
   <html class="no-js" db-chunk="{fp:chunk-output-filename(.)}">
     <xsl:if test="normalize-space($default-theme) ne ''">
       <xsl:attribute name="class" select="$default-theme"/>
     </xsl:if>
-    <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
-    <xsl:variable name="title" select="$head/h:title"/>
     <head>
-      <xsl:if test="f:is-true($theme-picker)">
-        <!-- https://www.paulirish.com/2009/avoiding-the-fouc-v3/ -->
-        <style>html.js { display: none; }</style>
-        <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-      </xsl:if>
-
+      <!-- When serialized, this always comes first, so make sure it's first
+           here. (It doesn't really matter in practice, but the XSpec tests
+           will fail if it isn't also first here.) -->
+      <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
       <xsl:apply-templates select="$ctype"/>
+
+      <!-- If js is available, turn that no-js class into a js class, per
+           https://www.paulirish.com/2009/avoiding-the-fouc-v3/ -->
+      <script>
+        <xsl:text>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})</xsl:text>
+        <xsl:text>(document.documentElement)</xsl:text>
+      </script>
+
+      <xsl:variable name="title" select="$head/h:title"/>
       <title>
         <xsl:value-of select="f:chunk-title(.)"/>
       </title>
+
       <xsl:apply-templates select="$head/node() except ($ctype|$title)">
         <xsl:with-param name="rootbaseuri" select="$rbu"/>
         <xsl:with-param name="chunkbaseuri" select="$cbu"/>
       </xsl:apply-templates>
+
       <xsl:if test="exists(.//mml:*)"
               xmlns:mml="http://www.w3.org/1998/Math/MathML">
         <xsl:apply-templates select="/h:html/h:db-mathml-script/*">

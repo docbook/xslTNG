@@ -7,11 +7,12 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
+                xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f fp l m mp t vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:template match="db:indexterm">
@@ -235,11 +236,13 @@
     <xsl:value-of select="db:primary"/>
     <xsl:for-each-group select="$refs[not(db:secondary) and not(db:see)]"
                         group-by="concat(fp:primary(.), ' ', fp:nearest-section-id(.))">
-      <xsl:apply-templates select="." mode="mp:reference">
+      <xsl:call-template name="tp:indexed-section">
+        <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
-      </xsl:apply-templates>
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:call-template>
     </xsl:for-each-group>
 
     <xsl:if test="$refs[not(db:secondary)]/*[self::db:see]">
@@ -298,12 +301,13 @@
     <xsl:value-of select="db:secondary"/>
     <xsl:for-each-group select="$refs[not(db:tertiary) and not(db:see)]"
                         group-by="concat($key, ' ', fp:nearest-section-id(.))">
-      <xsl:apply-templates select="." mode="mp:reference">
+      <xsl:call-template name="tp:indexed-section">
+        <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
         <xsl:with-param name="lang" select="$lang"/>
-      </xsl:apply-templates>
+      </xsl:call-template>
     </xsl:for-each-group>
 
     <xsl:if test="$refs[not(db:tertiary)]/*[self::db:see]">
@@ -363,12 +367,13 @@
     <xsl:value-of select="db:tertiary"/>
     <xsl:for-each-group select="$refs[not(db:see)]"
                         group-by="concat($key, ' ', fp:nearest-section-id(.))">
-      <xsl:apply-templates select="." mode="mp:reference">
+      <xsl:call-template name="tp:indexed-section">
+        <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
         <xsl:with-param name="lang" select="$lang"/>
-      </xsl:apply-templates>
+      </xsl:call-template>
     </xsl:for-each-group>
 
     <xsl:if test="$refs/db:see">
@@ -404,12 +409,60 @@
   </li>
 </xsl:template>
 
+<xsl:template name="tp:indexed-section">
+  <xsl:param name="nodes" as="element()+" required="yes"/>
+  <xsl:param name="scope" select="."/>
+  <xsl:param name="role" select="''"/>
+  <xsl:param name="type" select="''"/>
+  <xsl:param name="lang" select="'en'"/>
+
+  <xsl:choose>
+    <xsl:when test="f:is-true($indexed-section-groups)">
+      <xsl:text>, </xsl:text>
+      <xsl:variable name="tobject"
+                    select="$nodes[1]/ancestor::*[db:title or db:info/db:title][1]"/>
+      <span class="indexed-section">
+        <xsl:attribute name="title">
+          <xsl:apply-templates select="$tobject" mode="m:headline">
+            <xsl:with-param name="purpose" select="'index-tooltip'"/>
+          </xsl:apply-templates>
+        </xsl:attribute>
+
+        <xsl:for-each select="$nodes">
+          <xsl:variable name="pos" select="position()"/>
+          <xsl:variable name="last" select="count(current-group())"/>
+
+          <xsl:apply-templates select="." mode="mp:reference">
+            <xsl:with-param name="scope" select="$scope"/>
+            <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="lang" select="$lang"/>
+            <xsl:with-param name="separator" select="if ($pos = 1) then '' else ', '"/>
+            <xsl:with-param name="position" select="$pos"/>
+            <xsl:with-param name="last" select="$last"/>
+          </xsl:apply-templates>
+        </xsl:for-each>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="$nodes[1]" mode="mp:reference">
+        <xsl:with-param name="scope" select="$scope"/>
+        <xsl:with-param name="role" select="$role"/>
+        <xsl:with-param name="type" select="$type"/>
+        <xsl:with-param name="lang" select="$lang"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="db:indexterm" mode="mp:reference">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
   <xsl:param name="lang" select="'en'"/>
   <xsl:param name="separator" select="', '"/>
+  <xsl:param name="position" as="xs:integer?"/>
+  <xsl:param name="last" as="xs:integer?"/>
 
   <xsl:value-of select="$separator"/>
   <xsl:choose>
@@ -426,12 +479,14 @@
       <xsl:variable name="tobject"
                     select="ancestor::*[db:title or db:info/db:title][1]"/>
       <a class="indexref" href="{f:href(/,.)}">
-        <xsl:attribute name="title">
-          <xsl:apply-templates select="$tobject" mode="m:headline">
-            <xsl:with-param name="purpose" select="'index-tooltip'"/>
-          </xsl:apply-templates>
-        </xsl:attribute>
-        <xsl:value-of select="position()"/>
+        <xsl:if test="not(f:is-true($indexed-section-groups))">
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$tobject" mode="m:headline">
+              <xsl:with-param name="purpose" select="'index-tooltip'"/>
+            </xsl:apply-templates>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:sequence select="($position, position())[1]"/>
       </a>
 
       <xsl:if test="key('endofrange', @xml:id)[fp:scope(., $scope, $role, $type)]">

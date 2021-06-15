@@ -140,6 +140,8 @@
   or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)
 </xsl:param>
 
+<xsl:param name="generate-trivial-toc" as="xs:string" select="'false'"/>
+
 <xsl:param name="section-toc-depth" select="'unbounded'"/>
 <xsl:param name="vp:section-toc-depth" as="xs:integer">
   <xsl:choose>
@@ -150,7 +152,7 @@
       <xsl:sequence select="max((0, xs:integer($section-toc-depth)))"/>
     </xsl:when>
     <xsl:when test="string($section-toc-depth) = 'unbounded'">
-      <xsl:sequence select="-1"/>
+      <xsl:sequence select="2147483647"/> <!-- 0x7fffffff -->
     </xsl:when>
     <xsl:otherwise>
       <xsl:sequence select="0"/>
@@ -194,6 +196,7 @@
 <xsl:param name="generate-index" select="'true'"/>
 <xsl:param name="index-on-role" select="'true'"/>
 <xsl:param name="index-on-type" select="'true'"/>
+<xsl:param name="indexed-section-groups" select="'true'"/>
 
 <xsl:param name="glossary-sort-entries" select="true()"/>
 
@@ -282,6 +285,7 @@
 <xsl:param name="table-footnote-numeration" select="('a')"/>
 
 <xsl:param name="persistent-toc" select="'false'"/>
+<xsl:param name="persistent-toc-search" select="'true'"/>
 
 <xsl:param name="profile-separator" select="';'"/>
 <xsl:param name="profile-lang" select="''"/>

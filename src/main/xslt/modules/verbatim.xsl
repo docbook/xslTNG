@@ -240,6 +240,7 @@
   <div class="pre-wrap">
     <pre>
       <xsl:apply-templates select="." mode="m:attributes">
+        <xsl:with-param name="style" select="'plain'"/>
         <xsl:with-param name="numbered" select="$numbered"/>
       </xsl:apply-templates>
 
@@ -268,6 +269,7 @@
   <div class="pre-wrap">
     <pre>
       <xsl:apply-templates select="." mode="m:attributes">
+        <xsl:with-param name="style" select="'raw'"/>
         <xsl:with-param name="numbered" select="$numbered"/>
       </xsl:apply-templates>
 
@@ -384,6 +386,7 @@
     </xsl:if>
     <pre>
       <xsl:apply-templates select="." mode="m:attributes">
+        <xsl:with-param name="style" select="'lines'"/>
         <xsl:with-param name="numbered" select="$numbered"/>
         <xsl:with-param name="long"
                         select="array:size($lines) ge $minlines"/>
