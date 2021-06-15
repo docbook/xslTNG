@@ -73,12 +73,13 @@
       let target = document.querySelector("nav.toc div a[href='"+url+"']");
       if (target) {
         target.scrollIntoView();
-        if (!searchListener) {
-          configureSearch();
-          searchListener = true;
-        }
       } else {
         console.log("No target:" + url);
+      }
+
+      if (!searchListener) {
+        configureSearch();
+        searchListener = true;
       }
     }, 400);
 
@@ -146,19 +147,26 @@
         return false;
       }
 
-      const value = search.value.toLowerCase();
-      let restr = "";
-      for (let pos = 0; pos < value.length; pos++) {
-        restr += value.charAt(pos).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        restr += '.*';
-      }
+      const value = search.value.toLowerCase().trim();
+      let restr = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(" ", ".*");
       const regex = RegExp(restr);
 
       toc.querySelectorAll("li").forEach(function (li) {
-        if (li.textContent.toLowerCase().match(regex)) {
+        const link = li.querySelector("a");
+        if (restr === "") {
           li.style.display = "list-item";
+          link.classList.remove("found");
         } else {
-          li.style.display = "none";
+          if (li.textContent.toLowerCase().match(regex)) {
+            li.style.display = "list-item";
+            if (link.textContent.toLowerCase().match(regex)) {
+              link.classList.add("found");
+            } else {
+              link.classList.remove("found");
+            }
+          } else {
+            li.style.display = "none";
+          }
         }
       });
 
