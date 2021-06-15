@@ -2,10 +2,10 @@
 ext {
   xslTNGtitle = 'DocBook xslTNG'
   xslTNGbaseName = 'docbook-xslTNG'
-  xslTNGversion = '1.5.0-SNAPSHOT'
-  guideVersion = '1.5.0-SNAPSHOT'
+  xslTNGversion = '1.5.0'
+  guideVersion = '1.5.0'
 
-  docbookSchemaVersion = '5.2b10-SNAPSHOT'
+  docbookSchemaVersion = '5.2b10a4'
 
   saxonVersion = '10.5'
   saxonGroup = 'net.sf.saxon'
@@ -15,7 +15,7 @@ ext {
 
   metadataExtractorVersion = '2.15.0'
   jingVersion = '20181222'
-  xmlresolverVersion = '3.0.1-SNAPSHOT'
+  xmlresolverVersion = '3.0.1beta1'
   sincludeVersion = '2.0.0'
   slf4jVersion = '1.7.30'
 }
