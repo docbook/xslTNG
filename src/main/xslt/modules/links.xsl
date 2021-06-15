@@ -102,13 +102,13 @@
   <xsl:choose>
     <xsl:when test="empty($target)">
       <xsl:message select="'Gloss term has no entry:',
-                           (@baseform, normalize-space(.))[1]"/>
+                           (@baseform/string(), normalize-space(.))[1]"/>
       <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:if test="count($target) gt 1">
         <xsl:message select="'Gloss term has multiple entries:',
-                             (@baseform, normalize-space(.))[1]"/>
+                             (@baseform/string(), normalize-space(.))[1]"/>
       </xsl:if>
       <xsl:call-template name="tp:link">
         <xsl:with-param name="primary-markup" select="false()"/>
@@ -146,7 +146,7 @@
       <xsl:variable name="target" select="f:target(@linkend, .)"/>
       <xsl:choose>
         <xsl:when test="empty($target)">
-          <xsl:message select="'Link to undefined ID:', @linkend"/>
+          <xsl:message select="'Link to undefined ID:', string(@linkend)"/>
           <span class="markup-error">
             <xsl:if test="$primary-markup">
               <xsl:apply-templates select="." mode="m:attributes"/>
