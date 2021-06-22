@@ -20,6 +20,11 @@ nav.tocopen {
     display: none;
 }
 
+.home nav.tocopen {
+    color: rgb(11, 0, 89);
+    background-color: #fffff8;
+}
+
 nav.toc {
     color: #fffffe;
     height: 100%;
@@ -39,7 +44,7 @@ nav.toc {
 }
 
 nav.toc header {
-    height: 40px;
+    height: 4rem;
     font-family: "Noto Sans", sans-serif;
     font-size: 1.25em;
 }

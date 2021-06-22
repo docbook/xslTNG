@@ -374,7 +374,7 @@ unchanged.</para>
 and there’s an element with a <att>xml:id</att> attribute among
 the ancestors, the unique identifier is rooted at that element, rather
 than traversing all the way to the root of the document.</para>
-<para>Disabling this feature by setting <parameter>use-xml-id</parameter>
+<para>Disabling this feature by setting <code>use-xml-id</code>
 to false allows for the creation of globally unique IDs with
 <function>f:unique-id</function>.</para>
 </refsection>
