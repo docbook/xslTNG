@@ -104,7 +104,10 @@
                  select="'Preprocess: annotations'"/>
     <xsl:sequence select="transform(map {
       'stylesheet-location': 'transforms/60-annotations.xsl',
-      'source-node': $source
+      'source-node': $source,
+      'stylesheet-params': map {
+         QName('', 'annotation-placement'): $annotation-placement
+       }
       })?output"/>
   </xsl:variable>
 

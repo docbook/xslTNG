@@ -15,6 +15,7 @@
   <xsl:variable name="number"
                 select="count(key('id', @linkend)/preceding::db:annotation)+1"/>
   <db-annotation-marker target="{@linkend}"
+                        placement="{@placement}"
                         db-annotation="{$number}">
     <a class="annomark" href="#{@linkend}"
        db-annotation="{@linkend}">

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="anno">
+<info>
+<title>Article wrapper</title>
+<annotation xml:id="before" role="before">
+<title>This is a “before” annotation</title>
+<para>The mark for this annotation occurs at the beginning
+of the element that it annotates.</para>
+</annotation>
+<annotation xml:id="after" role="after">
+<title>This is an “after” annotation</title>
+<para>The mark for this annotation occurs at the end
+of the element that it annotates.</para>
+</annotation>
+<annotation annotates="an1 an2 an3" role="before">
+<para>This annotation pointlessly annotates every occurrence of the word “annotation”
+in the first paragraph of the article. The annotation mark occurs at the
+beginning of the word.</para></annotation>
+<annotation annotates="anno s1" role="before">
+<para>At the very beginning of the article and the first section.</para>
+</annotation>
+<annotation annotates="anno s1" role="after">
+<para>At the very end of the article and the first section.</para>
+</annotation>
+</info>
+
+<para annotations="before">This article tests <phrase xml:id="an1">annotations</phrase>.
+<phrase xml:id="an2">Annotations</phrase>
+can point in either direction. This paragraph contains
+<phrase xml:id="an3">annotation</phrase> targets.</para>
+
+<para annotations="after">This paragraph asserts that it is annotated
+by the annotation “after”.</para>
+
+<section xml:id="s1">
+<title>Section title</title>
+<para>This is a section.
+Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum Et harumd und
+lookum like Greek to me, dereud facilis est er expedit distinct. Nam
+liber te conscient to factor tum poen legum odioque civiuda.
+</para>
+</section>
+
+<section xml:id="s2">
+<title>Section title</title>
+<para>This is a section.
+Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum Et harumd und
+lookum like Greek to me, dereud facilis est er expedit distinct. Nam
+liber te conscient to factor tum poen legum odioque civiuda.
+</para>
+</section>
+
+</article>

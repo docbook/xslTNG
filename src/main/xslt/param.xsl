@@ -162,6 +162,7 @@
 
 <xsl:param name="annotation-style" select="'javascript'"/>
 <xsl:param name="annotation-mark"><sup>⌖</sup></xsl:param>
+<xsl:param name="annotation-placement" select="'after'"/>
 
 <xsl:param name="xlink-style" select="'document'"/>
 <xsl:param name="xlink-style-default" select="'inline'"/>

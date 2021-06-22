@@ -261,6 +261,31 @@ are numbered and the annotations appear as a form of footnote.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="p_annotation-placement">
+<?db filename="p_annotation-placement.html"?>
+<refmeta>
+<refentrytitle>$annotation-placement</refentrytitle>
+<refmiscinfo>{}annotation-placement</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$annotation-placement</refname>
+<refpurpose>Determines where the annotation mark is placed</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When <tag>annotation</tag>s are rendered,
+<parameter>annotation-placement</parameter> determines where the
+<parameter>annotation-mark</parameter> is placed. If the value is <literal>after</literal>,
+the mark or marks are placed at the very end of the element being annotated.
+If the value is <literal>before</literal>, the marks are placed at the very beginning
+of the element being annotated. 
+</para>
+<para>Each individual annotation can determine it’s placement by placing <literal>before</literal>
+or <literal>after</literal> in its <tag class="attribute">role</tag> attribute.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_annotation-style">
 <?db filename="p_annotation-style.html"?>
 <refmeta>
