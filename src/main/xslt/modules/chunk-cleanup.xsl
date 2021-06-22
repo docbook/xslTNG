@@ -33,7 +33,9 @@
 </xsl:template>
 
 <xsl:template match="h:db-annotation-marker">
-  <xsl:apply-templates/>
+  <xsl:if test="not(@placement = 'before')">
+    <xsl:apply-templates/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="*[@db-chunk]" priority="10">
@@ -425,7 +427,9 @@
 
 <xsl:template match="element()">
   <xsl:copy>
-    <xsl:apply-templates select="@*,node()"/>
+    <xsl:apply-templates select="@*"/>
+    <xsl:sequence select="h:db-annotation-marker[@placement='before']/node()"/>
+    <xsl:apply-templates select="node()"/>
   </xsl:copy>
 </xsl:template>
 
