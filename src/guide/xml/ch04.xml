@@ -7,7 +7,11 @@
   <title>Implementation details</title>
 </info>
 
-<para>…</para>
+<para>This section sketches out some features of the implementation.
+It would probably be better to build an annotated
+<link xlink:href="https://tdg.docbook.org/">Definitive Guide</link> or
+something, but this will have to do for now.
+</para>
 
 <section xml:id="custom-chunking">
 <title>Customizing chunking</title>
@@ -156,6 +160,89 @@ the resulting HTML title page will be:</para>
 <programlisting language="xml"><![CDATA[<header>
   <h2>H<sub>2</sub>O</h2>
 </header>]]></programlisting>
+</section>
+
+<section xml:id="annotations">
+<title>Annotations</title>
+
+<para>The stylesheets fully support annotations, including a number
+of presentation styles enabled by JavaScript in the browser. They also
+support an extension of the documented semantics of
+<tag>annotation</tag>.</para>
+
+<para>Annotations are applied to elements with links. Either the
+element must point to its annotations (with an <att>annotations</att>
+attribute) or the annotations must point to the elements they annotate
+(with an <att>annotates</att> attribute). These are documented as
+ID/IDREF links but they are not <code>IDREFS</code> attributes
+because annotations may be stored separately.</para>
+
+<para>Starting in version 1.5.1, the <citetitle>DocBook xslTNG
+Stylesheets</citetitle> support a non-standard extension: if you place
+the string <code>xpath:</code> in the <att>annotates</att> attribute of
+an <tag>annotation</tag>, then the rest of the attribute is assumed to contain
+an XPath expression that points to the element(s) to which the annotation
+applies. (If you want to put IDREF values before the <code>xpath:</code> token,
+that’s fine, but you can’t put them after; the expression continues to the end
+of the attribute value.)</para>
+
+<para>Suppose, for example, that you wanted to annotate the stylesheet
+title in the previous paragraph. The standard mechanisms would require that
+you either put an <att>xml:id</att> attribute on the element or point to the
+annotation from the element. With the XPath extension, you can do this:</para>
+
+<annotation annotates="xpath:preceding::db:para/db:citetitle"
+            xmlns:db="http://docbook.org/ns/docbook">
+<para>This annotation applies to the stylesheet title. For a discussion
+of this annotation, see the following paragraphs.
+</para>
+</annotation>
+
+<programlisting><![CDATA[<annotation
+   annotates="xpath:preceding::db:para/db:citetitle"
+   xmlns:db="http://docbook.org/ns/docbook">
+<para>This annotation applies to the stylesheet title.
+For a discussion of this annotation, see the
+following paragraphs.</para>
+</annotation>]]></programlisting>
+
+<para>When the XPath expression is evaluated, the <tag>annotation</tag>
+element is the context item. Often, this means that you’ll want to start
+the expression with <code>id()</code> or <code>/</code>.</para>
+
+<para>The namespace context for the expression is also the <tag>annotation</tag>
+element, that’s why I’ve added the DocBook namespace binding for the
+<tag class="prefix">db</tag> prefix. In practice, if you’re doing this on
+several annotations, you can just put all the namespace bindings on a common
+ancestor. All of the bindings <emphasis>in scope</emphasis> on the
+<tag>annotation</tag> element are available in the expression.</para>
+
+<para>Caveats:</para>
+
+<orderedlist>
+<listitem>
+<para>There’s no way to have multiple XPath expressions. You can’t put
+“<code>xpath:</code>” in there twice. If you want an annotation to apply to
+multiple elements, you’ll have to construct a single expression that selects
+all the elements, or duplicate the annotation, or use ID/IDREF links.</para>
+<para>If this turns out to be a serious limitation in practice, additional
+syntax could be added to support multiple expressions, but it doesn’t
+<emphasis>seem</emphasis> necessary.</para>
+</listitem>
+<listitem>
+<para>You can only select elements. There’s no way to select the third word
+in a particular paragraph, for example, unless it already has some markup
+around it. There’s also no way to select a comment or a processing instruction.
+</para>
+</listitem>
+</orderedlist>
+
+<para>The placement of the annotation marker (“⌖” by default) can also be
+controlled globally and on individual annotations. The
+<parameter>annotation-placement</parameter> parameter provides global control.
+To specify the position for an individual annotation, put the token
+“<code>before</code>” or “<code>after</code>” in the <att>role</att>
+attribute on the <tag>annotation</tag>.</para>
 
 </section>
 </chapter>
