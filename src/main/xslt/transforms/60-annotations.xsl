@@ -42,19 +42,13 @@
       </xsl:if>
     </xsl:for-each>
 
+    <!-- Ignore annotations that point to elements that don't exists -->
     <xsl:for-each select="$ids">
-      <xsl:choose>
-        <xsl:when test="empty(key('id', ., $root))">
-          <xsl:message select="'Warning: no matches for annotation: ' || ."/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:for-each select="key('id', ., $root)">
-            <xsl:map>
-              <xsl:map-entry key="generate-id(.)" select="generate-id($annotation)"/>
-            </xsl:map>
-          </xsl:for-each>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:for-each select="key('id', ., $root)">
+        <xsl:map>
+          <xsl:map-entry key="generate-id(.)" select="generate-id($annotation)"/>
+        </xsl:map>
+      </xsl:for-each>
     </xsl:for-each>
 
     <xsl:if test="contains(@annotates, 'xpath:')">
