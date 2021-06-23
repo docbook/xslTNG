@@ -67,7 +67,7 @@
     <xsl:otherwise>
       <xsl:try select="document($bibliography-collection)">
         <xsl:catch>
-          <xsl:message>Failed to load $bibliography.collectiotp:</xsl:message>
+          <xsl:message>Failed to load $bibliography.collection:</xsl:message>
           <xsl:message select="'    ' || $bibliography-collection"/>
           <xsl:message select="'    ('||resolve-uri($bibliography-collection)||')'"/>
           <xsl:sequence select="()"/>
@@ -85,7 +85,7 @@
     <xsl:otherwise>
       <xsl:try select="document($annotation-collection)">
         <xsl:catch>
-          <xsl:message>Failed to load $annotation.collectiotp:</xsl:message>
+          <xsl:message>Failed to load $annotation.collection:</xsl:message>
           <xsl:message select="'    ' || $annotation-collection"/>
           <xsl:message select="'    ('||resolve-uri($annotation-collection)||')'"/>
           <xsl:sequence select="()"/>
