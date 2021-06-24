@@ -120,7 +120,8 @@ relaxng_validate.configure {
 // If this is running on the CI infrastructure and it's not
 // a tagged build, add -SNAPSHOT to the version.
 if (System.getenv()["CIRCLECI"] == "true"
-    && System.getenv()["CIRCLE_TAG"] == null) {
+    && System.getenv()["CIRCLE_TAG"] == null
+    && !xslTNGversion.contains('SNAPSHOT')) {
   xslTNGversion = xslTNGversion + "-SNAPSHOT"
 }
 
