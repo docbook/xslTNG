@@ -26,4 +26,10 @@
       <x:context href="../resources/xml/annotations.005.xml"/>
       <x:expect label="expect multiple annotation marks" href="../resources/expected/annotations.005.html"/>
    </x:scenario>
+
+   <x:scenario label="When transforming annotations.006">
+      <x:context href="../resources/xml/annotations.006.xml"/>
+      <x:expect label="expect XPath annotation selection"
+                href="../resources/expected/annotations.006.html"/>
+   </x:scenario>
 </x:description>
