@@ -1582,6 +1582,14 @@ task stageJar(
     copy {
       into "${buildDir}/resources/main/org/docbook/xsltng/resources"
       from "${projectDir}/src/main/web"
+      filter { String line ->
+        if (line.indexOf("@@") >= 0) {
+          line = line
+            .replace("@@TITLE@@", xslTNGtitle)
+            .replace("@@VERSION@@", xslTNGversion)
+        }
+        line
+      }
     }
   }
 }
