@@ -325,4 +325,6 @@
 
 <xsl:param name="generate-html-page" as="xs:string" select="'true'"/>
 
+<xsl:param name="resolve-object-uris" as="xs:string" select="'true'"/>
+
 </xsl:stylesheet>
