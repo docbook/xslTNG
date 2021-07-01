@@ -150,9 +150,8 @@
 
   <xsl:variable name="before-annotations" as="element(db:annotation)*">
     <xsl:for-each select="$annotations">
-      <xsl:if test="$annotation-placement = 'before'
-                    or (contains-token(@role, 'before')
-                        and not(contains-token(@role, 'after')))">
+      <xsl:if test="($annotation-placement = 'before' and not(contains-token(@role, 'after')))
+                    or contains-token(@role, 'before')">
         <xsl:sequence select="."/>
       </xsl:if>
     </xsl:for-each>
