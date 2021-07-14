@@ -100,13 +100,6 @@
   <code>style={$style}</code>, <code>numbered={$numbered}</code>, and
   <code>highlight={string-join($highlight, ',')}</code>.</p>
 
-  <xsl:message use-when="'verbatim' = $v:debug"
-               select="'Verbatim: ' || node-name(.)
-                       || (if (@xml:id) then '/'||@xml:id else '')
-                       || ' ' || $style
-                       || ' : ' || string-join($highlight,',')
-                       || ' : ' || $numbered"/>
-
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
 
@@ -132,6 +125,13 @@
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
   <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
   <xsl:param name="inject" as="item()?" select="()"/>
+
+  <xsl:message use-when="'verbatim' = $v:debug"
+               select="'Verbatim: ' || node-name(.)
+                       || (if (@xml:id) then '/'||@xml:id else '')
+                       || ' ' || $style
+                       || ' : ' || string-join($highlight,',')
+                       || ' : ' || $numbered"/>
 
   <!--
   <xsl:message>STY:<xsl:value-of select="$style"/></xsl:message>
