@@ -1562,7 +1562,8 @@ task jarStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList']) {
 }
 
 task stageJar(
-  dependsOn: ["makeXslt", "makeVersionProperties", "makeUriList", "jarStageCatalog"]
+  dependsOn: ["makeXslt", "makeVersionProperties", "makeUriList", "jarStageCatalog",
+              "zipStagePygments"]
 ) {
   doLast {
     copy {
@@ -1572,6 +1573,12 @@ task stageJar(
     copy {
       into "${buildDir}/resources/main"
       from "${projectDir}/buildSrc/build/classes/java/groovy"
+    }
+    copy {
+      into "${buildDir}/resources/main/org/docbook/xsltng/resources/css"
+      from ("${buildDir}/stage/zip/resources/css") {
+        include "pygments.css"
+      }
     }
     // Not ${buildDir}/classes/java/main because the jar task
     // picks those up automatically and we don't want duplicates
