@@ -24,7 +24,7 @@
       <xsl:value-of select="$title"/>
     </title>
 
-    <xsl:apply-templates select="db:keywordset|db:subjectset"
+    <xsl:apply-templates select="db:keywordset|db:subjectset|db:meta"
                          mode="m:html-head"/>
 
     <xsl:choose>
@@ -83,6 +83,12 @@
   </xsl:variable>
 
   <meta name="keywords" content="{string-join($keywords,',')}"/>
+</xsl:template>
+
+<xsl:template match="db:meta" mode="m:html-head">
+  <xsl:if test="@name and @content">
+    <meta name="{@name}" content="{@content}"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="h:*" mode="m:html-head">
