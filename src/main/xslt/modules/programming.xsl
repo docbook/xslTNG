@@ -754,6 +754,10 @@
 <xsl:template match="db:fieldsynopsis" mode="m:synopsis">
   <xsl:param name="indent" select="''"/>
 
+  <xsl:apply-templates
+      select="db:synopsisinfo[empty(preceding-sibling::* except preceding-sibling::db:synopsisinfo)]"
+      mode="m:synopsis"/>
+
   <xsl:sequence select="$indent"/>
   <span>
     <xsl:apply-templates select="." mode="m:attributes"/>
@@ -762,6 +766,11 @@
     <xsl:apply-templates select="db:initializer" mode="m:synopsis"/>
   </span>
   <xsl:text>&#10;</xsl:text>
+
+  <xsl:apply-templates
+      select="db:synopsisinfo[empty(following-sibling::* except following-sibling::db:synopsisinfo)]"
+      mode="m:synopsis"/>
+
 </xsl:template>
 
 <xsl:template match="db:varname" mode="m:synopsis">
@@ -796,6 +805,10 @@
               mode="m:synopsis">
   <xsl:param name="indent" select="''"/>
 
+  <xsl:apply-templates
+      select="db:synopsisinfo[empty(preceding-sibling::* except preceding-sibling::db:synopsisinfo)]"
+      mode="m:synopsis"/>
+
   <xsl:sequence select="$indent"/>
   <span>
     <xsl:apply-templates select="." mode="m:attributes"/>
@@ -826,6 +839,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </span>
+
+  <xsl:apply-templates
+      select="db:synopsisinfo[empty(following-sibling::* except following-sibling::db:synopsisinfo)]"
+      mode="m:synopsis"/>
 </xsl:template>
 
 <xsl:template match="db:methodparam" mode="m:synopsis">
@@ -849,6 +866,13 @@
 
 <xsl:template match="db:classname|db:methodname|db:parameter" mode="m:synopsis">
   <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="db:synopsisinfo" mode="m:synopsis">
+  <span>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:apply-templates/>
+  </span>
 </xsl:template>
 
 <!-- ============================================================ -->
