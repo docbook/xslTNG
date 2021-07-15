@@ -26,8 +26,8 @@ dependencies {
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
-    [group: 'org.docbook', name: 'schemas-docbook', version: docbookSchemaVersion],
-    [group: 'org.docbook', name: 'schemas-publishers', version: docbookSchemaVersion]
+    [group: 'org.docbook', name: 'schemas-docbook', version: docbookVersion],
+    [group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion]
   )
 }
 
