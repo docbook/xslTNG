@@ -21,8 +21,8 @@ buildscript {
     classpath group: 'com.drewnoakes', name: 'metadata-extractor', version: metadataExtractorVersion
     classpath group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion
     classpath group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion
-    classpath group: 'org.docbook', name: 'schemas-docbook', version: docbookSchemaVersion
-    classpath group: 'org.docbook', name: 'schemas-publishers', version: docbookSchemaVersion
+    classpath group: 'org.docbook', name: 'schemas-docbook', version: docbookVersion
+    classpath group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion
   }
 }
 
@@ -71,7 +71,7 @@ configurations.all {
 }
 
 configurations {
-  validateRuntime.extendsFrom(implementation)
+  validateRuntime.extendsFrom(testImplementation)
   projectImplementationClasspath.extendsFrom(implementation)
   projectRuntimeClasspath.extendsFrom(runtimeOnly)
 }
@@ -89,8 +89,8 @@ dependencies {
   )
   testImplementation (
     [group: 'junit', name: 'junit', version: '4.13'],
-    [group: 'org.docbook', name: 'schemas-docbook', version: docbookSchemaVersion],
-    [group: 'org.docbook', name: 'schemas-publishers', version: docbookSchemaVersion]
+    [group: 'org.docbook', name: 'schemas-docbook', version: docbookVersion],
+    [group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion]
   )
 }
 
@@ -1562,7 +1562,8 @@ task jarStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList']) {
 }
 
 task stageJar(
-  dependsOn: ["makeXslt", "makeVersionProperties", "makeUriList", "jarStageCatalog"]
+  dependsOn: ["makeXslt", "makeVersionProperties", "makeUriList", "jarStageCatalog",
+              "zipStagePygments"]
 ) {
   doLast {
     copy {
@@ -1572,6 +1573,12 @@ task stageJar(
     copy {
       into "${buildDir}/resources/main"
       from "${projectDir}/buildSrc/build/classes/java/groovy"
+    }
+    copy {
+      into "${buildDir}/resources/main/org/docbook/xsltng/resources/css"
+      from ("${buildDir}/stage/zip/resources/css") {
+        include "pygments.css"
+      }
     }
     // Not ${buildDir}/classes/java/main because the jar task
     // picks those up automatically and we don't want duplicates

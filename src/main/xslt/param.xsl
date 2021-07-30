@@ -21,7 +21,7 @@
      as strings here and as more useful data types in the variables. -->
 
 <!-- 'pipeline', 'objects', 'templates', 'template-matches', 'tables',
-     'callouts', 'verbatim', 'render-verbatim', 'profile', 'properties',
+     'callouts', 'verbatim', 'render-verbatim', 'highlight', 'profile', 'properties',
      'xlink' 'chunks', 'chunk-cleanup', 'intra-chunk-refs', 'intra-chunk-links',
      'structure', 'mediaobject-uris', 'cals-align-char', 'image-properties',
      'db4to5' 'profile-suppress', 'dynamic-profile', 'dynamic-profile-suppress' -->

@@ -314,12 +314,12 @@ code.email {
 }
 
 pre code,
-cmdsynopsis code {
+.cmdsynopsis code {
     border: none;
     background-color: inherit;
-    padding: inherit;
+    padding: 0;
     font-size: inherit;
-    margin: inherit;
+    margin: 0;
 }
 
 pre > code {

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
-<title>Unit test: classsynopsis.001</title>
+<title>Unit test: synopsisinfo.001</title>
 
 <classsynopsis xml:id="class">
   <ooclass>
     <modifier>public</modifier>
     <classname>Catalog</classname>
   </ooclass>
-  <classsynopsisinfo><?db verbatim-style='plain'?>// This is just a made up example.
-// Mostly.</classsynopsisinfo>
   <fieldsynopsis>
     <modifier>public</modifier>
     <modifier>static</modifier>
@@ -16,8 +14,12 @@
     <type>int</type>
     <varname>BASE</varname>
     <initializer>CatalogEntry.addEntryType("BASE", 1)</initializer>
+    <synopsisinfo>  Random text
+</synopsisinfo>
   </fieldsynopsis>
   <constructorsynopsis>
+    <synopsisinfo>Also random text
+</synopsisinfo>
     <modifier>public</modifier>
     <methodname>Catalog</methodname>
     <void/>
@@ -30,6 +32,8 @@
       <type>Catalog</type>
       <parameter>newCatalog</parameter>
     </methodparam>
+    <synopsisinfo>
+  More random text</synopsisinfo>
   </methodsynopsis>
 </classsynopsis>
 </article>

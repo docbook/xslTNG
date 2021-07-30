@@ -7,9 +7,10 @@
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
+                xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 default-mode="m:docbook"
-                exclude-result-prefixes="dbe ext f fp h m mp xs"
+                exclude-result-prefixes="dbe ext f fp h m mp v xs"
                 version="3.0">
 
 <xsl:function name="f:syntax-highlight">
@@ -43,6 +44,20 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+
+  <xsl:message use-when="'highlight' = $v:debug">
+    <xsl:text use-when="not(function-available('ext:pygmentize'))
+                          or not(function-available('ext:pygmentize-available'))"
+              >Syntax highlighting is not configured</xsl:text>
+    <xsl:text use-when="function-available('ext:pygmentize')
+                        and function-available('ext:pygmentize-available')
+                        and not(ext:pygmentize-available())"
+              >Syntax highlighting is not available</xsl:text>
+    <xsl:text use-when="function-available('ext:pygmentize')
+                        and function-available('ext:pygmentize-available')
+                        and ext:pygmentize-available()"
+              >Syntax highlighting is available</xsl:text>
+  </xsl:message>
 
   <!-- N.B. xsl:value-of is intentional here; this function returns a node -->
   <xsl:value-of use-when="not(function-available('ext:pygmentize'))

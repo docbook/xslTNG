@@ -22,4 +22,10 @@
   </x:expect>
 </x:scenario>
 
+<x:scenario label="When transforming synopsisinfo.001">
+  <x:context href="../resources/xml/synopsisinfo.001.xml" select="//*[@xml:id='class']" mode="m:docbook"/>
+  <x:expect label="expect synopses" href="../resources/expected/synopsisinfo.001.html" select="//h:*[@id='class']">
+  </x:expect>
+</x:scenario>
+
 </x:description>
