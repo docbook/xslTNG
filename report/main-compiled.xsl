@@ -139,7 +139,9 @@
             <xsl:call-template xmlns:h="http://www.w3.org/1999/xhtml"
                                xmlns:m="http://docbook.org/ns/docbook/modes"
                                name="x:scenario43"/>
-            <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario44"/>
+            <xsl:call-template xmlns:h="http://www.w3.org/1999/xhtml"
+                               xmlns:m="http://docbook.org/ns/docbook/modes"
+                               name="x:scenario44"/>
             <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario45"/>
             <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario46"/>
             <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario47"/>
@@ -153,9 +155,7 @@
             <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario55"/>
             <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario56"/>
             <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario57"/>
-            <xsl:call-template xmlns:h="http://www.w3.org/1999/xhtml"
-                               xmlns:m="http://docbook.org/ns/docbook/modes"
-                               name="x:scenario58"/>
+            <xsl:call-template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario58"/>
             <xsl:call-template xmlns:h="http://www.w3.org/1999/xhtml"
                                xmlns:m="http://docbook.org/ns/docbook/modes"
                                name="x:scenario59"/>
@@ -225,6 +225,9 @@
             <xsl:call-template xmlns:h="http://www.w3.org/1999/xhtml"
                                xmlns:m="http://docbook.org/ns/docbook/modes"
                                name="x:scenario81"/>
+            <xsl:call-template xmlns:h="http://www.w3.org/1999/xhtml"
+                               xmlns:m="http://docbook.org/ns/docbook/modes"
+                               name="x:scenario82"/>
          </x:report>
       </xsl:result-document>
    </xsl:template>
@@ -6271,20 +6274,29 @@
          </xsl:call-template>
       </x:test>
    </xsl:template>
-   <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario44">
-      <xsl:message>When computing the length 1.0in</xsl:message>
+   <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 name="x:scenario44">
+      <xsl:message>When transforming synopsisinfo.001</xsl:message>
       <x:scenario id="scenario44"
-                  xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0in</x:label>
-         <x:call>
-            <xsl:attribute name="function">f:parse-length</xsl:attribute>
-            <x:param>
-               <xsl:attribute name="select">'1.0in'</xsl:attribute>
-            </x:param>
-         </x:call>
+                  xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+         <x:label>When transforming synopsisinfo.001</x:label>
+         <x:context>
+            <xsl:attribute name="href">file:/home/circleci/repo/src/test/resources/xml/synopsisinfo.001.xml</xsl:attribute>
+            <xsl:attribute name="select">//*[@xml:id='class']</xsl:attribute>
+            <xsl:attribute name="mode">m:docbook</xsl:attribute>
+         </x:context>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d412e1" select="'1.0in'"/>
-            <xsl:sequence select="f:parse-length($impl:param-d412e1)"/>
+            <xsl:variable name="impl:context-d412e0-uri" as="xs:anyURI">file:/home/circleci/repo/src/test/resources/xml/synopsisinfo.001.xml</xsl:variable>
+            <xsl:variable name="impl:context-d412e0-doc"
+                          as="document-node()"
+                          select="doc($impl:context-d412e0-uri)"/>
+            <xsl:variable name="impl:context-d412e0" as="item()*">
+               <xsl:for-each select="$impl:context-d412e0-doc">
+                  <xsl:sequence select="//*[@xml:id='class']"/>
+               </xsl:for-each>
+            </xsl:variable>
+            <xsl:apply-templates select="$impl:context-d412e0" mode="m:docbook"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
             <xsl:with-param name="sequence" select="$x:result"/>
@@ -6295,40 +6307,48 @@
          </xsl:call-template>
       </x:scenario>
    </xsl:template>
-   <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions"
+   <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario44-expect1">
       <xsl:param name="x:result" required="yes"/>
-      <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e455"
-                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'in' }"/>
+      <xsl:message>expect synopses</xsl:message>
+      <xsl:variable name="impl:expect-d15e454-uri" as="xs:anyURI">file:/home/circleci/repo/src/test/resources/expected/synopsisinfo.001.html</xsl:variable>
+      <xsl:variable name="impl:expect-d15e454-doc"
+                    as="document-node()"
+                    select="doc($impl:expect-d15e454-uri)"/>
+      <xsl:variable name="impl:expect-d15e454" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e454-doc">
+            <xsl:sequence select="//h:*[@id='class']"/>
+         </xsl:for-each>
+      </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e455, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e454, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario44-expect1" successful="{$impl:successful}">
-         <x:label>return the correct parse</x:label>
+         <x:label>expect synopses</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e455"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e454"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario45">
-      <xsl:message>When computing the length 1.0m</xsl:message>
+      <xsl:message>When computing the length 1.0in</xsl:message>
       <x:scenario id="scenario45"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0m</x:label>
+         <x:label>When computing the length 1.0in</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'1.0m'</xsl:attribute>
+               <xsl:attribute name="select">'1.0in'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d418e1" select="'1.0m'"/>
+            <xsl:variable name="impl:param-d418e1" select="'1.0in'"/>
             <xsl:sequence select="f:parse-length($impl:param-d418e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6344,36 +6364,36 @@
                  name="x:scenario45-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e459"
-                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'm' }"/>
+      <xsl:variable name="impl:expect-d15e458"
+                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'in' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e459, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e458, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario45-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e459"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e458"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario46">
-      <xsl:message>When computing the length 1.0cm</xsl:message>
+      <xsl:message>When computing the length 1.0m</xsl:message>
       <x:scenario id="scenario46"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0cm</x:label>
+         <x:label>When computing the length 1.0m</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'1.0cm'</xsl:attribute>
+               <xsl:attribute name="select">'1.0m'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d424e1" select="'1.0cm'"/>
+            <xsl:variable name="impl:param-d424e1" select="'1.0m'"/>
             <xsl:sequence select="f:parse-length($impl:param-d424e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6389,36 +6409,36 @@
                  name="x:scenario46-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e463"
-                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'cm' }"/>
+      <xsl:variable name="impl:expect-d15e462"
+                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'm' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e463, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e462, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario46-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e463"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e462"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario47">
-      <xsl:message>When computing the length 1.0mm</xsl:message>
+      <xsl:message>When computing the length 1.0cm</xsl:message>
       <x:scenario id="scenario47"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0mm</x:label>
+         <x:label>When computing the length 1.0cm</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'1.0mm'</xsl:attribute>
+               <xsl:attribute name="select">'1.0cm'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d430e1" select="'1.0mm'"/>
+            <xsl:variable name="impl:param-d430e1" select="'1.0cm'"/>
             <xsl:sequence select="f:parse-length($impl:param-d430e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6434,36 +6454,36 @@
                  name="x:scenario47-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e467"
-                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'mm' }"/>
+      <xsl:variable name="impl:expect-d15e466"
+                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'cm' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e467, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e466, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario47-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e467"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e466"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario48">
-      <xsl:message>When computing the length 1.0pc</xsl:message>
+      <xsl:message>When computing the length 1.0mm</xsl:message>
       <x:scenario id="scenario48"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0pc</x:label>
+         <x:label>When computing the length 1.0mm</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'1.0pc'</xsl:attribute>
+               <xsl:attribute name="select">'1.0mm'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d436e1" select="'1.0pc'"/>
+            <xsl:variable name="impl:param-d436e1" select="'1.0mm'"/>
             <xsl:sequence select="f:parse-length($impl:param-d436e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6479,36 +6499,36 @@
                  name="x:scenario48-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e471"
-                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pc' }"/>
+      <xsl:variable name="impl:expect-d15e470"
+                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'mm' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e471, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e470, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario48-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e471"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e470"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario49">
-      <xsl:message>When computing the length 1.0pt</xsl:message>
+      <xsl:message>When computing the length 1.0pc</xsl:message>
       <x:scenario id="scenario49"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0pt</x:label>
+         <x:label>When computing the length 1.0pc</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'1.0pt'</xsl:attribute>
+               <xsl:attribute name="select">'1.0pc'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d442e1" select="'1.0pt'"/>
+            <xsl:variable name="impl:param-d442e1" select="'1.0pc'"/>
             <xsl:sequence select="f:parse-length($impl:param-d442e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6524,36 +6544,36 @@
                  name="x:scenario49-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e476"
-                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pt' }"/>
+      <xsl:variable name="impl:expect-d15e475"
+                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pc' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e476, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e475, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario49-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e476"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e475"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario50">
-      <xsl:message>When computing the length 3.14barleycorn</xsl:message>
+      <xsl:message>When computing the length 1.0pt</xsl:message>
       <x:scenario id="scenario50"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 3.14barleycorn</x:label>
+         <x:label>When computing the length 1.0pt</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'3.14barleycorn'</xsl:attribute>
+               <xsl:attribute name="select">'1.0pt'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d448e1" select="'3.14barleycorn'"/>
+            <xsl:variable name="impl:param-d448e1" select="'1.0pt'"/>
             <xsl:sequence select="f:parse-length($impl:param-d448e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6569,36 +6589,36 @@
                  name="x:scenario50-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e480"
-                    select="map { 'magnitude': 3.14, 'relative': 0.0, 'unit': 'barleycorn' }"/>
+      <xsl:variable name="impl:expect-d15e479"
+                    select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pt' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e480, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e479, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario50-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e480"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e479"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario51">
-      <xsl:message>When computing the length 1.0smoot</xsl:message>
+      <xsl:message>When computing the length 3.14barleycorn</xsl:message>
       <x:scenario id="scenario51"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 1.0smoot</x:label>
+         <x:label>When computing the length 3.14barleycorn</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'1.0smoot'</xsl:attribute>
+               <xsl:attribute name="select">'3.14barleycorn'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d454e1" select="'1.0smoot'"/>
+            <xsl:variable name="impl:param-d454e1" select="'3.14barleycorn'"/>
             <xsl:sequence select="f:parse-length($impl:param-d454e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6614,36 +6634,36 @@
                  name="x:scenario51-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e484"
-                    select="map { 'magnitude': $default-length-magnitude,                            'relative': 0.0,                             'unit': $default-length-unit }"/>
+      <xsl:variable name="impl:expect-d15e483"
+                    select="map { 'magnitude': 3.14, 'relative': 0.0, 'unit': 'barleycorn' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e484, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e483, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario51-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e484"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e483"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario52">
-      <xsl:message>When computing the length 25%</xsl:message>
+      <xsl:message>When computing the length 1.0smoot</xsl:message>
       <x:scenario id="scenario52"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 25%</x:label>
+         <x:label>When computing the length 1.0smoot</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'25%'</xsl:attribute>
+               <xsl:attribute name="select">'1.0smoot'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d460e1" select="'25%'"/>
+            <xsl:variable name="impl:param-d460e1" select="'1.0smoot'"/>
             <xsl:sequence select="f:parse-length($impl:param-d460e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6659,36 +6679,36 @@
                  name="x:scenario52-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e488"
-                    select="map { 'magnitude': 25.0, 'relative': 0.0, 'unit': '%' }"/>
+      <xsl:variable name="impl:expect-d15e487"
+                    select="map { 'magnitude': $default-length-magnitude,                            'relative': 0.0,                             'unit': $default-length-unit }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e488, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e487, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario52-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e488"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e487"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario53">
-      <xsl:message>When computing the length 100%</xsl:message>
+      <xsl:message>When computing the length 25%</xsl:message>
       <x:scenario id="scenario53"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 100%</x:label>
+         <x:label>When computing the length 25%</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'100%'</xsl:attribute>
+               <xsl:attribute name="select">'25%'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d466e1" select="'100%'"/>
+            <xsl:variable name="impl:param-d466e1" select="'25%'"/>
             <xsl:sequence select="f:parse-length($impl:param-d466e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6704,36 +6724,36 @@
                  name="x:scenario53-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e492"
-                    select="map { 'magnitude': 100.0, 'relative': 0.0, 'unit': '%' }"/>
+      <xsl:variable name="impl:expect-d15e491"
+                    select="map { 'magnitude': 25.0, 'relative': 0.0, 'unit': '%' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e492, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e491, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario53-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e492"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e491"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario54">
-      <xsl:message>When computing the length 125%</xsl:message>
+      <xsl:message>When computing the length 100%</xsl:message>
       <x:scenario id="scenario54"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 125%</x:label>
+         <x:label>When computing the length 100%</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'125%'</xsl:attribute>
+               <xsl:attribute name="select">'100%'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d472e1" select="'125%'"/>
+            <xsl:variable name="impl:param-d472e1" select="'100%'"/>
             <xsl:sequence select="f:parse-length($impl:param-d472e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6749,36 +6769,36 @@
                  name="x:scenario54-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e496"
-                    select="map { 'magnitude': 125.0, 'relative': 0.0, 'unit': '%' }"/>
+      <xsl:variable name="impl:expect-d15e495"
+                    select="map { 'magnitude': 100.0, 'relative': 0.0, 'unit': '%' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e496, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e495, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario54-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e496"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e495"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario55">
-      <xsl:message>When computing the length 3*+0.5in</xsl:message>
+      <xsl:message>When computing the length 125%</xsl:message>
       <x:scenario id="scenario55"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 3*+0.5in</x:label>
+         <x:label>When computing the length 125%</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'3*+0.5in'</xsl:attribute>
+               <xsl:attribute name="select">'125%'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d478e1" select="'3*+0.5in'"/>
+            <xsl:variable name="impl:param-d478e1" select="'125%'"/>
             <xsl:sequence select="f:parse-length($impl:param-d478e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6794,36 +6814,36 @@
                  name="x:scenario55-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e500"
-                    select="map { 'magnitude': 0.5, 'unit': 'in', 'relative': 3.0 }"/>
+      <xsl:variable name="impl:expect-d15e499"
+                    select="map { 'magnitude': 125.0, 'relative': 0.0, 'unit': '%' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e500, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e499, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario55-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e500"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e499"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario56">
-      <xsl:message>When computing the length 75</xsl:message>
+      <xsl:message>When computing the length 3*+0.5in</xsl:message>
       <x:scenario id="scenario56"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 75</x:label>
+         <x:label>When computing the length 3*+0.5in</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'75'</xsl:attribute>
+               <xsl:attribute name="select">'3*+0.5in'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d484e1" select="'75'"/>
+            <xsl:variable name="impl:param-d484e1" select="'3*+0.5in'"/>
             <xsl:sequence select="f:parse-length($impl:param-d484e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6839,36 +6859,36 @@
                  name="x:scenario56-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e504"
-                    select="map { 'magnitude': 75, 'relative': 0.0, 'unit': 'px' }"/>
+      <xsl:variable name="impl:expect-d15e503"
+                    select="map { 'magnitude': 0.5, 'unit': 'in', 'relative': 3.0 }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e504, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e503, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario56-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e504"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e503"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
       </x:test>
    </xsl:template>
    <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario57">
-      <xsl:message>When computing the length 2.5*</xsl:message>
+      <xsl:message>When computing the length 75</xsl:message>
       <x:scenario id="scenario57"
                   xspec="file:/home/circleci/repo/build/xspec/units.xspec">
-         <x:label>When computing the length 2.5*</x:label>
+         <x:label>When computing the length 75</x:label>
          <x:call>
             <xsl:attribute name="function">f:parse-length</xsl:attribute>
             <x:param>
-               <xsl:attribute name="select">'2.5*'</xsl:attribute>
+               <xsl:attribute name="select">'75'</xsl:attribute>
             </x:param>
          </x:call>
          <xsl:variable name="x:result" as="item()*">
-            <xsl:variable name="impl:param-d490e1" select="'2.5*'"/>
+            <xsl:variable name="impl:param-d490e1" select="'75'"/>
             <xsl:sequence select="f:parse-length($impl:param-d490e1)"/>
          </xsl:variable>
          <xsl:call-template name="test:report-sequence">
@@ -6884,18 +6904,63 @@
                  name="x:scenario57-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable name="impl:expect-d15e508"
-                    select="map { 'magnitude': 0, 'unit': 'px', 'relative': 2.5 }"/>
+      <xsl:variable name="impl:expect-d15e507"
+                    select="map { 'magnitude': 75, 'relative': 0.0, 'unit': 'px' }"/>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e508, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e507, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario57-expect1" successful="{$impl:successful}">
          <x:label>return the correct parse</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e508"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e507"/>
+            <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
+            <xsl:with-param name="test" as="attribute(test)?"/>
+         </xsl:call-template>
+      </x:test>
+   </xsl:template>
+   <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions" name="x:scenario58">
+      <xsl:message>When computing the length 2.5*</xsl:message>
+      <x:scenario id="scenario58"
+                  xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+         <x:label>When computing the length 2.5*</x:label>
+         <x:call>
+            <xsl:attribute name="function">f:parse-length</xsl:attribute>
+            <x:param>
+               <xsl:attribute name="select">'2.5*'</xsl:attribute>
+            </x:param>
+         </x:call>
+         <xsl:variable name="x:result" as="item()*">
+            <xsl:variable name="impl:param-d496e1" select="'2.5*'"/>
+            <xsl:sequence select="f:parse-length($impl:param-d496e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="test:report-sequence">
+            <xsl:with-param name="sequence" select="$x:result"/>
+            <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
+         </xsl:call-template>
+         <xsl:call-template name="x:scenario58-expect1">
+            <xsl:with-param name="x:result" select="$x:result"/>
+         </xsl:call-template>
+      </x:scenario>
+   </xsl:template>
+   <xsl:template xmlns:f="http://docbook.org/ns/docbook/functions"
+                 name="x:scenario58-expect1">
+      <xsl:param name="x:result" required="yes"/>
+      <xsl:message>return the correct parse</xsl:message>
+      <xsl:variable name="impl:expect-d15e511"
+                    select="map { 'magnitude': 0, 'unit': 'px', 'relative': 2.5 }"/>
+      <xsl:variable name="impl:successful"
+                    as="xs:boolean"
+                    select="test:deep-equal($impl:expect-d15e511, $x:result, '')"/>
+      <xsl:if test="not($impl:successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <x:test id="scenario58-expect1" successful="{$impl:successful}">
+         <x:label>return the correct parse</x:label>
+         <xsl:call-template name="test:report-sequence">
+            <xsl:with-param name="sequence" select="$impl:expect-d15e511"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -6903,9 +6968,9 @@
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario58">
+                 name="x:scenario59">
       <xsl:message>When converting an address in the raw style</xsl:message>
-      <x:scenario id="scenario58"
+      <x:scenario id="scenario59"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting an address in the raw style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -6924,7 +6989,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d496e0-doc"
+                          name="impl:context-d502e0-doc"
                           as="document-node()">
                <xsl:document>
                   <address>
@@ -6934,105 +6999,6 @@ Line three
 Line four
 Line five</xsl:text>
                   </address>
-               </xsl:document>
-            </xsl:variable>
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d496e0"
-                          as="item()*">
-               <xsl:for-each select="$impl:context-d496e0-doc">
-                  <xsl:sequence select="node()"/>
-               </xsl:for-each>
-            </xsl:variable>
-            <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
-            <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d496e0"
-                                 mode="m:docbook">
-               <xsl:with-param name="style" select="$style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$x:result"/>
-            <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
-         </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario58-expect1">
-            <xsl:with-param name="x:result" select="$x:result"/>
-         </xsl:call-template>
-      </x:scenario>
-   </xsl:template>
-   <xsl:template xmlns="http://www.w3.org/1999/xhtml"
-                 xmlns:h="http://www.w3.org/1999/xhtml"
-                 xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario58-expect1">
-      <xsl:param name="x:result" required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e519-doc" as="document-node()">
-         <xsl:document>
-            <div>
-               <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
-               <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="address verbatim"/>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </pre>
-            </div>
-         </xsl:document>
-      </xsl:variable>
-      <xsl:variable name="impl:expect-d15e519" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e519-doc">
-            <xsl:sequence select="node()"/>
-         </xsl:for-each>
-      </xsl:variable>
-      <xsl:variable name="impl:successful"
-                    as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e519, $x:result, '')"/>
-      <xsl:if test="not($impl:successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <x:test id="scenario58-expect1" successful="{$impl:successful}">
-         <x:label>you should get all the lines</x:label>
-         <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e519"/>
-            <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
-            <xsl:with-param name="test" as="attribute(test)?"/>
-         </xsl:call-template>
-      </x:test>
-   </xsl:template>
-   <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
-                 xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario59">
-      <xsl:message>When converting a literallayout in the raw style</xsl:message>
-      <x:scenario id="scenario59"
-                  xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a literallayout in the raw style</x:label>
-         <x:context xmlns="http://docbook.org/ns/docbook">
-            <xsl:attribute name="mode">m:docbook</xsl:attribute>
-            <x:param>
-               <xsl:attribute name="name">style</xsl:attribute>
-               <xsl:attribute name="select">'raw'</xsl:attribute>
-            </x:param>
-            <literallayout>
-               <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-            </literallayout>
-         </x:context>
-         <xsl:variable name="x:result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d502e0-doc"
-                          as="document-node()">
-               <xsl:document>
-                  <literallayout>
-                     <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-                  </literallayout>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7064,12 +7030,12 @@ Line five</xsl:text>
                  name="x:scenario59-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e530-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e522-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="literallayout verbatim"/>
+                  <xsl:attribute name="class" select="'', ''" separator="address verbatim"/>
                   <xsl:text>Line one
 Line two
 Line three
@@ -7079,21 +7045,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e530" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e530-doc">
+      <xsl:variable name="impl:expect-d15e522" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e522-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e530, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e522, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario59-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e530"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e522"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7102,36 +7068,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario60">
-      <xsl:message>When converting a programlisting in the raw style</xsl:message>
+      <xsl:message>When converting a literallayout in the raw style</xsl:message>
       <x:scenario id="scenario60"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a programlisting in the raw style</x:label>
+         <x:label>When converting a literallayout in the raw style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'raw'</xsl:attribute>
             </x:param>
-            <programlisting>
+            <literallayout>
                <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-            </programlisting>
+            </literallayout>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d508e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <programlisting>
+                  <literallayout>
                      <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </programlisting>
+                  </literallayout>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7163,40 +7129,36 @@ Line five</xsl:text>
                  name="x:scenario60-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e541-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e533-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class"
-                                 select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
-                  <code>
-                     <xsl:text>Line one
+                  <xsl:attribute name="class" select="'', ''" separator="literallayout verbatim"/>
+                  <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </code>
                </pre>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e541" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e541-doc">
+      <xsl:variable name="impl:expect-d15e533" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e533-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e541, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e533, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario60-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e541"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e533"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7205,36 +7167,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario61">
-      <xsl:message>When converting a screen in the raw style</xsl:message>
+      <xsl:message>When converting a programlisting in the raw style</xsl:message>
       <x:scenario id="scenario61"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a screen in the raw style</x:label>
+         <x:label>When converting a programlisting in the raw style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'raw'</xsl:attribute>
             </x:param>
-            <screen>
+            <programlisting>
                <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-            </screen>
+            </programlisting>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d514e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <screen>
+                  <programlisting>
                      <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </screen>
+                  </programlisting>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7266,12 +7228,14 @@ Line five</xsl:text>
                  name="x:scenario61-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e553-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e544-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="screen verbatim"/>
+                  <xsl:attribute name="class"
+                                 select="'', ''"
+                                 separator="language-none numbered programlisting verbatim"/>
                   <code>
                      <xsl:text>Line one
 Line two
@@ -7283,21 +7247,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e553" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e553-doc">
+      <xsl:variable name="impl:expect-d15e544" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e544-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e553, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e544, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario61-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e553"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e544"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7306,36 +7270,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario62">
-      <xsl:message>When converting a synopsis in the raw style</xsl:message>
+      <xsl:message>When converting a screen in the raw style</xsl:message>
       <x:scenario id="scenario62"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a synopsis in the raw style</x:label>
+         <x:label>When converting a screen in the raw style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'raw'</xsl:attribute>
             </x:param>
-            <synopsis>
+            <screen>
                <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-            </synopsis>
+            </screen>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d520e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <synopsis>
+                  <screen>
                      <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </synopsis>
+                  </screen>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7367,12 +7331,12 @@ Line five</xsl:text>
                  name="x:scenario62-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e565-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e556-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="synopsis verbatim"/>
+                  <xsl:attribute name="class" select="'', ''" separator="screen verbatim"/>
                   <code>
                      <xsl:text>Line one
 Line two
@@ -7384,21 +7348,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e565" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e565-doc">
+      <xsl:variable name="impl:expect-d15e556" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e556-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e565, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e556, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario62-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e565"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e556"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7407,52 +7371,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario63">
-      <xsl:message>When converting a verbatim with inline markup in the raw style</xsl:message>
+      <xsl:message>When converting a synopsis in the raw style</xsl:message>
       <x:scenario id="scenario63"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a verbatim with inline markup in the raw style</x:label>
+         <x:label>When converting a synopsis in the raw style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'raw'</xsl:attribute>
             </x:param>
-            <programlisting>
+            <synopsis>
                <xsl:text>Line one
-Line </xsl:text>
-               <emphasis>
-                  <xsl:text>two</xsl:text>
-               </emphasis>
-               <xsl:text>
-Line </xsl:text>
-               <emphasis>
-                  <xsl:text>end of three
-start of four</xsl:text>
-               </emphasis>
-               <xsl:text>
+Line two
+Line three
+Line four
 Line five</xsl:text>
-            </programlisting>
+            </synopsis>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d526e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <programlisting>
+                  <synopsis>
                      <xsl:text>Line one
-Line </xsl:text>
-                     <emphasis>
-                        <xsl:text>two</xsl:text>
-                     </emphasis>
-                     <xsl:text>
-Line </xsl:text>
-                     <emphasis>
-                        <xsl:text>end of three
-start of four</xsl:text>
-                     </emphasis>
-                     <xsl:text>
+Line two
+Line three
+Line four
 Line five</xsl:text>
-                  </programlisting>
+                  </synopsis>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7483,8 +7431,125 @@ Line five</xsl:text>
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario63-expect1">
       <xsl:param name="x:result" required="yes"/>
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="impl:expect-d15e568-doc" as="document-node()">
+         <xsl:document>
+            <div>
+               <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
+               <pre>
+                  <xsl:attribute name="class" select="'', ''" separator="synopsis verbatim"/>
+                  <code>
+                     <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+                  </code>
+               </pre>
+            </div>
+         </xsl:document>
+      </xsl:variable>
+      <xsl:variable name="impl:expect-d15e568" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e568-doc">
+            <xsl:sequence select="node()"/>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:variable name="impl:successful"
+                    as="xs:boolean"
+                    select="test:deep-equal($impl:expect-d15e568, $x:result, '')"/>
+      <xsl:if test="not($impl:successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <x:test id="scenario63-expect1" successful="{$impl:successful}">
+         <x:label>you should get all the lines</x:label>
+         <xsl:call-template name="test:report-sequence">
+            <xsl:with-param name="sequence" select="$impl:expect-d15e568"/>
+            <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
+            <xsl:with-param name="test" as="attribute(test)?"/>
+         </xsl:call-template>
+      </x:test>
+   </xsl:template>
+   <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 name="x:scenario64">
+      <xsl:message>When converting a verbatim with inline markup in the raw style</xsl:message>
+      <x:scenario id="scenario64"
+                  xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+         <x:label>When converting a verbatim with inline markup in the raw style</x:label>
+         <x:context xmlns="http://docbook.org/ns/docbook">
+            <xsl:attribute name="mode">m:docbook</xsl:attribute>
+            <x:param>
+               <xsl:attribute name="name">style</xsl:attribute>
+               <xsl:attribute name="select">'raw'</xsl:attribute>
+            </x:param>
+            <programlisting>
+               <xsl:text>Line one
+Line </xsl:text>
+               <emphasis>
+                  <xsl:text>two</xsl:text>
+               </emphasis>
+               <xsl:text>
+Line </xsl:text>
+               <emphasis>
+                  <xsl:text>end of three
+start of four</xsl:text>
+               </emphasis>
+               <xsl:text>
+Line five</xsl:text>
+            </programlisting>
+         </x:context>
+         <xsl:variable name="x:result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                          name="impl:context-d532e0-doc"
+                          as="document-node()">
+               <xsl:document>
+                  <programlisting>
+                     <xsl:text>Line one
+Line </xsl:text>
+                     <emphasis>
+                        <xsl:text>two</xsl:text>
+                     </emphasis>
+                     <xsl:text>
+Line </xsl:text>
+                     <emphasis>
+                        <xsl:text>end of three
+start of four</xsl:text>
+                     </emphasis>
+                     <xsl:text>
+Line five</xsl:text>
+                  </programlisting>
+               </xsl:document>
+            </xsl:variable>
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                          name="impl:context-d532e0"
+                          as="item()*">
+               <xsl:for-each select="$impl:context-d532e0-doc">
+                  <xsl:sequence select="node()"/>
+               </xsl:for-each>
+            </xsl:variable>
+            <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'raw'"/>
+            <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
+                                 select="$impl:context-d532e0"
+                                 mode="m:docbook">
+               <xsl:with-param name="style" select="$style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="test:report-sequence">
+            <xsl:with-param name="sequence" select="$x:result"/>
+            <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
+         </xsl:call-template>
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario64-expect1">
+            <xsl:with-param name="x:result" select="$x:result"/>
+         </xsl:call-template>
+      </x:scenario>
+   </xsl:template>
+   <xsl:template xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 name="x:scenario64-expect1">
+      <xsl:param name="x:result" required="yes"/>
       <xsl:message>the inline markup should be transformed.</xsl:message>
-      <xsl:variable name="impl:expect-d15e587-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e590-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -7511,21 +7576,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e587" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e587-doc">
+      <xsl:variable name="impl:expect-d15e590" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e590-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e587, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e590, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario63-expect1" successful="{$impl:successful}">
+      <x:test id="scenario64-expect1" successful="{$impl:successful}">
          <x:label>the inline markup should be transformed.</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e587"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e590"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7533,9 +7598,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario64">
+                 name="x:scenario65">
       <xsl:message>When converting an address in the plain style</xsl:message>
-      <x:scenario id="scenario64"
+      <x:scenario id="scenario65"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting an address in the plain style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -7554,7 +7619,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d532e0-doc"
+                          name="impl:context-d538e0-doc"
                           as="document-node()">
                <xsl:document>
                   <address>
@@ -7564,105 +7629,6 @@ Line three
 Line four
 Line five</xsl:text>
                   </address>
-               </xsl:document>
-            </xsl:variable>
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d532e0"
-                          as="item()*">
-               <xsl:for-each select="$impl:context-d532e0-doc">
-                  <xsl:sequence select="node()"/>
-               </xsl:for-each>
-            </xsl:variable>
-            <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
-            <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d532e0"
-                                 mode="m:docbook">
-               <xsl:with-param name="style" select="$style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$x:result"/>
-            <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
-         </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario64-expect1">
-            <xsl:with-param name="x:result" select="$x:result"/>
-         </xsl:call-template>
-      </x:scenario>
-   </xsl:template>
-   <xsl:template xmlns="http://www.w3.org/1999/xhtml"
-                 xmlns:h="http://www.w3.org/1999/xhtml"
-                 xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario64-expect1">
-      <xsl:param name="x:result" required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e610-doc" as="document-node()">
-         <xsl:document>
-            <div>
-               <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
-               <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="address verbatim"/>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </pre>
-            </div>
-         </xsl:document>
-      </xsl:variable>
-      <xsl:variable name="impl:expect-d15e610" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e610-doc">
-            <xsl:sequence select="node()"/>
-         </xsl:for-each>
-      </xsl:variable>
-      <xsl:variable name="impl:successful"
-                    as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e610, $x:result, '')"/>
-      <xsl:if test="not($impl:successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <x:test id="scenario64-expect1" successful="{$impl:successful}">
-         <x:label>you should get all the lines</x:label>
-         <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e610"/>
-            <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
-            <xsl:with-param name="test" as="attribute(test)?"/>
-         </xsl:call-template>
-      </x:test>
-   </xsl:template>
-   <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
-                 xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario65">
-      <xsl:message>When converting a literallayout in the plain style</xsl:message>
-      <x:scenario id="scenario65"
-                  xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a literallayout in the plain style</x:label>
-         <x:context xmlns="http://docbook.org/ns/docbook">
-            <xsl:attribute name="mode">m:docbook</xsl:attribute>
-            <x:param>
-               <xsl:attribute name="name">style</xsl:attribute>
-               <xsl:attribute name="select">'plain'</xsl:attribute>
-            </x:param>
-            <literallayout>
-               <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-            </literallayout>
-         </x:context>
-         <xsl:variable name="x:result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d538e0-doc"
-                          as="document-node()">
-               <xsl:document>
-                  <literallayout>
-                     <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-                  </literallayout>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7694,12 +7660,12 @@ Line five</xsl:text>
                  name="x:scenario65-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e621-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e613-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="literallayout verbatim"/>
+                  <xsl:attribute name="class" select="'', ''" separator="address verbatim"/>
                   <xsl:text>Line one
 Line two
 Line three
@@ -7709,21 +7675,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e621" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e621-doc">
+      <xsl:variable name="impl:expect-d15e613" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e613-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e621, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e613, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario65-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e621"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e613"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7732,36 +7698,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario66">
-      <xsl:message>When converting a programlisting in the plain style</xsl:message>
+      <xsl:message>When converting a literallayout in the plain style</xsl:message>
       <x:scenario id="scenario66"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a programlisting in the plain style</x:label>
+         <x:label>When converting a literallayout in the plain style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'plain'</xsl:attribute>
             </x:param>
-            <programlisting>
+            <literallayout>
                <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-            </programlisting>
+            </literallayout>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d544e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <programlisting>
+                  <literallayout>
                      <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </programlisting>
+                  </literallayout>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7793,40 +7759,36 @@ Line five</xsl:text>
                  name="x:scenario66-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e632-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e624-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class"
-                                 select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
-                  <code>
-                     <xsl:text>Line one
+                  <xsl:attribute name="class" select="'', ''" separator="literallayout verbatim"/>
+                  <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </code>
                </pre>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e632" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e632-doc">
+      <xsl:variable name="impl:expect-d15e624" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e624-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e632, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e624, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario66-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e632"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e624"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7835,36 +7797,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario67">
-      <xsl:message>When converting a screen in the plain style</xsl:message>
+      <xsl:message>When converting a programlisting in the plain style</xsl:message>
       <x:scenario id="scenario67"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a screen in the plain style</x:label>
+         <x:label>When converting a programlisting in the plain style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'plain'</xsl:attribute>
             </x:param>
-            <screen>
+            <programlisting>
                <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-            </screen>
+            </programlisting>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d550e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <screen>
+                  <programlisting>
                      <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </screen>
+                  </programlisting>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7896,12 +7858,14 @@ Line five</xsl:text>
                  name="x:scenario67-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e644-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e635-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
                <pre>
-                  <xsl:attribute name="class" select="'', ''" separator="screen verbatim"/>
+                  <xsl:attribute name="class"
+                                 select="'', ''"
+                                 separator="language-none numbered programlisting verbatim"/>
                   <code>
                      <xsl:text>Line one
 Line two
@@ -7913,21 +7877,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e644" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e644-doc">
+      <xsl:variable name="impl:expect-d15e635" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e635-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e644, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e635, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <x:test id="scenario67-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e644"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e635"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -7936,36 +7900,36 @@ Line five</xsl:text>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  name="x:scenario68">
-      <xsl:message>When converting a synopsis in the plain style</xsl:message>
+      <xsl:message>When converting a screen in the plain style</xsl:message>
       <x:scenario id="scenario68"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
-         <x:label>When converting a synopsis in the plain style</x:label>
+         <x:label>When converting a screen in the plain style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
             <xsl:attribute name="mode">m:docbook</xsl:attribute>
             <x:param>
                <xsl:attribute name="name">style</xsl:attribute>
                <xsl:attribute name="select">'plain'</xsl:attribute>
             </x:param>
-            <synopsis>
+            <screen>
                <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-            </synopsis>
+            </screen>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                           name="impl:context-d556e0-doc"
                           as="document-node()">
                <xsl:document>
-                  <synopsis>
+                  <screen>
                      <xsl:text>Line one
 Line two
 Line three
 Line four
 Line five</xsl:text>
-                  </synopsis>
+                  </screen>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -7997,7 +7961,108 @@ Line five</xsl:text>
                  name="x:scenario68-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e657-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e647-doc" as="document-node()">
+         <xsl:document>
+            <div>
+               <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
+               <pre>
+                  <xsl:attribute name="class" select="'', ''" separator="screen verbatim"/>
+                  <code>
+                     <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+                  </code>
+               </pre>
+            </div>
+         </xsl:document>
+      </xsl:variable>
+      <xsl:variable name="impl:expect-d15e647" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e647-doc">
+            <xsl:sequence select="node()"/>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:variable name="impl:successful"
+                    as="xs:boolean"
+                    select="test:deep-equal($impl:expect-d15e647, $x:result, '')"/>
+      <xsl:if test="not($impl:successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <x:test id="scenario68-expect1" successful="{$impl:successful}">
+         <x:label>you should get all the lines</x:label>
+         <xsl:call-template name="test:report-sequence">
+            <xsl:with-param name="sequence" select="$impl:expect-d15e647"/>
+            <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
+            <xsl:with-param name="test" as="attribute(test)?"/>
+         </xsl:call-template>
+      </x:test>
+   </xsl:template>
+   <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 name="x:scenario69">
+      <xsl:message>When converting a synopsis in the plain style</xsl:message>
+      <x:scenario id="scenario69"
+                  xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+         <x:label>When converting a synopsis in the plain style</x:label>
+         <x:context xmlns="http://docbook.org/ns/docbook">
+            <xsl:attribute name="mode">m:docbook</xsl:attribute>
+            <x:param>
+               <xsl:attribute name="name">style</xsl:attribute>
+               <xsl:attribute name="select">'plain'</xsl:attribute>
+            </x:param>
+            <synopsis>
+               <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+            </synopsis>
+         </x:context>
+         <xsl:variable name="x:result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                          name="impl:context-d562e0-doc"
+                          as="document-node()">
+               <xsl:document>
+                  <synopsis>
+                     <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+                  </synopsis>
+               </xsl:document>
+            </xsl:variable>
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                          name="impl:context-d562e0"
+                          as="item()*">
+               <xsl:for-each select="$impl:context-d562e0-doc">
+                  <xsl:sequence select="node()"/>
+               </xsl:for-each>
+            </xsl:variable>
+            <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
+            <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
+                                 select="$impl:context-d562e0"
+                                 mode="m:docbook">
+               <xsl:with-param name="style" select="$style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="test:report-sequence">
+            <xsl:with-param name="sequence" select="$x:result"/>
+            <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
+         </xsl:call-template>
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario69-expect1">
+            <xsl:with-param name="x:result" select="$x:result"/>
+         </xsl:call-template>
+      </x:scenario>
+   </xsl:template>
+   <xsl:template xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 name="x:scenario69-expect1">
+      <xsl:param name="x:result" required="yes"/>
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="impl:expect-d15e660-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8014,21 +8079,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e657" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e657-doc">
+      <xsl:variable name="impl:expect-d15e660" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e660-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e657, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e660, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario68-expect1" successful="{$impl:successful}">
+      <x:test id="scenario69-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e657"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e660"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -8036,9 +8101,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario69">
+                 name="x:scenario70">
       <xsl:message>When converting a verbatim with inline markup in the plain style</xsl:message>
-      <x:scenario id="scenario69"
+      <x:scenario id="scenario70"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a verbatim with inline markup in the plain style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -8069,7 +8134,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d562e0-doc"
+                          name="impl:context-d568e0-doc"
                           as="document-node()">
                <xsl:document>
                   <div>
@@ -8093,15 +8158,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d562e0"
+                          name="impl:context-d568e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d562e0-doc">
+               <xsl:for-each select="$impl:context-d568e0-doc">
                   <xsl:sequence select="/*/*"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d562e0"
+                                 select="$impl:context-d568e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8110,7 +8175,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario69-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario70-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -8118,10 +8183,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario69-expect1">
+                 name="x:scenario70-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>the inline markup should be transformed.</xsl:message>
-      <xsl:variable name="impl:expect-d15e681-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e684-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8152,21 +8217,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e681" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e681-doc">
+      <xsl:variable name="impl:expect-d15e684" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e684-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e681, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e684, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario69-expect1" successful="{$impl:successful}">
+      <x:test id="scenario70-expect1" successful="{$impl:successful}">
          <x:label>the inline markup should be transformed.</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e681"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e684"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -8174,9 +8239,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario70">
+                 name="x:scenario71">
       <xsl:message>When converting an address in the lines style</xsl:message>
-      <x:scenario id="scenario70"
+      <x:scenario id="scenario71"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting an address in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -8195,7 +8260,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d568e0-doc"
+                          name="impl:context-d574e0-doc"
                           as="document-node()">
                <xsl:document>
                   <address>
@@ -8208,15 +8273,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d568e0"
+                          name="impl:context-d574e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d568e0-doc">
+               <xsl:for-each select="$impl:context-d574e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d568e0"
+                                 select="$impl:context-d574e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8225,7 +8290,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario70-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario71-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -8233,10 +8298,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario70-expect1">
+                 name="x:scenario71-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e709-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e712-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8311,21 +8376,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e709" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e709-doc">
+      <xsl:variable name="impl:expect-d15e712" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e712-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e709, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e712, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario70-expect1" successful="{$impl:successful}">
+      <x:test id="scenario71-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e709"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e712"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -8333,9 +8398,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario71">
+                 name="x:scenario72">
       <xsl:message>When converting a literallayout in the lines style</xsl:message>
-      <x:scenario id="scenario71"
+      <x:scenario id="scenario72"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a literallayout in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -8354,7 +8419,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d574e0-doc"
+                          name="impl:context-d580e0-doc"
                           as="document-node()">
                <xsl:document>
                   <literallayout>
@@ -8367,15 +8432,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d574e0"
+                          name="impl:context-d580e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d574e0-doc">
+               <xsl:for-each select="$impl:context-d580e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d574e0"
+                                 select="$impl:context-d580e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8384,7 +8449,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario71-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario72-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -8392,10 +8457,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario71-expect1">
+                 name="x:scenario72-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e753-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e756-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8472,21 +8537,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e753" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e753-doc">
+      <xsl:variable name="impl:expect-d15e756" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e756-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e753, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e756, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario71-expect1" successful="{$impl:successful}">
+      <x:test id="scenario72-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e753"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e756"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -8494,9 +8559,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario72">
+                 name="x:scenario73">
       <xsl:message>When converting a programlisting in the lines style</xsl:message>
-      <x:scenario id="scenario72"
+      <x:scenario id="scenario73"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a programlisting in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -8515,7 +8580,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d580e0-doc"
+                          name="impl:context-d586e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -8528,15 +8593,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d580e0"
+                          name="impl:context-d586e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d580e0-doc">
+               <xsl:for-each select="$impl:context-d586e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d580e0"
+                                 select="$impl:context-d586e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8545,7 +8610,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario72-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario73-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -8553,10 +8618,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario72-expect1">
+                 name="x:scenario73-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e797-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e800-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8647,21 +8712,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e797" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e797-doc">
+      <xsl:variable name="impl:expect-d15e800" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e800-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e797, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e800, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario72-expect1" successful="{$impl:successful}">
+      <x:test id="scenario73-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e797"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e800"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -8669,9 +8734,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario73">
+                 name="x:scenario74">
       <xsl:message>When converting a screen in the lines style</xsl:message>
-      <x:scenario id="scenario73"
+      <x:scenario id="scenario74"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a screen in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -8690,7 +8755,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d586e0-doc"
+                          name="impl:context-d592e0-doc"
                           as="document-node()">
                <xsl:document>
                   <screen>
@@ -8703,15 +8768,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d586e0"
+                          name="impl:context-d592e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d586e0-doc">
+               <xsl:for-each select="$impl:context-d592e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d586e0"
+                                 select="$impl:context-d592e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8720,7 +8785,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario73-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario74-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -8728,10 +8793,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario73-expect1">
+                 name="x:scenario74-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e850-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e853-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8816,21 +8881,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e850" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e850-doc">
+      <xsl:variable name="impl:expect-d15e853" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e853-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e850, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e853, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario73-expect1" successful="{$impl:successful}">
+      <x:test id="scenario74-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e850"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e853"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -8838,9 +8903,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario74">
+                 name="x:scenario75">
       <xsl:message>When converting a synopsis in the lines style</xsl:message>
-      <x:scenario id="scenario74"
+      <x:scenario id="scenario75"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a synopsis in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -8859,7 +8924,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d592e0-doc"
+                          name="impl:context-d598e0-doc"
                           as="document-node()">
                <xsl:document>
                   <synopsis>
@@ -8872,15 +8937,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d592e0"
+                          name="impl:context-d598e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d592e0-doc">
+               <xsl:for-each select="$impl:context-d598e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d592e0"
+                                 select="$impl:context-d598e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -8889,7 +8954,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario74-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario75-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -8897,10 +8962,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario74-expect1">
+                 name="x:scenario75-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="impl:expect-d15e899-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e902-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -8987,21 +9052,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e899" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e899-doc">
+      <xsl:variable name="impl:expect-d15e902" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e902-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e899, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e902, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario74-expect1" successful="{$impl:successful}">
+      <x:test id="scenario75-expect1" successful="{$impl:successful}">
          <x:label>you should get all the lines</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e899"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e902"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -9009,9 +9074,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario75">
+                 name="x:scenario76">
       <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
-      <x:scenario id="scenario75"
+      <x:scenario id="scenario76"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a verbatim with inline markup in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -9038,7 +9103,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d598e0-doc"
+                          name="impl:context-d604e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9059,15 +9124,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d598e0"
+                          name="impl:context-d604e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d598e0-doc">
+               <xsl:for-each select="$impl:context-d604e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d598e0"
+                                 select="$impl:context-d604e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -9076,7 +9141,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario75-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario76-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -9084,10 +9149,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario75-expect1">
+                 name="x:scenario76-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>the inline markup should not cross line boundaries.</xsl:message>
-      <xsl:variable name="impl:expect-d15e958-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e961-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -9187,21 +9252,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e958" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e958-doc">
+      <xsl:variable name="impl:expect-d15e961" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e961-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e958, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e961, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario75-expect1" successful="{$impl:successful}">
+      <x:test id="scenario76-expect1" successful="{$impl:successful}">
          <x:label>the inline markup should not cross line boundaries.</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e958"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e961"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -9209,9 +9274,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario76">
+                 name="x:scenario77">
       <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
-      <x:scenario id="scenario76"
+      <x:scenario id="scenario77"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When converting a verbatim with inline markup in the lines style</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -9240,7 +9305,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d604e0-doc"
+                          name="impl:context-d610e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9263,15 +9328,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d604e0"
+                          name="impl:context-d610e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d604e0-doc">
+               <xsl:for-each select="$impl:context-d610e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d604e0"
+                                 select="$impl:context-d610e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
             </xsl:apply-templates>
@@ -9280,7 +9345,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario76-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario77-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -9288,10 +9353,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario76-expect1">
+                 name="x:scenario77-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>ID attributes should not be repeated.</xsl:message>
-      <xsl:variable name="impl:expect-d15e1030-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e1033-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -9393,21 +9458,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e1030" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e1030-doc">
+      <xsl:variable name="impl:expect-d15e1033" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e1033-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e1030, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e1033, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario76-expect1" successful="{$impl:successful}">
+      <x:test id="scenario77-expect1" successful="{$impl:successful}">
          <x:label>ID attributes should not be repeated.</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e1030"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e1033"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -9415,9 +9480,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario77">
+                 name="x:scenario78">
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
-      <x:scenario id="scenario77"
+      <x:scenario id="scenario78"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When callouts are added to a verbatim element</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -9454,7 +9519,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d610e0-doc"
+                          name="impl:context-d616e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9467,15 +9532,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d610e0"
+                          name="impl:context-d616e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d610e0-doc">
+               <xsl:for-each select="$impl:context-d616e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d610e2-doc"
+                          name="impl:param-d616e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -9495,12 +9560,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d610e2-doc">
+               <xsl:for-each select="$impl:param-d616e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d610e0"
+                                 select="$impl:context-d616e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -9510,7 +9575,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario77-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario78-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -9518,10 +9583,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario77-expect1">
+                 name="x:scenario78-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>they should appear in the output</xsl:message>
-      <xsl:variable name="impl:expect-d15e1103-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e1106-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -9634,21 +9699,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e1103" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e1103-doc">
+      <xsl:variable name="impl:expect-d15e1106" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e1106-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e1103, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e1106, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario77-expect1" successful="{$impl:successful}">
+      <x:test id="scenario78-expect1" successful="{$impl:successful}">
          <x:label>they should appear in the output</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e1103"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e1106"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -9656,9 +9721,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario78">
+                 name="x:scenario79">
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
-      <x:scenario id="scenario78"
+      <x:scenario id="scenario79"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When callouts are added to a verbatim element</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -9695,7 +9760,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d616e0-doc"
+                          name="impl:context-d622e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9708,15 +9773,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d616e0"
+                          name="impl:context-d622e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d616e0-doc">
+               <xsl:for-each select="$impl:context-d622e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'lines'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d616e2-doc"
+                          name="impl:param-d622e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -9736,12 +9801,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d616e2-doc">
+               <xsl:for-each select="$impl:param-d622e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d616e0"
+                                 select="$impl:context-d622e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -9751,7 +9816,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario78-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario79-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -9759,10 +9824,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario78-expect1">
+                 name="x:scenario79-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>they can extend the listing</xsl:message>
-      <xsl:variable name="impl:expect-d15e1179-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e1182-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -9920,21 +9985,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e1179" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e1179-doc">
+      <xsl:variable name="impl:expect-d15e1182" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e1182-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e1179, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e1182, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario78-expect1" successful="{$impl:successful}">
+      <x:test id="scenario79-expect1" successful="{$impl:successful}">
          <x:label>they can extend the listing</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e1179"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e1182"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -9942,9 +10007,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario79">
+                 name="x:scenario80">
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
-      <x:scenario id="scenario79"
+      <x:scenario id="scenario80"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When callouts are added to a verbatim element</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -9981,7 +10046,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d622e0-doc"
+                          name="impl:context-d628e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -9994,15 +10059,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d622e0"
+                          name="impl:context-d628e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d622e0-doc">
+               <xsl:for-each select="$impl:context-d628e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d622e2-doc"
+                          name="impl:param-d628e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -10022,12 +10087,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d622e2-doc">
+               <xsl:for-each select="$impl:param-d628e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d622e0"
+                                 select="$impl:context-d628e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -10037,7 +10102,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario79-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario80-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -10045,10 +10110,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario79-expect1">
+                 name="x:scenario80-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>plain mode also works</xsl:message>
-      <xsl:variable name="impl:expect-d15e1279-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e1282-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -10090,21 +10155,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e1279" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e1279-doc">
+      <xsl:variable name="impl:expect-d15e1282" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e1282-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e1279, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e1282, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario79-expect1" successful="{$impl:successful}">
+      <x:test id="scenario80-expect1" successful="{$impl:successful}">
          <x:label>plain mode also works</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e1279"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e1282"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -10112,9 +10177,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario80">
+                 name="x:scenario81">
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
-      <x:scenario id="scenario80"
+      <x:scenario id="scenario81"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When callouts are added to a verbatim element</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -10161,7 +10226,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d628e0-doc"
+                          name="impl:context-d634e0-doc"
                           as="document-node()">
                <xsl:document>
                   <programlisting>
@@ -10174,15 +10239,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d628e0"
+                          name="impl:context-d634e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d628e0-doc">
+               <xsl:for-each select="$impl:context-d634e0-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d628e2-doc"
+                          name="impl:param-d634e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -10212,12 +10277,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d628e2-doc">
+               <xsl:for-each select="$impl:param-d634e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d628e0"
+                                 select="$impl:context-d634e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -10227,7 +10292,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario80-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario81-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -10235,10 +10300,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario80-expect1">
+                 name="x:scenario81-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>markup can also be inserted</xsl:message>
-      <xsl:variable name="impl:expect-d15e1318-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e1321-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -10280,21 +10345,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e1318" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e1318-doc">
+      <xsl:variable name="impl:expect-d15e1321" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e1321-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e1318, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e1321, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario80-expect1" successful="{$impl:successful}">
+      <x:test id="scenario81-expect1" successful="{$impl:successful}">
          <x:label>markup can also be inserted</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e1318"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e1321"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>
@@ -10302,9 +10367,9 @@ Line five</xsl:text>
    </xsl:template>
    <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario81">
+                 name="x:scenario82">
       <xsl:message>When callouts are inserted into markup</xsl:message>
-      <x:scenario id="scenario81"
+      <x:scenario id="scenario82"
                   xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
          <x:label>When callouts are inserted into markup</x:label>
          <x:context xmlns="http://docbook.org/ns/docbook">
@@ -10352,7 +10417,7 @@ Line five</xsl:text>
          </x:context>
          <xsl:variable name="x:result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d634e0-doc"
+                          name="impl:context-d640e0-doc"
                           as="document-node()">
                <xsl:document>
                   <div>
@@ -10375,15 +10440,15 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:context-d634e0"
+                          name="impl:context-d640e0"
                           as="item()*">
-               <xsl:for-each select="$impl:context-d634e0-doc">
+               <xsl:for-each select="$impl:context-d640e0-doc">
                   <xsl:sequence select="/*/*"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="style" select="'plain'"/>
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                          name="impl:param-d634e2-doc"
+                          name="impl:param-d640e2-doc"
                           as="document-node()">
                <xsl:document>
                   <areaspec>
@@ -10403,12 +10468,12 @@ Line five</xsl:text>
                </xsl:document>
             </xsl:variable>
             <xsl:variable xmlns="http://docbook.org/ns/docbook" name="inject" as="element()">
-               <xsl:for-each select="$impl:param-d634e2-doc">
+               <xsl:for-each select="$impl:param-d640e2-doc">
                   <xsl:sequence select="node()"/>
                </xsl:for-each>
             </xsl:variable>
             <xsl:apply-templates xmlns="http://docbook.org/ns/docbook"
-                                 select="$impl:context-d634e0"
+                                 select="$impl:context-d640e0"
                                  mode="m:docbook">
                <xsl:with-param name="style" select="$style"/>
                <xsl:with-param name="inject" select="$inject" as="element()"/>
@@ -10418,7 +10483,7 @@ Line five</xsl:text>
             <xsl:with-param name="sequence" select="$x:result"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:result</xsl:with-param>
          </xsl:call-template>
-         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario81-expect1">
+         <xsl:call-template xmlns="http://www.w3.org/1999/xhtml" name="x:scenario82-expect1">
             <xsl:with-param name="x:result" select="$x:result"/>
          </xsl:call-template>
       </x:scenario>
@@ -10426,10 +10491,10 @@ Line five</xsl:text>
    <xsl:template xmlns="http://www.w3.org/1999/xhtml"
                  xmlns:h="http://www.w3.org/1999/xhtml"
                  xmlns:m="http://docbook.org/ns/docbook/modes"
-                 name="x:scenario81-expect1">
+                 name="x:scenario82-expect1">
       <xsl:param name="x:result" required="yes"/>
       <xsl:message>they interrupt that markup</xsl:message>
-      <xsl:variable name="impl:expect-d15e1364-doc" as="document-node()">
+      <xsl:variable name="impl:expect-d15e1367-doc" as="document-node()">
          <xsl:document>
             <div>
                <xsl:attribute name="class" select="'', ''" separator="pre-wrap"/>
@@ -10488,21 +10553,21 @@ Line five</xsl:text>
             </div>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="impl:expect-d15e1364" as="item()*">
-         <xsl:for-each select="$impl:expect-d15e1364-doc">
+      <xsl:variable name="impl:expect-d15e1367" as="item()*">
+         <xsl:for-each select="$impl:expect-d15e1367-doc">
             <xsl:sequence select="node()"/>
          </xsl:for-each>
       </xsl:variable>
       <xsl:variable name="impl:successful"
                     as="xs:boolean"
-                    select="test:deep-equal($impl:expect-d15e1364, $x:result, '')"/>
+                    select="test:deep-equal($impl:expect-d15e1367, $x:result, '')"/>
       <xsl:if test="not($impl:successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
-      <x:test id="scenario81-expect1" successful="{$impl:successful}">
+      <x:test id="scenario82-expect1" successful="{$impl:successful}">
          <x:label>they interrupt that markup</x:label>
          <xsl:call-template name="test:report-sequence">
-            <xsl:with-param name="sequence" select="$impl:expect-d15e1364"/>
+            <xsl:with-param name="sequence" select="$impl:expect-d15e1367"/>
             <xsl:with-param name="wrapper-name" as="xs:string">x:expect</xsl:with-param>
             <xsl:with-param name="test" as="attribute(test)?"/>
          </xsl:call-template>

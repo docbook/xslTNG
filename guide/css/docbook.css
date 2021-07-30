@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.5.2
+/* DocBook xslTNG version 1.5.3
  *
  * This is docbook.css.
  *
@@ -314,12 +314,12 @@ code.email {
 }
 
 pre code,
-cmdsynopsis code {
+.cmdsynopsis code {
     border: none;
     background-color: inherit;
-    padding: inherit;
+    padding: 0;
     font-size: inherit;
-    margin: inherit;
+    margin: 0;
 }
 
 pre > code {
