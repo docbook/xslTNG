@@ -343,6 +343,17 @@
   <xsl:variable name="pchunk" select="(ancestor::*[@db-chunk])[last()]"/>
   <xsl:variable name="tchunk" select="($target/ancestor-or-self::*[@db-chunk])[last()]"/>
 
+  <xsl:if test="$target[1]/@db-chunk and count($target) != 1">
+    <xsl:choose>
+      <xsl:when test="count($target) = 0">
+        <xsl:message select="'Error: cannot find ' || $id || ' in document'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message select="'Error: multiple elements match ' || $id || ' in document'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="empty($target)">
       <xsl:message select="'No id for #' || $id"/>
