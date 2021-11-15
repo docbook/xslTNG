@@ -3,7 +3,7 @@ jobs:
   build:
     machine:
       image: ubuntu-1604:202004-01
-    resource_class: 2xlarge
+    resource_class: xlarge
 
     working_directory: ~/repo
 
