@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.5.4
+/* DocBook xslTNG version 1.6.0
  *
  * This is docbook.css.
  *
@@ -1332,6 +1332,10 @@ li[db-mark='box'] {
 .sidebar .title {
     background-color: var(--sidebar-color);
     color: var(--on-sidebar-color);
+}
+
+.sidebar code {
+    background-color: var(--sidebar-color);
 }
 
 /* ============================================================ */
