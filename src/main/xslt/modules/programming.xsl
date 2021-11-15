@@ -711,7 +711,8 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="db:classsynopsis
+<xsl:template match="db:packagesynopsis
+                     |db:classsynopsis
                      |db:fieldsynopsis
                      |db:methodsynopsis
                      |db:constructorsynopsis
@@ -721,6 +722,28 @@
     <xsl:message select="'Warning: no explicit support for', @language, 'synopses.'"/>
   </xsl:if>
   <xsl:next-match/>
+</xsl:template>
+
+<xsl:template match="db:packagesynopsis">
+  <xsl:param name="indent" select="''"/>
+
+  <xsl:variable name="package" select="db:package"/>
+  <xsl:if test="count($package) != 1">
+    <xsl:message>Malformed packagesynopisis.</xsl:message>
+  </xsl:if>
+
+  <div>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <pre>
+      <xsl:apply-templates select="$package/preceding-sibling::*" mode="m:synopsis"/>
+      <xsl:text>package </xsl:text>
+      <xsl:apply-templates select="db:package"/>
+      <xsl:text>;&#10;</xsl:text>
+    </pre>
+    <xsl:apply-templates select="$package/following-sibling::*">
+      <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
+    </xsl:apply-templates>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:classsynopsis">
