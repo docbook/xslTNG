@@ -19,9 +19,10 @@ class JavaClassRunnerException(Exception):
 
 class JavaClassRunner:
     """Executes a java process based on a set of parameters read from a
-    configuration file. It uses `mvn` to download dependencies and constructs
-    a class path that contains the transitive closure of all dependencies
-    rooted at the modules listed in `maven-packages`.
+    configuration file. It constructs a class path that contains the
+    transitive closure of all dependencies rooted at the modules listed
+    in `maven-packages`. You must download the dependencies first,
+    see https://xsltng.docbook.org/guide/ch02.html#python-script
     """
 
     # Yes, I have a lot of instance attributes. I'm also using camelCase names,
