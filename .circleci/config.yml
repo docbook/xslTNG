@@ -31,8 +31,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: openssl aes-256-cbc -d -k $SAXPASSPHRASE -in tools/saxon.enc | tar zxf -
-
       - run: ./gradlew dependencies
 
       - save_cache:
