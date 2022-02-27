@@ -6,7 +6,7 @@
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                exclude-result-prefixes="doc f map xs"
+                exclude-result-prefixes="doc f l map xs"
                 version="3.0">
 
 <xsl:output method="xml" encoding="utf-8"
