@@ -384,6 +384,14 @@ This helper script is a convenience wrapper around Saxon. It sets up
 the Java classpath and automatically configures a catalog resolver and
 the DocBook extension functions.</para>
 
+<important>
+<para>The script requires the <application>click</application> and
+<application>pygments</application> packages,
+which you must install with <application>pip</application> before
+running the script. For example:</para>
+<programlisting linenumbering="unnumbered">python3 -m pip install pygments=2.6.1 click</programlisting>
+</important>
+
 <para>This script behaves much like the JAR file described in
 <xref linkend="java-main"/>. In particular,
 it accepts the same
@@ -392,7 +400,7 @@ it accepts the same
 
 <para>The significant feature of the Python script is that it will
 attempt to sort out the dependencies for you. It assumes that you’ve
-used Maven to install the package and it’s dependencies, so you’ll
+used Maven to install the package and its dependencies, so you’ll
 have to have <link xlink:href="http://maven.apache.org/">installed
 Maven</link>. How you do that varies by platform, but your package
 manager probably has it.</para>
