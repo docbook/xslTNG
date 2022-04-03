@@ -450,7 +450,7 @@
   <xsl:param name="overhang" as="array(xs:integer)"/>
   <xsl:param name="cells" as="map(*)*"/>
 
-  <xsl:variable name="cell" as="map(*)?">
+  <xsl:variable name="cell" as="map(*)*">
     <xsl:for-each select="$cells">
       <xsl:if test="$column ge .?first-column
                     and $column le .?last-column">
@@ -458,6 +458,13 @@
       </xsl:if>
     </xsl:for-each>
   </xsl:variable>
+
+  <xsl:if test="count($cell) gt 1">
+    <xsl:variable name="rownum" select="count($row/preceding-sibling::db:row) + 1"/>
+    <xsl:message terminate="yes"
+                 select="'Overlapping cells in table at row '
+                         || $rownum || ' for column ' || $column"/>
+  </xsl:if>
 
   <xsl:choose>
     <xsl:when test="array:get($overhang, $column) ne 0
@@ -469,7 +476,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:sequence select="map:merge(($cell,
-                                       fcals:cell-decoration($row, $cell?node, $column)))"/>
+                            fcals:cell-decoration($row, $cell?node, $column)))"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
