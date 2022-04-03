@@ -540,10 +540,7 @@ wrapper sets these automatically.
             if key not in argset:
                 args.append(arg)
 
-        for arg in ["-x:org.xmlresolver.tools.ResolvingXMLReader",
-                    "-y:org.xmlresolver.tools.ResolvingXMLReader",
-                    "-r:org.xmlresolver.Resolver",
-                    "-init:org.docbook.xsltng.extensions.Register"]:
+        for arg in ["-init:org.docbook.xsltng.extensions.Register"]:
             if ":" in arg:
                 key = arg[0:arg.index(":")]
             else:
