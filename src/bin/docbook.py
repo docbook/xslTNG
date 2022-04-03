@@ -39,7 +39,8 @@ class JavaClassRunner:
         # environment because that version may not be published yet.
         # Instead, we rely on the fact that we can get the
         # docbook-xslTNG package from the distribution environment and
-        # we seed with its dependencies.
+        # we seed with its dependencies. These must all be in the
+        # DocBook distribution (in libs/lib).
         self.seeds = set(["@@PACKAGE_LIST@@"])
 
         self.config = {
@@ -380,7 +381,7 @@ wrapper sets these automatically.
             required_list.append(package)
         for package in self.config["pinned-packages"]:
             required_list.append(package)
-        
+
         found = True
         for package in required_list:
             group, artifact, version = package.split(":")
@@ -389,7 +390,7 @@ wrapper sets these automatically.
               or artifact not in self.depends[group] \
               or version not in self.depends[group][artifact] \
               or self.depends[group][artifact][version] is None:
-                print(f"Required package not found: {group}:{artifact}:{version}")
+                print(f"Required package not found: {group}:{artifact}:{version}; download with Maven")
                 found = False
 
         if not found:
