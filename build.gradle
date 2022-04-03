@@ -263,15 +263,13 @@ task setupXSpec(type: Download) {
       include "uri-utils.xsl"
     }
   }
-/*
   doLast {
     copy {
       from "${projectDir}/src/test/resources/xspec"
-      into "${buildDir}/xspec-${xspecVersion}/src/compiler"
-      include "generate-tests-utils.xsl"
+      into "${buildDir}/xspec-${xspecVersion}/bin"
+      include "xspec.sh"
     }
   }
-*/
   onlyIf { !file("${buildDir}/xspec-${xspecVersion}/README.md").exists() }
 }
 
