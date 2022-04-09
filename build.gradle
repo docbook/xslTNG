@@ -256,6 +256,13 @@ task setupXSpec(type: Download) {
       into buildDir
     }
   }
+  doLast {
+    copy {
+      from "${projectDir}/src/test/resources/xspec"
+      into "${buildDir}/xspec-${xspecVersion}/bin"
+      include "xspec.sh"
+    }
+  }
   onlyIf { !file("${buildDir}/xspec-${xspecVersion}/README.md").exists() }
 }
 
