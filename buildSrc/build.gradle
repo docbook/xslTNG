@@ -34,7 +34,7 @@ dependencies {
 sourceSets {
   main {
     java {
-      srcDirs = ['src', 'build/generated/sources/buildconfig']
+      srcDirs = ['src/main/java', 'build/generated/sources/buildconfig']
     }
   }
 }

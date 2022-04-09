@@ -39,14 +39,23 @@ class JavaClassRunner:
         # environment because that version may not be published yet.
         # Instead, we rely on the fact that we can get the
         # docbook-xslTNG package from the distribution environment and
-        # we seed with its dependencies.
+        # we seed with its dependencies. These must all be in the
+        # DocBook distribution (in libs/lib).
         self.seeds = set(["@@PACKAGE_LIST@@"])
 
         self.config = {
             "maven-local": str(Path.home()) + "/.m2/repository",
             "maven-packages": [],
             "pinned-packages": ["xml-apis:xml-apis:1.4.01"],
-            "excluded-packages": ["xml-resolver:xml-resolver:1.2"],
+            "excluded-packages": ["xml-resolver:xml-resolver:1.2",
+                                  "org.jdom:jdom:*",
+                                  "org.jdom:jdom2:*",
+                                  "xom:xom:*",
+                                  "dom4j:dom4j:*",
+                                  "jline:jline:*",
+                                  "org.apache.ws.commons.axiom:axiom:*",
+                                  "org.apache.ws.commons.axiom:axiom-dom:*",
+                                  "org.apache.ws.commons.axiom:axiom-impl:*"],
             "args": [],
             "classpath": [],
             "class": "net.sf.saxon.Transform",
@@ -80,7 +89,14 @@ class JavaClassRunner:
 
         try:
             with open(self.config_file, "r") as depfile:
+                # There's a real potential for this to become a nest of hacks.
+                # I want the excluded files to be a union of what the user
+                # might have suggested and what the script suggests.
+                excluded = self.config['excluded-packages']
                 self.config = json.load(depfile)
+                for package in excluded:
+                    if package not in self.config['excluded-packages']:
+                        self.config['excluded-packages'].append(package)
         except FileNotFoundError:
             with open(self.config_file, "w") as depfile:
                 depfile.write(json.dumps(self.config, indent=2, sort_keys=True))
@@ -360,12 +376,25 @@ wrapper sets these automatically.
         """Find all the (transitive closure) of available dependencies
         among the packages that we're going to use.
         """
+        required_list = []
         for package in self.seeds:
-            group, artifact, version = package.split(":")
-            self._update_dependencies(group, artifact, version)
+            required_list.append(package)
         for package in self.config["pinned-packages"]:
+            required_list.append(package)
+
+        found = True
+        for package in required_list:
             group, artifact, version = package.split(":")
             self._update_dependencies(group, artifact, version)
+            if group not in self.depends \
+              or artifact not in self.depends[group] \
+              or version not in self.depends[group][artifact] \
+              or self.depends[group][artifact][version] is None:
+                print(f"Required package not found: {group}:{artifact}:{version}; download with Maven")
+                found = False
+
+        if not found:
+            sys.exit(1)
 
     def _higher_version(self, curver, newver):
         if curver == newver:
@@ -535,7 +564,7 @@ wrapper sets these automatically.
             print(self._java)
             for item in jopt:
                 print(f"\t{item}")
-            print("-cp")
+            print("-cp (in addition to libs/lib/*.jar)")
             for item in cp.split(os.pathsep):
                 print(f"\t{item}")
             print(self.config["class"])
