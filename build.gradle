@@ -32,7 +32,7 @@ plugins {
   id "maven-publish"
   id "signing"
   //id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta3'
-  id 'com.nwalsh.saxon-gradle' version '0.9.1-beta4'
+  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.9.6'
   id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
   id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
   id "de.undercouch.download" version "4.0.4"
@@ -47,7 +47,7 @@ sourceSets {
 }
 
 //import com.github.eerohele.SaxonXsltTask
-import com.nwalsh.SaxonXsltTask
+import com.nwalsh.gradle.saxon.SaxonXsltTask
 import com.nwalsh.gradle.relaxng.validate.RelaxNGValidateTask
 import com.nwalsh.gradle.relaxng.translate.RelaxNGTranslateTask
 
@@ -97,19 +97,9 @@ dependencies {
 defaultTasks 'report'
 
 saxon.configure {
-  classpath configurations.validateRuntime
-  entityResolverClass "org.xmlresolver.Resolver"
-  uriResolverClass "org.xmlresolver.Resolver"
-  sourceSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
-  stylesheetSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
 }
 
 saxon.configure("docbook") {
-  classpath configurations.validateRuntime
-  entityResolverClass "org.xmlresolver.Resolver"
-  uriResolverClass "org.xmlresolver.Resolver"
-  sourceSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
-  stylesheetSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
   initializer 'org.docbook.xsltng.extensions.Register'
 }
 
@@ -233,6 +223,8 @@ configurations.compileClasspath.each { it ->
 System.setProperty("org.docbook.xsltng.extensions.verbose", verbose)
 System.setProperty("org.docbook.extensions.pygmentize", pygmentize)
 
+println("Building with Java version ${System.getProperty('java.version')}")
+
 task configureEnvironment() {
   def envVars = [:]
   envVars['TEST_DIR'] = buildDir
@@ -259,18 +251,17 @@ task setupXSpec(type: Download) {
   doLast {
     copy {
       from "${projectDir}/src/test/resources/xspec"
-      into "${buildDir}/xspec-${xspecVersion}/bin"
-      include "xspec.sh"
+      into "${buildDir}/xspec-${xspecVersion}/src/common"
+      include "uri-utils.xsl"
     }
   }
   doLast {
     copy {
       from "${projectDir}/src/test/resources/xspec"
-      into "${buildDir}/xspec-${xspecVersion}/src/compiler"
-      include "generate-tests-utils.xsl"
+      into "${buildDir}/xspec-${xspecVersion}/bin"
+      include "xspec.sh"
     }
   }
-
   onlyIf { !file("${buildDir}/xspec-${xspecVersion}/README.md").exists() }
 }
 

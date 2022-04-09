@@ -62,9 +62,6 @@ public class Main extends Transform {
         }
 
         System.setProperty("xml.catalog.files", catBuilder.toString());
-        userArgs.add("-x:org.xmlresolver.tools.ResolvingXMLReader");
-        userArgs.add("-y:org.xmlresolver.tools.ResolvingXMLReader");
-        userArgs.add("-r:org.xmlresolver.Resolver");
         userArgs.add("-init:org.docbook.xsltng.extensions.Register");
         if (!userStylesheet) {
             userArgs.add("-xsl:https://cdn.docbook.org/release/xsltng/current/xslt/docbook.xsl");

@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-2004:202111-02
     resource_class: xlarge
 
     working_directory: ~/repo
@@ -30,6 +30,13 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
+
+      - run: |
+          if [ -z "$SAXPASSPHRASE" ]; then
+            echo "No secrets available, will run with Saxon-HE"
+          else
+            gpg --batch --yes --passphrase $SAXPASSPHRASE -d tools/saxon.enc | tar zxf -
+          fi
 
       - run: ./gradlew dependencies
 
