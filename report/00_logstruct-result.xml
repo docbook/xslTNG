@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-        xspec="file:/home/circleci/repo/build/xspec/00_logstruct.xspec"
-        stylesheet="file:/home/circleci/repo/build/xslt/transforms/00-logstruct.xsl"
-        date="2022-04-09T09:49:58.129176Z">
+         xspec="file:/home/circleci/repo/build/xspec/00_logstruct.xspec"
+         stylesheet="file:/home/circleci/repo/build/xslt/transforms/00-logstruct.xsl"
+         date="2022-04-09T14:37:06.482632Z">
    <scenario id="scenario1"
-             xspec="file:/home/circleci/repo/build/xspec/00_logstruct.xspec">
+              xspec="file:/home/circleci/repo/build/xspec/00_logstruct.xspec">
       <label>When setting up the logical structure </label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    href="file:/home/circleci/repo/src/test/resources/xml/entityref.001.xml"/>
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/circleci/repo/src/test/resources/xml/entityref.001.xml"/>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <article xmlns="http://docbook.org/ns/docbook"
-                     version="5.0"
-                     xml:base="file:/home/circleci/repo/src/test/resources/xml/entityref.001.xml">
+                      version="5.0"
+                      xml:base="file:/home/circleci/repo/src/test/resources/xml/entityref.001.xml">
                <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                <title>Unit test: entityref.001</title>
@@ -28,9 +28,9 @@
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <imagedata format="PNG"
-                                width="6in"
-                                align="right"
-                                fileref="file:/home/circleci/repo/src/test/resources/media/duck-small.png"/>
+                                 width="6in"
+                                 align="right"
+                                 fileref="file:/home/circleci/repo/src/test/resources/media/duck-small.png"/>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   </imageobject>
@@ -47,10 +47,10 @@
          <expect select="/element()">
             <content-wrap xmlns="">
                <article xmlns="http://docbook.org/ns/docbook"
-                        xmlns:db="http://docbook.org/ns/docbook"
-                        xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        version="5.0"
-                        xml:base="...">
+                         xmlns:db="http://docbook.org/ns/docbook"
+                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                         version="5.0"
+                         xml:base="...">
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <title>Unit test: entityref.001</title>
@@ -79,8 +79,8 @@
          <label>expect an xml:base URI</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:db="http://docbook.org/ns/docbook"
-                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                      test="ends-with(/*/@xml:base, '/xml/entityref.001.xml')"/>
+                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                       test="ends-with(/*/@xml:base, '/xml/entityref.001.xml')"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -88,8 +88,8 @@
          <label>expect fileref pointing to image</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:db="http://docbook.org/ns/docbook"
-                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                      test="ends-with(//db:imagedata/@fileref, '/media/duck-small.png')"/>
+                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                       test="ends-with(//db:imagedata/@fileref, '/media/duck-small.png')"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>

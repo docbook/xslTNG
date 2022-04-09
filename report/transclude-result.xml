@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-        xspec="file:/home/circleci/repo/build/xspec/transclude.xspec"
-        stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-        date="2022-04-09T09:51:27.23876Z">
+         xspec="file:/home/circleci/repo/build/xspec/transclude.xspec"
+         stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
+         date="2022-04-09T14:38:48.788718Z">
    <scenario id="scenario1"
-             xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
+              xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
       <label>When transcluding with no fixup</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    href="file:/home/circleci/repo/src/test/resources/xml/transclusion.001.xml"/>
+                     href="file:/home/circleci/repo/src/test/resources/xml/transclusion.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -341,11 +341,11 @@ introduce duplicate IDs in the document.
       </test>
    </scenario>
    <scenario id="scenario2"
-             xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
+              xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
       <label>When transcluding with auto fixup</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    href="file:/home/circleci/repo/src/test/resources/xml/transclusion.002.xml"/>
+                     href="file:/home/circleci/repo/src/test/resources/xml/transclusion.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -676,11 +676,11 @@ introduce duplicate IDs in the document.
       </test>
    </scenario>
    <scenario id="scenario3"
-             xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
+              xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
       <label>When transcluding with suffix fixup</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    href="file:/home/circleci/repo/src/test/resources/xml/transclusion.003.xml"/>
+                     href="file:/home/circleci/repo/src/test/resources/xml/transclusion.003.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1013,11 +1013,11 @@ introduce duplicate IDs in the document.
       </test>
    </scenario>
    <scenario id="scenario4"
-             xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
+              xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
       <label>When transcluding with local suffix fixup</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    href="file:/home/circleci/repo/src/test/resources/xml/transclusion.004.xml"/>
+                     href="file:/home/circleci/repo/src/test/resources/xml/transclusion.004.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
