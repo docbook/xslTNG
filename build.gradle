@@ -97,17 +97,9 @@ dependencies {
 defaultTasks 'report'
 
 saxon.configure {
-  entityResolverClass "org.xmlresolver.Resolver"
-  uriResolverClass "org.xmlresolver.Resolver"
-  sourceSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
-  stylesheetSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
 }
 
 saxon.configure("docbook") {
-  entityResolverClass "org.xmlresolver.Resolver"
-  uriResolverClass "org.xmlresolver.Resolver"
-  sourceSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
-  stylesheetSaxParser "org.xmlresolver.tools.ResolvingXMLReader"
   initializer 'org.docbook.xsltng.extensions.Register'
 }
 
