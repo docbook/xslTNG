@@ -390,11 +390,21 @@ wrapper sets these automatically.
               or artifact not in self.depends[group] \
               or version not in self.depends[group][artifact] \
               or self.depends[group][artifact][version] is None:
-                print(f"Required package not found: {group}:{artifact}:{version}; download with Maven")
-                found = False
+                found = self._libfallback(package);
 
         if not found:
             sys.exit(1)
+
+    def _libfallback(self, package):
+        # This is pretty crude. But as issue #144 pointed out, I'm building
+        # a release that includes the libs. That means for jars that are
+        # in the release, it doesn't actually matter if we don't find them.
+        group, artifact, version = package.split(":")
+        localpath = self.root + "/libs/lib/" + artifact + "-" + version + ".jar"
+        if os.path.exists(localpath):
+            return True
+        print(f"Required package not found: {group}:{artifact}:{version}; download with Maven")
+        return False
 
     def _higher_version(self, curver, newver):
         if curver == newver:
@@ -461,6 +471,9 @@ wrapper sets these automatically.
                 curver = list(self._cp[group][artifact].keys())[0]
                 if self._higher_version(curver, version):
                     usever = version
+                    # Actually remove the current version, we're replacing it.
+                    del self._cp[group][artifact][curver];
+                    del self.depends[group][artifact][curver];
                 else:
                     usever = curver
 

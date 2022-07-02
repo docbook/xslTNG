@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.1">
+<title>Article wrapper</title>
+
+<para>An ordered list with a continuation. From
+<link xlink:href="https://github.com/docbook/xslTNG/issues/145">issue #145</link>.
+</para>
+
+    <orderedlist>
+        <listitem>
+            <para>First Item</para>
+        </listitem>
+        <listitem>
+            <para>Second Item</para>
+            <orderedlist numeration="loweralpha">
+                <listitem>
+                    <para>Sub-Item a</para>
+                </listitem>
+            </orderedlist>
+        </listitem>
+        <listitem>
+            <para>Third Item</para>
+        </listitem>
+    </orderedlist>
+    <simpara>Some text.</simpara>
+    <orderedlist continuation="continues">
+        <listitem>
+            <para>Fourth Item</para>
+        </listitem>
+    </orderedlist>
+</article>

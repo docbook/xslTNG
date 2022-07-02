@@ -35,7 +35,7 @@ jobs:
             echo "Running with system JDK"
           else
             curl -o /tmp/jdk.tar.gz $JDK
-            cd /tmp && tar zxf jdk-8u333-linux-x64.tar.gz
+            cd /tmp && tar zxf jdk.tar.gz
             echo "Running with JDK 8"
           fi
 
