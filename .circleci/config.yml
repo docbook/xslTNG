@@ -25,6 +25,7 @@ jobs:
 
       - run: |
           curl -o /tmp/jdk.tar.gz https://nwalsh.com/scratch/jdk.tar.gz
+          ls -l /tmp
           cd /tmp && tar zxf jdk.tar.gz
 
       - run: python3 -m pip install pygments==2.6.1 click
