@@ -38,6 +38,12 @@ jobs:
 
       - checkout
 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
       - run: |
           if [ -z "$SAXPASSPHRASE" ]; then
             echo "No secrets available, will run with Saxon-HE"
@@ -60,7 +66,6 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - run: |
-          exit 1
           if [ -z "$JDK" ]; then
             ./gradlew dist
           else
