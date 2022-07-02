@@ -10,7 +10,6 @@ jobs:
     environment:
       JVM_OPTS: -Xmx16g
       JAVA_HOME: /tmp/jdk1.8.0_333
-      PATH: /tmp/jdk1.8.0_333/bin:$PATH
       TERM: dumb
 
     steps:
@@ -23,11 +22,11 @@ jobs:
             - "3b:70:31:86:74:31:25:e6:18:aa:ec:1b:01:d9:2d:76"
             - "7e:53:fb:00:34:99:b8:78:e6:3a:06:d7:7d:dd:01:b3"
 
-
-      - run: echo "Hello"
       - run: python3 -m pip install pygments==2.6.1 click
 
-      - run: ls -l
+      - run: |
+          curl -o /tmp/jdk.tar.gz https://nwalsh.com/scratch/jdk.tar.gz
+          cd /tmp && tar zxf jdk.tar.gz
 
       - checkout
 
@@ -44,14 +43,14 @@ jobs:
             gpg --batch --yes --passphrase $SAXPASSPHRASE -d tools/saxon.enc | tar zxf -
           fi
 
-      - run: ./gradlew dependencies
+      - run: ./gradlew -Dorg.gradle.java.home=$JAVA_HOME dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew dist
+      - run: ./gradlew -Dorg.gradle.java.home=$JAVA_HOME dist
 
       - run: rm -rf lib
 
