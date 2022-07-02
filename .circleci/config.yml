@@ -54,10 +54,10 @@ jobs:
       - run: |
           if [ -z "$JDK" ]; then
             echo "System JDK"
-            ./gradlew dependencies
+            echo ./gradlew dependencies
           else
             echo "JDK 8"
-            ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
+            echo ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
           fi
 
       - save_cache:
@@ -66,6 +66,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - run: |
+          exit 1
           if [ -z "$JDK" ]; then
             ./gradlew dist
           else
