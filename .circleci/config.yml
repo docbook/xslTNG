@@ -56,7 +56,7 @@ jobs:
             echo "System JDK"
             ./gradlew dependencies
           else
-            echo JDK 8"
+            echo "JDK 8"
             ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
           fi
 
