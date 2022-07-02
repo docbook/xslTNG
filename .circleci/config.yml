@@ -54,10 +54,10 @@ jobs:
       - run: |
           if [ -z "$JDK" ]; then
             echo "System JDK"
-            echo ./gradlew dependencies
+            ./gradlew dependencies
           else
             echo "JDK 8"
-            echo ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
+            ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
           fi
 
       - save_cache:
