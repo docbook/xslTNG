@@ -30,4 +30,20 @@
             <para>Fourth Item</para>
         </listitem>
     </orderedlist>
+
+<para>What about this one (hat tip to Gerrit Imsieke).</para>
+
+<orderedlist>
+<listitem><para>First item</para></listitem>
+<listitem><para>Second item</para>
+  <orderedlist>
+    <listitem><para>Item 2.a</para></listitem>
+  </orderedlist>
+  <para>Interstitial paragraph.</para>
+  <orderedlist continuation="continues">
+    <listitem><para>Item 2.b</para></listitem>
+  </orderedlist>
+</listitem>
+</orderedlist>
 </article>
+

@@ -125,9 +125,10 @@
       <xsl:sequence select="1"/>
     </xsl:when>
     <xsl:otherwise>
+      <!-- Hat tip to Gerrit for the fix here -->
       <xsl:variable name="plist"
-                    select="$list/preceding::db:orderedlist
-                              [not(ancestor::db:orderedlist)][1]"/>
+                    select="$list/ancestor-or-self::*[preceding-sibling::db:orderedlist][1]
+                                 /preceding-sibling::db:orderedlist[1]"/>
 
       <xsl:sequence select="f:orderedlist-startingnumber($plist)
                             + count($plist/db:listitem)"/>
