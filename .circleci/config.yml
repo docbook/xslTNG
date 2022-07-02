@@ -24,6 +24,7 @@ jobs:
             - "7e:53:fb:00:34:99:b8:78:e6:3a:06:d7:7d:dd:01:b3"
 
 
+      - run: echo "Hello"
       - run: python3 -m pip install pygments==2.6.1 click
 
       - run: ls -l
