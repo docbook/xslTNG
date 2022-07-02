@@ -23,6 +23,8 @@ jobs:
             - "3b:70:31:86:74:31:25:e6:18:aa:ec:1b:01:d9:2d:76"
             - "7e:53:fb:00:34:99:b8:78:e6:3a:06:d7:7d:dd:01:b3"
 
+      - run: curl --help
+      - run: /bin/ls -l /tmp
       - run: |
           curl -o /tmp/jdk.tar.gz https://nwalsh.com/scratch/jdk.tar.gz
           ls -l /tmp
