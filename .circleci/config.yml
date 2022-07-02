@@ -51,7 +51,7 @@ jobs:
           fi
 
       - run: |
-          if [ -z "JDK" ]; then
+          if [ -z "$JDK" ]; then
             ./gradlew dependencies
           else
             ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
@@ -63,7 +63,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - run: |
-          if [ -z "JDK" ]; then
+          if [ -z "$JDK" ]; then
             ./gradlew dist
           else
             ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dist
