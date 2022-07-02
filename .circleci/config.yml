@@ -29,6 +29,7 @@ jobs:
       - run: |
           if [ -z "$JDK" ]; then
             echo "Running with system JDK"
+            mkdir -p /tmp/jdk1.8.0_333
           else
             curl -o /tmp/jdk.tar.gz $JDK
             cd /tmp && tar zxf jdk-8u333-linux-x64.tar.gz
@@ -52,8 +53,10 @@ jobs:
 
       - run: |
           if [ -z "$JDK" ]; then
+            echo "System JDK"
             ./gradlew dependencies
           else
+            echo JDK 8"
             ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
           fi
 
