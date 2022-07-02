@@ -23,13 +23,23 @@ jobs:
 
       - run: python3 -m pip install pygments==2.6.1 click
 
-      - checkout
+      # Maybe we have a specific JDK and maybe we don’t.
+      # Is there any way to make this cleaner?
+      #
+      # Related: this build doesn’t use caching because
+      # that seemed to cause problems when switching
+      # between JDKs. :-(
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - run: |
+          if [ -z "$JDK" ]; then
+            echo "Running with system JDK"
+          else
+            curl -o /tmp/jdk.tar.gz $JDK
+            cd /tmp && tar zxf jdk-8u333-linux-x64.tar.gz
+            echo "Running with JDK 8"
+          fi
+
+      - checkout
 
       - run: |
           if [ -z "$SAXPASSPHRASE" ]; then
@@ -38,14 +48,21 @@ jobs:
             gpg --batch --yes --passphrase $SAXPASSPHRASE -d tools/saxon.enc | tar zxf -
           fi
 
-      - run: ./gradlew dependencies
+      - run: |
+          if [ -z "$JDK" ]; then
+            echo "System JDK"
+            ./gradlew dependencies
+          else
+            echo "JDK 8"
+            echo ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
+          fi
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      - run: ./gradlew dist
+      - run: |
+          if [ -z "$JDK" ]; then
+            ./gradlew dist
+          else
+            ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dist
+          fi
 
       - run: rm -rf lib
 
