@@ -57,7 +57,7 @@ jobs:
             ./gradlew dependencies
           else
             echo "JDK 8"
-            ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
+            echo ./gradlew -Dorg.gradle.java.home=/tmp/jdk1.8.0_333 dependencies
           fi
 
       - save_cache:
