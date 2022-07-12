@@ -38,6 +38,9 @@ plugins {
   id "de.undercouch.download" version "4.0.4"
 }
 
+sourceCompatibility=1.8
+targetCompatibility=1.8
+
 sourceSets {
   main {
     java {
