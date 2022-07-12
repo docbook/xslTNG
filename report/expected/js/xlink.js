@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.7.1
+/* DocBook xslTNG version 1.7.1-SNAPSHOT
  *
  * This is xlink.js providing support for multi-targeted links
  *
