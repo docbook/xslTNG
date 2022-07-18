@@ -258,6 +258,9 @@
           select="resolve-uri($node/@db-chunk,
                               fp:chunk-output-filename($pchunk))"/>
     </xsl:when>
+    <xsl:when test="not($v:chunk)">
+      <xsl:sequence select="base-uri(root($node)/*)"/>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:sequence
           select="resolve-uri($node/@db-chunk,
@@ -308,7 +311,9 @@
   <xsl:param name="href" as="xs:string" required="yes"/>
 
   <xsl:variable name="absuri"
-                select="resolve-uri($href, $rootbaseuri)"/>
+                select="if ($v:chunk)
+                        then resolve-uri($href, $rootbaseuri)
+                        else $rootbaseuri"/>
 
   <xsl:variable name="rchunk"
                 select="fp:trim-common-prefix($chunkbaseuri, $absuri)"/>
@@ -536,7 +541,15 @@
   <xsl:param name="node" as="element()"/>
   <!-- Saxonica bug #4632 -->
   <xsl:sequence select="base-uri(root($node)/*)[. = '-no match-']"/>
-  <xsl:sequence select="resolve-uri($chunk-output-base-uri, base-uri(root($node)/*))"/>
+  <xsl:choose>
+    <xsl:when test="not($v:chunk)">
+      <xsl:sequence select="base-uri(root($node)/*)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="resolve-uri($chunk-output-base-uri,
+                                        base-uri(root($node)/*))"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:function>
 
 <!-- ============================================================ -->
