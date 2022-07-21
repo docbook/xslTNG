@@ -117,7 +117,18 @@
 </xsl:template>
 
 <xsl:template match="db:imageobjectco">
-  <xsl:apply-templates select="f:select-mediaobject(*)"/>
+  <xsl:choose>
+    <xsl:when test="db:calloutlist">
+      <div class="{local-name(.)}">
+        <xsl:apply-templates
+            select="f:select-mediaobject(* except db:calloutlist)"/>
+        <xsl:apply-templates select="db:calloutlist"/>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="f:select-mediaobject(*)"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:textobject">
