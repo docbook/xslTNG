@@ -17,14 +17,36 @@
                 version="3.0">
 
 <xsl:param name="default-language" select="'en'"/>
+<xsl:param name="additional-languages" select="()"/>
 
 <xsl:key name="l:string" match="l:string" use="@key"/>
 <xsl:key name="l:style" match="l:style" use="@key"/>
 <xsl:key name="l:gentext" match="l:gentext" use="@name"/>
 <xsl:key name="l:tokens" match="l:tokens" use="../@name || '/' || @key"/>
 
-<xsl:variable name="v:locales" as="xs:string+" static="yes"
-              select="('en', 'fr', 'cs')"/>
+<xsl:variable name="vp:in-scope" select="distinct-values(//@xml:lang)"/>
+
+<xsl:variable name="vp:all-languages" as="xs:string">
+  <xsl:choose>
+    <xsl:when test="empty($additional-languages)">
+      <xsl:try>
+        <xsl:variable name="langs" select="distinct-values(//@xml:lang)"/>
+        <xsl:sequence select="string-join(($default-language, $langs), ' ')"/>
+        <xsl:catch>
+          <!-- for example, if there is no context item... -->
+          <xsl:message select="'Failed to identify additional languages'"/>
+          <xsl:sequence select="$default-language"/>
+        </xsl:catch>
+      </xsl:try>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$default-language || ' ' || $additional-languages"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
+<xsl:variable name="v:locales" as="xs:string+"
+              select="tokenize(normalize-space($vp:all-languages), '\s+')"/>
 
 <xsl:variable name="vp:l10n" as="map(*)"
               select="map:merge(fp:load-locales())"/>

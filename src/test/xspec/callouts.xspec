@@ -43,6 +43,11 @@
   <x:expect label="expect the callout list to be rendered" href="../resources/expected/calloutlist.003.html"/>
 </x:scenario>
 
+<x:scenario label="When converting calloutlist.004">
+  <x:context href="../resources/xml/calloutlist.004.xml"/>
+  <x:expect label="expect the callout list to be rendered" href="../resources/expected/calloutlist.004.html"/>
+</x:scenario>
+
 <x:scenario label="When converting co.001">
   <x:context href="../resources/xml/co.001.xml"/>
   <x:expect label="expect the callouts to be rendered" href="../resources/expected/co.001.html"/>

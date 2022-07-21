@@ -8,6 +8,40 @@
   <title>Parameter reference</title>
 </info>
 
+<refentry xml:id="p_additional-languages">
+<?db filename="p_additional-languages.html"?>
+<refmeta>
+<refentrytitle>$additional-languages</refentrytitle>
+<refmiscinfo>{}additional-languages</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$additional-languages</refname>
+<refpurpose>Additional localization languages (beyond the default language)</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the stylesheets need to generate text (the names of labels
+such as “Chapter”, for example), they attempt to do so in the same
+language as the document. This is determined by finding the nearast
+in-scope <att>xml:lang</att> attribute from the context where the
+generated text is required.
+</para>
+<para>The stylesheets can generate text in more than 70 languages,
+but very few documents use more than a few. To avoid the overhead of
+loading a great many localizations that will never be used, the
+stylesheets don’t load them all.</para>
+<para>The stylesheets always load the 
+<parameter>default-language</parameter> and will load any additional
+languages identified in <parameter>additional-languages</parameter>,
+a space separated list of language identifiers.</para>
+<para>If the <parameter>additional-languages</parameter> is the
+empty sequence, the stylesheets attempt to determine which languages
+are used in the document and load the appropriate localizations.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_align-char-default">
 <?db filename="p_align-char-default.html"?>
 <refmeta>
@@ -1069,10 +1103,13 @@ the CSS classes will be “<literal>float</literal>
 <para>If the stylesheets need to generate text (the names of labels
 such as “Chapter”, for example), they attempt to do so in the same
 language as the document. This is determined by finding the nearast
-in-scope <tag>xml:lang</tag> attribute from the context where the
+in-scope <att>xml:lang</att> attribute from the context where the
 generated text is required.
 </para>
-<para>If there is no in-scope <att>xml:lang</att> attribute, the
+<para>If there is no in-scope <att>xml:lang</att> attribute,
+or if there is no localization available for the language
+specified,
+the
 <parameter>default-language</parameter> is used instead.</para>
 </refsection>
 </refentry>

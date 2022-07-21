@@ -47,4 +47,9 @@
    <x:expect label="expect the metadata to have been processed" href="../resources/expected/info.001.html"/>
 </x:scenario>
 
+<x:scenario label="When converting de_book">
+   <x:context href="../resources/xml/de_book.xml"/>
+   <x:expect label="expect the German localization" href="../resources/expected/de_book.html"/>
+</x:scenario>
+
 </x:description>

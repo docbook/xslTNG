@@ -25,6 +25,8 @@
 <xsl:import href="docbook.xsl"/>
 
 <!-- Set some parameters to values that make testing easier/more consistent -->
+<xsl:param name="default-language" select="'en'"/>
+<xsl:param name="additional-languages" select="'de en fr cs'"/>
 
 <xsl:param name="xspec" select="'true'"/>
 <xsl:param name="mediaobject-input-base-uri"
