@@ -300,7 +300,8 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="no-code" select="self::db:address or self::db:literallayout"/>
+  <xsl:variable name="no-code"
+                select="self::db:address or self::db:literallayout"/>
 
   <xsl:variable name="starting-line-number" as="xs:integer">
     <xsl:choose>
@@ -309,7 +310,7 @@
       </xsl:when>
       <xsl:when test="@continuation = 'continues'">
         <xsl:variable name="name" select="node-name(.)"/>
-        <xsl:variable name="prec" select="preceding::*[node-name(.) = $name]"/>
+        <xsl:variable name="prec" select="preceding::*[node-name(.) = $name][1]"/>
         <xsl:choose>
           <xsl:when test="empty($prec)">
             <xsl:sequence select="1"/>
