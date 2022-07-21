@@ -325,4 +325,7 @@
 
 <xsl:param name="generate-html-page" as="xs:string" select="'true'"/>
 
+<xsl:param name="dc-metadata" as="xs:string" select="'true'"/>
+<xsl:param name="generator-metadata" as="xs:string" select="'true'"/>
+
 </xsl:stylesheet>
