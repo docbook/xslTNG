@@ -290,6 +290,9 @@
                           else 'empty'"/>
     <xsl:sequence select="$properties?align"/>
     <xsl:sequence select="$properties?valign"/>
+    <xsl:if test="$properties?node/@role">
+      <xsl:sequence select="tokenize($properties?node/@role, '\s+')"/>
+    </xsl:if>
   </xsl:variable>
 
   <xsl:element name="{$td}" namespace="http://www.w3.org/1999/xhtml">

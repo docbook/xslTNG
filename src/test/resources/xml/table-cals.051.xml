@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://docbook.org/ns/docbook"
+       version="5.0" frame="all">
+<info>
+  <title>Table title</title>
+</info>
+<tgroup cols="4" colsep="1" rowsep="1">
+  <tbody>
+    <row>
+      <entry role="a">First</entry>
+      <entry role="b">Second</entry>
+      <entry>Third</entry>
+      <entry role="d">Fourth</entry>
+    </row>
+    <row>
+      <entry>First</entry>
+      <entry>Second</entry>
+      <entry role="c">Third</entry>
+      <entry>Fourth</entry>
+    </row>
+  </tbody>
+</tgroup>
+</table>
