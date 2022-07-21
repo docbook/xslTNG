@@ -21,4 +21,9 @@
   <x:expect label="expect the literallayout to be rendered" href="../resources/expected/literallayout.003.html"/>
 </x:scenario>
 
+<x:scenario label="When converting a literallayout">
+  <x:context href="../resources/xml/literallayout.004.xml"/>
+  <x:expect label="expect the literallayout to be rendered" href="../resources/expected/literallayout.004.html"/>
+</x:scenario>
+
 </x:description>

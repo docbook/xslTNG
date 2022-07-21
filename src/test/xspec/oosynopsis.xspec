@@ -28,4 +28,10 @@
   </x:expect>
 </x:scenario>
 
+<x:scenario label="When transforming packagesynopsis.001">
+  <x:context href="../resources/xml/packagesynopsis.001.xml"/>
+  <x:expect label="expect a package synopsis"
+            href="../resources/expected/packagesynopsis.001.html"/>
+</x:scenario>
+
 </x:description>

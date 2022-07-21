@@ -17,4 +17,10 @@
             href="../resources/expected/screen.001.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming screen.002">
+  <x:context href="../resources/xml/screen.002.xml"/>
+  <x:expect label="expect continuation to work"
+            href="../resources/expected/screen.002.html"/>
+</x:scenario>
+
 </x:description>
