@@ -1080,13 +1080,20 @@ task makeUriList(dependsOn: ["makeXslt","zipStageResources","zipStagePrintCSS","
 
 // ============================================================
 
+task formattingTests() {
+  // Just somewhere to hang dependencies. I used to put these
+  // dependencies directly on 'test', but that had the consequence
+  // that running a single unit test ran all of the formatting
+  // tests.
+}
+
 task testJarMain(type: Exec, dependsOn: jar) {
     commandLine "java",
       "-jar", "${buildDir}/libs/docbook-xslTNG-${xslTNGversion}.jar",
       "${projectDir}/src/test/resources/xml/article.001.xml",
       "-o:/dev/null"
 }
-test.dependsOn testJarMain
+formattingTests.dependsOn testJarMain
 
 task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin", "copyDocker"]) {
     commandLine "${buildDir}/bin/docbook",
@@ -1094,7 +1101,7 @@ task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin", "copyDocker"]) {
       "-xsl:build/xslt/docbook.xsl",
       "-o:/dev/null"
 }
-test.dependsOn testDocBookPy
+formattingTests.dependsOn testDocBookPy
 
 task testConsoleSummary(type: SummarizeTestResults, dependsOn: testDrivers) {
   resultFiles = testDrivers
@@ -1109,7 +1116,9 @@ task testSummary(type: SaxonXsltTask, dependsOn: testDrivers) {
   )
 }
 
-task requirePassingTests(type: CheckTextFile, dependsOn: ['testSummary']) {
+task requirePassingTests(
+  type: CheckTextFile,
+  dependsOn: ['test', 'formattingTests', 'testSummary']) {
   checkFile = "${buildDir}/test-results.txt"
 }
 
@@ -1129,8 +1138,8 @@ task coverageReport(type: SaxonXsltTask,
     "test-drivers": testDrivers.join(" ")
   )
 }
-test.dependsOn reportResults
-test.dependsOn coverageReport
+formattingTests.dependsOn reportResults
+formattingTests.dependsOn coverageReport
 
 // Use Exec so that it runs the same version of Saxon as the tests.
 task report(type: Exec,
