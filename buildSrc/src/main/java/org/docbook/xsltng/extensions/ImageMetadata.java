@@ -77,6 +77,9 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
                         name = name.replace(" ", "-");
 
                         String value = tag.getDescription();
+                        if (value == null) {
+                            value = "";
+                        }
 
                         // Laboriously escape all the control characters with \\uxxxx, but first replace
                         // \\uxxxx with \\u005cuxxxx so we don't inadvertantly change the meaning of a string

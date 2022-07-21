@@ -1,6 +1,8 @@
 package org.docbook.xsltng;
 
 import net.sf.saxon.s9api.*;
+import org.docbook.xsltng.extensions.ImageMetadata;
+import org.docbook.xsltng.extensions.ImageProperties;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.InputSource;
@@ -27,6 +29,32 @@ public class GitHubIssues {
 
             XsltCompiler compiler = processor.newXsltCompiler();
             XsltExecutable exec = compiler.compile(new SAXSource(new InputSource("src/test/resources/issues/0152/style.xsl")));
+            Xslt30Transformer xform = exec.load30();
+            xform.applyTemplates(new SAXSource(source), destination);
+
+            String s = destination.getXdmNode().toString();
+            Assert.assertTrue(s.startsWith("<html "));
+
+            Assert.assertNull(destination.getBaseURI());
+        } catch (Exception ex) {
+            fail();
+        }
+    }
+
+    @Test
+    public void test0157() {
+        // NPE
+        try {
+            Processor processor = new Processor(false);
+            processor.getUnderlyingConfiguration().registerExtensionFunction(new ImageProperties());
+            processor.getUnderlyingConfiguration().registerExtensionFunction(new ImageMetadata());
+
+            InputSource source = new InputSource("src/test/resources/issues/0157/article.xml");
+
+            XdmDestination destination = new XdmDestination();
+
+            XsltCompiler compiler = processor.newXsltCompiler();
+            XsltExecutable exec = compiler.compile(new SAXSource(new InputSource("build/xslt/docbook.xsl")));
             Xslt30Transformer xform = exec.load30();
             xform.applyTemplates(new SAXSource(source), destination);
 
