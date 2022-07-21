@@ -96,7 +96,7 @@ the JAR like this:</para>
 it as described above. Now run the java command:</para>
 
 <screen role="monochrome border"
->$ <userinput>java -jar ../libs/docbook-xslTNG-0.9.12.jar article.xml</userinput>
+>$ <userinput>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml</userinput>
 <computeroutput><![CDATA[<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
 …more HTML here...
 <nav class="bottom"></nav></body></html>]]></computeroutput></screen>
@@ -107,7 +107,7 @@ that HTML in a file:
 </para>
 
 <screen role="monochrome border">$ <userinput
->java -jar ../libs/docbook-xslTNG-0.9.12.jar article.xml \
+>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml \
         -o:article.html</userinput
 ></screen>
 
