@@ -283,7 +283,9 @@
   <xsl:param name="purpose" as="xs:string" select="'title'"/>
   <xsl:param name="number" as="node()*"/>
   <xsl:param name="title" as="node()*"/>
-  <xsl:apply-templates select="db:question" mode="m:headline-label"/>
+  <xsl:apply-templates select="db:question" mode="m:headline-label">
+    <xsl:with-param name="purpose" select="$purpose"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:question" mode="m:headline-label">
@@ -545,17 +547,23 @@
 
 <xsl:template match="db:refnamediv" mode="m:headline-title">
   <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:apply-templates select="db:refname[1]" mode="m:headline-title"/>
+  <xsl:apply-templates select="db:refname[1]" mode="m:headline-title">
+    <xsl:with-param name="purpose" select="$purpose"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:refname" mode="m:headline-title">
   <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:apply-templates mode="m:title"/>
+  <xsl:apply-templates mode="m:title">
+    <xsl:with-param name="purpose" select="$purpose"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:question" mode="m:headline-title">
   <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:apply-templates select="*[1]" mode="m:title"/>
+  <xsl:apply-templates select="*[1]" mode="m:title">
+    <xsl:with-param name="purpose" select="$purpose"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <!-- ============================================================ -->
