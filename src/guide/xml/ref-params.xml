@@ -840,6 +840,28 @@ will be formatted with the <parameter>date-dateTime-format</parameter>.
 </refsection>
 </refentry>
 
+<refentry xml:id="p_dc-metadata">
+<?db filename="p_dc-metadata.html"?>
+<refmeta>
+<refentrytitle>$dc-metadata</refentrytitle>
+<refmiscinfo>{}dc-metadata</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$dc-metadata</refname>
+<refpurpose>Output Dublin Core metadata?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, the
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element
+of each result document will contain
+<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> elements
+for Dublin Core metadata that can be derived from the source
+document.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_debug">
 <?db filename="p_debug.html"?>
 <refmeta>
@@ -1546,6 +1568,28 @@ stylesheet produces, that may be inconvenient. (Because selectors use
 “.” to separate element names from class values.)
 </para>
 </note>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generator-metadata">
+<?db filename="p_generator-metadata.html"?>
+<refmeta>
+<refentrytitle>$generator-metadata</refentrytitle>
+<refmiscinfo>{}generator-metadata</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generator-metadata</refname>
+<refpurpose>Output generator metadata?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, the
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element
+of each result document will contain a
+<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> element
+with the name <literal>generator</literal> that identifies the
+stylesheet and processor used to produce the result.</para>
 </refsection>
 </refentry>
 

@@ -378,4 +378,9 @@
     <x:context href="../resources/xml/table-cals.050.xml"/>
     <x:expect label="expect row/entry xml:ids to become id attributes" href="../resources/expected/table-cals.050.html"/>
   </x:scenario>
+
+  <x:scenario label="When transforming table-cals.051.xml">
+    <x:context href="../resources/xml/table-cals.051.xml"/>
+    <x:expect label="expect entry roles class attributes" href="../resources/expected/table-cals.051.html"/>
+  </x:scenario>
 </x:description>

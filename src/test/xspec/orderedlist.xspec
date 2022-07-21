@@ -363,4 +363,10 @@
   <x:expect label="expect some generated HTML" href="../resources/expected/orderedlist.003.html"/>
 </x:scenario>
 
+<x:scenario label="When converting orderedlist.004">
+  <x:context href="../resources/xml/orderedlist.004.xml"/>
+  <x:expect label="expect continuations to work with nested lists"
+            href="../resources/expected/orderedlist.004.html"/>
+</x:scenario>
+
 </x:description>

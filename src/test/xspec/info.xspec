@@ -46,4 +46,9 @@
   <x:expect label="expect only the title" href="../resources/expected/blockinfo.002.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming meta.001">
+  <x:context href="../resources/xml/meta.001.xml"/>
+  <x:expect label="expect meta/@content to appear" href="../resources/expected/meta.001.html"/>
+</x:scenario>
+
 </x:description>

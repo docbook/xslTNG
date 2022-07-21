@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     slides
+-->
+
+<x:scenario label="When converting a slides">
+  <x:context href="../resources/xml/slides.001.xml"/>
+  <x:expect label="expect the slides to be rendered" href="../resources/expected/slides.001.html"/>
+</x:scenario>
+
+<x:scenario label="When converting a slides">
+  <x:context href="../resources/xml/slides.002.xml"/>
+  <x:expect label="expect the slides to be rendered" href="../resources/expected/slides.002.html"/>
+</x:scenario>
+
+<x:scenario label="When converting a slides">
+  <x:context href="../resources/xml/slides.003.xml"/>
+  <x:expect label="expect the slides to be rendered" href="../resources/expected/slides.003.html"/>
+</x:scenario>
+
+</x:description>
