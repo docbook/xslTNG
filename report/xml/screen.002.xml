@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Article wrapper</title>
+
+<para>This is a screen.</para>
+
+<screen>Code 1
+Code 2
+Code 3
+Code 4
+Code 5
+</screen>
+
+<para>So is this.</para>
+
+<screen>Code 1
+Code 2
+Code 3
+Code 4
+Code 5
+</screen>
+
+<para>The next screen is a continuation of the previous.</para>
+
+<screen continuation="continues">Code 6
+Code 7
+Code 8
+Code 9
+Code 10
+</screen>
+
+</article>
