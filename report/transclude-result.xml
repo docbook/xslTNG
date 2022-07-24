@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/circleci/repo/build/xspec/transclude.xspec"
          stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-         date="2022-07-21T12:56:43.794929Z">
+         date="2022-07-24T16:31:08.605738Z">
    <scenario id="scenario1"
               xspec="file:/home/circleci/repo/build/xspec/transclude.xspec">
       <label>When transcluding with no fixup</label>
@@ -22,12 +22,14 @@
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
                   <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
                   <nav class="top"/>
                   <main>
-                     <article class="article">
+                     <article class="article component">
                         <header>
                            <h1>Transclusion 001</h1>
                         </header>
@@ -187,12 +189,14 @@ introduce duplicate IDs in the document.
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
                      <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
                      <nav class="top"/>
                      <main>
-                        <article class="article">
+                        <article class="article component">
                            <header>
                               <h1>Transclusion 001</h1>
                            </header>
@@ -359,12 +363,14 @@ introduce duplicate IDs in the document.
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
                   <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
                   <nav class="top"/>
                   <main>
-                     <article class="article">
+                     <article class="article component">
                         <header>
                            <h1>Transclusion 001</h1>
                         </header>
@@ -523,12 +529,14 @@ introduce duplicate IDs in the document.
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
                      <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
                      <nav class="top"/>
                      <main>
-                        <article class="article">
+                        <article class="article component">
                            <header>
                               <h1>Transclusion 001</h1>
                            </header>
@@ -694,12 +702,14 @@ introduce duplicate IDs in the document.
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
                   <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
                   <nav class="top"/>
                   <main>
-                     <article class="article">
+                     <article class="article component">
                         <header>
                            <h1>Transclusion 001</h1>
                         </header>
@@ -859,12 +869,14 @@ introduce duplicate IDs in the document.
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
                      <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
                      <nav class="top"/>
                      <main>
-                        <article class="article">
+                        <article class="article component">
                            <header>
                               <h1>Transclusion 001</h1>
                            </header>
@@ -1031,12 +1043,14 @@ introduce duplicate IDs in the document.
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
                   <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
                   <nav class="top"/>
                   <main>
-                     <article class="article">
+                     <article class="article component">
                         <header>
                            <h1>Transclusion 001</h1>
                         </header>
@@ -1196,12 +1210,14 @@ introduce duplicate IDs in the document.
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
                      <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
                      <nav class="top"/>
                      <main>
-                        <article class="article">
+                        <article class="article component">
                            <header>
                               <h1>Transclusion 001</h1>
                            </header>

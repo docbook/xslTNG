@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/circleci/repo/build/xspec/main.xspec"
          stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-         date="2022-07-21T12:56:39.441347Z">
+         date="2022-07-24T16:31:04.150356Z">
    <scenario id="scenario1"
               xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
       <label>when formatting a single copyright year</label>
@@ -2239,12 +2239,14 @@
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
                   <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
                   <nav class="top"/>
                   <main>
-                     <article class="article">
+                     <article class="article component">
                         <header>
                            <h1>Unit test: packagesynopsis.001</h1>
                         </header>
@@ -2290,12 +2292,14 @@
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
                      <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet"/>
+                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
+                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
                      <nav class="top"/>
                      <main>
-                        <article class="article">
+                        <article class="article component">
                            <header>
                               <h1>Unit test: packagesynopsis.001</h1>
                            </header>

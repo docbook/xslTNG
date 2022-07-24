@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.7.1-SNAPSHOT
+/* DocBook xslTNG version 1.8.0-SNAPSHOT
  *
  * This is docbook.css.
  *
@@ -455,6 +455,13 @@ header .authorgroup {
 
 /* ============================================================ */
 
+body.draft {
+    background-image: url('draft.svg');
+    background-position: 2% 2%;
+    background-repeat: no-repeat;
+    background-size: 10%;
+}
+
 .article > header {
     text-align: center;
     margin-bottom: 2em;
@@ -486,7 +493,14 @@ header .authorgroup {
 }
 
 .revhistory .title {
+    font-weight: bold;
+    font-family: var(--title-family);
+    margin-bottom: 0.5em;
     border-bottom: 1px solid var(--border-color);
+}
+
+.revhistory table {
+    width: 100%;
 }
 
 .revhistory table tr th,
@@ -836,6 +850,8 @@ th.char {
 pre {
     margin-top: 0;
     margin-bottom: 0;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 pre.address,
@@ -1107,14 +1123,6 @@ blockquote p + .attribution {
 
 .attribution {
     margin-left: 50%;
-}
-
-/* ============================================================ */
-
-.revhistory .title {
-    font-weight: bold;
-    font-family: var(--title-family);
-    margin-bottom: 0.5em;
 }
 
 /* ============================================================ */

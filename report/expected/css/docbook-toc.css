@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.7.1-SNAPSHOT
+/* DocBook xslTNG version 1.8.0-SNAPSHOT
  *
  * This is docbook-toc.css.
  *
@@ -27,12 +27,17 @@ nav.toc {
     z-index: 2;
     top: 0;
     right: 0;
-    overflow-x: scroll;
     padding: 0;
     margin: 0;
     font-size: 12pt;
     opacity: 1;
     padding-left: 0;
+}
+
+@media only screen {
+    nav.toc {
+        overflow-x: scroll;
+    }
 }
 
 nav.toc.slide {
@@ -53,8 +58,13 @@ nav.toc header .close {
 }
 
 nav.toc div {
-    overflow: scroll;
     height: calc(100% - 4rem);
+}
+
+@media only screen {
+    nav.toc div {
+        overflow: scroll;
+    }
 }
 
 nav.toc a,
