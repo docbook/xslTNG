@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><book xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude">
+<?xml version="1.0" encoding="utf-8"?><book xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db filename="index.html" navigation="false"?>
 <info>
 <?db xlink-style="javascript" page-style="book"?>
@@ -10,9 +10,126 @@
 </author>
 <releaseinfo role="icon">https://docbook.org/graphics/defguide-icon16.png</releaseinfo>
 <pubdate/>
+<revhistory>
+  <?db revhistory-style="list"?>
+  <revision>
+    <revnumber>1.8.0</revnumber>
+    <date>2022-07-24</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Reworked CSS. The CSS stylesheets, especially the
+          stylesheets related to print output, have been updated and
+          the mechanism by which CSS links are added to the output
+          <link linkend="managing-css">has changed</link>.
+          </para>
+          <para>The <literal>$css-links</literal> parameter no longer
+          exists (nor does the corresponding
+          <literal>$v:css-links</literal> variable). It has been
+          replaced by the <parameter>user-css-links</parameter><indexterm><primary>param</primary><secondary>user-css-links</secondary></indexterm> and
+          <parameter>use-docbook-css</parameter><indexterm><primary>param</primary><secondary>use-docbook-css</secondary></indexterm> parameters.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Added an <parameter>output-media</parameter><indexterm><primary>param</primary><secondary>output-media</secondary></indexterm> parameter
+          to allow conditional behavior based on output medium (screen
+          or print).
+          </para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>page-style</parameter><indexterm><primary>param</primary><secondary>page-style</secondary></indexterm> and
+          <parameter>paper-size</parameter><indexterm><primary>param</primary><secondary>paper-size</secondary></indexterm> parameters for controlling
+          aspects of print output.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Some class attribute values have been changed.</para>
+          <itemizedlist>
+            <listitem>
+              <para>The page style, page size, and “draft” classes are
+              now reflected on the top-level <tag namespace="http://www.w3.org/1999/xhtml">html</tag>
+              element.</para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>division</literal>” is
+              added to
+              <tag>book</tag>,
+              <tag>part</tag>, and
+              <tag>reference</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>component</literal>” is
+              added to
+              <tag>acknowledgements</tag>,
+              <tag>appendix</tag>,
+              <tag>article</tag>,
+              <tag>bibliography</tag>,
+              <tag>chapter</tag>,
+              <tag>colophon</tag>,
+              <tag>dedication</tag>,
+              <tag>glossary</tag>,
+              <tag>index</tag>,
+              <tag>partintro</tag>,
+              <tag>preface</tag>, and
+              <tag>refentry</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>formalobject</literal>” is
+              added to
+              <tag>equation</tag>,
+              <tag>example</tag>,
+              <tag>figure</tag>,
+              <tag>formalgroup</tag>, and
+              <tag>table</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value
+              “<literal>informalobject</literal>” is
+              added to
+              <tag>informalequation</tag>,
+              <tag>informalexample</tag>,
+              <tag>informalfigure</tag>, and
+              <tag>informaltable</tag> elements.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>There is now CSS support for adding a “draft” watermark
+          to documents with a draft status (for both screen and print
+          renderings).
+          </para>
+        </listitem>
+        <listitem>
+          <para>An extra wrapper has been added to the content of
+          <tag>revision</tag> in a <tag>revhistory</tag>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>A bug has been fixed where <tag>sidebar</tag> was
+          accidentally being rendered in the DocBook namespace.
+          </para>
+        </listitem>
+        <listitem>
+          <para><link xlink:href="https://prismjs.com/">Prism</link> highlighting
+          has been updated to version 1.28.0.</para>
+        </listitem>
+        <listitem>
+          <para><link xlink:href="https://highlightjs.org/">Highlight.js</link>
+          highlighting has been updated to version 11.6.0 and is now part
+          of the distribution rather than relying on CDN access.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+</revhistory>
 <legalnotice>
 <literallayout><citetitle>DocBook xslTNG</citetitle>
-Copyright © 2020 Norman Walsh.
+Copyright © 2020–2022 Norman Walsh.
 All Rights Reserved.</literallayout>
 
 <para>Permission is granted to copy, distribute and/or modify this
@@ -37,12 +154,14 @@ contained herein.</para>
 
 <copyright>
 <year>2020</year>
+<year>2021</year>
+<year>2022</year>
 <holder>Norman Walsh</holder>
 </copyright>
 </info>
 <part>
 <title>Introduction</title>
-<preface xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="preface">
+<preface version="5.0" xml:id="preface">
 <info>
   <?db filename="ch00.html"?>
   <title>Preface</title>
@@ -137,7 +256,7 @@ of the XSLT 3.0 Recommendation.</para>
   </para>
 
 </preface> <!-- preface -->
-<chapter xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="getting">
+<chapter version="5.0" xml:id="getting">
 <info>
   <?db filename="ch01.html"?>
   <title>Getting the stylesheets</title>
@@ -212,7 +331,7 @@ some repository hierarchy well out of sight). Consequently, you may want to
 
 </section>
 </chapter> <!-- getting -->
-<chapter xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="using">
+<chapter version="5.0" xml:id="using">
 <info>
   <?db filename="ch02.html"?>
   <title>Using the stylesheets</title>
@@ -304,7 +423,7 @@ the JAR like this:</para>
 <filename class="directory">/home/ndw/xsltng/samples</filename> assuming you unzipped
 it as described above. Now run the java command:</para>
 
-<screen role="monochrome border">$ <userinput>java -jar ../libs/docbook-xslTNG-0.9.12.jar article.xml</userinput>
+<screen role="monochrome border">$ <userinput>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml</userinput>
 <computeroutput>&lt;!DOCTYPE html&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
 …more HTML here...
 &lt;nav class="bottom"&gt;&lt;/nav&gt;&lt;/body&gt;&lt;/html&gt;</computeroutput></screen>
@@ -314,7 +433,7 @@ formatted by the stylesheets! Slightly more usefully, you can save
 that HTML in a file:
 </para>
 
-<screen role="monochrome border">$ <userinput>java -jar ../libs/docbook-xslTNG-0.9.12.jar article.xml \
+<screen role="monochrome border">$ <userinput>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml \
         -o:article.html</userinput></screen>
 
 <para>If you now open <filename>article.html</filename> in your
@@ -327,7 +446,7 @@ which should look like <xref linkend="fig-sample"/>.
 <mediaobject>
 <alt>A rendering of the sample document</alt>
 <imageobject>
-<imagedata fileref="media/sample.png"/>
+<imagedata fileref="media/sample.png" width="5.0in"/>
 </imageobject>
 <textobject>
 <para>This is a rendering of the sample document. It consists of the
@@ -1093,9 +1212,20 @@ are focused on CSS for print output. There’s a customization layer
 that produces “paged-media-ready” HTML that can be processed with
 a CSS formatter such as <biblioref linkend="AntennaHouse"/>
 or <biblioref linkend="Prince"/>.</para>
+
+<para>To get print output, format your documents with the
+<filename>print.xsl</filename> stylesheet instead of the
+<filename>docbook.xsl</filename> stylesheet. The additional cleanup provided
+by <filename>print.xsl</filename> assures that footnotes, annotations, and
+other elements will appear in the right place, and with reasonable
+presentation, in the printed version.</para>
+
+<para>The resulting HTML document can be formatted directly with a
+CSS paged-media formatter.</para>
+
 </section>
 </chapter> <!-- using -->
-<chapter xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="customization">
+<chapter version="5.0" xml:id="customization">
 <info>
   <?db filename="ch03.html"?>
   <title>Customizing the stylesheets</title>
@@ -1348,6 +1478,67 @@ but I’m trying to keep the example simple.</para>
 
 </section>
 
+<section xml:id="managing-css">
+<title>Managing CSS stylesheets</title>
+
+<para>The HTML that the <citetitle>DocBook xslTNG</citetitle> stylesheet
+produce is intended to be clean, robust markup for styling with CSS.
+Exactly how you control which stylesheet links are produced has
+changed several times. The current scheme is this:</para>
+
+<orderedlist>
+<listitem>
+<para>If syntax highlighting is enabled, a link to the
+<parameter>verbatim-syntax-highlight-css</parameter><indexterm><primary>param</primary><secondary>verbatim-syntax-highlight-css</secondary></indexterm> stylesheet is
+included.
+</para>
+</listitem>
+<listitem>
+<para>If <parameter>oxy-markup-css</parameter><indexterm><primary>param</primary><secondary>oxy-markup-css</secondary></indexterm> <glossterm>is
+true</glossterm> and there is at least one processing instruction in
+the document that has a name that begins with <code>oxy_</code>,
+a link to the <parameter>oxy-markup-css</parameter><indexterm><primary>param</primary><secondary>oxy-markup-css</secondary></indexterm> stylesheet
+is included.
+</para>
+</listitem>
+<listitem>
+<para>If <parameter>persistent-toc</parameter><indexterm><primary>param</primary><secondary>persistent-toc</secondary></indexterm> <glossterm>is
+true</glossterm> 
+a link to the <parameter>persistent-toc-css</parameter><indexterm><primary>param</primary><secondary>persistent-toc-css</secondary></indexterm> stylesheet
+is included.
+</para>
+</listitem>
+<listitem>
+<para>If <parameter>use-docbook-css</parameter><indexterm><primary>param</primary><secondary>use-docbook-css</secondary></indexterm> <glossterm>is true</glossterm>,
+links to the standard DocBook stylesheets are included. Those stylesheets
+are <filename>docbook.css</filename> (for all media),
+<filename>docbook-screen.css</filename> (for screen media), and
+<filename>docbook-page-setup.css</filename> and
+<filename>docbook-paged.css</filename> (for print media).
+</para>
+</listitem>
+<listitem>
+<para>The DocBook element that is the context element when the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> is being
+generated is processed in the <code role="mode">m:html-head-links</code> mode.
+By default, that template does nothing, but you can change that in
+a customization layer.</para>
+</listitem>
+<listitem>
+<para>If any CSS stylesheets are defined in
+<parameter>user-css-links</parameter><indexterm><primary>param</primary><secondary>user-css-links</secondary></indexterm>, they are included.
+</para>
+</listitem>
+<listitem>
+<para>The DocBook element that is the context element when the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> is being
+generated is processed in the <code role="mode">m:html-head-last</code> mode.
+By default, that template does nothing, but you can change that in
+a customization layer.</para>
+</listitem>
+</orderedlist>
+</section>
+
 <section xml:id="different">
 <title>Creating something completely different</title>
 
@@ -1448,7 +1639,7 @@ This normalization greatly simplifies processing in many places.</para>
 </section>
 
 </chapter> <!-- customizing -->
-<chapter xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="implementation">
+<chapter version="5.0" xml:id="implementation">
 <info>
   <?db filename="ch04.html"?>
   <title>Implementation details</title>
@@ -1637,14 +1828,14 @@ title in the previous paragraph. The standard mechanisms would require that
 you either put an <tag class="attribute">xml:id</tag> attribute on the element or point to the
 annotation from the element. With the XPath extension, you can do this:</para>
 
-<annotation xmlns:db="http://docbook.org/ns/docbook" annotates="xpath:preceding::db:para/db:citetitle">
+<annotation xmlns:db="http://docbook.org/ns/docbook" annotates="xpath:preceding-sibling::db:para/db:citetitle">
 <para>This annotation applies to the stylesheet title. For a discussion
 of this annotation, see the following paragraphs.
 </para>
 </annotation>
 
 <programlisting>&lt;annotation
-   annotates="xpath:preceding::db:para/db:citetitle"
+   annotates="xpath:preceding-sibling::db:para/db:citetitle"
    xmlns:db="http://docbook.org/ns/docbook"&gt;
 &lt;para&gt;This annotation applies to the stylesheet title.
 For a discussion of this annotation, see the
@@ -1691,7 +1882,7 @@ attribute on the <tag>annotation</tag>.</para>
 
 </section>
 </chapter> <!-- implementation -->
-<chapter xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="building">
+<chapter version="5.0" xml:id="building">
 <info>
   <?db filename="ch05.html"?>
   <title>Building the stylesheets</title>
@@ -2028,11 +2219,45 @@ environments, the XSpec tests run a driver stylesheet, <filename>xspec-driver.xs
 </part>
 <part>
 <title>Reference</title>
-<reference xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="params">
+<reference version="5.0" xml:id="params">
 <info>
   <?db filename="params.html"?>
   <title>Parameter reference</title>
 </info>
+
+<refentry xml:id="p_additional-languages"><indexterm><primary>param</primary><secondary>additional-languages</secondary></indexterm>
+<?db filename="p_additional-languages.html"?>
+<refmeta>
+<refentrytitle>$additional-languages</refentrytitle>
+<refmiscinfo>{}additional-languages</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$additional-languages</refname>
+<refpurpose>Additional localization languages (beyond the default language)</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the stylesheets need to generate text (the names of labels
+such as “Chapter”, for example), they attempt to do so in the same
+language as the document. This is determined by finding the nearast
+in-scope <tag class="attribute">xml:lang</tag> attribute from the context where the
+generated text is required.
+</para>
+<para>The stylesheets can generate text in more than 70 languages,
+but very few documents use more than a few. To avoid the overhead of
+loading a great many localizations that will never be used, the
+stylesheets don’t load them all.</para>
+<para>The stylesheets always load the 
+<parameter>default-language</parameter><indexterm><primary>param</primary><secondary>default-language</secondary></indexterm> and will load any additional
+languages identified in <parameter>additional-languages</parameter><indexterm><primary>param</primary><secondary>additional-languages</secondary></indexterm>,
+a space separated list of language identifiers.</para>
+<para>If the <parameter>additional-languages</parameter><indexterm><primary>param</primary><secondary>additional-languages</secondary></indexterm> is the
+empty sequence, the stylesheets attempt to determine which languages
+are used in the document and load the appropriate localizations.
+</para>
+</refsection>
+</refentry>
 
 <refentry xml:id="p_align-char-default"><indexterm><primary>param</primary><secondary>align-char-default</secondary></indexterm><indexterm><primary>param</primary><secondary>align-char-pad</secondary></indexterm><indexterm><primary>param</primary><secondary>align-char-width</secondary></indexterm>
 <?db filename="p_align-char-default.html"?>
@@ -2840,24 +3065,6 @@ and <varname>copyright-collapse-years</varname><indexterm><primary>variable</pri
 </refsection>
 </refentry>
 
-<refentry xml:id="p_css-links"><indexterm><primary>param</primary><secondary>css-links</secondary></indexterm>
-<?db filename="p_css-links.html"?>
-<refmeta>
-<refentrytitle>$css-links</refentrytitle>
-<refmiscinfo>{}css-links</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$css-links</refname>
-<refpurpose>List of CSS stylesheets</refpurpose>
-<refclass>param</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>The <parameter>css-links</parameter><indexterm><primary>param</primary><secondary>css-links</secondary></indexterm> parameter is a space-separated list
-of CSS stylesheets. These stylesheets will be linked from the HTML document.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="p_date-date-format"><indexterm><primary>param</primary><secondary>date-date-format</secondary></indexterm><indexterm><primary>param</primary><secondary>date-dateTime-format</secondary></indexterm>
 <?db filename="p_date-date-format.html"?>
 <refmeta>
@@ -2882,6 +3089,28 @@ one that conforms to an ISO 8601 dateTime (“yyyy-mm-ddThh:mm:ss”)
 will be formatted with the <parameter>date-dateTime-format</parameter><indexterm><primary>param</primary><secondary>date-dateTime-format</secondary></indexterm>.
 </para>
 <para>See also <function>f:date-format</function>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_dc-metadata"><indexterm><primary>param</primary><secondary>dc-metadata</secondary></indexterm>
+<?db filename="p_dc-metadata.html"?>
+<refmeta>
+<refentrytitle>$dc-metadata</refentrytitle>
+<refmiscinfo>{}dc-metadata</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$dc-metadata</refname>
+<refpurpose>Output Dublin Core metadata?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, the
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element
+of each result document will contain
+<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> elements
+for Dublin Core metadata that can be derived from the source
+document.</para>
 </refsection>
 </refentry>
 
@@ -3092,10 +3321,13 @@ the CSS classes will be “<literal>float</literal>
 <para>If the stylesheets need to generate text (the names of labels
 such as “Chapter”, for example), they attempt to do so in the same
 language as the document. This is determined by finding the nearast
-in-scope <tag>xml:lang</tag> attribute from the context where the
+in-scope <tag class="attribute">xml:lang</tag> attribute from the context where the
 generated text is required.
 </para>
-<para>If there is no in-scope <tag class="attribute">xml:lang</tag> attribute, the
+<para>If there is no in-scope <tag class="attribute">xml:lang</tag> attribute,
+or if there is no localization available for the language
+specified,
+the
 <parameter>default-language</parameter><indexterm><primary>param</primary><secondary>default-language</secondary></indexterm> is used instead.</para>
 </refsection>
 </refentry>
@@ -3591,6 +3823,28 @@ stylesheet produces, that may be inconvenient. (Because selectors use
 “.” to separate element names from class values.)
 </para>
 </note>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_generator-metadata"><indexterm><primary>param</primary><secondary>generator-metadata</secondary></indexterm>
+<?db filename="p_generator-metadata.html"?>
+<refmeta>
+<refentrytitle>$generator-metadata</refentrytitle>
+<refmiscinfo>{}generator-metadata</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$generator-metadata</refname>
+<refpurpose>Output generator metadata?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, the
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element
+of each result document will contain a
+<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> element
+with the name <literal>generator</literal> that identifies the
+stylesheet and processor used to produce the result.</para>
 </refsection>
 </refentry>
 
@@ -4329,6 +4583,26 @@ as the person’s “middle” name. See <code role="template">t:person-name</co
 </refsection>
 </refentry>
 
+<refentry xml:id="p_output-media"><indexterm><primary>param</primary><secondary>output-media</secondary></indexterm>
+<?db filename="p_output-media.html"?>
+<refmeta>
+<refentrytitle>$output-media</refentrytitle>
+<refmiscinfo>{}output-media</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$output-media</refname>
+<refpurpose>The intended output media</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>output-media</parameter><indexterm><primary>param</primary><secondary>output-media</secondary></indexterm> parameter
+identifies the intended output medium, <literal>screen</literal> or
+<literal>print</literal>. It can be used to make conditional
+transformations.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_oxy-markup"><indexterm><primary>param</primary><secondary>oxy-markup</secondary></indexterm>
 <?db filename="p_oxy-markup.html"?>
 <refmeta>
@@ -4374,6 +4648,58 @@ element.</para>
 <title>Description</title>
 <para>If Oxygen change markup is rendered, this CSS file is added to the output
 for styling the added and deleted regions.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_page-style"><indexterm><primary>param</primary><secondary>page-style</secondary></indexterm>
+<?db filename="p_page-style.html"?>
+<refmeta>
+<refentrytitle>$page-style</refentrytitle>
+<refmiscinfo>{}page-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$page-style</refname>
+<refpurpose>Select the page style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This value selects the page style. The page style is reflected
+in the <tag class="attribute">class</tag> attribute on the root
+<tag namespace="http://www.w3.org/1999/xhtml">html</tag> element.
+It is then used by the CSS stylesheets.
+A page style of “<literal>value</literal>” will be added to 
+the class attribute as “<literal>value-style</literal>”.</para>
+
+<para>The CSS print stylesheets support two styles:
+<literal>article</literal> and <literal>book</literal>. The book style
+places new components on a right-hand page and adjusts the inner margin
+for binding.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_paper-size"><indexterm><primary>param</primary><secondary>paper-size</secondary></indexterm>
+<?db filename="p_paper-size.html"?>
+<refmeta>
+<refentrytitle>$paper-size</refentrytitle>
+<refmiscinfo>{}paper-size</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$paper-size</refname>
+<refpurpose>Select the paper style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This value selects the paper size. The paper size is reflected
+in the <tag class="attribute">class</tag> attribute on the root
+<tag namespace="http://www.w3.org/1999/xhtml">html</tag> element.
+It is then used by the CSS stylesheets.</para>
+
+<para>The CSS print stylesheets support three page sizes:
+<literal>A4</literal>, <literal>A5</literal>, and (US)
+<literal>Letter</literal>. Additional sizes can be implemented
+in CSS.</para>
 </refsection>
 </refentry>
 
@@ -5504,6 +5830,60 @@ formatting numbers. See <parameter>footnote-numeration</parameter><indexterm><pr
 </refsection>
 </refentry>
 
+<refentry xml:id="p_use-docbook-css"><indexterm><primary>param</primary><secondary>use-docbook-css</secondary></indexterm>
+<?db filename="p_use-docbook-css.html"?>
+<refmeta>
+<refentrytitle>$use-docbook-css</refentrytitle>
+<refmiscinfo>{}use-docbook-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$use-docbook-css</refname>
+<refpurpose>Create links to standard DocBook CSS stylesheets?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then the
+output will contain links to the standard DocBook CSS stylesheets:</para>
+
+<programlisting language="xml">&lt;link href="{$resource-base-uri}css/docbook.css"
+      rel="stylesheet"/&gt;
+&lt;link href="{$resource-base-uri}css/docbook-screen.css"
+      rel="stylesheet" media="screen"/&gt;
+&lt;link href="{$resource-base-uri}css/docbook-page-setup.css"
+      rel="stylesheet" media="print"/&gt;
+&lt;link href="{$resource-base-uri}css/docbook-paged.css"
+      rel="stylesheet" media="print"/&gt;</programlisting>
+
+<para>You can quickly disable all of these links by setting this
+parameter to false. There are a number of other stylesheets that
+are only conditionally included,
+see <parameter>verbatim-syntax-highlight-css</parameter><indexterm><primary>param</primary><secondary>verbatim-syntax-highlight-css</secondary></indexterm>,
+<parameter>persistent-toc-css</parameter><indexterm><primary>param</primary><secondary>persistent-toc-css</secondary></indexterm>, and
+<parameter>oxy-markup-css</parameter><indexterm><primary>param</primary><secondary>oxy-markup-css</secondary></indexterm>. User defined stylesheets
+are added with <parameter>user-css-links</parameter><indexterm><primary>param</primary><secondary>user-css-links</secondary></indexterm>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_user-css-links"><indexterm><primary>param</primary><secondary>user-css-links</secondary></indexterm>
+<?db filename="p_user-css-links.html"?>
+<refmeta>
+<refentrytitle>$user-css-links</refentrytitle>
+<refmiscinfo>{}user-css-links</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$user-css-links</refname>
+<refpurpose>A list of user-defined CSS stylesheets</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space separated list of CSS stylesheets.
+Each will be added to the output after the standard stylesheets.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_variablelist-termlength-threshold"><indexterm><primary>param</primary><secondary>variablelist-termlength-threshold</secondary></indexterm>
 <?db filename="p_variablelist-termlength-threshold.html"?>
 <refmeta>
@@ -6048,7 +6428,7 @@ differences in the results, causing tests to fail.</para>
 </refentry>
 
 </reference>
-<reference xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="variables">
+<reference version="5.0" xml:id="variables">
 <info>
   <?db filename="variables.html"?>
   <title>Variables reference</title>
@@ -6335,28 +6715,6 @@ footnote in a chunk is labeled “<superscript>5</superscript>”. If
 <varname>v:chunk-renumber-footnotes</varname><indexterm><primary>variable</primary><secondary>v:chunk-renumber-footnotes</secondary></indexterm> is true, the stylesheets
 will attempt to renumber footnotes in each chunk so that they begin at the
 first mark in each chunk.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="v_css-links"><indexterm><primary>variable</primary><secondary>css-links</secondary></indexterm>
-<?db filename="v_css-links.html"?>
-<refmeta>
-<refentrytitle>$v:css-links</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/variables}css-links</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$v:css-links</refname>
-<refpurpose>List of CSS stylesheets</refpurpose>
-<refclass>variable</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>The <varname>css-links</varname><indexterm><primary>variable</primary><secondary>css-links</secondary></indexterm> variable is a list of
-of CSS stylesheets. These stylesheets will be linked from the HTML document.</para>
-
-<para>This list is
-usually constructed from the <parameter>css-links</parameter><indexterm><primary>param</primary><secondary>css-links</secondary></indexterm> parameter.
-</para>
 </refsection>
 </refentry>
 
@@ -7595,7 +7953,7 @@ the process will continue.</para>
 </refentry>
 
 </reference>
-<reference xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="functions">
+<reference version="5.0" xml:id="functions">
 <info>
 <?db filename="functions.html"?>
 <title>Function reference</title>
@@ -7921,7 +8279,7 @@ imperial units makes me want to add them all!</para>
 <mediaobject>
 <alt>English imperial lengths</alt>
 <imageobject>
-<imagedata fileref="https://upload.wikimedia.org/wikipedia/commons/9/9e/English_Length_Units_Graph.svg"/>
+<imagedata fileref="media/English_Length_Units_Graph.svg"/>
 </imageobject>
 <textobject>
 <para>A graph showing the derivations of English imperial measurements: 12 inches
@@ -9648,7 +10006,7 @@ If the document is valid, the <literal>errors</literal> key will not be present.
 </refentry>
 
 </reference>
-<reference xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="templates">
+<reference version="5.0" xml:id="templates">
 <info>
   <?db filename="templates.html"?>
   <title>Template reference</title>
@@ -10349,7 +10707,7 @@ element with an <tag class="attribute">xlink:href</tag> attribute) and extended 
 </refentry>
 
 </reference>
-<reference xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="modes">
+<reference version="5.0" xml:id="modes">
 <info>
   <?db filename="modes.html"?>
   <title>Mode reference</title>
@@ -11944,7 +12302,7 @@ it is formatted in this mode to produce the entry in the list.
 </refentry>
 
 </reference>
-<reference xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="ref-pis">
+<reference version="5.0" xml:id="ref-pis">
 <info>
   <?db filename="pis.html"?>
   <title>Processing instruction reference</title>
@@ -12448,7 +12806,7 @@ recommend releasing these examples in parallel under your choice of
 free software license, such as the GNU General Public License,
 to permit their use in free software.</literallayout>
 </appendix>
-<glossary xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="glossary">
+<glossary version="5.0" xml:id="glossary">
 <?db filename="glossary.html"?>
 <title>Glossary</title>
 
@@ -12524,7 +12882,7 @@ is: “<literal>{http://docbook.org/ns/docbook}para</literal>”.</para>
 </glossentry>
 
 </glossary>
-<bibliography xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="references">
+<bibliography version="5.0" xml:id="references">
 <?db filename="references.html"?>
 <title>References</title>
 
@@ -12627,7 +12985,7 @@ Language (XSL) Version 1.1</citetitle>. Anders Berglund, Editor.
 W3C Recommendation. 5 December 2006.</bibliomixed>
 
 </bibliography>
-<acknowledgements xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="acknowledgements">
+<acknowledgements version="5.0" xml:id="acknowledgements">
 <?db filename="ackno.html"?>
 <title>Acknowledgements</title>
 
