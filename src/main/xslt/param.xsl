@@ -211,13 +211,17 @@
 
 <xsl:param name="resource-base-uri" select="'./'"/>
 
-<xsl:param name="css-links" select="'css/docbook.css css/docbook-screen.css'"/>
-<xsl:param name="verbatim-syntax-highlight-css" select="'css/pygments.css'"/>
+<xsl:param name="use-docbook-css" select="'true'"/>
+<xsl:param name="oxy-markup" select="'false'"/>
+
+<xsl:param name="verbatim-syntax-highlight-css"
+           select="'css/pygments.css'"/>
 <xsl:param name="persistent-toc-css"
            select="'css/docbook-toc.css'"/>
 <xsl:param name="oxy-markup-css"
            select="'css/oxy-markup.css'"/>
-<xsl:param name="oxy-markup" select="'false'"/>
+<xsl:param name="user-css-links"
+           select="()"/>
 
 <xsl:param name="annotations-js" select="'js/annotations.js'"/>
 <xsl:param name="xlink-js" select="'js/xlink.js'"/>
@@ -327,5 +331,8 @@
 
 <xsl:param name="dc-metadata" as="xs:string" select="'true'"/>
 <xsl:param name="generator-metadata" as="xs:string" select="'true'"/>
+
+<xsl:param name="paper-size" as="xs:string?" select="()"/>
+<xsl:param name="page-style" as="xs:string" select="'article'"/>
 
 </xsl:stylesheet>

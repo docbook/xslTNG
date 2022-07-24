@@ -122,16 +122,20 @@
 <xsl:template match="db:revision" mode="m:revhistory-list">
   <li>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:if test="db:revnumber">
-      <xsl:apply-templates select="db:revnumber"/>
-      <xsl:text>, </xsl:text>
-    </xsl:if>
-    <xsl:apply-templates select="db:date"/>
-    <xsl:for-each select="db:author|db:authorinitials">
-      <xsl:text>, </xsl:text>
-      <xsl:apply-templates select="."/>
-    </xsl:for-each>
-    <xsl:apply-templates select="db:revdescription|db:revremark"/>
+    <div class="revnumber">
+      <xsl:if test="db:revnumber">
+        <xsl:apply-templates select="db:revnumber"/>
+        <xsl:text>, </xsl:text>
+      </xsl:if>
+      <xsl:apply-templates select="db:date"/>
+      <xsl:for-each select="db:author|db:authorinitials">
+        <xsl:text>, </xsl:text>
+        <xsl:apply-templates select="."/>
+      </xsl:for-each>
+    </div>
+    <div class="description">
+      <xsl:apply-templates select="db:revdescription|db:revremark"/>
+    </div>
   </li>
 </xsl:template>
 
@@ -176,7 +180,7 @@
 
 <xsl:template match="db:sidebar">
   <xsl:element name="{if ($sidebar-as-aside) then 'aside' else 'div'}"
-               namespace="http://docbook.org/ns/docbook">
+               namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
     <xsl:apply-templates/>

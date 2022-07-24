@@ -23,6 +23,8 @@
 <xsl:key name="genid" match="*" use="generate-id(.)"/>
 <xsl:key name="targetptr" match="*" use="@targetptr"/>
 
+<xsl:param name="output-media" select="'screen'"/>
+
 <xsl:import href="param.xsl"/>
 <xsl:import href="parameter-maps.xsl"/>
 <xsl:import href="VERSION.xsl"/>

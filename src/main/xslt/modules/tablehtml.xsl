@@ -11,7 +11,7 @@
                 version="3.0">
 
 <xsl:template match="db:table[not(db:tgroup)]">
-  <figure class="{local-name(.)}">
+  <figure class="formalobject {local-name(.)}">
     <xsl:choose>
       <xsl:when test="@xml:id">
         <xsl:attribute name="id" select="@xml:id"/>
@@ -58,7 +58,7 @@
 </xsl:template>
 
 <xsl:template match="db:informaltable[not(db:tgroup)]">
-  <figure class="{local-name(.)}">
+  <figure class="informalobject {local-name(.)}">
     <xsl:if test="@xml:id">
       <xsl:attribute name="id" select="@xml:id"/>
     </xsl:if>
