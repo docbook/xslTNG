@@ -19,7 +19,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="appendix">
+          <article class="appendix component">
             <header>
               <h1>
                 <span class="label">Appendix<span class="sep"> </span></span>
@@ -46,7 +46,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="appendix" db-label="Boring">...</article>
+          <article class="appendix component" db-label="Boring">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -63,10 +63,10 @@
     </appendix>
   </x:context>
   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the status becomes a class">
-    <body class="home">
+    <body class="home draft">
         <nav class="top"/>
         <main>
-          <article class="appendix draft">...</article>
+          <article class="appendix component draft">...</article>
         </main>
         <nav class="bottom"/>
       </body>

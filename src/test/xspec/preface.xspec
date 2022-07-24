@@ -19,7 +19,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="preface">
+          <article class="component preface">
             <header>
               <h1>Preface</h1>
             </header>
@@ -44,7 +44,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="preface" db-label="Boring">...</article>
+          <article class="component preface" db-label="Boring">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -61,10 +61,10 @@
     </preface>
   </x:context>
   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the status becomes a class">
-    <body class="home">
+    <body class="home draft">
         <nav class="top"/>
         <main>
-          <article class="draft preface">...</article>
+          <article class="component draft preface">...</article>
         </main>
         <nav class="bottom"/>
       </body>

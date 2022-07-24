@@ -82,7 +82,7 @@
      <body class="home">
         <nav class="top"/>
          <main>
-           <div class="acknowledgements">...</div>
+           <div class="acknowledgements component">...</div>
          </main>
         <nav class="bottom"/>
        </body>
@@ -102,7 +102,7 @@
      <body class="home">
         <nav class="top"/>
          <main>
-           <div class="acknowledgements" db-label="Boring">...</div>
+           <div class="acknowledgements component" db-label="Boring">...</div>
          </main>
         <nav class="bottom"/>
        </body>
@@ -119,10 +119,10 @@
     </acknowledgements>
   </x:context>
   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the status becomes a class">
-     <body class="home">
+     <body class="home draft">
         <nav class="top"/>
          <main>
-           <div class="acknowledgements draft">...</div>
+           <div class="acknowledgements component draft">...</div>
          </main>
         <nav class="bottom"/>
        </body>

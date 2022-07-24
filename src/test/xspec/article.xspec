@@ -20,7 +20,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article">
+          <article class="article component">
             <header>
               <h1>Article title</h1>
             </header>
@@ -45,7 +45,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article faq">...</article>
+          <article class="article component faq">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -65,7 +65,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article journalarticle">...</article>
+          <article class="article component journalarticle">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -85,7 +85,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article productsheet">...</article>
+          <article class="article component productsheet">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -105,7 +105,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article specification">...</article>
+          <article class="article component specification">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -125,7 +125,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article techreport">...</article>
+          <article class="article component techreport">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -145,7 +145,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article whitepaper">...</article>
+          <article class="article component whitepaper">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -165,7 +165,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article otherclass testreport">...</article>
+          <article class="article component otherclass testreport">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -185,7 +185,7 @@
     <body class="home">
         <nav class="top"/>
         <main>
-          <article class="article" db-label="Boring">...</article>
+          <article class="article component" db-label="Boring">...</article>
         </main>
         <nav class="bottom"/>
       </body>
@@ -202,10 +202,10 @@
     </article>
   </x:context>
   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the status becomes a class">
-    <body class="home">
+    <body class="home draft">
         <nav class="top"/>
         <main>
-          <article class="article draft">...</article>
+          <article class="article component draft">...</article>
         </main>
         <nav class="bottom"/>
       </body>
