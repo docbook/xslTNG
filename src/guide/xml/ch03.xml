@@ -163,6 +163,67 @@ but I’m trying to keep the example simple.</para>
 
 </section>
 
+<section xml:id="managing-css">
+<title>Managing CSS stylesheets</title>
+
+<para>The HTML that the <citetitle>DocBook xslTNG</citetitle> stylesheet
+produce is intended to be clean, robust markup for styling with CSS.
+Exactly how you control which stylesheet links are produced has
+changed several times. The current scheme is this:</para>
+
+<orderedlist>
+<listitem>
+<para>If syntax highlighting is enabled, a link to the
+<parameter>verbatim-syntax-highlight-css</parameter> stylesheet is
+included.
+</para>
+</listitem>
+<listitem>
+<para>If <parameter>oxy-markup-css</parameter> <glossterm>is
+true</glossterm> and there is at least one processing instruction in
+the document that has a name that begins with <code>oxy_</code>,
+a link to the <parameter>oxy-markup-css</parameter> stylesheet
+is included.
+</para>
+</listitem>
+<listitem>
+<para>If <parameter>persistent-toc</parameter> <glossterm>is
+true</glossterm> 
+a link to the <parameter>persistent-toc-css</parameter> stylesheet
+is included.
+</para>
+</listitem>
+<listitem>
+<para>If <parameter>use-docbook-css</parameter> <glossterm>is true</glossterm>,
+links to the standard DocBook stylesheets are included. Those stylesheets
+are <filename>docbook.css</filename> (for all media),
+<filename>docbook-screen.css</filename> (for screen media), and
+<filename>docbook-page-setup.css</filename> and
+<filename>docbook-paged.css</filename> (for print media).
+</para>
+</listitem>
+<listitem>
+<para>The DocBook element that is the context element when the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> is being
+generated is processed in the <mode>m:html-head-links</mode> mode.
+By default, that template does nothing, but you can change that in
+a customization layer.</para>
+</listitem>
+<listitem>
+<para>If any CSS stylesheets are defined in
+<parameter>user-css-links</parameter>, they are included.
+</para>
+</listitem>
+<listitem>
+<para>The DocBook element that is the context element when the HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> is being
+generated is processed in the <mode>m:html-head-last</mode> mode.
+By default, that template does nothing, but you can change that in
+a customization layer.</para>
+</listitem>
+</orderedlist>
+</section>
+
 <section xml:id="different">
 <title>Creating something completely different</title>
 

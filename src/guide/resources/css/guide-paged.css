@@ -1,15 +1,23 @@
 /* Paged media style for the guide */
 
+:root {
+    --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
+    --body-family: "Noto Serif", "Times New Roman", serif, var(--symbol-fonts);
+    --title-family: "Noto Sans", "Helvetica", sans-serif, var(--symbol-fonts);
+    --mono-family: "B612 Mono", "Courier", monospace, var(--symbol-fonts);
+    font-family: var(--body-family);
+}
+
 @page title {
     size: A4;
     margin: 25mm;
-    @top-center: {
+    @top-center {
         content: "";
     }
-    @bottom-right: {
+    @bottom-right {
         content: "";
     }
-    @bottom-left: {
+    @bottom-left {
         content: "";
     }
 }
@@ -20,10 +28,10 @@
     margin-bottom: 25mm;
     margin-left: 30mm;
     margin-right: 20mm;
-    @top-center: {
+    @top-center {
         content: "DocBook xslTNG Reference";
     }
-    @bottom-right: {
+    @bottom-right {
         content: counter(page)
     }
     @footnote {
@@ -40,10 +48,10 @@
     margin-bottom: 25mm;
     margin-left: 20mm;
     margin-right: 30mm;
-    @top-center: {
+    @top-center {
         content: "DocBook xslTNG Reference";
     }
-    @bottom-left: {
+    @bottom-left {
         content: counter(page)
     }
     @footnote {
@@ -58,15 +66,6 @@
     /* These work on A4 paper ... */
     --header-height: 240mm;
     --fill-margin: 40mm;
-}
-
-body {
-    page: title;
-}
-
-.book > .list-of-titles {
-    page: main;
-    string-set: ComponentTitle "Table of Contents";
 }
 
 /* Don't force refentry elements onto an odd page */
@@ -131,3 +130,44 @@ header img {
 .a-detail div div {
     padding: 0.25em;
 }
+
+pre.screen {
+    page-break-before: avoid;
+}
+
+@page A4-book-refentry-flow {
+    size: A4;
+    @footnote {
+        float: bottom page;
+        border-top: thin solid black;
+        border-length: 30%;
+        padding-top: 0.5em;
+    }
+}
+
+@page A4-book-refentry-flow:right {
+    size: A4;
+    margin-left: var(--margin-inner);
+    margin-right: var(--margin-outer);
+
+    @bottom-right {
+        content: counter(page);
+    }
+}
+
+@page A4-book-refentry-flow:left {
+    size: A4;
+    margin-left: var(--margin-outer);
+    margin-right: var(--margin-inner);
+
+    @bottom-left {
+        content: counter(page);
+    }
+}
+
+/* Don't force refentrys onto right hand pages */
+html.book-style.A4 body .refentry {
+    break-before: page;
+    page: A4-book-refentry-flow;
+}
+

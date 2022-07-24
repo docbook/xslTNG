@@ -15,8 +15,10 @@
                 exclude-result-prefixes="a db f fg m mp map mg t tg xs"
                 version="3.0">
 
-<xsl:import href="../../../build/xslt/print.xsl"/>
-<xsl:import href="common.xsl"/>
+<xsl:import href="guide.xsl"/>
+<xsl:import href="../../../build/xslt/docbook-paged.xsl"/>
+
+<xsl:param name="output-media" select="'print'"/>
 
 <xsl:param name="annotate-toc" select="'false'"/>
 
@@ -25,13 +27,12 @@
 <xsl:template name="t:html-head">
 </xsl:template>
 
-<xsl:template match="*" mode="mp:html-head-last">
-  <xsl:variable name="page-style"
-                select="f:pi(/*/db:info, 'page-style', $page-style)"/>
-  <link rel="stylesheet" href="{$resource-base-uri}css/print.css"/>
-  <link rel="stylesheet" href="{$resource-base-uri}css/print-{$page-style}.css"/>
+<xsl:template match="*" mode="m:html-head-last">
+  <link rel="stylesheet" href="{$resource-base-uri}css/guide.css"/>
   <link rel="stylesheet" href="{$resource-base-uri}css/guide-paged.css"/>
 </xsl:template>
+
+<xsl:template match="*" mode="m:html-head-links"/>
 
 <xsl:template match="db:refnamediv" mode="m:docbook">
   <!-- The guide marks refname elements as display:none which means

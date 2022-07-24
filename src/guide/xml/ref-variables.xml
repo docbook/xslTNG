@@ -275,28 +275,6 @@ first mark in each chunk.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_css-links">
-<?db filename="v_css-links.html"?>
-<refmeta>
-<refentrytitle>$v:css-links</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/variables}css-links</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$v:css-links</refname>
-<refpurpose>List of CSS stylesheets</refpurpose>
-<refclass>variable</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>The <varname>css-links</varname> variable is a list of
-of CSS stylesheets. These stylesheets will be linked from the HTML document.</para>
-
-<para>This list is
-usually constructed from the <parameter>css-links</parameter> parameter.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR">
 <?db filename="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR.html"?>
 <refmeta>

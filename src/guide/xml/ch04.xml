@@ -191,7 +191,7 @@ title in the previous paragraph. The standard mechanisms would require that
 you either put an <att>xml:id</att> attribute on the element or point to the
 annotation from the element. With the XPath extension, you can do this:</para>
 
-<annotation annotates="xpath:preceding::db:para/db:citetitle"
+<annotation annotates="xpath:preceding-sibling::db:para/db:citetitle"
             xmlns:db="http://docbook.org/ns/docbook">
 <para>This annotation applies to the stylesheet title. For a discussion
 of this annotation, see the following paragraphs.
@@ -199,7 +199,7 @@ of this annotation, see the following paragraphs.
 </annotation>
 
 <programlisting><![CDATA[<annotation
-   annotates="xpath:preceding::db:para/db:citetitle"
+   annotates="xpath:preceding-sibling::db:para/db:citetitle"
    xmlns:db="http://docbook.org/ns/docbook">
 <para>This annotation applies to the stylesheet title.
 For a discussion of this annotation, see the

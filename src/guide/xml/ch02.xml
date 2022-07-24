@@ -121,7 +121,7 @@ which should look like <xref linkend="fig-sample"/>.
 <mediaobject>
 <alt>A rendering of the sample document</alt>
 <imageobject>
-<imagedata fileref="media/sample.png"/>
+<imagedata fileref="media/sample.png" width="5.0in"/>
 </imageobject>
 <textobject>
 <para>This is a rendering of the sample document. It consists of the
@@ -899,6 +899,17 @@ are focused on CSS for print output. There’s a customization layer
 that produces “paged-media-ready” HTML that can be processed with
 a CSS formatter such as <biblioref linkend="AntennaHouse"/>
 or <biblioref linkend="Prince"/>.</para>
+
+<para>To get print output, format your documents with the
+<filename>print.xsl</filename> stylesheet instead of the
+<filename>docbook.xsl</filename> stylesheet. The additional cleanup provided
+by <filename>print.xsl</filename> assures that footnotes, annotations, and
+other elements will appear in the right place, and with reasonable
+presentation, in the printed version.</para>
+
+<para>The resulting HTML document can be formatted directly with a
+CSS paged-media formatter.</para>
+
 </section>
 </chapter>
 

@@ -5,18 +5,14 @@ html {
     line-height: 1.5;
 }
 
-.book header .fill {
+.book > header .fill {
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
     min-height: 640px;
 }
 
-.book header {
-    padding-bottom: 1rem;
-}
-
-.book header {
+.book > header {
     display: table;
     padding: 0;
     border-left: none;
@@ -27,21 +23,25 @@ html {
     text-align: right;
 }
 
-.book header .cover {
+.book > header {
+    padding-bottom: 1rem;
+}
+
+.book > header .cover {
     display: table-row;
 }
 
-.book header .cover .image {
+.book > header .cover .image {
     display: table-cell;
     vertical-align: top;
 }
 
-.book header .cover .text {
+.book > header .cover .text {
     display: table-cell;
     vertical-align: top;
 }
 
-.book header h1 {
+.book > header h1 {
     text-align: right;
 }
 
@@ -181,6 +181,45 @@ div.copyrightfooter {
   font-size: 14px;
 }
 
+.revhistory {
+    background-color: var(--secondary-color);
+    border-radius: 0.5em;
+}
+
+.revhistory code {
+    background-color: inherit;
+    border-color: var(--primary-variant-color);
+}
+
+.revhistory header {
+    display: none;
+}
+
+.revhistory > ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.revnumber::before {
+    content: "Version ";
+}
+
+.revhistory ul li div.revnumber {
+    margin-left: 2rem;
+}
+
+.revhistory ul li div.revnumber {
+    text-indent: -1rem;
+}
+
+.revhistory ul li div.revnumber::before {
+    content: "• ";
+}
+
+.revhistory ul li div.revdescription {
+    margin-left: 1rem;
+}
+
 @media screen and (max-width: 374px) {
     .book header h1 {
         font-size: 2rem;
@@ -215,12 +254,12 @@ div.copyrightfooter {
         padding-right: 2rem;
     }
 
-    .book header {
+    .book > header {
         font-size: 1rem;
         line-height: 1.25;
     }
 
-    .book header h1 {
+    .book > header h1 {
         font-size: 2.5rem;
     }
         
@@ -228,7 +267,7 @@ div.copyrightfooter {
         max-height: 480px;
     }
 
-    .book header .fill {
+    .book > header .fill {
         min-height: 480px;
     }
 }
@@ -247,20 +286,20 @@ div.copyrightfooter {
         padding-right: 1rem;
     }
 
-    .book header {
+    .book > header {
         border: 2px solid #afafaf;
         padding: 1rem;
     }
 
-    .book header {
+    .book > header {
         text-align: left;
     }
 
-    .book header h1 {
+    .book > header h1 {
         text-align: left;
     }
 
-    .book header .fill {
+    .book > header .fill {
         min-height: inherit;
     }
 
@@ -268,3 +307,4 @@ div.copyrightfooter {
         display: none;
     }
 }
+
