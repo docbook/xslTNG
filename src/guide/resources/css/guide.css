@@ -42,7 +42,7 @@ h2 {
     width: 100%;
     font-size: 11pt;
     display: table;
-    border: 1px solid var(--border-grey);
+    border: 1px solid #afafaf;
 }
 
 .a-detail > div {
@@ -135,10 +135,15 @@ p .refpurpose-sep {
 }
 
 pre.border {
-    border: 1px solid var(--border-grey);
+    border: 1px solid #afafaf;
     border-radius: 4px;
-    overflow: scroll;
     width: 99%;
+}
+
+@media only screen {
+    pre.border {
+        overflow: scroll;
+    }
 }
 
 pre.border .line .ld {

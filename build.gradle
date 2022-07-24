@@ -287,7 +287,7 @@ task setupXsltExplorer(type: Download) {
 }
 
 task copyResources(type: Copy,
-                   dependsOn: ['copyTestMedia', 'makePrintCSS', 'zipStageResources',
+                   dependsOn: ['copyTestMedia', 'zipStageResources',
                                'zipStageMisc']) {
   from "${buildDir}/stage/zip/resources"
   into "${buildDir}/actual"
@@ -338,21 +338,6 @@ task copyDocker(type: Copy) {
         .replace("@@VERSION@@", xslTNGversion)
     }
     line
-  }
-}
-
-task makePrintCSS(type: Exec, dependsOn: ['copyTestMedia']) {
-  inputs.file("${projectDir}/src/main/web/css/docbook.css")
-  inputs.file("${projectDir}/src/main/web/css/docbook-paged.css")
-  inputs.file("${projectDir}/tools/flattencss.py")
-  outputs.file("${buildDir}/actual/css/print.css")
-  commandLine "python3", "${projectDir}/tools/flattencss.py",
-    "--version", xslTNGversion, "--title", xslTNGtitle,
-    "--source", "${projectDir}/src/main/web/css/docbook.css",
-    "--source", "${projectDir}/src/main/web/css/docbook-paged.css",
-    "--output", "${buildDir}/actual/css/print.css"
-  doFirst {
-    mkdir "${buildDir}/actual/css"
   }
 }
 
@@ -1049,7 +1034,7 @@ task makeXslt(type: Copy,
   into "${buildDir}/xslt"
 }
 
-task makeUriList(dependsOn: ["makeXslt","zipStageResources","zipStagePrintCSS","zipStageDocker",
+task makeUriList(dependsOn: ["makeXslt","zipStageResources","zipStageDocker",
                              "zipStageXslt", "zipStageBin"]) {
   inputs.files fileTree("${buildDir}/xslt")
   inputs.files fileTree("${buildDir}/stage/zip")
@@ -1201,21 +1186,7 @@ task zipStageResources(type: Copy, dependsOn: ["zipStagePygments"]) {
   }
 }
 
-task zipStagePrintCSS(type: Copy, dependsOn: ['makePrintCSS']) {
-  from "${buildDir}/actual"
-  include "css/print.css"
-  into "${buildDir}/stage/zip/resources"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
-    }
-    line
-  }
-}
-
-task zipStageSamples(dependsOn: ["zipStageResources", "zipStagePrintCSS"]) {
+task zipStageSamples(dependsOn: ["zipStageResources"]) {
   doLast {
     copy {
       from "${buildDir}/stage/zip/resources"
@@ -1341,25 +1312,6 @@ task guideCustomResources(type: Copy) {
   into "${buildDir}/guide/"
 }
 
-task guidePrintCSS(type: Exec, dependsOn: ['guideDocBookResources']) {
-  inputs.file("${projectDir}/src/main/web/css/docbook.css")
-  inputs.file("${projectDir}/src/main/web/css/docbook-paged.css")
-  inputs.file("${projectDir}/src/guide/resources/css/guide.css")
-  inputs.file("${projectDir}/src/guide/resources/css/guide-paged.css")
-  inputs.file("${projectDir}/tools/flattencss.py")
-  outputs.file("${buildDir}/guide/css/print.css")
-  commandLine "python3", "${projectDir}/tools/flattencss.py",
-    "--version", xslTNGversion, "--title", xslTNGtitle,
-    "--source", "${projectDir}/src/main/web/css/docbook.css",
-    "--source", "${projectDir}/src/main/web/css/docbook-paged.css",
-    "--source", "${projectDir}/src/guide/resources/css/guide.css",
-    "--source", "${projectDir}/src/guide/resources/css/guide-paged.css",
-    "--output", "${buildDir}/guide/css/print.css"
-  doFirst {
-    mkdir "${buildDir}/guide/css"
-  }
-}
-
 task xincludeGuide(type: SaxonXsltTask, dependsOn: ['guideResources']) {
   inputs.files fileTree(dir: "${projectDir}/src/guide/xml")
   inputs.file "${projectDir}/tools/xinclude.xsl"
@@ -1383,8 +1335,13 @@ task validateGuide(type: RelaxNGValidateTask, dependsOn: ['copyGuide']) {
   output "${buildDir}/guide/validated.xml"
 }
 
-task guide(type: SaxonXsltTask, dependsOn: ['makeXslt', 'validateGuide', 'explorer']) {
+task guide(
+  type: SaxonXsltTask,
+  dependsOn: ['makeXslt', 'validateGuide', 'explorer']
+) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/xml")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
   inputs.file("${buildDir}/docbook-xslTNG.xml")
   outputs.file("${buildDir}/guide/index.html")
 
@@ -1404,11 +1361,15 @@ task guide(type: SaxonXsltTask, dependsOn: ['makeXslt', 'validateGuide', 'explor
   )
 }
 
-task "guide.pdf.html"(type: SaxonXsltTask, dependsOn: ['makeXslt', 'validateGuide', 'explorer']) {
+task "guide.pdf.html"(
+  type: SaxonXsltTask,
+  dependsOn: ['makeXslt', 'validateGuide', 'explorer']
+) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
   inputs.file "${buildDir}/docbook-xslTNG.xml"
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
 
+  pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/print.xsl"
   output "${buildDir}/guide/guide.pdf.html"
@@ -1419,12 +1380,13 @@ task "guide.pdf.html"(type: SaxonXsltTask, dependsOn: ['makeXslt', 'validateGuid
     'mediaobject-input-base-uri': "file:${buildDir}/src/guide/resources/",
     'mediaobject-output-base-uri': './',
     'profile-outputformat': 'print',
+    'page-style': 'book',
     'resource-base-uri': ''
   )
 }
 
 if (pdftool == "prince") {
-  task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html", 'guidePrintCSS']) {
+  task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html"]) {
     inputs.file("${buildDir}/guide/guide.pdf.html")
     inputs.files fileTree(dir: "${buildDir}/guide/css")
     outputs.file("${buildDir}/guide/guide.pdf")
@@ -1433,7 +1395,7 @@ if (pdftool == "prince") {
       "-o", "${buildDir}/guide/guide.pdf"
   }
 } else {
-  task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html", 'guidePrintCSS']) {
+  task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html"]) {
     inputs.file("${buildDir}/guide/guide.pdf.html")
     inputs.files fileTree(dir: "${buildDir}/guide/css")
     outputs.file("${buildDir}/guide/guide.pdf")

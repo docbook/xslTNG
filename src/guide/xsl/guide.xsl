@@ -16,6 +16,7 @@
 
 <!-- ============================================================ -->
 
+<xsl:param name="refentry-generate-name" select="false()"/>
 <xsl:param name="chunk-nav" select="'true'"/>
 
 <xsl:param name="persistent-toc" select="'true'"/>

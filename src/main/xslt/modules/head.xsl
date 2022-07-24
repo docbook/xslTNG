@@ -8,10 +8,11 @@
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f h m mp t tp v xs"
+                exclude-result-prefixes="db f h m mp t tp v vp xs"
                 version="3.0">
 
 <xsl:template match="*" mode="m:html-head" as="element(h:head)">
@@ -41,14 +42,11 @@
 
     <xsl:if test="exists($v:verbatim-syntax-highlight-languages)
                   and normalize-space($verbatim-syntax-highlight-css) != ''">
-      <link rel="stylesheet" href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
+      <link rel="stylesheet"
+            href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
     </xsl:if>
 
-    <xsl:apply-templates select="." mode="mp:html-head"/>
-
-    <xsl:for-each select="$v:css-links">
-      <link rel="stylesheet" href="{$resource-base-uri}{.}"/>
-    </xsl:for-each>
+    <xsl:apply-templates select="." mode="mp:html-head-meta"/>
 
     <xsl:if test="exists($oxy-markup-css)
                   and //processing-instruction()[starts-with(name(), 'oxy_')]">
@@ -57,8 +55,14 @@
 
     <xsl:apply-templates select="." mode="mp:html-head-script"/>
     <xsl:apply-templates select="." mode="m:html-head-script"/>
+    <xsl:apply-templates select="." mode="mp:html-head-links"/>
     <xsl:apply-templates select="." mode="m:html-head-links"/>
     <xsl:apply-templates select="h:*" mode="m:html-head"/>
+
+    <xsl:for-each select="$vp:user-css-links">
+      <link rel="stylesheet" href="{$resource-base-uri}{.}"/>
+    </xsl:for-each>
+
     <xsl:apply-templates select="." mode="m:html-head-last"/>
   </head>
 </xsl:template>
@@ -104,46 +108,46 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="*" mode="mp:html-head">
+<xsl:template match="*" mode="mp:html-head-meta">
   <xsl:variable name="Z" select="xs:dayTimeDuration('PT0H')"/>
 
- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
- <xsl:if test="f:is-true($dc-metadata)">
-   <link rel="schema.dc" href="https://purl.org/dc/elements/1.1/"/>
-   <meta name="dc.modified"
-         content="{format-dateTime(
-                     adjust-dateTime-to-timezone(current-dateTime(), $Z),
-                     '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z')}"/>
-   <xsl:choose>
-     <xsl:when test="empty(/*/db:info/db:pubdate)"/>
-     <xsl:when test="/*/db:info/db:pubdate/string() castable as xs:dateTime">
-       <xsl:variable name="date"
-                     select="xs:dateTime(/*/db:info/db:pubdate/string())"/>
-       <meta name="dc.created"
-             content="{format-dateTime(
-                        adjust-dateTime-to-timezone($date, $Z),
-                        '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z')}"/>
-     </xsl:when>
-     <xsl:when test="/*/db:info/db:pubdate/string() castable as xs:date">
-       <xsl:variable name="date"
-                     select="xs:date(/*/db:info/db:pubdate/string())"/>
-       <meta name="dc.created"
-             content="{format-date($date, '[Y0001]-[M01]-[D01]')}"/>
-     </xsl:when>
-     <xsl:otherwise>
-       <meta name="dc.created" content="{string(/*/db:info/db:pubdate)}"/>
-     </xsl:otherwise>
-   </xsl:choose>
- </xsl:if>
+  <xsl:if test="f:is-true($dc-metadata)">
+    <link rel="schema.dc" href="https://purl.org/dc/elements/1.1/"/>
+    <meta name="dc.modified"
+          content="{format-dateTime(
+                      adjust-dateTime-to-timezone(current-dateTime(), $Z),
+                      '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z')}"/>
+    <xsl:choose>
+      <xsl:when test="empty(/*/db:info/db:pubdate)"/>
+      <xsl:when test="/*/db:info/db:pubdate/string() castable as xs:dateTime">
+        <xsl:variable name="date"
+                      select="xs:dateTime(/*/db:info/db:pubdate/string())"/>
+        <meta name="dc.created"
+              content="{format-dateTime(
+                         adjust-dateTime-to-timezone($date, $Z),
+                         '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z')}"/>
+      </xsl:when>
+      <xsl:when test="/*/db:info/db:pubdate/string() castable as xs:date">
+        <xsl:variable name="date"
+                      select="xs:date(/*/db:info/db:pubdate/string())"/>
+        <meta name="dc.created"
+              content="{format-date($date, '[Y0001]-[M01]-[D01]')}"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <meta name="dc.created" content="{string(/*/db:info/db:pubdate)}"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
 
- <xsl:if test="f:is-true($generator-metadata)">
-   <meta name="generator"
-         content="{'DocBook xslTNG version ' || $v:VERSION
-                   || ' / ' || $v:VERSION-ID
-                   || ' / ' || system-property('xsl:product-name')
-                   || ' ' || system-property('xsl:product-version')}"/>
- </xsl:if>
+  <xsl:if test="f:is-true($generator-metadata)">
+    <meta name="generator"
+          content="{'DocBook xslTNG version ' || $v:VERSION
+                    || ' / ' || $v:VERSION-ID
+                    || ' / ' || system-property('xsl:product-name')
+                    || ' ' || system-property('xsl:product-version')}"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="*" mode="mp:html-head-script">
@@ -169,6 +173,19 @@
 </xsl:template>
 
 <xsl:template match="*" mode="m:html-head-script">
+</xsl:template>
+
+<xsl:template match="*" mode="mp:html-head-links">
+  <xsl:if test="f:is-true($use-docbook-css)">
+    <link href="{$resource-base-uri}css/docbook.css"
+          rel="stylesheet"/>
+    <link href="{$resource-base-uri}css/docbook-screen.css"
+          rel="stylesheet" media="screen"/>
+    <link href="{$resource-base-uri}css/docbook-page-setup.css"
+          rel="stylesheet" media="print"/>
+    <link href="{$resource-base-uri}css/docbook-paged.css"
+          rel="stylesheet" media="print"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="*" mode="m:html-head-links">

@@ -107,6 +107,9 @@
             <xsl:text>Updated: </xsl:text>
             <xsl:apply-templates select="db:info/db:pubdate"/>
           </div>
+          <xsl:if test="$output-media = 'print'">
+            <xsl:apply-templates select="db:info/db:revhistory"/>
+          </xsl:if>
           <p class="copyright">
             <a href="copyright.html">Copyright</a>
             <xsl:text> &#xA9; </xsl:text>
@@ -123,6 +126,12 @@
       </div>
     </div>
   </header>
+  <xsl:if test="$output-media = 'screen'">
+    <details>
+      <summary>Revision history</summary>
+      <xsl:apply-templates select="db:info/db:revhistory"/>
+    </details>
+  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->

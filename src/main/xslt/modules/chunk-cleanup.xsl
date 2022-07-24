@@ -39,6 +39,8 @@
 </xsl:template>
 
 <xsl:template match="*[@db-chunk]" priority="10">
+  <xsl:param name="docbook" as="document-node()" tunnel="yes"/>
+
   <xsl:variable name="self" select="."/>
 
   <!-- Saxonica bug #4632 -->
@@ -84,8 +86,8 @@
   <xsl:variable name="rbu" select="fp:root-base-uri(.)"/>
   <xsl:variable name="cbu" select="fp:chunk-output-filename(.)"/>
 
-  <!-- class=no-js is a hook for setting CSS styles when js isn't available,
-       see the script element a few lines below -->
+  <!-- class=no-js is a hook for setting CSS styles when js isn't
+       available; see the script element a few lines below. -->
   <html class="no-js" db-chunk="{fp:chunk-output-filename(.)}">
     <xsl:if test="normalize-space($default-theme) ne ''">
       <xsl:attribute name="class" select="$default-theme"/>
@@ -135,8 +137,15 @@
       </xsl:if>
     </head>
     <body>
-      <xsl:if test="parent::h:html">
-        <xsl:attribute name="class" select="'home'"/>
+      <xsl:variable name="class-list" as="xs:string*">
+        <xsl:if test="parent::h:html">
+          <xsl:sequence select="'home'"/>
+        </xsl:if>
+        <xsl:sequence select="$docbook/*/@status/string()"/>
+      </xsl:variable>
+      <xsl:if test="exists($class-list)">
+        <xsl:attribute name="class"
+                       select="normalize-space(string-join($class-list, ' '))"/>
       </xsl:if>
       <nav class="top">
         <xsl:if test="exists($chunk)

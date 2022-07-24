@@ -103,8 +103,8 @@
 <xsl:variable name="v:arg-rep-def-str"><xsl:text></xsl:text></xsl:variable>
 <xsl:variable name="v:arg-or-sep"><span class="cmdpunct"> | </span></xsl:variable>
 
-<xsl:variable name="v:css-links"
-              select="tokenize($css-links, '\s+') ! normalize-space(.)"/>
+<xsl:variable name="vp:user-css-links"
+              select="tokenize(normalize-space($user-css-links), '\s+')"/>
 
 <xsl:variable name="v:chunk-renumber-footnotes" as="xs:boolean"
               select="f:is-true($chunk-renumber-footnotes)"/>
@@ -222,14 +222,14 @@
 
 <xsl:variable name="v:highlight-js-head-elements" as="element()*">
   <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css" />
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+        href="{$resource-base-uri}css/highlight-11.6.0.min.css" />
+  <script src="{$resource-base-uri}js/highlight-11.6.0.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </xsl:variable>
 
 <xsl:variable name="v:prism-js-head-elements" as="element()*">
-  <link rel="stylesheet" href="css/prism.css"/>
-  <script src="js/prism.js"></script>
+  <link rel="stylesheet" href="{$resource-base-uri}css/prism.css"/>
+  <script src="{$resource-base-uri}js/prism.js"></script>
 </xsl:variable>
 
 </xsl:stylesheet>

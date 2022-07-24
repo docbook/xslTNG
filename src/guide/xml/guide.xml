@@ -1,4 +1,5 @@
 <book xmlns='http://docbook.org/ns/docbook'
+      xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:xi='http://www.w3.org/2001/XInclude'>
 <?db filename="index.html" navigation="false"?>
 <info>
@@ -11,9 +12,127 @@
 </author>
 <releaseinfo role="icon">https://docbook.org/graphics/defguide-icon16.png</releaseinfo>
 <pubdate/>
+<revhistory>
+  <?db revhistory-style="list"?>
+  <revision>
+    <revnumber>1.8.0</revnumber>
+    <date>2022-07-24</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Reworked CSS. The CSS stylesheets, especially the
+          stylesheets related to print output, have been updated and
+          the mechanism by which CSS links are added to the output
+          <link linkend="managing-css">has changed</link>.
+          </para>
+          <para>The <literal>$css-links</literal> parameter no longer
+          exists (nor does the corresponding
+          <literal>$v:css-links</literal> variable). It has been
+          replaced by the <parameter>user-css-links</parameter> and
+          <parameter>use-docbook-css</parameter> parameters.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Added an <parameter>output-media</parameter> parameter
+          to allow conditional behavior based on output medium (screen
+          or print).
+          </para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>page-style</parameter> and
+          <parameter>paper-size</parameter> parameters for controlling
+          aspects of print output.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Some class attribute values have been changed.</para>
+          <itemizedlist>
+            <listitem>
+              <para>The page style, page size, and “draft” classes are
+              now reflected on the top-level <tag
+              namespace="http://www.w3.org/1999/xhtml">html</tag>
+              element.</para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>division</literal>” is
+              added to
+              <tag>book</tag>,
+              <tag>part</tag>, and
+              <tag>reference</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>component</literal>” is
+              added to
+              <tag>acknowledgements</tag>,
+              <tag>appendix</tag>,
+              <tag>article</tag>,
+              <tag>bibliography</tag>,
+              <tag>chapter</tag>,
+              <tag>colophon</tag>,
+              <tag>dedication</tag>,
+              <tag>glossary</tag>,
+              <tag>index</tag>,
+              <tag>partintro</tag>,
+              <tag>preface</tag>, and
+              <tag>refentry</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>formalobject</literal>” is
+              added to
+              <tag>equation</tag>,
+              <tag>example</tag>,
+              <tag>figure</tag>,
+              <tag>formalgroup</tag>, and
+              <tag>table</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value
+              “<literal>informalobject</literal>” is
+              added to
+              <tag>informalequation</tag>,
+              <tag>informalexample</tag>,
+              <tag>informalfigure</tag>, and
+              <tag>informaltable</tag> elements.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>There is now CSS support for adding a “draft” watermark
+          to documents with a draft status (for both screen and print
+          renderings).
+          </para>
+        </listitem>
+        <listitem>
+          <para>An extra wrapper has been added to the content of
+          <tag>revision</tag> in a <tag>revhistory</tag>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>A bug has been fixed where <tag>sidebar</tag> was
+          accidentally being rendered in the DocBook namespace.
+          </para>
+        </listitem>
+        <listitem>
+          <para><link xlink:href="https://prismjs.com/">Prism</link> highlighting
+          has been updated to version 1.28.0.</para>
+        </listitem>
+        <listitem>
+          <para><link xlink:href="https://highlightjs.org/">Highlight.js</link>
+          highlighting has been updated to version 11.6.0 and is now part
+          of the distribution rather than relying on CDN access.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+</revhistory>
 <legalnotice>
 <literallayout><citetitle>DocBook xslTNG</citetitle>
-Copyright © 2020 Norman Walsh.
+Copyright © 2020–2022 Norman Walsh.
 All Rights Reserved.</literallayout>
 
 <para>Permission is granted to copy, distribute and/or modify this
@@ -38,6 +157,8 @@ contained herein.</para>
 
 <copyright>
 <year>2020</year>
+<year>2021</year>
+<year>2022</year>
 <holder>Norman Walsh</holder>
 </copyright>
 </info>

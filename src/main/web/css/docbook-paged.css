@@ -3,62 +3,32 @@
  * This is docbook-paged.css.
  *
  * See https://xsltng.docbook.org/
- *
- * This stylesheet should be followed by the stylesheet for the particular
- * presentation style: paper, book, etc.
- *
  */
-
-@page {
-    size: A4;
-    margin: 1in;
-    counter-reset: footnote;
-}
-
-@page title {
-    @top-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-    @bottom-left {
-        content: "";
-    }
-}
-
-@page normal-flow {
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page normal-flow:blank {
-    @top-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-    @bottom-left {
-        content: "";
-    }
-}
-
-html {
-    page: normal-flow;
-}
 
 .book > header {
     padding: 0;
     border: inherit;
 }
 
-h1, h2 {
-    string-set: ComponentTitle content()
+.division > header > h1,
+.component > header > h1 {
+    string-set: DocumentTitle content(),
+                DivisionTitle content(),
+                ComponentTitle content();
+}
+
+.division > header > h2 {
+    string-set: DivisionTitle content();
+}
+
+.component > header > h2 {
+    string-set: ComponentTitle content();
+}
+
+.section > header > h1,
+.section > header > h2,
+.section > header > h3 {
+    string-set: SectionTitle content();
 }
 
 header {
@@ -69,10 +39,6 @@ header {
     page-break-before: avoid;
 }
 
-.book .list-of-titles {
-    counter-reset: page;
-}
-
 .book .lot {
     margin-top: 1em;
 }
@@ -81,13 +47,9 @@ header {
     display: none;
 }
 
-/* ============================================================ */
-
 .toc a::after {
     content: leader(dotted) " " target-counter(attr(href url), page);
 }
-
-/* ============================================================ */
 
 .footnote {
     float: footnote;
@@ -97,13 +59,9 @@ header {
     font-family: "Noto Serif", serif, "Arial Unicode";
 }
 
-/* ============================================================ */
-
 .indexref::before {
     content: target-counter(attr(href url), page);
 }
-
-/* ============================================================ */
 
 details {
     display: none;
@@ -155,7 +113,50 @@ span.error.broken-link::after {
     content: " (" attr(href) ")";
 }
 
+
+.admonition {
+    background-color: inherit;
+    page-break-inside: avoid;
+} 
+
+.admonition .icon {
+    color: inherit;
+}    
+
+.admonition .icon {
+    padding-top: 3.5rem;
+}
+
+body > header .copyright {
+    float: bottom;
+}
+
+.article > header .abstract {
+    margin-left: 1em;
+    margin-right: 1em;
+    font-style: italic;
+    border: none;
+}
+
+body.draft {
+    background-image: none;
+}
+
 /* Work around bug in AntennaHouse V7.0 MR2 for MacOSX */
 span.footnote p {
     margin-bottom: 0pt;
+}
+
+/* ============================================================ */
+
+.book-style .component > header {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.book-style .component > header h1,
+.book-style .component > header h2,
+.book-style .component > header h3 {
+    padding-top: 0;
+    margin-top: 0;
 }

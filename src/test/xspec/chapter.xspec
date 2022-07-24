@@ -19,7 +19,7 @@
      <body class="home">
         <nav class="top"/>
          <main>
-           <article class="chapter">
+           <article class="chapter component">
              <header>
                <h1>
                  <span class="label">Chapter<span class="sep"> </span></span>
@@ -47,7 +47,7 @@
      <body class="home">
         <nav class="top"/>
          <main>
-           <article class="chapter" db-label="Boring">...</article>
+           <article class="chapter component" db-label="Boring">...</article>
          </main>
         <nav class="bottom"/>
        </body>
@@ -64,10 +64,10 @@
     </chapter>
   </x:context>
   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the status becomes a class">
-    <body class="home">
+    <body class="home draft">
         <nav class="top"/>
         <main>
-          <article class="chapter draft">...</article>
+          <article class="chapter component draft">...</article>
         </main>
         <nav class="bottom"/>
       </body>

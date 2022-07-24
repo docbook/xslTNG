@@ -828,24 +828,6 @@ and <varname>copyright-collapse-years</varname>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="p_css-links">
-<?db filename="p_css-links.html"?>
-<refmeta>
-<refentrytitle>$css-links</refentrytitle>
-<refmiscinfo>{}css-links</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$css-links</refname>
-<refpurpose>List of CSS stylesheets</refpurpose>
-<refclass>param</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>The <parameter>css-links</parameter> parameter is a space-separated list
-of CSS stylesheets. These stylesheets will be linked from the HTML document.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="p_date-date-format">
 <?db filename="p_date-date-format.html"?>
 <refmeta>
@@ -2316,6 +2298,26 @@ as the person’s “middle” name. See <template>t:person-name</template>.</pa
 </refsection>
 </refentry>
 
+<refentry xml:id="p_output-media">
+<?db filename="p_output-media.html"?>
+<refmeta>
+<refentrytitle>$output-media</refentrytitle>
+<refmiscinfo>{}output-media</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$output-media</refname>
+<refpurpose>The intended output media</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>output-media</parameter> parameter
+identifies the intended output medium, <literal>screen</literal> or
+<literal>print</literal>. It can be used to make conditional
+transformations.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_oxy-markup">
 <?db filename="p_oxy-markup.html"?>
 <refmeta>
@@ -2361,6 +2363,58 @@ element.</para>
 <title>Description</title>
 <para>If Oxygen change markup is rendered, this CSS file is added to the output
 for styling the added and deleted regions.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_page-style">
+<?db filename="p_page-style.html"?>
+<refmeta>
+<refentrytitle>$page-style</refentrytitle>
+<refmiscinfo>{}page-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$page-style</refname>
+<refpurpose>Select the page style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This value selects the page style. The page style is reflected
+in the <att>class</att> attribute on the root
+<tag namespace="http://www.w3.org/1999/xhtml">html</tag> element.
+It is then used by the CSS stylesheets.
+A page style of “<literal>value</literal>” will be added to 
+the class attribute as “<literal>value-style</literal>”.</para>
+
+<para>The CSS print stylesheets support two styles:
+<literal>article</literal> and <literal>book</literal>. The book style
+places new components on a right-hand page and adjusts the inner margin
+for binding.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_paper-size">
+<?db filename="p_paper-size.html"?>
+<refmeta>
+<refentrytitle>$paper-size</refentrytitle>
+<refmiscinfo>{}paper-size</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$paper-size</refname>
+<refpurpose>Select the paper style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This value selects the paper size. The paper size is reflected
+in the <att>class</att> attribute on the root
+<tag namespace="http://www.w3.org/1999/xhtml">html</tag> element.
+It is then used by the CSS stylesheets.</para>
+
+<para>The CSS print stylesheets support three page sizes:
+<literal>A4</literal>, <literal>A5</literal>, and (US)
+<literal>Letter</literal>. Additional sizes can be implemented
+in CSS.</para>
 </refsection>
 </refentry>
 
@@ -3442,6 +3496,60 @@ the list, the last symbol in the list must be a character suitable for
 formatting numbers. See <parameter>footnote-numeration</parameter>.
 </para>
 <para>Footnote number begins with the first symbol in each table.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_use-docbook-css">
+<?db filename="p_use-docbook-css.html"?>
+<refmeta>
+<refentrytitle>$use-docbook-css</refentrytitle>
+<refmiscinfo>{}use-docbook-css</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$use-docbook-css</refname>
+<refpurpose>Create links to standard DocBook CSS stylesheets?</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then the
+output will contain links to the standard DocBook CSS stylesheets:</para>
+
+<programlisting language="xml"><![CDATA[<link href="{$resource-base-uri}css/docbook.css"
+      rel="stylesheet"/>
+<link href="{$resource-base-uri}css/docbook-screen.css"
+      rel="stylesheet" media="screen"/>
+<link href="{$resource-base-uri}css/docbook-page-setup.css"
+      rel="stylesheet" media="print"/>
+<link href="{$resource-base-uri}css/docbook-paged.css"
+      rel="stylesheet" media="print"/>]]></programlisting>
+
+<para>You can quickly disable all of these links by setting this
+parameter to false. There are a number of other stylesheets that
+are only conditionally included,
+see <parameter>verbatim-syntax-highlight-css</parameter>,
+<parameter>persistent-toc-css</parameter>, and
+<parameter>oxy-markup-css</parameter>. User defined stylesheets
+are added with <parameter>user-css-links</parameter>.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_user-css-links">
+<?db filename="p_user-css-links.html"?>
+<refmeta>
+<refentrytitle>$user-css-links</refentrytitle>
+<refmiscinfo>{}user-css-links</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$user-css-links</refname>
+<refpurpose>A list of user-defined CSS stylesheets</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space separated list of CSS stylesheets.
+Each will be added to the output after the standard stylesheets.</para>
 </refsection>
 </refentry>
 

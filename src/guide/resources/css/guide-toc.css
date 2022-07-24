@@ -1,6 +1,6 @@
 /* @@TITLE@@ version @@VERSION@@
  *
- * This is docbook-toc.css.
+ * This is guide-toc.css.
  *
  * See https://xsltng.docbook.org/
  *
@@ -33,7 +33,6 @@ nav.toc {
     z-index: 2;
     top: 0;
     right: 0;
-    overflow-x: scroll;
     transition: 0.25s;
     background-color: rgb(114,105,155);
     padding: 0;
@@ -41,6 +40,12 @@ nav.toc {
     font-size: 12pt;
     opacity: 1;
     padding-left: 0;
+}
+
+@media only screen {
+    nav.toc {
+        overflow-x: scroll;
+    }
 }
 
 nav.toc header {
@@ -57,8 +62,13 @@ nav.toc header .close {
 }
 
 nav.toc div {
-    overflow: scroll;
     height: calc(100% - 40px);
+}
+
+@media only screen {
+    nav.toc div {
+        overflow: scroll;
+    }
 }
 
 nav.toc a,
