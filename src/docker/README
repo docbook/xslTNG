@@ -7,13 +7,13 @@ xslTNG stylesheets from your local environment.
 1. Build the docker image. In this directory, run the docker build
    command:
 
-   docker build -t docbook-xslt .
+   docker build -t docbook-xsltng .
 
    The "-t" option provides a tag for the image; you can make this
    anything you want. There's a VERSION build argument if you want
    to build a particular release. For example,
 
-   docker build --build-arg VERSION=0.9.14 -t docbook-xslt .
+   docker build --build-arg VERSION=0.9.14 -t docbook-xsltng .
 
    will build a Docker image for the 0.9.14 release of the stylesheets
    irrespective of the version in the Dockerfile.
