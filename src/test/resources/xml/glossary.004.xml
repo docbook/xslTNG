@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.0">
+   <title>Article wrapper</title>
+   <para>This unit test is in response to
+   <link xlink:href="https://github.com/docbook/xslTNG/issues/171">issue 171</link>.</para>
+   <glossary>
+      <glossentry>
+         <glossterm>test1</glossterm>
+         <glossdef>
+            <para>First definition</para>
+         </glossdef>
+      </glossentry>
+      <glossentry>
+         <glossterm>test2</glossterm>
+         <glossdef>
+            <para>First definition</para>
+         </glossdef>
+         <glossdef>
+            <para>Second definition</para>
+         </glossdef>
+      </glossentry>
+      <glossentry sortas="thing, first">
+         <glossterm>first thing</glossterm>
+         <acronym>FT</acronym>
+         <abbrev>fthing</abbrev>
+         <glossdef>
+            <para>Alphabetically first entry</para>
+         </glossdef>
+      </glossentry>
+      <glossentry xml:id="fifo">
+         <glossterm>First-in First-out</glossterm>
+         <acronym>FIFO</acronym>
+         <glossdef>
+            <para>Alphabetically second entry</para>
+         </glossdef>
+      </glossentry>
+   </glossary>
+</article>

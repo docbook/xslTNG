@@ -27,7 +27,7 @@
       <xsl:choose>
         <xsl:when test="$glossary-sort-entries">
           <xsl:apply-templates select="db:glossentry">
-            <xsl:sort select="(@sortas, normalize-space(db:glossterm[1]))"
+            <xsl:sort select="(@sortas, normalize-space(db:glossterm[1]))[1]"
                       collation="{$sort-collation}"/>
           </xsl:apply-templates>
         </xsl:when>
