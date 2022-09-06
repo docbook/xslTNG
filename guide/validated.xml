@@ -13,6 +13,28 @@
 <revhistory>
   <?db revhistory-style="list"?>
   <revision>
+    <revnumber>1.8.1</revnumber>
+    <date>2022-09-06</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/173">a bug</link>
+          where ordered list continuations were being incorrectly identified.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how localizations
+          <link xlink:href="https://github.com/docbook/xslTNG/issues/166">are computed</link>.
+          The <code>$v:locales</code> variable has been replaced by the
+          <code>f:locales($context)</code> function which returns the locales (languages)
+          used by the document. (I’ve left the name <code>f:locales</code> for consistency
+          with <code>v:locales</code> though I suspect <code>f:languages</code> would be
+          a better name.) The correct locales are now loaded by default for modular documents.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
     <revnumber>1.8.0</revnumber>
     <date>2022-07-24</date>
     <revdescription>
@@ -649,13 +671,13 @@ installed Docker!</para>
 <para>Build the docker image. In the <filename class="directory">docker</filename> directory, run the docker build
 command:</para>
 
-<screen role="monochrome border">$ <userinput>docker build -t docbook-xslt .</userinput></screen>
+<screen role="monochrome border">$ <userinput>docker build -t docbook-xsltng .</userinput></screen>
 
 <para>The “<option>-t</option>” option provides a tag for the image;
 you can make this anything you want. There’s a <code>VERSION</code>
 build argument if you want to build a particular release. For example,</para>
 
-<screen role="monochrome border">$ <userinput>docker build --build-arg VERSION=0.9.14 -t docbook-xslt .</userinput></screen>
+<screen role="monochrome border">$ <userinput>docker build --build-arg VERSION=0.9.14 -t docbook-xsltng .</userinput></screen>
 
 <para>will build a Docker image for the 0.9.14 release of the
 stylesheets irrespective of the version in the Dockerfile.</para>
@@ -7128,24 +7150,6 @@ increase the column count as they’re passed.
 </refsection>
 </refentry>
 
-<refentry xml:id="v_locales"><indexterm><primary>variable</primary><secondary>locales</secondary></indexterm>
-<?db filename="v_locales.html"?>
-<refmeta>
-<refentrytitle>$locales</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/variables}locales</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$v:locales</refname>
-<refpurpose>Available locales</refpurpose>
-<refclass>variable</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This variable lists the locales that should be loaded. There needs
-to be a locale for every language that you use.…</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="v_mediaobject-input-base-uri"><indexterm><primary>variable</primary><secondary>mediaobject-input-base-uri</secondary></indexterm>
 <?db filename="v_mediaobject-input-base-uri.html"?>
 <refmeta>
@@ -8626,6 +8630,25 @@ are formatted as the length followed by the unit (e.g., “2.54cm”).
 <title>Description</title>
 <para>For a given length (see <xref linkend="units"/>), returns the units
 associated with the length. Returns an empty sequence for relative lengths.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_locales"><indexterm><primary>function</primary><secondary>locales</secondary></indexterm>
+<?db filename="f_locales.html"?>
+<refmeta>
+<refentrytitle>f:locales</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}locales#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:locales</refname>
+<refpurpose>Returns the locales detected in the document</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the locales (languages) detected in the document.
+It always returns the <varname>default-language</varname><indexterm><primary>variable</primary><secondary>default-language</secondary></indexterm> and “<code>en</code>” as well.
+This function replaces the <code>$v:locales</code> variable.</para>
 </refsection>
 </refentry>
 
