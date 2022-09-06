@@ -135,10 +135,10 @@
 
 <xsl:function name="fp:group-index">
   <xsl:param name="term" as="xs:string"/>
-  <xsl:param name="lang" as="xs:string"/>
+  <xsl:param name="node" as="element()"/>
 
   <xsl:variable name="letters"
-                select="f:gentext-letters-for-language($lang)"/>
+                select="f:gentext-letters-for-language($node)"/>
 
   <xsl:variable name="long-letter-index"
                 select="$letters/l:l[. = substring($term,1,2)]/@i"/>
@@ -151,10 +151,10 @@
 
 <xsl:function name="fp:group-label">
   <xsl:param name="index" as="xs:integer"/>
-  <xsl:param name="lang" as="xs:string"/>
+  <xsl:param name="node" as="element()"/>
 
   <xsl:variable name="letters"
-                select="f:gentext-letters-for-language($lang)"/>
+                select="f:gentext-letters-for-language($node)"/>
 
   <xsl:value-of select="$letters/l:l[@i=$index][1]"/>
 </xsl:function>
@@ -174,18 +174,16 @@
                         then @type
                         else ()"/>
 
-  <xsl:variable name="lang" select="f:l10n-language($scope)"/>
-
   <div class="generated-index">
     <xsl:for-each-group select="//db:indexterm[fp:scope(., $scope, $role, $type)]
                                    [not(@class = 'endofrange')]"
-                        group-by="fp:group-index(fp:primary(.), $lang)">
-      <xsl:sort select="fp:group-index(fp:primary(.), $lang)" data-type="number"/>
+                        group-by="fp:group-index(fp:primary(.), $scope)">
+      <xsl:sort select="fp:group-index(fp:primary(.), $scope)" data-type="number"/>
       <xsl:apply-templates select="." mode="m:index-div">
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
-        <xsl:with-param name="lang" select="$lang"/>
+        <xsl:with-param name="lang" select="f:l10n-language($scope)"/>
         <xsl:with-param name="nodes" select="current-group()"/>
         <xsl:with-param name="group-index" select="current-grouping-key()"/>
       </xsl:apply-templates>
@@ -205,7 +203,7 @@
     <div class="generated-indexdiv">
       <header>
         <h3>
-          <xsl:value-of select="fp:group-label($group-index, $lang)"/>
+          <xsl:value-of select="fp:group-label($group-index, $scope)"/>
         </h3>
       </header>
       <ul>
