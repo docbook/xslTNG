@@ -24,39 +24,23 @@
 <xsl:key name="l:gentext" match="l:gentext" use="@name"/>
 <xsl:key name="l:tokens" match="l:tokens" use="../@name || '/' || @key"/>
 
-<xsl:variable name="vp:in-scope" select="distinct-values(//@xml:lang)"/>
+<xsl:function name="f:locales" as="xs:string+" cache="yes">
+  <xsl:param name="context" as="document-node()"/>
+  <xsl:sequence select="distinct-values(('en', $default-language, $context//@xml:lang))"/>
+</xsl:function>  
 
-<xsl:variable name="vp:all-languages" as="xs:string">
-  <xsl:choose>
-    <xsl:when test="empty($additional-languages)">
-      <xsl:try>
-        <xsl:variable name="langs" select="distinct-values(//@xml:lang)"/>
-        <xsl:sequence select="string-join(($default-language, $langs), ' ')"/>
-        <xsl:catch>
-          <!-- for example, if there is no context item... -->
-          <xsl:message select="'Failed to identify additional languages'"/>
-          <xsl:sequence select="$default-language"/>
-        </xsl:catch>
-      </xsl:try>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="$default-language || ' ' || $additional-languages"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:variable>
+<xsl:function name="fp:l10n" as="map(*)" cache="yes">
+  <xsl:param name="context" as="document-node()"/>
 
-<xsl:variable name="v:locales" as="xs:string+"
-              select="tokenize(normalize-space($vp:all-languages), '\s+')"/>
+  <xsl:variable name="localizations" as="map(*)+">
+    <xsl:for-each select="f:locales($context)">
+      <xsl:variable name="locale" select="."/>
+      <xsl:variable name="doc" select="doc('../locale/' || $locale || '.xml')"/>
+      <xsl:sequence select="map:entry($doc/l:l10n/@language, $doc)"/>
+    </xsl:for-each>
+  </xsl:variable>
 
-<xsl:variable name="vp:l10n" as="map(*)"
-              select="map:merge(fp:load-locales())"/>
-
-<xsl:function name="fp:load-locales" as="map(*)+">
-  <xsl:for-each select="$v:locales">
-    <xsl:variable name="locale" select="."/>
-    <xsl:variable name="doc" select="doc('../locale/' || $locale || '.xml')"/>
-    <xsl:sequence select="map:entry($doc/l:l10n/@language, $doc)"/>
-  </xsl:for-each>
+  <xsl:sequence select="map:merge($localizations)"/>
 </xsl:function>
 
 <xsl:function name="f:language" as="xs:string" cache="yes">
@@ -70,21 +54,28 @@
       <xsl:sequence select="$nearest-lang/@xml:lang/string()"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="$default-language"/>
+      <xsl:sequence select="($default-language, 'en')[1]"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
 
 <xsl:function name="fp:localization" as="element(l:l10n)?">
-  <xsl:param name="lang" as="xs:string"/>
-  <xsl:sequence select="fp:localization($lang, true())"/>
+  <xsl:param name="node" as="node()"/>
+  <xsl:sequence select="fp:localization($node, f:language($node), true())"/>
 </xsl:function>
 
 <xsl:function name="fp:localization" as="element(l:l10n)?">
+  <xsl:param name="node" as="node()"/>
+  <xsl:param name="lang" as="xs:string"/>
+  <xsl:sequence select="fp:localization($node, $lang, true())"/>
+</xsl:function>
+
+<xsl:function name="fp:localization" as="element(l:l10n)?">
+  <xsl:param name="node" as="node()"/>
   <xsl:param name="lang" as="xs:string"/>
   <xsl:param name="warn" as="xs:boolean"/>
 
-  <xsl:variable name="l10n" select="map:get($vp:l10n, $lang)/l:l10n"/>
+  <xsl:variable name="l10n" select="map:get(fp:l10n($node/root()), $lang)/l:l10n"/>
 
   <xsl:if test="$warn and empty($l10n)">
     <xsl:message expand-text="yes">No localization data for {$lang}</xsl:message>
@@ -94,15 +85,17 @@
 </xsl:function>
 
 <xsl:function name="fp:existing-localization" as="element(l:l10n)">
-  <xsl:param name="lang" as="xs:string"/>
+  <xsl:param name="node" as="node()"/>
 
-  <xsl:variable name="l10n" select="fp:localization($lang)"/>
+  <xsl:variable name="lang" select="f:language($node)"/>
+
+  <xsl:variable name="l10n" select="fp:localization($node)"/>
   <xsl:variable name="l10n"
                 select="if (empty($l10n) and $default-language ne $lang)
-                        then fp:localization($default-language)
+                        then fp:localization($node, $default-language)
                         else $l10n"/>
   <xsl:sequence select="if (empty($l10n))
-                        then fp:localization('en')
+                        then fp:localization($node, 'en')
                         else $l10n"/>
 </xsl:function>
 
@@ -126,7 +119,7 @@
   <xsl:param name="report-errors" as="xs:boolean"/>
 
   <xsl:variable name="l10n"
-                select="fp:existing-localization(f:language($node))"/>
+                select="fp:existing-localization($node)"/>
 
   <xsl:variable name="tokens"
                 select="key('l:tokens', $context || '/' || $key, root($l10n))"/>

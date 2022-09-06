@@ -685,24 +685,6 @@ increase the column count as they’re passed.
 </refsection>
 </refentry>
 
-<refentry xml:id="v_locales">
-<?db filename="v_locales.html"?>
-<refmeta>
-<refentrytitle>$locales</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/variables}locales</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$v:locales</refname>
-<refpurpose>Available locales</refpurpose>
-<refclass>variable</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This variable lists the locales that should be loaded. There needs
-to be a locale for every language that you use.…</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="v_mediaobject-input-base-uri">
 <?db filename="v_mediaobject-input-base-uri.html"?>
 <refmeta>

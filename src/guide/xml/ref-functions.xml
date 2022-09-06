@@ -671,6 +671,25 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refsection>
 </refentry>
 
+<refentry xml:id="f_locales">
+<?db filename="f_locales.html"?>
+<refmeta>
+<refentrytitle>f:locales</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}locales#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:locales</refname>
+<refpurpose>Returns the locales detected in the document</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the locales (languages) detected in the document.
+It always returns the <varname>default-language</varname> and “<code>en</code>” as well.
+This function replaces the <code>$v:locales</code> variable.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_make-length">
 <?db filename="f_make-length.html"?>
 <refmeta>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.1">
+    <info>
+        <title>Orderedlist error demo</title>
+    </info>
+    <para>Some text which contains an list 
+        <orderedlist numeration="arabic">
+            <listitem>
+                <para>item 1</para>
+            </listitem>
+            <listitem>
+                <para>item 2</para>
+            </listitem>
+        </orderedlist> some more text</para>
+    <para>Even more text but this list is an continuation of the previous one 
+        <orderedlist continuation="continues">
+            <listitem>
+                <para>item 3</para>
+            </listitem>
+            <listitem>
+                <para>item 4</para>
+            </listitem>
+        </orderedlist>
+    </para>
+</article>

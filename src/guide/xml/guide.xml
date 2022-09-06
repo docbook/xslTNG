@@ -15,6 +15,28 @@
 <revhistory>
   <?db revhistory-style="list"?>
   <revision>
+    <revnumber>1.8.1</revnumber>
+    <date>2022-09-06</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/173">a bug</link>
+          where ordered list continuations were being incorrectly identified.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how localizations
+          <link xlink:href="https://github.com/docbook/xslTNG/issues/166">are computed</link>.
+          The <code>$v:locales</code> variable has been replaced by the
+          <code>f:locales($context)</code> function which returns the locales (languages)
+          used by the document. (I’ve left the name <code>f:locales</code> for consistency
+          with <code>v:locales</code> though I suspect <code>f:languages</code> would be
+          a better name.) The correct locales are now loaded by default for modular documents.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
     <revnumber>1.8.0</revnumber>
     <date>2022-07-24</date>
     <revdescription>

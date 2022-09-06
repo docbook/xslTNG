@@ -127,8 +127,7 @@
     <xsl:otherwise>
       <!-- Hat tip to Gerrit for the fix here -->
       <xsl:variable name="plist"
-                    select="$list/ancestor-or-self::*[preceding-sibling::db:orderedlist][1]
-                                 /preceding-sibling::db:orderedlist[1]"/>
+                    select="$list/outermost(preceding::db:orderedlist)[last()]"/>
 
       <xsl:sequence select="f:orderedlist-startingnumber($plist)
                             + count($plist/db:listitem)"/>
@@ -155,11 +154,11 @@
                         else $language"/>
 
   <xsl:choose>
-    <xsl:when test="fp:localization($adjusted-language, false())">
+    <xsl:when test="fp:localization($target, $adjusted-language, false())">
       <xsl:sequence select="$adjusted-language"/>
     </xsl:when>
     <!-- try just the lang code without country -->
-    <xsl:when test="fp:localization(substring-before($adjusted-language,'_'), false())">
+    <xsl:when test="fp:localization($target, substring-before($adjusted-language,'_'), false())">
       <xsl:sequence select="substring-before($adjusted-language,'_')"/>
     </xsl:when>
     <!-- or use the default -->
@@ -187,14 +186,16 @@
 
 <xsl:function name="f:gentext-letters" as="element(l:letters)">
   <xsl:param name="node" as="element()"/>
-  <xsl:sequence select="f:gentext-letters-for-language(f:language($node))"/>
+  <xsl:sequence select="f:gentext-letters-for-language($node)"/>
 </xsl:function>
 
 <xsl:function name="f:gentext-letters-for-language" as="element(l:letters)">
-  <xsl:param name="lang" as="xs:string"/>
+  <xsl:param name="node" as="element()"/>
+
+  <xsl:variable name="lang" select="f:language($node)"/>
 
   <xsl:variable name="l10n"
-                select="fp:existing-localization($lang)"/>
+                select="fp:existing-localization($node)"/>
 
   <xsl:variable name="letters"
                 select="$l10n/l:letters"/>
@@ -202,11 +203,6 @@
   <xsl:if test="empty($letters)">
     <xsl:message select="'No letters for', $lang"/>
   </xsl:if>
-
-  <xsl:variable name="letters"
-                select="if (empty($letters))
-                        then f:gentext-letters-for-language('en')
-                        else $letters"/>
 
   <xsl:if test="count($letters) gt 1">
     <xsl:message
