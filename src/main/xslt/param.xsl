@@ -24,7 +24,8 @@
      'callouts', 'verbatim', 'render-verbatim', 'highlight', 'profile', 'properties',
      'xlink' 'chunks', 'chunk-cleanup', 'intra-chunk-refs', 'intra-chunk-links',
      'structure', 'mediaobject-uris', 'cals-align-char', 'image-properties',
-     'db4to5' 'profile-suppress', 'dynamic-profile', 'dynamic-profile-suppress' -->
+     'db4to5' 'profile-suppress', 'dynamic-profile', 'dynamic-profile-suppress',
+     'compiled-transforms' -->
 <xsl:param name="debug" static="yes" as="xs:string"
            select="''"/>
 
