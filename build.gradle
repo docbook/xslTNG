@@ -906,6 +906,7 @@ task generateXSpecSources() {
 testDrivers.each { driver ->
   tasks.findByName(driver).dependsOn generateXSpecSources
   tasks.findByName(driver).dependsOn "makeXslt"
+  tasks.findByName(driver).dependsOn "copy_transform_checksums"
 }
 
 // Generate programlistingco/screeco results with all the possible stylings
@@ -1144,6 +1145,7 @@ fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each {
             classpath = configurations.projectImplementationClasspath
             mainClass = "net.sf.saxon.Transform"
             args "-xsl:${xsl}",
+              '-init:org.docbook.xsltng.extensions.Register',
               "-export:${projectDir}/src/main/xslt/transforms/${base}.sef.xml",
               "-target:HE",
               "-relocate:on",
@@ -1153,6 +1155,8 @@ fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each {
           println("Failed to compile ${base}")
           copySefFile = false
           compileFailed = true
+          delete "${projectDir}/src/main/xslt/transforms/${base}.sef.xml"
+          delete "${buildDir}/xslt/transforms/${base}.sef.xml"
           if (requireCompileSuccess) {
             throw new GradleException("Stylesheet compilation is required to succeed")
           }
@@ -1245,9 +1249,10 @@ task testSummary(type: SaxonXsltTask, dependsOn: testDrivers) {
 
 task requirePassingTests(
   type: CheckTextFile,
-  dependsOn: ['test', 'formattingTests', 'testSummary']) {
+  dependsOn: ['formattingTests', 'testSummary']) {
   checkFile = "${buildDir}/test-results.txt"
 }
+test.dependsOn requirePassingTests
 
 task reportResults(type: Copy, dependsOn: ['testSummary']) {
   from "build"
