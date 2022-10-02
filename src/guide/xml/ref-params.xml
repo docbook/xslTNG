@@ -3499,6 +3499,40 @@ formatting numbers. See <parameter>footnote-numeration</parameter>.
 </refsection>
 </refentry>
 
+<refentry xml:id="p_use-compiled-transforms">
+<?db filename="p_use-compiled-transforms.html"?>
+<refmeta>
+<refentrytitle>$use-compiled-transforms</refentrytitle>
+<refmiscinfo>{}use-compiled-transforms</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$use-compiled-transforms</refname>
+<refpurpose>Use the compiled (SEF) versions of preprocessing transforms</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The styling process begins with a series of preprocessing
+transformations: cleaning up the logical structure of the input;
+expanding XIncludes, converting DocBook 4.x to 5.x, if necessary;
+transclusion processing; normalizing the document structure;
+processing annotations; dealing with link bases; etc.</para>
+
+<para>Starting in version 1.9.0, these transformations are distributed in both
+“<link xlink:href="https://www.saxonica.com/documentation/#!using-xsl/compiling">compiled</link>”
+and source forms. By default, if you’re using a
+<link xlink:href="https://saxonica.com/">Saxonica</link> XSLT processor,
+the compiled forms will be used. This will generally result in faster
+transformations because it avoids the cost of analyzing the XSLT and
+preparing it for execution each time.</para>
+
+<para>It’s possible that incompatibilities will arise if the SEF format
+changes over time. If you find that the SEF files in the distribution aren’t working
+correctly with your version of Saxon, you can disable them by setting
+<parameter>use-compiled-transforms</parameter> to “false”.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_use-docbook-css">
 <?db filename="p_use-docbook-css.html"?>
 <refmeta>

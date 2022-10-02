@@ -85,6 +85,17 @@ required for syntax highlighting, though that’s not technically a build requir
 or have questions or suggestions about how best to manage them, please
 let us know.</para>
 
+<section xml:id="saxonee">
+<title>Saxon EE</title>
+<para>You don’t need a Saxon EE license to build or run the stylesheets.
+If you change any of the transforms in <code>src/main/xslt/transforms</code>,
+you will need a Saxon EE license to recompile them as exported SEF files.</para>
+<para>If you don’t have an EE license, the build process will simply
+omit the SEF versions and the “source” versions, including any
+modifications that you’ve made, will be used.</para>
+<para>That’s the theory, anyway. I’ve tested it, but if you have any trouble, please
+open an issue.</para>
+</section>
 </section>
 <section xml:id="repostruct">
 <title>Repository structure</title>

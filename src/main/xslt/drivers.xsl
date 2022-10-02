@@ -285,15 +285,22 @@
   <xsl:variable name="sef" select="resolve-uri($base || '.sef.xml', static-base-uri())"/>
   <xsl:variable name="xsl" select="resolve-uri($base || '.xsl', static-base-uri())"/>
 
-  <xsl:try>
-    <xsl:variable name="compiled" select="doc-available($sef)"/>
-    <xsl:sequence select="if ($compiled)
-                          then $sef
-                          else $xsl"/>
-    <xsl:catch>
+  <xsl:choose>
+    <xsl:when test="f:is-true($use-compiled-transforms)">
+      <xsl:try>
+        <xsl:variable name="compiled" select="doc-available($sef)"/>
+        <xsl:sequence select="if ($compiled)
+                              then $sef
+                              else $xsl"/>
+        <xsl:catch>
+          <xsl:sequence select="$xsl"/>
+        </xsl:catch>
+      </xsl:try>
+    </xsl:when>
+    <xsl:otherwise>
       <xsl:sequence select="$xsl"/>
-    </xsl:catch>
-  </xsl:try>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:function>
 
 </xsl:stylesheet>

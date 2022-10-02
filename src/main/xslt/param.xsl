@@ -336,4 +336,15 @@
 <xsl:param name="paper-size" as="xs:string?" select="()"/>
 <xsl:param name="page-style" as="xs:string" select="'article'"/>
 
+<xsl:param name="use-compiled-transforms" as="xs:string">
+  <xsl:choose>
+    <xsl:when test="system-property('xsl:vendor') = 'Saxonica'">
+      <xsl:sequence select="'true'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="'false'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
 </xsl:stylesheet>
