@@ -3,7 +3,6 @@ buildscript {
     mavenLocal()
     mavenCentral()
     maven { url "https://dev.saxonica.com/maven" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
   }
 
   apply from: 'properties.gradle'
@@ -53,6 +52,11 @@ sourceSets {
 import com.nwalsh.gradle.saxon.SaxonXsltTask
 import com.nwalsh.gradle.relaxng.validate.RelaxNGValidateTask
 import com.nwalsh.gradle.relaxng.translate.RelaxNGTranslateTask
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.security.MessageDigest
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 import de.undercouch.gradle.tasks.download.Download
 
@@ -60,7 +64,6 @@ repositories {
   mavenLocal()
   mavenCentral()
   maven { url "https://dev.saxonica.com/maven" }
-  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 apply from: 'properties.gradle'
@@ -79,6 +82,20 @@ configurations {
   projectRuntimeClasspath.extendsFrom(runtimeOnly)
 }
 
+ext {
+  requireCompileSuccess = !"false".equals(project.property('requireCompileSuccess'))
+}
+
+// Set saxonLicenseDir in gradle.properties, or from the
+// command line if you have a license in some other place.
+if (!hasProperty("saxonLicenseDir")) {
+  if (System.getenv("SAXON_LICENSE_DIR") != null) {
+    ext.saxonLicenseDir=System.getenv('SAXON_LICENSE_DIR')
+  } else {
+    ext.saxonLicenseDir=System.getenv('HOME') + "/java"
+  }
+}
+
 dependencies {
   implementation (
     [group: saxonGroup, name: saxonEdition, version: saxonVersion],
@@ -88,7 +105,8 @@ dependencies {
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
     [group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion ],
-    files("${projectDir}/buildSrc/build/classes/java/main")
+    files("${projectDir}/buildSrc/build/classes/java/main"),
+    files(saxonLicenseDir)
   )
   testImplementation (
     [group: 'junit', name: 'junit', version: '4.13'],
@@ -657,10 +675,9 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
 
   Task t = null
-  def htmlDependsOn = []
+  def htmlDependsOn = ['makeXslt', 'copy_transform_checksums']
   if (base.startsWith("local.")) {
     // This won't pass validation...
-    htmlDependsOn = ['makeXslt']
   } else {
     t = task "validate_${base}"(type: RelaxNGValidateTask) {
       input xml
@@ -669,7 +686,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
       idref !invalidIdrefDocuments.contains(base)
     }
     validateAll.dependsOn t
-    htmlDependsOn = ['makeXslt', "validate_${base}"]
+    htmlDependsOn.push("validate_${base}")
   }
 
   t = task "${base}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
@@ -889,6 +906,7 @@ task generateXSpecSources() {
 testDrivers.each { driver ->
   tasks.findByName(driver).dependsOn generateXSpecSources
   tasks.findByName(driver).dependsOn "makeXslt"
+  tasks.findByName(driver).dependsOn "copy_transform_checksums"
 }
 
 // Generate programlistingco/screeco results with all the possible stylings
@@ -1032,6 +1050,134 @@ task makeXslt(type: Copy,
                           'generateLocales', 'compileJava']) {
   from "${projectDir}/src/main/xslt"
   into "${buildDir}/xslt"
+  exclude "transforms/*.sef.xml"
+}
+
+String bytesToHex(byte[] bytes) {
+  byte[] hex = "0123456789ABCDEF".getBytes(StandardCharsets.US_ASCII);
+  byte[] hexch = new byte[bytes.length * 2]
+  for (int pos = 0; pos < bytes.length; pos++) {
+    int b = bytes[pos] & 0xff
+    hexch[pos*2] = hex[b >>> 4]
+    hexch[pos*2+1] = hex[b & 0x0f]
+  }
+  return new String(hexch, StandardCharsets.UTF_8)
+}
+
+boolean compileFailed = false
+boolean copyUpdatedTransforms = false
+task "checksum_transforms"(
+) {
+  inputs.files fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl")
+  outputs.files "${buildDir}/transform-checksums.properties"
+
+  doLast {
+    PrintStream props = new PrintStream(checksum_transforms.outputs.getFiles().getSingleFile())
+    props.println("Computed.on=${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}")
+    props.println("Computed.by=${System.getProperty('user.name')}")
+
+    fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each { xsl ->
+      // I'm using MD5 because it must be supported by the Java platform
+      // and I don't care about cryptographic security.
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      md.update(Files.readAllBytes(xsl.toPath()))
+      String checksum = bytesToHex(md.digest())
+      String key = xsl.getName().substring(0, xsl.getName().length() - 4)
+      props.println("${key}=${checksum}")
+    }
+    props.close()
+  }
+}
+
+task copy_transform_checksums() {
+  inputs.files checksum_transforms.outputs.getFiles().getSingleFile()
+  outputs.files "${projectDir}/src/main/xslt/transforms/transform-checksums.properties"
+  doLast {
+    if (copyUpdatedTransforms) {
+      if (!compileFailed) {
+        copy {
+          into copy_transform_checksums.outputs.getFiles().getSingleFile().getParent()
+          from checksum_transforms.outputs.getFiles().getSingleFile().getParent()
+          include checksum_transforms.outputs.getFiles().getSingleFile().getName()
+        }
+      } else {
+        println("Not updating source checksums; compile failed!")
+      }
+    }
+  }
+}
+makeXslt.finalizedBy copy_transform_checksums
+
+fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each { xsl -> 
+  String base = xsl.toString()
+  int pos = base.indexOf("/transforms/")
+  base = base.substring(pos+12)
+  base = base.substring(0, base.length() - 4)
+
+  Task t = task "compile_transform_${base}"(
+    dependsOn: [checksum_transforms]
+  ) {
+    inputs.files xsl
+    inputs.files checksum_transforms.outputs.getFiles().getSingleFile()
+    // Explicitly has no outputs.files so that it will run every time
+
+    boolean copySefFile = true
+
+    doFirst {
+      mkdir "${buildDir}/xslt/transforms"
+    }
+
+    doLast {
+      Properties current = new Properties()
+      current.load(new FileInputStream(checksum_transforms.outputs.getFiles().getSingleFile()))
+
+      Properties precompiled = new Properties()
+      precompiled.load(
+        new FileInputStream(
+          new File("${projectDir}/src/main/xslt/transforms/transform-checksums.properties")))
+
+      if (precompiled.getProperty(base) == null ||
+          !current.getProperty(base).equals(precompiled.getProperty(base))) {
+        copyUpdatedTransforms = true
+        println("Compile ${base}")
+        try {
+          javaexec {
+            classpath = configurations.projectImplementationClasspath
+            mainClass = "net.sf.saxon.Transform"
+            args "-xsl:${xsl}",
+              '-init:org.docbook.xsltng.extensions.Register',
+              "-export:${projectDir}/src/main/xslt/transforms/${base}.sef.xml",
+              "-target:HE",
+              "-relocate:on",
+              "-nogo"
+          }
+        } catch (Exception ex) {
+          println("Failed to compile ${base}")
+          copySefFile = false
+          compileFailed = true
+          delete "${projectDir}/src/main/xslt/transforms/${base}.sef.xml"
+          delete "${buildDir}/xslt/transforms/${base}.sef.xml"
+          if (requireCompileSuccess) {
+            throw new GradleException("Stylesheet compilation is required to succeed")
+          }
+        }
+      }
+    }
+    
+    doLast {
+      if (copySefFile) {
+        copy {
+          into "${buildDir}/xslt/transforms"
+          from "${projectDir}/src/main/xslt/transforms"
+          include "${base}.sef.xml"
+        }
+      } else {
+        println("Could not build SEF; not copying ${base}")
+      }
+    }
+  }
+  makeXslt.dependsOn t
+  copy_transform_checksums.dependsOn t
 }
 
 task makeUriList(dependsOn: ["makeXslt","zipStageResources","zipStageDocker",
@@ -1103,9 +1249,10 @@ task testSummary(type: SaxonXsltTask, dependsOn: testDrivers) {
 
 task requirePassingTests(
   type: CheckTextFile,
-  dependsOn: ['test', 'formattingTests', 'testSummary']) {
+  dependsOn: ['formattingTests', 'testSummary']) {
   checkFile = "${buildDir}/test-results.txt"
 }
+test.dependsOn requirePassingTests
 
 task reportResults(type: Copy, dependsOn: ['testSummary']) {
   from "build"

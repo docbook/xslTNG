@@ -8,7 +8,7 @@ targetCompatibility=1.8
 repositories {
   mavenLocal()
   mavenCentral()
-  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+  maven { url "https://dev.saxonica.com/maven" }
 }
 
 apply from: "${rootDir.parentFile}/properties.gradle"

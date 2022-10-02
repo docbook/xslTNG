@@ -24,7 +24,8 @@
      'callouts', 'verbatim', 'render-verbatim', 'highlight', 'profile', 'properties',
      'xlink' 'chunks', 'chunk-cleanup', 'intra-chunk-refs', 'intra-chunk-links',
      'structure', 'mediaobject-uris', 'cals-align-char', 'image-properties',
-     'db4to5' 'profile-suppress', 'dynamic-profile', 'dynamic-profile-suppress' -->
+     'db4to5' 'profile-suppress', 'dynamic-profile', 'dynamic-profile-suppress',
+     'compiled-transforms' -->
 <xsl:param name="debug" static="yes" as="xs:string"
            select="''"/>
 
@@ -334,5 +335,16 @@
 
 <xsl:param name="paper-size" as="xs:string?" select="()"/>
 <xsl:param name="page-style" as="xs:string" select="'article'"/>
+
+<xsl:param name="use-compiled-transforms" as="xs:string">
+  <xsl:choose>
+    <xsl:when test="system-property('xsl:vendor') = 'Saxonica'">
+      <xsl:sequence select="'true'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="'false'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 
 </xsl:stylesheet>

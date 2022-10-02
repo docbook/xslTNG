@@ -39,7 +39,7 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew dist
+      - run: ./gradlew -PrequireCompileSuccess=true dist
 
       - run: rm -rf lib
 
