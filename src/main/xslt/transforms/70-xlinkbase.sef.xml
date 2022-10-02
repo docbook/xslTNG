@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns='http://ns.saxonica.com/xslt/export' xmlns:fn='http://www.w3.org/2005/xpath-functions' xmlns:java-type='http://saxon.sf.net/java-type' xmlns:vv='http://saxon.sf.net/generated-variable' xmlns:xs='http://www.w3.org/2001/XMLSchema' when='2022-10-01T11:33:39.244306+01:00' id='0' version='30' packageVersion='1' saxonProduct='SAXON-EE' saxonVersion='11.4' buildDateTime='2022-10-01T11:33:39.24468+01:00' target='HE' targetVersion='1' relocatable='true' implicit='true'>
+<package xmlns='http://ns.saxonica.com/xslt/export' xmlns:fn='http://www.w3.org/2005/xpath-functions' xmlns:java-type='http://saxon.sf.net/java-type' xmlns:vv='http://saxon.sf.net/generated-variable' xmlns:xs='http://www.w3.org/2001/XMLSchema' when='2022-10-02T09:40:13.222831+01:00' id='0' version='30' packageVersion='1' saxonProduct='SAXON-EE' saxonVersion='11.4' buildDateTime='2022-10-02T09:40:13.223239+01:00' target='HE' targetVersion='1' relocatable='true' implicit='true'>
  <co id='0' binds='0 0 1'>
   <mode onNo='TC' flags='dW' patternSlots='0'>
    <templateRule prec='0' prio='-0.5' seq='0' rank='0' minImp='0' slots='0' matches='ND' flags='s' line='16' module='70-xlinkbase.xsl'>
@@ -16,7 +16,7 @@
      <applyT role='content' bSlot='1'>
       <sequence role='select'>
        <axis name='attribute' nodeTest='NA'/>
-       <axis name='child' nodeTest='N u[NT,NP,NC,NE]'/>
+       <axis name='child' nodeTest='N u[NP,NE,NT,NC]'/>
       </sequence>
      </applyT>
     </copy>
@@ -201,7 +201,7 @@
             <varRef name='Q{}lfrom' slot='4'/>
             <choose line='40'>
              <varRef name='Q{http://saxon.sf.net/generated-variable}v2' slot='6'/>
-             <for line='47' var='Q{http://saxon.sf.net/generated-variable}dd1437988306' as='ND' slot='7'>
+             <for line='47' var='Q{http://saxon.sf.net/generated-variable}dd660595570' as='ND' slot='7'>
               <fn role='in' name='doc'>
                <convert from='AU' to='AS'>
                 <fn name='resolve-uri'>
@@ -230,7 +230,7 @@
               <fn role='return' name='key'>
                <str val='Q{http://saxon.sf.net/}kk101'/>
                <str val='extended'/>
-               <varRef name='Q{http://saxon.sf.net/generated-variable}dd1437988306' slot='7'/>
+               <varRef name='Q{http://saxon.sf.net/generated-variable}dd660595570' slot='7'/>
               </fn>
              </for>
             </choose>
@@ -264,4 +264,4 @@
  </output>
  <decimalFormat/>
 </package>
-<?Σ e94f158e?>
+<?Σ 471f9a?>

@@ -8,7 +8,13 @@
 
 <!-- This should only be called if the ext:xinclude extension function
      is available. If it isn't *compiled* with that function available,
-     then it won't work the way you expect. -->
+     then it won't work the way you expect.
+
+     It would be better to use function-lookup here and do the test
+     explicitly at runtime, but there's a bug in SaxonJ 10?/11 that
+     prevents HE from using that feature from a compiled SEF. Maybe
+     in the future...
+ -->
 <xsl:template xmlns:xi="http://www.w3.org/2001/XInclude"
               match="xi:include">
   <xsl:choose>
