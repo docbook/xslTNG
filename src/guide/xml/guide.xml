@@ -15,6 +15,32 @@
 <revhistory>
   <?db revhistory-style="list"?>
   <revision>
+    <revnumber>1.9.0</revnumber>
+    <date>2022-10-02</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+<para>The styling process begins with a series of preprocessing
+transformations: cleaning up the logical structure of the input;
+expanding XIncludes, converting DocBook 4.x to 5.x, if necessary;
+transclusion processing; normalizing the document structure;
+processing annotations; dealing with link bases; etc.</para>
+
+<para>Starting in this release, these transformations are distributed in both
+“<link xlink:href="https://www.saxonica.com/documentation/#!using-xsl/compiling">compiled</link>”
+and source forms. By default, if you’re using a
+<link xlink:href="https://saxonica.com/">Saxonica</link> XSLT processor,
+the compiled forms will be used. This will generally result in faster
+transformations because it avoids the cost of analyzing the XSLT and
+preparing it for execution each time.</para>
+
+<para>You can disable them by setting
+<parameter>use-compiled-transforms</parameter> to “false”.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
     <revnumber>1.8.1</revnumber>
     <date>2022-09-06</date>
     <revdescription>
