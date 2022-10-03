@@ -1,4 +1,4 @@
-# DocBook xsltNG
+# DocBook xslTNG
 
 Build status: [![Build Status](https://circleci.com/gh/docbook/xslTNG.svg?style=shield)](https://circleci.com/gh/docbook/xslTNG.svg?style=shield)
 
