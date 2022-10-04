@@ -88,7 +88,7 @@
 
   <html>
     <head>
-      <title>DocBook xsltNG Coverage Report</title>
+      <title>DocBook xslTNG Coverage Report</title>
       <link rel="shortcut icon" href="../img/xsltng-icon.png" />
       <link rel="stylesheet" href="css/coverage.css"/>
     </head>
