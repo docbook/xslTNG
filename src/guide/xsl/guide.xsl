@@ -6,7 +6,7 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
-                xmlns="http://www.w3.org/1999/HTML"
+                xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="a db f m t v"
                 version="3.0">
 
