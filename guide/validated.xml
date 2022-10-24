@@ -304,11 +304,45 @@ of the XSLT 3.0 Recommendation.</para>
   </para>
 
 </preface> <!-- preface -->
-<chapter version="5.0" xml:id="getting">
+<chapter version="5.0" xml:id="whatfor">
 <info>
   <?db filename="ch01.html"?>
-  <title>Getting the stylesheets</title>
+  <title>Overview</title>
 </info>
+
+<para>Before we get started, let’s look at what the stylesheets do and
+where you can get them!</para>
+
+<section xml:id="whatdo">
+<title>What do the stylesheets do?</title>
+
+<para>The <citetitle>DocBook xslTNG</citetitle> stylesheets transform
+DocBook V5.x into HTML. The intent is that they support all of
+DocBook V5.2. They will also process DocBook V4.x documents by first
+converting them (tranforming source elements that have changed, adding
+the namespace, etc.) into 5.x documents.</para>
+
+<para>Some parts of DocBook, especially the modeling parts, are very
+open-ended. One could, in principle, write a function synopsis for any
+programming language. The stylesheets are naturally going to support
+only a subset of languages out of the box. Every attempt has been made
+to make customizations easy where it’s anticipated that they may be
+necessary.</para>
+
+<para>The stylesheets can also be used to produced paged media such as
+PDF files. This works by having a slightly different HTML
+transformation initially, and then by further transforming the HTML so
+that it can be formatted with an appropriate CSS formatter to produced
+paged output. This is similar, but not the same as producing XSL
+Formatting Objects and then transforming those.</para>
+
+<para>Producing other output formats, EPUB files, for example, is
+planned for the future but no specific schedule is promised. I have no
+plans at the moment to produce XSL FO stylesheets.</para>
+</section>
+
+<section xml:id="getting">
+<title>Getting the stylesheets</title>
 
 <para>There are three ways to get the stylesheets: you can
 <link linkend="get-github">download the latest release</link> from
@@ -377,6 +411,7 @@ some repository hierarchy well out of sight). Consequently, you may want to
 </listitem>
 </orderedlist>
 
+</section>
 </section>
 </chapter> <!-- getting -->
 <chapter version="5.0" xml:id="using">
