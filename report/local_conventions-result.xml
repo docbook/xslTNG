@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/circleci/repo/build/xspec/local_conventions.xspec"
-         stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-         date="2022-10-04T08:22:09.601981Z">
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/local_conventions.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
+         date="2022-10-24T10:18:31.930809Z">
    <scenario id="scenario1"
-              xspec="file:/home/circleci/repo/build/xspec/local_conventions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/local_conventions.xspec">
       <label>When transforming local.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/local.001.xml"/>
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/local.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">

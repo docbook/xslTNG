@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/circleci/repo/build/xspec/main.xspec"
-         stylesheet="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"
-         date="2022-10-04T08:22:14.547802Z">
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/main.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
+         date="2022-10-24T10:18:41.395447Z">
    <scenario id="scenario1"
-              xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting a single copyright year</label>
       <input-wrap xmlns="">
          <x:call xmlns:db="http://docbook.org/ns/docbook"
@@ -39,7 +39,7 @@
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting a single copyright year range</label>
       <input-wrap xmlns="">
          <x:call xmlns:db="http://docbook.org/ns/docbook"
@@ -75,7 +75,7 @@
       </test>
    </scenario>
    <scenario id="scenario3"
-              xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting a year range and a non-range year</label>
       <input-wrap xmlns="">
          <x:call xmlns:db="http://docbook.org/ns/docbook"
@@ -112,7 +112,7 @@
       </test>
    </scenario>
    <scenario id="scenario4"
-              xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting two ranges</label>
       <input-wrap xmlns="">
          <x:call xmlns:db="http://docbook.org/ns/docbook"
@@ -154,7 +154,7 @@
       </test>
    </scenario>
    <scenario id="scenario5"
-              xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>a range interrupted</label>
       <input-wrap xmlns="">
          <x:call xmlns:db="http://docbook.org/ns/docbook"
@@ -198,7 +198,7 @@
       </test>
    </scenario>
    <scenario id="scenario6"
-              xspec="file:/home/circleci/repo/build/xspec/copyright.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>a range interrupted by a non-numeric year</label>
       <input-wrap xmlns="">
          <x:call xmlns:db="http://docbook.org/ns/docbook"
@@ -242,7 +242,8 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario7" xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+   <scenario id="scenario7"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec">
       <label>When transforming a date of 'today'</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -250,7 +251,7 @@
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
                      mode="m:docbook"
                      select="//db:para[@xml:id='today']/db:date"/>
       </input-wrap>
@@ -268,7 +269,8 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario8" xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+   <scenario id="scenario8"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec">
       <label>When transforming an ISO 8601 date</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -276,7 +278,7 @@
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
                      mode="m:docbook"
                      select="//db:para[@xml:id='date']/db:date"/>
       </input-wrap>
@@ -294,7 +296,8 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario9" xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+   <scenario id="scenario9"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec">
       <label>When transforming an ISO 8601 date time in the morning</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -302,7 +305,7 @@
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
                      mode="m:docbook"
                      select="//db:para[@xml:id='amtime']/db:date"/>
       </input-wrap>
@@ -325,7 +328,7 @@
       </test>
    </scenario>
    <scenario id="scenario10"
-              xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec">
       <label>When transforming an ISO 8601 date time in the afternoon</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -333,7 +336,7 @@
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
                      mode="m:docbook"
                      select="//db:para[@xml:id='pmtime']/db:date"/>
       </input-wrap>
@@ -356,7 +359,7 @@
       </test>
    </scenario>
    <scenario id="scenario11"
-              xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec">
       <label>When transforming a date time with a custom format</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -364,7 +367,7 @@
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
                      mode="m:docbook"
                      select="//db:para[@xml:id='dtformat']/db:date"/>
       </input-wrap>
@@ -387,7 +390,7 @@
       </test>
    </scenario>
    <scenario id="scenario12"
-              xspec="file:/home/circleci/repo/build/xspec/dates.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec">
       <label>When transforming a french date with a custom format</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -395,7 +398,7 @@
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/dates.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
                      mode="m:docbook"
                      select="//db:para[@xml:id='dtformat-fr']/db:date"/>
       </input-wrap>
@@ -420,13 +423,13 @@
       </test>
    </scenario>
    <scenario id="scenario13"
-              xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec">
       <label>When transforming short funcsynopsis elements in ANSI mode</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml"
                      mode="m:docbook"
                      select="//*[@xml:id='ansi1']"/>
       </input-wrap>
@@ -513,13 +516,13 @@
       </test>
    </scenario>
    <scenario id="scenario14"
-              xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec">
       <label>When transforming longer funcsynopsis elements in ANSI mode</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml"
                      mode="m:docbook"
                      select="//*[@xml:id='ansi2']"/>
       </input-wrap>
@@ -588,13 +591,13 @@
       </test>
    </scenario>
    <scenario id="scenario15"
-              xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec">
       <label>When transforming long funcsynopsis elements in ANSI mode</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml"
                      mode="m:docbook"
                      select="//*[@xml:id='ansi3']"/>
       </input-wrap>
@@ -667,13 +670,13 @@
       </test>
    </scenario>
    <scenario id="scenario16"
-              xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec">
       <label>When transforming short funcsynopsis elements in K&amp;R mode</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml"
                      mode="m:docbook"
                      select="//*[@xml:id='kr1']"/>
       </input-wrap>
@@ -780,13 +783,13 @@
       </test>
    </scenario>
    <scenario id="scenario17"
-              xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec">
       <label>When transforming longer funcsynopsis elements in K&amp;R mode</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml"
                      mode="m:docbook"
                      select="//*[@xml:id='kr2']"/>
       </input-wrap>
@@ -913,13 +916,13 @@
       </test>
    </scenario>
    <scenario id="scenario18"
-              xspec="file:/home/circleci/repo/build/xspec/funcsynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec">
       <label>When transforming long funcsynopsis elements in K&amp;R mode</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml"
                      mode="m:docbook"
                      select="//*[@xml:id='kr3']"/>
       </input-wrap>
@@ -1066,7 +1069,7 @@
       </test>
    </scenario>
    <scenario id="scenario19"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The empty sequence is the length</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1082,7 +1085,7 @@
       </test>
    </scenario>
    <scenario id="scenario20"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is zero</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1098,7 +1101,7 @@
       </test>
    </scenario>
    <scenario id="scenario21"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is negative</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1114,7 +1117,7 @@
       </test>
    </scenario>
    <scenario id="scenario22"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is a positive integer (1)</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1130,7 +1133,7 @@
       </test>
    </scenario>
    <scenario id="scenario23"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is a positive integer (12)</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1146,7 +1149,7 @@
       </test>
    </scenario>
    <scenario id="scenario24"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is castable to a positive integer</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1162,7 +1165,7 @@
       </test>
    </scenario>
    <scenario id="scenario25"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length isn't numeric'</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1178,7 +1181,7 @@
       </test>
    </scenario>
    <scenario id="scenario26"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is a sequence of several items'</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1194,7 +1197,7 @@
       </test>
    </scenario>
    <scenario id="scenario27"
-              xspec="file:/home/circleci/repo/build/xspec/functions.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
       <label>The length is a sequence of several items'</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -1210,7 +1213,7 @@
       </test>
    </scenario>
    <scenario id="scenario28"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting an anchor element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1278,7 +1281,7 @@
       </test>
    </scenario>
    <scenario id="scenario29"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting an emphasis element with a bold role</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1308,7 +1311,7 @@
       </test>
    </scenario>
    <scenario id="scenario30"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a code element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1366,7 +1369,7 @@
       </test>
    </scenario>
    <scenario id="scenario31"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a code element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1434,7 +1437,7 @@
       </test>
    </scenario>
    <scenario id="scenario32"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a quote element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1492,7 +1495,7 @@
       </test>
    </scenario>
    <scenario id="scenario33"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a quote element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1560,7 +1563,7 @@
       </test>
    </scenario>
    <scenario id="scenario34"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a subscript element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1618,7 +1621,7 @@
       </test>
    </scenario>
    <scenario id="scenario35"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a subscript element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1686,7 +1689,7 @@
       </test>
    </scenario>
    <scenario id="scenario36"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a superscript element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1744,7 +1747,7 @@
       </test>
    </scenario>
    <scenario id="scenario37"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a superscript element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1812,7 +1815,7 @@
       </test>
    </scenario>
    <scenario id="scenario38"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a tag element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1870,7 +1873,7 @@
       </test>
    </scenario>
    <scenario id="scenario39"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a tag element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1940,7 +1943,7 @@
       </test>
    </scenario>
    <scenario id="scenario40"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a personname element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -1998,7 +2001,7 @@
       </test>
    </scenario>
    <scenario id="scenario41"
-              xspec="file:/home/circleci/repo/build/xspec/inlines.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a personname element with an xml:id and roles</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2068,13 +2071,13 @@
       </test>
    </scenario>
    <scenario id="scenario42"
-              xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming classsynopsis.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/classsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/classsynopsis.001.xml"
                      select="//*[@xml:id='class']"
                      mode="m:docbook"/>
       </input-wrap>
@@ -2125,13 +2128,13 @@
       </test>
    </scenario>
    <scenario id="scenario43"
-              xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming methodsynopsis.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/methodsynopsis.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/methodsynopsis.001.xml"
                      select="//*[@xml:id='class']"
                      mode="m:docbook"/>
       </input-wrap>
@@ -2160,13 +2163,13 @@
       </test>
    </scenario>
    <scenario id="scenario44"
-              xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming synopsisinfo.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/synopsisinfo.001.xml"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/synopsisinfo.001.xml"
                      select="//*[@xml:id='class']"
                      mode="m:docbook"/>
       </input-wrap>
@@ -2219,13 +2222,13 @@
       </test>
    </scenario>
    <scenario id="scenario45"
-              xspec="file:/home/circleci/repo/build/xspec/oosynopsis.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming packagesynopsis.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/circleci/repo/src/test/resources/xml/packagesynopsis.001.xml"/>
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/packagesynopsis.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -2334,7 +2337,7 @@
       </test>
    </scenario>
    <scenario id="scenario46"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0in</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2358,7 +2361,7 @@
       </test>
    </scenario>
    <scenario id="scenario47"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0m</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2382,7 +2385,7 @@
       </test>
    </scenario>
    <scenario id="scenario48"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0cm</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2406,7 +2409,7 @@
       </test>
    </scenario>
    <scenario id="scenario49"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0mm</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2430,7 +2433,7 @@
       </test>
    </scenario>
    <scenario id="scenario50"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0pc</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2454,7 +2457,7 @@
       </test>
    </scenario>
    <scenario id="scenario51"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0pt</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2478,7 +2481,7 @@
       </test>
    </scenario>
    <scenario id="scenario52"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 3.14barleycorn</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2502,7 +2505,7 @@
       </test>
    </scenario>
    <scenario id="scenario53"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0smoot</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2526,7 +2529,7 @@
       </test>
    </scenario>
    <scenario id="scenario54"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 25%</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2550,7 +2553,7 @@
       </test>
    </scenario>
    <scenario id="scenario55"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 100%</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2574,7 +2577,7 @@
       </test>
    </scenario>
    <scenario id="scenario56"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 125%</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2598,7 +2601,7 @@
       </test>
    </scenario>
    <scenario id="scenario57"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 3*+0.5in</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2622,7 +2625,7 @@
       </test>
    </scenario>
    <scenario id="scenario58"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 75</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2646,7 +2649,7 @@
       </test>
    </scenario>
    <scenario id="scenario59"
-              xspec="file:/home/circleci/repo/build/xspec/units.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 2.5*</label>
       <input-wrap xmlns="">
          <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
@@ -2670,7 +2673,7 @@
       </test>
    </scenario>
    <scenario id="scenario60"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2717,7 +2720,7 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario61"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2764,7 +2767,7 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario62"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2815,7 +2818,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario63"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2866,7 +2869,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario64"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2917,7 +2920,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario65"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -2968,7 +2971,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario66"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3015,7 +3018,7 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario67"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3062,7 +3065,7 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario68"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3113,7 +3116,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario69"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3164,7 +3167,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario70"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3215,7 +3218,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario71"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3271,7 +3274,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario72"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3372,7 +3375,7 @@ Line five</address>
       </test>
    </scenario>
    <scenario id="scenario73"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3473,7 +3476,7 @@ Line five</literallayout>
       </test>
    </scenario>
    <scenario id="scenario74"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3599,7 +3602,7 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario75"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3720,7 +3723,7 @@ Line five</screen>
       </test>
    </scenario>
    <scenario id="scenario76"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3841,7 +3844,7 @@ Line five</synopsis>
       </test>
    </scenario>
    <scenario id="scenario77"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -3973,7 +3976,7 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario78"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -4105,7 +4108,7 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario79"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -4260,7 +4263,7 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario80"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -4475,7 +4478,7 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario81"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -4553,7 +4556,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario82"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
@@ -4637,7 +4640,7 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario83"
-              xspec="file:/home/circleci/repo/build/xspec/verbatim.xspec">
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are inserted into markup</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"

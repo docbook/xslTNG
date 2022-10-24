@@ -3,13 +3,13 @@
                  exclude-result-prefixes="#all"
                  version="3.0">
    <!-- the tested stylesheet -->
-   <xsl:import href="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"/>
+   <xsl:import href="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"/>
    <!-- XSpec library modules providing tools -->
-   <xsl:include href="file:/home/circleci/repo/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
+   <xsl:include href="file:/home/runner/work/xslTNG/xslTNG/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}stylesheet-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/circleci/repo/build/xslt/xspec-driver.xsl</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}xspec-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/circleci/repo/build/xspec/transclude.xspec</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}is-external"
                   as="Q{http://www.w3.org/2001/XMLSchema}boolean"
                   select="false()"/>
@@ -43,8 +43,8 @@
       <!-- set up the result document (the report) -->
       <xsl:result-document format="Q{{http://www.jenitennison.com/xslt/xspec}}xml-report-serialization-parameters">
          <xsl:element name="report" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/transclude.xspec</xsl:attribute>
-            <xsl:attribute name="stylesheet" namespace="">file:/home/circleci/repo/build/xslt/xspec-driver.xsl</xsl:attribute>
+            <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec</xsl:attribute>
+            <xsl:attribute name="stylesheet" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl</xsl:attribute>
             <xsl:attribute name="date" namespace="" select="current-dateTime()"/>
             <!-- invoke each compiled top-level x:scenario -->
             <xsl:for-each select="1 to 4">
@@ -75,18 +75,18 @@
       <xsl:message>When transcluding with no fixup</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario1</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/transclude.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transcluding with no fixup</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/transclusion.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.001.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d58e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/transclusion.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.001.xml')"/>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d58e0"
                         select="$Q{urn:x-xspec:compile:impl}context-d58e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -121,7 +121,7 @@
       <xsl:message>expect it to produce the right results</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e5-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/transclusion.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/transclusion.001.html')"/>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e5"
                      select="$Q{urn:x-xspec:compile:impl}expect-d56e5-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
@@ -150,18 +150,18 @@
       <xsl:message>When transcluding with auto fixup</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario2</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/transclude.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transcluding with auto fixup</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/transclusion.002.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.002.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d66e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/transclusion.002.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.002.xml')"/>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d66e0"
                         select="$Q{urn:x-xspec:compile:impl}context-d66e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -196,7 +196,7 @@
       <xsl:message>expect it to produce the right results</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e8-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/transclusion.002.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/transclusion.002.html')"/>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e8"
                      select="$Q{urn:x-xspec:compile:impl}expect-d56e8-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
@@ -225,18 +225,18 @@
       <xsl:message>When transcluding with suffix fixup</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario3</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/transclude.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transcluding with suffix fixup</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/transclusion.003.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.003.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d74e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/transclusion.003.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.003.xml')"/>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d74e0"
                         select="$Q{urn:x-xspec:compile:impl}context-d74e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -271,7 +271,7 @@
       <xsl:message>expect it to produce the right results</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e11-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/transclusion.003.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/transclusion.003.html')"/>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e11"
                      select="$Q{urn:x-xspec:compile:impl}expect-d56e11-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
@@ -300,18 +300,18 @@
       <xsl:message>When transcluding with local suffix fixup</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario4</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/transclude.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transcluding with local suffix fixup</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/transclusion.004.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.004.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d82e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/transclusion.004.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/transclusion.004.xml')"/>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d82e0"
                         select="$Q{urn:x-xspec:compile:impl}context-d82e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -346,7 +346,7 @@
       <xsl:message>expect it to produce the right results</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e14-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/transclusion.004.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/transclusion.004.html')"/>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d56e14"
                      select="$Q{urn:x-xspec:compile:impl}expect-d56e14-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"

@@ -3,13 +3,13 @@
                  exclude-result-prefixes="#all"
                  version="3.0">
    <!-- the tested stylesheet -->
-   <xsl:import href="file:/home/circleci/repo/build/xslt/xspec-driver.xsl"/>
+   <xsl:import href="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"/>
    <!-- XSpec library modules providing tools -->
-   <xsl:include href="file:/home/circleci/repo/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
+   <xsl:include href="file:/home/runner/work/xslTNG/xslTNG/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}stylesheet-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/circleci/repo/build/xslt/xspec-driver.xsl</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}xspec-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/circleci/repo/build/xspec/main.xspec</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xspec/main.xspec</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}is-external"
                   as="Q{http://www.w3.org/2001/XMLSchema}boolean"
                   select="false()"/>
@@ -40,8 +40,8 @@
       <!-- set up the result document (the report) -->
       <xsl:result-document format="Q{{http://www.jenitennison.com/xslt/xspec}}xml-report-serialization-parameters">
          <xsl:element name="report" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/main.xspec</xsl:attribute>
-            <xsl:attribute name="stylesheet" namespace="">file:/home/circleci/repo/build/xslt/xspec-driver.xsl</xsl:attribute>
+            <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/main.xspec</xsl:attribute>
+            <xsl:attribute name="stylesheet" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl</xsl:attribute>
             <xsl:attribute name="date" namespace="" select="current-dateTime()"/>
             <!-- invoke each compiled top-level x:scenario -->
             <xsl:for-each select="1 to 83">
@@ -309,7 +309,7 @@
       <xsl:message>when formatting a single copyright year</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario1</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/copyright.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>when formatting a single copyright year</xsl:text>
          </xsl:element>
@@ -430,7 +430,7 @@
       <xsl:message>when formatting a single copyright year range</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario2</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/copyright.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>when formatting a single copyright year range</xsl:text>
          </xsl:element>
@@ -576,7 +576,7 @@
       <xsl:message>when formatting a year range and a non-range year</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario3</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/copyright.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>when formatting a year range and a non-range year</xsl:text>
          </xsl:element>
@@ -747,7 +747,7 @@
       <xsl:message>when formatting two ranges</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario4</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/copyright.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>when formatting two ranges</xsl:text>
          </xsl:element>
@@ -983,7 +983,7 @@
       <xsl:message>a range interrupted</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario5</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/copyright.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>a range interrupted</xsl:text>
          </xsl:element>
@@ -1239,7 +1239,7 @@
       <xsl:message>a range interrupted by a non-numeric year</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario6</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/copyright.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>a range interrupted by a non-numeric year</xsl:text>
          </xsl:element>
@@ -1520,7 +1520,7 @@
       <xsl:message>When transforming a date of 'today'</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario7</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/dates.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming a date of 'today'</xsl:text>
          </xsl:element>
@@ -1530,14 +1530,14 @@
                <xsl:namespace name="db">http://docbook.org/ns/docbook</xsl:namespace>
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/dates.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='today']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d198e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/dates.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
                         xmlns:db="http://docbook.org/ns/docbook"
                         xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1578,7 +1578,7 @@
       <xsl:message>expect a verbatim copy</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e161-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/dates.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -1611,7 +1611,7 @@
       <xsl:message>When transforming an ISO 8601 date</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario8</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/dates.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming an ISO 8601 date</xsl:text>
          </xsl:element>
@@ -1621,14 +1621,14 @@
                <xsl:namespace name="db">http://docbook.org/ns/docbook</xsl:namespace>
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/dates.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='date']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d206e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/dates.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
                         xmlns:db="http://docbook.org/ns/docbook"
                         xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1669,7 +1669,7 @@
       <xsl:message>expect a formatted date</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e164-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/dates.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -1702,7 +1702,7 @@
       <xsl:message>When transforming an ISO 8601 date time in the morning</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario9</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/dates.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming an ISO 8601 date time in the morning</xsl:text>
          </xsl:element>
@@ -1712,14 +1712,14 @@
                <xsl:namespace name="db">http://docbook.org/ns/docbook</xsl:namespace>
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/dates.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='amtime']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d214e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/dates.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
                         xmlns:db="http://docbook.org/ns/docbook"
                         xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1760,7 +1760,7 @@
       <xsl:message>expect formatted date time</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e167-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/dates.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -1793,7 +1793,7 @@
       <xsl:message>When transforming an ISO 8601 date time in the afternoon</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario10</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/dates.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming an ISO 8601 date time in the afternoon</xsl:text>
          </xsl:element>
@@ -1803,14 +1803,14 @@
                <xsl:namespace name="db">http://docbook.org/ns/docbook</xsl:namespace>
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/dates.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='pmtime']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d222e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/dates.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
                         xmlns:db="http://docbook.org/ns/docbook"
                         xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1851,7 +1851,7 @@
       <xsl:message>expect a formatted date time</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e170-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/dates.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -1884,7 +1884,7 @@
       <xsl:message>When transforming a date time with a custom format</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario11</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/dates.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming a date time with a custom format</xsl:text>
          </xsl:element>
@@ -1894,14 +1894,14 @@
                <xsl:namespace name="db">http://docbook.org/ns/docbook</xsl:namespace>
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/dates.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='dtformat']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d230e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/dates.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
                         xmlns:db="http://docbook.org/ns/docbook"
                         xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1942,7 +1942,7 @@
       <xsl:message>expect the custom format to be used</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e173-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/dates.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -1975,7 +1975,7 @@
       <xsl:message>When transforming a french date with a custom format</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario12</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/dates.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/dates.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming a french date with a custom format</xsl:text>
          </xsl:element>
@@ -1985,14 +1985,14 @@
                <xsl:namespace name="db">http://docbook.org/ns/docbook</xsl:namespace>
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/dates.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='dtformat-fr']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d238e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/dates.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
                         xmlns:db="http://docbook.org/ns/docbook"
                         xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2118,7 +2118,7 @@
       <xsl:message>When transforming short funcsynopsis elements in ANSI mode</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario13</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/funcsynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming short funcsynopsis elements in ANSI mode</xsl:text>
          </xsl:element>
@@ -2126,14 +2126,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='ansi1']</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d251e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2172,7 +2172,7 @@
       <xsl:message>expect non-tabular ANSI output</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e180-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/funcsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2204,7 +2204,7 @@
       <xsl:message>When transforming longer funcsynopsis elements in ANSI mode</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario14</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/funcsynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming longer funcsynopsis elements in ANSI mode</xsl:text>
          </xsl:element>
@@ -2212,14 +2212,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='ansi2']</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d259e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2258,7 +2258,7 @@
       <xsl:message>expect tabular ANSI output</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e183-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/funcsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2290,7 +2290,7 @@
       <xsl:message>When transforming long funcsynopsis elements in ANSI mode</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario15</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/funcsynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming long funcsynopsis elements in ANSI mode</xsl:text>
          </xsl:element>
@@ -2298,14 +2298,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='ansi3']</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d267e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2344,7 +2344,7 @@
       <xsl:message>expect tabular ANSI output</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e186-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/funcsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2376,7 +2376,7 @@
       <xsl:message>When transforming short funcsynopsis elements in K&amp;R mode</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario16</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/funcsynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming short funcsynopsis elements in K&amp;R mode</xsl:text>
          </xsl:element>
@@ -2384,14 +2384,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='kr1']</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d275e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2430,7 +2430,7 @@
       <xsl:message>expect non-tabular K&amp;R output</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e189-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/funcsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2462,7 +2462,7 @@
       <xsl:message>When transforming longer funcsynopsis elements in K&amp;R mode</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario17</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/funcsynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming longer funcsynopsis elements in K&amp;R mode</xsl:text>
          </xsl:element>
@@ -2470,14 +2470,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='kr2']</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d283e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2516,7 +2516,7 @@
       <xsl:message>expect tabular K&amp;R output</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e193-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/funcsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2548,7 +2548,7 @@
       <xsl:message>When transforming long funcsynopsis elements in K&amp;R mode</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario18</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/funcsynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/funcsynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming long funcsynopsis elements in K&amp;R mode</xsl:text>
          </xsl:element>
@@ -2556,14 +2556,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='kr3']</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d291e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/funcsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2602,7 +2602,7 @@
       <xsl:message>expect tabular K&amp;R output</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e196-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/funcsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -2634,7 +2634,7 @@
       <xsl:message>The empty sequence is the length</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario19</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The empty sequence is the length</xsl:text>
          </xsl:element>
@@ -2706,7 +2706,7 @@
       <xsl:message>The length is zero</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario20</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is zero</xsl:text>
          </xsl:element>
@@ -2778,7 +2778,7 @@
       <xsl:message>The length is negative</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario21</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is negative</xsl:text>
          </xsl:element>
@@ -2850,7 +2850,7 @@
       <xsl:message>The length is a positive integer (1)</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario22</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is a positive integer (1)</xsl:text>
          </xsl:element>
@@ -2922,7 +2922,7 @@
       <xsl:message>The length is a positive integer (12)</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario23</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is a positive integer (12)</xsl:text>
          </xsl:element>
@@ -2994,7 +2994,7 @@
       <xsl:message>The length is castable to a positive integer</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario24</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is castable to a positive integer</xsl:text>
          </xsl:element>
@@ -3066,7 +3066,7 @@
       <xsl:message>The length isn't numeric'</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario25</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length isn't numeric'</xsl:text>
          </xsl:element>
@@ -3138,7 +3138,7 @@
       <xsl:message>The length is a sequence of several items'</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario26</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is a sequence of several items'</xsl:text>
          </xsl:element>
@@ -3210,7 +3210,7 @@
       <xsl:message>The length is a sequence of several items'</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario27</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>The length is a sequence of several items'</xsl:text>
          </xsl:element>
@@ -3282,7 +3282,7 @@
       <xsl:message>When converting an anchor element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario28</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an anchor element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -3834,7 +3834,7 @@
       <xsl:message>When converting an emphasis element with a bold role</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario29</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an emphasis element with a bold role</xsl:text>
          </xsl:element>
@@ -3959,7 +3959,7 @@
       <xsl:message>When converting a code element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario30</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a code element</xsl:text>
          </xsl:element>
@@ -4387,7 +4387,7 @@
       <xsl:message>When converting a code element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario31</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a code element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -4941,7 +4941,7 @@
       <xsl:message>When converting a quote element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario32</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a quote element</xsl:text>
          </xsl:element>
@@ -5369,7 +5369,7 @@
       <xsl:message>When converting a quote element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario33</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a quote element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -5923,7 +5923,7 @@
       <xsl:message>When converting a subscript element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario34</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a subscript element</xsl:text>
          </xsl:element>
@@ -6351,7 +6351,7 @@
       <xsl:message>When converting a subscript element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario35</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a subscript element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -6905,7 +6905,7 @@
       <xsl:message>When converting a superscript element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario36</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a superscript element</xsl:text>
          </xsl:element>
@@ -7333,7 +7333,7 @@
       <xsl:message>When converting a superscript element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario37</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a superscript element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -7887,7 +7887,7 @@
       <xsl:message>When converting a tag element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario38</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a tag element</xsl:text>
          </xsl:element>
@@ -8315,7 +8315,7 @@
       <xsl:message>When converting a tag element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario39</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a tag element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -8869,7 +8869,7 @@
       <xsl:message>When converting a personname element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario40</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a personname element</xsl:text>
          </xsl:element>
@@ -9297,7 +9297,7 @@
       <xsl:message>When converting a personname element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario41</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/inlines.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a personname element with an xml:id and roles</xsl:text>
          </xsl:element>
@@ -9851,7 +9851,7 @@
       <xsl:message>When transforming classsynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario42</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/oosynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming classsynopsis.001</xsl:text>
          </xsl:element>
@@ -9859,14 +9859,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/classsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/classsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='class']</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d879e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/classsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/classsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -9905,7 +9905,7 @@
       <xsl:message>expect a class synopsis</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e358-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/classsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/classsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -9937,7 +9937,7 @@
       <xsl:message>When transforming methodsynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario43</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/oosynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming methodsynopsis.001</xsl:text>
          </xsl:element>
@@ -9945,14 +9945,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/methodsynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/methodsynopsis.001.xml</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='class']</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d887e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/methodsynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/methodsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -9991,7 +9991,7 @@
       <xsl:message>expect a class synopsis</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e361-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/methodsynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/methodsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -10023,7 +10023,7 @@
       <xsl:message>When transforming synopsisinfo.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario44</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/oosynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming synopsisinfo.001</xsl:text>
          </xsl:element>
@@ -10031,14 +10031,14 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/synopsisinfo.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/synopsisinfo.001.xml</xsl:attribute>
                <xsl:attribute name="select" namespace="">//*[@xml:id='class']</xsl:attribute>
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d895e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/synopsisinfo.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/synopsisinfo.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -10077,7 +10077,7 @@
       <xsl:message>expect synopses</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e364-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/synopsisinfo.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/synopsisinfo.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
@@ -10109,7 +10109,7 @@
       <xsl:message>When transforming packagesynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario45</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/oosynopsis.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming packagesynopsis.001</xsl:text>
          </xsl:element>
@@ -10117,12 +10117,12 @@
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
                <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="href" namespace="">file:/home/circleci/repo/src/test/resources/xml/packagesynopsis.001.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/packagesynopsis.001.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d903e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/circleci/repo/src/test/resources/xml/packagesynopsis.001.xml')"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/packagesynopsis.001.xml')"/>
          <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d903e0"
                         select="$Q{urn:x-xspec:compile:impl}context-d903e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -10157,7 +10157,7 @@
       <xsl:message>expect a package synopsis</xsl:message>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e367-doc"
                      as="document-node()"
-                     select="doc('file:/home/circleci/repo/src/test/resources/expected/packagesynopsis.001.html')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/packagesynopsis.001.html')"/>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d142e367"
                      select="$Q{urn:x-xspec:compile:impl}expect-d142e367-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
@@ -10186,7 +10186,7 @@
       <xsl:message>When computing the length 1.0in</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario46</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0in</xsl:text>
          </xsl:element>
@@ -10258,7 +10258,7 @@
       <xsl:message>When computing the length 1.0m</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario47</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0m</xsl:text>
          </xsl:element>
@@ -10330,7 +10330,7 @@
       <xsl:message>When computing the length 1.0cm</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario48</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0cm</xsl:text>
          </xsl:element>
@@ -10402,7 +10402,7 @@
       <xsl:message>When computing the length 1.0mm</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario49</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0mm</xsl:text>
          </xsl:element>
@@ -10474,7 +10474,7 @@
       <xsl:message>When computing the length 1.0pc</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario50</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0pc</xsl:text>
          </xsl:element>
@@ -10546,7 +10546,7 @@
       <xsl:message>When computing the length 1.0pt</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario51</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0pt</xsl:text>
          </xsl:element>
@@ -10618,7 +10618,7 @@
       <xsl:message>When computing the length 3.14barleycorn</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario52</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 3.14barleycorn</xsl:text>
          </xsl:element>
@@ -10690,7 +10690,7 @@
       <xsl:message>When computing the length 1.0smoot</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario53</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0smoot</xsl:text>
          </xsl:element>
@@ -10762,7 +10762,7 @@
       <xsl:message>When computing the length 25%</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario54</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 25%</xsl:text>
          </xsl:element>
@@ -10834,7 +10834,7 @@
       <xsl:message>When computing the length 100%</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario55</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 100%</xsl:text>
          </xsl:element>
@@ -10906,7 +10906,7 @@
       <xsl:message>When computing the length 125%</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario56</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 125%</xsl:text>
          </xsl:element>
@@ -10978,7 +10978,7 @@
       <xsl:message>When computing the length 3*+0.5in</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario57</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 3*+0.5in</xsl:text>
          </xsl:element>
@@ -11050,7 +11050,7 @@
       <xsl:message>When computing the length 75</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario58</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 75</xsl:text>
          </xsl:element>
@@ -11122,7 +11122,7 @@
       <xsl:message>When computing the length 2.5*</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario59</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/units.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 2.5*</xsl:text>
          </xsl:element>
@@ -11194,7 +11194,7 @@
       <xsl:message>When converting an address in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario60</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an address in the raw style</xsl:text>
          </xsl:element>
@@ -11348,7 +11348,7 @@ Line five</xsl:text>
       <xsl:message>When converting a literallayout in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario61</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a literallayout in the raw style</xsl:text>
          </xsl:element>
@@ -11502,7 +11502,7 @@ Line five</xsl:text>
       <xsl:message>When converting a programlisting in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario62</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a programlisting in the raw style</xsl:text>
          </xsl:element>
@@ -11661,7 +11661,7 @@ Line five</xsl:text>
       <xsl:message>When converting a screen in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario63</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a screen in the raw style</xsl:text>
          </xsl:element>
@@ -11820,7 +11820,7 @@ Line five</xsl:text>
       <xsl:message>When converting a synopsis in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario64</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a synopsis in the raw style</xsl:text>
          </xsl:element>
@@ -11979,7 +11979,7 @@ Line five</xsl:text>
       <xsl:message>When converting a verbatim with inline markup in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario65</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the raw style</xsl:text>
          </xsl:element>
@@ -12180,7 +12180,7 @@ Line five</xsl:text>
       <xsl:message>When converting an address in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario66</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an address in the plain style</xsl:text>
          </xsl:element>
@@ -12334,7 +12334,7 @@ Line five</xsl:text>
       <xsl:message>When converting a literallayout in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario67</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a literallayout in the plain style</xsl:text>
          </xsl:element>
@@ -12488,7 +12488,7 @@ Line five</xsl:text>
       <xsl:message>When converting a programlisting in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario68</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a programlisting in the plain style</xsl:text>
          </xsl:element>
@@ -12647,7 +12647,7 @@ Line five</xsl:text>
       <xsl:message>When converting a screen in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario69</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a screen in the plain style</xsl:text>
          </xsl:element>
@@ -12806,7 +12806,7 @@ Line five</xsl:text>
       <xsl:message>When converting a synopsis in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario70</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a synopsis in the plain style</xsl:text>
          </xsl:element>
@@ -12965,7 +12965,7 @@ Line five</xsl:text>
       <xsl:message>When converting a verbatim with inline markup in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario71</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the plain style</xsl:text>
          </xsl:element>
@@ -13204,7 +13204,7 @@ Line five</xsl:text>
       <xsl:message>When converting an address in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario72</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an address in the lines style</xsl:text>
          </xsl:element>
@@ -13603,7 +13603,7 @@ Line five</xsl:text>
       <xsl:message>When converting a literallayout in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario73</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a literallayout in the lines style</xsl:text>
          </xsl:element>
@@ -14002,7 +14002,7 @@ Line five</xsl:text>
       <xsl:message>When converting a programlisting in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario74</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a programlisting in the lines style</xsl:text>
          </xsl:element>
@@ -14444,7 +14444,7 @@ Line five</xsl:text>
       <xsl:message>When converting a screen in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario75</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a screen in the lines style</xsl:text>
          </xsl:element>
@@ -14868,7 +14868,7 @@ Line five</xsl:text>
       <xsl:message>When converting a synopsis in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario76</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a synopsis in the lines style</xsl:text>
          </xsl:element>
@@ -15292,7 +15292,7 @@ Line five</xsl:text>
       <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario77</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the lines style</xsl:text>
          </xsl:element>
@@ -15780,7 +15780,7 @@ Line five</xsl:text>
       <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario78</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the lines style</xsl:text>
          </xsl:element>
@@ -16316,7 +16316,7 @@ Line five</xsl:text>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario79</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
          </xsl:element>
@@ -16993,7 +16993,7 @@ Line five</xsl:text>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario80</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
          </xsl:element>
@@ -17835,7 +17835,7 @@ Line five</xsl:text>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario81</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
          </xsl:element>
@@ -18230,7 +18230,7 @@ Line five</xsl:text>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario82</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
          </xsl:element>
@@ -18719,7 +18719,7 @@ Line five</xsl:text>
       <xsl:message>When callouts are inserted into markup</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario83</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are inserted into markup</xsl:text>
          </xsl:element>

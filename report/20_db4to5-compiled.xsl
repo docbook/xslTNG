@@ -3,13 +3,13 @@
                  exclude-result-prefixes="#all"
                  version="3.0">
    <!-- the tested stylesheet -->
-   <xsl:import href="file:/home/circleci/repo/build/xslt/transforms/20-db4to5.xsl"/>
+   <xsl:import href="file:/home/runner/work/xslTNG/xslTNG/build/xslt/transforms/20-db4to5.xsl"/>
    <!-- XSpec library modules providing tools -->
-   <xsl:include href="file:/home/circleci/repo/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
+   <xsl:include href="file:/home/runner/work/xslTNG/xslTNG/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}stylesheet-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/circleci/repo/build/xslt/transforms/20-db4to5.xsl</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xslt/transforms/20-db4to5.xsl</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}xspec-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/circleci/repo/build/xspec/20_db4to5.xspec</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xspec/20_db4to5.xspec</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}is-external"
                   as="Q{http://www.w3.org/2001/XMLSchema}boolean"
                   select="false()"/>
@@ -40,8 +40,8 @@
       <!-- set up the result document (the report) -->
       <xsl:result-document format="Q{{http://www.jenitennison.com/xslt/xspec}}xml-report-serialization-parameters">
          <xsl:element name="report" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/20_db4to5.xspec</xsl:attribute>
-            <xsl:attribute name="stylesheet" namespace="">file:/home/circleci/repo/build/xslt/transforms/20-db4to5.xsl</xsl:attribute>
+            <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/20_db4to5.xspec</xsl:attribute>
+            <xsl:attribute name="stylesheet" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xslt/transforms/20-db4to5.xsl</xsl:attribute>
             <xsl:attribute name="date" namespace="" select="current-dateTime()"/>
             <!-- invoke each compiled top-level x:scenario -->
             <xsl:for-each select="1 to 1">
@@ -63,7 +63,7 @@
       <xsl:message>When transorming a db4 document</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario1</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/circleci/repo/build/xspec/20_db4to5.xspec</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/20_db4to5.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transorming a db4 document</xsl:text>
          </xsl:element>
