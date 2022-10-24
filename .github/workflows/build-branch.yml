@@ -1,0 +1,36 @@
+name: build-docbook
+on: push
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      HAVE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN != '' }}
+      HAVE_SAXON_EE: ${{ secrets.SAXON_PASSPHRASE != '' }}
+      BRANCH_NAME: ${{ github.ref_name }}
+    steps:
+      - name: Setup python dependencies
+        run: python3 -m pip install pygments==2.6.1 click
+
+      - name: Checkout the branch
+        uses: actions/checkout@v3
+
+      - name: Setup SaxonEE
+        if: ${{ env.HAVE_SAXON_EE == 'true' }}
+        run: gpg --batch --yes --passphrase ${{ secrets.SAXON_PASSPHRASE }} -d tools/saxon.enc | tar zxf -
+
+      - name: Build
+        run: |
+          ./gradlew -PrequireCompileSuccess=true dist
+
+      - name: Cleanup SaxonEE
+        if: ${{ env.HAVE_SAXON_EE == 'true' }}
+        run: rm -rf lib
+
+      - name: Deploy main to gh-pages
+        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && github.ref_name == 'main' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/website
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          target-folder: /
