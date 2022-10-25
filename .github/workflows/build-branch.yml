@@ -83,6 +83,16 @@ jobs:
           branch: master
           target-folder: /release/xsltng/${{ env.CI_TAG }}
 
+      - name: Deploy tagged release to CDN as current
+        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/release
+          token: ${{ secrets.ACCESS_TOKEN }}
+          repository-name: ${{ github.repository_owner}}/cdn
+          branch: master
+          target-folder: /release/xsltng/current
+
       - name: Publish release
         uses: softprops/action-gh-release@v1
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
