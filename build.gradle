@@ -1444,7 +1444,7 @@ task zipDist(type: Zip, dependsOn: ['zipStage']) {
 
 // ============================================================
 
-task dist(dependsOn: ['requirePassingTests', 'zipDist', 'website']) {
+task dist(dependsOn: ['requirePassingTests', 'releaseArtifacts', 'zipDist', 'website']) {
   doLast {
     println("Built dist for ${xslTNGtitle} version ${xslTNGversion}")
   }
