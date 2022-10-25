@@ -179,29 +179,35 @@ class CheckTextFile extends DefaultTask {
 }
 
 def gitRef() {
-  def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
-  ProcessBuilder pb = new ProcessBuilder().command(command)
-  pb.directory(projectDir)
-  Process proc = pb.start()
+  def ref = null;
+  def gitRepo = new File(".git")
+  if (gitRepo.exists() && gitRepo.isDirectory()) {
+    def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
+    ProcessBuilder pb = new ProcessBuilder().command(command)
+    pb.directory(projectDir)
+    Process proc = pb.start()
 
-  def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-  String ref = null
-  String line = null
-  while ((line = reader.readLine()) != null) {
-    if (ref == null) {
-      ref = line
+    def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+    String line = null
+    while ((line = reader.readLine()) != null) {
+      if (ref == null) {
+        ref = line
+      }
     }
-  }
 
-  reader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-  while ((line = reader.readLine()) != null) {
-    println(line)
-  }
+    reader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+    while ((line = reader.readLine()) != null) {
+      println(line)
+    }
 
-  proc.waitFor()
+    proc.waitFor()
+  }
 
   if (ref == null) {
-    throw new GradleException("Failed to get git hash.")
+    ref = "Unknown"
+    println("This doesn't appear to be a git clone; using VERSION-ID: ${ref}")
+  } else {
+    println("Using git ref as VERSION-ID: ${ref}")
   }
 
   return ref
@@ -213,14 +219,21 @@ def findPygmentize() {
   def path = System.getenv()["PATH"]
   def script = null
   path.split(":+").each { segment ->
-    if (segment.endsWith("/.pyenv/shims")) {
-      // Ok, we found pyenv, now can we find pygmentize?
-      def pyenv = new File("${segment.substring(0, segment.length() - 6)}/versions")
-      def versions = []
-      pyenv.traverse(type: DIRECTORIES, maxDepth: 0) { dir ->
-        def testfile = new File("${dir}/bin/pygmentize")
-        if (testfile.exists() && testfile.canExecute()) {
-          script = testfile.toString()
+    if (script == null) {
+      def testfile = new File("${segment}/pygmentize")
+      if (testfile.exists() && testfile.canExecute()) {
+        script = testfile.toString()
+      }
+
+      if (segment.endsWith("/.pyenv/shims")) {
+        // Ok, we found pyenv, now can we find pygmentize?
+        def pyenv = new File("${segment.substring(0, segment.length() - 6)}/versions")
+        def versions = []
+        pyenv.traverse(type: DIRECTORIES, maxDepth: 0) { dir ->
+          testfile = new File("${dir}/bin/pygmentize")
+          if (testfile.exists() && testfile.canExecute()) {
+            script = testfile.toString()
+          }
         }
       }
     }
@@ -229,6 +242,8 @@ def findPygmentize() {
   if (script == null) {
     println("Could not find pygmentize")
     script = "" // nevermind
+  } else {
+    println("Using Pygments from ${script}")
   }
 
   return script
@@ -244,7 +259,7 @@ configurations.compileClasspath.each { it ->
 System.setProperty("org.docbook.xsltng.extensions.verbose", verbose)
 System.setProperty("org.docbook.extensions.pygmentize", pygmentize)
 
-println("Building with Java version ${System.getProperty('java.version')}")
+println("Using Java version ${System.getProperty('java.version')}")
 
 task configureEnvironment() {
   def envVars = [:]
@@ -1309,12 +1324,22 @@ clean.dependsOn cleanXSpec
 
 // ============================================================
 
-task zipStagePygments(type: Exec) {
-  commandLine "python3", "${projectDir}/tools/generate-pygments.py",
-    "--version", xslTNGversion, "--title", xslTNGtitle,
-    "--output", "${buildDir}/stage/zip/resources/css/pygments.css"
-  doFirst {
-    mkdir "${buildDir}/stage/zip/resources/css"
+task zipStagePygments() {
+  if (pygmentize == "") {
+    doLast {
+      println("Without pygmentize, zip file resources will be incomplete.")
+    }
+  } else {
+    doFirst {
+      mkdir "${buildDir}/stage/zip/resources/css"
+    }
+    doLast {
+      exec {
+        commandLine "python3", "${projectDir}/tools/generate-pygments.py",
+          "--version", xslTNGversion, "--title", xslTNGtitle,
+          "--output", "${buildDir}/stage/zip/resources/css/pygments.css"
+      }
+    }
   }
 }
 
@@ -1400,6 +1425,15 @@ task zipStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList', 'zipStageXs
 task zipStage(type: Copy, dependsOn: ['zipStageBin', 'zipStageDocker', 'zipStageLib',
                                       'zipStageMisc', 'zipStageCatalog']) {
   // nop
+}
+
+task releaseArtifacts(type: Copy, dependsOn: ['zipStage']) {
+  from "${buildDir}/stage/zip"
+  into "${buildDir}/release"
+  exclude "bin/**"
+  exclude "libs/**"
+  exclude "samples/**"
+  exclude "docker/**"
 }
 
 task zipDist(type: Zip, dependsOn: ['zipStage']) {
