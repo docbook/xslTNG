@@ -1,5 +1,9 @@
-name: build-docbook
-on: push
+name: build-pr
+on:
+  pull_request_target:
+    types: [assigned, opened, edited, synchronize, reopened]
+    branches:
+      - main
 jobs:
   check_branch:
     runs-on: ubuntu-latest
@@ -31,13 +35,11 @@ jobs:
           fi
           echo "::set-output name=tag::$tag"
 
-
-  build-and-deploy:
+  build-pr:
     runs-on: ubuntu-latest
     needs: check_branch
     env:
       HAVE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN != '' }}
-      HAVE_SAXON_EE: ${{ secrets.SAXON_PASSPHRASE != '' }}
       CIWORKFLOW: yes
       CI_SHA1: ${{ github.sha }}
       CI_BUILD_NUM: ${{ github.run_number }}
@@ -45,6 +47,7 @@ jobs:
       CI_PROJECT_REPONAME: ${{ needs.check_branch.outputs.reponame }}
       CI_BRANCH: ${{ needs.check_branch.outputs.branch }}
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
+      CI_PULL: ${{ github.event.number }}
     steps:
       - name: Setup python dependencies
         run: python3 -m pip install pygments==2.6.1 click
@@ -63,22 +66,3 @@ jobs:
       - name: Cleanup SaxonEE
         if: ${{ env.HAVE_SAXON_EE == 'true' }}
         run: rm -rf lib
-
-      - name: Deploy main to gh-pages
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build/website
-          token: ${{ secrets.ACCESS_TOKEN }}
-          branch: gh-pages
-          target-folder: /
-
-      - name: Deploy tagged release to CDN
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build/release
-          token: ${{ secrets.ACCESS_TOKEN }}
-          repository-name: ${{ github.repository_owner}}/cdn
-          branch: master
-          target-folder: /release/xsltng/${{ env.CI_TAG }}
