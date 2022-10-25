@@ -21,7 +21,6 @@
 </xsl:variable>
 
 <xsl:template match="/">
-  <xsl:message select="$build-tag, $build-tag eq ''"/>
   <xsl:apply-templates/>
 </xsl:template>
 
