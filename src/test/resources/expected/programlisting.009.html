@@ -1,40 +1,40 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Article wrapper</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/><link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/><link href="./css/docbook-paged.css" rel="stylesheet" media="print"/></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Article wrapper</h1></header><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="15"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1</span><span class="ld"><code>#!/usr/bin/perl -- # --*-Perl-*--</code></span></span>
-<span class="line" db-line="2"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="3"><span class="ln"></span><span class="ld"><code>use Getopt::Std;</code></span></span>
-<span class="line" db-line="4"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="5"><span class="ln">5</span><span class="ld"><code>$usage = "Usage: $0 [-q] [-u|-p|-m] file [ file ... ]\n";</code></span></span>
-<span class="line" db-line="6"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="7"><span class="ln"></span><span class="ld"><code>die $usage if ! getopts('qupm');</code></span></span>
-<span class="line" db-line="8"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="9"><span class="ln"></span><span class="ld"><code>die $usage if ($opt_p + $opt_u + $opt_m) != 1;</code></span></span>
-<span class="line" db-line="10"><span class="ln">10</span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="11"><span class="ln"></span><span class="ld"><code>$file = shift @ARGV || die $usage;</code></span></span>
-<span class="line" db-line="12"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="13"><span class="ln"></span><span class="ld"><code>$opt = '-u' if $opt_u;</code></span></span>
-<span class="line" db-line="14"><span class="ln"></span><span class="ld"><code>$opt = '-p' if $opt_p;</code></span></span>
-<span class="line" db-line="15"><span class="ln">15</span><span class="ld"><code>$opt = '-m' if $opt_m;</code></span></span>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Article wrapper</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/><link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/><link href="./css/docbook-paged.css" rel="stylesheet" media="print"/></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Article wrapper</h1></header><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="15"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code>#!/usr/bin/perl -- # --*-Perl-*--</code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>use Getopt::Std;</code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code>$usage = "Usage: $0 [-q] [-u|-p|-m] file [ file ... ]\n";</code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>die $usage if ! getopts('qupm');</code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>die $usage if ($opt_p + $opt_u + $opt_m) != 1;</code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>$file = shift @ARGV || die $usage;</code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>$opt = '-u' if $opt_u;</code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>$opt = '-p' if $opt_p;</code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>$opt = '-m' if $opt_m;</code></span></span>
 </pre></div><p>This paragraph interrupts the listing. The line numbering
-continues in the following listing.</p><div class="pre-wrap" db-startinglinenumber="16" db-numberoflines="23"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">16</span><span class="ld"><code>while ($file) {</code></span></span>
-<span class="line" db-line="2"><span class="ln"></span><span class="ld"><code>    print "Converting $file to $opt linebreaks.\n" if !$opt_q;</code></span></span>
-<span class="line" db-line="3"><span class="ln"></span><span class="ld"><code>    open (F, "$file");</code></span></span>
-<span class="line" db-line="4"><span class="ln"></span><span class="ld"><code>    binmode F;</code></span></span>
-<span class="line" db-line="5"><span class="ln">20</span><span class="ld"><code>    read (F, $_, -s $file);</code></span></span>
-<span class="line" db-line="6"><span class="ln"></span><span class="ld"><code>    close (F);</code></span></span>
-<span class="line" db-line="7"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="8"><span class="ln"></span><span class="ld"><code>    s/\r\n/\n/sg;</code></span></span>
-<span class="line" db-line="9"><span class="ln"></span><span class="ld"><code>    s/\r/\n/sg;</code></span></span>
-<span class="line" db-line="10"><span class="ln">25</span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="11"><span class="ln"></span><span class="ld"><code>    if ($opt eq '-p') {</code></span></span>
-<span class="line" db-line="12"><span class="ln"></span><span class="ld"><code>	s/\n/\r\n/sg;</code></span></span>
-<span class="line" db-line="13"><span class="ln"></span><span class="ld"><code>    } elsif ($opt eq '-m') {</code></span></span>
-<span class="line" db-line="14"><span class="ln"></span><span class="ld"><code>	s/\n/\r/sg;</code></span></span>
-<span class="line" db-line="15"><span class="ln">30</span><span class="ld"><code>    }</code></span></span>
-<span class="line" db-line="16"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="17"><span class="ln"></span><span class="ld"><code>    open (F, "&gt;$file");</code></span></span>
-<span class="line" db-line="18"><span class="ln"></span><span class="ld"><code>    binmode F;</code></span></span>
-<span class="line" db-line="19"><span class="ln"></span><span class="ld"><code>    print F $_;</code></span></span>
-<span class="line" db-line="20"><span class="ln">35</span><span class="ld"><code>    close (F);</code></span></span>
-<span class="line" db-line="21"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="22"><span class="ln"></span><span class="ld"><code>    $file = shift @ARGV;</code></span></span>
-<span class="line" db-line="23"><span class="ln"></span><span class="ld"><code>}</code></span></span>
+continues in the following listing.</p><div class="pre-wrap" db-startinglinenumber="16" db-numberoflines="23"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">16 <span class="nsep">|</span></span><span class="ld"><code>while ($file) {</code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    print "Converting $file to $opt linebreaks.\n" if !$opt_q;</code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    open (F, "$file");</code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    binmode F;</code></span></span>
+<span class="line" db-line="5"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code>    read (F, $_, -s $file);</code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    close (F);</code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    s/\r\n/\n/sg;</code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    s/\r/\n/sg;</code></span></span>
+<span class="line" db-line="10"><span class="ln">25 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    if ($opt eq '-p') {</code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>	s/\n/\r\n/sg;</code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    } elsif ($opt eq '-m') {</code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>	s/\n/\r/sg;</code></span></span>
+<span class="line" db-line="15"><span class="ln">30 <span class="nsep">|</span></span><span class="ld"><code>    }</code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    open (F, "&gt;$file");</code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    binmode F;</code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    print F $_;</code></span></span>
+<span class="line" db-line="20"><span class="ln">35 <span class="nsep">|</span></span><span class="ld"><code>    close (F);</code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="22"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    $file = shift @ARGV;</code></span></span>
+<span class="line" db-line="23"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>}</code></span></span>
 </pre></div></article></main><nav class="bottom"></nav></body></html>

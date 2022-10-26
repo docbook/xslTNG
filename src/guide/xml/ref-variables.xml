@@ -1388,7 +1388,30 @@ syntax highlighter is applied, the
 <para>Each key/value pair in the map will be passed to <command>pygmentize</command>
 as a <literal>-P<replaceable>key</replaceable>=<replaceable>value</replaceable></literal>
 option.</para>
+</refsection>
+</refentry>
 
+<refentry xml:id="v_verbatim-table-style">
+<?db filename="v_verbatim-table-style.html"?>
+<refmeta>
+<refentrytitle>$v:verbatim-table-style</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-table-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:verbatim-table-style</refname>
+<refpurpose>List of verbatim elements to be rendered in the table style</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The elements whose local names appear in this list will be
+formatted using the line verbatim style by default.
+For a discussion of verbatim elements and styles, see
+<xref linkend="verbstyle"/>.</para>
+
+<para>This list is
+usually constructed from the <parameter>verbatim-table-style</parameter> parameter.
+</para>
 </refsection>
 </refentry>
 

@@ -237,29 +237,9 @@ Line three
 Line four
 Line five</address>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap"><pre class="address verbatim verblines"><span class="line" db-line="1">
-      <span class="ln"/>
-      <span class="ld">Line one</span>
-   </span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">Line two</span>
-   </span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">Line three</span>
-   </span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">Line four</span>
-   </span>
-<span class="line" db-line="5">
-      <span class="ln"/>
-      <span class="ld">Line five</span>
-   </span>
-</pre></div>
-   </x:expect>
+   <x:expect label="you should get all the lines"
+             href="../resources/expected/verbatim-xspec-001.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When converting a literallayout in the lines style">
@@ -271,28 +251,9 @@ Line three
 Line four
 Line five</literallayout>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap"><pre class="literallayout verbatim verblines"><span class="line" db-line="1">
-      <span class="ln"/>
-      <span class="ld">Line one</span>
-   </span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">Line two</span>
-   </span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">Line three</span>
-   </span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">Line four</span>
-   </span>
-<span class="line" db-line="5">
-      <span class="ln"/>
-      <span class="ld">Line five</span>
-   </span>
-</pre></div></x:expect>
+   <x:expect label="you should get all the lines"
+             href="../resources/expected/verbatim-xspec-002.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When converting a programlisting in the lines style">
@@ -304,39 +265,9 @@ Line three
 Line four
 Line five</programlisting>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
-      <span class="ln">1</span>
-      <span class="ld">
-         <code>Line one</code>
-      </span>
-   </span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line two</code>
-      </span>
-   </span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line three</code>
-      </span>
-   </span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line four</code>
-      </span>
-   </span>
-<span class="line" db-line="5">
-      <span class="ln">5</span>
-      <span class="ld">
-         <code>Line five</code>
-      </span>
-   </span>
-</pre></div>
-   </x:expect>
+   <x:expect label="you should get all the lines"
+             href="../resources/expected/verbatim-xspec-003.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When converting a screen in the lines style">
@@ -348,39 +279,9 @@ Line three
 Line four
 Line five</screen>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-   <div class="pre-wrap"><pre class="screen verbatim verblines"><span class="line" db-line="1">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line one</code>
-      </span>
-   </span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line two</code>
-      </span>
-   </span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line three</code>
-      </span>
-   </span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line four</code>
-      </span>
-   </span>
-<span class="line" db-line="5">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line five</code>
-      </span>
-   </span>
-</pre></div>
-   </x:expect>
+   <x:expect label="you should get all the lines"
+             href="../resources/expected/verbatim-xspec-004.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When converting a synopsis in the lines style">
@@ -392,39 +293,9 @@ Line three
 Line four
 Line five</synopsis>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap"><pre class="synopsis verbatim verblines"><span class="line" db-line="1">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line one</code>
-      </span>
-   </span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line two</code>
-      </span>
-   </span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line three</code>
-      </span>
-   </span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line four</code>
-      </span>
-   </span>
-<span class="line" db-line="5">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line five</code>
-      </span>
-   </span>
-</pre></div>
-   </x:expect>
+   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines"
+             href="../resources/expected/verbatim-xspec-005.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When converting a verbatim with inline markup in the lines style">
@@ -436,28 +307,9 @@ Line <emphasis>end of three
 Start of line</emphasis> four
 Line five</programlisting>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the inline markup should not cross line boundaries.">
-   <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
-      <span class="ln">1</span>
-      <span class="ld">
-         <code>Line one</code></span></span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line <em>two</em></code></span></span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line <em>end of three</em></code></span></span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld"><code><em>Start of line</em> four</code></span></span>
-<span class="line" db-line="5">
-      <span class="ln">5</span>
-      <span class="ld">
-         <code>Line five</code></span></span>
-</pre></div>
-   </x:expect>
+   <x:expect label="the inline markup should not cross line boundaries."
+             href="../resources/expected/verbatim-xspec-006.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When converting a verbatim with inline markup in the lines style">
@@ -469,30 +321,9 @@ Line <emphasis xml:id="three">end of three
 Start of line</emphasis> four
 Line five</programlisting>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="ID attributes should not be repeated.">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
-      <span class="ln">1</span>
-      <span class="ld">
-         <code>Line one</code></span></span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line <em id="two">two</em></code></span></span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line <em id="three">end of three</em></code></span></span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld"><code><em>Start of line</em> four</code></span></span>
-<span class="line" db-line="5">
-      <span class="ln">5</span>
-      <span class="ld">
-         <code>Line five</code>
-      </span>
-   </span>
-</pre></div>
-   </x:expect>
+   <x:expect label="ID attributes should not be repeated."
+             href="../resources/expected/verbatim-xspec-007.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When callouts are added to a verbatim element">
@@ -511,27 +342,9 @@ Line three
 Line four
 Line five</programlisting>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="they should appear in the output">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
-      <span class="ln">1</span>
-      <span class="ld"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one</code></span></span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld"><code>Line<a id="R_area2" class="callout-bug linecolumn" db-line="2" db-column="5">②</a> two</code></span></span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line three         <a id="R_area3" class="callout-bug linecolumn" db-line="3" db-column="20">③</a></code></span></span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line four</code></span></span>
-<span class="line" db-line="5">
-      <span class="ln">5</span>
-      <span class="ld">
-         <code>Line five</code></span></span>
-</pre></div>
-   </x:expect>
+   <x:expect label="they should appear in the output"
+             href="../resources/expected/verbatim-xspec-008.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When callouts are added to a verbatim element">
@@ -550,54 +363,9 @@ Line three
 Line four
 Line five</programlisting>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="they can extend the listing">
-     <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="8"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1">
-      <span class="ln">1</span>
-      <span class="ld">
-         <code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one</code></span>
-   </span>
-<span class="line" db-line="2">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line<a id="R_area2" class="callout-bug linecolumn" db-line="2" db-column="5">②</a> two</code>
-      </span>
-   </span>
-<span class="line" db-line="3">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line three</code>
-      </span>
-   </span>
-<span class="line" db-line="4">
-      <span class="ln"/>
-      <span class="ld">
-         <code>Line four</code>
-      </span>
-   </span>
-<span class="line" db-line="5">
-      <span class="ln">5</span>
-      <span class="ld">
-         <code>Line five</code>
-      </span>
-   </span>
-<span class="line" db-line="6">
-      <span class="ln"/>
-      <span class="ld">
-         <code> </code>
-      </span>
-   </span>
-<span class="line" db-line="7">
-      <span class="ln"/>
-      <span class="ld">
-         <code> </code>
-      </span>
-   </span>
-<span class="line" db-line="8">
-      <span class="ln"/>
-      <span class="ld">
-         <code>       <a id="R_area3" class="callout-bug linecolumn" db-line="8" db-column="8">③</a></code></span></span>
-</pre></div>
-   </x:expect>
+   <x:expect label="they can extend the listing"
+             href="../resources/expected/verbatim-xspec-009.xml"
+             select="/*"/>
 </x:scenario>
 
 <x:scenario label="When callouts are added to a verbatim element">

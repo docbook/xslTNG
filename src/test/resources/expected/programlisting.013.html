@@ -1,0 +1,53 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Unit test: programlisting.013</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/><link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/><link href="./css/docbook-paged.css" rel="stylesheet" media="print"/></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Unit test: programlisting.013</h1></header><p>These verbatim listings explicitly use the ‘table’ style.</p><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><table class="verbatim"><tr><td><pre class="language-none long numbered programlisting verbatim verblines"><span class="line"><span class="ln">1 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">5 <span class="nsep">|</span></span></span>
+</pre></td><td><pre class="language-none long numbered programlisting verbatim verblines"><span class="line"><span class="ld">ProgramListing: This is a test</span></span>
+<span class="line"><span class="ld">  Only a test.</span></span>
+<span class="line"><span class="ld">Had this been a real emegency,</span></span>
+<span class="line"><span class="ld">  We would have fled in terror</span></span>
+<span class="line"><span class="ld">And you would not have been informed.</span></span>
+</pre></td></tr></table></div><p>A program listing for the language “python” (explicitly).</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="14"><table class="verbatim"><tr><td><pre class="language-python long numbered programlisting verbatim verblines"><span class="line"><span class="ln"> 1 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln"> 5 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">10 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
+</pre></td><td><pre class="language-python long numbered programlisting verbatim verblines"><span class="line"><span class="ld">    <span class="k">def</span> <span class="nf">_check_arg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span></span></span>
+<span class="line"><span class="ld">        <span class="k">if</span> <span class="s2">":"</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span></span></span>
+<span class="line"><span class="ld">            <span class="n">pos</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span></span></span>
+<span class="line"><span class="ld">            <span class="n">name</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">pos</span><span class="p">]</span></span></span>
+<span class="line"><span class="ld">            <span class="n">value</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[(</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):]</span></span></span>
+<span class="line"><span class="ld">            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"-x"</span><span class="p">,</span> <span class="s2">"-y"</span><span class="p">,</span> <span class="s2">"-r"</span><span class="p">,</span> <span class="s2">"-init"</span><span class="p">):</span></span></span>
+<span class="line"><span class="ld">                <span class="k">raise</span> <span class="n">JavaClassRunnerException</span><span class="p">(</span></span></span>
+<span class="line"><span class="ld">                    <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2"> option cannot be specified"</span><span class="p">)</span></span></span>
+<span class="line"><span class="ld">            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"-catalog"</span><span class="p">:</span></span></span>
+<span class="line"><span class="ld">                <span class="bp">self</span><span class="o">.</span><span class="n">catalogs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></span></span>
+<span class="line"><span class="ld">                <span class="k">return</span></span></span>
+<span class="line"><span class="ld">            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"-xsl"</span><span class="p">:</span></span></span>
+<span class="line"><span class="ld">                <span class="bp">self</span><span class="o">.</span><span class="n">stylesheet</span> <span class="o">=</span> <span class="n">arg</span></span></span>
+<span class="line"><span class="ld">        <span class="bp">self</span><span class="o">.</span><span class="n">_app_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span></span></span>
+</pre></td></tr></table></div><p>A program listing for the language “xml”</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="7"><table class="verbatim"><tr><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ln">1 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">5 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
+</pre></td><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><span class="nt">&lt;xsl:function</span> <span class="na">name=</span><span class="s">"f:verbatim-trim-trailing"</span> <span class="na">as=</span><span class="s">"xs:boolean"</span><span class="nt">&gt;</span></span></span>
+<span class="line"><span class="ld">  <span class="nt">&lt;xsl:param</span> <span class="na">name=</span><span class="s">"context"</span> <span class="na">as=</span><span class="s">"element()"</span><span class="nt">/&gt;</span></span></span>
+<span class="line"><span class="ld">  <span class="nt">&lt;xsl:variable</span> <span class="na">name=</span><span class="s">"pi"</span> <span class="na">select=</span><span class="s">"f:pi($context, 'verbatim-trim-trailing')"</span><span class="nt">/&gt;</span></span></span>
+<span class="line"><span class="ld">  <span class="nt">&lt;xsl:sequence</span> <span class="na">select=</span><span class="s">"if ($pi)</span></span></span>
+<span class="line"><span class="ld"><span class="s">                        then f:is-true($pi)</span></span></span>
+<span class="line"><span class="ld"><span class="s">                        else f:is-true($verbatim-trim-trailing-blank-lines)"</span><span class="nt">/&gt;</span></span></span>
+<span class="line"><span class="ld"><span class="nt">&lt;/xsl:function&gt;</span></span></span>
+</pre></td></tr></table></div></article></main><nav class="bottom"></nav></body></html>
