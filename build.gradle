@@ -618,6 +618,10 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
   }
 }
 
+task actualResults() {
+  // Just somewhere to hang dependencies
+}
+
 // Generate tasks to format each resource/xml document
 fileTree(dir: "${projectDir}/src/test/resources/xml",
          include: "*.xml",
@@ -722,6 +726,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     output "${buildDir}/actual/${base}.html"
     parameters(stylesheetParams)
   }
+  actualResults.dependsOn t
 
   if (base.startsWith("colors.")) {
     // disable for expected results
