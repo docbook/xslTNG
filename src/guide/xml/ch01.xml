@@ -14,10 +14,13 @@ where you can get them!</para>
 <title>What do the stylesheets do?</title>
 
 <para>The <citetitle>DocBook xslTNG</citetitle> stylesheets transform
-DocBook V5.x into HTML. The intent is that they support all of
-DocBook V5.2. They will also process DocBook V4.x documents by first
-converting them (tranforming source elements that have changed, adding
-the namespace, etc.) into 5.x documents.</para>
+DocBook V5.x into HTML. The intent is that they support all of DocBook
+V5.2, including the DocBook Publishers elements. (The
+<link xlink:href="https://xsltng.docbook.org/report/">test suite report</link>
+gives a precise summary of the current state of coverage.) They will also
+process DocBook V4.x documents by first converting them (tranforming
+source elements that have changed, adding the namespace, etc.) into
+5.x documents.</para>
 
 <para>Some parts of DocBook, especially the modeling parts, are very
 open-ended. One could, in principle, write a function synopsis for any
@@ -34,7 +37,7 @@ paged output. This is similar, but not the same as producing XSL
 Formatting Objects and then transforming those.</para>
 
 <para>Producing other output formats, EPUB files, for example, is
-planned for the future but no specific schedule is promised. I have no
+planned for the future but no specific schedule is promised. There are no
 plans at the moment to produce XSL FO stylesheets.</para>
 </section>
 

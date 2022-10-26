@@ -68,14 +68,31 @@ SVG images is not available.</para>
 <section xml:id="verbstyle">
 <title>Verbatim styles</title>
 
-<para>There are three verbatim styles: <literal>lines</literal>, <literal>plain</literal>,
-and <literal>raw</literal>.</para>
+<para>There are four verbatim styles: <literal>lines</literal>, <literal>table</literal>,
+<literal>plain</literal>, and <literal>raw</literal>.</para>
 
 <variablelist>
 <varlistentry><term><literal>lines</literal></term>
 <listitem>
-<para>In the lines style, each line of the verbatim environment is marked up
-individually. In this style, lines can be numbered and callouts can be inserted.
+<para>In the lines style, each line of the verbatim environment is
+marked up individually. In this style, lines can be numbered and
+callouts can be inserted.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>table</literal></term>
+<listitem>
+<para>In the table style, each line of the verbatim environment is
+marked up individually, very much like the lines style. In this style,
+lines can be numbered and callouts can be inserted. It differs from
+the lines style in that the whole thing is wrapped in a table.</para>
+
+<para>The table has one row and two columns. The line numbers appear in the
+first column, the lines in the second. This format was added in order
+to improve the display in user agents that don’t support CSS.
+Ironically, in the course of adding this style, a number of changes
+were made to the way line numbers are formatted in the lines style
+making it largely, perhaps entirely, unnecessary.
 </para>
 </listitem>
 </varlistentry>
@@ -100,6 +117,47 @@ be processed, but you cannot add line numbers, callouts, or syntax highlighting.
 
 <para>Consult <xref linkend="params"/> for a variety of parameters that control
 aspects of verbatim processing.</para>
+
+<section xml:id="line-numbers">
+<title>Line numbers</title>
+
+<para>In the <literal>lines</literal> and <literal>table</literal> styles, line
+numbers may be added to the beginning of some (or all) lines. Prior to version
+1.10.0, the stylesheets inserted the numbers without any padding:</para>
+
+<programlisting language="xml"><![CDATA[<span class="line">
+  <span class="ln">5</span>
+  <span class="ld">The line of text</span>
+</span>]]></programlisting>
+
+<para>(The newlines and indentation in these examples are for clarity. In practice, these
+are inside a <tag namespace="http://www.w3.org/1999/xhtml">pre</tag> where every
+space counts and they’re all run together with line breaks only occurring
+between lines.)</para>
+
+<para>In a graphical browser with CSS support, this looked fine. But
+without CSS, the line numbers and the text that followed them could
+flow together and the alignment of the numbers was unclear.</para>
+
+<para>Starting in version 1.10.0, the stylesheets insert padding
+spaces before each number so that they will all be aligned. If the
+largest line number is three digits long, every number smaller than
+100 will be padded to a width of three characters. A single space is
+added after the number to separate it from the text that follows.
+An additional separator may also be inserted, as shown here.</para>
+
+<programlisting language="xml"><![CDATA[<span class="line">
+  <span class="ln"> 5 <span class="nsep">|</span></span>
+  <span class="ld">The line of text</span>
+</span>]]></programlisting>
+
+<para>These changes have no visible effect when CSS is used to style
+the verbatim environment. But without CSS, the numbers are aligned and
+separated from the text that follows. The
+<parameter>verbatim-number-separator</parameter> is generally
+suppressed by CSS, but is visible in text browsers.</para>
+
+</section>
 </section>
 
 <section xml:id="mediaobject-uris">

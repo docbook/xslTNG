@@ -3757,6 +3757,32 @@ not be numbered.
 </refsection>
 </refentry>
 
+<refentry xml:id="p_verbatim-number-separator">
+<?db filename="p_verbatim-number-separator.html"?>
+<refmeta>
+<refentrytitle>$verbatim-number-separator</refentrytitle>
+<refmiscinfo>{}verbatim-number-separator</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-number-separator</refname>
+<refpurpose>Separator between line numbers and lines</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting verbatim environments with line numbers,
+this separator is inserted (wrapped in a
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag> with a
+<tag class="attribute">class</tag> of <literal>nsep</literal>) between
+the line number and the text of the line.</para>
+<para>In most presentations, CSS prevents the <literal>nsep</literal>
+from being displayed; instead, a CSS border is used as a separator.
+The <parameter>verbatim-number-separator</parameter> is most often seen
+with text-only browsers.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="p_verbatim-numbered-elements">
 <?db filename="p_verbatim-numbered-elements.html"?>
 <refmeta>
@@ -3955,6 +3981,26 @@ that are not available because syntax highlighting is disabled.
 </listitem>
 </varlistentry>
 </variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="p_verbatim-table-style">
+<?db filename="p_verbatim-table-style.html"?>
+<refmeta>
+<refentrytitle>$verbatim-table-style</refentrytitle>
+<refmiscinfo>{}verbatim-table-style</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$verbatim-table-style</refname>
+<refpurpose>List of verbatim elements to be rendered in the table style</refpurpose>
+<refclass>param</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a space-separated list of element names (local names).
+Verbatim elements that appear in this list will be formatted using the table
+style by default. For a discussion of verbatim elements and styles, see
+<xref linkend="verbstyle"/>.</para>
 </refsection>
 </refentry>
 
