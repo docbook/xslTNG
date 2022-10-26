@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/main.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
-         date="2022-10-25T09:18:52.827362Z">
+         date="2022-10-26T18:06:18.921447Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting a single copyright year</label>
@@ -3295,31 +3295,46 @@ Line five</address>
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                <pre class="address verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line one</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line two</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line three</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line four</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line five</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -3332,38 +3347,49 @@ Line five</address>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                   <pre class="address verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line one</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line two</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line three</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line four</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line five</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -3396,31 +3422,46 @@ Line five</literallayout>
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                <pre class="literallayout verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line one</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line two</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line three</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line four</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">Line five</span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -3433,38 +3474,49 @@ Line five</literallayout>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                   <pre class="literallayout verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line one</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line two</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line three</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line four</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">Line five</span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -3500,7 +3552,8 @@ Line five</programlisting>
                   db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln">1</span>
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line one</code>
                      </span>
@@ -3508,7 +3561,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line two</code>
                      </span>
@@ -3516,7 +3572,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line three</code>
                      </span>
@@ -3524,7 +3583,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line four</code>
                      </span>
@@ -3532,7 +3594,8 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln">5</span>
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -3548,15 +3611,13 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      class="pre-wrap"
                      db-startinglinenumber="1"
                      db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln">1</span>
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line one</code>
                         </span>
@@ -3564,7 +3625,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line two</code>
                         </span>
@@ -3572,7 +3636,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line three</code>
                         </span>
@@ -3580,7 +3647,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line four</code>
                         </span>
@@ -3588,7 +3658,8 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln">5</span>
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -3623,7 +3694,10 @@ Line five</screen>
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                <pre class="screen verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line one</code>
                      </span>
@@ -3631,7 +3705,10 @@ Line five</screen>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line two</code>
                      </span>
@@ -3639,7 +3716,10 @@ Line five</screen>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line three</code>
                      </span>
@@ -3647,7 +3727,10 @@ Line five</screen>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line four</code>
                      </span>
@@ -3655,7 +3738,10 @@ Line five</screen>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -3670,14 +3756,13 @@ Line five</screen>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                   <pre class="screen verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line one</code>
                         </span>
@@ -3685,7 +3770,10 @@ Line five</screen>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line two</code>
                         </span>
@@ -3693,7 +3781,10 @@ Line five</screen>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line three</code>
                         </span>
@@ -3701,7 +3792,10 @@ Line five</screen>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line four</code>
                         </span>
@@ -3709,7 +3803,10 @@ Line five</screen>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -3744,7 +3841,10 @@ Line five</synopsis>
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                <pre class="synopsis verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line one</code>
                      </span>
@@ -3752,7 +3852,10 @@ Line five</synopsis>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line two</code>
                      </span>
@@ -3760,7 +3863,10 @@ Line five</synopsis>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line three</code>
                      </span>
@@ -3768,7 +3874,10 @@ Line five</synopsis>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line four</code>
                      </span>
@@ -3776,7 +3885,10 @@ Line five</synopsis>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -3791,14 +3903,13 @@ Line five</synopsis>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
                   <pre class="synopsis verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line one</code>
                         </span>
@@ -3806,7 +3917,10 @@ Line five</synopsis>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line two</code>
                         </span>
@@ -3814,7 +3928,10 @@ Line five</synopsis>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line three</code>
                         </span>
@@ -3822,7 +3939,10 @@ Line five</synopsis>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line four</code>
                         </span>
@@ -3830,7 +3950,10 @@ Line five</synopsis>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -3868,7 +3991,8 @@ Line five</programlisting>
                   db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln">1</span>
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line one</code>
                      </span>
@@ -3876,7 +4000,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line <em>two</em>
                         </code>
@@ -3885,7 +4012,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line <em>end of three</em>
                         </code>
@@ -3894,7 +4024,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <em>Start of line</em> four</code>
@@ -3903,7 +4036,8 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln">5</span>
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -3919,15 +4053,13 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      class="pre-wrap"
                      db-startinglinenumber="1"
                      db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln">1</span>
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line one</code>
                         </span>
@@ -3935,7 +4067,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line <em>two</em>
                            </code>
@@ -3944,7 +4079,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line <em>end of three</em>
                            </code>
@@ -3953,7 +4091,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <em>Start of line</em> four</code>
@@ -3962,7 +4103,8 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln">5</span>
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -4000,7 +4142,8 @@ Line five</programlisting>
                   db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln">1</span>
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line one</code>
                      </span>
@@ -4008,7 +4151,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line <em id="two">two</em>
                         </code>
@@ -4017,7 +4163,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line <em id="three">end of three</em>
                         </code>
@@ -4026,7 +4175,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <em>Start of line</em> four</code>
@@ -4035,7 +4187,8 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln">5</span>
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -4051,15 +4204,13 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      class="pre-wrap"
                      db-startinglinenumber="1"
                      db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln">1</span>
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line one</code>
                         </span>
@@ -4067,7 +4218,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line <em id="two">two</em>
                            </code>
@@ -4076,7 +4230,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line <em id="three">end of three</em>
                            </code>
@@ -4085,7 +4242,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <em>Start of line</em> four</code>
@@ -4094,7 +4254,8 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln">5</span>
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -4139,7 +4300,8 @@ Line five</programlisting>
                   db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln">1</span>
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <a id="R_area1"
@@ -4151,7 +4313,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line<a id="R_area2"
                                class="callout-bug linecolumn"
@@ -4162,7 +4327,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line three         <a id="R_area3"
                                class="callout-bug linecolumn"
@@ -4174,7 +4342,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line four</code>
                      </span>
@@ -4182,7 +4353,8 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln">5</span>
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -4198,15 +4370,13 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      class="pre-wrap"
                      db-startinglinenumber="1"
                      db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln">1</span>
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <a id="R_area1"
@@ -4218,7 +4388,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line<a id="R_area2"
                                   class="callout-bug linecolumn"
@@ -4229,7 +4402,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line three         <a id="R_area3"
                                   class="callout-bug linecolumn"
@@ -4241,7 +4417,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line four</code>
                         </span>
@@ -4249,7 +4428,8 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln">5</span>
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -4294,7 +4474,8 @@ Line five</programlisting>
                   db-numberoflines="8">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
-                     <span class="ln">1</span>
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <a id="R_area1"
@@ -4306,7 +4487,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="2">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line<a id="R_area2"
                                class="callout-bug linecolumn"
@@ -4317,7 +4501,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="3">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line three</code>
                      </span>
@@ -4325,7 +4512,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="4">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line four</code>
                      </span>
@@ -4333,7 +4523,8 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="5">
-                     <span class="ln">5</span>
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>Line five</code>
                      </span>
@@ -4341,7 +4532,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="6">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
@@ -4351,7 +4545,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="7">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
@@ -4361,7 +4558,10 @@ Line five</programlisting>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                   <span class="line" db-line="8">
-                     <span class="ln"/>
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
                      <span class="ld">
                         <code>
                            <ws xmlns="http://www.jenitennison.com/xslt/xspec">       </ws>
@@ -4383,15 +4583,13 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      class="pre-wrap"
                      db-startinglinenumber="1"
                      db-numberoflines="8">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
-                        <span class="ln">1</span>
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <a id="R_area1"
@@ -4403,7 +4601,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="2">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line<a id="R_area2"
                                   class="callout-bug linecolumn"
@@ -4414,7 +4615,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="3">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line three</code>
                         </span>
@@ -4422,7 +4626,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="4">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line four</code>
                         </span>
@@ -4430,7 +4637,8 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="5">
-                        <span class="ln">5</span>
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>Line five</code>
                         </span>
@@ -4438,7 +4646,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="6">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
@@ -4448,7 +4659,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="7">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
@@ -4458,7 +4672,10 @@ Line five</programlisting>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <span class="line" db-line="8">
-                        <span class="ln"/>
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
                         <span class="ld">
                            <code>
                               <ws xmlns="http://www.jenitennison.com/xslt/xspec">       </ws>

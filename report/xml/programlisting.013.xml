@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: programlisting.013</title>
+
+<para>These verbatim listings explicitly use the ‘table’ style.</para>
+
+<programlisting language="none"><?db verbatim-style="table"?>ProgramListing: This is a test
+  Only a test.
+Had this been a real emegency,
+  We would have fled in terror
+And you would not have been informed.</programlisting>
+
+<para>A program listing for the language “python” (explicitly).</para>
+
+<programlisting language="python"><?db verbatim-style="table"?>    def _check_arg(self, arg):
+        if ":" in arg:
+            pos = arg.index(":")
+            name = arg[0:pos]
+            value = arg[(pos + 1):]
+            if name in ("-x", "-y", "-r", "-init"):
+                raise JavaClassRunnerException(
+                    f"The {arg} option cannot be specified")
+            if name == "-catalog":
+                self.catalogs.append(value)
+                return
+            elif name == "-xsl":
+                self.stylesheet = arg
+        self._app_args.append(arg)</programlisting>
+
+<para>A program listing for the language “xml”</para>
+
+<programlisting language="xml"><?db verbatim-style="table"?><![CDATA[<xsl:function name="f:verbatim-trim-trailing" as="xs:boolean">
+  <xsl:param name="context" as="element()"/>
+  <xsl:variable name="pi" select="f:pi($context, 'verbatim-trim-trailing')"/>
+  <xsl:sequence select="if ($pi)
+                        then f:is-true($pi)
+                        else f:is-true($verbatim-trim-trailing-blank-lines)"/>
+</xsl:function>]]></programlisting>
+
+</article>
