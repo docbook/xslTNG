@@ -1,32 +1,32 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Article wrapper</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/><link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/><link href="./css/docbook-paged.css" rel="stylesheet" media="print"/></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Article wrapper</h1></header><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"></span><span class="ld"><code>@rem = '--*-Perl-*--</code></span></span>
-<span class="line" db-line="2"><span class="ln"></span><span class="ld"><code>@echo off</code></span></span>
-<span class="line" db-line="3"><span class="ln"></span><span class="ld"><code>perl.exe %_batchname %$</code></span></span>
-<span class="line" db-line="4"><span class="ln"></span><span class="ld"><code>goto endofperl</code></span></span>
-<span class="line" db-line="5"><span class="ln"></span><span class="ld"><code>@rem ';</code></span></span>
-<span class="line" db-line="6"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="7"><span class="ln"></span><span class="ld"><code># Compress mail...</code></span></span>
-<span class="line" db-line="8"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="9"><span class="ln"></span><span class="ld"><code>require 'n:/home/nwalsh/lib/cygnus.pl';</code></span></span>
-<span class="line" db-line="10"><span class="ln"></span><span class="ld"><code>require 'timelocal.pl';</code></span></span>
-<span class="line" db-line="11"><span class="ln"></span><span class="ld"><code>use Cwd;</code></span></span>
-<span class="line" db-line="12"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="13"><span class="ln"></span><span class="ld"><code>select (STDERR); $| = 1;</code></span></span>
-<span class="line" db-line="14"><span class="ln"></span><span class="ld"><code>select (STDOUT); $| = 1;</code></span></span>
-<span class="line" db-line="15"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="16"><span class="ln"></span><span class="ld"><code>@DIRS = ("/home/nwalsh/Mail");</code></span></span>
-<span class="line" db-line="17"><span class="ln"></span><span class="ld"><code>while (@DIRS) {</code></span></span>
-<span class="line" db-line="18"><span class="ln"></span><span class="ld"><code>    $dir = shift @DIRS;</code></span></span>
-<span class="line" db-line="19"><span class="ln"></span><span class="ld"><code>    opendir (DIR, $dir);</code></span></span>
-<span class="line" db-line="20"><span class="ln"></span><span class="ld"><code>    while ($fname = readdir(DIR)) {</code></span></span>
-<span class="line" db-line="21"><span class="ln"></span><span class="ld"><code>        $file = "$dir/$fname";</code></span></span>
-<span class="line" db-line="22"><span class="ln"></span><span class="ld"><code>        next if ! -d $file;</code></span></span>
-<span class="line" db-line="23"><span class="ln"></span><span class="ld"><code>        next if $fname =~ /^\.\.?$/;</code></span></span>
-<span class="line" db-line="24"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="25"><span class="ln"></span><span class="ld"><code>        print "$file\n";</code></span></span>
-<span class="line" db-line="26"><span class="ln"></span><span class="ld"><code>        push (@DIRS, $file);</code></span></span>
-<span class="line" db-line="27"><span class="ln"></span><span class="ld"><code>        &amp;compress ($file);</code></span></span>
-<span class="line" db-line="28"><span class="ln"></span><span class="ld"><code>    }</code></span></span>
-<span class="line" db-line="29"><span class="ln"></span><span class="ld"><code>}</code></span></span>
-<span class="line" db-line="30"><span class="ln"></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="31"><span class="ln"></span><span class="ld"><code>exit;</code></span></span>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Article wrapper</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet"/><link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/><link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/><link href="./css/docbook-paged.css" rel="stylesheet" media="print"/></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Article wrapper</h1></header><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>@rem = '--*-Perl-*--</code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>@echo off</code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>perl.exe %_batchname %$</code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>goto endofperl</code></span></span>
+<span class="line" db-line="5"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>@rem ';</code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code># Compress mail...</code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>require 'n:/home/nwalsh/lib/cygnus.pl';</code></span></span>
+<span class="line" db-line="10"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>require 'timelocal.pl';</code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>use Cwd;</code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>select (STDERR); $| = 1;</code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>select (STDOUT); $| = 1;</code></span></span>
+<span class="line" db-line="15"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>@DIRS = ("/home/nwalsh/Mail");</code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>while (@DIRS) {</code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    $dir = shift @DIRS;</code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    opendir (DIR, $dir);</code></span></span>
+<span class="line" db-line="20"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    while ($fname = readdir(DIR)) {</code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        $file = "$dir/$fname";</code></span></span>
+<span class="line" db-line="22"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        next if ! -d $file;</code></span></span>
+<span class="line" db-line="23"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        next if $fname =~ /^\.\.?$/;</code></span></span>
+<span class="line" db-line="24"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="25"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        print "$file\n";</code></span></span>
+<span class="line" db-line="26"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        push (@DIRS, $file);</code></span></span>
+<span class="line" db-line="27"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        &amp;compress ($file);</code></span></span>
+<span class="line" db-line="28"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    }</code></span></span>
+<span class="line" db-line="29"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>}</code></span></span>
+<span class="line" db-line="30"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="31"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>exit;</code></span></span>
 </pre></div></article></main><nav class="bottom"></nav></body></html>
