@@ -51,7 +51,8 @@
   </xsl:if>
 
   <xsl:variable name="footnotes" as="element(h:db-footnote)*">
-    <xsl:for-each select=".//h:db-footnote[not(ancestor::h:table)]">
+    <xsl:for-each select=".//h:db-footnote[not(ancestor::h:table)
+                                           or ancestor::h:table[contains-token(@class,'verbatim')]]">
       <xsl:variable name="chunk" select="ancestor::*[@db-chunk][1]"/>
       <xsl:if test="$chunk is $self">
         <xsl:sequence select="."/>
@@ -425,13 +426,11 @@
      nodes inside this h:a, then we'll try to renumber the footnote. -->
 <xsl:template match="text()[$v:chunk-renumber-footnotes
                             and parent::h:a
-                            and parent::h:a
                                 /parent::h:sup[contains-token(@class, 'footnote-number')
                                                and not(contains-token(@class, 'table-footnote'))
                                                and @db-footnote]
                             and empty(preceding-sibling::node())
                             and empty(following-sibling::node())]"
-             
               priority="100">
   <xsl:variable name="id" select="substring-after(../@href, '#')"/>
   <xsl:variable name="renumber" as="xs:string">
@@ -473,7 +472,9 @@
 
 <xsl:template match="h:db-footnote" mode="mp:footnote-renumber">
   <xsl:variable name="new-number" as="xs:string">
-    <xsl:number from="*[@db-chunk]" count="h:db-footnote[not(ancestor::h:table)]"
+    <xsl:number from="*[@db-chunk]"
+                count="h:db-footnote[not(ancestor::h:table)
+                                     or ancestor::h:table[contains-token(@class, 'verbatim')]]"
                 level="any"/>
   </xsl:variable>
   <xsl:sequence select="fp:footnote-mark(xs:integer($new-number), $footnote-numeration)"/>

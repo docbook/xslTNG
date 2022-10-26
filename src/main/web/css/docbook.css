@@ -41,6 +41,8 @@
 
     --table-border-style: 1px solid var(--primary-color);
 
+    --line-number-width: 4em;
+
     --numbered-separator-style: 1px solid var(--primary-color);
     --numbered-number-color: var(--on-surface-color);
     --numbered-background-color: var(--focused-color);
@@ -854,6 +856,15 @@ pre {
     margin-right: 0.5em;
 }
 
+pre sup {
+    line-height: 0;
+}
+
+pre.verblines {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 pre.address,
 pre.literallayout {
     font-family: var(--body-family);
@@ -866,6 +877,10 @@ pre.monospaced {
 pre.programlisting,
 pre.screen {
     line-height: 1.25em;
+}
+
+pre.verblines .nsep {
+    display: none;
 }
 
 /* Adapted from https://stackoverflow.com/questions/41306797/html-how-to-add-line-numbers-to-a-source-code-block */
@@ -896,10 +911,16 @@ pre.literallayout span.line:nth-child(even) {
 
 pre.verblines span.ln {
     font-family: var(--mono-family);
-    width: 0;
+    width: var(--line-number-width);
     padding-top: 4px;
     padding-bottom: 4px;
     text-align: right;
+}
+
+pre.address span.ln,
+pre.literallayout span.ln {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 pre.verblines {
@@ -920,17 +941,24 @@ pre.verblines span.ln {
 pre.numbered span.ln {
     background-color: var(--numbered-background-color);
     user-select: none;
+    -webkit-user-select: none;
 }
 
 pre.numbered span.ln {
-    width: 4em;
-    padding-right: 0.5em;
+    width: var(--line-number-width);
+    margin-right: 0.5em;
 }
 
 pre.verblines span.ld {
     display: table-cell;
     padding-top: 4px;
     padding-bottom: 4px;
+}
+
+pre.address span.ld,
+pre.literallayout span.ld {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 pre.verblines.numbered span.ld {
@@ -941,6 +969,30 @@ pre.verblines.numbered span.ld {
 pre.verblines span.line.highlight {
     background-color: var(--verbatim-line-highlight-background-color);
     color: var(--verbatim-line-highlight-color);
+}
+
+table.verbatim {
+    width: 100%;
+}
+
+table.verbatim tr td {
+    /* N.B. 100vw not 100%. If you specify 100%, Safari calculates the width is 0 */
+    width: calc(100vw - var(--line-number-width));
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+table.verbatim tr td:first-child {
+    width: var(--line-number-width);
+    padding-left: 0;
+    padding-right: 0;
+}
+
+table.verbatim tr td pre {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /* ============================================================ */

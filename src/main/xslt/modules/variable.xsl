@@ -25,6 +25,9 @@
 <xsl:variable name="v:debug" static="yes" as="xs:string*"
               select="tokenize($debug, '[,\s]+') ! normalize-space(.)"/>
 
+<xsl:variable name="v:verbatim-table-style"
+              select="tokenize($verbatim-table-style, '\s+')"/>
+
 <xsl:variable name="v:verbatim-line-style"
               select="tokenize($verbatim-line-style, '\s+')"/>
 

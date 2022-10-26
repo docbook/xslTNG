@@ -34,6 +34,8 @@
 
 <xsl:param name="gentext-language" select="()"/>
 
+<xsl:param name="verbatim-table-style" select="''"/>
+
 <xsl:param name="verbatim-line-style"
            select="'programlisting programlistingco
                     screen screenco synopsis'"/>
@@ -56,6 +58,8 @@
 <xsl:param name="verbatim-number-every-nth" select="5"/>
 
 <xsl:param name="verbatim-number-first-line" select="'true'"/>
+
+<xsl:param name="verbatim-number-separator" select="'|'"/>
 
 <!-- 'linecolumn', 'lines', 'lineranges-first', 'lineranges-all' -->
 <xsl:param name="verbatim-callouts" as="xs:string"
