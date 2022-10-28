@@ -716,7 +716,8 @@
                      |db:fieldsynopsis
                      |db:methodsynopsis
                      |db:constructorsynopsis
-                     |db:destructorsynopsis"
+                     |db:destructorsynopsis
+                     |db:enumsynopsis"
               priority="100">
   <xsl:if test="@language and @language ne 'java'">
     <xsl:message select="'Warning: no explicit support for', @language, 'synopses.'"/>
@@ -896,6 +897,49 @@
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates/>
   </span>
+</xsl:template>
+
+<xsl:template match="db:enumsynopsis">
+  <xsl:param name="indent" select="''"/>
+  <div>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:apply-templates select="db:synopsisinfo"/>
+    <pre>
+      <xsl:apply-templates select="db:modifier" mode="m:synopsis"/>
+      <xsl:text>enum </xsl:text>
+      <xsl:apply-templates select="db:enumname" mode="m:synopsis"/>
+      <xsl:text> {</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:apply-templates select="db:enumitem" mode="m:synopsis">
+        <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
+      </xsl:apply-templates>
+      <xsl:text>}</xsl:text>
+    </pre>
+  </div>
+</xsl:template>
+
+<xsl:template match="db:enumitem" mode="m:synopsis">
+  <xsl:param name="indent" select="''"/>
+  <xsl:sequence select="$indent"/>
+  <xsl:apply-templates select="db:enumidentifier" mode="m:synopsis"/>
+  <xsl:if test="following-sibling::db:enumitem">,</xsl:if>
+  <xsl:if test="db:enumitemdescription">
+    <xsl:variable name="width"
+                  select="sum((string-length($indent),
+                               string-length(db:enumidentifier),
+                               (if (following-sibling::db:enumitem) then 1 else 0)))"/>
+    <xsl:variable
+        name="pad"
+        select="max((2, 30 - $width))"/>
+    <xsl:sequence select="substring('                              ', 1, $pad)"/>
+    <xsl:sequence select="'// '"/>
+    <xsl:apply-templates select="db:enumitemdescription" mode="m:synopsis"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="db:enumitemdescription" mode="m:synopsis">
+  <xsl:apply-templates mode="m:synopsis"/>
 </xsl:template>
 
 <!-- ============================================================ -->
