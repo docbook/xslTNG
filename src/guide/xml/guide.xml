@@ -15,6 +15,32 @@
 <revhistory>
   <?db revhistory-style="list"?>
   <revision>
+    <revnumber>1.10.1</revnumber>
+    <date>2022-10-28</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+<para>Added support for <tag>enumsynopsis</tag>.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>1.10.0</revnumber>
+    <date>2022-10-26</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+<para>Reworked the presentation of verbatim listings. The line numbers (in
+the “lines” format) are now padded to align on the right and have a space
+after them. This has no visible effect in a browser using CSS for rendering,
+but improves the result in text renderings. Also added a new “table” format
+that places the line numbers and the lines in separate columns of a table.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
     <revnumber>1.9.0</revnumber>
     <date>2022-10-02</date>
     <revdescription>
