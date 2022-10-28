@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.2">
+<title>Unit test: enumsynopsis.001</title>
+
+<!-- public enum Fruit { APPLE, PEAR, TOMATO }; -->
+
+<enumsynopsis>
+  <modifier>public</modifier>
+  <enumname>Fruit</enumname>
+  <enumitem>
+    <enumidentifier>APPLE</enumidentifier>
+    <enumitemdescription>Of course.</enumitemdescription>
+  </enumitem>
+  <enumitem>
+    <enumidentifier>PEAR</enumidentifier>
+  </enumitem>
+  <enumitem>
+    <enumidentifier>TOMATO</enumidentifier>
+    <enumitemdescription>Famously.</enumitemdescription>
+  </enumitem>
+</enumsynopsis>
+
+</article>
