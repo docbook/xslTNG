@@ -8,6 +8,10 @@
 <!-- Tests:
      classname classsynopsis methodname methodparam methodsynopsis
      modifier ooclass parameter type
+     enumsynopsis enumname enumitem enumidentifier enumitemdescription
+     packagesynopsis package classsynopsisinfo
+     fieldsynopsis varname initializer
+     constructorsynopsis
 -->
 
 <x:scenario label="When transforming classsynopsis.001">
@@ -32,6 +36,12 @@
   <x:context href="../resources/xml/packagesynopsis.001.xml"/>
   <x:expect label="expect a package synopsis"
             href="../resources/expected/packagesynopsis.001.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming enumsynopsis.001">
+  <x:context href="../resources/xml/enumsynopsis.001.xml" select="//*[@xml:id='class']" mode="m:docbook"/>
+  <x:expect label="expect an enum synopsis" href="../resources/expected/enumsynopsis.001.html" select="//h:*[@id='class']">
+  </x:expect>
 </x:scenario>
 
 </x:description>

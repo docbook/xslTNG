@@ -99,10 +99,10 @@
           </tr>
         </tfoot>
         <tbody>
-          <xsl:for-each select="$test-reports//x:scenario/x:context[@href]">
-            <xsl:sort select="substring(../@id, 9)" data-type="number"/>
+          <xsl:for-each select="$test-reports//x:scenario/input-wrap/x:context[@href]">
+            <xsl:sort select="substring(../../@id, 9)" data-type="number"/>
 
-            <xsl:variable name="id" select="../@id/string()"/>
+            <xsl:variable name="id" select="../../@id/string()"/>
             <xsl:variable name="doc"
                           select="ancestor::x:report[1]/@xspec/string()"/>
             <xsl:variable name="doc"
@@ -118,12 +118,12 @@
             <xsl:variable name="file"
                           select="substring-before(
                                      substring-after(@href, $segment), '.xml')"/>
-            <xsl:variable name="key" select="../@id || '-expect1'"/>
+            <xsl:variable name="key" select="../../@id || '-expect1'"/>
             <xsl:variable name="test" select="key('test', $key, $test-reports)"/>
             <tr class="{if ($test/@successful = 'true')
                         then 'pass'
                         else 'fail'}">
-              <td title="{../x:label} ({$doc})">
+              <td title="{../../x:label} ({$doc})">
                 <a href="{$doc}-result.html#top_{$id}">
                   <xsl:value-of select="$id"/>
                 </a>

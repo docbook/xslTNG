@@ -1447,9 +1447,29 @@ task zipDist(type: Zip, dependsOn: ['zipStage']) {
   archiveFileName = "${xslTNGbaseName}-${xslTNGversion}.zip"
 }
 
+task relnotes(
+  type: Exec,
+  description: "Checks for release notes"
+) {
+  ignoreExitValue true
+  def stream = new ByteArrayOutputStream();
+  commandLine "grep", "revnumber.${xslTNGversion}", "${projectDir}/src/guide/xml/guide.xml"
+  standardOutput = stream
+  doLast {
+    String notes = stream.toString('utf-8')
+    if (notes.trim() == "") {
+      println("************************************************************")
+      println("There are no release notes for xslTNG version ${xslTNGversion}")
+      println("************************************************************")
+    }
+  }
+}
+
 // ============================================================
 
-task dist(dependsOn: ['requirePassingTests', 'releaseArtifacts', 'zipDist', 'website']) {
+task dist(
+  dependsOn: ['requirePassingTests', 'releaseArtifacts', 'zipDist', 'website', 'relnotes']
+) {
   doLast {
     println("Built dist for ${xslTNGtitle} version ${xslTNGversion}")
   }
