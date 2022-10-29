@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/main.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
-         date="2022-10-28T08:23:01.180023Z">
+         date="2022-10-29T09:02:53.002709Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting a single copyright year</label>
@@ -2337,6 +2337,23 @@
       </test>
    </scenario>
    <scenario id="scenario46"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
+      <label>When transforming enumsynopsis.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/enumsynopsis.001.xml"
+                     select="//*[@xml:id='class']"
+                     mode="m:docbook"/>
+      </input-wrap>
+      <result select="()"/>
+      <test id="scenario46-expect1" successful="true">
+         <label>expect an enum synopsis</label>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario47"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0in</label>
       <input-wrap xmlns="">
@@ -2351,7 +2368,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario46-expect1" successful="true">
+      <test id="scenario47-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2360,7 +2377,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario47"
+   <scenario id="scenario48"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0m</label>
       <input-wrap xmlns="">
@@ -2375,7 +2392,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"m","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario47-expect1" successful="true">
+      <test id="scenario48-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2384,7 +2401,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario48"
+   <scenario id="scenario49"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0cm</label>
       <input-wrap xmlns="">
@@ -2399,7 +2416,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"cm","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario48-expect1" successful="true">
+      <test id="scenario49-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2408,7 +2425,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario49"
+   <scenario id="scenario50"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0mm</label>
       <input-wrap xmlns="">
@@ -2423,7 +2440,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"mm","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario49-expect1" successful="true">
+      <test id="scenario50-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2432,7 +2449,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario50"
+   <scenario id="scenario51"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0pc</label>
       <input-wrap xmlns="">
@@ -2447,7 +2464,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pc","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario50-expect1" successful="true">
+      <test id="scenario51-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2456,7 +2473,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario51"
+   <scenario id="scenario52"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0pt</label>
       <input-wrap xmlns="">
@@ -2471,7 +2488,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pt","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario51-expect1" successful="true">
+      <test id="scenario52-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2480,7 +2497,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario52"
+   <scenario id="scenario53"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 3.14barleycorn</label>
       <input-wrap xmlns="">
@@ -2495,7 +2512,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"barleycorn","relative":0,"magnitude":3.14e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario52-expect1" successful="true">
+      <test id="scenario53-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2504,7 +2521,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario53"
+   <scenario id="scenario54"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0smoot</label>
       <input-wrap xmlns="">
@@ -2519,7 +2536,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":25}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario53-expect1" successful="true">
+      <test id="scenario54-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2528,7 +2545,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario54"
+   <scenario id="scenario55"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 25%</label>
       <input-wrap xmlns="">
@@ -2543,7 +2560,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":2.5e1}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario54-expect1" successful="true">
+      <test id="scenario55-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2552,7 +2569,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario55"
+   <scenario id="scenario56"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 100%</label>
       <input-wrap xmlns="">
@@ -2567,7 +2584,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":1.0e2}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario55-expect1" successful="true">
+      <test id="scenario56-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2576,7 +2593,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario56"
+   <scenario id="scenario57"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 125%</label>
       <input-wrap xmlns="">
@@ -2591,7 +2608,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":1.25e2}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario56-expect1" successful="true">
+      <test id="scenario57-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2600,7 +2617,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario57"
+   <scenario id="scenario58"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 3*+0.5in</label>
       <input-wrap xmlns="">
@@ -2615,7 +2632,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":3,"magnitude":5.0e-1}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario57-expect1" successful="true">
+      <test id="scenario58-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2624,7 +2641,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario58"
+   <scenario id="scenario59"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 75</label>
       <input-wrap xmlns="">
@@ -2639,7 +2656,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":0,"magnitude":7.5e1}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario58-expect1" successful="true">
+      <test id="scenario59-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2648,7 +2665,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario59"
+   <scenario id="scenario60"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 2.5*</label>
       <input-wrap xmlns="">
@@ -2663,7 +2680,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":2.5,"magnitude":0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario59-expect1" successful="true">
+      <test id="scenario60-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2672,7 +2689,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario60"
+   <scenario id="scenario61"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the raw style</label>
       <input-wrap xmlns="">
@@ -2700,7 +2717,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario60-expect1" successful="true">
+      <test id="scenario61-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2719,7 +2736,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario61"
+   <scenario id="scenario62"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the raw style</label>
       <input-wrap xmlns="">
@@ -2747,7 +2764,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario61-expect1" successful="true">
+      <test id="scenario62-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2766,7 +2783,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario62"
+   <scenario id="scenario63"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the raw style</label>
       <input-wrap xmlns="">
@@ -2796,7 +2813,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario62-expect1" successful="true">
+      <test id="scenario63-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2817,7 +2834,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario63"
+   <scenario id="scenario64"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the raw style</label>
       <input-wrap xmlns="">
@@ -2847,7 +2864,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario63-expect1" successful="true">
+      <test id="scenario64-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2868,7 +2885,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario64"
+   <scenario id="scenario65"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the raw style</label>
       <input-wrap xmlns="">
@@ -2898,7 +2915,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario64-expect1" successful="true">
+      <test id="scenario65-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2919,7 +2936,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario65"
+   <scenario id="scenario66"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the raw style</label>
       <input-wrap xmlns="">
@@ -2949,7 +2966,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario65-expect1" successful="true">
+      <test id="scenario66-expect1" successful="true">
          <label>the inline markup should be transformed.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2970,7 +2987,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario66"
+   <scenario id="scenario67"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the plain style</label>
       <input-wrap xmlns="">
@@ -2998,7 +3015,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario66-expect1" successful="true">
+      <test id="scenario67-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3017,7 +3034,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario67"
+   <scenario id="scenario68"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the plain style</label>
       <input-wrap xmlns="">
@@ -3045,7 +3062,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario67-expect1" successful="true">
+      <test id="scenario68-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3064,7 +3081,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario68"
+   <scenario id="scenario69"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the plain style</label>
       <input-wrap xmlns="">
@@ -3094,7 +3111,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario68-expect1" successful="true">
+      <test id="scenario69-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3115,7 +3132,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario69"
+   <scenario id="scenario70"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the plain style</label>
       <input-wrap xmlns="">
@@ -3145,7 +3162,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario69-expect1" successful="true">
+      <test id="scenario70-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3166,7 +3183,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario70"
+   <scenario id="scenario71"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the plain style</label>
       <input-wrap xmlns="">
@@ -3196,7 +3213,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario70-expect1" successful="true">
+      <test id="scenario71-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3217,7 +3234,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario71"
+   <scenario id="scenario72"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the plain style</label>
       <input-wrap xmlns="">
@@ -3250,7 +3267,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario71-expect1" successful="true">
+      <test id="scenario72-expect1" successful="true">
          <label>the inline markup should be transformed.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3273,7 +3290,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario72"
+   <scenario id="scenario73"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the lines style</label>
       <input-wrap xmlns="">
@@ -3343,7 +3360,7 @@ Line five</address>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario72-expect1" successful="true">
+      <test id="scenario73-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3400,7 +3417,7 @@ Line five</address>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario73"
+   <scenario id="scenario74"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the lines style</label>
       <input-wrap xmlns="">
@@ -3470,7 +3487,7 @@ Line five</literallayout>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario73-expect1" successful="true">
+      <test id="scenario74-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3527,7 +3544,7 @@ Line five</literallayout>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario74"
+   <scenario id="scenario75"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the lines style</label>
       <input-wrap xmlns="">
@@ -3606,7 +3623,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario74-expect1" successful="true">
+      <test id="scenario75-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3672,7 +3689,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario75"
+   <scenario id="scenario76"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the lines style</label>
       <input-wrap xmlns="">
@@ -3752,7 +3769,7 @@ Line five</screen>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario75-expect1" successful="true">
+      <test id="scenario76-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3819,7 +3836,7 @@ Line five</screen>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario76"
+   <scenario id="scenario77"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the lines style</label>
       <input-wrap xmlns="">
@@ -3899,7 +3916,7 @@ Line five</synopsis>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario76-expect1" successful="true">
+      <test id="scenario77-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3966,7 +3983,7 @@ Line five</synopsis>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario77"
+   <scenario id="scenario78"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
@@ -4048,7 +4065,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario77-expect1" successful="true">
+      <test id="scenario78-expect1" successful="true">
          <label>the inline markup should not cross line boundaries.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4117,7 +4134,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario78"
+   <scenario id="scenario79"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
@@ -4199,7 +4216,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario78-expect1" successful="true">
+      <test id="scenario79-expect1" successful="true">
          <label>ID attributes should not be repeated.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4268,7 +4285,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario79"
+   <scenario id="scenario80"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4365,7 +4382,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario79-expect1" successful="true">
+      <test id="scenario80-expect1" successful="true">
          <label>they should appear in the output</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4442,7 +4459,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario80"
+   <scenario id="scenario81"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4578,7 +4595,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario80-expect1" successful="true">
+      <test id="scenario81-expect1" successful="true">
          <label>they can extend the listing</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4694,7 +4711,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario81"
+   <scenario id="scenario82"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4741,7 +4758,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario81-expect1" successful="true">
+      <test id="scenario82-expect1" successful="true">
          <label>plain mode also works</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4772,7 +4789,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario82"
+   <scenario id="scenario83"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4825,7 +4842,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario82-expect1" successful="true">
+      <test id="scenario83-expect1" successful="true">
          <label>markup can also be inserted</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4856,7 +4873,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario83"
+   <scenario id="scenario84"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are inserted into markup</label>
       <input-wrap xmlns="">
@@ -4915,7 +4932,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario83-expect1" successful="true">
+      <test id="scenario84-expect1" successful="true">
          <label>they interrupt that markup</label>
          <expect select="/element()">
             <content-wrap xmlns="">
