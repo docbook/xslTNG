@@ -12,13 +12,13 @@
                 exclude-result-prefixes="db f fp map mp tp trans xlink xs"
                 version="3.0">
 
-<xsl:import href="../modules/shared.xsl"/>
+<xsl:import href="../environment.xsl"/>
 
 <!-- Separator for auto generated prefixes in transclusion -->
-<xsl:param name="psep" as="xs:string" select="'---'"/>
-<xsl:param name="idfixup" as="xs:string" select="'none'"/>
-<xsl:param name="linkscope" as="xs:string" select="'global'"/>
-<xsl:param name="suffix" as="xs:string" select="''"/>
+<xsl:param name="psep" select="$transclusion-prefix-separator"/>
+<xsl:param name="idfixup" select="$transclusion-id-fixup"/>
+<xsl:param name="linkscope" select="$transclusion-link-scope"/>
+<xsl:param name="suffix" select="$transclusion-suffix"/>
 
 <xsl:variable name="idref-list"
               select="(xs:QName('linkend'), xs:QName('linkends'), xs:QName('otherterm'),

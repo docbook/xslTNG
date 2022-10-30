@@ -12,52 +12,53 @@
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
-                default-mode="m:docbook"
-                exclude-result-prefixes="#all"
+                exclude-result-prefixes="db f fp h m map mp t v vp xs"
                 version="3.0">
 
-<xsl:import href="param.xsl"/>
-<xsl:import href="VERSION.xsl"/>
-<xsl:import href="modules/variable.xsl"/>
-<xsl:import href="modules/space.xsl"/>
-<xsl:import href="modules/unhandled.xsl"/>
-<xsl:import href="modules/errors.xsl"/>
-<xsl:import href="modules/head.xsl"/>
-<xsl:import href="modules/titles.xsl"/>
-<xsl:import href="modules/units.xsl"/>
-<xsl:import href="modules/gentext.xsl"/>
-<xsl:import href="modules/functions.xsl"/>
-<xsl:import href="modules/toc.xsl"/>
-<xsl:import href="modules/divisions.xsl"/>
-<xsl:import href="modules/components.xsl"/>
-<xsl:import href="modules/refentry.xsl"/>
-<xsl:import href="modules/bibliography.xsl"/>
-<xsl:import href="modules/glossary.xsl"/>
-<xsl:import href="modules/index.xsl"/>
-<xsl:import href="modules/sections.xsl"/>
-<xsl:import href="modules/templates.xsl"/>
-<xsl:import href="modules/titlepage.xsl"/>
-<xsl:import href="modules/info.xsl"/>
-<xsl:import href="modules/lists.xsl"/>
-<xsl:import href="modules/blocks.xsl"/>
-<xsl:import href="modules/admonitions.xsl"/>
-<xsl:import href="modules/programming.xsl"/>
-<xsl:import href="modules/msgset.xsl"/>
-<xsl:import href="modules/objects.xsl"/>
-<xsl:import href="modules/footnotes.xsl"/>
-<xsl:import href="modules/verbatim.xsl"/>
-<xsl:import href="modules/tablecals.xsl"/>
-<xsl:import href="modules/tablehtml.xsl"/>
-<xsl:import href="modules/inlines.xsl"/>
-<xsl:import href="modules/xlink.xsl"/>
-<xsl:import href="modules/links.xsl"/>
-<xsl:import href="modules/xref.xsl"/>
-<xsl:import href="modules/attributes.xsl"/>
-<xsl:import href="modules/publishers.xsl"/>
-<xsl:import href="modules/annotations.xsl"/>
-<xsl:import href="modules/chunk.xsl"/>
-<xsl:import href="modules/chunk-cleanup.xsl"/>
-<xsl:import href="modules/chunk-output.xsl"/>
+<xsl:import href="../param.xsl"/>
+<xsl:import href="../VERSION.xsl"/>
+<xsl:import href="variable.xsl"/>
+<xsl:import href="space.xsl"/>
+<xsl:import href="unhandled.xsl"/>
+<xsl:import href="errors.xsl"/>
+<xsl:import href="head.xsl"/>
+<xsl:import href="titles.xsl"/>
+<xsl:import href="units.xsl"/>
+<xsl:import href="shared.xsl"/>
+<xsl:import href="gentext.xsl"/>
+<xsl:import href="functions.xsl"/>
+<xsl:import href="toc.xsl"/>
+<xsl:import href="divisions.xsl"/>
+<xsl:import href="components.xsl"/>
+<xsl:import href="refentry.xsl"/>
+<xsl:import href="bibliography.xsl"/>
+<xsl:import href="glossary.xsl"/>
+<xsl:import href="index.xsl"/>
+<xsl:import href="sections.xsl"/>
+<xsl:import href="templates.xsl"/>
+<xsl:import href="titlepage.xsl"/>
+<xsl:import href="info.xsl"/>
+<xsl:import href="lists.xsl"/>
+<xsl:import href="blocks.xsl"/>
+<xsl:import href="admonitions.xsl"/>
+<xsl:import href="programming.xsl"/>
+<xsl:import href="msgset.xsl"/>
+<xsl:import href="objects.xsl"/>
+<xsl:import href="footnotes.xsl"/>
+<xsl:import href="verbatim.xsl"/>
+<xsl:import href="tablecals.xsl"/>
+<xsl:import href="tablehtml.xsl"/>
+<xsl:import href="inlines.xsl"/>
+<xsl:import href="xlink.xsl"/>
+<xsl:import href="links.xsl"/>
+<xsl:import href="xref.xsl"/>
+<xsl:import href="attributes.xsl"/>
+<xsl:import href="publishers.xsl"/>
+<xsl:import href="annotations.xsl"/>
+<xsl:import href="profile.xsl"/>
+<xsl:import href="chunk.xsl"/>
+<xsl:import href="chunk-cleanup.xsl"/>
+<xsl:import href="chunk-output.xsl"/>
 
 <xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
             omit-xml-declaration="yes"/>
@@ -66,7 +67,7 @@
 
 <xsl:param name="output-media" select="'screen'"/>
 
-<xsl:template match="/" mode="m:docbook">
+<xsl:template match="/" name="xsl:initial-template">
   <xsl:document>
     <html>
       <xsl:attribute name="xml:base" select="base-uri(/*)"/>

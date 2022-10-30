@@ -3,12 +3,12 @@
            version="5.0"
            xml:id="functions">
 <info>
-<?db filename="functions.html"?>
+<?db filename="functions"?>
 <title>Function reference</title>
 </info>
 
 <refentry xml:id="f_absolute-length">
-<?db filename="f_absolute-length.html"?>
+<?db filename="f_absolute-length"?>
 <refmeta>
 <refentrytitle>f:absolute-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}absolute-length#1</refmiscinfo>
@@ -32,7 +32,7 @@ of pixels. For a discussion of units, see <xref linkend="units"/>.
 </refentry>
 
 <refentry xml:id="f_attributes">
-<?db filename="f_attributes.html"?>
+<?db filename="f_attributes"?>
 <refmeta>
 <refentrytitle>f:attributes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}attributes#2</refmiscinfo>
@@ -57,7 +57,7 @@ to generate the actual attribute nodes.</para>
 </refentry>
 
 <refentry xml:id="f_cals-colsep">
-<?db filename="f_cals-colsep.html"?>
+<?db filename="f_cals-colsep"?>
 <refmeta>
 <refentrytitle>f:cals-colsep</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}cals-colsep#3</refmiscinfo>
@@ -77,7 +77,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refentry>
 
 <refentry xml:id="f_cals-rowsep">
-<?db filename="f_cals-rowsep.html"?>
+<?db filename="f_cals-rowsep"?>
 <refmeta>
 <refentrytitle>f:cals-rowsep</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}cals-rowsep#3</refmiscinfo>
@@ -97,7 +97,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refentry>
 
 <refentry xml:id="f_check-gentext">
-<?db filename="f_check-gentext.html"?>
+<?db filename="f_check-gentext"?>
 <refmeta>
 <refentrytitle>f:check-gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}check-gentext#3</refmiscinfo>
@@ -118,7 +118,7 @@ appropriate generated text, this function returns an empty sequence
 </refentry>
 
 <refentry xml:id="f_chunk">
-<?db filename="f_chunk.html"?>
+<?db filename="f_chunk"?>
 <refmeta>
 <refentrytitle>f:chunk</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}chunk#1</refmiscinfo>
@@ -137,7 +137,7 @@ for the given node. </para>
 </refentry>
 
 <refentry xml:id="f_chunk-filename">
-<?db filename="f_chunk-filename.html"?>
+<?db filename="f_chunk-filename"?>
 <refmeta>
 <refentrytitle>f:chunk-filename</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}chunk-filename#1</refmiscinfo>
@@ -170,7 +170,7 @@ relevant <tag class="pi">db</tag><indexterm><primary>db processing instruction</
 </refentry>
 
 <refentry xml:id="f_chunk-title">
-<?db filename="f_chunk-title.html"?>
+<?db filename="f_chunk-title"?>
 <refmeta>
 <refentrytitle>f:chunk-title</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}chunk-title#1</refmiscinfo>
@@ -191,7 +191,7 @@ the title of that chunk.</para>
 </refentry>
 
 <refentry xml:id="f_css-length">
-<?db filename="f_css-length.html"?>
+<?db filename="f_css-length"?>
 <refmeta>
 <refentrytitle>f:css-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}css-length#2</refmiscinfo>
@@ -209,7 +209,7 @@ exists. Returns the empty sequence otherwise.</para>
 </refentry>
 
 <refentry xml:id="f_css-property">
-<?db filename="f_css-property.html"?>
+<?db filename="f_css-property"?>
 <refmeta>
 <refentrytitle>f:css-property</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}css-property#2</refmiscinfo>
@@ -228,7 +228,7 @@ returned.</para>
 </refentry>
 
 <refentry xml:id="f_date-format">
-<?db filename="f_date-format.html"?>
+<?db filename="f_date-format"?>
 <refmeta>
 <refentrytitle>f:date-format</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}date-format#1</refmiscinfo>
@@ -294,7 +294,7 @@ I was born on a <date>Friday</date>.</para>
 </refentry>
 
 <refentry xml:id="f_empty-length">
-<?db filename="f_empty-length.html"?>
+<?db filename="f_empty-length"?>
 <refmeta>
 <refentrytitle>f:empty-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}empty-length#0</refmiscinfo>
@@ -313,7 +313,7 @@ lengths. For relative lengths, the unit is something relative like percent.</par
 <para>These are represented as maps internally and <function>f:empty-length</function>
 returns a length with no magnitude or units.
 </para>
-<annotation role="wide tall" condition="$annotations=javascript" annotates="barleycorn">
+<annotation role="wide tall" condition="$annotation-style=javascript" annotates="barleycorn">
 <para>Yes, that’s a real unit. It’s equal to ⅓ of an inch. I’ll leave
 it <link xlink:href="https://en.wikipedia.org/wiki/Barleycorn_(unit)">to
 Wikipedia</link> to explain the details. Just looking at the chart of
@@ -334,7 +334,7 @@ to the foot, 3 feet to the yard, etc.</para>
 </refentry>
 
 <refentry xml:id="f_equal-lengths">
-<?db filename="f_equal-lengths.html"?>
+<?db filename="f_equal-lengths"?>
 <refmeta>
 <refentrytitle>f:equal-lengths</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}equal-lengths#2</refmiscinfo>
@@ -352,7 +352,7 @@ directly comparable. This function returns true if two lengths are equal.</para>
 </refentry>
 
 <refentry xml:id="f_generate-id">
-<?db filename="f_generate-id.html"?>
+<?db filename="f_generate-id"?>
 <refmeta>
 <refentrytitle>f:generate-id</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}generate-id#1</refmiscinfo>
@@ -381,7 +381,7 @@ to false allows for the creation of globally unique IDs with
 </refentry>
 
 <refentry xml:id="f_gentext">
-<?db filename="f_gentext.html"?>
+<?db filename="f_gentext"?>
 <refmeta>
 <refentrytitle>f:gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#2</refmiscinfo>
@@ -407,7 +407,7 @@ If the language is French, then the generated text is
 </refentry>
 
 <refentry xml:id="f_gentext-letters">
-<?db filename="f_gentext-letters.html"?>
+<?db filename="f_gentext-letters"?>
 <refmeta>
 <refentrytitle>f:gentext-letters</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext-letters#1</refmiscinfo>
@@ -427,7 +427,7 @@ language.
 </refentry>
 
 <refentry xml:id="f_gentext-letters-for-language">
-<?db filename="f_gentext-letters-for-language.html"?>
+<?db filename="f_gentext-letters-for-language"?>
 <refmeta>
 <refentrytitle>f:gentext-letters-for-language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext-letters-for-language#1</refmiscinfo>
@@ -445,7 +445,7 @@ to construct the divisions in an index.</para>
 </refentry>
 
 <refentry xml:id="f_highlight-verbatim">
-<?db filename="f_highlight-verbatim.html"?>
+<?db filename="f_highlight-verbatim"?>
 <refmeta>
 <refentrytitle>f:highlight-verbatim</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}highlight-verbatim#1</refmiscinfo>
@@ -465,7 +465,7 @@ syntax highlighting applied to it. This depends on the
 </refentry>
 
 <refentry xml:id="f_href">
-<?db filename="f_href.html"?>
+<?db filename="f_href"?>
 <refmeta>
 <refentrytitle>f:href</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}href#2</refmiscinfo>
@@ -484,7 +484,7 @@ at the position of the context that will link to the node.
 </refentry>
 
 <refentry xml:id="f_id">
-<?db filename="f_id.html"?>
+<?db filename="f_id"?>
 <refmeta>
 <refentrytitle>f:id</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}id#1</refmiscinfo>
@@ -509,7 +509,7 @@ to spurious differences between documents.</para>
 </refentry>
 
 <refentry xml:id="f_intra-number-separator">
-<?db filename="f_intra-number-separator.html"?>
+<?db filename="f_intra-number-separator"?>
 <refmeta>
 <refentrytitle>f:intra-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}intra-number-separator#1</refmiscinfo>
@@ -530,7 +530,7 @@ be rendered as “Section 3*4”.
 </refentry>
 
 <refentry xml:id="f_is-empty-length">
-<?db filename="f_is-empty-length.html"?>
+<?db filename="f_is-empty-length"?>
 <refmeta>
 <refentrytitle>f:is-empty-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}is-empty-length#1</refmiscinfo>
@@ -549,7 +549,7 @@ For a discussion of units and lengths, see <xref linkend="units"/>.
 </refentry>
 
 <refentry xml:id="f_is-true">
-<?db filename="f_is-true.html"?>
+<?db filename="f_is-true"?>
 <refmeta>
 <refentrytitle>f:is-true</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}is-true#1</refmiscinfo>
@@ -578,7 +578,7 @@ cast to an integer that is zero, or the empty sequence.</para>
 </refentry>
 
 <refentry xml:id="f_l10n-language">
-<?db filename="f_l10n-language.html"?>
+<?db filename="f_l10n-language"?>
 <refmeta>
 <refentrytitle>f:l10n-language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-language#1</refmiscinfo>
@@ -597,7 +597,7 @@ will be returned if there is no localization available for that language.</para>
 </refentry>
 
 <refentry xml:id="f_label-separator">
-<?db filename="f_label-separator.html"?>
+<?db filename="f_label-separator"?>
 <refmeta>
 <refentrytitle>f:label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}label-separator#1</refmiscinfo>
@@ -614,7 +614,7 @@ will be returned if there is no localization available for that language.</para>
 </refentry>
 
 <refentry xml:id="f_language">
-<?db filename="f_language.html"?>
+<?db filename="f_language"?>
 <refmeta>
 <refentrytitle>f:language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}language#1</refmiscinfo>
@@ -633,7 +633,7 @@ or <parameter>default-language</parameter> if no such attribute exists.
 </refentry>
 
 <refentry xml:id="f_length-string">
-<?db filename="f_length-string.html"?>
+<?db filename="f_length-string"?>
 <refmeta>
 <refentrytitle>f:length-string</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}length-string#1</refmiscinfo>
@@ -654,7 +654,7 @@ are formatted as the length followed by the unit (e.g., “2.54cm”).
 </refentry>
 
 <refentry xml:id="f_length-units">
-<?db filename="f_length-units.html"?>
+<?db filename="f_length-units"?>
 <refmeta>
 <refentrytitle>f:length-units</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}length-units#1</refmiscinfo>
@@ -672,7 +672,7 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refentry>
 
 <refentry xml:id="f_locales">
-<?db filename="f_locales.html"?>
+<?db filename="f_locales"?>
 <refmeta>
 <refentrytitle>f:locales</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}locales#1</refmiscinfo>
@@ -691,7 +691,7 @@ This function replaces the <code>$v:locales</code> variable.</para>
 </refentry>
 
 <refentry xml:id="f_make-length">
-<?db filename="f_make-length.html"?>
+<?db filename="f_make-length"?>
 <refmeta>
 <refentrytitle>f:make-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}make-length#1</refmiscinfo>
@@ -713,7 +713,7 @@ both.
 </refentry>
 
 <refentry xml:id="f_number-separator">
-<?db filename="f_number-separator.html"?>
+<?db filename="f_number-separator"?>
 <refmeta>
 <refentrytitle>f:number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}number-separator#1</refmiscinfo>
@@ -731,7 +731,7 @@ title that follows it.</para>
 </refentry>
 
 <refentry xml:id="f_object-align">
-<?db filename="f_object-align.html"?>
+<?db filename="f_object-align"?>
 <refmeta>
 <refentrytitle>f:object-align</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-align#1</refmiscinfo>
@@ -749,7 +749,7 @@ title that follows it.</para>
 </refentry>
 
 <refentry xml:id="f_object-contentheight">
-<?db filename="f_object-contentheight.html"?>
+<?db filename="f_object-contentheight"?>
 <refmeta>
 <refentrytitle>f:object-contentheight</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-contentheight#2</refmiscinfo>
@@ -775,7 +775,7 @@ returned.</para>
 </refentry>
 
 <refentry xml:id="f_object-contentwidth">
-<?db filename="f_object-contentwidth.html"?>
+<?db filename="f_object-contentwidth"?>
 <refmeta>
 <refentrytitle>f:object-contentwidth</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-contentwidth#2</refmiscinfo>
@@ -800,7 +800,7 @@ sequence is returned.</para>
 </refentry>
 
 <refentry xml:id="f_object-height">
-<?db filename="f_object-height.html"?>
+<?db filename="f_object-height"?>
 <refmeta>
 <refentrytitle>f:object-height</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-height#1</refmiscinfo>
@@ -821,7 +821,7 @@ is specified for the object, the empty sequence is returned.</para>
 </refentry>
 
 <refentry xml:id="f_object-properties">
-<?db filename="f_object-properties.html"?>
+<?db filename="f_object-properties"?>
 <refmeta>
 <refentrytitle>f:object-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-properties#1</refmiscinfo>
@@ -863,7 +863,7 @@ background.</para>
 </refentry>
 
 <refentry xml:id="f_object-scale">
-<?db filename="f_object-scale.html"?>
+<?db filename="f_object-scale"?>
 <refmeta>
 <refentrytitle>f:object-scale</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-scale#1</refmiscinfo>
@@ -883,7 +883,7 @@ background.</para>
 </refentry>
 
 <refentry xml:id="f_object-scalefit">
-<?db filename="f_object-scalefit.html"?>
+<?db filename="f_object-scalefit"?>
 <refmeta>
 <refentrytitle>f:object-scalefit</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-scalefit#1</refmiscinfo>
@@ -902,7 +902,7 @@ to fit its container.
 </refentry>
 
 <refentry xml:id="f_object-valign">
-<?db filename="f_object-valign.html"?>
+<?db filename="f_object-valign"?>
 <refmeta>
 <refentrytitle>f:object-valign</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-valign#1</refmiscinfo>
@@ -923,7 +923,7 @@ that’s what previous versions of stylesheets for DocBook did.
 </refentry>
 
 <refentry xml:id="f_object-width">
-<?db filename="f_object-width.html"?>
+<?db filename="f_object-width"?>
 <refmeta>
 <refentrytitle>f:object-width</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-width#1</refmiscinfo>
@@ -943,7 +943,7 @@ is specified for the object, the empty length is returned.</para>
 </refentry>
 
 <refentry xml:id="f_orderedlist-item-numeration">
-<?db filename="f_orderedlist-item-numeration.html"?>
+<?db filename="f_orderedlist-item-numeration"?>
 <refmeta>
 <refentrytitle>f:orderedlist-item-numeration</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}orderedlist-item-numeration#1</refmiscinfo>
@@ -961,7 +961,7 @@ See <parameter>orderedlist-item-numeration</parameter>.</para>
 </refentry>
 
 <refentry xml:id="f_orderedlist-item-number">
-<?db filename="f_orderedlist-item-number.html"?>
+<?db filename="f_orderedlist-item-number"?>
 <refmeta>
 <refentrytitle>f:orderedlist-item-number</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}orderedlist-item-number#1</refmiscinfo>
@@ -981,7 +981,7 @@ third item of a list, it will return <literal>(2, 4, 3)</literal>.</para>
 </refentry>
 
 <refentry xml:id="f_orderedlist-startingnumber">
-<?db filename="f_orderedlist-startingnumber.html"?>
+<?db filename="f_orderedlist-startingnumber"?>
 <refmeta>
 <refentrytitle>f:orderedlist-startingnumber</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}orderedlist-startingnumber#1</refmiscinfo>
@@ -1003,7 +1003,7 @@ of the first list item in an ordered list.</para>
 </refentry>
 
 <refentry xml:id="f_parse-length">
-<?db filename="f_parse-length.html"?>
+<?db filename="f_parse-length"?>
 <refmeta>
 <refentrytitle>f:parse-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}parse-length#1</refmiscinfo>
@@ -1025,7 +1025,7 @@ as a length.
 </refentry>
 
 <refentry xml:id="f_pi">
-<?db filename="f_pi.html"?>
+<?db filename="f_pi"?>
 <refmeta>
 <refentrytitle>f:pi</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}pi#2</refmiscinfo>
@@ -1055,7 +1055,7 @@ in that context.</para>
 </refentry>
 
 <refentry xml:id="f_pi-attributes">
-<?db filename="f_pi-attributes.html"?>
+<?db filename="f_pi-attributes"?>
 <refmeta>
 <refentrytitle>f:pi-attributes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}pi-attributes#1</refmiscinfo>
@@ -1080,7 +1080,7 @@ the last value will be returned.</para>
 </refentry>
 
 <refentry xml:id="f_post-label-punctuation">
-<?db filename="f_post-label-punctuation.html"?>
+<?db filename="f_post-label-punctuation"?>
 <refmeta>
 <refentrytitle>f:post-label-punctuation</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#1</refmiscinfo>
@@ -1105,7 +1105,7 @@ punctuation, if any, should follow it.
 </refentry>
 
 <refentry xml:id="f_refsection">
-<?db filename="f_refsection.html"?>
+<?db filename="f_refsection"?>
 <refmeta>
 <refentrytitle>f:refsection</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}refsection#1</refmiscinfo>
@@ -1124,7 +1124,7 @@ element.</para>
 </refentry>
 
 <refentry xml:id="f_relative-length">
-<?db filename="f_relative-length.html"?>
+<?db filename="f_relative-length"?>
 <refmeta>
 <refentrytitle>f:relative-length</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}relative-length#1</refmiscinfo>
@@ -1144,7 +1144,7 @@ For a discussion of units, see <xref linkend="units"/>.
 </refentry>
 
 <refentry xml:id="f_resolve-object-uri">
-<?db filename="f_resolve-object-uri.html"?>
+<?db filename="f_resolve-object-uri"?>
 <refmeta>
 <refentrytitle>f:resolve-object-uri</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}resolve-object-uri#1</refmiscinfo>
@@ -1171,7 +1171,7 @@ URI for the generated HTML.
 </refentry>
 
 <refentry xml:id="f_section">
-<?db filename="f_section.html"?>
+<?db filename="f_section"?>
 <refmeta>
 <refentrytitle>f:section</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}section#1</refmiscinfo>
@@ -1190,7 +1190,7 @@ element.</para>
 </refentry>
 
 <refentry xml:id="f_section-depth">
-<?db filename="f_section-depth.html"?>
+<?db filename="f_section-depth"?>
 <refmeta>
 <refentrytitle>f:section-depth</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}section-depth#1</refmiscinfo>
@@ -1208,7 +1208,7 @@ are among its ancestors.</para>
 </refentry>
 
 <refentry xml:id="f_select-mediaobject">
-<?db filename="f_select-mediaobject.html"?>
+<?db filename="f_select-mediaobject"?>
 <refmeta>
 <refentrytitle>f:select-mediaobject</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject#1</refmiscinfo>
@@ -1230,7 +1230,7 @@ are acceptable, the first object is returned.</para>
 </refentry>
 
 <refentry xml:id="f_select-mediaobject-data">
-<?db filename="f_select-mediaobject-data.html"?>
+<?db filename="f_select-mediaobject-data"?>
 <refmeta>
 <refentrytitle>f:select-mediaobject-data</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject-data#1</refmiscinfo>
@@ -1256,7 +1256,7 @@ deemed “acceptable”.</para>
 </refentry>
 
 <refentry xml:id="f_spaces">
-<?db filename="f_spaces.html"?>
+<?db filename="f_spaces"?>
 <refmeta>
 <refentrytitle>f:spaces</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}spaces#1</refmiscinfo>
@@ -1312,7 +1312,7 @@ will return a string of three spaces whereas
 </refentry>
 
 <refentry xml:id="f_step-number">
-<?db filename="f_step-number.html"?>
+<?db filename="f_step-number"?>
 <refmeta>
 <refentrytitle>f:step-number</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}step-number#1</refmiscinfo>
@@ -1334,7 +1334,7 @@ return <literal>(2, 4, 3)</literal>.</para>
 </refentry>
 
 <refentry xml:id="f_step-numeration">
-<?db filename="f_step-numeration.html"?>
+<?db filename="f_step-numeration"?>
 <refmeta>
 <refentrytitle>f:step-numeration</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}step-numeration#1</refmiscinfo>
@@ -1352,7 +1352,7 @@ See <parameter>procedure-step-numeration</parameter>.</para>
 </refentry>
 
 <refentry xml:id="f_syntax-highlight">
-<?db filename="f_syntax-highlight.html"?>
+<?db filename="f_syntax-highlight"?>
 <refmeta>
 <refentrytitle>f:syntax-highlight</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}syntax-highlight#1</refmiscinfo>
@@ -1377,7 +1377,7 @@ will be syntax highlighted is taken from
 </refentry>
 
 <refentry xml:id="f_target">
-<?db filename="f_target.html"?>
+<?db filename="f_target"?>
 <refmeta>
 <refentrytitle>f:target</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}target#2</refmiscinfo>
@@ -1396,7 +1396,7 @@ will be syntax highlighted is taken from
 </refentry>
 
 <refentry xml:id="f_template">
-<?db filename="f_template.html"?>
+<?db filename="f_template"?>
 <refmeta>
 <refentrytitle>f:template</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}template#2</refmiscinfo>
@@ -1414,7 +1414,7 @@ If no template is found, returns the <code>$default</code> template.</para>
 </refentry>
 
 <refentry xml:id="f_tokenize-on-char">
-<?db filename="f_tokenize-on-char.html"?>
+<?db filename="f_tokenize-on-char"?>
 <refmeta>
 <refentrytitle>f:tokenize-on-char</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}tokenize-on-char#2</refmiscinfo>
@@ -1433,7 +1433,7 @@ is automatically escaped.</para>
 </refentry>
 
 <refentry xml:id="f_unique-id">
-<?db filename="f_unique-id.html"?>
+<?db filename="f_unique-id"?>
 <refmeta>
 <refentrytitle>f:unique-id</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}unique-id#1</refmiscinfo>
@@ -1453,7 +1453,7 @@ the same <att>xml:id</att>, as can occur if transclusion is performed.
 </refentry>
 
 <refentry xml:id="f_verbatim-highlight">
-<?db filename="f_verbatim-highlight.html"?>
+<?db filename="f_verbatim-highlight"?>
 <refmeta>
 <refentrytitle>f:verbatim-highlight</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-highlight#1</refmiscinfo>
@@ -1483,7 +1483,7 @@ settings for this kind of environment are returned.</para>
 </refentry>
 
 <refentry xml:id="f_verbatim-numbered">
-<?db filename="f_verbatim-numbered.html"?>
+<?db filename="f_verbatim-numbered"?>
 <refmeta>
 <refentrytitle>f:verbatim-numbered</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-numbered#1</refmiscinfo>
@@ -1539,7 +1539,7 @@ a warning message from the stylesheets.
 </refentry>
 
 <refentry xml:id="f_verbatim-style">
-<?db filename="f_verbatim-style.html"?>
+<?db filename="f_verbatim-style"?>
 <refmeta>
 <refentrytitle>f:verbatim-style</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-style#1</refmiscinfo>
@@ -1574,7 +1574,7 @@ element’s name is listed in
 </refentry>
 
 <refentry xml:id="f_verbatim-trim-trailing">
-<?db filename="f_verbatim-trim-trailing.html"?>
+<?db filename="f_verbatim-trim-trailing"?>
 <refmeta>
 <refentrytitle>f:verbatim-trim-trailing</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-trim-trailing#1</refmiscinfo>
@@ -1601,7 +1601,7 @@ case-by-case basis.
 </refentry>
 
 <refentry xml:id="f_xlink-style">
-<?db filename="f_xlink-style.html"?>
+<?db filename="f_xlink-style"?>
 <refmeta>
 <refentrytitle>f:xlink-style</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}xlink-style#1</refmiscinfo>
@@ -1620,7 +1620,7 @@ case-by-case basis.
 </refentry>
 
 <refentry xml:id="f_xpointer-idref">
-<?db filename="f_xpointer-idref.html"?>
+<?db filename="f_xpointer-idref"?>
 <refmeta>
 <refentrytitle>f:xpointer-idref</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}xpointer-idref#1</refmiscinfo>
@@ -1653,7 +1653,7 @@ is the empty sequence.</para></listitem>
 </refentry>
 
 <refentry xml:id="ext_cwd">
-<?db filename="ext_cwd.html"?>
+<?db filename="ext_cwd"?>
 <refmeta>
 <refentrytitle>ext:cwd</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}cwd#0</refmiscinfo>
@@ -1682,7 +1682,7 @@ the processor was executed.</para>
 </refentry>
 
 <refentry xml:id="ext_image-metadata">
-<?db filename="ext_image-metadata.html"?>
+<?db filename="ext_image-metadata"?>
 <refmeta>
 <refentrytitle>ext:image-metadata</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}image-metadata#1</refmiscinfo>
@@ -1770,7 +1770,7 @@ returned in an <tag>xsl:message</tag>.</para>
 </refentry>
 
 <refentry xml:id="ext_image-properties">
-<?db filename="ext_image-properties.html"?>
+<?db filename="ext_image-properties"?>
 <refmeta>
 <refentrytitle>ext:image-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}image-properties#1</refmiscinfo>
@@ -1808,7 +1808,7 @@ are unavailable.</para>
 </refentry>
 
 <refentry xml:id="ext_pygmentize">
-<?db filename="ext_pygmentize.html"?>
+<?db filename="ext_pygmentize"?>
 <refmeta>
 <refentrytitle>ext:pygmentize</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}pygmentize#1</refmiscinfo>
@@ -1891,7 +1891,7 @@ the listing if you are trying to accurately count the lines.</para>
 </refentry>
 
 <refentry xml:id="ext_pygmentize-available">
-<?db filename="ext_pygmentize-available.html"?>
+<?db filename="ext_pygmentize-available"?>
 <refmeta>
 <refentrytitle>ext:pygmentize-available</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}pygmentize-available#0</refmiscinfo>
@@ -1924,7 +1924,7 @@ on the host system.</para>
 </refentry>
 
 <refentry xml:id="ext_xinclude">
-<?db filename="ext_xinclude.html"?>
+<?db filename="ext_xinclude"?>
 <refmeta>
 <refentrytitle>ext:xinclude</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}xinclude#1</refmiscinfo>
@@ -1974,7 +1974,7 @@ descendants. The options “<literal>fixup-xml-base</literal>” and
 </refentry>
 
 <refentry xml:id="ext_validate-with-relax-ng">
-<?db filename="ext_validate-with-relax-ng.html"?>
+<?db filename="ext_validate-with-relax-ng"?>
 <refmeta>
 <refentrytitle>ext:validate-with-relax-ng</refentrytitle>
 <refmiscinfo>{http://docbook.org/extensions/xslt}validate-with-relax-ng#2</refmiscinfo>

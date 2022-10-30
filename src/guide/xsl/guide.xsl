@@ -10,8 +10,7 @@
                 exclude-result-prefixes="a db f m t v"
                 version="3.0">
 
-<xsl:import href="../../../build/xslt/main.xsl"/>
-<xsl:import href="../../../build/xslt/drivers.xsl"/>
+<xsl:import href="../../../build/xslt/docbook.xsl"/>
 <xsl:import href="common.xsl"/>
 
 <!-- ============================================================ -->

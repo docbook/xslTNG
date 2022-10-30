@@ -9,11 +9,7 @@
                 exclude-result-prefixes="db f ghost mp tp vp xs"
                 version="3.0">
 
-<xsl:import href="../modules/gentext.xsl"/>
-
-<xsl:param name="glossary-collection" as="xs:string?" select="()"/>
-<xsl:param name="bibliography-collection" as="xs:string?" select="()"/>
-<xsl:param name="annotation-collection" as="xs:string?" select="()"/>
+<xsl:import href="../environment.xsl"/>
 
 <!-- ============================================================ -->
 

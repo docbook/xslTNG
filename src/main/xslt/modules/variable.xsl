@@ -22,6 +22,26 @@
      attribute in order to make the reference page in the Guide work
      better. -->
 
+<xsl:variable name="v:chunk" as="xs:boolean"
+              select="not(normalize-space($chunk) = '')"/>
+
+<xsl:variable name="vp:section-toc-depth" as="xs:integer">
+  <xsl:choose>
+    <xsl:when test="$section-toc-depth instance of xs:integer">
+      <xsl:sequence select="max((0, $section-toc-depth))"/>
+    </xsl:when>
+    <xsl:when test="$section-toc-depth castable as xs:integer">
+      <xsl:sequence select="max((0, xs:integer($section-toc-depth)))"/>
+    </xsl:when>
+    <xsl:when test="string($section-toc-depth) = 'unbounded'">
+      <xsl:sequence select="2147483647"/> <!-- 0x7fffffff -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="0"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
 <xsl:variable name="v:debug" static="yes" as="xs:string*"
               select="tokenize($debug, '[,\s]+') ! normalize-space(.)"/>
 

@@ -16,9 +16,6 @@
                 exclude-result-prefixes="db f fp l m map n t v vp xs"
                 version="3.0">
 
-<xsl:param name="default-language" select="'en'"/>
-<xsl:param name="additional-languages" select="()"/>
-
 <xsl:key name="l:string" match="l:string" use="@key"/>
 <xsl:key name="l:style" match="l:style" use="@key"/>
 <xsl:key name="l:gentext" match="l:gentext" use="@name"/>

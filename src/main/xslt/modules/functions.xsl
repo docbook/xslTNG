@@ -16,7 +16,8 @@
                 exclude-result-prefixes="array db f fp l m map mp v vp xs"
                 version="3.0">
 
-<xsl:variable name="fp:class" select="QName('', 'class')"/>
+<xsl:key name="id" match="*" use="@xml:id"/>
+<xsl:key name="genid" match="*" use="generate-id(.)"/>
 
 <xsl:function name="f:attributes" as="attribute()*">
   <xsl:param name="node" as="element()"/>
@@ -58,7 +59,7 @@
   </xsl:for-each>
 
   <!-- if there isn't a class attribute, manufacture one -->
-  <xsl:if test="not($fp:class = $attributes/node-name())">
+  <xsl:if test="not(QName('', 'class') = $attributes/node-name())">
     <xsl:variable name="roles"
                   select="(tokenize(normalize-space(string-join($extra-classes, ' '))),
                            tokenize(normalize-space($node/@role)),
@@ -83,7 +84,7 @@
   </xsl:if>
 </xsl:function>
 
-<xsl:function name="f:is-true" as="xs:boolean">
+<xsl:function name="f:is-true" as="xs:boolean" visibility="public">
   <xsl:param name="value"/>
 
   <xsl:choose>
@@ -374,15 +375,21 @@
 
 <xsl:function name="f:generate-id" as="xs:string" cache="yes">
   <xsl:param name="node" as="element()"/>
+  <xsl:sequence select="f:generate-id($node, true())"/>
+</xsl:function>
+
+<xsl:function name="f:generate-id" as="xs:string" cache="yes">
+  <xsl:param name="node" as="element()"/>
+  <xsl:param name="use-xml-id" as="xs:boolean"/>
   <xsl:choose>
-    <xsl:when test="$node/@xml:id">
-      <xsl:sequence select="string($node/@xml:id)"/>
+    <xsl:when test="$use-xml-id and $node/@xml:id">
+      <xsl:sequence select="$node/@xml:id/string()"/>
     </xsl:when>
     <xsl:when test="empty($node/parent::*)">
       <xsl:sequence select="$generated-id-root"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="aid" select="f:generate-id($node/parent::*)"/>
+      <xsl:variable name="aid" select="f:generate-id($node/parent::*, $use-xml-id)"/>
       <xsl:variable name="type" select="(map:get($vp:gidmap, local-name($node)),
                                          local-name($node))[1]"/>
       <xsl:variable name="prec"
@@ -396,17 +403,22 @@
 <xsl:function name="f:id" as="xs:string" cache="yes">
   <xsl:param name="node" as="element()"/>
   <xsl:sequence select="if ($node/@xml:id)
-                        then $node/@xml:id
+                        then $node/@xml:id/string()
                         else f:generate-id($node)"/>
 </xsl:function>
 
-<xsl:function name="f:pi" as="xs:string?">
+<xsl:function name="f:unique-id" as="xs:string" cache="yes">
+  <xsl:param name="node" as="element()"/>
+  <xsl:sequence select="f:generate-id($node, false())"/>
+</xsl:function>
+
+<xsl:function name="f:pi" as="xs:string?" visibility="public">
   <xsl:param name="context" as="node()?"/>
   <xsl:param name="property" as="xs:string"/>
   <xsl:sequence select="f:pi($context, $property, ())"/>
 </xsl:function>
 
-<xsl:function name="f:pi" as="xs:string*">
+<xsl:function name="f:pi" as="xs:string*" visibility="public">
   <xsl:param name="context" as="node()?"/>
   <xsl:param name="property" as="xs:string"/>
   <xsl:param name="default" as="xs:string*"/>

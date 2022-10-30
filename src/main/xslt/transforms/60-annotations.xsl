@@ -10,13 +10,9 @@
                 exclude-result-prefixes="array db f ghost map mp xs"
                 version="3.0">
 
-<xsl:import href="../modules/shared.xsl"/>
-
-<xsl:param name="annotation-placement" select="'after'"/>
+<xsl:import href="../environment.xsl"/>
 
 <xsl:key name="annotations" match="db:annotation" use="@xml:id"/>
-<xsl:key name="id" match="*" use="@xml:id"/>
-<xsl:key name="genid" match="*" use="generate-id(.)"/>
 
 <xsl:variable name="root" select="/"/>
 

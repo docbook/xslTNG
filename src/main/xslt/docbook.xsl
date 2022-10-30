@@ -1,64 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:dbe="http://docbook.org/ns/docbook/errors"
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
-                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
+                xmlns:xi='http://www.w3.org/2001/XInclude'
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="db ext f h m map mp t tp v vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <!-- This will all be in XProc 3.0 eventually, hack for now... -->
 <xsl:import href="main.xsl"/>
-<xsl:import href="drivers.xsl"/>
 
-<xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
-            omit-xml-declaration="yes"/>
+<xsl:variable name="v:standard-transforms" as="map(*)*">
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/00-logstruct.xsl', static-base-uri())"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/10-xinclude.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'functions'" select="'ext:xinclude'"/>
+    <xsl:map-entry key="'test'" select="'exists(//xi:include)'"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/20-db4to5.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'test'">
+      not(namespace-uri(/*) = 'http://docbook.org/ns/docbook')
+    </xsl:map-entry>
+    <xsl:map-entry key="'extra-params'"
+                   select="map { QName('', 'base-uri'): 'base-uri(/*)' }"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/30-transclude.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'test'" select="'f:is-true($docbook-transclusion)'"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/40-profile.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'test'">
+         f:is-true($dynamic-profiles)
+      or $profile-lang != ''         or $profile-revisionflag != ''
+      or $profile-role != ''         or $profile-arch != ''
+      or $profile-audience != ''     or $profile-condition != ''
+      or $profile-conformance != ''  or $profile-os != ''
+      or $profile-outputformat != '' or $profile-revision != ''
+      or $profile-security != ''     or $profile-userlevel != ''
+      or $profile-vendor != ''       or $profile-wordsize != ''
+    </xsl:map-entry>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/50-normalize.xsl', static-base-uri())"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/60-annotations.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'test'" select="'exists(//db:annotation)'"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/70-xlinkbase.xsl', static-base-uri())"/>
+  </xsl:map>
+  <xsl:if test="exists($local-conventions)">
+    <xsl:map>
+      <xsl:map-entry key="'stylesheet-location'" select="$local-conventions"/>
+    </xsl:map>
+  </xsl:if>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/75-validate.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'functions'" select="'ext:validate-with-relax-ng'"/>
+    <xsl:map-entry key="'test'"
+                   select="'normalize-space($relax-ng-grammar) != '''''"/>
+  </xsl:map>
+  <xsl:map>
+    <xsl:map-entry key="'stylesheet-location'"
+                   select="resolve-uri('transforms/80-oxy-markup.xsl', static-base-uri())"/>
+    <xsl:map-entry key="'test'">
+      f:is-true(f:pi(/*/db:info, 'oxy-markup', $oxy-markup))
+      and exists(//processing-instruction()[starts-with(name(), 'oxy_')])
+    </xsl:map-entry>
+  </xsl:map>
+</xsl:variable>
 
-<xsl:template match="*" as="element()">
+<xsl:variable name="vp:transforms" as="map(*)*">
+  <xsl:for-each select="$transform-original">
+    <xsl:choose>
+      <xsl:when test=". instance of map(*)">
+        <xsl:sequence select="."/>
+      </xsl:when>
+      <xsl:when test=". instance of xs:string">
+        <xsl:sequence select="map {
+            'stylesheet-location': resolve-uri(., base-uri(/))
+          }"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="error($dbe:INVALID-TRANSFORM, 
+                                    'Each $transform-original must be a string or a map')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+
+  <xsl:sequence select="$v:standard-transforms"/>
+
+  <xsl:for-each select="$transform-before">
+    <xsl:choose>
+      <xsl:when test=". instance of map(*)">
+        <xsl:sequence select="."/>
+      </xsl:when>
+      <xsl:when test=". instance of xs:string">
+        <xsl:sequence select="map {
+            'stylesheet-location': resolve-uri(., base-uri(/))
+          }"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="error($dbe:INVALID-TRANSFORM, 
+                                    'Each $transform-preprocessed must be a string or a map')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+</xsl:variable>
+
+<!-- If a document or element is being processed in the default
+     mode (and not the m:docbook mode), assume we're starting 
+     a transformation. -->
+<xsl:template match="/ | *" name="t:docbook">
+  <xsl:param name="vp:loop-count" select="0" tunnel="yes"/>
+
+  <xsl:if test="$vp:loop-count gt 0">
+    <xsl:message terminate="yes">
+      <xsl:text>Loop detected, perhaps a mode is missing?</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:variable name="document" as="document-node()">
-    <xsl:document>
-      <xsl:sequence select="."/>
-    </xsl:document>
+    <xsl:choose>
+      <xsl:when test="./self::document-node()">
+        <xsl:sequence select="."/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- this will make a mess of the base uri... -->
+        <xsl:document>
+          <xsl:sequence select="."/>
+        </xsl:document>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
-  <xsl:call-template name="tp:docbook">
-    <xsl:with-param name="source" select="$document"/>
-  </xsl:call-template>
-</xsl:template>
 
-<xsl:template match="/" name="tp:docbook">
-  <xsl:param name="source" as="document-node()" select="."/>
-
-  <xsl:variable name="source" as="document-node()">
-    <xsl:call-template name="t:preprocess">
-      <xsl:with-param name="source" select="$source"/>
-    </xsl:call-template>
+  <xsl:variable name="document" as="document-node()">
+    <xsl:sequence select="fp:run-transforms($document, $vp:transforms)"/>
   </xsl:variable>
 
   <xsl:variable name="result" as="document-node()">
-    <xsl:call-template name="t:process">
-      <xsl:with-param name="source" select="$source"/>
-    </xsl:call-template>
+    <xsl:apply-templates select="$document" mode="m:docbook">
+      <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
   <xsl:variable name="result" as="document-node()">
     <xsl:call-template name="t:chunk-cleanup">
-      <xsl:with-param name="docbook" select="$source"/>
-      <xsl:with-param name="source" select="$result"/>
+      <xsl:with-param name="docbook" select="$document"/>
+      <xsl:with-param name="source">
+        <xsl:apply-templates select="$document" mode="m:docbook">
+          <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
+        </xsl:apply-templates>
+      </xsl:with-param>
     </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="post-processing" as="map(*)*">
+    <xsl:for-each select="$transform-after">
+      <xsl:choose>
+        <xsl:when test=". instance of map(*)">
+          <xsl:sequence select="."/>
+        </xsl:when>
+        <xsl:when test=". instance of xs:string">
+          <xsl:sequence select="map {
+                                  'stylesheet-location': resolve-uri(., base-uri(/))
+                                }"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="error($dbe:INVALID-TRANSFORM, 
+                                      'Each $transform-preprocessed must be a string or a map')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:variable name="result" as="document-node()">
+    <xsl:sequence select="fp:run-transforms($result, $post-processing)"/>
   </xsl:variable>
 
   <xsl:variable name="result" as="map(xs:string, item()*)">
     <xsl:call-template name="t:chunk-output">
-      <xsl:with-param name="docbook" select="$source"/>
+      <xsl:with-param name="docbook" select="$document"/>
       <xsl:with-param name="source" select="$result"/>
     </xsl:call-template>
   </xsl:variable>
@@ -85,6 +232,24 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="t:chunk-cleanup" as="document-node()">
+  <xsl:param name="source" as="document-node()" select="."/>
+  <xsl:param name="docbook" as="document-node()" required="yes"/>
+
+  <xsl:apply-templates select="$source" mode="m:chunk-cleanup">
+    <xsl:with-param name="docbook" select="$docbook" tunnel="yes"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template name="t:chunk-output" as="map(xs:string, item()*)">
+  <xsl:param name="source" as="document-node()" select="."/>
+  <xsl:param name="docbook" as="document-node()" required="yes"/>
+
+  <xsl:apply-templates select="$source" mode="m:chunk-output">
+    <xsl:with-param name="docbook" select="$docbook" tunnel="yes"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <xsl:template match="node()" mode="m:chunk-write">
   <xsl:param name="href" as="xs:string" required="yes"/>
 
@@ -107,5 +272,77 @@
     </xsl:choose>
   </xsl:result-document>
 </xsl:template>
+
+<xsl:function name="fp:run-transforms" as="document-node()">
+  <xsl:param name="document" as="document-node()"/>
+  <xsl:param name="transforms" as="map(*)*"/>
+
+  <xsl:choose>
+    <xsl:when test="empty($transforms)">
+      <xsl:sequence select="$document"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:iterate select="$transforms">
+        <xsl:param name="document" as="document-node()" select="$document"/>
+        <xsl:on-completion select="$document"/>
+        <xsl:next-iteration>
+          <xsl:with-param name="document">
+            <xsl:variable name="functions" as="xs:boolean*">
+              <xsl:for-each select=".?functions">
+                <xsl:sequence select="function-available(.)"/>
+              </xsl:for-each>
+            </xsl:variable>
+
+            <xsl:variable name="process" as="xs:boolean">
+              <xsl:choose>
+                <xsl:when test="exists($functions) and false() = $functions">
+                  <xsl:sequence select="false()"/>
+                </xsl:when>
+                <xsl:when test="exists(.?test)">
+                  <xsl:evaluate xpath=".?test" as="xs:boolean"
+                                with-params="$vp:dynamic-parameters"
+                                context-item="$document"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:sequence select="true()"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+
+            <xsl:choose>
+              <xsl:when test="exists($functions) and false() = $functions">
+                <xsl:message use-when="'pipeline' = $v:debug"
+                             select="'Unavailable: ' || .?stylesheet-location"/>
+                <xsl:sequence select="$document"/>
+              </xsl:when>
+              <xsl:when test="not($process)">
+                <xsl:message use-when="'pipeline' = $v:debug"
+                             select="'Unnecessary: ' || .?stylesheet-location"/>
+                <xsl:sequence select="$document"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message use-when="'pipeline' = $v:debug"
+                             select="'Processing : ' || .?stylesheet-location"/>
+
+                <xsl:variable name="params"
+                              select="if (exists(.?extra-params))
+                                      then map:merge(($vp:dynamic-parameters,
+                                                      .?extra-params))
+                                      else $vp:dynamic-parameters"/>
+
+                <xsl:sequence select="transform(map {
+                                        'stylesheet-location': .?stylesheet-location,
+                                        'source-node': $document,
+                                        'static-params': $vp:static-parameters,
+                                        'stylesheet-params': $params
+                                      })?output"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:next-iteration>
+      </xsl:iterate>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
 
 </xsl:stylesheet>

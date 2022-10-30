@@ -8,15 +8,16 @@
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                default-mode="m:profile"
                 exclude-result-prefixes="dbe f fp m map v vp xs"
                 version="3.0">
 
-<xsl:variable name="v:dynamic-profile-variables" as="map(xs:QName, item()*)"
-              select="$vp:dynamic-parameters"/>
+<xsl:include href="../environment.xsl"/>
 
 <xsl:variable name="vp:strmatch" select="'^(\$\P{Zs}+)\s*=\s*(.+)$'"/>
 <xsl:variable name="vp:varmatch" select="'^(\$\P{Zs}+)$'"/>
+
+<xsl:variable name="vp:profile-variables" as="map(*)"
+              select="map:merge(($vp:dynamic-parameters, $dynamic-profile-variables))"/>
 
 <!-- It's convenient to specify the separately, but
      convenient to process them iteratively. -->
@@ -251,8 +252,9 @@
       <xsl:evaluate xpath="$variable"
                     context-item="$context"
                     namespace-context="$context"
-                    with-params="$v:dynamic-profile-variables"/>
+                    with-params="$vp:profile-variables"/>
     </xsl:variable>
+
     <xsl:choose>
       <xsl:when test="exists($expected-value)">
         <xsl:sequence select="$expected-value = ($actual-value ! string(.))"/>
@@ -267,7 +269,8 @@
         <xsl:sequence select="true() = ($actual-value ! boolean(.))"/>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:catch>
+    <xsl:catch xmlns:err="http://www.w3.org/2005/xqt-errors">
+      <xsl:message select="$err:code, $err:description"/>
       <xsl:choose>
         <xsl:when test="$dynamic-profile-error = 'ignore'">
           <xsl:sequence select="()"/>

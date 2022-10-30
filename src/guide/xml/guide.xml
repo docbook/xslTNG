@@ -1,7 +1,7 @@
 <book xmlns='http://docbook.org/ns/docbook'
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:xi='http://www.w3.org/2001/XInclude'>
-<?db filename="index.html" navigation="false"?>
+<?db filename="index" navigation="false"?>
 <info>
 <?db xlink-style="javascript" page-style="book"?>
 <title>DocBook xslTNG Reference</title>
@@ -61,7 +61,7 @@ transformations because it avoids the cost of analyzing the XSLT and
 preparing it for execution each time.</para>
 
 <para>You can disable them by setting
-<parameter>use-compiled-transforms</parameter> to “false”.</para>
+<literal>use-compiled-transforms</literal> to “false”.</para>
         </listitem>
       </itemizedlist>
     </revdescription>
@@ -247,6 +247,10 @@ contained herein.</para>
 </part>
 <part>
 <title>Reference</title>
+<!-- N.B. This does not exist in the source repository.
+     It's built from parameters.xml (so is param.xsl).
+     It's not ideal from an authoring perspective, but
+     I'm going to live with it for the moment. -->
 <xi:include href="ref-params.xml"/>
 <xi:include href="ref-variables.xml"/>
 <xi:include href="ref-functions.xml"/>

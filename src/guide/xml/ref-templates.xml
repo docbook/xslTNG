@@ -3,12 +3,12 @@
            version="5.0"
            xml:id="templates">
 <info>
-  <?db filename="templates.html"?>
+  <?db filename="templates"?>
   <title>Template reference</title>
 </info>
 
 <refentry xml:id="t_biblioentry">
-<?db filename="t_biblioentry.html"?>
+<?db filename="t_biblioentry"?>
 <refmeta>
 <refentrytitle>t:biblioentry</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}biblioentry</refmiscinfo>
@@ -31,7 +31,7 @@ header template (see <xref linkend="header-templates"/>).</para>
 </refentry>
 
 <refentry xml:id="t_bottom-nav">
-<?db filename="t_bottom-nav.html"?>
+<?db filename="t_bottom-nav"?>
 <refmeta>
 <refentrytitle>t:bottom-nav</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}bottom-nav</refmiscinfo>
@@ -49,7 +49,7 @@ chunking is performed, this should provide links between pages.</para>
 </refentry>
 
 <refentry xml:id="t_chunk-cleanup">
-<?db filename="t_chunk-cleanup.html"?>
+<?db filename="t_chunk-cleanup"?>
 <refmeta>
 <refentrytitle>t:chunk-cleanup</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}chunk-cleanup</refmiscinfo>
@@ -62,19 +62,14 @@ chunking is performed, this should provide links between pages.</para>
 <refsection>
 <title>Description</title>
 <para>This mode performs cleanup tasks on the HTML document that
-results from calling <template>t:process</template>. This process
+results from DocBook processing. This process
 moves footnotes and annotations when necessary, generates navigation
 elements, etc.</para>
-<para>Most customizations can simply call <template>t:docbook</template>; you only need
-to call the <template>t:preprocess</template>, <template>t:process</template>,
-<template>t:postprocess</template> (or <template>t:chunk-cleanup</template> and
-<template>t:chunk-output</template>) if you need to perform very specialized
-cleanup tasks.
-</para></refsection>
+</refsection>
 </refentry>
 
 <refentry xml:id="t_chunk-footnotes">
-<?db filename="t_chunk-footnotes.html"?>
+<?db filename="t_chunk-footnotes"?>
 <refmeta>
 <refentrytitle>t:chunk-footnotes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}chunk-footnotes</refmiscinfo>
@@ -93,7 +88,7 @@ all of the footnotes that should appear in a chunk are processed with this templ
 </refentry>
 
 <refentry xml:id="t_chunk-output">
-<?db filename="t_chunk-output.html"?>
+<?db filename="t_chunk-output"?>
 <refmeta>
 <refentrytitle>t:chunk-output</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}chunk-output</refmiscinfo>
@@ -109,16 +104,11 @@ all of the footnotes that should appear in a chunk are processed with this templ
 requested and generates individual documents for each chunk. Like the
 XPath <code>transform</code> function, this template returns a map.
 You must process the map to store the documents.</para>
-<para>Most customizations can simply call <template>t:docbook</template>; you only need
-to call the <template>t:preprocess</template>, <template>t:process</template>,
-<template>t:postprocess</template> (or <template>t:chunk-output</template> and
-<template>t:chunk-output</template>) if you need to perform very specialized
-cleanup tasks.
-</para></refsection>
+</refsection>
 </refentry>
 
 <refentry xml:id="t_docbook">
-<?db filename="t_docbook.html"?>
+<?db filename="t_docbook"?>
 <refmeta>
 <refentrytitle>t:docbook</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}docbook</refmiscinfo>
@@ -130,15 +120,15 @@ cleanup tasks.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This mode processes a DocBook document. It runs the <template>t:preprocess</template>
-template to normalize the source, processes the normalized source in the <mode>m:docbook</mode> mode
-with the <template>t:process</template> template, and runs the <template>t:postprocess</template>
-template to clean up the HTML and generate the chunks (if necessary).
+<para>This mode processes a DocBook document. It’s usually called
+automatically by the root template in the stylesheets. You only need to call
+it explicitly if you have an override for the root template and want to
+do some specialized processing.
 </para></refsection>
 </refentry>
 
 <refentry xml:id="t_generate-index">
-<?db filename="t_generate-index.html"?>
+<?db filename="t_generate-index"?>
 <refmeta>
 <refentrytitle>t:generate-index</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}generate-index</refmiscinfo>
@@ -168,7 +158,7 @@ it appears.
 </refentry>
 
 <refentry xml:id="t_imagemap">
-<?db filename="t_imagemap.html"?>
+<?db filename="t_imagemap"?>
 <refmeta>
 <refentrytitle>t:imagemap</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}imagemap</refmiscinfo>
@@ -187,7 +177,7 @@ an HTML image map.</para>
 </refentry>
 
 <refentry xml:id="t_index-zone-reference">
-<?db filename="t_index-zone-reference.html"?>
+<?db filename="t_index-zone-reference"?>
 <refmeta>
 <refentrytitle>t:index-zone-reference</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}index-zone-reference</refmiscinfo>
@@ -205,7 +195,7 @@ a <att>zone</att> attribute. It is only called when generating an index.</para>
 </refentry>
 
 <refentry xml:id="t_inline">
-<?db filename="t_inline.html"?>
+<?db filename="t_inline"?>
 <refmeta>
 <refentrytitle>t:inline</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}inline</refmiscinfo>
@@ -259,7 +249,7 @@ the element’s content.</para>
 </refentry>
 
 <refentry xml:id="t_person-name">
-<?db filename="t_person-name.html"?>
+<?db filename="t_person-name"?>
 <refmeta>
 <refentrytitle>t:person-name</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name</refmiscinfo>
@@ -392,7 +382,7 @@ provide alternate or additional templates to format them.</para>
 </refentry>
 
 <refentry xml:id="t_person-name-family-given">
-<?db filename="t_person-name-family-given.html"?>
+<?db filename="t_person-name-family-given"?>
 <refmeta>
 <refentrytitle>t:person-name-family-given</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-family-given</refmiscinfo>
@@ -431,7 +421,7 @@ name to be formatted with the “<literal>FAMILY-given</literal>” style.</para
 </refentry>
 
 <refentry xml:id="t_person-name-first-last">
-<?db filename="t_person-name-first-last.html"?>
+<?db filename="t_person-name-first-last"?>
 <refmeta>
 <refentrytitle>t:person-name-first-last</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-first-last</refmiscinfo>
@@ -477,7 +467,7 @@ name to be formatted with the “<literal>first-last</literal>” style.</para>
 </refentry>
 
 <refentry xml:id="t_person-name-last-first">
-<?db filename="t_person-name-last-first.html"?>
+<?db filename="t_person-name-last-first"?>
 <refmeta>
 <refentrytitle>t:person-name-last-first</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-last-first</refmiscinfo>
@@ -515,7 +505,7 @@ name to be formatted with the “<literal>last-first</literal>” style.</para>
 </refentry>
 
 <refentry xml:id="t_person-name-list">
-<?db filename="t_person-name-list.html"?>
+<?db filename="t_person-name-list"?>
 <refmeta>
 <refentrytitle>t:person-name-list</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}person-name-list</refmiscinfo>
@@ -550,83 +540,8 @@ last are separated by “, “ (the localization item with the key
 </refsection>
 </refentry>
 
-<refentry xml:id="t_preprocess">
-<?db filename="t_preprocess.html"?>
-<refmeta>
-<refentrytitle>t:preprocess</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}preprocess</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:preprocess</refname>
-<refpurpose>Prepare a DocBook document for processing</refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>A lot of variation is possible in DocBook documents. In
-addition, the stylesheets have features that require combining several
-documents together (see
-<parameter>bibliography-collection</parameter>, for example).</para>
-<para>The <template>t:preprocess</template> template runs a pipeline of transformations
-that normalize the sources. This normalized source has much less variation which simplifies
-the templates used for main processing.</para>
-<para>Most customizations can simply call <template>t:docbook</template>; you only need
-to call the <template>t:preprocess</template>, <template>t:process</template>,
-<template>t:postprocess</template> if you need to perform very specialized
-cleanup tasks.
-</para></refsection>
-</refentry>
-
-<refentry xml:id="t_process">
-<?db filename="t_process.html"?>
-<refmeta>
-<refentrytitle>t:process</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}process</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:process</refname>
-<refpurpose>Process a DocBook document</refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This mode processes a <emphasis>normalized</emphasis> document.
-You must call <template>t:preprocess</template> before calling <template>t:process</template>
-or you will get erroneous results.</para>
-<para>Most customizations can simply call <template>t:docbook</template>; you only need
-to call the <template>t:preprocess</template>, <template>t:process</template>,
-<template>t:postprocess</template> if you need to perform very specialized
-cleanup tasks.
-</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="t_postprocess">
-<?db filename="t_postprocess.html"?>
-<refmeta>
-<refentrytitle>t:postprocess</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}postprocess</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:postprocess</refname>
-<refpurpose>Postprocess a DocBook document</refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This mode performs cleanup tasks on the HTML document that
-results from calling <template>t:process</template> by calling
-<template>t:chunk-cleanup</template> and <tag>t:chunk-output</tag>.
-This template returns a map.</para>
-<para>Most customizations can simply call <template>t:docbook</template>; you only need
-to call the <template>t:preprocess</template>, <template>t:process</template>,
-<template>t:postprocess</template> if you need to perform very specialized
-cleanup tasks.
-</para></refsection>
-</refentry>
-
 <refentry xml:id="t_table-footnotes">
-<?db filename="t_table-footnotes.html"?>
+<?db filename="t_table-footnotes"?>
 <refmeta>
 <refentrytitle>t:table-footnotes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}table-footnotes</refmiscinfo>
@@ -644,7 +559,7 @@ to process footnotes at the bottom of a table.</para>
 </refentry>
 
 <refentry xml:id="t_top-nav">
-<?db filename="t_top-nav.html"?>
+<?db filename="t_top-nav"?>
 <refmeta>
 <refentrytitle>t:top-nav</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}top-nav</refmiscinfo>
@@ -662,7 +577,7 @@ chunking is performed, this should provide links between pages.</para>
 </refentry>
 
 <refentry xml:id="t_xlink">
-<?db filename="t_xlink.html"?>
+<?db filename="t_xlink"?>
 <refmeta>
 <refentrytitle>t:xlink</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}xlink</refmiscinfo>

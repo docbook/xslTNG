@@ -48,7 +48,7 @@
                     'self::*[ancestor::db:partintro]',
                     'self::db:section')"/>
 
-<xsl:param name="component-numbers-inherit" select="true()"/>
+<xsl:param name="component-numbers-inherit" select="'true'"/>
 
 <xsl:param name="section-toc-depth" select="1"/>
 <xsl:param name="footnote-numeration" select="('*', '**', '†','‡', '§', '1')"/>
@@ -191,8 +191,7 @@
     <xsl:apply-templates select="$synopsis/node()"/>
   </xsl:if>
 
-  <xsl:if test="(db:refclass = 'variable' or db:refclass = 'param')
-                and $objects/self::a:variable">
+  <xsl:if test="db:refclass = 'variable' and $objects/self::a:variable">
     <xsl:variable name="synopsis">
       <xsl:variable name="initializer"
                     select="empty(db:refclass[contains-token(@role, 'noinitializer')])"/>

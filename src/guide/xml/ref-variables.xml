@@ -3,12 +3,12 @@
            version="5.0"
            xml:id="variables">
 <info>
-  <?db filename="variables.html"?>
+  <?db filename="variables"?>
   <title>Variables reference</title>
 </info>
 
 <refentry xml:id="v_admonition-icons">
-<?db filename="v_admonition-icons.html"?>
+<?db filename="v_admonition-icons"?>
 <refmeta>
 <refentrytitle>$v:admonition-icons</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}admonition-icons</refmiscinfo>
@@ -28,7 +28,7 @@ can be replaced by graphics or other markup.
 </refentry>
 
 <refentry xml:id="v_arg-choice-def-close-str">
-<?db filename="v_arg-choice-def-close.html"?>
+<?db filename="v_arg-choice-def-close"?>
 <refmeta>
 <refentrytitle>$arg-choice-def-close-str, …</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}arg-choice-def-close-str</refmiscinfo>
@@ -175,7 +175,7 @@ in an HTML <tag>span</tag> with the class “<literal>cmdpunct</literal>”.
 </refentry>
 
 <refentry xml:id="v_annotation-close">
-<?db filename="v_annotation-close.html"?>
+<?db filename="v_annotation-close"?>
 <refmeta>
 <refentrytitle>$v:annotation-close</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}annotation-close</refmiscinfo>
@@ -193,7 +193,7 @@ icon for popup annotations.</para>
 </refentry>
 
 <refentry xml:id="v_bridgehead-map">
-<?db filename="v_bridgehead-map.html"?>
+<?db filename="v_bridgehead-map"?>
 <refmeta>
 <refentrytitle>$v:bridgehead-map</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}bridgehead-map</refmiscinfo>
@@ -215,7 +215,7 @@ rendered as a <tag namespace="http://www.w3.org/1999/xhtml">div</tag>.
 </refentry>
 
 <refentry xml:id="v_chunk">
-<?db filename="v_chunk.html"?>
+<?db filename="v_chunk"?>
 <refmeta>
 <refentrytitle>$v:chunk</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}chunk</refmiscinfo>
@@ -233,7 +233,7 @@ producing chunked output. See <xref linkend="chunking"/>.</para>
 </refentry>
 
 <refentry xml:id="v_chunk-filter-namespaces">
-<?db filename="v_chunk-filter-namespaces.html"?>
+<?db filename="v_chunk-filter-namespaces"?>
 <refmeta>
 <refentrytitle>$v:chunk-filter-namespaces</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}chunk-filter-namespaces</refmiscinfo>
@@ -252,7 +252,7 @@ the namespace bindings in this variable will be in-scope.</para>
 </refentry>
 
 <refentry xml:id="v_chunk-renumber-footnotes">
-<?db filename="v_chunk-renumber-footnotes.html"?>
+<?db filename="v_chunk-renumber-footnotes"?>
 <refmeta>
 <refentrytitle>$v:chunk-renumber-footnotes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}chunk-renumber-footnotes</refmiscinfo>
@@ -272,11 +272,15 @@ footnote in a chunk is labeled “<superscript>5</superscript>”. If
 <varname>v:chunk-renumber-footnotes</varname> is true, the stylesheets
 will attempt to renumber footnotes in each chunk so that they begin at the
 first mark in each chunk.</para>
+<note>
+<para>If your document uses <tag>footnoteref</tag> and the reference and the
+footnote are in different chunks, this may lead to very confusing numeration!</para>
+</note>
 </refsection>
 </refentry>
 
 <refentry xml:id="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR">
-<?db filename="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR.html"?>
+<?db filename="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR"?>
 <refmeta>
 <refentrytitle>$err:DYNAMIC-PROFILE-EVAL-ERROR</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}DYNAMIC-PROFILE-EVAL-ERROR</refmiscinfo>
@@ -296,7 +300,7 @@ expression (see <xref linkend="profiling"/>) is not available and the
 </refentry>
 
 <refentry xml:id="v_dbe_DYNAMIC-PROFILE-SYNTAX-ERROR">
-<?db filename="v_dbe_DYNAMIC-PROFILE-SYNTAX-ERROR.html"?>
+<?db filename="v_dbe_DYNAMIC-PROFILE-SYNTAX-ERROR"?>
 <refmeta>
 <refentrytitle>$err:DYNAMIC-PROFILE-SYNTAX-ERROR</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}DYNAMIC-PROFILE-SYNTAX-ERROR</refmiscinfo>
@@ -317,7 +321,7 @@ been recognized, this error should never happen.
 </refentry>
 
 <refentry xml:id="v_dbe_INTERNAL-HIGHLIGHT-ERROR">
-<?db filename="v_dbe_INTERNAL-HIGHLIGHT-ERROR.html"?>
+<?db filename="v_dbe_INTERNAL-HIGHLIGHT-ERROR"?>
 <refmeta>
 <refentrytitle>$err:INTERNAL-HIGHLIGHT-ERROR</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INTERNAL-HIGHLIGHT-ERROR</refmiscinfo>
@@ -340,7 +344,7 @@ for it.
 </refentry>
 
 <refentry xml:id="v_dbe_INTERNAL-RENUMBER-ERROR">
-<?db filename="v_dbe_INTERNAL-RENUMBER-ERROR.html"?>
+<?db filename="v_dbe_INTERNAL-RENUMBER-ERROR"?>
 <refmeta>
 <refentrytitle>$err:INTERNAL-RENUMBER-ERROR</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INTERNAL-RENUMBER-ERROR</refmiscinfo>
@@ -362,7 +366,7 @@ for it.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-AREAREFS">
-<?db filename="v_dbe_INVALID-AREAREFS.html"?>
+<?db filename="v_dbe_INVALID-AREAREFS"?>
 <refmeta>
 <refentrytitle>$err:INVALID-AREAREFS</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-AREAREFS</refmiscinfo>
@@ -386,7 +390,7 @@ be identified as a validation error by a Schematron rule.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-CALS">
-<?db filename="v_dbe_INVALID-CALS.html"?>
+<?db filename="v_dbe_INVALID-CALS"?>
 <refmeta>
 <refentrytitle>$err:INVALID-CALS</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-CALS</refmiscinfo>
@@ -418,7 +422,7 @@ with that name exists.</para>
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-CONSTRAINT">
-<?db filename="v_dbe_INVALID-CONSTRAINT.html"?>
+<?db filename="v_dbe_INVALID-CONSTRAINT"?>
 <refmeta>
 <refentrytitle>$err:INVALID-CONSTRAINT</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-CONSTRAINT</refmiscinfo>
@@ -440,7 +444,7 @@ be identified as a validation error by a Schematron rule.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-DYNAMIC-PROFILE-ERROR">
-<?db filename="v_dbe_INVALID-DYNAMIC-PROFILE-ERROR.html"?>
+<?db filename="v_dbe_INVALID-DYNAMIC-PROFILE-ERROR"?>
 <refmeta>
 <refentrytitle>$err:INVALID-DYNAMIC-PROFILE-ERROR</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-DYNAMIC-PROFILE-ERROR</refmiscinfo>
@@ -459,7 +463,7 @@ be identified as a validation error by a Schematron rule.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-INJECT">
-<?db filename="v_dbe_INVALID-INJECT.html"?>
+<?db filename="v_dbe_INVALID-INJECT"?>
 <refmeta>
 <refentrytitle>$err:INVALID-INJECT</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-INJECT</refmiscinfo>
@@ -479,7 +483,7 @@ markup, unsupported units in an area, or unparseable coordinates in an area.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-NAME-STYLE">
-<?db filename="v_dbe_INVALID-NAME-STYLE.html"?>
+<?db filename="v_dbe_INVALID-NAME-STYLE"?>
 <refmeta>
 <refentrytitle>$err:INVALID-NAME-STYLE</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-NAME-STYLE</refmiscinfo>
@@ -498,7 +502,7 @@ name (see <template>t:person-name</template>) with an unknown style name.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-PRODUCTIONRECAP">
-<?db filename="v_dbe_INVALID-PRODUCTIONRECAP.html"?>
+<?db filename="v_dbe_INVALID-PRODUCTIONRECAP"?>
 <refmeta>
 <refentrytitle>$err:INVALID-PRODUCTIONRECAP</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-PRODUCTIONRECAP</refmiscinfo>
@@ -520,7 +524,7 @@ be identified as a validation error by a Schematron rule.
 </refentry>
 
 <refentry xml:id="v_dbe_INVALID-TEMPLATE">
-<?db filename="v_dbe_INVALID-TEMPLATE.html"?>
+<?db filename="v_dbe_INVALID-TEMPLATE"?>
 <refmeta>
 <refentrytitle>$err:INVALID-TEMPLATE</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-TEMPLATE</refmiscinfo>
@@ -537,8 +541,30 @@ does not exist.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_dbe_INVALID_TRANSFORM">
+<?db filename="v_dbe_INVALID_TRANSFORM"?>
+<refmeta>
+<refentrytitle>$err:INVALID-TRANSFORM</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-TRANSFORM</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$err:INVALID-TRANSFORM</refname>
+<refpurpose>Error processing a transform</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The lists of transforms in <parameter>transform-original</parameter>
+<parameter>transform-before</parameter>, and <parameter>transform-after</parameter>
+must either be strings (the stylesheet location) or a map that specifies
+the stylesheet location and other properties.</para>
+<para>This error is raised if an element of the list is neither a map nor
+a string.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_debug">
-<?db filename="v_debug.html"?>
+<?db filename="v_debug"?>
 <refmeta>
 <refentrytitle>$v:debug</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}debug</refmiscinfo>
@@ -556,30 +582,8 @@ debugging flags. These are derived from tokenizing the
 </refsection>
 </refentry>
 
-<refentry xml:id="v_dynamic-profile-variables">
-<?db filename="v_dynamic-profile-variables.html"?>
-<refmeta>
-<refentrytitle>$v:dynamic-profile-variables</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/variables}dynamic-profile-variables</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>$v:dynamic-profile-variables</refname>
-<refpurpose>Names that can be used in dynamic profiling expressions</refpurpose>
-<refclass>variable</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>All of the variables that can be used in dynamic profiling
-(see <xref linkend="profiling"/>) must be in this map. The default value
-of this map includes all of the (dynamic) DocBook stylesheet parameters.
-If you add new parameters in a customization layer and you want to be able
-to use those values in dynamic profiling, you must update this variable.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="v_formal-object-title-placement">
-<?db filename="v_formal-object-title-placement.html"?>
+<?db filename="v_formal-object-title-placement"?>
 <refmeta>
 <refentrytitle>$v:formal-object-title-placement</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}formal-object-title-placement</refmiscinfo>
@@ -600,7 +604,7 @@ element (local) names to placements. The placement is either
 </refentry>
 
 <refentry xml:id="v_highlight-js-head-elements">
-<?db filename="v_highlight-js-head-elements.html"?>
+<?db filename="v_highlight-js-head-elements"?>
 <refmeta>
 <refentrytitle>$v:highlight-js-head-elements</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}highlight-js-head-elements</refmiscinfo>
@@ -625,7 +629,7 @@ may be specified.</para>
 </refentry>
 
 <refentry xml:id="v_image-nominal-height">
-<?db filename="v_image-nominal-height.html"?>
+<?db filename="v_image-nominal-height"?>
 <refmeta>
 <refentrytitle>$v:image-nominal-height</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}image-nominal-height</refmiscinfo>
@@ -645,7 +649,7 @@ parsed value of <parameter>image-nominal-height</parameter>.</para>
 </refentry>
 
 <refentry xml:id="v_image-nominal-width">
-<?db filename="v_image-nominal-width.html"?>
+<?db filename="v_image-nominal-width"?>
 <refmeta>
 <refentrytitle>$v:image-nominal-width</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}image-nominal-width</refmiscinfo>
@@ -665,7 +669,7 @@ parsed value of <parameter>image-nominal-width</parameter>.</para>
 </refentry>
 
 <refentry xml:id="v_invisible-characters">
-<?db filename="v_invisible-characters.html"?>
+<?db filename="v_invisible-characters"?>
 <refmeta>
 <refentrytitle>$v:invisible-characters</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}invisible-characters</refmiscinfo>
@@ -686,7 +690,7 @@ increase the column count as they’re passed.
 </refentry>
 
 <refentry xml:id="v_mediaobject-input-base-uri">
-<?db filename="v_mediaobject-input-base-uri.html"?>
+<?db filename="v_mediaobject-input-base-uri"?>
 <refmeta>
 <refentrytitle>$v:mediaobject-input-base-uri</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}mediaobject-input-base-uri</refmiscinfo>
@@ -709,7 +713,7 @@ the static base URI of the stylesheet.
 </refentry>
 
 <refentry xml:id="v_mediaobject-output-base-uri">
-<?db filename="v_mediaobject-output-base-uri.html"?>
+<?db filename="v_mediaobject-output-base-uri"?>
 <refmeta>
 <refentrytitle>$v:mediaobject-output-base-uri</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}mediaobject-output-base-uri</refmiscinfo>
@@ -732,7 +736,7 @@ it is not present.</para>
 </refentry>
 
 <refentry xml:id="v_nominal-page-width">
-<?db filename="v_nominal-page-width.html"?>
+<?db filename="v_nominal-page-width"?>
 <refmeta>
 <refentrytitle>$v:nominal-page-width</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}nominal-page-width</refmiscinfo>
@@ -753,7 +757,7 @@ parsed as a length (see <xref linkend="units"/>).</para>
 </refentry>
 
 <refentry xml:id="v_olink-databases">
-<?db filename="v_olink-databases.html"?>
+<?db filename="v_olink-databases"?>
 <refmeta>
 <refentrytitle>$v:olink-databases</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}olink-databases</refmiscinfo>
@@ -772,7 +776,7 @@ olink target databases.</para>
 </refentry>
 
 <refentry xml:id="v_personal-name-styles">
-<?db filename="v_personal-name-styles.html"?>
+<?db filename="v_personal-name-styles"?>
 <refmeta>
 <refentrytitle>$v:personal-name-styles</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}personal-name-styles</refmiscinfo>
@@ -792,7 +796,7 @@ This variable contains the list of known ways, see
 </refentry>
 
 <refentry xml:id="v_prism-js-head-elements">
-<?db filename="v_prism-js-head-elements.html"?>
+<?db filename="v_prism-js-head-elements"?>
 <refmeta>
 <refentrytitle>$v:prism-js-head-elements</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}prism-js-head-elements</refmiscinfo>
@@ -816,8 +820,34 @@ may be specified.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_standard-transforms">
+<?db filename="v_standard-tranasforms"?>
+<refmeta>
+<refentrytitle>$v:standard-transforms</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}standard-transforms</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:standard-transforms</refname>
+<refpurpose>The standard pre-processing transformations</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable contains the list of preprocessing transforms
+applied to each document. You can add transformations that operate
+on the original document
+(<parameter>transform-original</parameter>) or on the result of
+these transforms, but before the DocBook HTML transformation occurs
+(<parameter>transform-before</parameter>), or after
+the HTML transformation (<parameter>transform-after</parameter>).</para>
+<para>You shouldn’t need to modify this variable unless you want to
+remove or reorder the standard transforms, or insert your own
+into the middle.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_templates">
-<?db filename="v_templates.html"?>
+<?db filename="v_templates"?>
 <refmeta>
 <refentrytitle>$v:templates</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}templates</refmiscinfo>
@@ -839,7 +869,7 @@ exist.</para>
 </refentry>
 
 <refentry xml:id="v_theme-list">
-<?db filename="v_theme-list.html"?>
+<?db filename="v_theme-list"?>
 <refmeta>
 <refentrytitle>$v:theme-list</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}theme-list</refmiscinfo>
@@ -872,7 +902,7 @@ the first “dark” theme will automatically be selected.</para>
 </refentry>
 
 <refentry xml:id="v_title-properties">
-<?db filename="v_title-properties.html"?>
+<?db filename="v_title-properties"?>
 <refmeta>
 <refentrytitle>$v:title-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}title-properties</refmiscinfo>
@@ -932,7 +962,7 @@ in there. You do not have to redefine the entire list.</para>
 </refentry>
 
 <refentry xml:id="v_titlepage-default">
-<?db filename="v_titlepage-default.html"?>
+<?db filename="v_titlepage-default"?>
 <refmeta>
 <refentrytitle>$v:titlepage-default</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}titlepage-default</refmiscinfo>
@@ -953,7 +983,7 @@ If a template doesn’t exist for a particular context, the
 </refentry>
 
 <refentry xml:id="v_toc-close">
-<?db filename="v_toc-close.html"?>
+<?db filename="v_toc-close"?>
 <refmeta>
 <refentrytitle>$v:toc-close</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}toc-close</refmiscinfo>
@@ -971,7 +1001,7 @@ icon for the persistent ToC.</para>
 </refentry>
 
 <refentry xml:id="v_toc-open">
-<?db filename="v_toc-open.html"?>
+<?db filename="v_toc-open"?>
 <refmeta>
 <refentrytitle>$v:toc-open</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}toc-open</refmiscinfo>
@@ -989,7 +1019,7 @@ icon for the persistent ToC.</para>
 </refentry>
 
 <refentry xml:id="v_unit-scale">
-<?db filename="v_unit-scale.html"?>
+<?db filename="v_unit-scale"?>
 <refmeta>
 <refentrytitle>$v:unit-scale</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}unit-scale</refmiscinfo>
@@ -1053,7 +1083,7 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refentry>
 
 <refentry xml:id="v_user-title-properties">
-<?db filename="v_user-title-properties.html"?>
+<?db filename="v_user-title-properties"?>
 <refmeta>
 <refentrytitle>$v:user-title-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}user-title-properties</refmiscinfo>
@@ -1072,7 +1102,7 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refentry>
 
 <refentry xml:id="v_user-xref-properties">
-<?db filename="v_user-xref-properties.html"?>
+<?db filename="v_user-xref-properties"?>
 <refmeta>
 <refentrytitle>$v:user-xref-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}user-xref-properties</refmiscinfo>
@@ -1091,7 +1121,7 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refentry>
 
 <refentry xml:id="v_verbatim-callouts">
-<?db filename="v_verbatim-callouts.html"?>
+<?db filename="v_verbatim-callouts"?>
 <refmeta>
 <refentrytitle>$v:verbatim-callouts</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-callouts</refmiscinfo>
@@ -1109,7 +1139,7 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refentry>
 
 <refentry xml:id="v_verbatim-line-style">
-<?db filename="v_verbatim-line-style.html"?>
+<?db filename="v_verbatim-line-style"?>
 <refmeta>
 <refentrytitle>$v:verbatim-line-style</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-line-style</refmiscinfo>
@@ -1133,7 +1163,7 @@ usually constructed from the <parameter>verbatim-line-style</parameter> paramete
 </refentry>
 
 <refentry xml:id="v_verbatim-number-every-nth">
-<?db filename="v_verbatim-number-every-nth.html"?>
+<?db filename="v_verbatim-number-every-nth"?>
 <refmeta>
 <refentrytitle>$v:verbatim-number-every-nth</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-number-every-nth</refmiscinfo>
@@ -1155,7 +1185,7 @@ usually constructed from the <parameter>verbatim-number-every-nth</parameter> pa
 </refentry>
 
 <refentry xml:id="v_verbatim-number-first-line">
-<?db filename="v_verbatim-number-first-line.html"?>
+<?db filename="v_verbatim-number-first-line"?>
 <refmeta>
 <refentrytitle>$v:verbatim-number-first-line</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-number-first-line</refmiscinfo>
@@ -1179,7 +1209,7 @@ usually constructed from the <parameter>verbatim-number-first-line</parameter> p
 </refentry>
 
 <refentry xml:id="v_verbatim-number-minlines">
-<?db filename="v_verbatim-number-minlines.html"?>
+<?db filename="v_verbatim-number-minlines"?>
 <refmeta>
 <refentrytitle>$v:verbatim-number-minlines</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-number-minlines</refmiscinfo>
@@ -1203,7 +1233,7 @@ usually constructed from the <parameter>verbatim-number-minlines</parameter> par
 </refentry>
 
 <refentry xml:id="v_verbatim-numbered-elements">
-<?db filename="v_verbatim-numbered-elements.html"?>
+<?db filename="v_verbatim-numbered-elements"?>
 <refmeta>
 <refentrytitle>$v:verbatim-numbered-elements</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-numbered-elements</refmiscinfo>
@@ -1224,7 +1254,7 @@ usually constructed from the <parameter>verbatim-numbered-elements</parameter> p
 </refentry>
 
 <refentry xml:id="v_verbatim-plain-style">
-<?db filename="v_verbatim-plain-style.html"?>
+<?db filename="v_verbatim-plain-style"?>
 <refmeta>
 <refentrytitle>$v:verbatim-plain-style</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-plain-style</refmiscinfo>
@@ -1248,7 +1278,7 @@ usually constructed from the <parameter>verbatim-plain-style</parameter> paramet
 </refentry>
 
 <refentry xml:id="v_verbatim-properties">
-<?db filename="v_verbatim-properties.html"?>
+<?db filename="v_verbatim-properties"?>
 <refmeta>
 <refentrytitle>$v:verbatim-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-properties</refmiscinfo>
@@ -1271,7 +1301,7 @@ customizations of verbatim environments can be achieved by setting the
 </refentry>
 
 <refentry xml:id="v_verbatim-space">
-<?db filename="v_verbatim-space.html"?>
+<?db filename="v_verbatim-space"?>
 <refmeta>
 <refentrytitle>$v:verbatim-space</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-space</refmiscinfo>
@@ -1296,7 +1326,7 @@ Unlike the <varname>verbatim-space</varname>, this variable must be a node not a
 </refentry>
 
 <refentry xml:id="v_verbatim-syntax-highlight-languages">
-<?db filename="v_verbatim-syntax-highlight-languages.html"?>
+<?db filename="v_verbatim-syntax-highlight-languages"?>
 <refmeta>
 <refentrytitle>$v:verbatim-syntax-highlight-languages</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-syntax-highlight-languages</refmiscinfo>
@@ -1315,7 +1345,7 @@ string for the convenience of users. This variable contains the languages as a l
 </refentry>
 
 <refentry xml:id="v_verbatim-syntax-highlight-options">
-<?db filename="v_verbatim-syntax-highlight-options.html"?>
+<?db filename="v_verbatim-syntax-highlight-options"?>
 <refmeta>
 <refentrytitle>$v:verbatim-syntax-highlight-options</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-syntax-highlight-options</refmiscinfo>
@@ -1367,7 +1397,7 @@ to the processing time if there are many such environments.</para>
 </refentry>
 
 <refentry xml:id="v_verbatim-syntax-highlight-pygments-options">
-<?db filename="v_verbatim-syntax-highlight-pygments-options.html"?>
+<?db filename="v_verbatim-syntax-highlight-pygments-options"?>
 <refmeta>
 <refentrytitle>$v:verbatim-syntax-highlight-pygments-options</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-syntax-highlight-pygments-options</refmiscinfo>
@@ -1392,7 +1422,7 @@ option.</para>
 </refentry>
 
 <refentry xml:id="v_verbatim-table-style">
-<?db filename="v_verbatim-table-style.html"?>
+<?db filename="v_verbatim-table-style"?>
 <refmeta>
 <refentrytitle>$v:verbatim-table-style</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}verbatim-table-style</refmiscinfo>
@@ -1416,7 +1446,7 @@ usually constructed from the <parameter>verbatim-table-style</parameter> paramet
 </refentry>
 
 <refentry xml:id="v_VERSION">
-<?db filename="v_VERSION.html"?>
+<?db filename="v_VERSION"?>
 <refmeta>
 <refentrytitle>$v:VERSION</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}VERSION</refmiscinfo>
@@ -1433,7 +1463,7 @@ usually constructed from the <parameter>verbatim-table-style</parameter> paramet
 </refentry>
 
 <refentry xml:id="v_VERSION-ID">
-<?db filename="v_VERSION-ID.html"?>
+<?db filename="v_VERSION-ID"?>
 <refmeta>
 <refentrytitle>$v:VERSION-ID</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}VERSION-ID</refmiscinfo>
@@ -1454,7 +1484,7 @@ commit.</para>
 </refentry>
 
 <refentry xml:id="v_xref-properties">
-<?db filename="v_xref-properties.html"?>
+<?db filename="v_xref-properties"?>
 <refmeta>
 <refentrytitle>$v:xref-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}xref-properties</refmiscinfo>

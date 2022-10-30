@@ -9,7 +9,7 @@
                 exclude-result-prefixes="db mp v vp xlink xs"
                 version="3.0">
 
-<xsl:variable name="debug" as="xs:boolean" select="false()" static="true"/>
+<xsl:import href="../environment.xsl"/>
 
 <xsl:variable name="vp:lb" select="'http://www.w3.org/1999/xlink/properties/linkbase'"/>
 
@@ -40,7 +40,7 @@
     <xsl:if test="$lto and $lto/@xlink:href=''">
       <xsl:variable name="fn"
                     select="resolve-uri($lfrom/@xlink:href, base-uri($lfrom))"/>
-      <xsl:message use-when="$debug"
+      <xsl:message use-when="'linkbase' = $debug"
                    select="'Load linkbase:', $fn"/>
       <xsl:sequence
           select="doc(resolve-uri($lfrom/@xlink:href, base-uri($lfrom)))

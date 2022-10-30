@@ -481,7 +481,10 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
     // Ignore these; they're dealt with separately
   } else {
     def copytaskname = "copy_" + base.replace("-", "_") + ".xspec"
-    Task t = task "${copytaskname}"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+    Task t = task "${copytaskname}"(
+      type: SaxonXsltTask,
+      dependsOn: ['makeXslt']
+    ) {
       inputs.file("${projectDir}/tools/copy-xspec.xsl")
       pluginConfiguration "docbook"
       input xspec
@@ -491,8 +494,10 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
     copiedXSpecTasks << t
 
     taskname = base.replace("-", "_") + ".xspec"
-    t = task "${taskname}"(type: Exec,
-                           dependsOn: ['setupXSpec', 'makeXslt', copytaskname]) {
+    t = task "${taskname}"(
+      type: Exec,
+      dependsOn: ['setupXSpec', 'makeXslt', copytaskname]
+    ) {
       inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
       inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
       inputs.files fileTree(dir: "${projectDir}/src/test/resources")
@@ -594,14 +599,19 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
   def generator = name + "_gen"
   def taskname = name + "XSpec"
 
-  Task g = task "${generator}"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  Task g = task "${generator}"(
+    type: SaxonXsltTask,
+    dependsOn: ['makeXslt']
+  ) {
     input xsl
     stylesheet xsl
     output "${buildDir}/xspec/${base}.xspec"
   }
 
-  Task t = task "${taskname}"(type: Exec,
-                              dependsOn: ['setupXSpec', 'makeXslt']) {
+  Task t = task "${taskname}"(
+    type: Exec,
+    dependsOn: ['setupXSpec', 'makeXslt']
+  ) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
@@ -694,7 +704,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
 
   Task t = null
-  def htmlDependsOn = ['makeXslt', 'copy_transform_checksums']
+  def htmlDependsOn = ['makeXslt']
   if (base.startsWith("local.")) {
     // This won't pass validation...
   } else {
@@ -795,8 +805,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['persistent-toc'] = true
   }
 
-  t = task "${base}.chunk"(type: SaxonXsltTask,
-                           dependsOn: ['makeXslt', "validate_${base}"]) {
+  t = task "${base}.chunk"(
+    type: SaxonXsltTask,
+    dependsOn: ['makeXslt', "validate_${base}"]
+  ) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
@@ -826,8 +838,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['page-style'] = 'book'
   }
 
-  t = task "${base}.pdf.html"(type: SaxonXsltTask,
-                              dependsOn: ['makeXslt', "validate_${base}"]) {
+  t = task "${base}.pdf.html"(
+    type: SaxonXsltTask,
+    dependsOn: ['makeXslt', "validate_${base}"]
+  ) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file "${buildDir}/xslt/print.xsl"
@@ -926,7 +940,6 @@ task generateXSpecSources() {
 testDrivers.each { driver ->
   tasks.findByName(driver).dependsOn generateXSpecSources
   tasks.findByName(driver).dependsOn "makeXslt"
-  tasks.findByName(driver).dependsOn "copy_transform_checksums"
 }
 
 // Generate programlistingco/screeco results with all the possible stylings
@@ -979,7 +992,9 @@ testDrivers.each { driver ->
         }
         generateXSpecSources.dependsOn g
 
-        Task t = task "${basename}.html"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+        Task t = task "${basename}.html"(
+          type: SaxonXsltTask, dependsOn: ['makeXslt']
+        ) {
           inputs.file "${buildDir}/xslt/docbook.xsl"
 
           pluginConfiguration "docbook"
@@ -995,7 +1010,10 @@ testDrivers.each { driver ->
         t.dependsOn g
         tasks.findByName("${source}.html").dependsOn t
 
-        t = task "${basename}.expected"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+        t = task "${basename}.expected"(
+          type: SaxonXsltTask,
+          dependsOn: ['makeXslt']
+        ) {
           inputs.file "${buildDir}/xslt/xspec-driver.xsl"
 
           pluginConfiguration "docbook"
@@ -1059,149 +1077,24 @@ task makeVersion(type: SaxonXsltTask) {
   )
 }
 
-task makeParameterMaps(type: SaxonXsltTask) {
-  input "${projectDir}/src/main/xslt/param.xsl"
-  stylesheet "${projectDir}/tools/parameter-maps.xsl"
-  output "${buildDir}/xslt/parameter-maps.xsl"
-}
-
-task makeXslt(type: Copy,
-              dependsOn: ['copyResources', 'makeVersion', 'makeParameterMaps',
+task copyXslt(type: Copy,
+              dependsOn: ['copyResources', 'makeVersion',
                           'generateLocales', 'compileJava']) {
   from "${projectDir}/src/main/xslt"
   into "${buildDir}/xslt"
-  exclude "transforms/*.sef.xml"
+  exclude "param.xsl"
 }
 
-String bytesToHex(byte[] bytes) {
-  byte[] hex = "0123456789ABCDEF".getBytes(StandardCharsets.US_ASCII);
-  byte[] hexch = new byte[bytes.length * 2]
-  for (int pos = 0; pos < bytes.length; pos++) {
-    int b = bytes[pos] & 0xff
-    hexch[pos*2] = hex[b >>> 4]
-    hexch[pos*2+1] = hex[b & 0x0f]
-  }
-  return new String(hexch, StandardCharsets.UTF_8)
+task makeXslt(type: SaxonXsltTask, dependsOn: ["copyXslt"]) {
+  input "${projectDir}/src/guide/xml/parameters.xml"
+  stylesheet "${projectDir}/tools/generate-parameters.xsl"
+  output "${buildDir}/xslt/param.xsl"
 }
 
-boolean compileFailed = false
-boolean copyUpdatedTransforms = false
-task "checksum_transforms"(
+task makeUriList(
+  dependsOn: ["makeXslt", "zipStageResources","zipStageDocker",
+              "zipStageXslt", "zipStageBin"]
 ) {
-  inputs.files fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl")
-  outputs.files "${buildDir}/transform-checksums.properties"
-
-  doLast {
-    PrintStream props = new PrintStream(checksum_transforms.outputs.getFiles().getSingleFile())
-    props.println("Computed.on=${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}")
-    props.println("Computed.by=${System.getProperty('user.name')}")
-
-    fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each { xsl ->
-      // I'm using MD5 because it must be supported by the Java platform
-      // and I don't care about cryptographic security.
-      MessageDigest md = MessageDigest.getInstance("MD5");
-      md.update(Files.readAllBytes(xsl.toPath()))
-      String checksum = bytesToHex(md.digest())
-      String key = xsl.getName().substring(0, xsl.getName().length() - 4)
-      props.println("${key}=${checksum}")
-    }
-    props.close()
-  }
-}
-
-task copy_transform_checksums() {
-  inputs.files checksum_transforms.outputs.getFiles().getSingleFile()
-  outputs.files "${projectDir}/src/main/xslt/transforms/transform-checksums.properties"
-  doLast {
-    if (copyUpdatedTransforms) {
-      if (!compileFailed) {
-        copy {
-          into copy_transform_checksums.outputs.getFiles().getSingleFile().getParent()
-          from checksum_transforms.outputs.getFiles().getSingleFile().getParent()
-          include checksum_transforms.outputs.getFiles().getSingleFile().getName()
-        }
-      } else {
-        println("Not updating source checksums; compile failed!")
-      }
-    }
-  }
-}
-makeXslt.finalizedBy copy_transform_checksums
-
-fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each { xsl -> 
-  String base = xsl.toString()
-  int pos = base.indexOf("/transforms/")
-  base = base.substring(pos+12)
-  base = base.substring(0, base.length() - 4)
-
-  Task t = task "compile_transform_${base}"(
-    dependsOn: [checksum_transforms]
-  ) {
-    inputs.files xsl
-    inputs.files checksum_transforms.outputs.getFiles().getSingleFile()
-    // Explicitly has no outputs.files so that it will run every time
-
-    boolean copySefFile = true
-
-    doFirst {
-      mkdir "${buildDir}/xslt/transforms"
-    }
-
-    doLast {
-      Properties current = new Properties()
-      current.load(new FileInputStream(checksum_transforms.outputs.getFiles().getSingleFile()))
-
-      Properties precompiled = new Properties()
-      precompiled.load(
-        new FileInputStream(
-          new File("${projectDir}/src/main/xslt/transforms/transform-checksums.properties")))
-
-      if (precompiled.getProperty(base) == null ||
-          !current.getProperty(base).equals(precompiled.getProperty(base))) {
-        copyUpdatedTransforms = true
-        println("Compile ${base}")
-        try {
-          javaexec {
-            classpath = configurations.projectImplementationClasspath
-            mainClass = "net.sf.saxon.Transform"
-            args "-xsl:${xsl}",
-              '-init:org.docbook.xsltng.extensions.Register',
-              "-export:${projectDir}/src/main/xslt/transforms/${base}.sef.xml",
-              "-target:HE",
-              "-relocate:on",
-              "-nogo"
-          }
-        } catch (Exception ex) {
-          println("Failed to compile ${base}")
-          copySefFile = false
-          compileFailed = true
-          delete "${projectDir}/src/main/xslt/transforms/${base}.sef.xml"
-          delete "${buildDir}/xslt/transforms/${base}.sef.xml"
-          if (requireCompileSuccess) {
-            throw new GradleException("Stylesheet compilation is required to succeed")
-          }
-        }
-      }
-    }
-    
-    doLast {
-      if (copySefFile) {
-        copy {
-          into "${buildDir}/xslt/transforms"
-          from "${projectDir}/src/main/xslt/transforms"
-          include "${base}.sef.xml"
-        }
-      } else {
-        println("Could not build SEF; not copying ${base}")
-      }
-    }
-  }
-  makeXslt.dependsOn t
-  copy_transform_checksums.dependsOn t
-}
-
-task makeUriList(dependsOn: ["makeXslt","zipStageResources","zipStageDocker",
-                             "zipStageXslt", "zipStageBin"]) {
   inputs.files fileTree("${buildDir}/xslt")
   inputs.files fileTree("${buildDir}/stage/zip")
   outputs.file "${buildDir}/resources/main/org/docbook/xsltng/etc/uris.xml"
@@ -1458,7 +1351,8 @@ task dist(dependsOn: ['requirePassingTests', 'releaseArtifacts', 'zipDist', 'web
 // ============================================================
 
 task explorer(type: SaxonXsltTask,
-              dependsOn: ['makeXslt', 'setupXsltExplorer', 'explorerResources']) {
+              dependsOn: ['makeXslt', 
+                          'setupXsltExplorer', 'explorerResources']) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
   outputs.file("${buildDir}/docbook-xslTNG.xml")
 
@@ -1498,13 +1392,32 @@ task guideCustomResources(type: Copy) {
   into "${buildDir}/guide/"
 }
 
-task xincludeGuide(type: SaxonXsltTask, dependsOn: ['guideResources']) {
-  inputs.files fileTree(dir: "${projectDir}/src/guide/xml")
+task prepareToXIncludeGuideCopy(type: Copy) {
+  from "${projectDir}/src/guide/xml"
+  into "${buildDir}/tmp/guide"
+  exclude "ref-params.xml"
+  exclude "parameters.xml"
+}
+
+task prepareToXIncludeGuideTransform(type: SaxonXsltTask) {
+  inputs.files "${projectDir}/src/guide/xml/parameters.xml"
+  inputs.files "${projectDir}/tools/generate-ref-params.xsl"
+  outputs.files "${buildDir}/tmp/guide/ref-params.xml"
+
+  input "${projectDir}/src/guide/xml/parameters.xml"
+  stylesheet "${projectDir}/tools/generate-ref-params.xsl"
+  output "${buildDir}/tmp/guide/ref-params.xml"
+}
+
+task xincludeGuide(type: SaxonXsltTask,
+                   dependsOn: ['guideResources', 'prepareToXIncludeGuideCopy',
+                               'prepareToXIncludeGuideTransform']) {
+  inputs.files fileTree(dir: "${buildDir}/tmp/guide")
   inputs.file "${projectDir}/tools/xinclude.xsl"
 
   pluginConfiguration "docbook"
 
-  input "${projectDir}/src/guide/xml/guide.xml"
+  input "${buildDir}/tmp/guide/guide.xml"
   stylesheet "${projectDir}/tools/xinclude.xsl"
   output "${buildDir}/guide.xml"
 }
@@ -1534,7 +1447,7 @@ task guide(
   pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/guide.xsl"
-  output "${buildDir}/guide/out.html"
+  output "${buildDir}/guide/irrelevant-and-deleted-file.html"
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -1545,6 +1458,10 @@ task guide(
     'chunk': 'index.html',
     'chunk-output-base-uri': "${projectDir}/build/guide/"
   )
+
+  doLast {
+    delete "${buildDir}/guide/irrelevant-and-deleted-file.html"
+  }
 }
 
 task "guide.pdf.html"(
