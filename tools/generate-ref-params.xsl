@@ -84,7 +84,7 @@
           <xsl:variable name="text" as="xs:string">
             <xsl:sequence select="serialize($synopsis, map{'method':'xml','indent':true()})"/>
           </xsl:variable>
-          <synopsis>
+          <synopsis linenumbering="unnumbered">
             <xsl:sequence
                 select="replace($text, ' xmlns:xsl=.http://www.w3.org/1999/XSL/Transform.', '')
                         ! replace(., ' xmlns=.http://www.w3.org/1999/xhtml.', '')
