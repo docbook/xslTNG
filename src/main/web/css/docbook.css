@@ -911,10 +911,14 @@ pre.literallayout span.line:nth-child(even) {
 
 pre.verblines span.ln {
     font-family: var(--mono-family);
-    width: var(--line-number-width);
+    width: 4px;
     padding-top: 4px;
     padding-bottom: 4px;
     text-align: right;
+}
+
+pre.verblines.numbered span.ln {
+    width: var(--line-number-width);
 }
 
 pre.address span.ln,
