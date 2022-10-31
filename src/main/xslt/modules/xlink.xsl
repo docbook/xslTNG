@@ -130,14 +130,7 @@
     <xsl:when test="@xlink:type = 'simple' or @xlink:href">
       <xsl:call-template name="tp:simple-xlink">
         <xsl:with-param name="content">
-          <xsl:choose>
-            <xsl:when test="empty($content)">
-              <xsl:apply-templates/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:sequence select="$content"/>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:sequence select="$content"/>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
@@ -151,14 +144,7 @@
 
     <xsl:otherwise>
       <!-- It's just a normal, unlinked element -->
-      <xsl:choose>
-        <xsl:when test="empty($content)">
-          <xsl:apply-templates/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:sequence select="$content"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:sequence select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

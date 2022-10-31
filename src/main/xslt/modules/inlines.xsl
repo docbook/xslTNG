@@ -15,8 +15,10 @@
   <xsl:param name="namemap" select="'span'"/>
   <xsl:param name="class" as="xs:string*"/>
   <xsl:param name="local-name-as-class" as="xs:boolean" select="true()"/>
-  <xsl:param name="content" select="()"/>
   <xsl:param name="extra-attributes" as="attribute()*" select="()"/>
+  <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
 
   <xsl:variable name="map"
                 select="if ($namemap instance of map(xs:string, xs:string))
@@ -58,11 +60,6 @@
 
   <xsl:variable name="attrs" as="attribute()*">
     <xsl:apply-templates select="@*"/>
-<!--
-    <xsl:if test="exists($classes)">
-      <xsl:attribute name="class" select="string-join($classes, ' ')"/>
-    </xsl:if>
--->
   </xsl:variable>
 
   <xsl:element namespace="http://www.w3.org/1999/xhtml"
@@ -74,16 +71,7 @@
     <xsl:sequence select="$extra-attributes"/>
     <xsl:apply-templates select="." mode="m:link">
       <xsl:with-param name="primary-markup" select="false()"/>
-      <xsl:with-param name="content" as="item()*">
-        <xsl:choose>
-          <xsl:when test="empty($content)">
-            <xsl:call-template name="t:xlink"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:sequence select="$content"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:apply-templates>
   </xsl:element>
 </xsl:template>

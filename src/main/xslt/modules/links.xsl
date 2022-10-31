@@ -90,7 +90,9 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="$content"/>
+      <xsl:call-template name="t:xlink">
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

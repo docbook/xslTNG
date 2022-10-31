@@ -1,0 +1,11 @@
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.0">
+
+<title>Unit test: link.004</title>
+
+<para>Using <tag>citetitle</tag> with an XLink should produce a
+single link, not a nested one (!):
+<citetitle xlink:href="https://tdg.docbook.org">DocBook: The Definitive Guide</citetitle>.
+</para>
+</article>
