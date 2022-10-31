@@ -1,7 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                exclude-result-prefixes="db xs"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <!-- Replace @entityref media objects with @fileref. This is the first
@@ -13,11 +14,16 @@
 
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 
+<xsl:param name="vp:starting-base-uri" as="xs:string?" select="()"/>
+
 <xsl:template match="/*" priority="100">
   <xsl:copy>
     <xsl:apply-templates select="@*"/>
     <xsl:if test="not(@xml:base)">
-      <xsl:attribute name="xml:base" select="base-uri(.)"/>
+      <xsl:attribute name="xml:base"
+                     select="if (exists($vp:starting-base-uri))
+                             then $vp:starting-base-uri
+                             else base-uri(.)"/>
     </xsl:if>
     <xsl:apply-templates select="node()"/>
   </xsl:copy>

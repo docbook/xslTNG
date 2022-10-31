@@ -145,13 +145,28 @@
     </xsl:message>
   </xsl:if>
 
+  <xsl:variable name="starting-base-uri" as="xs:string">
+    <xsl:choose>
+      <xsl:when test="true()" use-when="function-available('ext:cwd')">
+        <xsl:sequence select="resolve-uri(base-uri(.),
+                                          resolve-uri(ext:cwd(), static-base-uri()))"/>
+      </xsl:when>
+      <xsl:when test="true()">
+        <xsl:sequence select="resolve-uri(base-uri(.), static-base-uri())"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+  
+  <!--
+  <xsl:message select="'Starting base uri:', $starting-base-uri"/>
+  -->
+
   <xsl:variable name="document" as="document-node()">
     <xsl:choose>
       <xsl:when test="./self::document-node()">
         <xsl:sequence select="."/>
       </xsl:when>
       <xsl:otherwise>
-        <!-- this will make a mess of the base uri... -->
         <xsl:document>
           <xsl:sequence select="."/>
         </xsl:document>
@@ -160,7 +175,9 @@
   </xsl:variable>
 
   <xsl:variable name="document" as="document-node()">
-    <xsl:sequence select="fp:run-transforms($document, $vp:transforms)"/>
+    <xsl:sequence
+        select="fp:run-transforms($document, $vp:transforms,
+                                  map { xs:QName('vp:starting-base-uri'): $starting-base-uri })"/>
   </xsl:variable>
 
   <xsl:variable name="result" as="document-node()">
@@ -276,6 +293,13 @@
 <xsl:function name="fp:run-transforms" as="document-node()">
   <xsl:param name="document" as="document-node()"/>
   <xsl:param name="transforms" as="map(*)*"/>
+  <xsl:sequence select="fp:run-transforms($document, $transforms, ())"/>
+</xsl:function>
+
+<xsl:function name="fp:run-transforms" as="document-node()">
+  <xsl:param name="document" as="document-node()"/>
+  <xsl:param name="transforms" as="map(*)*"/>
+  <xsl:param name="extra-parameters" as="map(*)?"/>
 
   <xsl:choose>
     <xsl:when test="empty($transforms)">
@@ -284,6 +308,7 @@
     <xsl:otherwise>
       <xsl:iterate select="$transforms">
         <xsl:param name="document" as="document-node()" select="$document"/>
+        <xsl:param name="extra-parameters" as="map(*)?" select="$extra-parameters"/>
         <xsl:on-completion select="$document"/>
         <xsl:next-iteration>
           <xsl:with-param name="document">
@@ -324,21 +349,18 @@
                 <xsl:message use-when="'pipeline' = $v:debug"
                              select="'Processing : ' || .?stylesheet-location"/>
 
-                <xsl:variable name="params"
-                              select="if (exists(.?extra-params))
-                                      then map:merge(($vp:dynamic-parameters,
-                                                      .?extra-params))
-                                      else $vp:dynamic-parameters"/>
-
                 <xsl:sequence select="transform(map {
                                         'stylesheet-location': .?stylesheet-location,
                                         'source-node': $document,
                                         'static-params': $vp:static-parameters,
-                                        'stylesheet-params': $params
+                                        'stylesheet-params': map:merge(($vp:dynamic-parameters,
+                                                                        $extra-parameters,
+                                                                        .?extra-params))
                                       })?output"/>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:with-param>
+          <xsl:with-param name="extra-parameters" select="()"/>
         </xsl:next-iteration>
       </xsl:iterate>
     </xsl:otherwise>
