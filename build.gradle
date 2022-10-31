@@ -1086,7 +1086,7 @@ task copyXslt(type: Copy,
 }
 
 task makeXslt(type: SaxonXsltTask, dependsOn: ["copyXslt"]) {
-  input "${projectDir}/src/guide/xml/parameters.xml"
+  input "${projectDir}/src/guide/xml/ref-params.xml"
   stylesheet "${projectDir}/tools/generate-parameters.xsl"
   output "${buildDir}/xslt/param.xsl"
 }
@@ -1396,15 +1396,14 @@ task prepareToXIncludeGuideCopy(type: Copy) {
   from "${projectDir}/src/guide/xml"
   into "${buildDir}/tmp/guide"
   exclude "ref-params.xml"
-  exclude "parameters.xml"
 }
 
 task prepareToXIncludeGuideTransform(type: SaxonXsltTask) {
-  inputs.files "${projectDir}/src/guide/xml/parameters.xml"
+  inputs.files "${projectDir}/src/guide/xml/ref-params.xml"
   inputs.files "${projectDir}/tools/generate-ref-params.xsl"
   outputs.files "${buildDir}/tmp/guide/ref-params.xml"
 
-  input "${projectDir}/src/guide/xml/parameters.xml"
+  input "${projectDir}/src/guide/xml/ref-params.xml"
   stylesheet "${projectDir}/tools/generate-ref-params.xsl"
   output "${buildDir}/tmp/guide/ref-params.xml"
 }

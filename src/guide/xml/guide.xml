@@ -247,11 +247,14 @@ contained herein.</para>
 </part>
 <part>
 <title>Reference</title>
-<!-- N.B. This does not exist in the source repository.
-     It's built from parameters.xml (so is param.xsl).
-     It's not ideal from an authoring perspective, but
-     I'm going to live with it for the moment. -->
+
+<!-- N.B. ref-params.xml is transformed significanlty before being
+     formatted (it's also transformed into param.xsl), so the
+     authoring version isn't like what's formatted. This is not ideal
+     from an authoring perspective, but I'm going to live with it for
+     the moment. -->
 <xi:include href="ref-params.xml"/>
+
 <xi:include href="ref-variables.xml"/>
 <xi:include href="ref-functions.xml"/>
 <xi:include href="ref-templates.xml"/>
