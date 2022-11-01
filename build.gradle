@@ -84,6 +84,7 @@ configurations {
 
 ext {
   requireCompileSuccess = !"false".equals(project.property('requireCompileSuccess'))
+  sassStyle = "true".equals(project.property('compressCss')) ? "compressed" : "expanded"
 }
 
 // Set saxonLicenseDir in gradle.properties, or from the
@@ -509,7 +510,7 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
                   "${buildDir}/xspec/${base}.xspec"
     }
   }
-  
+
   // If the XSpec file enumerates the elements it tests,
   // construct tests for those elements
   def xspecTaskName = taskname
@@ -525,7 +526,7 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
           def speclist = [xspecFilename]
           elementTests[tag] = speclist
         }
-      } 
+      }
     }
 
     elemList = elemList || line.startsWith("<!-- Tests:")
@@ -825,7 +826,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheet "${buildDir}/xslt/docbook.xsl"
     parameters(stylesheetParams)
 
-    //doFirst { 
+    //doFirst {
     //  println("Task ${base}.chunk: ${stylesheetParams}")
     //}
   }
@@ -1241,18 +1242,69 @@ task zipStagePygments() {
   }
 }
 
-task zipStageResources(type: Copy, dependsOn: ["zipStagePygments"]) {
-  from "${projectDir}/src/main/web"
-  include "css/**"
-  include "js/**"
-  into "${buildDir}/stage/zip/resources"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
+task compileSass() {
+  inputs.files fileTree("${projectDir}/src/main/scss")
+  outputs.files fileTree("${buildDir}/css")
+
+  doLast {
+    exec {
+      commandLine 'sass', '--style', sassStyle,
+        '--no-source-map', '--no-charset',
+        "${projectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.css",
+        "${projectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.css",
+        "${projectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.css",
+        "${projectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css"
     }
-    line
+  }
+
+  doLast {
+    ["docbook.css", "docbook-paged.css", "docbook-epub.css"].each { fn ->
+      File css = new File("${buildDir}/css/${fn}")
+      def lines = []
+      def reader = new BufferedReader(new FileReader(css))
+      String line = null
+      while ((line = reader.readLine()) != null) {
+        lines.add(line)
+      }
+      reader.close()
+      def writer = new PrintStream(css)
+      writer.print("/")
+      writer.print("* ${xslTNGtitle} version ${xslTNGversion}, https://xsltng.docbook.org *")
+      writer.println("/");
+      lines.each { ln ->
+        writer.println(ln);
+      }
+      writer.close();
+    }
+  }
+}
+
+task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
+  copy {
+    from "${buildDir}/css"
+    into "${buildDir}/stage/zip/resources/css"
+  }
+
+  copy {
+    from "${projectDir}/src/main/web"
+    include "css/*.png"
+    into "${buildDir}/stage/zip/resources"
+  }
+
+  copy {
+    from "${projectDir}/src/main/web"
+    include "css/**"
+    include "js/**"
+    exclude "css/*.png"
+    into "${buildDir}/stage/zip/resources"
+    filter { String line ->
+      if (line.indexOf("@@") >= 0) {
+        line = line
+          .replace("@@TITLE@@", xslTNGtitle)
+          .replace("@@VERSION@@", xslTNGversion)
+      }
+      line
+    }
   }
 }
 
@@ -1351,7 +1403,7 @@ task dist(dependsOn: ['requirePassingTests', 'releaseArtifacts', 'zipDist', 'web
 // ============================================================
 
 task explorer(type: SaxonXsltTask,
-              dependsOn: ['makeXslt', 
+              dependsOn: ['makeXslt',
                           'setupXsltExplorer', 'explorerResources']) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
   outputs.file("${buildDir}/docbook-xslTNG.xml")
@@ -1536,23 +1588,23 @@ task website(type: Copy, dependsOn: ['webGuide', 'webReport', 'webExplorer',
   // nop
 }
 
-task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {  
+task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {
   from "${buildDir}/guide"
   exclude "guide.xml"
   into "${buildDir}/website/guide"
 }
 
-task webExplorer(type: Copy, dependsOn: ['explorer']) {  
+task webExplorer(type: Copy, dependsOn: ['explorer']) {
   from "${buildDir}/explorer"
   into "${buildDir}/website/explorer"
 }
 
-task webReport(type: Copy, dependsOn: ['report']) {  
+task webReport(type: Copy, dependsOn: ['report']) {
   from "${buildDir}/report"
   into "${buildDir}/website/report"
 }
 
-task webResources(type: Copy, dependsOn: ['report']) {  
+task webResources(type: Copy, dependsOn: ['report']) {
   from "${projectDir}/src/website/resources/"
   into "${buildDir}/website"
   exclude "images/**"

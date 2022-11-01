@@ -1,17 +1,3 @@
-/* @@TITLE@@ version @@VERSION@@
- *
- * This is docbook-screen.css.
- *
- * See https://xsltng.docbook.org/
- *
- */
-
-@media screen {
-    @import url("https://fonts.googleapis.com/css?family=B612+Mono&display=swap");
-    @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
-    @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
-}
-
 :root {
     --popup-annotation-color: var(--surface-color);
     --on-popup-annotation-color: var(--on-surface-color);
@@ -42,7 +28,7 @@ html {
 }
 
 /* https://www.smashingmagazine.com/2020/07/css-techniques-legibility/ */
-@supports (font-size-adjust: 1;) {
+@supports (font-size-adjust: 1) {
     html {
         font-size-adjust: 0.5;
     }
