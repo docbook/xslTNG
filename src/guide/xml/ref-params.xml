@@ -128,8 +128,8 @@ character alignment on the “,” character.</para>
 <title>An example of char alignment</title>
 <?guide-example ifig-align-char-default?>
 </example>
-<para>Table rendering:</para>
-<informalexample xml:id="ifig-align-char-default">
+<example xml:id="ifig-align-char-default">
+<title>Tabular rendering</title>  
 <informaltable frame="all">
 <tgroup cols="2" colsep="1" rowsep="1">
 <colspec colnum="2" align="char" char=","/>
@@ -149,7 +149,7 @@ character alignment on the “,” character.</para>
 </tbody>
 </tgroup>
 </informaltable>
-</informalexample>
+</example>
 <para>The alignment character can be specified on a per-column, per-table
 basis with the <att>char</att> attribute on <tag>colspec</tag>.
 </para>
@@ -2420,7 +2420,7 @@ transformations.</para>
 <para>If <parameter>oxy-markup</parameter> is true, then
 the change tracking processing instructions that Oxygen inserts into
 the document will be transformed into elements marked with CSS classes
-for rendering in the output. See <parameter>oxy-markup-css</parameter>.
+for rendering in the output.
 </para>
 <para>Rendering Oxygen change markup can be specified on a document-by-document
 bases with a <literal>db</literal>
@@ -2439,6 +2439,7 @@ element.</para>
 </refsection>
 </refentry>
 
+<!--
 <refentry>
   <refmeta>
     <fieldsynopsis>
@@ -2455,6 +2456,7 @@ element.</para>
 for styling the added and deleted regions.</para>
 </refsection>
 </refentry>
+-->
 
 <refentry>
   <refmeta>
@@ -3629,6 +3631,7 @@ formatting numbers. See <parameter>footnote-numeration</parameter>.
 <refentry>
   <refmeta>
     <fieldsynopsis>
+      <type>xs:string</type>
       <varname>use-docbook-css</varname>
       <initializer>'true'</initializer>
     </fieldsynopsis>
@@ -3639,22 +3642,41 @@ formatting numbers. See <parameter>footnote-numeration</parameter>.
 <refsection>
 <title>Description</title>
 <para>If this parameter <glossterm>is true</glossterm>, then the
-output will contain links to the standard DocBook CSS stylesheets:</para>
+output will contain links to the standard DocBook CSS stylesheets:
+</para>
 <programlisting language="xml">&lt;link href="{$resource-base-uri}css/docbook.css"
-rel="stylesheet"/&gt;
-&lt;link href="{$resource-base-uri}css/docbook-screen.css"
 rel="stylesheet" media="screen"/&gt;
-&lt;link href="{$resource-base-uri}css/docbook-page-setup.css"
-rel="stylesheet" media="print"/&gt;
 &lt;link href="{$resource-base-uri}css/docbook-paged.css"
 rel="stylesheet" media="print"/&gt;</programlisting>
-<para>You can quickly disable all of these links by setting this
+<para>If <parameter>use-minified-css</parameter> is true, then the links will
+be to minified CSS stylesheets.
+You can quickly disable all of these links by setting this
 parameter to false. There are a number of other stylesheets that
 are only conditionally included,
-see <parameter>verbatim-syntax-highlight-css</parameter>,
-<parameter>persistent-toc-css</parameter>, and
-<parameter>oxy-markup-css</parameter>. User defined stylesheets
+see <parameter>verbatim-syntax-highlight-css</parameter> and
+<parameter>persistent-toc-css</parameter>. User defined stylesheets
 are added with <parameter>user-css-links</parameter>.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>use-minified-css</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Create links to minified CSS?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then the
+links to standard DocBook CSS stylesheets will be to minified versions
+instead of the “ordinary” versions. This does not effect links in
+<parameter>user-css-links</parameter>.
 </para>
 </refsection>
 </refentry>

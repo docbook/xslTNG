@@ -33,8 +33,8 @@ If the change you want to make has already been parameterized, you may
 be able to achieve your goal simply by setting a parameter at runtime.</para>
 
 <para>For example, if you want to change the formatting of dates and times
-in <tag>date</tag> elements, you can simply change the <link
-xlink:href="p_date-date-format">date and time formatting</link>
+in <tag>date</tag> elements, you can simply change the
+<link linkend="p_date-date-format">date and time formatting</link>
 parameters. Similarly, if you want to change the numeration style of
 ordered lists, you can simply change the <link
 linkend="p_orderedlist-item-numeration">ordered list item
@@ -48,7 +48,7 @@ changes.</para>
 <para>Parameter values apply to the entire document processed by the
 stylesheets. In some cases, you may wish to change the presentation of
 just one or small number of elements. This can often be accomplished
-with a <link xlink:href="pi_db">db processing instruction</link> in
+with a <link linkend="pi_db">db processing instruction</link> in
 the source document itself. These customizations can also be
 accomplished without writing any XSLT.</para>
 
@@ -178,6 +178,7 @@ changed several times. The current scheme is this:</para>
 included.
 </para>
 </listitem>
+<!--
 <listitem>
 <para>If <parameter>oxy-markup-css</parameter> <glossterm>is
 true</glossterm> and there is at least one processing instruction in
@@ -186,6 +187,7 @@ a link to the <parameter>oxy-markup-css</parameter> stylesheet
 is included.
 </para>
 </listitem>
+-->
 <listitem>
 <para>If <parameter>persistent-toc</parameter> <glossterm>is
 true</glossterm> 

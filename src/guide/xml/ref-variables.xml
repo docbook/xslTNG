@@ -523,6 +523,26 @@ be identified as a validation error by a Schematron rule.
 </refsection>
 </refentry>
 
+<refentry xml:id="v_dbe_INVALID-RESULTS-REQUESTED">
+<?db filename="v_dbe_INVALID-RESULTS-REQUESTED"?>
+<refmeta>
+<refentrytitle>$err:INVALID-RESULTS-REQUESTED</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/errors}INVALID-RESULTS-REQUESTED</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$err:INVALID-RESULTS-REQUESTED</refname>
+<refpurpose>Invalid result form parameter</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This error is raised if the
+<code>$result</code> parameter passed to <template>t:docbook</template> is
+not one of “<literal>raw-results</literal>”, “<literal>chunked-results</literal>”,
+or “<literal>main-document</literal>”.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_dbe_INVALID-TEMPLATE">
 <?db filename="v_dbe_INVALID-TEMPLATE"?>
 <refmeta>

@@ -34,7 +34,7 @@ will compile the extensions without running the tests.
 </para>
 </listitem>
 <listitem>
-<para>“Compile” <link xlink:href="python-script">the Python script</link> that helps run
+<para>“Compile” <link linkend="python-script">the Python script</link> that helps run
 the stylesheets. (It’s not really compiled, but several stylesheet-version-specific
 strings are interpolated.)
 The <buildtarget>copyBin</buildtarget> task will setup the Python script
