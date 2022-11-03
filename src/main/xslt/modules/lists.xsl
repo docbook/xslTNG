@@ -427,7 +427,7 @@
                 select="f:pi(., 'table-summary')"/>
 
   <table>
-    <xsl:if test="$table-summary != ''">
+    <xsl:if test="$table-summary != '' and 'summary' = $table-accessibility">
       <xsl:attribute name="summary">
         <xsl:value-of select="$table-summary"/>
       </xsl:attribute>
