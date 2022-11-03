@@ -30,7 +30,7 @@ nav.toc {
 
 @media only screen {
     nav.toc {
-        overflow-x: scroll;
+        overflow-x: auto;
     }
 }
 
@@ -57,7 +57,7 @@ nav.toc div {
 
 @media only screen {
     nav.toc div {
-        overflow: scroll;
+        overflow: auto;
     }
 }
 

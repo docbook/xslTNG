@@ -20,7 +20,6 @@
 html {
     color: var(--on-background-color);
     background-color: var(--background-color);
-    height: 100%;
     width: 100%;
     line-height: 1.75rem;
     font-size: 13.5pt;
@@ -45,14 +44,29 @@ body {
     grid-template-columns: 100%;
 }
 
+body.draft {
+    background-image: url('draft-left.svg');
+    background-position: 2% 2%;
+    background-repeat: no-repeat;
+    background-size: 10%;
+    background-attachment: fixed;
+}
+
 main,
 footer {
-    width: 100%;
     max-width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+/* If the screen is wide, center. If you do this unconditionally,
+   strange things happen when the screen is narrow. */
+@media screen and (min-width: 768px) {
+    main,
+    footer {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 main {
@@ -258,7 +272,7 @@ nav.top div {
     padding-right: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .annotation-close {

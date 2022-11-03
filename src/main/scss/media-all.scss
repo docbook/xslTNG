@@ -1,9 +1,4 @@
 :root {
-    --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
-    --body-family: "Noto Serif", serif, var(--symbol-fonts);
-    --title-family: "Noto Sans", sans-serif, var(--symbol-fonts);
-    --mono-family: "B612 Mono", monospace, var(--symbol-fonts);
-
     /* The default theme. */
     --background-color: #fffff8;
     --surface-color: #fffff8;
@@ -381,51 +376,57 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--on-header-color);
     background-color: var(--header-color);
     font-family: var(--title-family);
-    font-weight: 600;
+    font-weight: normal;
     font-style: normal;
+    page-break-after: avoid;
 }
 
-h1 { font-weight: 400;
-     margin-top: 4rem;
-     margin-bottom: 1.5rem;
-     font-size: 3.2rem;
-     line-height: 1;
-   }
+h1 {
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 3.2rem;
+    line-height: 1;
+}
 
-h2 { font-weight: 400;
-     margin-top: 2.1rem;
-     margin-bottom: 2rem;
-     font-size: 2.2rem;
-     line-height: 1;
-   }
+h2 {
+    font-weight: 400;
+    margin-top: 2.1rem;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    line-height: 1;
+}
 
-h3 { font-weight: 400;
-     font-size: 1.7rem;
-     margin-top: 2rem;
-     margin-bottom: 0;
-     line-height: 1;
-   }
+h3 {
+    font-weight: 400;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    line-height: 1;
+}
 
-h4 { font-weight: 400;
-     font-size: 1.5rem;
-     margin-top: 2rem;
-     margin-bottom: 0;
-     line-height: 1;
-   }
+h4 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    line-height: 1;
+}
 
-h5 { font-weight: 400;
-     font-size: 1.0rem;
-     margin-top: 1.5rem;
-     margin-bottom: 0;
-     line-height: 1;
-   }
+h5 {
+    font-weight: 400;
+    font-size: 1.0rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    line-height: 1;
+}
 
-h6 { font-weight: 400;
-     font-size: 1.0rem;
-     margin-top: 1.5rem;
-     margin-bottom: 0;
-     line-height: 1;
-   }
+h6 {
+    font-weight: 400;
+    font-size: 1.0rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    line-height: 1;
+}
 
 .title {
     color: var(--on-header-color);
@@ -444,18 +445,16 @@ h6 { font-weight: 400;
     line-height: 1;
 }
 
+header {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
 header .authorgroup {
     margin-bottom: 2rem;
 }
 
 /* ============================================================ */
-
-body.draft {
-    background-image: url('draft-right.svg');
-    background-position: 2% 2%;
-    background-repeat: no-repeat;
-    background-size: 10%;
-}
 
 .article > header {
     text-align: center;
@@ -701,7 +700,7 @@ th.char {
     width: 4.5rem;
     text-align: center;
     vertical-align: top;
-    font-size: 3rem;
+    font-size: 300%;
     color: var(--note-border-color);
 }
 
@@ -838,7 +837,7 @@ th.char {
 /* ============================================================ */
 
 .pre-wrap {
-    overflow-x: scroll;
+    overflow-x: auto;
     margin-top: 1em;
     margin-bottom: 1em;
 }
@@ -848,6 +847,7 @@ pre {
     margin-bottom: 0;
     margin-left: 0.5em;
     margin-right: 0.5em;
+    page-break-inside: avoid;
 }
 
 pre sup {
@@ -862,6 +862,8 @@ pre.verblines {
 pre.address,
 pre.literallayout {
     font-family: var(--body-family);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 pre.monospaced {
