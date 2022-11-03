@@ -136,13 +136,15 @@
   <xsl:namespace name="db" select="'http://docbook.org/ns/docbook'"/>
 </xsl:variable>
 
+<!-- I tinkered a bit to find images that would display across
+     a variety of devices. YMMV. -->
 <xsl:variable name="v:admonition-icons">
-  <db:tip>☞&#xFE0E;</db:tip>
-  <db:note>🛈&#xFE0E;</db:note>
-  <db:important>☝&#xFE0E;</db:important>
-  <db:caution>⚠&#xFE0E;</db:caution>
-  <db:warning>⯃&#xFE0E;</db:warning>
-  <db:danger>⚡&#xFE0E;</db:danger>
+  <db:tip>☞</db:tip>
+  <db:note>ⓘ</db:note>
+  <db:important>☝</db:important>
+  <db:caution>⚠</db:caution>
+  <db:warning>🛑</db:warning>
+  <db:danger>⚡</db:danger>
 </xsl:variable>
 
 <xsl:variable name="v:annotation-close" as="element()">
