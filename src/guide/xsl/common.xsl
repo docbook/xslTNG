@@ -111,7 +111,7 @@
             <xsl:apply-templates select="db:info/db:revhistory"/>
           </xsl:if>
           <p class="copyright">
-            <a href="copyright.html">Copyright</a>
+            <a href="copyright{$html-extension}">Copyright</a>
             <xsl:text> &#xA9; </xsl:text>
             <xsl:value-of select="/db:book/db:info/db:copyright/db:year[1]"/>
             <xsl:if test="/db:book/db:info/db:copyright/db:year[2]">
@@ -473,9 +473,13 @@
 </xsl:template>
 
 <xsl:template match="db:pubdate[not(node())]">
-  <time class="pubdate" datetime="{current-dateTime()}">
+  <xsl:variable name="Z" select="xs:dayTimeDuration('PT0S')"/>
+  <time class="pubdate"
+        datetime="{format-dateTime(
+                    adjust-dateTime-to-timezone(current-dateTime(), $Z),
+                    '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z')}">
     <xsl:sequence select="format-dateTime(current-dateTime(),
-                                          '[D01] [MNn,*-3] [Y0001]')"/>
+                             '[D01] [MNn,*-3] [Y0001]')"/>
   </time>
 </xsl:template>
 
@@ -547,13 +551,6 @@
         </th>
       </tr>
     </thead>
-    <tfoot>
-      <tr>
-        <td colspan="2"><sup id="fn.ptf1"><a href="#ptf1">a</a></sup>Some values
-        have been truncated to prevent the table from becoming unwieldy.
-        These values an be identified by a trailing ellipsis (…).</td>
-      </tr>
-    </tfoot>
     <tbody>
       <xsl:for-each select="map:keys($prop)">
         <xsl:sort select="."/>
@@ -569,6 +566,13 @@
         </tr>
       </xsl:for-each>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"><sup id="fn.ptf1"><a href="#ptf1">a</a></sup>Some values
+        have been truncated to prevent the table from becoming unwieldy.
+        These values an be identified by a trailing ellipsis (…).</td>
+      </tr>
+    </tfoot>
   </table>
 </xsl:template>
 
@@ -963,7 +967,7 @@
   <div class="infofooter">
     <xsl:variable name="years" select="root($db-node)/db:book/db:info/db:copyright/db:year"/>
     <span class="copyrightfooter">
-      <a href="dbcpyright.html">Copyright</a>
+      <a href="dbcpyright{$html-extension}">Copyright</a>
       <xsl:text> &#xA9; </xsl:text>
       <xsl:value-of select="$years[1]"/>
       <xsl:if test="count($years) gt 1">

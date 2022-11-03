@@ -10,9 +10,11 @@
                 exclude-result-prefixes="a db f m t v"
                 version="3.0">
 
-<xsl:import href="../../../build/xslt/docbook.xsl"/>
+<xsl:import href="../../../build/xslt/epub.xsl"/>
 
-<xsl:variable name="epub" select="false()"/>
+<xsl:param name="debug" select="'mediaobject-uris'"/>
+
+<xsl:variable name="epub" select="true()"/>
 <xsl:include href="core.xsl"/>
 
 </xsl:stylesheet>
