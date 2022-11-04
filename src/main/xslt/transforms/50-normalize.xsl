@@ -1,7 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
-                xmlns:ghost="http://docbook.org/ns/docbook/ephemeral"
+                xmlns:ghost="http://docbook.org/ns/docbook/ghost"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
