@@ -136,8 +136,9 @@
 <!-- If a document or element is being processed in the default
      mode (and not the m:docbook mode), assume we're starting 
      a transformation. -->
-<xsl:template match="/ | *" name="t:docbook">
+<xsl:template match="/" name="t:docbook">
   <xsl:param name="vp:loop-count" select="0" tunnel="yes"/>
+  <xsl:param name="return" as="xs:string" select="'main-document'"/>
 
   <xsl:if test="$vp:loop-count gt 0">
     <xsl:message terminate="yes">
@@ -220,31 +221,57 @@
     <xsl:sequence select="fp:run-transforms($result, $post-processing)"/>
   </xsl:variable>
 
-  <xsl:variable name="result" as="map(xs:string, item()*)">
-    <xsl:call-template name="t:chunk-output">
-      <xsl:with-param name="docbook" select="$document"/>
-      <xsl:with-param name="source" select="$result"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:for-each select="map:keys($result)">
-    <xsl:if test=". != 'output'">
-      <xsl:apply-templates select="map:get($result, .)" mode="m:chunk-write">
-        <xsl:with-param name="href" select="."/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:for-each>
-
   <xsl:choose>
-    <xsl:when test="not($result?output/h:html)">
-      <xsl:sequence select="$result?output"/>
+    <xsl:when test="$return = 'raw-results'">
+      <xsl:sequence select="map {
+          'document': $document,
+          'output': $result
+        }"/>
     </xsl:when>
-    <xsl:when test="f:is-true($generate-html-page)">
-      <xsl:sequence select="$result?output"/>
+    <xsl:when test="$return = 'chunked-results'">
+      <xsl:variable name="chunks" as="map(xs:string, item()*)">
+        <xsl:call-template name="t:chunk-output">
+          <xsl:with-param name="docbook" select="$document"/>
+          <xsl:with-param name="source" select="$result"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:sequence select="map {
+          'document': $document,
+          'chunks': $chunks
+        }"/>
+    </xsl:when>
+    <xsl:when test="$return = 'main-document'">
+      <xsl:variable name="result" as="map(xs:string, item()*)">
+        <xsl:call-template name="t:chunk-output">
+          <xsl:with-param name="docbook" select="$document"/>
+          <xsl:with-param name="source" select="$result"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:for-each select="map:keys($result)">
+        <xsl:if test=". != 'output'">
+          <xsl:apply-templates select="map:get($result, .)" mode="m:chunk-write">
+            <xsl:with-param name="href" select="."/>
+          </xsl:apply-templates>
+        </xsl:if>
+      </xsl:for-each>
+
+      <xsl:choose>
+        <xsl:when test="not($result?output/h:html)">
+          <xsl:sequence select="$result?output"/>
+        </xsl:when>
+        <xsl:when test="f:is-true($generate-html-page)">
+          <xsl:sequence select="$result?output"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="$result?output/h:html/h:body/node()
+                                except $result?output/h:html/h:body/h:script"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="$result?output/h:html/h:body/node()
-                            except $result?output/h:html/h:body/h:script"/>
+        <xsl:sequence select="error($dbe:INVALID-RESULTS-REQUESTED,
+                                    'Unexepcted return: ' || $return)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
