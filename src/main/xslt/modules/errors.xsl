@@ -33,5 +33,7 @@
               select="xs:QName('dbe:INVALID-DYNAMIC-PROFILE-ERROR')"/>
 <xsl:variable name="dbe:INVALID-TRANSFORM"
               select="xs:QName('dbe:INVALID-TRANSFORM')"/>
+<xsl:variable name="dbe:INVALID-RESULTS-REQUESTED"
+              select="xs:QName('dbe:INVALID-RESULTS-REQUESTED')"/>
 
 </xsl:stylesheet>
