@@ -22,6 +22,29 @@
      attribute in order to make the reference page in the Guide work
      better. -->
 
+<xsl:variable name="v:as-json" select="map {'method':'json','indent':true()}"/>
+<xsl:variable name="v:as-xml" select="map {'method':'xml','indent':true()}"/>
+
+<xsl:variable name="v:chunk" as="xs:boolean"
+              select="not(normalize-space($chunk) = '')"/>
+
+<xsl:variable name="vp:section-toc-depth" as="xs:integer">
+  <xsl:choose>
+    <xsl:when test="$section-toc-depth instance of xs:integer">
+      <xsl:sequence select="max((0, $section-toc-depth))"/>
+    </xsl:when>
+    <xsl:when test="$section-toc-depth castable as xs:integer">
+      <xsl:sequence select="max((0, xs:integer($section-toc-depth)))"/>
+    </xsl:when>
+    <xsl:when test="string($section-toc-depth) = 'unbounded'">
+      <xsl:sequence select="2147483647"/> <!-- 0x7fffffff -->
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="0"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
 <xsl:variable name="v:debug" static="yes" as="xs:string*"
               select="tokenize($debug, '[,\s]+') ! normalize-space(.)"/>
 
@@ -86,6 +109,9 @@
                              else $mediaobject-output-base-uri || '/'"/>
 </xsl:variable>
 
+<xsl:variable name="v:mediaobject-exclude-extensions"
+              select="tokenize($mediaobject-exclude-extensions, '\s+')"/>
+
 <xsl:variable name="v:personal-name-styles"
               select="('first-last', 'last-first', 'FAMILY-given')"/>
 
@@ -116,13 +142,15 @@
   <xsl:namespace name="db" select="'http://docbook.org/ns/docbook'"/>
 </xsl:variable>
 
+<!-- I tinkered a bit to find images that would display across
+     a variety of devices. YMMV. -->
 <xsl:variable name="v:admonition-icons">
-  <db:tip>☞&#xFE0E;</db:tip>
-  <db:note>🛈&#xFE0E;</db:note>
-  <db:important>☝&#xFE0E;</db:important>
-  <db:caution>⚠&#xFE0E;</db:caution>
-  <db:warning>⯃&#xFE0E;</db:warning>
-  <db:danger>⚡&#xFE0E;</db:danger>
+  <db:tip>☞</db:tip>
+  <db:note>ⓘ</db:note>
+  <db:important>☝</db:important>
+  <db:caution>⚠</db:caution>
+  <db:warning>🛑</db:warning>
+  <db:danger>⚡</db:danger>
 </xsl:variable>
 
 <xsl:variable name="v:annotation-close" as="element()">
@@ -233,6 +261,104 @@
 <xsl:variable name="v:prism-js-head-elements" as="element()*">
   <link rel="stylesheet" href="{$resource-base-uri}css/prism.css"/>
   <script src="{$resource-base-uri}js/prism.js"></script>
+</xsl:variable>
+
+<!-- ============================================================ -->
+
+<xsl:variable name="v:media-type-default" as="xs:string"
+              select="'application/octet-stream'"/>
+
+  <!-- Credit: https://developer.mozilla.org/en-US/docs/Web/HTTP/\
+       Basics_of_HTTP/MIME_types/Common_types -->
+  <!-- I left out the .3gp and .3g2 extensions because they're either audio or
+       video depending on what they actually contain and that's more complicated
+       than just an extension lookup
+       I added .text, .mov, .m3u8, .wmv
+  -->
+<xsl:variable name="v:media-type-map" as="map(xs:string, xs:string)">
+  <xsl:map>
+    <xsl:map-entry key="'.aac'" select="'audio/aac'"/>
+    <xsl:map-entry key="'.abw'" select="'application/x-abiword'"/>
+    <xsl:map-entry key="'.arc'" select="'application/x-freearc'"/>
+    <xsl:map-entry key="'.avif'" select="'image/avif'"/>
+    <xsl:map-entry key="'.avi'" select="'video/x-msvideo'"/>
+    <xsl:map-entry key="'.azw'" select="'application/vnd.amazon.ebook'"/>
+    <xsl:map-entry key="'.bin'" select="'application/octet-stream'"/>
+    <xsl:map-entry key="'.bmp'" select="'image/bmp'"/>
+    <xsl:map-entry key="'.bz'" select="'application/x-bzip'"/>
+    <xsl:map-entry key="'.bz2'" select="'application/x-bzip2'"/>
+    <xsl:map-entry key="'.cda'" select="'application/x-cdf'"/>
+    <xsl:map-entry key="'.csh'" select="'application/x-csh'"/>
+    <xsl:map-entry key="'.css'" select="'text/css'"/>
+    <xsl:map-entry key="'.csv'" select="'text/csv'"/>
+    <xsl:map-entry key="'.doc'" select="'application/msword'"/>
+    <xsl:map-entry key="'.docx'"
+                   select="'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"/>
+    <xsl:map-entry key="'.eot'" select="'application/vnd.ms-fontobject'"/>
+    <xsl:map-entry key="'.epub'" select="'application/epub+zip'"/>
+    <xsl:map-entry key="'.gz'" select="'application/gzip'"/>
+    <xsl:map-entry key="'.gif'" select="'image/gif'"/>
+    <xsl:map-entry key="'.htm'" select="'text/html'"/>
+    <xsl:map-entry key="'.html'" select="'text/html'"/>
+    <xsl:map-entry key="'.ico'" select="'image/vnd.microsoft.icon'"/>
+    <xsl:map-entry key="'.ics'" select="'text/calendar'"/>
+    <xsl:map-entry key="'.jar'" select="'application/java-archive'"/>
+    <xsl:map-entry key="'.jpeg'" select="'image/jpeg'"/>
+    <xsl:map-entry key="'.jpg'" select="'image/jpeg'"/>
+    <xsl:map-entry key="'.js'" select="'text/javascript'"/>
+    <xsl:map-entry key="'.json'" select="'application/json'"/>
+    <xsl:map-entry key="'.jsonld'" select="'application/ld+json'"/>
+    <xsl:map-entry key="'.mid'" select="'audio/midi'"/>
+    <xsl:map-entry key="'.midi'" select="'audio/midi'"/>
+    <xsl:map-entry key="'.mjs'" select="'text/javascript'"/>
+    <xsl:map-entry key="'.m3u8'" select="'application/x-mpegURL'"/>
+    <xsl:map-entry key="'.mp3'" select="'audio/mpeg'"/>
+    <xsl:map-entry key="'.mp4'" select="'video/mp4'"/>
+    <xsl:map-entry key="'.mpeg'" select="'video/mpeg'"/>
+    <xsl:map-entry key="'.mpkg'" select="'application/vnd.apple.installer+xml'"/>
+    <xsl:map-entry key="'.mov'" select="'video/quicktime'"/>
+    <xsl:map-entry key="'.odp'" select="'application/vnd.oasis.opendocument.presentation'"/>
+    <xsl:map-entry key="'.ods'" select="'application/vnd.oasis.opendocument.spreadsheet'"/>
+    <xsl:map-entry key="'.odt'" select="'application/vnd.oasis.opendocument.text'"/>
+    <xsl:map-entry key="'.oga'" select="'audio/ogg'"/>
+    <xsl:map-entry key="'.ogv'" select="'video/ogg'"/>
+    <xsl:map-entry key="'.ogx'" select="'application/ogg'"/>
+    <xsl:map-entry key="'.opus'" select="'audio/opus'"/>
+    <xsl:map-entry key="'.otf'" select="'font/otf'"/>
+    <xsl:map-entry key="'.png'" select="'image/png'"/>
+    <xsl:map-entry key="'.pdf'" select="'application/pdf'"/>
+    <xsl:map-entry key="'.php'" select="'application/x-httpd-php'"/>
+    <xsl:map-entry key="'.ppt'" select="'application/vnd.ms-powerpoint'"/>
+    <xsl:map-entry key="'.pptx'"
+                   select="'application/vnd.openxmlformats-officedocument.presentationml.presentation'"/>
+    <xsl:map-entry key="'.rar'" select="'application/vnd.rar'"/>
+    <xsl:map-entry key="'.rtf'" select="'application/rtf'"/>
+    <xsl:map-entry key="'.sh'" select="'application/x-sh'"/>
+    <xsl:map-entry key="'.svg'" select="'image/svg'"/>          <!-- not image/svg+xml for epub -->
+    <xsl:map-entry key="'.tar'" select="'application/x-tar'"/>
+    <xsl:map-entry key="'.tif'" select="'image/tiff'"/>
+    <xsl:map-entry key="'.tiff'" select="'image/tiff'"/>
+    <xsl:map-entry key="'.ts'" select="'video/mp2t'"/>
+    <xsl:map-entry key="'.ttf'" select="'font/ttf'"/>
+    <xsl:map-entry key="'.txt'" select="'text/plain'"/>
+    <xsl:map-entry key="'.text'" select="'text/plain'"/>
+    <xsl:map-entry key="'.vsd'" select="'application/vnd.visio'"/>
+    <xsl:map-entry key="'.wav'" select="'audio/wav'"/>
+    <xsl:map-entry key="'.weba'" select="'audio/webm'"/>
+    <xsl:map-entry key="'.webm'" select="'video/webm'"/>
+    <xsl:map-entry key="'.webp'" select="'image/webp'"/>
+    <xsl:map-entry key="'.wmv'" select="'video/x-ms-wmv'"/>
+    <xsl:map-entry key="'.woff'" select="'font/woff'"/>
+    <xsl:map-entry key="'.woff2'" select="'font/woff2'"/>
+    <xsl:map-entry key="'.xhtml'" select="'application/xhtml+xml'"/>
+    <xsl:map-entry key="'.xls'" select="'application/vnd.ms-excel'"/>
+    <xsl:map-entry key="'.xlsx'"
+                   select="'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'"/>
+    <xsl:map-entry key="'.xml'" select="'application/xml'"/>
+    <xsl:map-entry key="'.xul'" select="'application/vnd.mozilla.xul+xml'"/>
+    <xsl:map-entry key="'.zip'" select="'application/zip'"/>
+    <xsl:map-entry key="'.7z'" select="'application/x-7z-compressed'"/>
+  </xsl:map>
 </xsl:variable>
 
 </xsl:stylesheet>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: mediaobject.003</title>
+
+<para>This tests fallback.</para>
+
+<mediaobject>
+  <imageobject>
+    <!-- for print -->
+    <imagedata fileref="../media/duck-small.svg"/>
+    <imagedata fileref="../media/duck-small.eps"
+               width="50%"/>
+  </imageobject>
+  <imageobject>
+    <!-- for web -->
+    <imagedata fileref="../media/duck-small.svg"/>
+    <imagedata fileref="../media/duck-small.png"/>
+    <imagedata fileref="../media/duck-small.gif"
+               width="50%"/>
+  </imageobject>
+</mediaobject>
+
+</article>

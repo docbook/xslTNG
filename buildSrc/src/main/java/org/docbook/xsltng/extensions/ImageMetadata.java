@@ -13,6 +13,7 @@ import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -41,12 +42,12 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
 
     @Override
     public int getMaximumNumberOfArguments() {
-        return 1;
+        return 2;
     }
 
     @Override
     public SequenceType[] getArgumentTypes() {
-        return new SequenceType[]{SequenceType.SINGLE_STRING};
+        return new SequenceType[]{SequenceType.SINGLE_STRING, SequenceType.SINGLE_BOOLEAN};
     }
 
     @Override
@@ -63,10 +64,21 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
             context = xpathContext;
             logger = new DebuggingLogger(xpathContext.getConfiguration().getLogger());
             String imageUri = sequences[0].head().getStringValue();
+            boolean isImage = true;
+
+            if (sequences.length > 1) {
+                isImage = "true".equals(sequences[1].head().getStringValue());
+            }
 
             InputStream stream = null;
             try {
-                URL url = new URL(imageUri);
+                final URL url;
+                File imageFile = new File(imageUri);
+                if (imageFile.exists()) {
+                    url = imageFile.toURI().toURL();
+                } else {
+                    url = new URL(imageUri);
+                }
                 stream = url.openStream();
                 Metadata metadata = ImageMetadataReader.readMetadata(stream);
 
@@ -102,7 +114,7 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
                 }
                 return map.getUnderlyingValue();
             } catch (IOException ioe) {
-                logger.info("ext:image-metadata unreadable: " + imageUri);
+                logger.info("ext:image-metadata unreadable: " + ioe.getMessage());
                 return map.getUnderlyingValue();
             } catch (ImageProcessingException ipe) {
                 // Fall through and see what we can read
@@ -118,7 +130,9 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
 
             // If metadata-extractor couldn't load the metadata,
             // there's still the chance that it's a PDF or an SVG
-            parseImage(imageUri);
+            if (isImage) {
+                parseImage(imageUri);
+            }
 
             return map.getUnderlyingValue();
         }

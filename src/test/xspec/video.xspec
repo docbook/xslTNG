@@ -11,4 +11,9 @@
       <x:expect label="expect the player to be rendered" href="../resources/expected/videoobject.001.html"/>
 </x:scenario>
 
+<x:scenario label="When converting videoobject.002">
+   <x:context href="../resources/xml/videoobject.002.xml"/>
+      <x:expect label="expect the player to be rendered" href="../resources/expected/videoobject.002.html"/>
+</x:scenario>
+
 </x:description>

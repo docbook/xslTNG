@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
-   <title>Article wrapper</title>
+   <title>Unit test: equation.002</title>
+
    <equation xml:id="eq2">
       <title>Second Equation</title>
       <mediaobject>
@@ -8,18 +9,20 @@
             <imagedata fileref="../media/emc2.png"/>
          </imageobject>
          <textobject>
-            <phrase>e=mc^2</phrase>
+            <phrase>E=mc^2</phrase>
          </textobject>
       </mediaobject>
    </equation>
+
    <para>An informal equation:</para>
+
    <informalequation xml:id="eq3">
       <mediaobject>
          <imageobject>
             <imagedata fileref="../media/emc2.png"/>
          </imageobject>
          <textobject>
-            <phrase>e=mc^2</phrase>
+            <phrase>E=mc^2</phrase>
          </textobject>
       </mediaobject>
    </informalequation>

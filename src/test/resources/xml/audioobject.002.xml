@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit test: audiodata.002</title>
+
+   <para>A test for the <tag>audioobject</tag>.</para>
+
+   <mediaobject>
+     <audioobject>
+       <audiodata fileref="../media/this_is_a_test.oga"/>
+       <audiodata fileref="../media/this_is_a_test.mp3">
+         <multimediaparam name="controls" value="controls"/>
+       </audiodata>
+     </audioobject>
+   </mediaobject>
+</article>

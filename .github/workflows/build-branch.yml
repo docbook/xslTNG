@@ -48,6 +48,11 @@ jobs:
       - name: Setup python dependencies
         run: python3 -m pip install pygments==2.6.1 click
 
+      - name: Download and install SASS
+        run: |
+          curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
+          cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
+
       - name: Checkout the branch
         uses: actions/checkout@v3
 

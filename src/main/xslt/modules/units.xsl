@@ -31,63 +31,70 @@
 <xsl:variable name="vp:relative-regex" select="'^(\d+(\.\d+)?)\s*\*(\s*\+\s*(.*))?$'"/>
 
 <xsl:function name="f:parse-length" as="map(*)">
-  <xsl:param name="length" as="xs:string"/>
-
-  <!--
-  <xsl:variable name="x" select="'3*+0.25pt'"/>
-  <xsl:message select="'matches: ' || $x, matches($x, $vp:relative-regex)"/>
-  <xsl:message select="'matches: ', $vp:relative-regex"/>
-  <xsl:message select="'matches: ' || $x,
-                       matches($x, '^(\d+(\.\d+)?)\s*\*\s*(\+\s*(.*)$)')"/>
-  -->
-
-  <xsl:variable name="length" select="normalize-space($length)"/>
-
-  <xsl:variable name="parsed"
-                select="if (matches($length, $vp:relative-regex))
-                        then map { 'relative':
-                                    xs:decimal(replace($length, $vp:relative-regex, '$1'))
-                                 }
-                        else map { 'relative': 0.0 }"/>
-
-  <xsl:variable name="length"
-                select="if (matches($length, $vp:relative-regex))
-                        then replace($length, $vp:relative-regex, '$4')
-                        else $length"/>
+  <xsl:param name="length" as="xs:string?"/>
 
   <xsl:choose>
-    <xsl:when test="$parsed?relative and $length = ''">
-      <xsl:sequence select="map:put($parsed, 'magnitude', 0)
-                            => map:put('unit', 'px')"/>
+    <xsl:when test="empty($length)">
+      <xsl:sequence select="f:empty-length()"/>
     </xsl:when>
-    <xsl:when test="matches($length, $vp:length-regex)">
-      <xsl:variable name="mag"
-                    select="xs:double(replace($length, $vp:length-regex, '$1'))"/>
-      <xsl:variable name="unit"
-                    select="replace($length, $vp:length-regex, '$3')"/>
-      <xsl:variable name="unit"
-                    select="if ($unit = '')
-                            then 'px'
-                            else $unit"/>
+    <xsl:otherwise>
+      <!--
+      <xsl:variable name="x" select="'3*+0.25pt'"/>
+      <xsl:message select="'matches: ' || $x, matches($x, $vp:relative-regex)"/>
+      <xsl:message select="'matches: ', $vp:relative-regex"/>
+      <xsl:message select="'matches: ' || $x,
+                           matches($x, '^(\d+(\.\d+)?)\s*\*\s*(\+\s*(.*)$)')"/>
+      -->
+
+      <xsl:variable name="length" select="normalize-space($length)"/>
+
+      <xsl:variable name="parsed"
+                    select="if (matches($length, $vp:relative-regex))
+                            then map { 'relative':
+                                        xs:decimal(replace($length, $vp:relative-regex, '$1'))
+                                     }
+                            else map { 'relative': 0.0 }"/>
+
+      <xsl:variable name="length"
+                    select="if (matches($length, $vp:relative-regex))
+                            then replace($length, $vp:relative-regex, '$4')
+                            else $length"/>
 
       <xsl:choose>
-        <xsl:when test="map:contains($v:unit-scale, $unit) or $unit = '%'">
-          <xsl:sequence select="map:put($parsed, 'magnitude', $mag)
-                                => map:put('unit', $unit)"/>
+        <xsl:when test="$parsed?relative and $length = ''">
+          <xsl:sequence select="map:put($parsed, 'magnitude', 0)
+                                => map:put('unit', 'px')"/>
+        </xsl:when>
+        <xsl:when test="matches($length, $vp:length-regex)">
+          <xsl:variable name="mag"
+                        select="xs:double(replace($length, $vp:length-regex, '$1'))"/>
+          <xsl:variable name="unit"
+                        select="replace($length, $vp:length-regex, '$3')"/>
+          <xsl:variable name="unit"
+                        select="if ($unit = '')
+                                then 'px'
+                                else $unit"/>
+
+          <xsl:choose>
+            <xsl:when test="map:contains($v:unit-scale, $unit) or $unit = '%'">
+              <xsl:sequence select="map:put($parsed, 'magnitude', $mag)
+                                    => map:put('unit', $unit)"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message expand-text="yes"
+                           >Unrecognized unit {$unit}, using default length</xsl:message>
+              <xsl:sequence select="map:put($parsed, 'magnitude', $default-length-magnitude)
+                                    => map:put('unit', $default-length-unit)"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message expand-text="yes"
-                       >Unrecognized unit {$unit}, using default length</xsl:message>
+                       >Unparsable length {$length}, using default length</xsl:message>
           <xsl:sequence select="map:put($parsed, 'magnitude', $default-length-magnitude)
                                 => map:put('unit', $default-length-unit)"/>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message expand-text="yes"
-                   >Unparsable length {$length}, using default length</xsl:message>
-      <xsl:sequence select="map:put($parsed, 'magnitude', $default-length-magnitude)
-                            => map:put('unit', $default-length-unit)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
@@ -190,4 +197,3 @@
 </xsl:function>
 
 </xsl:stylesheet>
-

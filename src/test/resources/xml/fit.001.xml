@@ -80,9 +80,11 @@ CSS and JavaScript APIs.</para>
   <area xml:id="lf.customize" linkends="lf.customize.co" units="calspair"
         coords="7150,2200 9600,4900"/>
 </areaspec>
-<imageobject>
-<imagedata outputformat="online" fileref="../media/fit-screenshot.png"/>
-<imagedata outputformat="print" width="5.5in" fileref="../media/fit-screenshot.png"/>
+<imageobject outputformat="print">
+<imagedata width="5.5in" fileref="../media/fit-screenshot.png"/>
+</imageobject>
+<imageobject outputformat="online">
+<imagedata fileref="../media/fit-screenshot.png"/>
 </imageobject>
 </imageobjectco>
 <textobject>
@@ -152,9 +154,11 @@ from the right hand edge of the screen.
 <mediaobject>
 <alt>Screenshot of this chapter with the persistent ToC as rendered in
 Firefox on the Mac</alt>
-<imageobject>
-<imagedata outputformat="online" fileref="../media/fit-ptoc.png"/>
-<imagedata outputformat="print" width="5.5in" fileref="../media/fit-ptoc.png"/>
+<imageobject outputformat="print">
+<imagedata width="5.5in" fileref="../media/fit-ptoc.png"/>
+</imageobject>
+<imageobject outputformat="online">
+<imagedata fileref="../media/fit-ptoc.png"/>
 </imageobject>
 <textobject>
 <para>Screenshot showing the persistent table of contents rendered
@@ -373,8 +377,8 @@ the following link:
   <link xlink:to="target" xlink:from="source" xlink:type="arc"/>
 </phrase> has a popup menu to select the link target. Rendered without JavaScript,
 the link choices are presented as alternatives after the link.
-<phrase outputformat="print">In print media, the link URIs are also shown in
-parenthesis.</phrase></para>
+In print media, the link URIs are also shown in
+parenthesis.</para>
 
 <annotation role="wide tall" outputformat="online" annotates="xlinkpara">
 <title>Simplifying link markup</title>

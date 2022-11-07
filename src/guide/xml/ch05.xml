@@ -3,7 +3,7 @@
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
 	 version="5.0" xml:id="building">
 <info>
-  <?db filename="ch05.html"?>
+  <?db filename="ch05"?>
   <title>Building the stylesheets</title>
 </info>
 
@@ -34,7 +34,7 @@ will compile the extensions without running the tests.
 </para>
 </listitem>
 <listitem>
-<para>“Compile” <link xlink:href="python-script">the Python script</link> that helps run
+<para>“Compile” <link linkend="python-script">the Python script</link> that helps run
 the stylesheets. (It’s not really compiled, but several stylesheet-version-specific
 strings are interpolated.)
 The <buildtarget>copyBin</buildtarget> task will setup the Python script

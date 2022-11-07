@@ -580,11 +580,12 @@
                                            |$chunk/*/h:header
                                            |$chunk/*/*/h:header)[1]"/>
 
-      <xsl:variable name="hx" select="($header/h:h1,
-                                       $header/h:h2,
-                                       $header/h:h3,
-                                       $header/h:h4,
-                                       $header/h:h5)[1]"/>
+      <xsl:variable name="hx" select="(($header//h:h1)[1],
+                                       ($header//h:h2)[1],
+                                       ($header//h:h3)[1],
+                                       ($header//h:h4)[1],
+                                       $header//h:h5)[1]"/>
+
       <xsl:apply-templates select="$hx/node()" mode="m:chunk-title"/>
     </xsl:otherwise>
   </xsl:choose>

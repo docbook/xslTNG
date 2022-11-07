@@ -6,9 +6,13 @@
 can determine the intrinsic size of the image. This requires
 an extension function.</para>
 
+<para>Starting in 1.11.0, fallback is possible. Added SVG and PNG fallbacks.</para>
+
 <mediaobject>
   <imageobject>
-    <imagedata fileref="../media/duck-small.pdf"
+    <imagedata fileref="../media/duck-small.pdf"/>
+    <imagedata fileref="../media/duck-small.svg"/>
+    <imagedata fileref="../media/duck-small.png"
                width="50%"/>
   </imageobject>
 </mediaobject>

@@ -20,7 +20,7 @@
 
 <xsl:template match="/" priority="1000">
   <xsl:variable name="html">
-    <xsl:call-template name="tp:docbook"/>
+    <xsl:call-template name="t:docbook"/>
   </xsl:variable>
   <targetdb targetdoc="{$olink-targetdoc}">
     <xsl:apply-templates select="$html/*"/>

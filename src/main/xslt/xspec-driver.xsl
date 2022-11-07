@@ -38,6 +38,7 @@
 <xsl:param name="default-length-magnitude" select="25.0"/>
 <xsl:param name="default-length-unit" select="'%'"/>
 <xsl:param name="profile-os" select="'linux;win'"/>
+<xsl:param name="profile-outputformat" select="'online'"/>
 <xsl:param name="show-remarks" select="'true'"/>
 <xsl:param name="table-accessibility" select="('summary', 'details')"/>
 <xsl:param name="bibliography-collection"
@@ -51,11 +52,8 @@
 
 <!-- Configure dynamic profiling -->
 <xsl:param name="dynamic-profiles" select="'true'"/>
-<xsl:variable name="v:dynamic-profile-variables" as="map(xs:QName, item()*)">
+<xsl:param name="dynamic-profile-variables" as="map(xs:QName, item()*)">
   <xsl:map>
-    <xsl:for-each select="map:keys($vp:dynamic-parameters)">
-      <xsl:map-entry key="." select="map:get($vp:dynamic-parameters, .)"/>
-    </xsl:for-each>
     <xsl:map-entry key="QName('','thingy')" select="'enabled'"/>
     <xsl:map-entry key="QName('','istrue')" select="true()"/>
     <xsl:map-entry key="QName('','isfalse')" select="false()"/>
@@ -63,7 +61,7 @@
     <xsl:map-entry key="QName('','isthree')" select="3"/>
     <xsl:map-entry key="QName('','not-test-harness')" select="false()"/>
   </xsl:map>
-</xsl:variable>
+</xsl:param>
 
 <xsl:variable
     name="v:olink-databases"

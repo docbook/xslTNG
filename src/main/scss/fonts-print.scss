@@ -1,0 +1,7 @@
+/* No embedded fonts by default. */
+:root {
+    --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
+    --body-family: serif, var(--symbol-fonts);
+    --title-family: sans-serif, var(--symbol-fonts);
+    --mono-family: monospace, var(--symbol-fonts);
+}

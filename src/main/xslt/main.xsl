@@ -13,20 +13,10 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f fp h m map mp t v vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
-<xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
-            omit-xml-declaration="yes"/>
-
-<xsl:key name="id" match="*" use="@xml:id"/>
-<xsl:key name="genid" match="*" use="generate-id(.)"/>
-<xsl:key name="targetptr" match="*" use="@targetptr"/>
-
-<xsl:param name="output-media" select="'screen'"/>
-
 <xsl:import href="param.xsl"/>
-<xsl:import href="parameter-maps.xsl"/>
 <xsl:import href="VERSION.xsl"/>
 <xsl:import href="modules/variable.xsl"/>
 <xsl:import href="modules/space.xsl"/>
@@ -35,7 +25,6 @@
 <xsl:import href="modules/head.xsl"/>
 <xsl:import href="modules/titles.xsl"/>
 <xsl:import href="modules/units.xsl"/>
-<xsl:import href="modules/shared.xsl"/>
 <xsl:import href="modules/gentext.xsl"/>
 <xsl:import href="modules/functions.xsl"/>
 <xsl:import href="modules/toc.xsl"/>
@@ -66,10 +55,16 @@
 <xsl:import href="modules/attributes.xsl"/>
 <xsl:import href="modules/publishers.xsl"/>
 <xsl:import href="modules/annotations.xsl"/>
-<xsl:import href="modules/profile.xsl"/>
 <xsl:import href="modules/chunk.xsl"/>
 <xsl:import href="modules/chunk-cleanup.xsl"/>
 <xsl:import href="modules/chunk-output.xsl"/>
+
+<xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
+            omit-xml-declaration="yes"/>
+
+<xsl:key name="targetptr" match="*" use="@targetptr"/>
+
+<xsl:param name="output-media" select="'screen'"/>
 
 <xsl:template match="/" mode="m:docbook">
   <xsl:document>

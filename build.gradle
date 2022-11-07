@@ -30,7 +30,6 @@ plugins {
   id "groovy"
   id "maven-publish"
   id "signing"
-  //id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta3'
   id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.9.6'
   id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
   id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
@@ -84,6 +83,16 @@ configurations {
 
 ext {
   requireCompileSuccess = !"false".equals(project.property('requireCompileSuccess'))
+  epubMediaTypes = [
+    "css": "text/css",
+    "ttf": "font/ttf",
+    "woff": "font/woff",
+    "jpg": "image/jpeg",
+    "jpeg": "image/jpeg",
+    "png": "image/png",
+    "gif": "image/gif",
+    "svg": "image/svg"
+  ]
 }
 
 // Set saxonLicenseDir in gradle.properties, or from the
@@ -179,28 +188,34 @@ class CheckTextFile extends DefaultTask {
 }
 
 def gitRef() {
+  // Depending on the state of your repo, this can be time consuming,
+  // so don't bother unless you're demanding complete success...
   def ref = null;
-  def gitRepo = new File(".git")
-  if (gitRepo.exists() && gitRepo.isDirectory()) {
-    def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
-    ProcessBuilder pb = new ProcessBuilder().command(command)
-    pb.directory(projectDir)
-    Process proc = pb.start()
+  if (requireCompileSuccess)  {
+    def gitRepo = new File(".git")
+    if (gitRepo.exists() && gitRepo.isDirectory()) {
+      def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
+      ProcessBuilder pb = new ProcessBuilder().command(command)
+      pb.directory(projectDir)
+      Process proc = pb.start()
 
-    def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-    String line = null
-    while ((line = reader.readLine()) != null) {
-      if (ref == null) {
-        ref = line
+      def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+      String line = null
+      while ((line = reader.readLine()) != null) {
+        if (ref == null) {
+          ref = line
+        }
       }
-    }
 
-    reader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-    while ((line = reader.readLine()) != null) {
-      println(line)
-    }
+      reader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+      while ((line = reader.readLine()) != null) {
+        println(line)
+      }
 
-    proc.waitFor()
+      proc.waitFor()
+    }
+  } else {
+    ref = "SNAPSHOT"
   }
 
   if (ref == null) {
@@ -481,7 +496,10 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
     // Ignore these; they're dealt with separately
   } else {
     def copytaskname = "copy_" + base.replace("-", "_") + ".xspec"
-    Task t = task "${copytaskname}"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+    Task t = task "${copytaskname}"(
+      type: SaxonXsltTask,
+      dependsOn: ['makeXslt']
+    ) {
       inputs.file("${projectDir}/tools/copy-xspec.xsl")
       pluginConfiguration "docbook"
       input xspec
@@ -491,8 +509,10 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
     copiedXSpecTasks << t
 
     taskname = base.replace("-", "_") + ".xspec"
-    t = task "${taskname}"(type: Exec,
-                           dependsOn: ['setupXSpec', 'makeXslt', copytaskname]) {
+    t = task "${taskname}"(
+      type: Exec,
+      dependsOn: ['setupXSpec', 'makeXslt', copytaskname]
+    ) {
       inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
       inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
       inputs.files fileTree(dir: "${projectDir}/src/test/resources")
@@ -504,7 +524,7 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
                   "${buildDir}/xspec/${base}.xspec"
     }
   }
-  
+
   // If the XSpec file enumerates the elements it tests,
   // construct tests for those elements
   def xspecTaskName = taskname
@@ -520,7 +540,7 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
           def speclist = [xspecFilename]
           elementTests[tag] = speclist
         }
-      } 
+      }
     }
 
     elemList = elemList || line.startsWith("<!-- Tests:")
@@ -594,14 +614,19 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
   def generator = name + "_gen"
   def taskname = name + "XSpec"
 
-  Task g = task "${generator}"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  Task g = task "${generator}"(
+    type: SaxonXsltTask,
+    dependsOn: ['makeXslt']
+  ) {
     input xsl
     stylesheet xsl
     output "${buildDir}/xspec/${base}.xspec"
   }
 
-  Task t = task "${taskname}"(type: Exec,
-                              dependsOn: ['setupXSpec', 'makeXslt']) {
+  Task t = task "${taskname}"(
+    type: Exec,
+    dependsOn: ['setupXSpec', 'makeXslt']
+  ) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
@@ -611,7 +636,7 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
     commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
                 "${buildDir}/xspec/${base}.xspec"
   }
-
+  
   t.dependsOn g
   testDrivers.each { driver ->
     tasks.findByName(driver).dependsOn g
@@ -651,6 +676,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
 
   if (base == 'profiling.001') {
     stylesheetParams['profile-os'] = 'win;linux'
+  }
+
+  if (base == "fit.001") {
+    stylesheetParams['profile-outputformat'] = 'online'
   }
 
   if (base.startsWith('remark.')) {
@@ -694,7 +723,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
 
   Task t = null
-  def htmlDependsOn = ['makeXslt', 'copy_transform_checksums']
+  def htmlDependsOn = ['makeXslt']
   if (base.startsWith("local.")) {
     // This won't pass validation...
   } else {
@@ -709,7 +738,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
 
   t = task "${base}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+    inputs.files fileTree(dir: "${buildDir}/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
 
@@ -795,8 +824,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['persistent-toc'] = true
   }
 
-  t = task "${base}.chunk"(type: SaxonXsltTask,
-                           dependsOn: ['makeXslt', "validate_${base}"]) {
+  t = task "${base}.chunk"(
+    type: SaxonXsltTask,
+    dependsOn: ['makeXslt', "validate_${base}"]
+  ) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
@@ -813,7 +844,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheet "${buildDir}/xslt/docbook.xsl"
     parameters(stylesheetParams)
 
-    //doFirst { 
+    //doFirst {
     //  println("Task ${base}.chunk: ${stylesheetParams}")
     //}
   }
@@ -826,8 +857,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['page-style'] = 'book'
   }
 
-  t = task "${base}.pdf.html"(type: SaxonXsltTask,
-                              dependsOn: ['makeXslt', "validate_${base}"]) {
+  t = task "${base}.pdf.html"(
+    type: SaxonXsltTask,
+    dependsOn: ['makeXslt', "validate_${base}"]
+  ) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file "${buildDir}/xslt/print.xsl"
@@ -926,7 +959,6 @@ task generateXSpecSources() {
 testDrivers.each { driver ->
   tasks.findByName(driver).dependsOn generateXSpecSources
   tasks.findByName(driver).dependsOn "makeXslt"
-  tasks.findByName(driver).dependsOn "copy_transform_checksums"
 }
 
 // Generate programlistingco/screeco results with all the possible stylings
@@ -979,7 +1011,9 @@ testDrivers.each { driver ->
         }
         generateXSpecSources.dependsOn g
 
-        Task t = task "${basename}.html"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+        Task t = task "${basename}.html"(
+          type: SaxonXsltTask, dependsOn: ['makeXslt']
+        ) {
           inputs.file "${buildDir}/xslt/docbook.xsl"
 
           pluginConfiguration "docbook"
@@ -995,7 +1029,10 @@ testDrivers.each { driver ->
         t.dependsOn g
         tasks.findByName("${source}.html").dependsOn t
 
-        t = task "${basename}.expected"(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+        t = task "${basename}.expected"(
+          type: SaxonXsltTask,
+          dependsOn: ['makeXslt']
+        ) {
           inputs.file "${buildDir}/xslt/xspec-driver.xsl"
 
           pluginConfiguration "docbook"
@@ -1059,149 +1096,24 @@ task makeVersion(type: SaxonXsltTask) {
   )
 }
 
-task makeParameterMaps(type: SaxonXsltTask) {
-  input "${projectDir}/src/main/xslt/param.xsl"
-  stylesheet "${projectDir}/tools/parameter-maps.xsl"
-  output "${buildDir}/xslt/parameter-maps.xsl"
-}
-
-task makeXslt(type: Copy,
-              dependsOn: ['copyResources', 'makeVersion', 'makeParameterMaps',
+task copyXslt(type: Copy,
+              dependsOn: ['copyResources', 'makeVersion',
                           'generateLocales', 'compileJava']) {
   from "${projectDir}/src/main/xslt"
   into "${buildDir}/xslt"
-  exclude "transforms/*.sef.xml"
+  exclude "param.xsl"
 }
 
-String bytesToHex(byte[] bytes) {
-  byte[] hex = "0123456789ABCDEF".getBytes(StandardCharsets.US_ASCII);
-  byte[] hexch = new byte[bytes.length * 2]
-  for (int pos = 0; pos < bytes.length; pos++) {
-    int b = bytes[pos] & 0xff
-    hexch[pos*2] = hex[b >>> 4]
-    hexch[pos*2+1] = hex[b & 0x0f]
-  }
-  return new String(hexch, StandardCharsets.UTF_8)
+task makeXslt(type: SaxonXsltTask, dependsOn: ["copyXslt"]) {
+  input "${projectDir}/src/guide/xml/ref-params.xml"
+  stylesheet "${projectDir}/tools/generate-parameters.xsl"
+  output "${buildDir}/xslt/param.xsl"
 }
 
-boolean compileFailed = false
-boolean copyUpdatedTransforms = false
-task "checksum_transforms"(
+task makeUriList(
+  dependsOn: ["makeXslt", "zipStageResources","zipStageDocker",
+              "zipStageXslt", "zipStageBin"]
 ) {
-  inputs.files fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl")
-  outputs.files "${buildDir}/transform-checksums.properties"
-
-  doLast {
-    PrintStream props = new PrintStream(checksum_transforms.outputs.getFiles().getSingleFile())
-    props.println("Computed.on=${DateTimeFormatter.ISO_INSTANT.format(Instant.now())}")
-    props.println("Computed.by=${System.getProperty('user.name')}")
-
-    fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each { xsl ->
-      // I'm using MD5 because it must be supported by the Java platform
-      // and I don't care about cryptographic security.
-      MessageDigest md = MessageDigest.getInstance("MD5");
-      md.update(Files.readAllBytes(xsl.toPath()))
-      String checksum = bytesToHex(md.digest())
-      String key = xsl.getName().substring(0, xsl.getName().length() - 4)
-      props.println("${key}=${checksum}")
-    }
-    props.close()
-  }
-}
-
-task copy_transform_checksums() {
-  inputs.files checksum_transforms.outputs.getFiles().getSingleFile()
-  outputs.files "${projectDir}/src/main/xslt/transforms/transform-checksums.properties"
-  doLast {
-    if (copyUpdatedTransforms) {
-      if (!compileFailed) {
-        copy {
-          into copy_transform_checksums.outputs.getFiles().getSingleFile().getParent()
-          from checksum_transforms.outputs.getFiles().getSingleFile().getParent()
-          include checksum_transforms.outputs.getFiles().getSingleFile().getName()
-        }
-      } else {
-        println("Not updating source checksums; compile failed!")
-      }
-    }
-  }
-}
-makeXslt.finalizedBy copy_transform_checksums
-
-fileTree(dir: "${projectDir}/src/main/xslt/transforms", include: "*.xsl").each { xsl -> 
-  String base = xsl.toString()
-  int pos = base.indexOf("/transforms/")
-  base = base.substring(pos+12)
-  base = base.substring(0, base.length() - 4)
-
-  Task t = task "compile_transform_${base}"(
-    dependsOn: [checksum_transforms]
-  ) {
-    inputs.files xsl
-    inputs.files checksum_transforms.outputs.getFiles().getSingleFile()
-    // Explicitly has no outputs.files so that it will run every time
-
-    boolean copySefFile = true
-
-    doFirst {
-      mkdir "${buildDir}/xslt/transforms"
-    }
-
-    doLast {
-      Properties current = new Properties()
-      current.load(new FileInputStream(checksum_transforms.outputs.getFiles().getSingleFile()))
-
-      Properties precompiled = new Properties()
-      precompiled.load(
-        new FileInputStream(
-          new File("${projectDir}/src/main/xslt/transforms/transform-checksums.properties")))
-
-      if (precompiled.getProperty(base) == null ||
-          !current.getProperty(base).equals(precompiled.getProperty(base))) {
-        copyUpdatedTransforms = true
-        println("Compile ${base}")
-        try {
-          javaexec {
-            classpath = configurations.projectImplementationClasspath
-            mainClass = "net.sf.saxon.Transform"
-            args "-xsl:${xsl}",
-              '-init:org.docbook.xsltng.extensions.Register',
-              "-export:${projectDir}/src/main/xslt/transforms/${base}.sef.xml",
-              "-target:HE",
-              "-relocate:on",
-              "-nogo"
-          }
-        } catch (Exception ex) {
-          println("Failed to compile ${base}")
-          copySefFile = false
-          compileFailed = true
-          delete "${projectDir}/src/main/xslt/transforms/${base}.sef.xml"
-          delete "${buildDir}/xslt/transforms/${base}.sef.xml"
-          if (requireCompileSuccess) {
-            throw new GradleException("Stylesheet compilation is required to succeed")
-          }
-        }
-      }
-    }
-    
-    doLast {
-      if (copySefFile) {
-        copy {
-          into "${buildDir}/xslt/transforms"
-          from "${projectDir}/src/main/xslt/transforms"
-          include "${base}.sef.xml"
-        }
-      } else {
-        println("Could not build SEF; not copying ${base}")
-      }
-    }
-  }
-  makeXslt.dependsOn t
-  copy_transform_checksums.dependsOn t
-}
-
-task makeUriList(dependsOn: ["makeXslt","zipStageResources","zipStageDocker",
-                             "zipStageXslt", "zipStageBin"]) {
   inputs.files fileTree("${buildDir}/xslt")
   inputs.files fileTree("${buildDir}/stage/zip")
   outputs.file "${buildDir}/resources/main/org/docbook/xsltng/etc/uris.xml"
@@ -1348,18 +1260,93 @@ task zipStagePygments() {
   }
 }
 
-task zipStageResources(type: Copy, dependsOn: ["zipStagePygments"]) {
-  from "${projectDir}/src/main/web"
-  include "css/**"
-  include "js/**"
-  into "${buildDir}/stage/zip/resources"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
+task compileSass() {
+  inputs.files fileTree("${projectDir}/src/main/scss")
+  outputs.files fileTree("${buildDir}/css")
+
+  doLast {
+    exec {
+      commandLine 'sass', '--style', 'expanded',
+        '--no-source-map', '--no-charset',
+        "${projectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.css",
+        "${projectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.css",
+        "${projectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.css",
+        "${projectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css"
     }
-    line
+  }
+
+  doLast {
+    exec {
+      commandLine 'sass', '--style', 'compressed',
+        '--no-source-map', '--no-charset',
+        "${projectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.min.css",
+        "${projectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.min.css",
+        "${projectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.min.css",
+        "${projectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css"
+    }
+  }
+
+  doLast {
+    ["docbook", "docbook-paged", "docbook-epub", "docbook-toc"].each { base ->
+      [".css", ".min.css"].each { ext ->
+        String fn = "${base}${ext}"
+        File css = new File("${buildDir}/css/${fn}")
+        def lines = []
+        def reader = new BufferedReader(new FileReader(css))
+        String line = null
+        while ((line = reader.readLine()) != null) {
+          lines.add(line)
+        }
+        reader.close()
+        def writer = new PrintStream(css)
+        writer.print("/")
+        writer.print("* ${xslTNGtitle} version ${xslTNGversion}, https://xsltng.docbook.org *")
+        if (ext == ".css") {
+          writer.println("/");
+        } else {
+          writer.print("/");
+        }
+        lines.each { ln ->
+          writer.println(ln);
+        }
+        writer.close();
+      }
+    }
+  }
+}
+
+task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
+  doLast {
+    copy {
+      from "${buildDir}/css"
+      into "${buildDir}/stage/zip/resources/css"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${projectDir}/src/main/web"
+      include "css/*.png"
+      into "${buildDir}/stage/zip/resources"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${projectDir}/src/main/web"
+      include "css/**"
+      include "js/**"
+      exclude "css/*.png"
+      into "${buildDir}/stage/zip/resources"
+      filter { String line ->
+        if (line.indexOf("@@") >= 0) {
+          line = line
+            .replace("@@TITLE@@", xslTNGtitle)
+            .replace("@@VERSION@@", xslTNGversion)
+        }
+        line
+      }
+    }
   }
 }
 
@@ -1417,8 +1404,9 @@ task zipStageDocker(type: Copy, dependsOn: ['copyDocker']) {
   into "${buildDir}/stage/zip/docker"
 }
 
-task zipStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList', 'zipStageXslt', "stageJar",
-                                                      "processResources"]) {
+task zipStageCatalog(
+  type: SaxonXsltTask,
+  dependsOn: ['makeUriList', 'zipStageXslt', "stageJar", "processResources"]) {
   input makeUriList.outputs.files.getSingleFile()
   stylesheet "${projectDir}/src/main/resources/org/docbook/xsltng/etc/make-catalog.xsl"
   output "${buildDir}/stage/zip/xslt/catalog.xml"
@@ -1478,10 +1466,12 @@ task dist(
 // ============================================================
 
 task explorer(type: SaxonXsltTask,
-              dependsOn: ['makeXslt', 'setupXsltExplorer', 'explorerResources']) {
+              dependsOn: ['makeXslt',
+                          'setupXsltExplorer', 'explorerResources']) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
   outputs.file("${buildDir}/docbook-xslTNG.xml")
 
+  pluginConfiguration "docbook"
   input "${buildDir}/xslt/docbook.xsl"
   stylesheet "${buildDir}/xsltexplorer-${xsltExplorerVersion}/xslt/explorer.xsl"
   output "${buildDir}/explorer/index.html"
@@ -1518,13 +1508,31 @@ task guideCustomResources(type: Copy) {
   into "${buildDir}/guide/"
 }
 
-task xincludeGuide(type: SaxonXsltTask, dependsOn: ['guideResources']) {
-  inputs.files fileTree(dir: "${projectDir}/src/guide/xml")
+task prepareToXIncludeGuideCopy(type: Copy) {
+  from "${projectDir}/src/guide/xml"
+  into "${buildDir}/tmp/guide"
+  exclude "ref-params.xml"
+}
+
+task prepareToXIncludeGuideTransform(type: SaxonXsltTask) {
+  inputs.files "${projectDir}/src/guide/xml/ref-params.xml"
+  inputs.files "${projectDir}/tools/generate-ref-params.xsl"
+  outputs.files "${buildDir}/tmp/guide/ref-params.xml"
+
+  input "${projectDir}/src/guide/xml/ref-params.xml"
+  stylesheet "${projectDir}/tools/generate-ref-params.xsl"
+  output "${buildDir}/tmp/guide/ref-params.xml"
+}
+
+task xincludeGuide(type: SaxonXsltTask,
+                   dependsOn: ['guideResources', 'prepareToXIncludeGuideCopy',
+                               'prepareToXIncludeGuideTransform']) {
+  inputs.files fileTree(dir: "${buildDir}/tmp/guide")
   inputs.file "${projectDir}/tools/xinclude.xsl"
 
   pluginConfiguration "docbook"
 
-  input "${projectDir}/src/guide/xml/guide.xml"
+  input "${buildDir}/tmp/guide/guide.xml"
   stylesheet "${projectDir}/tools/xinclude.xsl"
   output "${buildDir}/guide.xml"
 }
@@ -1554,7 +1562,7 @@ task guide(
   pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/guide.xsl"
-  output "${buildDir}/guide/out.html"
+  output "${buildDir}/guide/irrelevant-and-deleted-file.html"
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -1565,11 +1573,27 @@ task guide(
     'chunk': 'index.html',
     'chunk-output-base-uri': "${projectDir}/build/guide/"
   )
+
+  doLast {
+    delete "${buildDir}/guide/irrelevant-and-deleted-file.html"
+  }
+}
+
+task guide_fonts(
+  type: Copy
+) {
+  from "${projectDir}/src/guide/resources/fonts"
+  into "${buildDir}/guide/css/fonts"
+  include "**/*.ttf"
+  eachFile {
+    path = name
+  }
+  includeEmptyDirs = false
 }
 
 task "guide.pdf.html"(
   type: SaxonXsltTask,
-  dependsOn: ['makeXslt', 'validateGuide', 'explorer']
+  dependsOn: ['makeXslt', 'validateGuide', 'explorer', 'guide_fonts']
 ) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
   inputs.file "${buildDir}/docbook-xslTNG.xml"
@@ -1640,23 +1664,23 @@ task website(type: Copy, dependsOn: ['webGuide', 'webReport', 'webExplorer',
   // nop
 }
 
-task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {  
+task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {
   from "${buildDir}/guide"
   exclude "guide.xml"
   into "${buildDir}/website/guide"
 }
 
-task webExplorer(type: Copy, dependsOn: ['explorer']) {  
+task webExplorer(type: Copy, dependsOn: ['explorer']) {
   from "${buildDir}/explorer"
   into "${buildDir}/website/explorer"
 }
 
-task webReport(type: Copy, dependsOn: ['report']) {  
+task webReport(type: Copy, dependsOn: ['report']) {
   from "${buildDir}/report"
   into "${buildDir}/website/report"
 }
 
-task webResources(type: Copy, dependsOn: ['report']) {  
+task webResources(type: Copy, dependsOn: ['report']) {
   from "${projectDir}/src/website/resources/"
   into "${buildDir}/website"
   exclude "images/**"
@@ -1736,38 +1760,26 @@ task stageJar(
   dependsOn: ["makeXslt", "makeVersionProperties", "makeUriList", "jarStageCatalog",
               "zipStagePygments"]
 ) {
+  inputs.files fileTree(dir: "${projectDir}/buildSrc/build/classes/java/main")
+  inputs.files fileTree(dir: "${projectDir}/buildSrc/build/classes/java/groovy")
+  inputs.files fileTree(dir: "${buildDir}/stage/zip/resources")
+  inputs.files fileTree(dir: "${buildDir}/xslt")
+  outputs.files fileTree(dir: "${buildDir}/resources/main")
+
   doLast {
     copy {
       into "${buildDir}/resources/main"
       from "${projectDir}/buildSrc/build/classes/java/main"
     }
     copy {
-      into "${buildDir}/resources/main"
-      from "${projectDir}/buildSrc/build/classes/java/groovy"
-    }
-    copy {
-      into "${buildDir}/resources/main/org/docbook/xsltng/resources/css"
-      from ("${buildDir}/stage/zip/resources/css") {
-        include "pygments.css"
-      }
+      into "${buildDir}/resources/main/org/docbook/xsltng/resources"
+      from "${buildDir}/stage/zip/resources"
     }
     // Not ${buildDir}/classes/java/main because the jar task
     // picks those up automatically and we don't want duplicates
     copy {
       into "${buildDir}/resources/main/org/docbook/xsltng/xslt"
       from "${buildDir}/xslt"
-    }
-    copy {
-      into "${buildDir}/resources/main/org/docbook/xsltng/resources"
-      from "${projectDir}/src/main/web"
-      filter { String line ->
-        if (line.indexOf("@@") >= 0) {
-          line = line
-            .replace("@@TITLE@@", xslTNGtitle)
-            .replace("@@VERSION@@", xslTNGversion)
-        }
-        line
-      }
     }
   }
 }
@@ -1793,7 +1805,7 @@ jar {
     attributes "Class-Path": project.ext.runtimeClasspath \
               + " lib/XfoJavaCtl.jar lib/xep.jar lib/prince.jar"
   }
-  from "${buildDir}/stage/jar"
+  from "${buildDir}/resources/main"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -1867,6 +1879,172 @@ publishing {
 
 // ============================================================
 
+task epubGuideResources(
+  dependsOn: ["copyResources"]
+) {
+  inputs.files fileTree(dir: "${buildDir}/actual/css")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/fonts")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/css")
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/css")
+
+  doLast {
+    copy {
+      from "${buildDir}/actual/css"
+      into "${buildDir}/epub/OPS/css"
+      include "docbook-epub.css"
+      include "draft*.svg"
+      include "draft*.png"
+      include "pygments.css"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${projectDir}/src/guide/resources/css"
+      into "${buildDir}/epub/OPS/css"
+      include "guide-epub.css"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${projectDir}/src/guide/resources/fonts"
+      into "${buildDir}/epub/OPS/css/fonts"
+      include "**/*.ttf"
+      exclude "**/*ExtraBold*"
+      exclude "**/*SemiBold*"
+      exclude "**/*Light*"
+      exclude "**/*Thin*"
+      eachFile {
+        path = name
+      }
+      includeEmptyDirs = false
+    }
+  }
+}
+
+task epubGuideMedia(
+  dependsOn: ["epubGuideResources"]
+) {
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/css")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/media")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/media")
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/css") 
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/media")
+  outputs.file "${buildDir}/epub/manifest-extra.xml"
+
+  doLast {
+    copy {
+      into "${buildDir}/epub/OPS/css"
+      from "${projectDir}/src/guide/resources/css"
+      exclude "guide-paged.css"
+    }
+  }
+
+  doLast {
+    copy {
+      into "${buildDir}/epub/OPS/media"
+      from "${projectDir}/src/guide/resources/media"
+    }
+  }
+
+  doLast {
+    def m = new PrintStream(new File("${buildDir}/epub/manifest-extra.xml"))
+    m.println("<manifest xmlns='http://www.idpf.org/2007/opf'>")
+    fileTree(dir: "${buildDir}/epub/OPS",
+             includes: ["media/**", "css/**"]).each { rsrc ->
+      String href = rsrc.toString()
+      int pos = href.indexOf("/OPS/")
+      href = href.substring(pos+5)
+      String id = href.replaceAll("/", "_")
+
+      pos = href.lastIndexOf(".")
+      String ext = href.substring(pos+1)
+      String mediaType = "application/octet-stream"
+
+      if (epubMediaTypes[ext] != null) {
+        mediaType = epubMediaTypes[ext]
+      } else {
+        println("Warning: Unknown media type: ${href}")
+      }
+
+      m.print("<item id='id_${id}' href='${href}' media-type='${mediaType}'")
+      if (mediaType == 'image/svg') {
+        m.print(" fallback='id_${id.replaceAll('.svg$', '.png')}'")
+      }
+      if (mediaType.startsWith('image/') && href.startsWith('media/cover.')) {
+        m.print(" properties='cover-image'")
+      }
+      m.println("/>")
+    }
+    m.println("</manifest>")
+    m.close()
+  }
+}
+
+task epubGuideFormat(
+  type: SaxonXsltTask,
+  dependsOn: ['makeXslt', 'validateGuide', 'explorer', 'epubGuideMedia']
+) {
+  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
+  inputs.file "${buildDir}/guide/guide.xml"
+  outputs.files fileTree(dir: "${buildDir}/epub")
+
+  pluginConfiguration "docbook"
+  input "${buildDir}/guide/guide.xml"
+  stylesheet "${projectDir}/src/guide/xsl/epub.xsl"
+  output "${buildDir}/epub/mimetype"
+  parameters(
+    'mediaobject-input-base-uri': "file:${buildDir}/guide/",
+    'mediaobject-output-base-uri': './',
+    'profile-outputformat': 'online',
+    'chunk': 'titlepage.xhtml',
+    'chunk-output-base-uri': "${buildDir}/epub/",
+    'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
+    'bookVersion': guideVersion,
+    'xslTNGversion': xslTNGversion,
+    'pub-id': "xslTNG-guide-${guideVersion}",
+    'manifest-extra': "${buildDir}/epub/manifest-extra.xml"
+  )
+}
+
+task epubGuide(
+  dependsOn: ["epubGuideResources", "epubGuideMedia", "epubGuideFormat"]
+) {
+  inputs.files fileTree(dir: "${buildDir}/epub", exclude: "*.epub")
+  outputs.file "${buildDir}/epub/xslTNG-${guideVersion}.epub"
+
+  def epub_file = epubGuide.outputs.getFiles().getSingleFile().toString()
+
+  doLast {
+    delete epub_file
+  }
+
+  doLast {
+    exec {
+      workingDir "${buildDir}/epub"
+      commandLine "zip", "-q", "-X0", epub_file, "mimetype"
+    }
+  }
+
+  doLast {
+    exec {
+      workingDir "${buildDir}/epub"
+      commandLine "zip", "-q", "-rp", epub_file, "META-INF", "OPS"
+    }
+  }
+
+  doLast {
+    exec {
+      workingDir "${buildDir}/epub"
+      commandLine "epubcheck", epub_file
+    }
+  }
+}
+
+// ============================================================
+
 task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
   doFirst {
     if (dbsource = '') {
@@ -1899,9 +2077,23 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
   parameters(ssparams)
 }
 
+task xformtest(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  inputs.files fileTree("${buildDir}/xslt")
+  inputs.file "${projectDir}/test.xml"
+  outputs.file "${projectDir}/test.html"
+
+  pluginConfiguration "docbook"
+  input "${projectDir}/test.xml"
+  stylesheet "${buildDir}/xslt/docbook.xsl"
+  output "${projectDir}/test.html"
+  parameters(
+  )
+}
+
 task helloWorld() {
   doLast {
-    println('Hello, world: ' + xslTNGversion)
+    println('Hello, world')
+
 /*
     configurations.validateRuntime.each { path ->
       println("CP: ${path}")

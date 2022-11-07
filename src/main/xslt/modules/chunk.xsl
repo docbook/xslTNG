@@ -106,19 +106,32 @@
 <xsl:function name="f:chunk-filename" as="xs:string">
   <xsl:param name="node" as="element()"/>
 
+  <xsl:variable name="pi-filename" as="xs:string?">
+    <xsl:choose>
+      <xsl:when test="f:pi($node, 'filename')">
+        <xsl:sequence select="f:pi($node, 'filename')"/>
+      </xsl:when>
+      <xsl:when test="f:pi($node/db:info, 'filename')">
+        <xsl:sequence select="f:pi($node/db:info, 'filename')"/>
+      </xsl:when>
+      <!-- href is commonly used instead of filename -->
+      <xsl:when test="f:pi($node, 'href')">
+        <xsl:sequence select="f:pi($node, 'href')"/>
+      </xsl:when>
+      <xsl:when test="f:pi($node/db:info, 'href')">
+        <xsl:sequence select="f:pi($node/db:info, 'href')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="f:pi($node, 'filename')">
-      <xsl:sequence select="f:pi($node, 'filename')"/>
-    </xsl:when>
-    <xsl:when test="f:pi($node/db:info, 'filename')">
-      <xsl:sequence select="f:pi($node/db:info, 'filename')"/>
-    </xsl:when>
-    <!-- href is commonly used instead of filename -->
-    <xsl:when test="f:pi($node, 'href')">
-      <xsl:sequence select="f:pi($node, 'href')"/>
-    </xsl:when>
-    <xsl:when test="f:pi($node/db:info, 'href')">
-      <xsl:sequence select="f:pi($node/db:info, 'href')"/>
+    <xsl:when test="exists($pi-filename)">
+      <xsl:sequence select="if (contains($pi-filename, '.'))
+                            then $pi-filename
+                            else $pi-filename || $html-extension"/>
     </xsl:when>
     <xsl:when test="f:pi($node, 'basename')">
       <xsl:sequence select="f:pi($node, 'basename') || $html-extension"/>

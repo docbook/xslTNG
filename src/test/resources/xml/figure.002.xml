@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
-   <title>Article wrapper</title>
-   <para>This paragraph precedes the first figure. The following figure has
+<title>Unit test: article.002</title>
+
+<para>This paragraph precedes the first figure. The following figure has
 floatstyle="float".</para>
-   <figure floatstyle="float" xml:id="figduck1">
-      <title>The Duck</title>
-      <mediaobject>
-         <imageobject>
-            <imagedata format="PNG" fileref="../media/duck-small.png" align="center">
-               <info>
-                  <othercredit>
-                     <orgname>O'Reilly &amp; Associates/Dover Archives</orgname>
-                  </othercredit>
-               </info>
-            </imagedata>
-         </imageobject>
-         <textobject>
-            <phrase>The DocBook: TDG Duck</phrase>
-         </textobject>
-      </mediaobject>
-   </figure>
-   <para>This paragraph is between the figures. The following figure has
+
+<figure floatstyle="float" xml:id="figduck1">
+  <title>The Duck</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata format="PNG" fileref="../media/duck-small.png" align="center">
+        <info>
+          <othercredit>
+            <orgname>O'Reilly &amp; Associates/Dover Archives</orgname>
+          </othercredit>
+        </info>
+      </imagedata>
+    </imageobject>
+    <textobject>
+      <phrase>The DocBook: TDG Duck</phrase>
+    </textobject>
+  </mediaobject>
+</figure>
+
+<para>This paragraph is between the figures. The following figure has
 floatstyle="right".</para>
-   <figure floatstyle="right" xml:id="figduck2">
-      <title>The Duck</title>
-      <mediaobject>
-         <imageobject>
-            <imagedata format="PNG" fileref="../media/duck-small.png" align="center">
-               <info>
-                  <othercredit>
-                     <orgname>O'Reilly &amp; Associates/Dover Archives</orgname>
-                  </othercredit>
-               </info>
-            </imagedata>
-         </imageobject>
-         <textobject>
-            <phrase>The DocBook: TDG Duck</phrase>
-         </textobject>
-      </mediaobject>
-   </figure>
-   <para>This paragraph follows the figures.</para>
+
+<figure floatstyle="right" xml:id="figduck2">
+  <title>The Duck</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata format="PNG" fileref="../media/duck-small.png" align="center">
+        <info>
+          <othercredit>
+            <orgname>O'Reilly &amp; Associates/Dover Archives</orgname>
+          </othercredit>
+        </info>
+      </imagedata>
+    </imageobject>
+    <textobject>
+      <phrase>The DocBook: TDG Duck</phrase>
+    </textobject>
+  </mediaobject>
+</figure>
+
+<para>This paragraph follows the figures.</para>
+
 </article>

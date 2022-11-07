@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: calloutlist.005</title>
+
+<para>This image map uses <literal>other</literal> coordinates.
+The other coordinates it uses are <literal>html-rect</literal>,
+<literal>html-circle</literal>, and <literal>html-poly</literal>.
+These coordinates are simply copied into the image map.</para>
+
+<figure>
+    <title>Areas around a rectangle</title>
+
+    <mediaobject>
+      <imageobjectco>
+        <areaspec otherunits="imagemap" units="other">
+          <area coords="28,30,77,77" linkends="coLeftUpper"
+                units="other" otherunits="html-rect" xml:id="lu">
+            <alt>Left upper corner</alt>
+          </area>
+
+          <area coords="133,134,165,165" linkends="coRightLower" 
+                units="other" otherunits="html-rect" xml:id="rl">
+            <alt>Right lower corner</alt>
+          </area>
+
+          <area coords="100,100,25" linkends="coCenter" 
+                units="other" otherunits="html-circle" xml:id="c">
+            <alt>Center</alt>
+          </area>
+
+          <area coords="132,50,158,30,185,49,175,80,142,80" linkends="coPentagon" 
+                units="other" otherunits="html-poly" xml:id="pentagon">
+            <alt>Pentagon</alt>
+          </area>
+        </areaspec>
+
+        <imageobject>
+          <imagedata contentwidth="200" contentdepth="200"
+                     fileref="../media/box-circle.svg"/>
+        </imageobject>
+
+        <calloutlist>
+          <callout arearefs="lu" xml:id="coLeftUpper">
+            <para>Left upper corner</para>
+          </callout>
+
+          <callout arearefs="rl" xml:id="coRightLower">
+            <para>Right lower corner</para>
+          </callout>
+
+          <callout arearefs="c" xml:id="coCenter">
+            <para>Center</para>
+          </callout>
+
+          <callout arearefs="pentagon" xml:id="coPentagon">
+            <para>Right upper pentagon</para>
+          </callout>
+        </calloutlist>
+      </imageobjectco>
+    </mediaobject>
+  </figure>
+
+</article>

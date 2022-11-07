@@ -21,4 +21,9 @@
    <x:expect label="expect the footnotes to be rendered" href="../resources/expected/footnote.003.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming footnote.004">
+   <x:context href="../resources/xml/footnote.004.xml"/>
+   <x:expect label="expect the footnotes to be rendered" href="../resources/expected/footnote.004.html"/>
+</x:scenario>
+
 </x:description>

@@ -3,57 +3,12 @@
            version="5.0"
            xml:id="modes">
 <info>
-  <?db filename="modes.html"?>
+  <?db filename="modes"?>
   <title>Mode reference</title>
 </info>
 
-<refentry xml:id="m_acceptable-mediaobject">
-<?db filename="m_acceptable-mediaobject.html"?>
-<refmeta>
-<refentrytitle>m:acceptable-mediaobject</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/modes}acceptable-mediaobject</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>m:acceptable-mediaobject</refname>
-<refpurpose>Selects media objects for presentation</refpurpose>
-<refclass>mode</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>A <tag>mediaobject</tag> may contain several alternatives
-(different formats, for example, or different resolutions). The
-alternatives will be processed in the
-<mode>m:acceptable-mediaobject</mode> mode before presentation.
-This mode must either return the media object, if it’s appropriate for the
-rendering being produced, or the empty sequence, if it is not.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="m_acceptable-mediaobject-data">
-<?db filename="m_acceptable-mediaobject-data.html"?>
-<refmeta>
-<refentrytitle>m:acceptable-mediaobject-data</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/modes}acceptable-mediaobject-data</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>m:acceptable-mediaobject-data</refname>
-<refpurpose>Selects media object data elements that may be used</refpurpose>
-<refclass>mode</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Like the <mode>m:acceptable-mediaobject</mode> mode, this mode is used to
-determine which alternative media objects (in the case of this mode, the media object
-data elements, such as <tag>imagedata</tag>) should be considered.</para>
-<para>By default, this mode just compares the media object URI extension
-with the list of <parameter>mediaobject-exclude-extensions</parameter> and rejects
-elements that have URIs that match.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="m_annotation-content">
-<?db filename="m_annotation-content.html"?>
+<?db filename="m_annotation-content"?>
 <refmeta>
 <refentrytitle>m:annotation-content</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}annotation-content</refmiscinfo>
@@ -72,7 +27,7 @@ actual body of the annotation.</para>
 </refentry>
 
 <refentry xml:id="m_ansi">
-<?db filename="m_ansi.html"?>
+<?db filename="m_ansi"?>
 <refmeta>
 <refentrytitle>m:ansi</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}ansi</refmiscinfo>
@@ -97,7 +52,7 @@ and a non-tabular layout is being used.
 </refentry>
 
 <refentry xml:id="m_ansi-table">
-<?db filename="m_ansi-table.html"?>
+<?db filename="m_ansi-table"?>
 <refmeta>
 <refentrytitle>m:ansi-table</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}ansi-table</refmiscinfo>
@@ -122,7 +77,7 @@ and a table will be used for layout.
 </refentry>
 
 <refentry xml:id="m_attributes">
-<?db filename="m_attributes.html"?>
+<?db filename="m_attributes"?>
 <refmeta>
 <refentrytitle>m:attributes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}attributes</refmiscinfo>
@@ -142,7 +97,7 @@ obtained by processing the DocBook element in the <mode>m:attributes</mode> mode
 </refentry>
 
 <refentry xml:id="m_biblioentry">
-<?db filename="m_biblioentry.html"?>
+<?db filename="m_biblioentry"?>
 <refmeta>
 <refentrytitle>m:biblioentry</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}biblioentry</refmiscinfo>
@@ -163,7 +118,7 @@ and cooked</link>. The <tag>biblioentry</tag> form is the “raw” form. The
 </refentry>
 
 <refentry xml:id="m_bibliomixed">
-<?db filename="m_bibliomixed.html"?>
+<?db filename="m_bibliomixed"?>
 <refmeta>
 <refentrytitle>m:bibliomixed</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}bibliomixed</refmiscinfo>
@@ -184,7 +139,7 @@ and cooked</link>. The <tag>bibliomixed</tag> form is the “cooked” form. The
 </refentry>
 
 <refentry xml:id="m_callout-bug">
-<?db filename="m_callout-bug.html"?>
+<?db filename="m_callout-bug"?>
 <refmeta>
 <refentrytitle>m:callout-bug</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}callout-bug</refmiscinfo>
@@ -217,7 +172,7 @@ continues sequentially after the last callout number used in the preceding verba
 </refentry>
 
 <refentry xml:id="m_callout-link">
-<?db filename="m_callout-link.html"?>
+<?db filename="m_callout-link"?>
 <refmeta>
 <refentrytitle>m:callout-link</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}callout-link</refmiscinfo>
@@ -235,7 +190,7 @@ point in the listing or on the image. This mode is used to produce those links.<
 </refentry>
 
 <refentry xml:id="m_chunk-cleanup">
-<?db filename="m_chunk-cleanup.html"?>
+<?db filename="m_chunk-cleanup"?>
 <refmeta>
 <refentrytitle>m:chunk-cleanup</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-cleanup</refmiscinfo>
@@ -257,7 +212,7 @@ See <xref linkend="chunking"/>.
 </refentry>
 
 <refentry xml:id="m_chunk-filename">
-<?db filename="m_chunk-filename.html"?>
+<?db filename="m_chunk-filename"?>
 <refmeta>
 <refentrytitle>m:chunk-filename</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-filename</refmiscinfo>
@@ -276,7 +231,7 @@ to obtain the filename for that chunk.</para>
 </refentry>
 
 <refentry xml:id="m_chunk-output">
-<?db filename="m_chunk-output.html"?>
+<?db filename="m_chunk-output"?>
 <refmeta>
 <refentrytitle>m:chunk-output</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-output</refmiscinfo>
@@ -295,7 +250,7 @@ last minute adjustments and produces the individual chunk documents.</para>
 </refentry>
 
 <refentry xml:id="m_chunk-title">
-<?db filename="m_chunk-title.html"?>
+<?db filename="m_chunk-title"?>
 <refmeta>
 <refentrytitle>m:chunk-title</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-title</refmiscinfo>
@@ -316,7 +271,7 @@ the heading in this mode. This mode is responsible for removing markup from the 
 </refentry>
 
 <refentry xml:id="m_chunk-write">
-<?db filename="m_chunk-write.html"?>
+<?db filename="m_chunk-write"?>
 <refmeta>
 <refentrytitle>m:chunk-write</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}chunk-write</refmiscinfo>
@@ -336,7 +291,7 @@ creates XSL result documents for each chunk.
 </refentry>
 
 <refentry xml:id="m_copyright-years">
-<?db filename="m_copyright-years.html"?>
+<?db filename="m_copyright-years"?>
 <refmeta>
 <refentrytitle>m:copyright-years</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}copyright-years</refmiscinfo>
@@ -358,7 +313,7 @@ and <varname>copyright-collapse-years</varname>.</para>
 </refentry>
 
 <refentry xml:id="m_crossref">
-<?db filename="m_crossref.html"?>
+<?db filename="m_crossref"?>
 <refmeta>
 <refentrytitle>m:crossref</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref</refmiscinfo>
@@ -375,7 +330,7 @@ and <varname>copyright-collapse-years</varname>.</para>
 </refentry>
 
 <refentry xml:id="m_crossref-inherit-separator">
-<?db filename="m_crossref-inherit-separator.html"?>
+<?db filename="m_crossref-inherit-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-inherit-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-inherit-separator</refmiscinfo>
@@ -394,7 +349,7 @@ text that should follow the element when an inherited reference is used.
 </refentry>
 
 <refentry xml:id="m_crossref-label">
-<?db filename="m_crossref-label.html"?>
+<?db filename="m_crossref-label"?>
 <refmeta>
 <refentrytitle>m:crossref-label</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-label</refmiscinfo>
@@ -413,7 +368,7 @@ label in a cross-reference.
 </refentry>
 
 <refentry xml:id="m_crossref-label-separator">
-<?db filename="m_crossref-label-separator.html"?>
+<?db filename="m_crossref-label-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-label-separator</refmiscinfo>
@@ -431,7 +386,7 @@ separator between a label and what follows it in a cross-reference.</para>
 </refentry>
 
 <refentry xml:id="m_crossref-number">
-<?db filename="m_crossref-number.html"?>
+<?db filename="m_crossref-number"?>
 <refmeta>
 <refentrytitle>m:crossref-number</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-number</refmiscinfo>
@@ -449,7 +404,7 @@ number in a cross-reference.</para>
 </refentry>
 
 <refentry xml:id="m_crossref-number-separator">
-<?db filename="m_crossref-number-separator.html"?>
+<?db filename="m_crossref-number-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-number-separator</refmiscinfo>
@@ -467,7 +422,7 @@ separator between a number and what follows it in a cross-reference.</para>
 </refentry>
 
 <refentry xml:id="m_crossref-prefix">
-<?db filename="m_crossref-prefix.html"?>
+<?db filename="m_crossref-prefix"?>
 <refmeta>
 <refentrytitle>m:crossref-prefix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-prefix</refmiscinfo>
@@ -485,7 +440,7 @@ that precedes a cross reference.</para>
 </refentry>
 
 <refentry xml:id="m_crossref-suffix">
-<?db filename="m_crossref-suffix.html"?>
+<?db filename="m_crossref-suffix"?>
 <refmeta>
 <refentrytitle>m:crossref-suffix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-suffix</refmiscinfo>
@@ -503,7 +458,7 @@ that follows a cross reference.</para>
 </refentry>
 
 <refentry xml:id="m_crossref-title">
-<?db filename="m_crossref-title.html"?>
+<?db filename="m_crossref-title"?>
 <refmeta>
 <refentrytitle>m:crossref-title</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-title</refmiscinfo>
@@ -521,7 +476,7 @@ that follows a cross reference.</para>
 </refentry>
 
 <refentry xml:id="m_details">
-<?db filename="m_details.html"?>
+<?db filename="m_details"?>
 <refmeta>
 <refentrytitle>m:details</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}details</refmiscinfo>
@@ -539,7 +494,7 @@ description.</para>
 </refentry>
 
 <refentry xml:id="m_details-attribute">
-<?db filename="m_details-attribute.html"?>
+<?db filename="m_details-attribute"?>
 <refmeta>
 <refentrytitle>m:details-attribute</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}details-attribute</refmiscinfo>
@@ -558,7 +513,7 @@ object.</para>
 </refentry>
 
 <refentry xml:id="m_docbook">
-<?db filename="m_docbook.html"?>
+<?db filename="m_docbook"?>
 <refmeta>
 <refentrytitle>m:docbook</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}docbook</refmiscinfo>
@@ -578,7 +533,7 @@ that those templates are defined in the <mode>m:docbook</mode> mode.</para>
 </refentry>
 
 <refentry xml:id="m_footnote-number">
-<?db filename="m_footnote-number.html"?>
+<?db filename="m_footnote-number"?>
 <refmeta>
 <refentrytitle>m:footnote-number</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}footnote-number</refmiscinfo>
@@ -597,7 +552,7 @@ renders the footnote number (or other symbol) associated with that footnote.
 </refentry>
 
 <refentry xml:id="m_footnotes">
-<?db filename="m_footnotes.html"?>
+<?db filename="m_footnotes"?>
 <refmeta>
 <refentrytitle>m:footnotes</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}footnotes</refmiscinfo>
@@ -616,7 +571,7 @@ footnote markers. The “chunk cleanup” pass moves them to an appropriate loca
 </refentry>
 
 <refentry xml:id="m_generate-titlepage">
-<?db filename="m_generate-titlepage.html"?>
+<?db filename="m_generate-titlepage"?>
 <refmeta>
 <refentrytitle>m:generate-titlepage</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}generate-titlepage</refmiscinfo>
@@ -638,7 +593,7 @@ consists of nothing more than a single header element.
 </refentry>
 
 <refentry xml:id="m_headline">
-<?db filename="m_headline.html"?>
+<?db filename="m_headline"?>
 <refmeta>
 <refentrytitle>m:headline</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline</refmiscinfo>
@@ -657,7 +612,7 @@ and other places.</para>
 </refentry>
 
 <refentry xml:id="m_headline-label">
-<?db filename="m_headline-label.html"?>
+<?db filename="m_headline-label"?>
 <refmeta>
 <refentrytitle>m:headline-label</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-label</refmiscinfo>
@@ -676,7 +631,7 @@ label in a headline.
 </refentry>
 
 <refentry xml:id="m_headline-label-separator">
-<?db filename="m_headline-label-separator.html"?>
+<?db filename="m_headline-label-separator"?>
 <refmeta>
 <refentrytitle>m:headline-label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-label-separator</refmiscinfo>
@@ -696,7 +651,7 @@ in a headline.
 </refentry>
 
 <refentry xml:id="m_headline-number">
-<?db filename="m_headline-number.html"?>
+<?db filename="m_headline-number"?>
 <refmeta>
 <refentrytitle>m:headline-number</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-number</refmiscinfo>
@@ -715,7 +670,7 @@ in a headline.</para>
 </refentry>
 
 <refentry xml:id="m_headline-number-separator">
-<?db filename="m_headline-number-separator.html"?>
+<?db filename="m_headline-number-separator"?>
 <refmeta>
 <refentrytitle>m:headline-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-number-separator</refmiscinfo>
@@ -735,7 +690,7 @@ in a headline.
 </refentry>
 
 <refentry xml:id="m_headline-prefix">
-<?db filename="m_headline-prefix.html"?>
+<?db filename="m_headline-prefix"?>
 <refmeta>
 <refentrytitle>m:headline-prefix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-prefix</refmiscinfo>
@@ -755,7 +710,7 @@ a headline.
 </refentry>
 
 <refentry xml:id="m_headline-suffix">
-<?db filename="m_headline-suffix.html"?>
+<?db filename="m_headline-suffix"?>
 <refmeta>
 <refentrytitle>m:headline-suffix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-suffix</refmiscinfo>
@@ -775,7 +730,7 @@ a headline.
 </refentry>
 
 <refentry xml:id="m_headline-title">
-<?db filename="m_headline-title.html"?>
+<?db filename="m_headline-title"?>
 <refmeta>
 <refentrytitle>m:headline-title</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-title</refmiscinfo>
@@ -795,7 +750,7 @@ in a headline.
 </refentry>
 
 <refentry xml:id="m_highlight-options">
-<?db filename="m_highlight-options.html"?>
+<?db filename="m_highlight-options"?>
 <refmeta>
 <refentrytitle>m:highlight-options</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}highlight-options</refmiscinfo>
@@ -815,7 +770,7 @@ The default template returns the <att>language</att> attribute if one is present
 </refentry>
 
 <refentry xml:id="m_html-body-script">
-<?db filename="m_html-body-script.html"?>
+<?db filename="m_html-body-script"?>
 <refmeta>
 <refentrytitle>m:html-body-script</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}html-body-script</refmiscinfo>
@@ -840,7 +795,7 @@ point. See also <mode>m:html-head-script</mode>.</para>
 </refentry>
 
 <refentry xml:id="m_html-head">
-<?db filename="m_html-head.html"?>
+<?db filename="m_html-head"?>
 <refmeta>
 <refentrytitle>m:html-head</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}html-head</refmiscinfo>
@@ -897,7 +852,7 @@ occur near the end of the HTML
 </refentry>
 
 <refentry xml:id="m_html-head-last">
-<?db filename="m_html-head-last.html"?>
+<?db filename="m_html-head-last"?>
 <refmeta>
 <refentrytitle>m:html-head-last</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}html-head-last</refmiscinfo>
@@ -918,7 +873,7 @@ point.</para>
 </refentry>
 
 <refentry xml:id="m_html-head-links">
-<?db filename="m_html-head-links.html"?>
+<?db filename="m_html-head-links"?>
 <refmeta>
 <refentrytitle>m:html-head-links</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}html-head-links</refmiscinfo>
@@ -939,7 +894,7 @@ point.</para>
 </refentry>
 
 <refentry xml:id="m_html-head-script">
-<?db filename="m_html-head-script.html"?>
+<?db filename="m_html-head-script"?>
 <refmeta>
 <refentrytitle>m:html-head-script</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}html-head-script</refmiscinfo>
@@ -960,7 +915,7 @@ point.</para>
 </refentry>
 
 <refentry xml:id="m_htmltable">
-<?db filename="m_htmltable.html"?>
+<?db filename="m_htmltable"?>
 <refmeta>
 <refentrytitle>m:htmltable</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}htmltable</refmiscinfo>
@@ -981,8 +936,27 @@ back to <mode>m:docbook</mode> mode.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_imagemap">
+<?db filename="m_imagemap"?>
+<refmeta>
+<refentrytitle>m:imagemap</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}imagemap</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:imagemap</refname>
+<refpurpose>Construct an HTML imagemap</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>imageobjectco</tag> element is processed in this mode to construct
+an HTML image
+<tag namespace="http://www.w3.org/1999/xhtml">map</tag>.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_index-div">
-<?db filename="m_index-div.html"?>
+<?db filename="m_index-div"?>
 <refmeta>
 <refentrytitle>m:index-div</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}index-div</refmiscinfo>
@@ -1005,7 +979,7 @@ in the <mode>m:index-div</mode> mode.</para>
 </refentry>
 
 <refentry xml:id="m_index-primary">
-<?db filename="m_index-primary.html"?>
+<?db filename="m_index-primary"?>
 <refmeta>
 <refentrytitle>m:index-primary</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}index-primary</refmiscinfo>
@@ -1024,7 +998,7 @@ entry.</para>
 </refentry>
 
 <refentry xml:id="m_index-secondary">
-<?db filename="m_index-secondary.html"?>
+<?db filename="m_index-secondary"?>
 <refmeta>
 <refentrytitle>m:index-secondary</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}index-secondary</refmiscinfo>
@@ -1043,7 +1017,7 @@ entry.</para>
 </refentry>
 
 <refentry xml:id="m_index-see">
-<?db filename="m_index-see.html"?>
+<?db filename="m_index-see"?>
 <refmeta>
 <refentrytitle>m:index-see</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}index-see</refmiscinfo>
@@ -1063,7 +1037,7 @@ processed in <mode>m:index-see</mode> mode to output the cross-reference.
 </refentry>
 
 <refentry xml:id="m_index-seealso">
-<?db filename="m_index-seealso.html"?>
+<?db filename="m_index-seealso"?>
 <refmeta>
 <refentrytitle>m:index-seealso</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}index-seealso</refmiscinfo>
@@ -1083,7 +1057,7 @@ processed in <mode>m:index-seealso</mode> mode to output the cross-reference.
 </refentry>
 
 <refentry xml:id="m_index-tertiary">
-<?db filename="m_index-tertiary.html"?>
+<?db filename="m_index-tertiary"?>
 <refmeta>
 <refentrytitle>m:index-tertiary</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}index-tertiary</refmiscinfo>
@@ -1102,7 +1076,7 @@ entry.</para>
 </refentry>
 
 <refentry xml:id="m_kr">
-<?db filename="m_kr.html"?>
+<?db filename="m_kr"?>
 <refmeta>
 <refentrytitle>m:kr</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}kr</refmiscinfo>
@@ -1127,7 +1101,7 @@ and a non-tabular layout is being used.
 </refentry>
 
 <refentry xml:id="m_kr-args">
-<?db filename="m_kr-args.html"?>
+<?db filename="m_kr-args"?>
 <refmeta>
 <refentrytitle>m:kr-args</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}kr-args</refmiscinfo>
@@ -1145,7 +1119,7 @@ in th K&amp;R style. See <parameter>funcsynopsis-default-style</parameter>.</par
 </refentry>
 
 <refentry xml:id="m_kr-table">
-<?db filename="m_kr-table.html"?>
+<?db filename="m_kr-table"?>
 <refmeta>
 <refentrytitle>m:kr-table</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}kr-table</refmiscinfo>
@@ -1170,7 +1144,7 @@ and a table will be used for layout.
 </refentry>
 
 <refentry xml:id="m_kr-table-args">
-<?db filename="m_kr-table-args.html"?>
+<?db filename="m_kr-table-args"?>
 <refmeta>
 <refentrytitle>m:kr-table-args</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}kr-table-args</refmiscinfo>
@@ -1190,7 +1164,7 @@ the function arguments.
 </refentry>
 
 <refentry xml:id="m_link">
-<?db filename="m_link.html"?>
+<?db filename="m_link"?>
 <refmeta>
 <refentrytitle>m:link</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}link</refmiscinfo>
@@ -1210,7 +1184,7 @@ a link around them if they specify an <att>xlink:href</att>.
 </refentry>
 
 <refentry xml:id="m_list-of-equations">
-<?db filename="m_list-of-equations.html"?>
+<?db filename="m_list-of-equations"?>
 <refmeta>
 <refentrytitle>m:list-of-equations</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-equations</refmiscinfo>
@@ -1231,7 +1205,7 @@ produce that list.
 </refentry>
 
 <refentry xml:id="m_list-of-examples">
-<?db filename="m_list-of-examples.html"?>
+<?db filename="m_list-of-examples"?>
 <refmeta>
 <refentrytitle>m:list-of-examples</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-examples</refmiscinfo>
@@ -1252,7 +1226,7 @@ produce that list.
 </refentry>
 
 <refentry xml:id="m_list-of-figures">
-<?db filename="m_list-of-figures.html"?>
+<?db filename="m_list-of-figures"?>
 <refmeta>
 <refentrytitle>m:list-of-figures</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-figures</refmiscinfo>
@@ -1273,7 +1247,7 @@ produce that list.
 </refentry>
 
 <refentry xml:id="m_list-of-procedures">
-<?db filename="m_list-of-procedures.html"?>
+<?db filename="m_list-of-procedures"?>
 <refmeta>
 <refentrytitle>m:list-of-procedures</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-procedures</refmiscinfo>
@@ -1294,7 +1268,7 @@ produce that list.
 </refentry>
 
 <refentry xml:id="m_list-of-tables">
-<?db filename="m_list-of-tables.html"?>
+<?db filename="m_list-of-tables"?>
 <refmeta>
 <refentrytitle>m:list-of-tables</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-tables</refmiscinfo>
@@ -1314,8 +1288,45 @@ produce that list.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_mediaobject-info">
+<?db filename="m_mediaobject-info"?>
+<refmeta>
+<refentrytitle>m:mediaobject-info</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-info</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-info</refname>
+<refpurpose>Compute properties for a media object</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The media object elements are processed in this mode to extract
+their properties (input and output URIs, content types, etc.).
+See <xref linkend="processing-mediaobjects"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_mediaobject-uris">
+<?db filename="m_mediaobject-uris"?>
+<refmeta>
+<refentrytitle>m:mediaobject-uris</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-uris</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-uris</refname>
+<refpurpose>Compute URIs for media objects</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The media object elements are processed in this mode to extract
+their input and output URIs.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_production-number">
-<?db filename="m_production-number.html"?>
+<?db filename="m_production-number"?>
 <refmeta>
 <refentrytitle>m:production-number</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}production-number</refmiscinfo>
@@ -1333,27 +1344,8 @@ produce that list.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_profile">
-<?db filename="m_profile.html"?>
-<refmeta>
-<refentrytitle>m:profile</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/modes}profile</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>m:profile</refname>
-<refpurpose>Mode for document profiling</refpurpose>
-<refclass>mode</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>All of the profile processing (see <xref linkend="profiling"/>) is done
-in this mode.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="m_pygments-options">
-<?db filename="m_pygments-options.html"?>
+<?db filename="m_pygments-options"?>
 <refmeta>
 <refentrytitle>m:pygments-options</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}pygments-options</refmiscinfo>
@@ -1372,7 +1364,7 @@ options for the Pygments process.</para>
 </refentry>
 
 <refentry xml:id="m_revhistory-list">
-<?db filename="m_revhistory-list.html"?>
+<?db filename="m_revhistory-list"?>
 <refmeta>
 <refentrytitle>m:revhistory-list</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}revhistory-list</refmiscinfo>
@@ -1392,7 +1384,7 @@ to render it as a list.
 </refentry>
 
 <refentry xml:id="m_revhistory-table">
-<?db filename="m_revhistory-table.html"?>
+<?db filename="m_revhistory-table"?>
 <refmeta>
 <refentrytitle>m:revhistory-table</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}revhistory-table</refmiscinfo>
@@ -1411,7 +1403,7 @@ to render it as a list.</para>
 </refentry>
 
 <refentry xml:id="m_seglist-table">
-<?db filename="m_seglist-table.html"?>
+<?db filename="m_seglist-table"?>
 <refmeta>
 <refentrytitle>m:seglist-table</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}seglist-table</refmiscinfo>
@@ -1430,7 +1422,7 @@ mode to generate the table.</para>
 </refentry>
 
 <refentry xml:id="m_segtitle-in-seg">
-<?db filename="m_segtitle-in-seg.html"?>
+<?db filename="m_segtitle-in-seg"?>
 <refmeta>
 <refentrytitle>m:segtitle-in-seg</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}segtitle-in-seg</refmiscinfo>
@@ -1449,7 +1441,7 @@ processed once for each segment. This processing occurs in the
 </refentry>
 
 <refentry xml:id="m_synopfragment-bug">
-<?db filename="m_synopfragment-bug.html"?>
+<?db filename="m_synopfragment-bug"?>
 <refmeta>
 <refentrytitle>m:synopfragment-bug</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}synopfragment-bug</refmiscinfo>
@@ -1473,7 +1465,7 @@ that mark.
 </refentry>
 
 <refentry xml:id="m_synopsis">
-<?db filename="m_synopsis.html"?>
+<?db filename="m_synopsis"?>
 <refmeta>
 <refentrytitle>m:synopsis</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}synopsis</refmiscinfo>
@@ -1491,7 +1483,7 @@ that mark.
 </refentry>
 
 <refentry xml:id="m_title">
-<?db filename="m_title.html"?>
+<?db filename="m_title"?>
 <refmeta>
 <refentrytitle>m:title</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}title</refmiscinfo>
@@ -1509,7 +1501,7 @@ or cross references.</para>
 </refentry>
 
 <refentry xml:id="m_titlepage">
-<?db filename="m_titlepage.html"?>
+<?db filename="m_titlepage"?>
 <refmeta>
 <refentrytitle>m:titlepage</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}titlepage</refmiscinfo>
@@ -1527,7 +1519,7 @@ produce the text that will appear on the title page.</para>
 </refentry>
 
 <refentry xml:id="m_to-uppercase">
-<?db filename="m_to-uppercase.html"?>
+<?db filename="m_to-uppercase"?>
 <refmeta>
 <refentrytitle>m:to-uppercase</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}to-uppercase</refmiscinfo>
@@ -1548,7 +1540,7 @@ the upper-case name.
 </refentry>
 
 <refentry xml:id="m_toc">
-<?db filename="m_toc.html"?>
+<?db filename="m_toc"?>
 <refmeta>
 <refentrytitle>m:toc</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}toc</refmiscinfo>
@@ -1577,7 +1569,7 @@ constructing a Table of Contents (or, more generally, any list of elements).
 </refentry>
 
 <refentry xml:id="m_toc-entry">
-<?db filename="m_toc-entry.html"?>
+<?db filename="m_toc-entry"?>
 <refmeta>
 <refentrytitle>m:toc-entry</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}toc-entry</refmiscinfo>

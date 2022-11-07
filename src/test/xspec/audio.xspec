@@ -11,4 +11,9 @@
    <x:expect label="expect the player to be rendered" href="../resources/expected/audioobject.001.html"/>
 </x:scenario>
 
+<x:scenario label="When converting audioobject.002">
+   <x:context href="../resources/xml/audioobject.002.xml"/>
+   <x:expect label="expect the player to be rendered" href="../resources/expected/audioobject.002.html"/>
+</x:scenario>
+
 </x:description>

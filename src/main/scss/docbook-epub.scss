@@ -1,0 +1,16 @@
+@use 'fonts-epub';
+@use 'media-all';
+@use 'media-screen';
+@use 'xlink';
+@use 'oxy-markup';
+
+/* The background color doesn't work the way I expect in epub;
+   so turn it off for now. */
+:root {
+    --background-color: inherit;
+}
+
+/* The border looks awful in an EPUB */
+.book > header {
+    border: none;
+}

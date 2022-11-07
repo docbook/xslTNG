@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit test: videoobject.002</title>
+
+   <para>A test for the <tag>videoobject</tag>.</para>
+
+   <mediaobject>
+     <videoobject>
+       <videodata fileref="../media/spinning-top.webm"/>
+       <videodata fileref="../media/spinning-top.mp4"/>
+     </videoobject>
+   </mediaobject>
+</article>
