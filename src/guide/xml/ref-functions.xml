@@ -7,6 +7,25 @@
 <title>Function reference</title>
 </info>
 
+<refentry xml:id="f_mediaobject-viewport">
+<?db filename="f_mediaobject-viewport"?>
+<refmeta>
+<refentrytitle>f:mediaobject-viewport</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-viewport#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-viewport</refname>
+<refpurpose>Construct the “viewport” for media objects</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If your DocBook markup for media objects includes any of the size or scaling
+adjustment attributes, this function is called to construct the HTML markup that
+implements those adjustments.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_absolute-length">
 <?db filename="f_absolute-length"?>
 <refmeta>
@@ -318,16 +337,19 @@ returns a length with no magnitude or units.
 it <link xlink:href="https://en.wikipedia.org/wiki/Barleycorn_(unit)">to
 Wikipedia</link> to explain the details. Just looking at the chart of
 imperial units makes me want to add them all!</para>
+
 <mediaobject>
 <alt>English imperial lengths</alt>
 <imageobject>
 <imagedata fileref="media/English_Length_Units_Graph.svg"/>
+<imagedata fileref="media/English_Length_Units_Graph.png"/>
 </imageobject>
 <textobject>
 <para>A graph showing the derivations of English imperial measurements: 12 inches
 to the foot, 3 feet to the yard, etc.</para>
 </textobject>
 </mediaobject>
+
 <para>Image credit: 42CrMo4, Christoph Päper</para>
 </annotation>
 </refsection>
@@ -825,6 +847,7 @@ is specified for the object, the empty sequence is returned.</para>
 <refmeta>
 <refentrytitle>f:object-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}object-properties#1</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}object-properties#2</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:object-properties</refname>
@@ -1143,33 +1166,6 @@ For a discussion of units, see <xref linkend="units"/>.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_resolve-object-uri">
-<?db filename="f_resolve-object-uri"?>
-<refmeta>
-<refentrytitle>f:resolve-object-uri</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}resolve-object-uri#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:resolve-object-uri</refname>
-<refpurpose>Returns the (relative) path to a <tag>mediaobject</tag></refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Working out the correct URI for a media objects (images, videos, audio)
-can be quite complicated. For the author, it may be useful or necessary that the
-URI in the <att>fileref</att> attribute correctly point to the object at authoring
-time. But that URI may not be correct for the generated HTML. In particular, authors
-may put source files in different directories, media objects may be stored in a common
-location for several documents even though those documents are published in different
-locations, etc.</para>
-<para>The <function>f:resolve-object-uri</function> takes the URI of the media
-object as it appears in the source and attempts to resolve that into an appropriate
-URI for the generated HTML.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_section">
 <?db filename="f_section"?>
 <refmeta>
@@ -1204,54 +1200,6 @@ element.</para>
 <title>Description</title>
 <para>Returns the section depth of a node, that is, how many section elements
 are among its ancestors.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="f_select-mediaobject">
-<?db filename="f_select-mediaobject"?>
-<refmeta>
-<refentrytitle>f:select-mediaobject</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:select-mediaobject</refname>
-<refpurpose>Select a media object for presentation</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This function takes a sequence of media objects
-(<tag>imageobject</tag>, <tag>videoobject</tag>, etc.) and returns one
-for presentation. It processes each element in
-<mode>m:acceptable-mediaobject</mode> mode. If at least one object is
-deemed acceptable, the first acceptable object is returned. If none
-are acceptable, the first object is returned.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="f_select-mediaobject-data">
-<?db filename="f_select-mediaobject-data"?>
-<refmeta>
-<refentrytitle>f:select-mediaobject-data</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject-data#1</refmiscinfo>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}select-mediaobject-data#2</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:select-mediaobject-data</refname>
-<refpurpose>Selects an appropriate data element for a media object</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Once a media object has been selected, one of its data elements
-has to be selected. This function is responsible for making that
-selection. It processes each of the data elements in
-<mode>m:acceptable-mediaobject-data</mode> mode and returns the first
-acceptable item.</para>
-<para>If no acceptable items are found, the function will return the
-empty sequence if <code>$force</code> is false. If <code>$force</code>
-is true, the first data element will be returned, even though it was not
-deemed “acceptable”.</para>
 </refsection>
 </refentry>
 

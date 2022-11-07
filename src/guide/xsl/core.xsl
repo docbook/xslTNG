@@ -74,9 +74,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="css/guide.css"/>
   <link rel="stylesheet" href="css/guide-online.css"/>
-  <link rel="shortcut icon" href="media/xsltng-icon.png" />
-  <script type="text/javascript"
-          src="https://kit.fontawesome.com/c94d537c36.js" crossorigin="anonymous"/>
+  <xsl:choose>
+    <xsl:when test="$epub">
+      <link rel="stylesheet" href="css/guide-epub.css"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <link rel="shortcut icon" href="media/xsltng-icon.png" />
+      <script type="text/javascript"
+              src="https://kit.fontawesome.com/c94d537c36.js" crossorigin="anonymous"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:book" mode="m:docbook">

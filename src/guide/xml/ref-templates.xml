@@ -7,6 +7,25 @@
   <title>Template reference</title>
 </info>
 
+<refentry xml:id="t_audio-fallback">
+<?db filename="t_audio-fallback"?>
+<refmeta>
+<refentrytitle>t:audio-fallback</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}audio-fallback</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:audio-fallback</refname>
+<refpurpose>Generate fallback for audio</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template is called to generate fallback for an 
+<tag namespace="http://www.w3.org/1999/xhtml">audio</tag> element.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="t_biblioentry">
 <?db filename="t_biblioentry"?>
 <refmeta>
@@ -157,25 +176,6 @@ it appears.
 </refsection>
 </refentry>
 
-<refentry xml:id="t_imagemap">
-<?db filename="t_imagemap"?>
-<refmeta>
-<refentrytitle>t:imagemap</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/templates}imagemap</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>t:imagemap</refname>
-<refpurpose>Process image map areas in an <tag>imageobjectco</tag></refpurpose>
-<refclass>template</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>If callouts are provided for an image with <tag>imageobjectco</tag>,
-the <template>t:imagemap</template> template is called to transform the areas into
-an HTML image map.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="t_index-zone-reference">
 <?db filename="t_index-zone-reference"?>
 <refmeta>
@@ -245,6 +245,26 @@ the element’s content.</para>
 </listitem>
 </varlistentry>
 </variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_mediaobject-img">
+<?db filename="t_mediaobject-img"?>
+<refmeta>
+<refentrytitle>t:mediaobject-img</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}mediaobject-img</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:mediaobject-img</refname>
+<refpurpose>Generate a mediaobject img</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template is called to generate the
+<tag namespace="http://www.w3.org/1999/xhtml">img</tag> element for
+a media object.
+</para>
 </refsection>
 </refentry>
 
@@ -573,6 +593,25 @@ to process footnotes at the bottom of a table.</para>
 <title>Description</title>
 <para>This template generates the top-of-page <tag>nav</tag> element. When
 chunking is performed, this should provide links between pages.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="t_video-fallback">
+<?db filename="t_video-fallback"?>
+<refmeta>
+<refentrytitle>t:video-fallback</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}video-fallback</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:video-fallback</refname>
+<refpurpose>Generate fallback for video</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This template is called to generate fallback for an 
+<tag namespace="http://www.w3.org/1999/xhtml">video</tag> element.
+</para>
 </refsection>
 </refentry>
 

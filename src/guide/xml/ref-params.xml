@@ -3028,7 +3028,8 @@ accessible. Suggestions welcome.</para>
 <refsection>
 <title>Description</title>
 <para>These stylesheets attempt to implement <biblioref linkend="transclusion"/>.
-FIXME:</para>
+This parameter specifies the ID fixup.
+</para>
 </refsection>
 </refentry>
 
@@ -3046,7 +3047,8 @@ FIXME:</para>
 <refsection>
 <title>Description</title>
 <para>These stylesheets attempt to implement <biblioref linkend="transclusion"/>.
-FIXME:</para>
+This parameter specifies the link scope.
+</para>
 </refsection>
 </refentry>
 
@@ -3082,7 +3084,8 @@ This parameter provides the separator for auto-generated prefixes.</para>
 <refsection>
 <title>Description</title>
 <para>These stylesheets attempt to implement <biblioref linkend="transclusion"/>.
-FIXME:</para>
+This parameter specifies the suffix used for transcluded IDs.
+</para>
 </refsection>
 </refentry>
 
@@ -4394,7 +4397,8 @@ differences in the results, causing tests to fail.</para>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>FIXME:</para>
+<para>Identifies the transform(s) that should be applied to the original
+document. See <xref linkend="preprocessing-pipeline"/>.</para>
 </refsection>
 </refentry>
 
@@ -4410,7 +4414,9 @@ differences in the results, causing tests to fail.</para>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>FIXME:</para>
+<para>Identifies the transform(s) that should be applied before the document
+is transformation into HTML (but after the standard transformations).
+See <xref linkend="preprocessing-pipeline"/>.</para>
 </refsection>
 </refentry>
 
@@ -4426,7 +4432,8 @@ differences in the results, causing tests to fail.</para>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>FIXME:</para>
+<para>Identifies the transform(s) that should be applied after the document
+has been transformed to HTML. See <xref linkend="preprocessing-pipeline"/>.</para>
 </refsection>
 </refentry>
 
@@ -4443,7 +4450,9 @@ differences in the results, causing tests to fail.</para>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>FIXME:</para>
+<para>The dynamic profile variables are passed to each of the pre- and
+post-processing transformations in addition to the standard
+parameters. See <xref linkend="preprocessing-pipeline"/>.</para>
 </refsection>
 </refentry>
 

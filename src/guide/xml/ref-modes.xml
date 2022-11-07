@@ -7,51 +7,6 @@
   <title>Mode reference</title>
 </info>
 
-<refentry xml:id="m_acceptable-mediaobject">
-<?db filename="m_acceptable-mediaobject"?>
-<refmeta>
-<refentrytitle>m:acceptable-mediaobject</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/modes}acceptable-mediaobject</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>m:acceptable-mediaobject</refname>
-<refpurpose>Selects media objects for presentation</refpurpose>
-<refclass>mode</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>A <tag>mediaobject</tag> may contain several alternatives
-(different formats, for example, or different resolutions). The
-alternatives will be processed in the
-<mode>m:acceptable-mediaobject</mode> mode before presentation.
-This mode must either return the media object, if it’s appropriate for the
-rendering being produced, or the empty sequence, if it is not.</para>
-</refsection>
-</refentry>
-
-<refentry xml:id="m_acceptable-mediaobject-data">
-<?db filename="m_acceptable-mediaobject-data"?>
-<refmeta>
-<refentrytitle>m:acceptable-mediaobject-data</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/modes}acceptable-mediaobject-data</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>m:acceptable-mediaobject-data</refname>
-<refpurpose>Selects media object data elements that may be used</refpurpose>
-<refclass>mode</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Like the <mode>m:acceptable-mediaobject</mode> mode, this mode is used to
-determine which alternative media objects (in the case of this mode, the media object
-data elements, such as <tag>imagedata</tag>) should be considered.</para>
-<para>By default, this mode just compares the media object URI extension
-with the list of <parameter>mediaobject-exclude-extensions</parameter> and rejects
-elements that have URIs that match.
-</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="m_annotation-content">
 <?db filename="m_annotation-content"?>
 <refmeta>
@@ -981,6 +936,25 @@ back to <mode>m:docbook</mode> mode.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_imagemap">
+<?db filename="m_imagemap"?>
+<refmeta>
+<refentrytitle>m:imagemap</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}imagemap</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:imagemap</refname>
+<refpurpose>Construct an HTML imagemap</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <tag>imageobjectco</tag> element is processed in this mode to construct
+an HTML image
+<tag namespace="http://www.w3.org/1999/xhtml">map</tag>.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_index-div">
 <?db filename="m_index-div"?>
 <refmeta>
@@ -1311,6 +1285,43 @@ list of tables will be generated. This mode is used to process the
 <tag>table</tag> elements (if any) to
 produce that list.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_mediaobject-info">
+<?db filename="m_mediaobject-info"?>
+<refmeta>
+<refentrytitle>m:mediaobject-info</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-info</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-info</refname>
+<refpurpose>Compute properties for a media object</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The media object elements are processed in this mode to extract
+their properties (input and output URIs, content types, etc.).
+See <xref linkend="processing-mediaobjects"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_mediaobject-uris">
+<?db filename="m_mediaobject-uris"?>
+<refmeta>
+<refentrytitle>m:mediaobject-uris</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-uris</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-uris</refname>
+<refpurpose>Compute URIs for media objects</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The media object elements are processed in this mode to extract
+their input and output URIs.</para>
 </refsection>
 </refentry>
 

@@ -7,6 +7,110 @@
   <title>Variables reference</title>
 </info>
 
+<refentry xml:id="v_as-json">
+<?db filename="v_as-json"?>
+<refmeta>
+<refentrytitle>$v:as-json</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}as-json</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:as-json</refname>
+<refpurpose>Map for serializing JSON</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This is a convience variable for serializing maps as JSON.
+Used mostly in debugging.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_as-xml">
+<?db filename="v_as-xml"?>
+<refmeta>
+<refentrytitle>$v:as-xml</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}as-xml</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:as-xml</refname>
+<refpurpose>Map for serializing XML</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This is a convience variable for serializing maps as JSON.
+Used mostly in debugging.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_media-type-default">
+<?db filename="v_media-type-default"?>
+<refmeta>
+<refentrytitle>$v:media-type-default</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}media-type-default</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:media-type-default</refname>
+<refpurpose>Default media type</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When attempting to determine the media type of a file, the stylesheets
+use the <varname>v:media-type-map</varname> to check for a media type based on
+the filename (or URI) extension. If there’s no extension or if the extension isn’t
+in that map, this value is used.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_media-type-map">
+<?db filename="v_media-type-map"?>
+<refmeta>
+<refentrytitle>$v:media-type-map</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}media-type-map</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:media-type-map</refname>
+<refpurpose>Mapping from extensions to media types</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When attempting to determine the media type of a file, the stylesheets
+use this map to check for a media type based on
+the filename (or URI) extension.</para>
+<para>This mapping is derived from Mozilla’s
+<link xlink:href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">list of common types</link>. The “<literal>.3gp</literal>” and
+“<literal>.3g2</literal>” extensions have been removed because they 
+have multiple mappings. The “<literal>.text</literal>”, “<literal>.mov</literal>”,
+“<literal>.m3u8</literal>”, and “<literal>.wmv</literal>” extensions have been
+added. The media type for “<literal>.svg</literal>” has been simplified to just
+“<literal>image/svg</literal>”
+because that seems to be what EPUB readers require.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_mediaobject-exclude-extensions">
+<?db filename="v_mediaobject-exclude-extensions"?>
+<refmeta>
+<refentrytitle>$v:mediaobject-exclude-extensions</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}mediaobject-exclude-extensions</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:mediaobject-exclude-extensions</refname>
+<refpurpose>Exluded media type extensions</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable simply contains the list of excluded extensions constructed
+from the <parameter>mediaobject-exclude-extensions</parameter> parameter.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_admonition-icons">
 <?db filename="v_admonition-icons"?>
 <refmeta>

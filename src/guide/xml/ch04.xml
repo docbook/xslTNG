@@ -160,6 +160,177 @@ suppressed by CSS, but is visible in text browsers.</para>
 </section>
 </section>
 
+<section xml:id="processing-mediaobjects">
+<title>Processing mediaobjects</title>
+
+<para>Starting in version 1.11.0, the way media objects are processed has been
+refactored. This is designed to support fallback at both the object
+level (<tag>imageobject</tag>, <tag>audioaobject</tag>, <tag>videoobject</tag>,
+<tag>textobject</tag>, and <tag>imageobjectco</tag>) and at the data
+level (<tag>imagedata</tag>, <tag>audiodata</tag>, <tag>videodata</tag>,
+and <tag>textdata</tag> within the objects).</para>
+
+<para>Each data element and object element is processed in the
+<mode>m:mediaobject-info</mode> mode. This returns a map for each object
+that contains an array of maps, one for each data element:</para>
+
+<table>
+<title>The object map</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Key</entry>
+<entry>Value</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry><code>content-types</code></entry>
+<entry>An array of the distinct content types in the data elements</entry>
+</row>
+<row>
+<entry><code>datas</code></entry>
+<entry>An array of data maps</entry>
+</row>
+<row>
+<entry><code>extensions</code></entry>
+<entry>An array of the distinct extensions in the data elements</entry>
+</row>
+<row>
+<entry><code>node</code></entry>
+<entry>The media object node</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<para>Each data map has the following structure:</para>
+
+<table>
+<title>The data map</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Key</entry>
+<entry>Value</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry><code>align</code></entry>
+<entry>The alignment of the data (if specified)</entry>
+</row>
+<row>
+<entry><code>content-type</code></entry>
+<entry>The computed content type for the data</entry>
+</row>
+<row>
+<entry><code>contentheight</code></entry>
+<entry>The content height of the data (if specified<footnote xml:id="fn-depth"><para>DocBook
+uses “depth” instead of “height”, but we convert
+it to height for consistency with most other systems</para></footnote>)</entry>
+</row>
+<row>
+<entry><code>contentwidth</code></entry>
+<entry>The content width of the data (if specified)</entry>
+</row>
+<row>
+<entry><code>extension</code></entry>
+<entry>The extension of the data file (if there is one)</entry>
+</row>
+<row>
+<entry><code>fileref</code></entry>
+<entry>The original <tag class="attribute">fileref</tag> attribute value</entry>
+</row>
+<row>
+<entry><code>height</code></entry>
+<entry>The height of the data (if specified<footnoteref linkend="fn-depth"/>)</entry>
+</row>
+<row>
+<entry><code>href</code></entry>
+<entry>The computed <tag class="attribute">href</tag> value for the HTML element;
+this takes account of the <parameter>mediaobject-input-base-uri</parameter> and
+<parameter>mediaobject-output-base-uri</parameter>).
+</entry>
+</row>
+<row>
+<entry><code>node</code></entry>
+<entry>The data element</entry>
+</row>
+<row>
+<entry><code>params</code></entry>
+<entry>Any <tag>multimediaparams</tag> associated with the data element</entry>
+</row>
+<row>
+<entry><code>properties</code></entry>
+<entry>The properties of the element (as returned by the extension funtions;
+this can include EXIF data and metadata)</entry>
+</row>
+<row>
+<entry><code>scale</code></entry>
+<entry>The scaling factor (if there is one) or 1.0</entry>
+</row>
+<row>
+<entry><code>scalefit</code></entry>
+<entry>True if the image should be scaled to fit (implicitly or explicitly)</entry>
+</row>
+<row>
+<entry><code>uri</code></entry>
+<entry>The computed absolute URI of the input data</entry>
+</row>
+<row>
+<entry><code>valign</code></entry>
+<entry>The vertical alignment of the data (if specified)</entry>
+</row>
+<row>
+<entry><code>width</code></entry>
+<entry>The width of the data (if specifieid)</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<para>The <literal>uri</literal> and <literal>href</literal> properties are computed
+by processing the data elements in the <mode>m:mediaobject-uris</mode> mode.</para>
+
+<para>Armed with information about the objects and the data associated with them,
+the stylesheets proceed to choose an object and then process it. Each object is
+considered in turn, if any of the data elements it contains were excluded, then it is
+rejected. The first object where all of the elements are acceptable is selected.</para>
+
+<para>Consider this example:</para>
+
+<programlisting language="xml"><![CDATA[<mediaobject>
+<imageobject>
+  <imagedata fileref="image.svg"/>
+  <imagedata fileref="image.eps"/>
+  <imagedata fileref="image.png" width="4in"/>
+</imageobject>
+<imageobject>
+  <imagedata fileref="image.svg"/>
+  <imagedata fileref="image.png" width="40em"/>
+</imageobject>
+</mediaobject>]]></programlisting>
+
+<para>If this is being processed for online presentation, the default
+value of <parameter>mediaobject-exclude-extensions</parameter> will exclude the
+EPS file. Because one of it’s data elements was excluded, the processor will choose
+the object containing only the SVG and PNG images for online presentation.</para>
+
+<para>Once an object is selected, an appropriate wrapper is created and all
+of the alternatives are placed within it. So the example above will result in
+<tag namespace="http://www.w3.org/1999/xhtml">picture</tag> element containing
+a
+<tag namespace="http://www.w3.org/1999/xhtml">source</tag> for the SVG image and an
+<tag namespace="http://www.w3.org/1999/xhtml">img</tag> for the fallback PNG.
+</para>
+
+<note>
+<para>Consistent with HTML, only the size, scaling, and alignment attributes of
+the <emphasis>last</emphasis> alternative data element are considered! These apply
+irrespective of which alternative is selected.</para>
+</note>
+
 <section xml:id="mediaobject-uris">
 <title>Mediaobject URIs</title>
 
@@ -176,9 +347,9 @@ XML sources and <parameter>mediaobject-output-base-uri</parameter> to create
 the HTML links.</para>
 
 <para>If you need a completely different organization of images in the
-input and output, you may need to define your own <function>f:resolve-object-uri</function>
-function.</para>
-
+input and output, you may need to define your own resolution with
+templates in the <mode>m:mediaobject-uris</mode> mode.</para>
+</section>
 </section>
 
 <section xml:id="header-templates">
@@ -256,7 +427,7 @@ of this annotation, see the following paragraphs.
 </para>
 </annotation>
 
-<programlisting><![CDATA[<annotation
+<programlisting language="xml"><![CDATA[<annotation
    annotates="xpath:preceding-sibling::db:para/db:citetitle"
    xmlns:db="http://docbook.org/ns/docbook">
 <para>This annotation applies to the stylesheet title.
@@ -301,6 +472,131 @@ controlled globally and on individual annotations. The
 To specify the position for an individual annotation, put the token
 “<code>before</code>” or “<code>after</code>” in the <att>role</att>
 attribute on the <tag>annotation</tag>.</para>
+
+</section>
+
+<section xml:id="preprocessing-pipeline">
+<title>The pre- and post-processing pipeline</title>
+
+<para>Processing a DocBook document is a multi-stage process. The
+original document is transformed several times before converting it to
+HTML. The standard transformations are:</para>
+
+<orderedlist>
+<listitem>
+<para>Adjust the logical structure. Adds an XML base attribute to the root of the
+document and converts media object <tag class="attribute">entityref</tag> attributes
+into <tag class="attribute">fileref</tag> attributes.
+</para>
+</listitem>
+<listitem>
+<para>Perform XInclude processing. Only occurs if the appropriate
+extension function is available and if the document contains XInclude
+element.
+</para>
+</listitem>
+<listitem>
+<para>Convert DocBook 4.x to DocBook 5.x. Only occurs if the root element is not in
+a namespace.
+</para>
+</listitem>
+<listitem>
+<para>Peform transclusion.
+</para>
+</listitem>
+<listitem>
+<para>Perform profiling.
+</para>
+</listitem>
+<listitem>
+<para>Normalize the content. This removes a lot of variation that’s allowed for authoring.
+For example, authors aren’t required to use an <tag>info</tag> element if a formal object
+has only a title. This process adds the <tag>info</tag> element if it’s missing.
+</para>
+</listitem>
+<listitem>
+<para>Resolve annotations.
+</para>
+</listitem>
+<listitem>
+<para>Process XLink link bases.
+</para>
+</listitem>
+<listitem>
+<para>Validate. Only occurs if the appropriate
+extension function is available and the stylesheet specifies a
+<parameter>relax-ng-grammar</parameter>.
+</para>
+</listitem>
+<listitem>
+<para>Process Oxygen change markup. Only occurs if 
+<parameter>oxy-markup</parameter> is true and the document contains
+Oxygen change markup processing instructions.
+</para>
+</listitem>
+</orderedlist>
+
+<para>A customization can introduce transformations to the original
+document: before the standard transformations by specifying them in
+<parameter>transform-original</parameter>; after the standard transformations
+but before the transformation to HTML by specifying them in
+<parameter>transform-before</parameter>; or after the HTML transformation
+by specifying them in <parameter>transform-after</parameter>. (If you need
+to insert a transformation in the middle of the standard transformations,
+you’ll have to update the <varname>v:standard-transforms</varname>
+variable.)</para>
+
+<note>
+<para>Transformations in <varname>v:transform-after</varname> will be processing
+the <emphasis>HTML</emphasis> result of applying the “main” DocBook transformation.</para>
+</note>
+
+<para>Each of the transformation variables holds a list of transforms that will
+be applied in the order specified. Each member of the list can be a map or a
+string. If a string is provided, it’s the equivalent of providing this map:
+</para>
+
+<programlisting language="xpath">map {
+  'stylesheet-location': $the-string
+}</programlisting>
+
+<para>The map can have several keys:</para>
+
+<table>
+<title>The transformation map</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Key</entry>
+<entry>Value</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry><code>stylesheet-location</code></entry>
+<entry>The location of the XSLT stylesheet that performs this transformation.
+This key is required.</entry>
+</row>
+<row>
+<entry><code>extra-params</code></entry>
+<entry>A map of QName/value pairs. These parameters will be made available to
+the transformation in addition to all of the standard parameters available to a
+standard DocBook stylesheet.</entry>
+</row>
+<row>
+<entry><code>functions</code></entry>
+<entry>A list of functions (expressed as EQNames). The transformation will only be
+run if every extension function listed is available.</entry>
+</row>
+<row>
+<entry><code>test</code></entry>
+<entry>An arbitrary XPath expression. The expression will be evaluated with the
+document as the context item. If it returns an effective boolean value of true,
+the transformation will be run.</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
 
 </section>
 </chapter>
