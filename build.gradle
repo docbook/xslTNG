@@ -30,7 +30,6 @@ plugins {
   id "groovy"
   id "maven-publish"
   id "signing"
-  //id 'com.github.eerohele.saxon-gradle' version '0.9.0-beta3'
   id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.9.6'
   id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
   id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
@@ -84,7 +83,16 @@ configurations {
 
 ext {
   requireCompileSuccess = !"false".equals(project.property('requireCompileSuccess'))
-  sassStyle = "true".equals(project.property('compressCss')) ? "compressed" : "expanded"
+  epubMediaTypes = [
+    "css": "text/css",
+    "ttf": "font/ttf",
+    "woff": "font/woff",
+    "jpg": "image/jpeg",
+    "jpeg": "image/jpeg",
+    "png": "image/png",
+    "gif": "image/gif",
+    "svg": "image/svg"
+  ]
 }
 
 // Set saxonLicenseDir in gradle.properties, or from the
@@ -180,28 +188,34 @@ class CheckTextFile extends DefaultTask {
 }
 
 def gitRef() {
+  // Depending on the state of your repo, this can be time consuming,
+  // so don't bother unless you're demanding complete success...
   def ref = null;
-  def gitRepo = new File(".git")
-  if (gitRepo.exists() && gitRepo.isDirectory()) {
-    def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
-    ProcessBuilder pb = new ProcessBuilder().command(command)
-    pb.directory(projectDir)
-    Process proc = pb.start()
+  if (requireCompileSuccess)  {
+    def gitRepo = new File(".git")
+    if (gitRepo.exists() && gitRepo.isDirectory()) {
+      def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
+      ProcessBuilder pb = new ProcessBuilder().command(command)
+      pb.directory(projectDir)
+      Process proc = pb.start()
 
-    def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-    String line = null
-    while ((line = reader.readLine()) != null) {
-      if (ref == null) {
-        ref = line
+      def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+      String line = null
+      while ((line = reader.readLine()) != null) {
+        if (ref == null) {
+          ref = line
+        }
       }
-    }
 
-    reader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-    while ((line = reader.readLine()) != null) {
-      println(line)
-    }
+      reader = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+      while ((line = reader.readLine()) != null) {
+        println(line)
+      }
 
-    proc.waitFor()
+      proc.waitFor()
+    }
+  } else {
+    ref = "SNAPSHOT"
   }
 
   if (ref == null) {
@@ -622,7 +636,7 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
     commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
                 "${buildDir}/xspec/${base}.xspec"
   }
-
+  
   t.dependsOn g
   testDrivers.each { driver ->
     tasks.findByName(driver).dependsOn g
@@ -662,6 +676,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
 
   if (base == 'profiling.001') {
     stylesheetParams['profile-os'] = 'win;linux'
+  }
+
+  if (base == "fit.001") {
+    stylesheetParams['profile-outputformat'] = 'online'
   }
 
   if (base.startsWith('remark.')) {
@@ -720,7 +738,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
 
   t = task "${base}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+    inputs.files fileTree(dir: "${buildDir}/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
 
@@ -1248,7 +1266,7 @@ task compileSass() {
 
   doLast {
     exec {
-      commandLine 'sass', '--style', sassStyle,
+      commandLine 'sass', '--style', 'expanded',
         '--no-source-map', '--no-charset',
         "${projectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.css",
         "${projectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.css",
@@ -1258,52 +1276,76 @@ task compileSass() {
   }
 
   doLast {
-    ["docbook.css", "docbook-paged.css", "docbook-epub.css"].each { fn ->
-      File css = new File("${buildDir}/css/${fn}")
-      def lines = []
-      def reader = new BufferedReader(new FileReader(css))
-      String line = null
-      while ((line = reader.readLine()) != null) {
-        lines.add(line)
+    exec {
+      commandLine 'sass', '--style', 'compressed',
+        '--no-source-map', '--no-charset',
+        "${projectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.min.css",
+        "${projectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.min.css",
+        "${projectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.min.css",
+        "${projectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css"
+    }
+  }
+
+  doLast {
+    ["docbook", "docbook-paged", "docbook-epub", "docbook-toc"].each { base ->
+      [".css", ".min.css"].each { ext ->
+        String fn = "${base}${ext}"
+        File css = new File("${buildDir}/css/${fn}")
+        def lines = []
+        def reader = new BufferedReader(new FileReader(css))
+        String line = null
+        while ((line = reader.readLine()) != null) {
+          lines.add(line)
+        }
+        reader.close()
+        def writer = new PrintStream(css)
+        writer.print("/")
+        writer.print("* ${xslTNGtitle} version ${xslTNGversion}, https://xsltng.docbook.org *")
+        if (ext == ".css") {
+          writer.println("/");
+        } else {
+          writer.print("/");
+        }
+        lines.each { ln ->
+          writer.println(ln);
+        }
+        writer.close();
       }
-      reader.close()
-      def writer = new PrintStream(css)
-      writer.print("/")
-      writer.print("* ${xslTNGtitle} version ${xslTNGversion}, https://xsltng.docbook.org *")
-      writer.println("/");
-      lines.each { ln ->
-        writer.println(ln);
-      }
-      writer.close();
     }
   }
 }
 
 task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
-  copy {
-    from "${buildDir}/css"
-    into "${buildDir}/stage/zip/resources/css"
+  doLast {
+    copy {
+      from "${buildDir}/css"
+      into "${buildDir}/stage/zip/resources/css"
+    }
   }
 
-  copy {
-    from "${projectDir}/src/main/web"
-    include "css/*.png"
-    into "${buildDir}/stage/zip/resources"
+  doLast {
+    copy {
+      from "${projectDir}/src/main/web"
+      include "css/*.png"
+      into "${buildDir}/stage/zip/resources"
+    }
   }
 
-  copy {
-    from "${projectDir}/src/main/web"
-    include "css/**"
-    include "js/**"
-    exclude "css/*.png"
-    into "${buildDir}/stage/zip/resources"
-    filter { String line ->
-      if (line.indexOf("@@") >= 0) {
-        line = line
-          .replace("@@TITLE@@", xslTNGtitle)
-          .replace("@@VERSION@@", xslTNGversion)
+  doLast {
+    copy {
+      from "${projectDir}/src/main/web"
+      include "css/**"
+      include "js/**"
+      exclude "css/*.png"
+      into "${buildDir}/stage/zip/resources"
+      filter { String line ->
+        if (line.indexOf("@@") >= 0) {
+          line = line
+            .replace("@@TITLE@@", xslTNGtitle)
+            .replace("@@VERSION@@", xslTNGversion)
+        }
+        line
       }
-      line
     }
   }
 }
@@ -1362,8 +1404,9 @@ task zipStageDocker(type: Copy, dependsOn: ['copyDocker']) {
   into "${buildDir}/stage/zip/docker"
 }
 
-task zipStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList', 'zipStageXslt', "stageJar",
-                                                      "processResources"]) {
+task zipStageCatalog(
+  type: SaxonXsltTask,
+  dependsOn: ['makeUriList', 'zipStageXslt', "stageJar", "processResources"]) {
   input makeUriList.outputs.files.getSingleFile()
   stylesheet "${projectDir}/src/main/resources/org/docbook/xsltng/etc/make-catalog.xsl"
   output "${buildDir}/stage/zip/xslt/catalog.xml"
@@ -1408,6 +1451,7 @@ task explorer(type: SaxonXsltTask,
   inputs.files fileTree(dir: "${buildDir}/xslt")
   outputs.file("${buildDir}/docbook-xslTNG.xml")
 
+  pluginConfiguration "docbook"
   input "${buildDir}/xslt/docbook.xsl"
   stylesheet "${buildDir}/xsltexplorer-${xsltExplorerVersion}/xslt/explorer.xsl"
   output "${buildDir}/explorer/index.html"
@@ -1515,9 +1559,21 @@ task guide(
   }
 }
 
+task guide_fonts(
+  type: Copy
+) {
+  from "${projectDir}/src/guide/resources/fonts"
+  into "${buildDir}/guide/css/fonts"
+  include "**/*.ttf"
+  eachFile {
+    path = name
+  }
+  includeEmptyDirs = false
+}
+
 task "guide.pdf.html"(
   type: SaxonXsltTask,
-  dependsOn: ['makeXslt', 'validateGuide', 'explorer']
+  dependsOn: ['makeXslt', 'validateGuide', 'explorer', 'guide_fonts']
 ) {
   inputs.files fileTree(dir: "${buildDir}/xslt")
   inputs.file "${buildDir}/docbook-xslTNG.xml"
@@ -1684,38 +1740,26 @@ task stageJar(
   dependsOn: ["makeXslt", "makeVersionProperties", "makeUriList", "jarStageCatalog",
               "zipStagePygments"]
 ) {
+  inputs.files fileTree(dir: "${projectDir}/buildSrc/build/classes/java/main")
+  inputs.files fileTree(dir: "${projectDir}/buildSrc/build/classes/java/groovy")
+  inputs.files fileTree(dir: "${buildDir}/stage/zip/resources")
+  inputs.files fileTree(dir: "${buildDir}/xslt")
+  outputs.files fileTree(dir: "${buildDir}/resources/main")
+
   doLast {
     copy {
       into "${buildDir}/resources/main"
       from "${projectDir}/buildSrc/build/classes/java/main"
     }
     copy {
-      into "${buildDir}/resources/main"
-      from "${projectDir}/buildSrc/build/classes/java/groovy"
-    }
-    copy {
-      into "${buildDir}/resources/main/org/docbook/xsltng/resources/css"
-      from ("${buildDir}/stage/zip/resources/css") {
-        include "pygments.css"
-      }
+      into "${buildDir}/resources/main/org/docbook/xsltng/resources"
+      from "${buildDir}/stage/zip/resources"
     }
     // Not ${buildDir}/classes/java/main because the jar task
     // picks those up automatically and we don't want duplicates
     copy {
       into "${buildDir}/resources/main/org/docbook/xsltng/xslt"
       from "${buildDir}/xslt"
-    }
-    copy {
-      into "${buildDir}/resources/main/org/docbook/xsltng/resources"
-      from "${projectDir}/src/main/web"
-      filter { String line ->
-        if (line.indexOf("@@") >= 0) {
-          line = line
-            .replace("@@TITLE@@", xslTNGtitle)
-            .replace("@@VERSION@@", xslTNGversion)
-        }
-        line
-      }
     }
   }
 }
@@ -1741,7 +1785,7 @@ jar {
     attributes "Class-Path": project.ext.runtimeClasspath \
               + " lib/XfoJavaCtl.jar lib/xep.jar lib/prince.jar"
   }
-  from "${buildDir}/stage/jar"
+  from "${buildDir}/resources/main"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -1815,6 +1859,172 @@ publishing {
 
 // ============================================================
 
+task epubGuideResources(
+  dependsOn: ["copyResources"]
+) {
+  inputs.files fileTree(dir: "${buildDir}/actual/css")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/fonts")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/css")
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/css")
+
+  doLast {
+    copy {
+      from "${buildDir}/actual/css"
+      into "${buildDir}/epub/OPS/css"
+      include "docbook-epub.css"
+      include "draft*.svg"
+      include "draft*.png"
+      include "pygments.css"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${projectDir}/src/guide/resources/css"
+      into "${buildDir}/epub/OPS/css"
+      include "guide-epub.css"
+    }
+  }
+
+  doLast {
+    copy {
+      from "${projectDir}/src/guide/resources/fonts"
+      into "${buildDir}/epub/OPS/css/fonts"
+      include "**/*.ttf"
+      exclude "**/*ExtraBold*"
+      exclude "**/*SemiBold*"
+      exclude "**/*Light*"
+      exclude "**/*Thin*"
+      eachFile {
+        path = name
+      }
+      includeEmptyDirs = false
+    }
+  }
+}
+
+task epubGuideMedia(
+  dependsOn: ["epubGuideResources"]
+) {
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/css")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/media")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/resources/media")
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/css") 
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/media")
+  outputs.file "${buildDir}/epub/manifest-extra.xml"
+
+  doLast {
+    copy {
+      into "${buildDir}/epub/OPS/css"
+      from "${projectDir}/src/guide/resources/css"
+      exclude "guide-paged.css"
+    }
+  }
+
+  doLast {
+    copy {
+      into "${buildDir}/epub/OPS/media"
+      from "${projectDir}/src/guide/resources/media"
+    }
+  }
+
+  doLast {
+    def m = new PrintStream(new File("${buildDir}/epub/manifest-extra.xml"))
+    m.println("<manifest xmlns='http://www.idpf.org/2007/opf'>")
+    fileTree(dir: "${buildDir}/epub/OPS",
+             includes: ["media/**", "css/**"]).each { rsrc ->
+      String href = rsrc.toString()
+      int pos = href.indexOf("/OPS/")
+      href = href.substring(pos+5)
+      String id = href.replaceAll("/", "_")
+
+      pos = href.lastIndexOf(".")
+      String ext = href.substring(pos+1)
+      String mediaType = "application/octet-stream"
+
+      if (epubMediaTypes[ext] != null) {
+        mediaType = epubMediaTypes[ext]
+      } else {
+        println("Warning: Unknown media type: ${href}")
+      }
+
+      m.print("<item id='id_${id}' href='${href}' media-type='${mediaType}'")
+      if (mediaType == 'image/svg') {
+        m.print(" fallback='id_${id.replaceAll('.svg$', '.png')}'")
+      }
+      if (mediaType.startsWith('image/') && href.startsWith('media/cover.')) {
+        m.print(" properties='cover-image'")
+      }
+      m.println("/>")
+    }
+    m.println("</manifest>")
+    m.close()
+  }
+}
+
+task epubGuideFormat(
+  type: SaxonXsltTask,
+  dependsOn: ['makeXslt', 'validateGuide', 'explorer', 'epubGuideMedia']
+) {
+  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
+  inputs.file "${buildDir}/guide/guide.xml"
+  outputs.files fileTree(dir: "${buildDir}/epub")
+
+  pluginConfiguration "docbook"
+  input "${buildDir}/guide/guide.xml"
+  stylesheet "${projectDir}/src/guide/xsl/epub.xsl"
+  output "${buildDir}/epub/mimetype"
+  parameters(
+    'mediaobject-input-base-uri': "file:${buildDir}/guide/",
+    'mediaobject-output-base-uri': './',
+    'profile-outputformat': 'online',
+    'chunk': 'titlepage.xhtml',
+    'chunk-output-base-uri': "${buildDir}/epub/",
+    'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
+    'bookVersion': guideVersion,
+    'xslTNGversion': xslTNGversion,
+    'pub-id': "xslTNG-guide-${guideVersion}",
+    'manifest-extra': "${buildDir}/epub/manifest-extra.xml"
+  )
+}
+
+task epubGuide(
+  dependsOn: ["epubGuideResources", "epubGuideMedia", "epubGuideFormat"]
+) {
+  inputs.files fileTree(dir: "${buildDir}/epub", exclude: "*.epub")
+  outputs.file "${buildDir}/epub/xslTNG-${guideVersion}.epub"
+
+  def epub_file = epubGuide.outputs.getFiles().getSingleFile().toString()
+
+  doLast {
+    delete epub_file
+  }
+
+  doLast {
+    exec {
+      workingDir "${buildDir}/epub"
+      commandLine "zip", "-q", "-X0", epub_file, "mimetype"
+    }
+  }
+
+  doLast {
+    exec {
+      workingDir "${buildDir}/epub"
+      commandLine "zip", "-q", "-rp", epub_file, "META-INF", "OPS"
+    }
+  }
+
+  doLast {
+    exec {
+      workingDir "${buildDir}/epub"
+      commandLine "epubcheck", epub_file
+    }
+  }
+}
+
+// ============================================================
+
 task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
   doFirst {
     if (dbsource = '') {
@@ -1847,9 +2057,23 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
   parameters(ssparams)
 }
 
+task xformtest(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  inputs.files fileTree("${buildDir}/xslt")
+  inputs.file "${projectDir}/test.xml"
+  outputs.file "${projectDir}/test.html"
+
+  pluginConfiguration "docbook"
+  input "${projectDir}/test.xml"
+  stylesheet "${buildDir}/xslt/docbook.xsl"
+  output "${projectDir}/test.html"
+  parameters(
+  )
+}
+
 task helloWorld() {
   doLast {
-    println('Hello, world: ' + xslTNGversion)
+    println('Hello, world')
+
 /*
     configurations.validateRuntime.each { path ->
       println("CP: ${path}")
