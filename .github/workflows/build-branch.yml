@@ -8,6 +8,13 @@ jobs:
       reponame: ${{ steps.check_step.outputs.reponame }}
       tag: ${{ steps.check_step.outputs.tag }}
     steps:
+      - name: Install dependencies
+        run: sudo apt-get install ruby-full
+
+      - name: Install SASS
+        run: |
+          sudo gem install sass
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
