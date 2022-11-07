@@ -90,3 +90,17 @@
     --title-family: "Noto Sans", sans-serif, var(--symbol-fonts);
     --mono-family: "B612 Mono", monospace, var(--symbol-fonts);
 }
+
+/* This looks ugly in EPUB */
+.revhistory {
+    page-break-before: always;
+    break-before: page;
+    background-color: inherit;
+    border-radius: inherit;
+}
+
+.revhistory header {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    display: inherit;
+}
