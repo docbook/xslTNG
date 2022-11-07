@@ -29,7 +29,7 @@
   <xsl:map>
     <xsl:map-entry key="'stylesheet-location'"
                    select="resolve-uri('transforms/10-xinclude.xsl', static-base-uri())"/>
-    <xsl:map-entry key="'functions'" select="'ext:xinclude'"/>
+    <xsl:map-entry key="'functions'" select="'Q{http://docbook.org/extensions/xslt}xinclude'"/>
     <xsl:map-entry key="'test'" select="'exists(//xi:include)'"/>
   </xsl:map>
   <xsl:map>
@@ -81,7 +81,8 @@
   <xsl:map>
     <xsl:map-entry key="'stylesheet-location'"
                    select="resolve-uri('transforms/75-validate.xsl', static-base-uri())"/>
-    <xsl:map-entry key="'functions'" select="'ext:validate-with-relax-ng'"/>
+    <xsl:map-entry key="'functions'"
+                   select="'Q{http://docbook.org/extensions/xslt}validate-with-relax-ng'"/>
     <xsl:map-entry key="'test'"
                    select="'normalize-space($relax-ng-grammar) != '''''"/>
   </xsl:map>
