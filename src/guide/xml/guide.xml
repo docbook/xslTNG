@@ -150,6 +150,16 @@
         <listitem>
           <para>Reworked how the preprocessing pipeline is evaluated.</para>
         </listitem>
+        <listitem>
+          <para>Switched to using Sass to generate CSS.</para>
+        </listitem>
+        <listitem>
+          <para>Fixed a bug in link processing that sometimes resulted in nested anchors.</para>
+        </listitem>
+        <listitem>
+          <para>Fixed bug where unnumbered verbatim listings still had room for line numbers.
+          </para>
+        </listitem>
       </itemizedlist>
     </revdescription>
   </revision>
