@@ -105,11 +105,6 @@
   <x:expect label="expect the XInclude to be expanded" href="../resources/expected/xinclude.020.html"/>
 </x:scenario>
 
-<x:scenario label="When converting xinclude.020">
-  <x:context href="../resources/xml/xinclude.020.xml"/>
-  <x:expect label="expect the XInclude to be expanded" href="../resources/expected/xinclude.020.html"/>
-</x:scenario>
-
 <x:scenario label="When converting xinclude.021">
   <x:context href="../resources/xml/xinclude.021.xml"/>
   <x:expect label="expect the XInclude to be expanded" href="../resources/expected/xinclude.021.html"/>
