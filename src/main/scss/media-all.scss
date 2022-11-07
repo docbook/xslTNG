@@ -568,6 +568,20 @@ figure.pgwide table {
     display: inline-block;
 }
 
+.mediaobject {
+    .caption {
+        font-family: var(--title-family);
+        font-size: 80%;
+        margin-left: 2em;
+        margin-right: 2em;
+        font-style: italic;
+
+        p {
+            margin-top: 0;
+        }
+    }
+}
+
 td, th {
     padding: 0.25em;
     text-align: left;
