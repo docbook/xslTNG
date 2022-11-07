@@ -46,15 +46,6 @@
     <xsl:apply-templates select="$results?output" mode="m:epub-tidy"/>
   </xsl:variable>
 
-  <xsl:result-document href="/tmp/x/document.xml"
-                       method="xml" indent="yes">
-    <xsl:sequence select="$results?document"/>
-  </xsl:result-document>
-  <xsl:result-document href="/tmp/x/output.xml"
-                       method="xml" indent="yes">
-    <xsl:sequence select="$html"/>
-  </xsl:result-document>
-
   <xsl:document>application/epub+zip</xsl:document>
 
   <xsl:result-document href="META-INF/container.xml">
