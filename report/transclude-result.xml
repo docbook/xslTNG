@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
-         date="2022-10-29T09:03:02.231614Z">
+         date="2022-11-07T18:14:24.752006Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec">
       <label>When transcluding with no fixup</label>
@@ -21,9 +21,7 @@
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
-                  <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                   <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
@@ -57,9 +55,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                         <p>The DocBook <i class="citetitle">
-                              <a href="https://docbook.org/docs/transclusion/">
-                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                              </a>
+                              <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                            </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -69,7 +65,7 @@ mechanisms.</p>
 element as an example:</p>
                         <div id="caution" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -91,7 +87,7 @@ introduce duplicate IDs in the document.
                         <p>Here it is <a href="#caution" class="link">repeated</a>:</p>
                         <div id="caution" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -119,7 +115,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#caution" class="link">repeated</a> in a subsection:</p>
                            <div id="caution" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -148,7 +144,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#caution" class="link">repeated</a> in another subsection:</p>
                            <div id="caution" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -188,9 +184,7 @@ introduce duplicate IDs in the document.
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
-                     <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                      <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
@@ -224,9 +218,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                            <p>The DocBook <i class="citetitle">
-                                 <a href="https://docbook.org/docs/transclusion/">
-                                    <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                                 </a>
+                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                               </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -236,7 +228,7 @@ mechanisms.</p>
 element as an example:</p>
                            <div id="caution" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -258,7 +250,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#caution" class="link">repeated</a>:</p>
                            <div id="caution" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -286,7 +278,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#caution" class="link">repeated</a> in a subsection:</p>
                               <div id="caution" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -315,7 +307,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#caution" class="link">repeated</a> in another subsection:</p>
                               <div id="caution" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -362,9 +354,7 @@ introduce duplicate IDs in the document.
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
-                  <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                   <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
@@ -397,9 +387,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                         <p>The DocBook <i class="citetitle">
-                              <a href="https://docbook.org/docs/transclusion/">
-                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                              </a>
+                              <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                            </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -409,7 +397,7 @@ mechanisms.</p>
 element as an example:</p>
                         <div id="caution---R_caution1" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -431,7 +419,7 @@ introduce duplicate IDs in the document.
                         <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a>:</p>
                         <div id="caution---R_caution2" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -459,7 +447,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in a subsection:</p>
                            <div id="caution---R_s1_caution1" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -488,7 +476,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in another subsection:</p>
                            <div id="caution---R_s2_caution1" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -528,9 +516,7 @@ introduce duplicate IDs in the document.
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
-                     <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                      <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
@@ -563,9 +549,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                            <p>The DocBook <i class="citetitle">
-                                 <a href="https://docbook.org/docs/transclusion/">
-                                    <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                                 </a>
+                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                               </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -575,7 +559,7 @@ mechanisms.</p>
 element as an example:</p>
                            <div id="caution---R_caution1" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -597,7 +581,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a>:</p>
                            <div id="caution---R_caution2" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -625,7 +609,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in a subsection:</p>
                               <div id="caution---R_s1_caution1" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -654,7 +638,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in another subsection:</p>
                               <div id="caution---R_s2_caution1" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -701,9 +685,7 @@ introduce duplicate IDs in the document.
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
-                  <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                   <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
@@ -737,9 +719,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                         <p>The DocBook <i class="citetitle">
-                              <a href="https://docbook.org/docs/transclusion/">
-                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                              </a>
+                              <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                            </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -749,7 +729,7 @@ mechanisms.</p>
 element as an example:</p>
                         <div id="cautionone" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -771,7 +751,7 @@ introduce duplicate IDs in the document.
                         <p>Here it is <a href="#cautionone" class="link">repeated</a>:</p>
                         <div id="cautiontwo" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -799,7 +779,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#cautionone" class="link">repeated</a> in a subsection:</p>
                            <div id="cautionthree" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -828,7 +808,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#cautionone" class="link">repeated</a> in another subsection:</p>
                            <div id="cautionfour" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -868,9 +848,7 @@ introduce duplicate IDs in the document.
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
-                     <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                      <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
@@ -904,9 +882,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                            <p>The DocBook <i class="citetitle">
-                                 <a href="https://docbook.org/docs/transclusion/">
-                                    <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                                 </a>
+                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                               </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -916,7 +892,7 @@ mechanisms.</p>
 element as an example:</p>
                            <div id="cautionone" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -938,7 +914,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#cautionone" class="link">repeated</a>:</p>
                            <div id="cautiontwo" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -966,7 +942,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#cautionone" class="link">repeated</a> in a subsection:</p>
                               <div id="cautionthree" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -995,7 +971,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#cautionone" class="link">repeated</a> in another subsection:</p>
                               <div id="cautionfour" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -1042,9 +1018,7 @@ introduce duplicate IDs in the document.
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                   <meta content="DocBook xslTNG" name="generator"/>
-                  <link href="./css/docbook.css" rel="stylesheet"/>
-                  <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                  <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                   <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                </head>
                <body class="home">
@@ -1078,9 +1052,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                         <p>The DocBook <i class="citetitle">
-                              <a href="https://docbook.org/docs/transclusion/">
-                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                              </a>
+                              <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                            </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -1090,7 +1062,7 @@ mechanisms.</p>
 element as an example:</p>
                         <div id="cautionone" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -1112,7 +1084,7 @@ introduce duplicate IDs in the document.
                         <p>Here it is <a href="#cautiontwo" class="link">repeated</a>:</p>
                         <div id="cautiontwo" class="admonition caution">
                            <div>
-                              <div class="icon">⚠︎</div>
+                              <div class="icon">⚠</div>
                               <div class="body">
                                  <header>
                                     <div class="title">Transclusion Example Caution</div>
@@ -1140,7 +1112,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#cautionthree" class="link">repeated</a> in a subsection:</p>
                            <div id="cautionthree" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -1169,7 +1141,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#cautionfour" class="link">repeated</a> in another subsection:</p>
                            <div id="cautionfour" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -1209,9 +1181,7 @@ introduce duplicate IDs in the document.
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
                      <meta content="DocBook xslTNG" name="generator"/>
-                     <link href="./css/docbook.css" rel="stylesheet"/>
-                     <link href="./css/docbook-screen.css" rel="stylesheet" media="screen"/>
-                     <link href="./css/docbook-page-setup.css" rel="stylesheet" media="print"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                      <link href="./css/docbook-paged.css" rel="stylesheet" media="print"/>
                   </head>
                   <body class="home">
@@ -1245,9 +1215,7 @@ with XInclude) more than once, any ID values in that fragment will
 be duplicated in the resulting document. Duplicate IDs should be avoided.
 </p>
                            <p>The DocBook <i class="citetitle">
-                                 <a href="https://docbook.org/docs/transclusion/">
-                                    <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
-                                 </a>
+                                 <a href="https://docbook.org/docs/transclusion/">Transclusion</a>
                               </i>
 specification is intended to address this problem by providing “fixup”
 mechanisms.</p>
@@ -1257,7 +1225,7 @@ mechanisms.</p>
 element as an example:</p>
                            <div id="cautionone" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -1279,7 +1247,7 @@ introduce duplicate IDs in the document.
                            <p>Here it is <a href="#cautiontwo" class="link">repeated</a>:</p>
                            <div id="cautiontwo" class="admonition caution">
                               <div>
-                                 <div class="icon">⚠︎</div>
+                                 <div class="icon">⚠</div>
                                  <div class="body">
                                     <header>
                                        <div class="title">Transclusion Example Caution</div>
@@ -1307,7 +1275,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#cautionthree" class="link">repeated</a> in a subsection:</p>
                               <div id="cautionthree" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
@@ -1336,7 +1304,7 @@ introduce duplicate IDs in the document.
                               <p>Here it is <a href="#cautionfour" class="link">repeated</a> in another subsection:</p>
                               <div id="cautionfour" class="admonition caution">
                                  <div>
-                                    <div class="icon">⚠︎</div>
+                                    <div class="icon">⚠</div>
                                     <div class="body">
                                        <header>
                                           <div class="title">Transclusion Example Caution</div>
