@@ -267,7 +267,7 @@
 
 <xsl:variable name="v:media-type-default" as="xs:string"
               select="'application/octet-stream'"/>
-<xsl:variable name="v:media-type-map" as="map(xs:string, xs:string)">
+
   <!-- Credit: https://developer.mozilla.org/en-US/docs/Web/HTTP/\
        Basics_of_HTTP/MIME_types/Common_types -->
   <!-- I left out the .3gp and .3g2 extensions because they're either audio or
@@ -275,6 +275,7 @@
        than just an extension lookup
        I added .text, .mov, .m3u8, .wmv
   -->
+<xsl:variable name="v:media-type-map" as="map(xs:string, xs:string)">
   <xsl:map>
     <xsl:map-entry key="'.aac'" select="'audio/aac'"/>
     <xsl:map-entry key="'.abw'" select="'application/x-abiword'"/>

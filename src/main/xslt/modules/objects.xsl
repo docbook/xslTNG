@@ -75,13 +75,13 @@
         </xsl:on-completion>
 
         <xsl:variable name="info" as="map(*)?">
-          <xsl:apply-templates select="." mode="m:image-info"/>
+          <xsl:apply-templates select="." mode="m:mediaobject-info"/>
         </xsl:variable>
 
         <xsl:variable name="alternatives"
                       select="count(db:audiodata|db:imagedata|db:videodata)"/>
         <xsl:variable name="selected-alternatives"
-                      select="array:size($info?objects)"/>
+                      select="array:size($info?datas)"/>
 
         <xsl:choose>
           <xsl:when test="./self::db:textobject and not(db:phrase)">
@@ -110,7 +110,7 @@
     <!-- Compute the viewport parameters from the properties of the
          last alternative -->
     <xsl:variable name="last-data"
-                  select="array:flatten($object-info?objects)[last()]"/>
+                  select="array:flatten($object-info?datas)[last()]"/>
     <xsl:variable name="viewport"
                   select="$last-data ! f:mediaobject-viewport(.)"/>
 
@@ -144,8 +144,8 @@
                 <span class="viewport">
                   <xsl:apply-templates select="$object-info?node">
                     <xsl:with-param name="viewport" select="$viewport"/>
-                    <xsl:with-param name="objects"
-                                    select="array:flatten($object-info?objects)"/>
+                    <xsl:with-param name="datas"
+                                    select="array:flatten($object-info?datas)"/>
                   </xsl:apply-templates>
                   <xsl:if test="$object-info?node/ancestor::db:imageobjectco
                                 and exists($display-width) and exists($display-height)">
@@ -194,6 +194,8 @@
       </xsl:choose>
     </xsl:element>
 
+    <xsl:apply-templates select="db:caption"/>
+
     <xsl:if test="$object-info?node/ancestor::db:imageobjectco
                   and $object-info?node/ancestor::db:imageobjectco/db:calloutlist">
       <xsl:if test="self::db:inlinemediaobject">
@@ -206,24 +208,24 @@
 
 <xsl:template match="db:imageobject">
   <xsl:param name="viewport" as="map(*)?"/>
-  <xsl:param name="objects" as="map(*)*"/>
+  <xsl:param name="datas" as="map(*)*"/>
 
   <xsl:variable name="svg-ct" select="map:get($v:media-type-map, '.svg')"/>
 
   <xsl:choose>
-    <xsl:when test="$objects[1]?node//svg:*">
-      <xsl:if test="count($objects) gt 1">
+    <xsl:when test="$datas[1]?node//svg:*">
+      <xsl:if test="count($datas) gt 1">
         <xsl:message>Fallback is not possible with inline SVG.</xsl:message>
       </xsl:if>
-      <xsl:apply-templates select="$objects[1]?node/svg:*"/>
+      <xsl:apply-templates select="$datas[1]?node/svg:*"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:if test="exists($objects ! .?node//svg:*)">
+      <xsl:if test="exists($datas ! .?node//svg:*)">
         <xsl:message>Inline SVG cannot be used as a fallback.</xsl:message>
       </xsl:if>
 
       <xsl:variable name="non-svg" as="map(*)*">
-        <xsl:for-each select="$objects">
+        <xsl:for-each select="$datas">
           <xsl:if test="empty(.?node//svg:*)">
             <xsl:sequence select="."/>
           </xsl:if>
@@ -261,17 +263,17 @@
 
 <xsl:template match="db:videoobject">
   <xsl:param name="viewport" as="map(*)?"/>
-  <xsl:param name="objects" as="map(*)*"/>
+  <xsl:param name="datas" as="map(*)*"/>
 
-  <xsl:variable name="last" select="$objects[last()]"/>
+  <xsl:variable name="last" select="$datas[last()]"/>
   <xsl:variable name="params" select="array:flatten($last?params)"/>
 
   <xsl:choose>
     <xsl:when test="f:pi(., 'video', $mediaobject-video-element) = 'iframe'">
-      <xsl:if test="count($objects) gt 1">
+      <xsl:if test="count($datas) gt 1">
         <xsl:message select="'Fallback is not supported with iframes'"/>
       </xsl:if>
-      <iframe src="{$objects[1]?href}">
+      <iframe src="{$datas[1]?href}">
         <xsl:if test="exists($last?width)">
           <xsl:attribute name="width" select="f:absolute-length($last?width)"/>
         </xsl:if>
@@ -296,14 +298,14 @@
         <xsl:if test="empty($params)">
           <xsl:attribute name="controls" select="'controls'"/>
         </xsl:if>
-        <xsl:for-each select="$objects">
+        <xsl:for-each select="$datas">
           <xsl:apply-templates select=".?node" mode="mp:imagedata">
             <xsl:with-param name="viewport" select="$viewport"/>
             <xsl:with-param name="info" select="."/>
           </xsl:apply-templates>
         </xsl:for-each>
         <xsl:call-template name="t:video-fallback">
-          <xsl:with-param name="objects" select="$objects"/>
+          <xsl:with-param name="datas" select="$datas"/>
         </xsl:call-template>
       </video>
     </xsl:otherwise>
@@ -311,12 +313,12 @@
 </xsl:template>
 
 <xsl:template name="t:video-fallback">
-  <xsl:param name="objects" as="map(*)*"/>
+  <xsl:param name="datas" as="map(*)*"/>
   <p>
     <xsl:text>Video playback not supported. </xsl:text>
-    <xsl:if test="exists($objects)">
+    <xsl:if test="exists($datas)">
       <xsl:text>Download </xsl:text>
-      <xsl:for-each select="$objects">
+      <xsl:for-each select="$datas">
         <xsl:choose>
           <xsl:when test="position() gt 2 and position() = last()">
             <xsl:text>, or </xsl:text>
@@ -339,9 +341,9 @@
 
 <xsl:template match="db:audioobject">
   <xsl:param name="viewport" as="map(*)?"/>
-  <xsl:param name="objects" as="map(*)*"/>
+  <xsl:param name="datas" as="map(*)*"/>
 
-  <xsl:variable name="last" select="$objects[last()]"/>
+  <xsl:variable name="last" select="$datas[last()]"/>
   <xsl:variable name="params" select="array:flatten($last?params)"/>
 
   <audio>
@@ -349,25 +351,25 @@
     <xsl:if test="empty($params)">
       <xsl:attribute name="controls" select="'controls'"/>
     </xsl:if>
-    <xsl:for-each select="$objects">
+    <xsl:for-each select="$datas">
       <xsl:apply-templates select=".?node" mode="mp:imagedata">
         <xsl:with-param name="viewport" select="$viewport"/>
         <xsl:with-param name="info" select="."/>
       </xsl:apply-templates>
     </xsl:for-each>
     <xsl:call-template name="t:audio-fallback">
-      <xsl:with-param name="objects" select="$objects"/>
+      <xsl:with-param name="datas" select="$datas"/>
     </xsl:call-template>
   </audio>
 </xsl:template>
 
 <xsl:template name="t:audio-fallback">
-  <xsl:param name="objects" as="map(*)*"/>
+  <xsl:param name="datas" as="map(*)*"/>
   <p>
     <xsl:text>Audio playback not supported. </xsl:text>
-    <xsl:if test="exists($objects)">
+    <xsl:if test="exists($datas)">
       <xsl:text>Download </xsl:text>
-      <xsl:for-each select="$objects">
+      <xsl:for-each select="$datas">
         <xsl:choose>
           <xsl:when test="position() gt 2 and position() = last()">
             <xsl:text>, or </xsl:text>
@@ -390,12 +392,12 @@
 
 <xsl:template match="db:textobject">
   <xsl:param name="viewport" as="map(*)?"/>
-  <xsl:param name="objects" as="map(*)*"/>
+  <xsl:param name="datas" as="map(*)*"/>
 
   <xsl:choose>
     <xsl:when test="db:textdata">
       <xsl:apply-templates select="db:textdata[1]">
-        <xsl:with-param name="info" select="$objects[1]"/>
+        <xsl:with-param name="info" select="$datas[1]"/>
       </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
@@ -407,6 +409,14 @@
 <xsl:template match="db:textdata">
   <xsl:param name="info" as="map(*)"/>
   <xsl:sequence select="unparsed-text($info?uri, ($info?node/@encoding, 'utf-8')[1])"/>
+</xsl:template>
+
+<xsl:template match="db:caption">
+  <div>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+    <xsl:apply-templates/>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:multimediaparam">
@@ -1030,42 +1040,42 @@
 
 <xsl:template match="db:audioobject|db:imageobject|db:textobject|db:videoobject"
               as="map(*)"
-              mode="m:image-info">
-  <xsl:variable name="objects" as="map(*)*">
+              mode="m:mediaobject-info">
+  <xsl:variable name="datas" as="map(*)*">
     <xsl:apply-templates
         select="db:audiodata|db:imagedata|db:videodata|db:textdata"
-        mode="m:image-info"/>
+        mode="m:mediaobject-info"/>
   </xsl:variable>
 
   <xsl:sequence select="map {
       'node': .,
-      'objects': array { $objects },
-      'content-types': array { distinct-values($objects ! .?content-type) },
-      'extensions': array { distinct-values($objects ! .?extension) }
+      'datas': array { $datas },
+      'content-types': array { distinct-values($datas ! .?content-type) },
+      'extensions': array { distinct-values($datas ! .?extension) }
     }"/>
 </xsl:template>
 
 <xsl:template match="db:textobject[not(db:textdata)]" as="map(*)"
-              mode="m:image-info"
+              mode="m:mediaobject-info"
               priority="50">
   <xsl:sequence select="map {
       'node': .,
-      'objects': array { },
+      'datas': array { },
       'content-types': array { },
       'extensions': array { }
     }"/>
 </xsl:template>
 
 <xsl:template match="db:textobject[db:phrase]"
-              mode="m:image-info"
+              mode="m:mediaobject-info"
               priority="100"/>
 
 <xsl:template match="db:audiodata|db:imagedata|db:videodata|db:textdata"
               as="map(*)?"
-              mode="m:image-info">
+              mode="m:mediaobject-info">
 
   <xsl:variable name="uris" as="map(*)">
-    <xsl:apply-templates select="." mode="m:image-uris"/>
+    <xsl:apply-templates select="." mode="m:mediaobject-uris"/>
   </xsl:variable>
 
   <xsl:variable name="ext"
@@ -1110,7 +1120,7 @@
 
 <xsl:template match="db:audiodata|db:imagedata|db:videodata|db:textdata"
               as="map(*)"
-              mode="m:image-uris">
+              mode="m:mediaobject-uris">
   <!-- A function so the results can be cached -->
   <xsl:sequence select="fp:compute-uris(.)"/>
 </xsl:template>
