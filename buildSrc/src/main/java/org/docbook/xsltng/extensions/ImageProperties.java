@@ -11,6 +11,7 @@ import net.sf.saxon.value.SequenceType;
 
 import java.awt.*;
 import java.awt.image.ImageObserver;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Pattern;
@@ -89,7 +90,13 @@ public class ImageProperties extends ExtensionFunctionDefinition {
             System.setProperty("java.awt.headless", "true");
 
             try {
-                URL url = new URL(imageFn);
+                final URL url;
+                File imageFile = new File(imageFn);
+                if (imageFile.exists()) {
+                    url = imageFile.toURI().toURL();
+                } else {
+                    url = new URL(imageFn);
+                }
                 image = Toolkit.getDefaultToolkit().getImage (url);
             } catch (MalformedURLException mue) {
                 image = Toolkit.getDefaultToolkit().getImage (imageFn);

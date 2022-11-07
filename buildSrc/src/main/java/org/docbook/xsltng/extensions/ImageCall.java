@@ -38,36 +38,37 @@ abstract public class ImageCall extends ExtensionFunctionCall {
             BufferedReader ir = new BufferedReader(new InputStreamReader(stream));
             String line = ir.readLine();
 
-            if (line != null && line.startsWith("%PDF-")) {
-                // We've got a PDF!
-                int lineLimit = 100;
-                while (lineLimit > 0 && line != null) {
-                    lineLimit--;
-                    if (line.startsWith("/CropBox [")) {
-                        line = line.substring(10);
-                        if (line.contains("]")) {
-                            line = line.substring(0, line.indexOf("]"));
+            if (line != null) {
+                if (line.startsWith("%PDF-")) {
+                    // We've got a PDF!
+                    int lineLimit = 100;
+                    while (lineLimit > 0 && line != null) {
+                        lineLimit--;
+                        if (line.startsWith("/CropBox [")) {
+                            line = line.substring(10);
+                            if (line.contains("]")) {
+                                line = line.substring(0, line.indexOf("]"));
+                            }
+                            map = parseBox(map, line);
+                            lineLimit = 0;
+                        } else if (line.startsWith("/MediaBox [")) {
+                            line = line.substring(11);
+                            if (line.contains("]")) {
+                                line = line.substring(0, line.indexOf("]"));
+                            }
+                            map = parseBox(map, line);
+                            // Keep looking in case we get a CropBox
+                            // I think the CropBox is a better bounding box
                         }
-                        map = parseBox(map, line);
-                        lineLimit = 0;
-                    } else if (line.startsWith("/MediaBox [")) {
-                        line = line.substring(11);
-                        if (line.contains("]")) {
-                            line = line.substring(0, line.indexOf("]"));
-                        }
-                        map = parseBox(map, line);
-                        // Keep looking in case we get a CropBox
-                        // I think the CropBox is a better bounding box
+                        line = ir.readLine();
                     }
-                    line = ir.readLine();
+                } else if (line.startsWith("<?xml")
+                        || line.startsWith("<svg") || line.startsWith("<svg:")
+                        || line.startsWith("<!DOCTYPE svg")) {
+                    // We've got an SVG? Maybe we've got an SVG!
+                    map = parseSvg(map, imageUri);
                 }
-            } else if (line != null
-                    && (line.startsWith("<?xml")
-                    || line.startsWith("<!DOCTYPE")
-                    || line.startsWith("<svg"))) {
-                // We've got an SVG! Maybe we've got an SVG!
-                map = parseSvg(map, imageUri);
-            } else {
+            }  else {
                 logger.info("DocBook image properties failed to interpret: " + imageUri);
             }
         } catch (Exception e) {
