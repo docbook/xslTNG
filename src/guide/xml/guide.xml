@@ -15,6 +15,145 @@
 <revhistory>
   <?db revhistory-style="list"?>
   <revision>
+    <revnumber>1.11.0</revnumber>
+    <date>2022-11-07</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Added support for EPUB3 output.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how media objects are processed</para>
+          <itemizedlist>
+            <listitem>
+              <para>Reworked how <tag class="attribute">contentwidth</tag>,
+              <tag class="attribute">contentdepth</tag>, <tag class="attribute">width</tag>,
+              <tag class="attribute">depth</tag>, <tag class="attribute">scalefit</tag>, and
+              <tag class="attribute">scale</tag> are handled. Width and height (depth)
+              are now processed independently. The results are
+              <emphasis>supposed</emphasis> to be the same as
+              before.</para>
+            </listitem>
+            <listitem>
+              <para>It now makes sense to have both multiple <tag>imageobject</tag> elements
+    and multiple <tag>imagedata</tag> elements with an <tag>imageobject</tag>. (And, analogously,
+    multiple <tag>videoobject</tag> elements with multiple <tag>videodata</tag>, and
+    multiple <tag>audioobject</tag> elements with multiple <tag>audiodata</tag> inside.)</para>
+    <itemizedlist>
+            <listitem>
+              <para>The stylesheets select the first object for which none of
+      the data elements are excluded by <parameter>mediaobject-exclude-extensions</parameter>
+      and then process all of the data elements inside.</para>
+              <itemizedlist>
+                <listitem>
+                  <para>For images, all of the alternatives are placed in a <tag>picture</tag> element using
+        <tag>source</tag> and <tag>img</tag>.</para>
+                </listitem>
+                <listitem>
+                  <para>For videos, all of the alternatives are placed in a <tag>video</tag> element using
+        <tag>source</tag> unless the <parameter>mediaobject-video-element</parameter> is <tag>iframe</tag>.</para>
+                </listitem>
+                <listitem>
+                  <para>For audio, all of the alternatives are placed in an <tag>audio</tag> elemnt using
+        <tag>source</tag>.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>The fallback for audio and video elements is a paragraph that offers download
+      links. This can be configured by overriding the <template>t:audio-fallback</template> and
+      <template>t:video-fallback</template> templates, respectively.
+              </para>
+            </listitem>
+            <listitem>
+            <para>Use <tag>multimediaparams</tag> to specify the controls for audio and vidoe objects.
+      If <emphasis>no</emphasis> parameters are specified, <tag class="attribute">controls</tag> will be added automatically.
+      (If you specify any parameters, you are responsible for specifying the controls
+      parameter.)
+              </para>
+            </listitem>
+            <listitem>
+              <para>If you have multiple data elements in an object, <emphasis>only</emphasis> the
+      attributes associated with the <emphasis>last</emphasis> alternative are considered
+      when calculating the viewport, alignment, etc. This is (a)
+      consistent with HTML, and (b) at least partly justifiable by the
+      observation that for scalable formats like SVG, it doesn’t make
+      sense to say that the image has a particular height or width.
+      Specify that on the raster fallback image where it makes sense.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+            <listitem>
+              <para>The actual nesting of divs and spans and some of the class values
+    have changed. Check your CSS.</para>
+            </listitem>
+            <listitem>
+              <para>Fixed a bug where the <tag class="attribute">summary</tag> accesibility attribute was not always output.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Reworked image maps.</para>
+              <itemizedlist>
+            <listitem>
+              <para>Simpified the code for computing how <code>calspair</code> coordinates are calculated. 
+              </para>
+            </listitem>
+            <listitem>
+              <para>Added support for <code>html-rect</code>, <code>html-circle</code>, and <code>html-poly</code>
+      styles. Use <code>units="other"</code> and place the new styles in
+      <code>otherunits</code>. See the <filename>calloutlist.005.xml</filename> unit test for
+      examples.</para>
+            </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>Changed the <parameter>mediaobject-exclude-extensions</parameter> parameter into
+      space-delimited string so that it’s easier to pass as a
+      parameter. The variable <varname>v:mediaobject-exclude-extensions</varname> is a
+      list constructed from the string.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Added <parameter>mediaobject-video-element</parameter> parameter.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Changed <function>f:parse-length</function> so that it accepts <code>xs:string?</code> and returns
+      an empty sequence if it’s passed one.</para>
+            </listitem>
+            <listitem>
+              <para>Added support for <tag>db:textdata</tag>. If a text data element is present, the first
+      one encountered is used (unless it contains only a single <tag>db:phrase</tag> as those
+      where historically used for alt text).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>The icons used for admonitions have been changed. One or two of them
+  didn’t show up in EPUB readers.</para>
+        </listitem>
+        <listitem>
+          <para>Updated the extension functions that attempt to extract metadata
+  from images so that they accept filenames that aren’t URIs. Also
+  added support for a second “image” parameter, so that you can
+  prevent them from attempting to parse, for example, a video as an
+  image.</para>
+        </listitem>
+        <listitem>
+          <para>Added convenience variables
+          <varname>v:as-xml</varname> and <varname>v:as-json</varname> for
+          convenience in calls to <code>fn:serialize()</code>. Mostly
+          this is for debugging.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how the preprocessing pipeline is evaluated.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
     <revnumber>1.10.1</revnumber>
     <date>2022-10-28</date>
     <revdescription>
@@ -88,6 +227,7 @@ preparing it for execution each time.</para>
       </itemizedlist>
     </revdescription>
   </revision>
+<!--
   <revision>
     <revnumber>1.8.0</revnumber>
     <date>2022-07-24</date>
@@ -203,6 +343,7 @@ preparing it for execution each time.</para>
       </itemizedlist>
     </revdescription>
   </revision>
+-->
 </revhistory>
 <legalnotice>
 <literallayout><citetitle>DocBook xslTNG</citetitle>

@@ -143,7 +143,37 @@ You must process the map to store the documents.</para>
 automatically by the root template in the stylesheets. You only need to call
 it explicitly if you have an override for the root template and want to
 do some specialized processing.
-</para></refsection>
+</para>
+<para>The template has a single parameter, <literal>return</literal>, which selects
+what should be constructed by the template:</para>
+
+<variablelist>
+<varlistentry><term><literal>main-document</literal>, the default value</term>
+<listitem>
+<para>Returns the primary output of the stylesheet.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>raw-results</literal></term>
+<listitem>
+<para>Returns a map with two keys, <literal>document</literal> containing the original
+DocBook document processed and <literal>output</literal> containing the transformed
+result.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>chunked-results</literal></term>
+<listitem>
+<para>Returns a map with two keys, <literal>document</literal> containing the original
+DocBook document processed and <literal>chunks</literal> containing a map from
+output URIs to documents.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Any other value is <link linkend="v_dbe_INVALID-RESULTS-REQUESTED">an error</link>.
+</para>
+</refsection>
 </refentry>
 
 <refentry xml:id="t_generate-index">

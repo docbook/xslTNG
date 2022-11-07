@@ -911,5 +911,77 @@ presentation, in the printed version.</para>
 CSS paged-media formatter.</para>
 
 </section>
+
+<section xml:id="epub">
+<title>EPUB output</title>
+
+<para>The <citetitle>DocBook xslTNG Stylesheets</citetitle> will
+produce output designed for EPUB(3) if you use the
+<filename>epub.xsl</filename> stylesheet instead of
+<filename>docbook.xsl</filename>. This is new in version 1.11.0 and
+may be incomplete. The output conforms to
+<link xlink:href="https://www.w3.org/publishing/epubcheck/">EPUBCheck</link>
+version 3.2.</para>
+
+<para>Producing an EPUB file is a slightly complicated process. You
+must produce (X)HTML that conforms to strict requirements, you must
+produce a media type document containing a specific text string, you
+must produce a manifest that identifies all of the content including
+all the images, stylesheets, fonts, etc, and you must finally create a
+ZIP archive (with some special consideration as well).</para>
+
+<para>The stylesheets can only do part of this process. In some future
+release where we use, for example, an XProc 3.0 pipeline, it may be
+practical to do more.</para>
+
+<para>When you run the EPUB stylesheet, the principle result document is the
+media type document. This has two useful side effects: first, it establishes the
+output base URI from which all the relative documents can be created, and second, if
+you fail to process some element in the input, you’re likely to get extra text characters
+in the principle result document. That will cause tools to reject the EPUB and draw your
+attention to the error.</para>
+
+<para>The stylesheets also produce the META-INF files and the OPS
+directory containing the document parts and the manifest.</para>
+
+<para>There are two parameters specific to EPUB:</para>
+
+<variablelist>
+<varlistentry><term><literal>pub-id</literal></term>
+<listitem>
+<para>This is the unique identifier for your EPUB. If you don’t specify one, a random
+one will be generated for you.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>manifest-extra</literal></term>
+<listitem>
+<para>This is a URI. If it’s specified, then it must be an XML document and that will
+be added to the EPUB manifest. This is how you can add links to media and other resources
+that the stylesheets don’t know about.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<section xml:id="metadata">
+<title>Adding metadata</title>
+<para>You can add elements to the <tag>info</tag> element of the root element of your
+document to add metadata to your EPUB files. Elements in the Dublin Core namespace
+will be copied through. You can also add the elements
+<code>meta</code> and <code>link</code> in the special namespace
+<code>http://docbook.org/ns/docbook/epub</code>.</para>
+</section>
+
+<section xml:id="epub-in-ation">
+<title>EPUB in action</title>
+
+<para>The <link
+xlink:href="https://github.com/docbook/getting-started/">Getting
+Started</link> project has been updated to show how to create EPUB
+from a book. The project has support for dealing with external media,
+fonts, and constructing the final ZIP file.</para>
+</section>
+</section>
 </chapter>
 
