@@ -38,6 +38,7 @@
 <xsl:param name="default-length-magnitude" select="25.0"/>
 <xsl:param name="default-length-unit" select="'%'"/>
 <xsl:param name="profile-os" select="'linux;win'"/>
+<xsl:param name="profile-outputformat" select="'online'"/>
 <xsl:param name="show-remarks" select="'true'"/>
 <xsl:param name="table-accessibility" select="('summary', 'details')"/>
 <xsl:param name="bibliography-collection"

@@ -6,12 +6,14 @@
 
    <mediaobject>
      <videoobject>
-       <videodata contentwidth="560" contentdepth="315"
+       <?db video="iframe"?>
+       <videodata width="560" depth="315" scalefit="1"
                   fileref="https://www.youtube.com/embed/twj8G5_hu_0">
          <multimediaparam name="frameborder" value="0"/>
          <multimediaparam name="allow"
                           value="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
          <multimediaparam name="allowfullscreen" value="allowfullscreen"/>
+         <multimediaparam name="controls" value="controls"/>
        </videodata>
      </videoobject>
    </mediaobject>

@@ -910,7 +910,7 @@ document.</para>
       <modifier>static</modifier>
       <type>xs:string</type>
       <varname>debug</varname>
-      <initializer>''</initializer>
+      <initializer>'x-objects x-pipeline x-image-markup x-image-properties x-mediaobject-uris'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -997,6 +997,15 @@ dynamic profiling.
 <para>Display additional information about the results of the extracting
 properties from images. This will display all of the properties available from
 each image.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>image-markup</enumvalue>
+</term>
+<listitem>
+<para>Display the markup generated for media objects.
 </para>
 </listitem>
 </varlistentry>
@@ -2194,8 +2203,9 @@ settings.</para>
 <refentry>
   <refmeta>
     <fieldsynopsis>
+      <type>xs:string</type>
       <varname>mediaobject-exclude-extensions</varname>
-      <initializer>('.eps', '.ps', '.pdf')</initializer>
+      <initializer>".eps .ps .pdf"</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -2279,6 +2289,50 @@ the base URI of media objects in the output.
 <para>It defaults to the empty string.
 See <varname>v:mediaobject-output-base-uri</varname>.
 </para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>mediaobject-video-element</varname>
+      <initializer>'video'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Use the video element?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>This element identifies the element to use for video content.
+The default starting in version 1.11.0 is
+<tag namespace="http://www.w3.org/1999/xhtml">video</tag> where it
+had previously been 
+<tag namespace="http://www.w3.org/1999/xhtml">iframe</tag>.</para>
+<para>Video is a bit complicated, the 
+<tag namespace="http://www.w3.org/1999/xhtml">video</tag> element works best
+for local video sources but won’t work for embedding content from other sites.
+If all of your content is embedded, specifying
+<tag namespace="http://www.w3.org/1999/xhtml">iframe</tag> here will
+be simplest.</para>
+<para>If you need a mixture, of styles, it can be specified on a per-video
+basis with the
+<literal>db</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+</indexterm> processing instruction using the
+<literal>video</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+<secondary>video pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.
+</para>
+<note>
+<para>The only supported values are <literal>iframe</literal> and
+<literal>video</literal>; you cannot use this parameter or the processing
+instruction to insert arbitrary element names.</para>
+</note>
 </refsection>
 </refentry>
 
@@ -2423,7 +2477,7 @@ the document will be transformed into elements marked with CSS classes
 for rendering in the output.
 </para>
 <para>Rendering Oxygen change markup can be specified on a document-by-document
-bases with a <literal>db</literal>
+basis with a <literal>db</literal>
 <indexterm>
 <primary>db processing
 instruction</primary>
@@ -3418,7 +3472,7 @@ table-summary='US States and their capitals'?>
 </seglistitem>
 </segmentedlist>
 </figure>
-<para>The style can be selected on a per-list bases with the
+<para>The style can be selected on a per-list basis with the
 <literal>db</literal>
 <indexterm>
 <primary>db processing instruction</primary>

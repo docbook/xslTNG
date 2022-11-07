@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
-<title>Article wrapper</title>
+<title>Unit test: calloutlist.004</title>
+
+<para>This image map uses <literal>calspair</literal> coordinates. The
+CALS pair coordinate system measures rectangles from the lower-left
+coordinate to the upper-right coordinate as a percentage of the size
+of the image. Each coordiante is multiplied by 10,000 to make an
+integer. For example, a coordinate of 20.25% is represented as
+2025. If your image is a square, the upper right quadrant of
+that square can be identfied with the CALS pair coordinates
+<literal>5000,5000,10000,10000</literal>.</para>
+
+<para>The HTML coordinate system measures rectangles from the upper-left
+coordinate to the lower-right coordinate in pixels. If the square
+has a side-length of 200 pixels, the coordinates that correspond to the
+upper right are <literal>50,0,100,50</literal>.</para>
 
 <figure>
     <title>A rectangle's corners</title>
@@ -8,33 +22,21 @@
     <mediaobject>
       <imageobjectco>
         <areaspec otherunits="imagemap" units="other">
-          <area coords="29,31,74,74" linkends="coLeftUpper" units="calspair" xml:id="lu">
+          <area coords="1400,6150,3850,8500" linkends="coLeftUpper" units="calspair" xml:id="lu">
             <alt>Left upper corner</alt>
           </area>
-
-          <area coords="134,135,162,162" linkends="coRightLower"  units="calspair" xml:id="rl">
+          <area coords="6650,1750,8250,3300" linkends="coRightLower"  units="calspair" xml:id="rl">
             <alt>Right lower corner</alt>
           </area>
         </areaspec>
-
         <imageobject>
-          <imagedata
-              ><svg xmlns='http://www.w3.org/2000/svg'
-                    version='1.1' width='200px' height='200px'
-                    viewBox='0 0 200 200'>
-            <g fill='none' stroke-width='2' >
-              <rect x="50" y="50"  width="100" height="100" stroke="black" />
-              <rect stroke='red'  x='134' y='135' width='29' height='28'/>
-              <rect stroke='red' x='29' y='31' width='46' height='44'/>
-            </g>
-          </svg></imagedata>
+          <imagedata contentwidth="200" contentdepth="200"
+                     fileref="../media/box.svg"/>
         </imageobject>
-
         <calloutlist>
           <callout arearefs="lu" xml:id="coLeftUpper">
             <para>Left upper corner</para>
           </callout>
-
           <callout arearefs="rl" xml:id="coRightLower">
             <para>Right lower corner</para>
           </callout>
