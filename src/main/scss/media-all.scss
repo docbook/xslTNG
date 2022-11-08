@@ -660,9 +660,13 @@ th.char {
   display: inline-block;
 }
 
-.viewport-table {
+div > .viewport-table {
   display: table;
   width: 100%;
+}
+
+span > .viewport-table {
+  display: inline-table;
 }
 
 .viewport-row {
@@ -671,6 +675,11 @@ th.char {
 
 .viewport-cell {
   display: table-cell;
+}
+
+.viewport-cell > span {
+  display: block;
+  line-height: 1;
 }
 
 .viewport {

@@ -67,8 +67,18 @@
               <xsl:message select="'No media object found.'"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message select="'No acceptable media object, using ',
-                                   $force?fileref"/>
+              <xsl:variable name="ref"
+                            select="if (array:size($force?datas) gt 0)
+                                    then array:get($force?datas, 1)?fileref
+                                    else ()"/>
+              <xsl:choose>
+                <xsl:when test="exists($ref)">
+                  <xsl:message select="'No acceptable media object, using', $ref"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:message select="'No acceptable media object found'"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:otherwise>
           </xsl:choose>
           <xsl:sequence select="$force"/>
@@ -141,20 +151,24 @@
                   name="pi-properties"
                   select="f:pi-attributes($last-data?node/processing-instruction('db'))"/>
               <xsl:with-param name="content" as="element()+">
-                <span class="viewport">
-                  <xsl:apply-templates select="$object-info?node">
-                    <xsl:with-param name="viewport" select="$viewport"/>
-                    <xsl:with-param name="datas"
-                                    select="array:flatten($object-info?datas)"/>
-                  </xsl:apply-templates>
-                  <xsl:if test="$object-info?node/ancestor::db:imageobjectco
-                                and exists($display-width) and exists($display-height)">
-                    <xsl:apply-templates select="$object-info?node/ancestor::db:imageobjectco"
-                                         mode="m:imagemap">
-                      <xsl:with-param name="intrinsicwidth" select="$display-width"/>
-                      <xsl:with-param name="intrinsicheight" select="$display-height"/>
+                <!-- This anonymous span is styled with CSS to avoid an
+                     awkward bottom padding issue in Firefox. -->
+                <span>
+                  <span class="viewport">
+                    <xsl:apply-templates select="$object-info?node">
+                      <xsl:with-param name="viewport" select="$viewport"/>
+                      <xsl:with-param name="datas"
+                                      select="array:flatten($object-info?datas)"/>
                     </xsl:apply-templates>
-                  </xsl:if>
+                    <xsl:if test="$object-info?node/ancestor::db:imageobjectco
+                                  and exists($display-width) and exists($display-height)">
+                      <xsl:apply-templates select="$object-info?node/ancestor::db:imageobjectco"
+                                           mode="m:imagemap">
+                        <xsl:with-param name="intrinsicwidth" select="$display-width"/>
+                        <xsl:with-param name="intrinsicheight" select="$display-height"/>
+                      </xsl:apply-templates>
+                    </xsl:if>
+                  </span>
                 </span>
               </xsl:with-param>
             </xsl:call-template>
@@ -162,6 +176,11 @@
         </xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
+
+    <xsl:variable name="table" select="$viewport-markup"/>
+    <xsl:variable name="row" select="$table/*"/>
+    <xsl:variable name="cell" select="$row/*"/>
+    <xsl:variable name="viewport" select="$cell/*/*"/> <!-- Skip the anonymous wrapper! -->
 
     <xsl:message use-when="'image-markup' = $v:debug"
                  select="serialize($viewport-markup, $v:as-xml)"/>
@@ -179,14 +198,11 @@
                  namespace="http://www.w3.org/1999/xhtml">
       <xsl:attribute name="class" select="'media ' || $mediatype"/>
       <xsl:choose>
-        <xsl:when test="empty($viewport-markup/@* except $viewport-markup/@class)
-                        and empty($viewport-markup/h:span/@*
-                                  except $viewport-markup/h:span/@class)
-                        and empty($viewport-markup/h:span/h:span/@*
-                                  except $viewport-markup/h:span/h:span/@class)
-                        and empty($viewport-markup/h:span/h:span/h:span/@*
-                                  except $viewport-markup/h:span/h:span/h:span/@class)">
-          <xsl:sequence select="$viewport-markup/h:span/h:span/h:span/node()"/>
+        <xsl:when test="empty($table/@* except $table/@class)
+                        and empty($row/@* except $row/@class)
+                        and empty($cell/@* except $cell/@class)
+                        and empty($viewport/@* except $viewport/@class)">
+          <xsl:sequence select="$viewport/node()"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:sequence select="$viewport-markup"/>
