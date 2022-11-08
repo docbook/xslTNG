@@ -113,6 +113,7 @@ jobs:
         with:
           repository: ${{ github.repository_owner}}/cdn
           token: ${{ secrets.ACCESS_TOKEN }}
+          fetch-depth: 0
           ref: 'master'
 
       - name: Rebuild the CDN indexes
