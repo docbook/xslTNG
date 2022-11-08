@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.11.0, https://xsltng.docbook.org */
+/* DocBook xslTNG version 1.11.1, https://xsltng.docbook.org */
 /* No embedded fonts by default. */
 :root {
   --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
@@ -628,9 +628,13 @@ th.char {
   display: inline-block;
 }
 
-.viewport-table {
+div > .viewport-table {
   display: table;
   width: 100%;
+}
+
+span > .viewport-table {
+  display: inline-table;
 }
 
 .viewport-row {
@@ -639,6 +643,11 @@ th.char {
 
 .viewport-cell {
   display: table-cell;
+}
+
+.viewport-cell > span {
+  display: block;
+  line-height: 1;
 }
 
 .viewport {

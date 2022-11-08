@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.11.0, https://xsltng.docbook.org */
+/* DocBook xslTNG version 1.11.1, https://xsltng.docbook.org */
 @import url("https://fonts.googleapis.com/css2?family=B612+Mono:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
@@ -633,9 +633,13 @@ th.char {
   display: inline-block;
 }
 
-.viewport-table {
+div > .viewport-table {
   display: table;
   width: 100%;
+}
+
+span > .viewport-table {
+  display: inline-table;
 }
 
 .viewport-row {
@@ -644,6 +648,11 @@ th.char {
 
 .viewport-cell {
   display: table-cell;
+}
+
+.viewport-cell > span {
+  display: block;
+  line-height: 1;
 }
 
 .viewport {
