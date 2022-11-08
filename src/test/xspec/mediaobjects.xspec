@@ -102,6 +102,11 @@
       <x:expect label="expect a mediaobject" href="../resources/expected/mediaobject.003.html"/>
    </x:scenario>
 
+   <x:scenario label="When converting mediaobject.004">
+      <x:context href="../resources/xml/mediaobject.004.xml"/>
+      <x:expect label="expect a mediaobject" href="../resources/expected/mediaobject.004.html"/>
+   </x:scenario>
+
    <x:scenario label="When converting mediaobjectco.001">
       <x:context href="../resources/xml/mediaobjectco.001.xml"/>
       <x:expect label="expect a mediaobject" href="../resources/expected/mediaobjectco.001.html"/>
