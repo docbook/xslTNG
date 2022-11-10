@@ -45,18 +45,23 @@
      as strings here and as more useful data types in the variables. </xsl:comment>
 
     <xsl:text>&#10;&#10;</xsl:text>
-    <xsl:apply-templates select="//db:fieldsynopsis"/>
+
+    <xsl:variable name="variables"
+                  select="//db:fieldsynopsis
+                          [not(ancestor::db:refentry[contains-token(@role, 'obsolete')])]"/>
+
+    <xsl:apply-templates select="$variables"/>
 
     <x:variable name="vp:static-parameters" as="map(xs:QName, item()*)">
       <x:map>
-        <xsl:for-each select="//db:fieldsynopsis[db:modifier[. = 'static']]">
+        <xsl:for-each select="$variables[db:modifier[. = 'static']]">
           <x:map-entry key="QName('', '{db:varname}')" select="${db:varname}"/>
         </xsl:for-each>
       </x:map>
     </x:variable>
     <x:variable name="vp:dynamic-parameters" as="map(xs:QName, item()*)">
       <x:map>
-        <xsl:for-each select="//db:fieldsynopsis[not(db:modifier[. = 'static'])]">
+        <xsl:for-each select="$variables[not(db:modifier[. = 'static'])]">
           <x:map-entry key="QName('', '{db:varname}')" select="${db:varname}"/>
         </xsl:for-each>
       </x:map>
