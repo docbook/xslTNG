@@ -1584,7 +1584,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
 </refsection>
 </refentry>
 
-<refentry>
+<refentry role="obsolete 1.12.0">
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1598,21 +1598,12 @@ or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)'</initializer>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <parameter>generate-nested-toc</parameter> parameter is an
-XPath expression. If it evaluates to true when the context item is an
-element that appears in the table of contents (ToC), then the immediate
-children of that element will may also occur in the ToC.
-</para>
-<para>For example, if this expression returns true for a <tag>chapter</tag>
-element that appears in the ToC, then the first level sections in that chapter
-will also appear in the ToC. If the expression returns true for one of those
-sections, then the second level sections of the chapter will appear in the ToC,
-etc.
-</para>
+<para>This parameter is no longer used. Instead, you can control the elements
+that appear in a table of contents with the <mode>m:toc-nested</mode> mode.</para>
 </refsection>
 </refentry>
 
-<refentry>
+<refentry role="obsolete 1.12.0">
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1627,9 +1618,8 @@ or self::db:part or self::db:reference'</initializer>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <parameter>generate-toc</parameter> parameter is an XPath expression.
-If the expression evaluates to true for any element, then a table of contents
-will be generated automatically at the beginning of that element.</para>
+<para>This parameter is no longer used. Instead, you can control the elements
+that contain a table of contents with the <mode>m:toc</mode> mode.</para>
 </refsection>
 </refentry>
 
@@ -1649,8 +1639,7 @@ will be generated automatically at the beginning of that element.</para>
 <para>If the <parameter>generate-trivial-toc</parameter> parameter
 <glossterm>is true</glossterm>, a table of contents will be generated even if it
 consists of only a single entry. Otherwise, such “trivial” tables of contents will be elided.</para>
-<para>A trivial table of contents will always be generated if there
-are other lists of titles (for example, a list of figures). This
+<para>This
 parameter applies only to top-level tables of contents. Nested tables
 of contents will be generated even if they consist of only a single
 entry.</para>

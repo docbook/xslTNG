@@ -1288,6 +1288,25 @@ produce that list.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_list-of-titles">
+<?db filename="m_list-of-titles"?>
+<refmeta>
+<refentrytitle>m:list-of-titles</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-titles</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-titles</refname>
+<refpurpose>Mode for generating a list-of-titles</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a list of titles (figures, tables, equations, etc.) is created, each
+element is processed in this mode to produce the list item that will appear in the
+list.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_mediaobject-info">
 <?db filename="m_mediaobject-info"?>
 <refmeta>
@@ -1322,6 +1341,26 @@ See <xref linkend="processing-mediaobjects"/>.</para>
 <title>Description</title>
 <para>The media object elements are processed in this mode to extract
 their input and output URIs.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_persistent-toc">
+<?db filename="m_persistent-toc"?>
+<refmeta>
+<refentrytitle>m:persistent-toc</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}persistent-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:persistent-toc</refname>
+<refpurpose>Mode for generating the persistent table of contents</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>persistent-toc</parameter> <glossterm>is true</glossterm>, 
+the document will be processed in this mode to produce the contents of the
+persistent ToC. By default, this produces the same ToC as the
+<mode>m:toc</mode> mode.</para>
 </refsection>
 </refentry>
 
@@ -1583,6 +1622,28 @@ constructing a Table of Contents (or, more generally, any list of elements).
 <title>Description</title>
 <para>When an element appears in the Table of Contents (or other list of titles),
 it is formatted in this mode to produce the entry in the list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_toc-nested">
+<?db filename="m_toc-nested"?>
+<refmeta>
+<refentrytitle>m:toc-nested</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}toc-nested</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:toc-nested</refname>
+<refpurpose>What elements are “nested” in a Table of Contents</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The elements processed in the <mode>m:toc</mode> mode determine where
+a Table of Contents will appear. When a Table of Contents does appear, the children
+of the starting element are processed in the <mode>m:toc-nested</mode> mode
+to determine which of them appear. This mode, for example, handles the maximum nesting
+depth of sections in the ToC.
 </para>
 </refsection>
 </refentry>
