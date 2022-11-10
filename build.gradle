@@ -831,6 +831,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
+    outputs.files fileTree(dir: "${buildDir}/actual", include: "**/*.html")
 
     pluginConfiguration "docbook"
 
