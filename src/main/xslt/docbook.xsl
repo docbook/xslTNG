@@ -183,12 +183,6 @@
   </xsl:variable>
 
   <xsl:variable name="result" as="document-node()">
-    <xsl:apply-templates select="$document" mode="m:docbook">
-      <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
-    </xsl:apply-templates>
-  </xsl:variable>
-
-  <xsl:variable name="result" as="document-node()">
     <xsl:call-template name="t:chunk-cleanup">
       <xsl:with-param name="docbook" select="$document"/>
       <xsl:with-param name="source">

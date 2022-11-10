@@ -30,9 +30,11 @@
 
     // Turn off any search markers that might have been set
     toc.querySelectorAll("li").forEach(function (li) {
-      const link = li.querySelector("a");
       li.style.display = "list-item";
-      link.classList.remove("found");
+      const link = li.querySelector("a");
+      if (link) {
+        link.classList.remove("found");
+      }
     });
 
     // Give the current click event a chance to settle?
@@ -206,14 +208,18 @@
         const link = li.querySelector("a");
         if (restr === "") {
           li.style.display = "list-item";
-          link.classList.remove("found");
+          if (link) {
+            link.classList.remove("found");
+          }
         } else {
           if (li.textContent.toLowerCase().match(regex)) {
             li.style.display = "list-item";
-            if (link.textContent.toLowerCase().match(regex)) {
-              link.classList.add("found");
-            } else {
-              link.classList.remove("found");
+            if (link) {
+              if (link.textContent.toLowerCase().match(regex)) {
+                link.classList.add("found");
+              } else {
+                link.classList.remove("found");
+              }
             }
           } else {
             li.style.display = "none";

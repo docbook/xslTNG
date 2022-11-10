@@ -68,50 +68,61 @@
   <refsynopsisdiv>
     <title>Synopsis</title>
 
-    <xsl:for-each select="../db:refmeta/db:fieldsynopsis">
-      <xsl:choose>
-        <xsl:when test="db:initializer/*">
-          <xsl:variable name="synopsis">
-            <xsl:element name="xsl:param" namespace="http://www.w3.org/1999/XSL/Transform">
-              <xsl:attribute name="name" select="db:varname/string()"/>
-              <xsl:if test="db:type">
-                <xsl:attribute name="as" select="db:type/string()"/>
-              </xsl:if>
-              <xsl:apply-templates select="db:initializer/node()"
-                                   mode="copy-without-namespaces"/>
-            </xsl:element>
-          </xsl:variable>
-          <xsl:variable name="text" as="xs:string">
-            <xsl:sequence select="serialize($synopsis, map{'method':'xml','indent':true()})"/>
-          </xsl:variable>
-          <synopsis linenumbering="unnumbered">
-            <xsl:sequence
-                select="replace($text, ' xmlns:xsl=.http://www.w3.org/1999/XSL/Transform.', '')
-                        ! replace(., ' xmlns=.http://www.w3.org/1999/xhtml.', '')
-                        ! replace(., '^\s+', '')
-                        ! replace(., '\s+$', '')"/>
-          </synopsis>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:variable name="prefix"
-                        select="'$' || db:varname
-                                || (if (db:type)
-                                    then ' as ' || db:type
-                                    else '')
-                                || ' :='"/>
-          <synopsis>
-            <xsl:sequence select="$prefix"/>
-            <xsl:for-each select="tokenize(string(db:initializer), '&#10;')">
-              <xsl:if test="position() gt 1">
-                <xsl:text> &#10;</xsl:text>
-                <xsl:text>{substring($spaces, 1, string-length($prefix)+1)}</xsl:text>
-              </xsl:if>
-              <xsl:sequence select="."/>
-            </xsl:for-each>
-          </synopsis>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
+    <xsl:choose>
+      <xsl:when test="ancestor::db:refentry[contains-token(@role, 'obsolete')]">
+        <para>
+          <xsl:text>Obsolete as of version </xsl:text>
+          <xsl:sequence select="substring-after(ancestor::db:refentry/@role, 'obsolete ')"/>
+          <xsl:text>.</xsl:text>
+        </para>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:for-each select="../db:refmeta/db:fieldsynopsis">
+          <xsl:choose>
+            <xsl:when test="db:initializer/*">
+              <xsl:variable name="synopsis">
+                <xsl:element name="xsl:param" namespace="http://www.w3.org/1999/XSL/Transform">
+                  <xsl:attribute name="name" select="db:varname/string()"/>
+                  <xsl:if test="db:type">
+                    <xsl:attribute name="as" select="db:type/string()"/>
+                  </xsl:if>
+                  <xsl:apply-templates select="db:initializer/node()"
+                                       mode="copy-without-namespaces"/>
+                </xsl:element>
+              </xsl:variable>
+              <xsl:variable name="text" as="xs:string">
+                <xsl:sequence select="serialize($synopsis, map{'method':'xml','indent':true()})"/>
+              </xsl:variable>
+              <synopsis linenumbering="unnumbered">
+                <xsl:sequence
+                    select="replace($text, ' xmlns:xsl=.http://www.w3.org/1999/XSL/Transform.', '')
+                            ! replace(., ' xmlns=.http://www.w3.org/1999/xhtml.', '')
+                            ! replace(., '^\s+', '')
+                            ! replace(., '\s+$', '')"/>
+              </synopsis>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:variable name="prefix"
+                            select="'$' || db:varname
+                                    || (if (db:type)
+                                        then ' as ' || db:type
+                                        else '')
+                                    || ' :='"/>
+              <synopsis>
+                <xsl:sequence select="$prefix"/>
+                <xsl:for-each select="tokenize(string(db:initializer), '&#10;')">
+                  <xsl:if test="position() gt 1">
+                    <xsl:text> &#10;</xsl:text>
+                    <xsl:text>{substring($spaces, 1, string-length($prefix)+1)}</xsl:text>
+                  </xsl:if>
+                  <xsl:sequence select="."/>
+                </xsl:for-each>
+              </synopsis>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
   </refsynopsisdiv>
 </xsl:template>
 
