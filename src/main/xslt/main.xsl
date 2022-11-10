@@ -71,6 +71,13 @@
     <html>
       <xsl:attribute name="xml:base" select="base-uri(/*)"/>
       <xsl:apply-templates select="(/*/db:info,/*)[1]" mode="m:html-head"/>
+
+      <xsl:if test="f:is-true($persistent-toc)">
+        <div db-persistent-toc="true">
+          <xsl:apply-templates select="*" mode="m:persistent-toc"/>
+        </div>
+      </xsl:if>
+
       <!-- N.B. Any filename specified in a PI is ignored for the root -->
       <div db-chunk="{$chunk}"
            db-xlink="{f:xlink-style(/)}">

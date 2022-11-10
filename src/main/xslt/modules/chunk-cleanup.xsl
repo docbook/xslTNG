@@ -262,22 +262,27 @@
 
   <xsl:variable name="pchunk" select="$node/ancestor::*[@db-chunk][1]"/>
 
-  <xsl:choose>
-    <xsl:when test="exists($pchunk)">
-      <xsl:sequence
-          select="resolve-uri($node/@db-chunk,
-                              fp:chunk-output-filename($pchunk))"/>
-    </xsl:when>
-    <xsl:when test="not($v:chunk)">
-      <xsl:sequence select="base-uri(root($node)/*)"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence
-          select="resolve-uri($node/@db-chunk,
-                              resolve-uri($chunk-output-base-uri,
-                                          base-uri(root($node)/*)))"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:variable name="fn" as="xs:anyURI">
+    <xsl:choose>
+      <xsl:when test="exists($pchunk)">
+        <xsl:sequence
+            select="resolve-uri($node/@db-chunk,
+                                fp:chunk-output-filename($pchunk))"/>
+      </xsl:when>
+      <xsl:when test="not($v:chunk)">
+        <xsl:sequence select="base-uri(root($node)/*)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence
+            select="resolve-uri($node/@db-chunk,
+                                resolve-uri($chunk-output-base-uri,
+                                            base-uri(root($node)/*)))"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <!--<xsl:message select="'COF:', $fn"/>-->
+  <xsl:sequence select="$fn"/>
 </xsl:function>
 
 <xsl:template match="h:head/h:link[@href]">
@@ -397,6 +402,10 @@
         <xsl:copy-of select="@*"/>
         <xsl:apply-templates/>
       </a>
+    </xsl:when>
+    <xsl:when test="ancestor::*[@db-persistent-toc]">
+      <!-- ignore it, we'll clean up the persistent ToC later -->
+      <xsl:sequence select="."/>
     </xsl:when>
     <xsl:when test="$tchunk/@id = $id">
       <xsl:if test="'intra-chunk-refs' = $v:debug">

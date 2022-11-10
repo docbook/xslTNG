@@ -142,6 +142,14 @@
   <xsl:namespace name="db" select="'http://docbook.org/ns/docbook'"/>
 </xsl:variable>
 
+<!-- Make sure we've resolved it so that file:///, file://, file:/, etc.
+     get normalized because later on we're going to want to compare
+     the prefix of this base URI with the prefix of another URI. -->
+<xsl:variable name="vp:chunk-output-base-uri" as="xs:anyURI?"
+              select="if (not($v:chunk))
+                      then ()
+                      else resolve-uri($chunk-output-base-uri, static-base-uri())"/>
+
 <!-- I tinkered a bit to find images that would display across
      a variety of devices. YMMV. -->
 <xsl:variable name="v:admonition-icons">

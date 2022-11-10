@@ -1,329 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:dbe="http://docbook.org/ns/docbook/errors"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+                xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f h m mp t tp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
-<xsl:template match="*" mode="m:toc">
-  <xsl:message select="'Unexpected in m:toc:', node-name(.)"/>
-</xsl:template>
-
-<xsl:template match="*" mode="mp:toc">
-  <xsl:param name="nested" as="xs:boolean" required="yes"/>
-  <xsl:param name="entries" as="element()*" required="yes"/>
-
-  <!-- FIXME: what's the right way to go about this? -->
-  <xsl:variable name="nscontext" as="element()">
-    <xsl:element name="nscontext">
-      <xsl:namespace name="f" select="'http://docbook.org/ns/docbook/functions'"/>
-      <xsl:namespace name="v" select="'http://docbook.org/ns/docbook/variables'"/>
-      <xsl:namespace name="vp" select="'http://docbook.org/ns/docbook/variables/private'"/>
-      <xsl:namespace name="f" select="'http://docbook.org/ns/docbook/functions'"/>
-      <xsl:namespace name="db" select="'http://docbook.org/ns/docbook'"/>
-    </xsl:element>
-  </xsl:variable>
-
-  <xsl:variable name="toc" as="item()?">
-    <xsl:choose xmlns:vp="http://docbook.org/ns/docbook/variables/private">
-      <xsl:when test="$nested">
-        <xsl:evaluate context-item="." xpath="$generate-nested-toc"
-                      namespace-context="$nscontext">
-          <xsl:with-param name="vp:section-toc-depth"
-                          select="$vp:section-toc-depth"/>
-        </xsl:evaluate>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:evaluate context-item="." xpath="$generate-toc"
-                      namespace-context="$nscontext">
-          <xsl:with-param name="vp:section-toc-depth"
-                          select="$vp:section-toc-depth"/>
-        </xsl:evaluate>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:if test="$toc and exists($entries)
-                and f:is-true(f:pi(db:info, 'toc', 'true'))">
-    <xsl:call-template name="tp:toc">
-      <xsl:with-param name="entries" select="$entries"/>
-      <xsl:with-param name="nested" select="$nested"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="db:set|db:book|db:part|db:reference" mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                    select="db:book|db:preface|db:chapter|db:appendix|db:article
-                            |db:topic|db:part|db:reference|db:refentry|db:dedication
-                            |db:bibliography|db:index|db:glossary
-                            |db:acknowledgements|db:colophon"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:partintro|db:acknowledgements
-                     |db:bibliodiv|db:glossdiv|db:indexdiv
-                     |db:dedication|db:colophon"
+<xsl:template match="*" mode="m:toc"/>
+<xsl:template match="text()|processing-instruction()|comment()" mode="m:toc"/>
+<xsl:template match="/db:article|db:set|db:book|db:part|db:reference"
               mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <!-- these don't get a ToC -->
+  <xsl:call-template name="tp:toc"/>
 </xsl:template>
 
-<xsl:template match="db:formalgroup
-                     |db:figure|db:table|db:example|db:equation|db:procedure"
-              mode="m:toc">
-  <!-- these don't nest -->
-</xsl:template>
-
-<xsl:template match="db:article" mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                    select="db:section|db:sect1|db:appendix
-                            |db:bibliography|db:index|db:glossary
-                            |db:acknowledgements|db:colophon|db:dedication
-                            |db:refentry"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:topic" mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                    select="db:bibliography|db:glossary|db:index
-                            |db:section|db:sect1|db:simplesect
-                            |db:refentry"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:preface|db:chapter|db:appendix"
-              mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                    select="db:section|db:sect1|db:article
-                            |db:topic|db:appendix"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:bibliography|db:glossary|db:index"
-              mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                    select="db:bibliodiv|db:glossdiv|db:indexdiv"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:refentry" mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries" select="db:refsection|db:refsect1"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:refsection|db:refsect1|db:refsect2|db:refsect3"
-              mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                    select="db:refsection|db:refsect1|db:refsect2|db:refsect3"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:section|db:sect1|db:sect2|db:sect3
-                     |db:sect4|db:sect5"
-              mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <xsl:apply-templates select="." mode="mp:toc">
-    <xsl:with-param name="nested" select="$nested"/>
-    <xsl:with-param name="entries"
-                select="db:section|db:sect1
-                        |db:sect2|db:sect3|db:sect4|db:sect5"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="db:refsection|db:refsect1|db:refsect2|db:refsect3"
-              mode="m:toc">
-  <xsl:param name="nested" select="false()"/>
-  <!-- these don't get a ToC -->
-</xsl:template>
-
-<!-- ============================================================ -->
-
-<xsl:template match="*" mode="m:list-of-figures"/>
-<xsl:template match="db:set|db:book" mode="m:list-of-figures">
-  <xsl:if test="f:is-true($lists-of-figures)">
-    <xsl:variable name="entries" as="element(h:li)*">
-      <xsl:apply-templates select=".//db:figure[not(ancestor::db:formalgroup)]
-                                   |.//db:formalgroup[db:figure]"
-                           mode="m:toc-entry"/>
-    </xsl:variable>
-    <xsl:if test="$entries">
-      <div class="list-of-figures lot">
-        <div class="title">
-          <xsl:sequence select="f:gentext(., 'title', 'listoffigures')"/>
-        </div>
-        <ul class="toc">
-          <xsl:sequence select="$entries"/>
-        </ul>
-      </div>
-    </xsl:if>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="*" mode="m:list-of-tables"/>
-<xsl:template match="db:set|db:book" mode="m:list-of-tables">
-  <xsl:if test="f:is-true($lists-of-tables)">
-    <xsl:variable name="entries" as="element(h:li)*">
-      <xsl:apply-templates select=".//db:table[not(ancestor::db:formalgroup)]
-                                   |.//db:formalgroup[db:table]" mode="m:toc-entry"/>
-    </xsl:variable>
-    <xsl:if test="$entries">
-      <div class="list-of-tables lot">
-        <div class="title">
-          <xsl:sequence select="f:gentext(., 'title', 'listoftables')"/>
-        </div>
-        <ul class="toc">
-          <xsl:sequence select="$entries"/>
-        </ul>
-      </div>
-    </xsl:if>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="*" mode="m:list-of-examples"/>
-<xsl:template match="db:set|db:book" mode="m:list-of-examples">
-  <xsl:if test="f:is-true($lists-of-examples)">
-    <xsl:variable name="entries" as="element(h:li)*">
-      <xsl:apply-templates select=".//db:example[not(ancestor::db:formalgroup)]
-                                   |.//db:formalgroup[db:example]" mode="m:toc-entry"/>
-    </xsl:variable>
-    <xsl:if test="$entries">
-      <div class="list-of-examples lot">
-        <div class="title">
-          <xsl:sequence select="f:gentext(., 'title', 'listofexamples')"/>
-        </div>
-        <ul class="toc">
-          <xsl:sequence select="$entries"/>
-        </ul>
-      </div>
-    </xsl:if>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="*" mode="m:list-of-equations"/>
-<xsl:template match="db:set|db:book" mode="m:list-of-equations">
-  <xsl:if test="f:is-true($lists-of-equations)">
-    <xsl:variable name="entries" as="element(h:li)*">
-      <xsl:apply-templates select=".//db:equation[not(ancestor::db:formalgroup)]
-                                   |.//db:formalgroup[db:figure]" mode="m:toc-entry"/>
-    </xsl:variable>
-    <xsl:if test="$entries">
-      <div class="list-of-equations lot">
-        <div class="title">
-          <xsl:sequence select="f:gentext(., 'title', 'listofequations')"/>
-        </div>
-        <ul class="toc">
-          <xsl:sequence select="$entries"/>
-        </ul>
-      </div>
-    </xsl:if>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="*" mode="m:list-of-procedures"/>
-<xsl:template match="db:set|db:book" mode="m:list-of-procedures">
-  <xsl:if test="f:is-true($lists-of-procedures)">
-    <xsl:variable name="entries" as="element(h:li)*">
-      <xsl:apply-templates select=".//db:procedure" mode="m:toc-entry"/>
-    </xsl:variable>
-    <xsl:if test="$entries">
-      <div class="list-of-procedures lot">
-        <div class="title">
-          <xsl:sequence select="f:gentext(., 'title', 'listofprocedures')"/>
-        </div>
-        <ul class="toc">
-          <xsl:sequence select="$entries"/>
-        </ul>
-      </div>
-    </xsl:if>
-  </xsl:if>
+<!-- By default, the persistent ToC is the same as the regular ToC.
+     Customize the m:persistent-toc templates to change this. -->
+<xsl:template match="*" mode="m:persistent-toc"/>
+<xsl:template match="text()|processing-instruction()|comment()" mode="m:persistent-toc"/>
+<xsl:template match="/db:article|db:set|db:book|db:part|db:reference"
+              mode="m:persistent-toc">
+  <xsl:call-template name="tp:toc"/>
 </xsl:template>
 
 <xsl:template name="tp:toc">
-  <xsl:param name="entries" as="element()+" required="yes"/>
-  <xsl:param name="nested" as="xs:boolean" required="yes"/>
-  <xsl:choose>
-    <xsl:when test="$nested">
-      <xsl:variable name="entries" as="element(h:li)*">
-        <xsl:apply-templates select="$entries" mode="m:toc-entry"/>
-      </xsl:variable>
-      <xsl:if test="$entries">
-        <ul class="toc">
-          <xsl:sequence select="$entries"/>
-        </ul>
-      </xsl:if>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="entries" as="element(h:li)*">
-        <xsl:apply-templates select="$entries" mode="m:toc-entry"/>
-      </xsl:variable>
-      <xsl:variable name="l-o-f" as="element(h:div)?">
-        <xsl:apply-templates select="." mode="m:list-of-figures"/>
-      </xsl:variable>
-      <xsl:variable name="l-o-t" as="element(h:div)?">
-        <xsl:apply-templates select="." mode="m:list-of-tables"/>
-      </xsl:variable>
-      <xsl:variable name="l-o-ex" as="element(h:div)?">
-        <xsl:apply-templates select="." mode="m:list-of-examples"/>
-      </xsl:variable>
-      <xsl:variable name="l-o-eq" as="element(h:div)?">
-        <xsl:apply-templates select="." mode="m:list-of-equations"/>
-      </xsl:variable>
-      <xsl:variable name="l-o-p" as="element(h:div)?">
-        <xsl:apply-templates select="." mode="m:list-of-procedures"/>
-      </xsl:variable>
-      <xsl:if test="f:is-true($generate-trivial-toc)
-                    or count($entries/descendant-or-self::h:li) gt 1
-                    or $l-o-f or $l-o-t or $l-o-ex or $l-o-eq or $l-o-p">
-        <div class="list-of-titles">
-          <xsl:if test="$entries">
-            <div class="lot toc">
-              <div class="title">
-                <xsl:sequence select="f:gentext(., 'title', 'tableofcontents')"/>
-              </div>
-              <ul class="toc">
-                <xsl:sequence select="$entries"/>
-              </ul>
-            </div>
-          </xsl:if>
-          <xsl:sequence select="$l-o-f"/>
-          <xsl:sequence select="$l-o-t"/>
-          <xsl:sequence select="$l-o-ex"/>
-          <xsl:sequence select="$l-o-eq"/>
-          <xsl:sequence select="$l-o-p"/>
+  <xsl:variable name="entries" as="element()*">
+    <xsl:apply-templates mode="m:toc-entry"/>
+  </xsl:variable>
+
+  <xsl:variable name="lists-of-titles" as="element()*">
+    <xsl:apply-templates select="." mode="m:list-of-figures"/>
+    <xsl:apply-templates select="." mode="m:list-of-tables"/>
+    <xsl:apply-templates select="." mode="m:list-of-examples"/>
+    <xsl:apply-templates select="." mode="m:list-of-equations"/>
+    <xsl:apply-templates select="." mode="m:list-of-procedures"/>
+  </xsl:variable>
+
+  <xsl:variable name="size" select="count($entries/descendant-or-self::h:li)
+                                    + count($lists-of-titles//h:li)"/>
+  
+  <xsl:where-populated>
+    <div class="list-of-titles">
+      <xsl:if test="$size gt 1 or (f:is-true($generate-trivial-toc) and $size eq 1)">
+        <div class="lot toc">
+          <div class="title">
+            <xsl:sequence select="f:gentext(., 'title', 'tableofcontents')"/>
+          </div>
+          <ul class="toc">
+            <xsl:sequence select="$entries"/>
+          </ul>
         </div>
+        <xsl:sequence select="$lists-of-titles"/>
       </xsl:if>
-    </xsl:otherwise>
-  </xsl:choose>
+    </div>
+  </xsl:where-populated>
+</xsl:template>  
+
+<xsl:template match="*" mode="m:toc-entry"/>
+<xsl:template match="text()|processing-instruction()|comment()" mode="m:toc-entry"/>
+<xsl:template mode="m:toc-entry"
+              match="db:set|db:book|db:part|db:reference
+
+                     |db:preface|db:chapter|db:appendix|db:article
+                     |db:topic|db:part|db:reference|db:dedication
+                     |db:bibliography|db:index|db:glossary
+                     |db:acknowledgements
+
+                     |db:article
+                     |db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5
+                     |db:topic
+                     ">
+  <li>
+    <a href="#{f:id(.)}">
+      <xsl:apply-templates select="." mode="m:headline">
+        <xsl:with-param name="purpose" select="'lot'"/>
+      </xsl:apply-templates>
+    </a>
+    <xsl:where-populated>
+      <ul class="toc">
+        <xsl:apply-templates mode="m:toc-nested"/>
+      </ul>
+    </xsl:where-populated>
+  </li>
 </xsl:template>
 
 <xsl:template match="db:refentry" mode="m:toc-entry" priority="100">
@@ -367,19 +134,6 @@
   </li>
 </xsl:template>
 
-<xsl:template match="*" mode="m:toc-entry">
-  <li>
-    <a href="#{f:id(.)}">
-      <xsl:apply-templates select="." mode="m:headline">
-        <xsl:with-param name="purpose" select="'lot'"/>
-      </xsl:apply-templates>
-    </a>
-    <xsl:apply-templates select="." mode="m:toc">
-      <xsl:with-param name="nested" select="true()"/>
-    </xsl:apply-templates>
-  </li>
-</xsl:template>
-
 <xsl:template match="*[not(db:info/db:title)]" mode="m:toc-entry"
               priority="10">
   <!-- things without titles don't appear in the, uh, lists of titles -->
@@ -390,6 +144,149 @@
 <xsl:template match="db:colophon|db:bibliodiv|db:glossdiv|db:indexdiv"
               mode="m:toc-entry">
   <!-- by default, these don't appear in the ToC -->
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:template match="*" mode="m:toc-nested">
+  <xsl:apply-templates select="." mode="m:toc-entry"/>
+</xsl:template>
+<xsl:template match="text()|processing-instruction()|comment()" mode="m:toc-nested"/>
+
+<xsl:template match="db:formalgroup
+                     |db:figure|db:table|db:example|db:equation|db:procedure"
+              mode="m:toc-nested">
+  <!-- these don't nest -->
+</xsl:template>
+
+<xsl:template match="db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5
+                     |db:refsection|db:refsect1|db:refsect2|db:refsect3"
+              mode="m:toc-nested">
+  <xsl:variable name="depth" as="xs:integer">
+    <xsl:choose>
+      <xsl:when test="self::db:section">
+        <xsl:sequence select="count(ancestor::db:section)+1"/>
+      </xsl:when>
+      <xsl:when test="self::db:refsection">
+        <xsl:sequence select="count(ancestor::db:refsection)+1"/>
+      </xsl:when>
+      <xsl:when test="self::db:sect5">
+        <xsl:sequence select="5"/>
+      </xsl:when>
+      <xsl:when test="self::db:sect4">
+        <xsl:sequence select="4"/>
+      </xsl:when>
+      <xsl:when test="self::db:sect3 or self::db:refsect3">
+        <xsl:sequence select="3"/>
+      </xsl:when>
+      <xsl:when test="self::db:sect2 or self::db:refsect2">
+        <xsl:sequence select="2"/>
+      </xsl:when>
+      <xsl:when test="self::db:sect1 or self::db:refsect1">
+        <xsl:sequence select="1"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message select="'ERROR: no section matched in m:toc-nested: ' || node-name(.)"/>
+        <xsl:sequence select="0"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:if test="$vp:section-toc-depth ge $depth">
+    <xsl:apply-templates select="." mode="m:toc-entry"/>
+  </xsl:if>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:template match="*" mode="m:list-of-figures"/>
+<xsl:template match="db:set|db:book" mode="m:list-of-figures">
+  <xsl:if test="f:is-true($lists-of-figures)">
+    <xsl:call-template name="tp:list-of-titles">
+      <xsl:with-param name="elements"
+                      select=".//db:figure[not(ancestor::db:formalgroup)]
+                              |.//db:formalgroup[db:figure]"/>
+      <xsl:with-param name="class" select="'list-of-figures'"/>
+      <xsl:with-param name="title-key" select="'listoffigures'"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="m:list-of-tables"/>
+<xsl:template match="db:set|db:book" mode="m:list-of-tables">
+  <xsl:if test="f:is-true($lists-of-tables)">
+    <xsl:call-template name="tp:list-of-titles">
+      <xsl:with-param name="elements"
+                      select=".//db:table[not(ancestor::db:formalgroup)]
+                              |.//db:formalgroup[db:table]"/>
+      <xsl:with-param name="class" select="'list-of-tables'"/>
+      <xsl:with-param name="title-key" select="'listoftables'"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="m:list-of-examples"/>
+<xsl:template match="db:set|db:book" mode="m:list-of-examples">
+  <xsl:if test="f:is-true($lists-of-examples)">
+    <xsl:call-template name="tp:list-of-titles">
+      <xsl:with-param name="elements"
+                      select=".//db:example[not(ancestor::db:formalgroup)]
+                              |.//db:formalgroup[db:example]"/>
+      <xsl:with-param name="class" select="'list-of-examples'"/>
+      <xsl:with-param name="title-key" select="'listofexamples'"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="m:list-of-equations"/>
+<xsl:template match="db:set|db:book" mode="m:list-of-equations">
+  <xsl:if test="f:is-true($lists-of-equations)">
+    <xsl:call-template name="tp:list-of-titles">
+      <xsl:with-param name="elements"
+                      select=".//db:equation[not(ancestor::db:formalgroup)]
+                              |.//db:formalgroup[db:figure]"/>
+      <xsl:with-param name="class" select="'list-of-equations'"/>
+      <xsl:with-param name="title-key" select="'listofequations'"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="m:list-of-procedures"/>
+<xsl:template match="db:set|db:book" mode="m:list-of-procedures">
+  <xsl:if test="f:is-true($lists-of-procedures)">
+    <xsl:call-template name="tp:list-of-titles">
+      <xsl:with-param name="elements" select=".//db:procedure"/>
+      <xsl:with-param name="class" select="'list-of-procedures'"/>
+      <xsl:with-param name="title-key" select="'listofprocedures'"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="tp:list-of-titles">
+  <xsl:param name="elements" as="element()*" required="yes"/>
+  <xsl:param name="class" as="xs:string" required="yes"/>
+  <xsl:param name="title-key" as="xs:string" required="yes"/>
+
+  <xsl:if test="$elements">
+    <div class="{$class} lot">
+      <div class="title">
+        <xsl:sequence select="f:gentext(., 'title', $title-key)"/>
+      </div>
+      <ul class="toc">
+        <xsl:apply-templates select="$elements" mode="m:list-of-titles"/>
+      </ul>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="m:list-of-titles">
+  <li>
+    <a href="#{f:id(.)}">
+      <xsl:apply-templates select="." mode="m:headline">
+        <xsl:with-param name="purpose" select="'lot'"/>
+      </xsl:apply-templates>
+    </a>
+  </li>
 </xsl:template>
 
 <!-- ============================================================ -->

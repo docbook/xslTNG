@@ -9,13 +9,15 @@
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:chunk-output"
-                exclude-result-prefixes="db dbe f fp h m mp t v xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:template match="/" as="map(xs:string, item()*)">
+  <!--<xsl:message select="."/>-->
   <xsl:choose>
     <xsl:when test="not($v:chunk)">
       <xsl:variable name="result">
@@ -145,19 +147,46 @@
                                 then string-join($ancestors, '/') || '/'
                                 else ''"/>
 
-          <xsl:variable name="list-of-titles"
-                        select="(//h:div[contains-token(@class, 'list-of-titles')])[1]"/>
-          <xsl:apply-templates
-              select="$list-of-titles/h:div[contains-token(@class, 'toc')]/h:ul"
-              mode="mp:copy-patch-toc">
-            <xsl:with-param name="source" select="."/>
-            <xsl:with-param name="prefix" select="$path"/>
-          </xsl:apply-templates>
+          <xsl:variable name="toc" as="element(h:div)">
+            <xsl:choose>
+              <xsl:when test="$path = ''">
+                <xsl:sequence select="fp:resolve-persistent-toc(/*/*[@db-persistent-toc])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:sequence select="fp:patch-persistent-toc(
+                                         fp:resolve-persistent-toc(/*/*[@db-persistent-toc]),
+                                         $path)"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+
+          <xsl:sequence select="$toc/h:div/h:div[contains-token(@class, 'toc')]/h:ul"/>
+          <xsl:for-each select="$toc/h:div/h:div[not(contains-token(@class, 'toc'))]">
+            <ul class="nav-title">
+              <li class="nav-title">
+                <xsl:sequence select="h:div[contains-token(@class, 'title')]/node()"/>
+              </li>
+              <xsl:sequence select="h:ul/h:li"/>
+            </ul>
+          </xsl:for-each>
         </div>
       </script>
     </xsl:if>
   </xsl:copy>
 </xsl:template>
+
+<xsl:function name="fp:resolve-persistent-toc" cache="yes" as="element(h:div)">
+  <xsl:param name="toc" as="element(h:div)"/>
+  <xsl:apply-templates select="$toc" mode="mp:copy-patch-toc2"/>
+</xsl:function>
+
+<xsl:function name="fp:patch-persistent-toc" cache="yes" as="element(h:div)">
+  <xsl:param name="toc" as="element(h:div)"/>
+  <xsl:param name="path" as="xs:string"/>
+  <xsl:apply-templates select="$toc" mode="mp:copy-patch-toc3">
+    <xsl:with-param name="path" select="$path" tunnel="yes"/>
+  </xsl:apply-templates>
+</xsl:function>
 
 <xsl:template match="element()">
   <xsl:copy>
@@ -197,6 +226,34 @@
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="h:ul" mode="mp:copy-patch-toc"
+              priority="10">
+  <xsl:param name="title" select="()"/>
+  <xsl:param name="source" as="element()"/>
+  <xsl:param name="prefix" as="xs:string"/>
+  <xsl:copy>
+    <xsl:apply-templates select="@* except @class" mode="mp:copy-patch-toc">
+      <xsl:with-param name="source" select="$source"/>
+      <xsl:with-param name="prefix" select="$prefix"/>
+    </xsl:apply-templates>
+    <xsl:choose>
+      <xsl:when test="exists($title)">
+        <xsl:attribute name="class" select="@class || ' nav-title'"/>
+        <li class="nav-title">
+          <xsl:sequence select="$title"/>
+        </li>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="class" select="@class"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:apply-templates select="node()" mode="mp:copy-patch-toc">
+      <xsl:with-param name="source" select="$source"/>
+      <xsl:with-param name="prefix" select="$prefix"/>
+    </xsl:apply-templates>
+  </xsl:copy>
+</xsl:template>
+
 <xsl:template match="element()" mode="mp:copy-patch-toc">
   <xsl:param name="source" as="element()"/>
   <xsl:param name="prefix" as="xs:string"/>
@@ -222,7 +279,7 @@
   <xsl:variable name="id" select="substring-after($href, '#')"/>
   <xsl:variable name="target" select="key('hid', $id, root($here))"/>
   <xsl:variable name="pchunk"
-                select="($here/ancestor::*[@db-chunk])[last()]"/>
+                select="($here/root()//*[@db-chunk])[1]"/>
   <xsl:variable name="tchunk"
                 select="($target/ancestor-or-self::*[@db-chunk])[last()]"/>
 
@@ -253,6 +310,46 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+
+<!-- ============================================================ -->
+
+<xsl:mode name="mp:copy-patch-toc2" on-no-match="shallow-copy"/>
+
+<xsl:template match="h:a[@href]" mode="mp:copy-patch-toc2">
+  <xsl:variable name="href" as="xs:string">
+    <xsl:choose>
+      <xsl:when test="starts-with(@href, '#')">
+        <xsl:variable name="id" select="substring-after(@href, '#')"/>
+        <xsl:variable name="target" select="key('hid', $id, root(.))"/>
+        <xsl:sequence
+            select="substring-after(
+                      $target/ancestor-or-self::h:html[@db-chunk][1]/@db-chunk/string(),
+                      $vp:chunk-output-base-uri) || @href"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="@href/string()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:copy>
+    <xsl:copy-of select="@* except @href"/>
+    <xsl:attribute name="href" select="$href"/>
+    <xsl:apply-templates select="node()" mode="mp:copy-patch-toc2"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:mode name="mp:copy-patch-toc3" on-no-match="shallow-copy"/>
+
+<xsl:template match="h:a[@href]" mode="mp:copy-patch-toc3">
+  <xsl:param name="path" as="xs:string" tunnel="yes"/>
+  <xsl:copy>
+    <xsl:copy-of select="@* except @href"/>
+    <xsl:attribute name="href" select="$path || @href"/>
+    <xsl:apply-templates select="node()" mode="mp:copy-patch-toc3"/>
+  </xsl:copy>
+</xsl:template>
 
 <!-- ============================================================ -->
 
