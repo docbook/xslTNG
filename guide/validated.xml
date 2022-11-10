@@ -4687,7 +4687,7 @@ generated. You must make sure those are provided in some other way.
 from any <tag>indexterm</tag>s found in the document.</para>
       </refsection>
    </refentry>
-   <refentry xml:id="p_generate-nested-toc"><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm>
+   <refentry role="obsolete 1.12.0" xml:id="p_generate-nested-toc"><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm>
    <?db filename="p_generate-nested-toc"?>
       <refmeta>
          <refentrytitle>$generate-nested-toc</refentrytitle>
@@ -4700,25 +4700,15 @@ from any <tag>indexterm</tag>s found in the document.</para>
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <synopsis>$generate-nested-toc as xs:string := 'not(f:section(.)) 
-                                     or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)'</synopsis>
+         <para>Obsolete as of version 1.12.0.</para>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
-         <para>The <parameter>generate-nested-toc</parameter><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm> parameter is an
-XPath expression. If it evaluates to true when the context item is an
-element that appears in the table of contents (ToC), then the immediate
-children of that element will may also occur in the ToC.
-</para>
-         <para>For example, if this expression returns true for a <tag>chapter</tag>
-element that appears in the ToC, then the first level sections in that chapter
-will also appear in the ToC. If the expression returns true for one of those
-sections, then the second level sections of the chapter will appear in the ToC,
-etc.
-</para>
+         <para>This parameter is no longer used. Instead, you can control the elements
+that appear in a table of contents with the <code role="mode">m:toc-nested</code> mode.</para>
       </refsection>
    </refentry>
-   <refentry xml:id="p_generate-toc"><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm>
+   <refentry role="obsolete 1.12.0" xml:id="p_generate-toc"><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm>
    <?db filename="p_generate-toc"?>
       <refmeta>
          <refentrytitle>$generate-toc</refentrytitle>
@@ -4731,15 +4721,12 @@ etc.
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <synopsis>$generate-toc as xs:string := '(empty(parent::*) and self::db:article) 
-                              or self::db:set or self::db:book 
-                              or self::db:part or self::db:reference'</synopsis>
+         <para>Obsolete as of version 1.12.0.</para>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
-         <para>The <parameter>generate-toc</parameter><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm> parameter is an XPath expression.
-If the expression evaluates to true for any element, then a table of contents
-will be generated automatically at the beginning of that element.</para>
+         <para>This parameter is no longer used. Instead, you can control the elements
+that contain a table of contents with the <code role="mode">m:toc</code> mode.</para>
       </refsection>
    </refentry>
    <refentry xml:id="p_generate-trivial-toc"><indexterm><primary>param</primary><secondary>generate-trivial-toc</secondary></indexterm>
@@ -4762,8 +4749,7 @@ will be generated automatically at the beginning of that element.</para>
          <para>If the <parameter>generate-trivial-toc</parameter><indexterm><primary>param</primary><secondary>generate-trivial-toc</secondary></indexterm> parameter
 <glossterm>is true</glossterm>, a table of contents will be generated even if it
 consists of only a single entry. Otherwise, such “trivial” tables of contents will be elided.</para>
-         <para>A trivial table of contents will always be generated if there
-are other lists of titles (for example, a list of figures). This
+         <para>This
 parameter applies only to top-level tables of contents. Nested tables
 of contents will be generated even if they consist of only a single
 entry.</para>
@@ -13739,6 +13725,25 @@ produce that list.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_list-of-titles"><indexterm><primary>mode</primary><secondary>list-of-titles</secondary></indexterm>
+<?db filename="m_list-of-titles"?>
+<refmeta>
+<refentrytitle>m:list-of-titles</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-titles</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:list-of-titles</refname>
+<refpurpose>Mode for generating a list-of-titles</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When a list of titles (figures, tables, equations, etc.) is created, each
+element is processed in this mode to produce the list item that will appear in the
+list.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_mediaobject-info"><indexterm><primary>mode</primary><secondary>mediaobject-info</secondary></indexterm>
 <?db filename="m_mediaobject-info"?>
 <refmeta>
@@ -13773,6 +13778,26 @@ See <xref linkend="processing-mediaobjects"/>.</para>
 <title>Description</title>
 <para>The media object elements are processed in this mode to extract
 their input and output URIs.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_persistent-toc"><indexterm><primary>mode</primary><secondary>persistent-toc</secondary></indexterm>
+<?db filename="m_persistent-toc"?>
+<refmeta>
+<refentrytitle>m:persistent-toc</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}persistent-toc</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:persistent-toc</refname>
+<refpurpose>Mode for generating the persistent table of contents</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>persistent-toc</parameter><indexterm><primary>param</primary><secondary>persistent-toc</secondary></indexterm> <glossterm>is true</glossterm>, 
+the document will be processed in this mode to produce the contents of the
+persistent ToC. By default, this produces the same ToC as the
+<code role="mode">m:toc</code> mode.</para>
 </refsection>
 </refentry>
 
@@ -14034,6 +14059,28 @@ constructing a Table of Contents (or, more generally, any list of elements).
 <title>Description</title>
 <para>When an element appears in the Table of Contents (or other list of titles),
 it is formatted in this mode to produce the entry in the list.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_toc-nested"><indexterm><primary>mode</primary><secondary>toc-nested</secondary></indexterm>
+<?db filename="m_toc-nested"?>
+<refmeta>
+<refentrytitle>m:toc-nested</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}toc-nested</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:toc-nested</refname>
+<refpurpose>What elements are “nested” in a Table of Contents</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The elements processed in the <code role="mode">m:toc</code> mode determine where
+a Table of Contents will appear. When a Table of Contents does appear, the children
+of the starting element are processed in the <code role="mode">m:toc-nested</code> mode
+to determine which of them appear. This mode, for example, handles the maximum nesting
+depth of sections in the ToC.
 </para>
 </refsection>
 </refentry>

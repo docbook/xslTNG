@@ -43,6 +43,19 @@ nav.toc header {
   font-size: 1.25em;
 }
 
+nav.toc ul.nav-title li:first-child {
+  margin-top: 1em;
+  border-top: 1px solid var(--primary-variant-color);
+}
+
+nav.toc li.nav-title {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0.25em;
+  font-family: var(--title-family);
+  font-size: 1.25em;
+}
+
 nav.toc header .close {
   float: right;
   cursor: pointer;
