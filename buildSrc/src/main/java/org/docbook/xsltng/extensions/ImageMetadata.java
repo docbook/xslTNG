@@ -13,10 +13,12 @@ import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class ImageMetadata extends ExtensionFunctionDefinition {
     private static final StructuredQName qName =
@@ -72,49 +74,29 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
 
             InputStream stream = null;
             try {
-                final URL url;
+                final URI uri;
                 File imageFile = new File(imageUri);
                 if (imageFile.exists()) {
-                    url = imageFile.toURI().toURL();
+                    uri = imageFile.toURI();
                 } else {
-                    url = new URL(imageUri);
+                    uri = new URI(imageUri);
                 }
-                stream = url.openStream();
+
+                if ("data".equals(uri.getScheme())) {
+                    stream = dataUriStream(uri);
+                } else {
+                    stream = uri.toURL().openStream();
+                }
+
                 Metadata metadata = ImageMetadataReader.readMetadata(stream);
+                processDirectory(metadata);
 
-                // iterate through metadata directories
-                for (Directory directory : metadata.getDirectories()) {
-                    for (Tag tag : directory.getTags()) {
-                        String name = tag.getTagName().toLowerCase();
-                        name = name.replace(" ", "-");
-
-                        String value = tag.getDescription();
-                        if (value == null) {
-                            value = "";
-                        }
-
-                        // Laboriously escape all the control characters with \\uxxxx, but first replace
-                        // \\uxxxx with \\u005cuxxxx so we don't inadvertantly change the meaning of a string
-                        value = value.replaceAll("\\\\u([0-9a-fA-F]{4}+)", "\\\\u005cu$1");
-                        for (String control : controls) {
-                            String match = "^.*\\\\u" + control + ".*$";
-                            if (value.matches(match)) {
-                                value = value.replaceAll("[\\\\u" + control + "]", "\\\\u" + control);
-                            }
-                        }
-
-                        // Bah humbug...I don't see an easy way to tell if it's actually a date/time
-                        if (value.matches("^\\d\\d\\d\\d:\\d\\d:\\d\\d \\d\\d:\\d\\d:\\d\\d$")) {
-                            value = value.substring(0, 4) + "-" + value.substring(5, 7) + "-" + value.substring(8, 10)
-                                    + "T" + value.substring(11, 19);
-                        }
-
-                        map = parseProperty(map, name, value, tag.getTagType());
-                    }
-                }
+                return map.getUnderlyingValue();
+            } catch (URISyntaxException use) {
+                logger.info("ext:image-metadata unparsable: " + imageUri + ": " + use.getMessage());
                 return map.getUnderlyingValue();
             } catch (IOException ioe) {
-                logger.info("ext:image-metadata unreadable: " + ioe.getMessage());
+                logger.info("ext:image-metadata unreadable: " + imageUri + ": " + ioe.getMessage());
                 return map.getUnderlyingValue();
             } catch (ImageProcessingException ipe) {
                 // Fall through and see what we can read
@@ -135,6 +117,68 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
             }
 
             return map.getUnderlyingValue();
+        }
+
+        private InputStream dataUriStream(URI uri) throws URISyntaxException, IOException {
+            String href = uri.toString();
+            String path = href.substring(5);
+            int pos = path.indexOf(",");
+            if (pos >= 0) {
+                String mediatype = path.substring(0, pos);
+                String data = path.substring(pos + 1);
+                if (mediatype.endsWith(";base64")) {
+                    // Base64 decode it
+                    return new ByteArrayInputStream(Base64.getDecoder().decode(data));
+                } else {
+                    // URL decode it
+                    String charset = "UTF-8";
+                    pos = mediatype.indexOf(";charset=");
+                    if (pos > 0) {
+                        charset = mediatype.substring(pos + 9);
+                        pos = charset.indexOf(";");
+                        if (pos >= 0) {
+                            charset = charset.substring(0, pos);
+                        }
+                    }
+                    data = URLDecoder.decode(data, charset);
+                    return new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
+                }
+            } else {
+                throw new URISyntaxException(href, "Comma separator missing");
+            }
+        }
+
+        private void processDirectory(Metadata metadata) {
+            // iterate through metadata directories
+            for (Directory directory : metadata.getDirectories()) {
+                for (Tag tag : directory.getTags()) {
+                    String name = tag.getTagName().toLowerCase();
+                    name = name.replace(" ", "-");
+
+                    String value = tag.getDescription();
+                    if (value == null) {
+                        value = "";
+                    }
+
+                    // Laboriously escape all the control characters with \\uxxxx, but first replace
+                    // \\uxxxx with \\u005cuxxxx so we don't inadvertantly change the meaning of a string
+                    value = value.replaceAll("\\\\u([0-9a-fA-F]{4}+)", "\\\\u005cu$1");
+                    for (String control : controls) {
+                        String match = "^.*\\\\u" + control + ".*$";
+                        if (value.matches(match)) {
+                            value = value.replaceAll("[\\\\u" + control + "]", "\\\\u" + control);
+                        }
+                    }
+
+                    // Bah humbug...I don't see an easy way to tell if it's actually a date/time
+                    if (value.matches("^\\d\\d\\d\\d:\\d\\d:\\d\\d \\d\\d:\\d\\d:\\d\\d$")) {
+                        value = value.substring(0, 4) + "-" + value.substring(5, 7) + "-" + value.substring(8, 10)
+                                + "T" + value.substring(11, 19);
+                    }
+
+                    map = parseProperty(map, name, value, tag.getTagType());
+                }
+            }
         }
     }
 }
