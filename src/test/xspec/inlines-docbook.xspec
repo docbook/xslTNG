@@ -47,22 +47,22 @@
      <x:expect label="use dir attributes in the HTML" href="../resources/expected/dir.001.html"/>
    </x:scenario>
 
-   <x:scenario label="When transforming elements with writing direction">
+   <x:scenario label="When transforming elements with writing direction (dir.001)">
      <x:context href="../resources/xml/dir.001.xml"/>
      <x:expect label="use dir attributes in the HTML" href="../resources/expected/dir.001.html"/>
    </x:scenario>
 
-   <x:scenario label="When transforming replaceable">
+   <x:scenario label="When transforming replaceable.001">
      <x:context href="../resources/xml/replaceable.001.xml"/>
      <x:expect label="expect replacable markup" href="../resources/expected/replaceable.001.html"/>
    </x:scenario>
 
-   <x:scenario label="When transforming constant">
+   <x:scenario label="When transforming constant.001">
      <x:context href="../resources/xml/constant.001.xml"/>
      <x:expect label="expect constant markup" href="../resources/expected/constant.001.html"/>
    </x:scenario>
 
-   <x:scenario label="When transforming keycap">
+   <x:scenario label="When transforming keycap.001">
      <x:context href="../resources/xml/keycap.001.xml"/>
      <x:expect label="expect keycap markup" href="../resources/expected/keycap.001.html"/>
    </x:scenario>
