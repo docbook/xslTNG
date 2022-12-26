@@ -26,6 +26,25 @@ implements those adjustments.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="f_mediaobject-href">
+<?db filename="f_mediaobject-href"?>
+<refmeta>
+<refentrytitle>f:mediaobject-href</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-href#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-href</refname>
+<refpurpose>Determines the URI for a media object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function is called for every media object that is rendered.
+It must return the URI reference to be used for the actual object (the
+value of the image <code>src</code> attribute, for example).</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_absolute-length">
 <?db filename="f_absolute-length"?>
 <refmeta>
@@ -115,7 +134,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_check-gentext">
+<refentry xml:id="f_check-gentext" role="obsolete 2.0.0">
 <?db filename="f_check-gentext"?>
 <refmeta>
 <refentrytitle>f:check-gentext</refentrytitle>
@@ -128,11 +147,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Like <function>f:gentext</function>, this function returns the
-generated text appropriate for its arguments. However, if there is no
-appropriate generated text, this function returns an empty sequence
-<emphasis>without</emphasis> generating any warning messages.
-</para>
+<para>Generated text has been reworked, see <xref linkend="sec.gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -402,7 +417,7 @@ to false allows for the creation of globally unique IDs with
 </refsection>
 </refentry>
 
-<refentry xml:id="f_gentext">
+<refentry xml:id="f_gentext" role="obsolete 2.0.0">
 <?db filename="f_gentext"?>
 <refmeta>
 <refentrytitle>f:gentext</refentrytitle>
@@ -416,15 +431,8 @@ to false allows for the creation of globally unique IDs with
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Returns the generated text associated with the specified key in
-the specified context for the specified node. If key is not provided,
-the element name of the node is used.</para>
-<para>For example, if the <function>f:language</function> of the
-<code>$node</code> is English, then in the “title” context, the
-generated text for the key “tableofcontents” is “Table of Contents”.
-If the language is French, then the generated text is
-“Table des matières”.</para>
-<para>The contexts and the keys are defined in the locale files.</para>
+<para>Generated text now uses <mode>m:gentext</mode>.
+See <xref linkend="sec.gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -530,7 +538,26 @@ to spurious differences between documents.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_intra-number-separator">
+<refentry xml:id="f_in-scope-language">
+<?db filename="f_in-scope-language"?>
+<refmeta>
+<refentrytitle>f:in-scope-language</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}in-scope-language#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:in-scope-language</refname>
+<refpurpose>Returns the in-scope-language associated with an element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the value of the nearest in-scope <att>xml:lang</att> attribute
+or <parameter>default-language</parameter> if no such attribute exists.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_intra-number-separator" role="obsolete 2.0.0">
 <?db filename="f_intra-number-separator"?>
 <refmeta>
 <refentrytitle>f:intra-number-separator</refentrytitle>
@@ -543,11 +570,8 @@ to spurious differences between documents.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>When a compound number appears in a title, this function is used to obtain
-the intra number separator. The most common separator is “.” which results in numbers
-such as “Section 3.4”. If the function returned “*”, the section title would
-be rendered as “Section 3*4”.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="sec.gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -613,8 +637,11 @@ cast to an integer that is zero, or the empty sequence.</para>
 <refsection>
 <title>Description</title>
 <para>This function returns the localization language that best
-matches the language of the <code>$target</code> node. The default language
-will be returned if there is no localization available for that language.</para>
+matches the language of the <code>$target</code> node. If 
+<parameter>gentext-language</parameter> is specified, it is always returned.
+The <parameter>default-language</parameter>
+will be returned if there is no localization available for the declared
+language of the <code>$target</code>.</para>
 </refsection>
 </refentry>
 
@@ -635,7 +662,7 @@ will be returned if there is no localization available for that language.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_language">
+<refentry xml:id="f_language" role="obsolete 2.0.0">
 <?db filename="f_language"?>
 <refmeta>
 <refentrytitle>f:language</refentrytitle>
@@ -648,9 +675,26 @@ will be returned if there is no localization available for that language.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Returns the value of the nearest in-scope <att>xml:lang</att> attribute
-or <parameter>default-language</parameter> if no such attribute exists.
+<para>Renamed <function>f:in-scope-language</function>.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_languages">
+<?db filename="f_languages"?>
+<refmeta>
+<refentrytitle>f:languages</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}languages#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:languages</refname>
+<refpurpose>Returns all of the localizations used by a document</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns all of the localizations that might be used in formatting this
+document.</para>
 </refsection>
 </refentry>
 
@@ -693,7 +737,7 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refsection>
 </refentry>
 
-<refentry xml:id="f_locales">
+<refentry xml:id="f_locales" role="obsolete 2.0.0">
 <?db filename="f_locales"?>
 <refmeta>
 <refentrytitle>f:locales</refentrytitle>
@@ -706,9 +750,7 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This function returns the locales (languages) detected in the document.
-It always returns the <varname>default-language</varname> and “<code>en</code>” as well.
-This function replaces the <code>$v:locales</code> variable.</para>
+<para>Replaced by <function>f:languages</function>.</para>
 </refsection>
 </refentry>
 
@@ -734,7 +776,7 @@ both.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_number-separator">
+<refentry xml:id="f_number-separator" role="obsolete 2.0.0">
 <?db filename="f_number-separator"?>
 <refmeta>
 <refentrytitle>f:number-separator</refentrytitle>
@@ -747,8 +789,8 @@ both.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The number separator separates a number (in a title) from the
-title that follows it.</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="sec.gentext"/>.</para>
 </refsection>
 </refentry>
 

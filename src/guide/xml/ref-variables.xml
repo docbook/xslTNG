@@ -43,6 +43,23 @@ Used mostly in debugging.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_localization-base-uri">
+<?db filename="v_localization-base-uri"?>
+<refmeta>
+<refentrytitle>$v:localization-base-uri</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}localization-base-uri</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:localization-base-uri</refname>
+<refpurpose>Base URI for localization data files</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This is the base URI used to resolve references to localization data.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_media-type-default">
 <?db filename="v_media-type-default"?>
 <refmeta>

@@ -53,18 +53,6 @@
 <xsl:param name="section-toc-depth" select="1"/>
 <xsl:param name="footnote-numeration" select="('*', '**', '†','‡', '§', '1')"/>
 
-<xsl:variable name="v:user-title-properties" as="element()*">
-  <title xpath="self::db:chapter"
-         number-format="1"
-         label="false"
-         inherit="{$division-numbers-inherit}"/>
-
-  <title xpath="self::db:appendix"
-         number-format="A"
-         label="false"
-         inherit="{$division-numbers-inherit}"/>
-</xsl:variable>
-
 <!-- ============================================================ -->
 
 <xsl:key name="sections" match="db:section" use="db:info/db:biblioid"/>
@@ -143,9 +131,20 @@
 
   <xsl:next-match/>
 
-  <xsl:if test="not(ancestor::db:refentry[contains-token(@role, 'obsolete')])">
-    <xsl:call-template name="tg:detail"/>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="not(ancestor::db:refentry[contains-token(@role, 'obsolete')])">
+      <xsl:call-template name="tg:detail"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="db:refclass = 'mode'">
+        <p>
+          <xsl:text>Obsolete as of version </xsl:text>
+          <xsl:sequence select="substring-after(ancestor::db:refentry/@role, 'obsolete ')"/>
+          <xsl:text>.</xsl:text>
+        </p>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 
   <xsl:variable name="objects"
                 select="key('a-by-name', ../db:refmeta/db:refmiscinfo, $explorer)"/>
@@ -875,6 +874,7 @@
 
 <xsl:template name="t:top-nav">
   <xsl:param name="docbook" as="node()" tunnel="yes"/>
+  <xsl:param name="chunk" as="xs:boolean"/>
   <xsl:param name="node" as="element()"/>
   <xsl:param name="prev" as="element()?"/>
   <xsl:param name="next" as="element()?"/>
@@ -941,6 +941,7 @@
 
 <xsl:template name="t:bottom-nav">
   <xsl:param name="docbook" as="node()" tunnel="yes"/>
+  <xsl:param name="chunk" as="xs:boolean"/>
   <xsl:param name="node" as="element()"/>
   <xsl:param name="prev" as="element()?"/>
   <xsl:param name="next" as="element()?"/>
