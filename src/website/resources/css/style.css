@@ -1,10 +1,8 @@
 /* style.css */
 
-@media screen {
-    @import url("https://fonts.googleapis.com/css?family=B612+Mono&display=swap");
-    @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
-    @import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap");
-}
+@import url("https://fonts.googleapis.com/css?family=B612+Mono&display=swap") screen;
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap") screen;
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif&display=swap") screen;
 
 :root {
     --tng-blue: rgb(11, 0, 89);
