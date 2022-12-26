@@ -109,7 +109,8 @@
 
       <xsl:variable name="title" select="$head/h:title"/>
       <title>
-        <xsl:value-of select="f:chunk-title(.)"/>
+        <!-- because value-of introduces extra spaces -->
+        <xsl:sequence select="f:chunk-title(.) ! ./descendant-or-self::text()"/>
       </title>
 
       <xsl:apply-templates select="$head/node() except ($ctype|$title)">
@@ -149,12 +150,12 @@
                        select="normalize-space(string-join($class-list, ' '))"/>
       </xsl:if>
       <nav class="top">
-        <xsl:if test="exists($chunk)
-                      and (empty(@db-navigation)
-                           or f:is-true(@db-navigation))
+        <xsl:if test="(empty(@db-navigation)
+                       or f:is-true(@db-navigation))
                       and (empty(@db-top-navigation)
                            or f:is-true(@db-top-navigation))">
           <xsl:call-template name="t:top-nav">
+            <xsl:with-param name="chunk" select="exists($chunk)"/>
             <xsl:with-param name="node" select="$self"/>
             <xsl:with-param name="prev" select="$prev"/>
             <xsl:with-param name="next" select="$next"/>
@@ -194,12 +195,12 @@
       </xsl:if>
 
       <nav class="bottom">
-        <xsl:if test="exists($chunk)
-                      and (empty(@db-navigation)
-                           or f:is-true(@db-navigation))
+        <xsl:if test="(empty(@db-navigation)
+                       or f:is-true(@db-navigation))
                       and (empty(@db-bottom-navigation)
                            or f:is-true(@db-bottom-navigation))">
           <xsl:call-template name="t:bottom-nav">
+            <xsl:with-param name="chunk" select="exists($chunk)"/>
             <xsl:with-param name="node" select="$self"/>
             <xsl:with-param name="prev" select="$prev"/>
             <xsl:with-param name="next" select="$next"/>
@@ -620,70 +621,76 @@
 <!-- ============================================================ -->
 
 <xsl:template name="t:top-nav">
+  <xsl:param name="chunk" as="xs:boolean"/>
   <xsl:param name="node" as="element()"/>
   <xsl:param name="prev" as="element()?"/>
   <xsl:param name="next" as="element()?"/>
   <xsl:param name="up" as="element()?"/>
   <xsl:param name="top" as="element()?"/>
 
-  <div>
-    <xsl:if test="$top">
-      <a href="{fp:relative-link(., $top)}">Home</a>
-    </xsl:if>
-    <xsl:text> </xsl:text>
-    <xsl:if test="$up">
-      <a href="{fp:relative-link(., $up)}">Up</a>
-    </xsl:if>
-    <xsl:text> </xsl:text>
-    <xsl:if test="$next">
-      <a href="{fp:relative-link(., $next)}">Next</a>
-    </xsl:if>
-    <xsl:text> </xsl:text>
-    <xsl:if test="$prev">
-      <a href="{fp:relative-link(., $prev)}">Previous</a>
-    </xsl:if>
-  </div>
+  <xsl:if test="$chunk">
+    <div>
+      <xsl:if test="$top">
+        <a href="{fp:relative-link(., $top)}">Home</a>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:if test="$up">
+        <a href="{fp:relative-link(., $up)}">Up</a>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:if test="$next">
+        <a href="{fp:relative-link(., $next)}">Next</a>
+      </xsl:if>
+      <xsl:text> </xsl:text>
+      <xsl:if test="$prev">
+        <a href="{fp:relative-link(., $prev)}">Previous</a>
+      </xsl:if>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="t:bottom-nav">
+  <xsl:param name="chunk" as="xs:boolean"/>
   <xsl:param name="node" as="element()"/>
   <xsl:param name="prev" as="element()?"/>
   <xsl:param name="next" as="element()?"/>
   <xsl:param name="up" as="element()?"/>
   <xsl:param name="top" as="element()?"/>
 
-  <table width="100%">
-    <tr>
-      <td class="previous">
-        <xsl:if test="$prev">
-          <a href="{fp:relative-link(., $prev)}">Previous</a>
-        </xsl:if>
-      </td>
-      <td class="up">
-        <xsl:if test="$up">
-          <a href="{fp:relative-link(., $up)}">Up</a>
-        </xsl:if>
-      </td>
-      <td class="next">
-        <xsl:if test="$next">
-          <a href="{fp:relative-link(., $next)}">Next</a>
-        </xsl:if>
-      </td>
-    </tr>
-    <tr>
-      <td class="previous">
-        <xsl:sequence select="f:chunk-title($prev)"/>
-      </td>
-      <td class="up">
-        <xsl:if test="$top">
-          <a href="{fp:relative-link(., $top)}">Home</a>
-        </xsl:if>
-      </td>
-      <td class="next">
-        <xsl:sequence select="f:chunk-title($next)"/>
-      </td>
-    </tr>
-  </table>
+  <xsl:if test="$chunk">
+    <table width="100%">
+      <tr>
+        <td class="previous">
+          <xsl:if test="$prev">
+            <a href="{fp:relative-link(., $prev)}">Previous</a>
+          </xsl:if>
+        </td>
+        <td class="up">
+          <xsl:if test="$up">
+            <a href="{fp:relative-link(., $up)}">Up</a>
+          </xsl:if>
+        </td>
+        <td class="next">
+          <xsl:if test="$next">
+            <a href="{fp:relative-link(., $next)}">Next</a>
+          </xsl:if>
+        </td>
+      </tr>
+      <tr>
+        <td class="previous">
+          <xsl:sequence select="f:chunk-title($prev)"/>
+        </td>
+        <td class="up">
+          <xsl:if test="$top">
+            <a href="{fp:relative-link(., $top)}">Home</a>
+          </xsl:if>
+        </td>
+        <td class="next">
+          <xsl:sequence select="f:chunk-title($next)"/>
+        </td>
+      </tr>
+    </table>
+  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->
