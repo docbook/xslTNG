@@ -49,7 +49,14 @@
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:apply-templates select="db:indexdiv|db:indexentry|db:segmentedlist"/>
+            <!-- There will be exactly one of
+                 db:indexdiv, db:indexentry, or db:segmentedlist -->
+            <xsl:apply-templates select="db:indexdiv|db:segmentedlist"/>
+            <xsl:if test="db:indexentry">
+              <ul>
+                <xsl:apply-templates select="db:indexentry"/>
+              </ul>
+            </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
       </div>
@@ -257,10 +264,6 @@
     </xsl:if>
     <xsl:if test="$refs/db:secondary or $refs[not(db:secondary)]/*[self::db:seealso]">
       <ul>
-        <xsl:if test="count(db:seealso) &gt; 1">
-          <xsl:message>Multiple see also's not supported: only using first</xsl:message>
-        </xsl:if>
-
         <xsl:for-each-group select="$refs[db:seealso]"
                             group-by="concat(fp:primary(.), ' ', ' ', ' ', db:seealso[1])">
           <xsl:apply-templates select="." mode="m:index-seealso">
@@ -546,9 +549,14 @@
   <xsl:param name="type" select="''"/>
   <xsl:param name="lang" select="'en'"/>
 
-  <span class="sep"> (</span>
-   <xsl:apply-templates select="db:see" mode="m:crossref"/>
-  <span class="sep">)</span>
+  <xsl:apply-templates select="db:see" mode="m:gentext">
+    <xsl:with-param name="group" select="'index'"/>
+    <xsl:with-param name="content">
+      <span class="see">
+        <xsl:apply-templates select="db:see/node()"/>
+      </span>
+    </xsl:with-param>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:indexterm" mode="m:index-seealso">
@@ -557,14 +565,21 @@
   <xsl:param name="type" select="''"/>
   <xsl:param name="lang" select="'en'"/>
 
-  <xsl:for-each select="db:seealso">
-    <xsl:sort select="upper-case(.)" lang="{$lang}"/>
-    <li>
-      <span class="sep">(</span>
-      <xsl:apply-templates select="." mode="m:crossref"/>
-      <span class="sep">)</span>
-    </li>
-  </xsl:for-each>
+  <xsl:variable name="list" as="element()+">
+    <xsl:for-each select="db:seealso">
+      <xsl:sort select="upper-case(.)" lang="{$lang}"/>
+      <span class="seealso">
+        <xsl:apply-templates select="node()"/>
+      </span>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <li>
+    <xsl:apply-templates select="." mode="m:gentext-list">
+      <xsl:with-param name="list" select="$list"/>
+      <xsl:with-param name="name" select="'index-seealso'"/>
+    </xsl:apply-templates>
+  </li>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -626,19 +641,41 @@
   </li>
 </xsl:template>
 
+<xsl:template match="db:seeie[preceding-sibling::db:seeie]" priority="10"/>
 <xsl:template match="db:seeie">
+  <xsl:variable name="targets" as="element()+">
+    <xsl:for-each select="(., following-sibling::db:seeie)">
+      <xsl:sort select="lower-case(.)"/>
+      <span>
+        <xsl:apply-templates/>
+      </span>
+    </xsl:for-each>
+  </xsl:variable>
+  
   <li>
-    <xsl:sequence select="f:gentext(., 'label', 'see')"/>
-    <xsl:text> </xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="." mode="m:gentext-list">
+      <xsl:with-param name="list" select="$targets"/>
+      <xsl:with-param name="name" select="'index-seeie'"/>
+    </xsl:apply-templates>
   </li>
 </xsl:template>
 
+<xsl:template match="db:seealsoie[preceding-sibling::db:seealsoie]" priority="10"/>
 <xsl:template match="db:seealsoie">
+  <xsl:variable name="targets" as="element()+">
+    <xsl:for-each select="(., following-sibling::db:seealsoie)">
+      <xsl:sort select="lower-case(.)"/>
+      <span>
+        <xsl:apply-templates/>
+      </span>
+    </xsl:for-each>
+  </xsl:variable>
+  
   <li>
-    <xsl:sequence select="f:gentext(., 'label', 'seealso')"/>
-    <xsl:text> </xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="." mode="m:gentext-list">
+      <xsl:with-param name="list" select="$targets"/>
+      <xsl:with-param name="name" select="'index-seealsoie'"/>
+    </xsl:apply-templates>
   </li>
 </xsl:template>
 

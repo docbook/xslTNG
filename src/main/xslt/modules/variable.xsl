@@ -25,6 +25,9 @@
 <xsl:variable name="v:as-json" select="map {'method':'json','indent':true()}"/>
 <xsl:variable name="v:as-xml" select="map {'method':'xml','indent':true()}"/>
 
+<xsl:variable name="v:localization-base-uri"
+              select="resolve-uri('../locale/', static-base-uri())"/>
+
 <xsl:variable name="v:chunk" as="xs:boolean"
               select="not(normalize-space($chunk) = '')"/>
 
@@ -181,6 +184,8 @@
   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
        alt="X"/>
 </xsl:variable>
+
+<xsl:variable name="vp:olinkdb" select="false()"/>
 
 <xsl:variable name="v:olink-databases" as="element(h:targetdb)*">
   <xsl:if test="normalize-space($olink-databases) != ''">

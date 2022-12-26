@@ -273,7 +273,11 @@
         <span class="xlink-arc-list" db-arcs="{f:generate-id(.)}-arcs"/>
         <span class="nhrefs" id="{f:generate-id(.)}-arcs">
           <span class="xlink-arc-delim before">
-            <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-before')"/>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'xlink'"/>
+              <xsl:with-param name="key" select="'xlink-arclist-before'"/>
+              <xsl:with-param name="content" select="()"/>
+            </xsl:apply-templates>
           </span>
           <span class="xlink-arc-title">
             <xsl:if test="$to/../@xlink:title">
@@ -282,13 +286,21 @@
           </span>
           <xsl:if test="$to/../@xlink:title">
             <span class="xlink-arc-delim sep">
-              <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-titlesep')"/>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'xlink'"/>
+              <xsl:with-param name="key" select="'xlink-arclist-titlesep'"/>
+              <xsl:with-param name="content" select="()"/>
+            </xsl:apply-templates>
             </span>
           </xsl:if>
           <xsl:for-each select="$to">
             <xsl:if test="position() gt 1">
               <span class="xlink-arc-delim sep">
-                <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-sep')"/>
+                <xsl:apply-templates select="." mode="m:gentext">
+                  <xsl:with-param name="group" select="'xlink'"/>
+                  <xsl:with-param name="key" select="'xlink-arclist-sep'"/>
+                  <xsl:with-param name="content" select="()"/>
+                </xsl:apply-templates>
               </span>
             </xsl:if>
             <span class="arc">
@@ -310,7 +322,11 @@
             </span>
           </xsl:for-each>
           <span class="xlink-arc-delim after">
-            <xsl:sequence select="f:gentext(., 'separator', 'xlink-arclist-after')"/>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'xlink'"/>
+              <xsl:with-param name="key" select="'xlink-arclist-after'"/>
+              <xsl:with-param name="content" select="()"/>
+            </xsl:apply-templates>
           </span>
         </span>
       </span>

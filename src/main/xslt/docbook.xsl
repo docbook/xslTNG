@@ -21,6 +21,11 @@
 <!-- This will all be in XProc 3.0 eventually, hack for now... -->
 <xsl:import href="main.xsl"/>
 
+<!--
+<xsl:mode xmlns:saxon="http://saxon.sf.net/"
+          name="m:docbook" saxon:trace="yes"/>
+-->
+
 <xsl:variable name="v:standard-transforms" as="map(*)*">
   <xsl:map>
     <xsl:map-entry key="'stylesheet-location'"

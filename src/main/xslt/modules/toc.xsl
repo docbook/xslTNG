@@ -3,9 +3,9 @@
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:dbe="http://docbook.org/ns/docbook/errors"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
-                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
@@ -53,7 +53,10 @@
       <xsl:if test="$size gt 1 or (f:is-true($generate-trivial-toc) and $size eq 1)">
         <div class="lot toc">
           <div class="title">
-            <xsl:sequence select="f:gentext(., 'title', 'tableofcontents')"/>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'title'"/>
+              <xsl:with-param name="key" select="'tableofcontents'"/>
+            </xsl:apply-templates>
           </div>
           <ul class="toc">
             <xsl:sequence select="$entries"/>
@@ -270,7 +273,10 @@
   <xsl:if test="$elements">
     <div class="{$class} lot">
       <div class="title">
-        <xsl:sequence select="f:gentext(., 'title', $title-key)"/>
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'title'"/>
+          <xsl:with-param name="key" select="$title-key"/>
+        </xsl:apply-templates>
       </div>
       <ul class="toc">
         <xsl:apply-templates select="$elements" mode="m:list-of-titles"/>

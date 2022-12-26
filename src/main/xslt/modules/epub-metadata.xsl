@@ -28,7 +28,7 @@
   </xsl:if>
 
   <xsl:if test="empty(dc:language)">
-    <dc:language>{f:language(..)}</dc:language>
+    <dc:language>{f:in-scope-language(..)}</dc:language>
   </xsl:if>
 
   <meta property="dcterms:modified">

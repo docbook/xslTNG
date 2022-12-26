@@ -315,28 +315,14 @@
 
 <xsl:template match="db:varlistentry">
   <xsl:param name="compact" as="xs:boolean" select="false()"/>
+
   <dt>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates select="db:term[1]"/>
-    <xsl:choose>
-      <xsl:when test="count(db:term) = 1"/>
-      <xsl:when test="count(db:term) = 2">
-        <xsl:apply-templates select="db:term[2]">
-          <xsl:with-param name="sep"
-                          select="f:gentext(db:term[2], 'separator', 'term-sep2')"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="db:term[position() gt 1 and position() lt last()]">
-          <xsl:with-param name="sep"
-                          select="f:gentext(db:term[2], 'separator', 'term-sep')"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="db:term[last()]">
-          <xsl:with-param name="sep"
-                          select="f:gentext(db:term[2], 'separator', 'term-seplast')"/>
-        </xsl:apply-templates>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="." mode="m:gentext-list">
+      <xsl:with-param name="list" as="element()*">
+        <xsl:apply-templates select="db:term"/>
+      </xsl:with-param>
+    </xsl:apply-templates>
   </dt>
 
   <xsl:apply-templates select="db:listitem">
@@ -345,10 +331,6 @@
 </xsl:template>
 
 <xsl:template match="db:term">
-  <xsl:param name="sep" as="item()*" select="()"/>
-  <xsl:if test="exists($sep) and preceding-sibling::db:term">
-    <xsl:sequence select="$sep"/>
-  </xsl:if>
   <span>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates/>
