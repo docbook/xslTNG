@@ -8,7 +8,7 @@
 
 <!-- ============================================================ -->
 
-<x:scenario label="When converting bridgeheads">
+<x:scenario label="When converting bridgeheads.001">
    <x:context href="../resources/xml/bridgehead.001.xml"/>
    <x:expect label="expect appropriate HTML h* elements" href="../resources/expected/bridgehead.001.html"/>
 </x:scenario>

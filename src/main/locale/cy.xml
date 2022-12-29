@@ -231,17 +231,17 @@
       <template name="edited-by">{Editedby} </template>
    </group>
    <group name="label-separator">
-      <template name="appendix">. </template>
-      <template name="chapter">. </template>
-      <template name="equation">. </template>
-      <template name="example">. </template>
-      <template name="figure">. </template>
-      <template name="formalgroup">. </template>
-      <template name="part">. </template>
-      <template name="procedure">. </template>
-      <template name="reference">. </template>
-      <template name="table">. </template>
-      <template name="_default"> </template>
+      <template name="appendix">. </template>
+      <template name="chapter">. </template>
+      <template name="equation">. </template>
+      <template name="example">. </template>
+      <template name="figure">. </template>
+      <template name="formalgroup">. </template>
+      <template name="part">. </template>
+      <template name="procedure">. </template>
+      <template name="reference">. </template>
+      <template name="table">. </template>
+      <template name="_default"> </template>
    </group>
    <group name="title">
       <template name="abstract">%c</template>
@@ -522,7 +522,7 @@
       <template name="section">{Section} %l, {startquote}%c{endquote}</template>
       <template name="simplesect">{sectioncalled} {startquote}%c{endquote}</template>
       <template name="table">{Table} %l, {startquote}%c{endquote}</template>
-      <template name="_default">%l. %c</template>
+      <template name="_default">%l%.%c</template>
    </group>
    <group name="authorgroup">
       <template name="sep">{listcomma} </template>

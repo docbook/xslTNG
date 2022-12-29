@@ -6,7 +6,7 @@
 <!-- ============================================================ -->
 <!-- change markup tests -->
 
-<x:scenario label="When converting content with revisionflag markup">
+<x:scenario label="When converting changebars.001">
   <x:context href="../resources/xml/changebars.001.xml"/>
   <x:expect label="expect the revisions to be encoded in classes" href="../resources/expected/changebars.001.html"/>
 </x:scenario>
