@@ -40,7 +40,7 @@
          context="title"/>
 
   <title xpath="self::db:part|self::db:reference|self::db:chapter|self::db:appendix"
-         context="title"/>
+         context="title-numbered"/>
 
   <title xpath="self::db:figure[parent::db:formalgroup]
                 |self::db:table[parent::db:formalgroup]
@@ -138,6 +138,7 @@
   </xsl:variable>
   <xsl:variable name="lang" select="f:l10n-language(.)"/>
   <xsl:sequence select="fp:gentext-token($lang, local-name(*[last()]))"/>
+  <xsl:text> </xsl:text>
   <xsl:sequence select="$headline"/>
 </xsl:template>
 

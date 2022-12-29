@@ -118,7 +118,7 @@
 </xsl:template>
 
 <xsl:template match="*">
-  <xsl:message>No template for {local-name(.)}</xsl:message>
+  <xsl:message terminate="yes">No template for {local-name(.)}</xsl:message>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -142,38 +142,14 @@
 </xsl:template>
 
 <xsl:template match="*" mode="expand-template">
-  <xsl:choose>
-    <xsl:when test="key('gentext', local-name(.))">
-      <lt:text>
-        <xsl:sequence select="key('gentext', local-name(.))/@text/string()"/>
-      </lt:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message>No gentext for {local-name(.)}</xsl:message>
-    </xsl:otherwise>
-  </xsl:choose>
+  <lt:token key="{local-name(.)}"/>
+  <xsl:if test="not(key('gentext', local-name(.)))">
+    <xsl:message>Warning: no gentext for {local-name(.)}</xsl:message>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="text()" mode="expand-template">
   <xsl:sequence select="f:fix-text(.)"/>
-<!--
-  <xsl:variable name="parts" as="node()*">
-    <xsl:for-each select="tokenize(., '%c')">
-      <xsl:if test="position() gt 1">
-        <lt:content/>
-      </xsl:if>
-      <xsl:if test=". != ''">
-        <lt:text>{.}</lt:text>
-      </xsl:if>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <xsl:sequence select="f:expand-percent($parts, '%l', 'label')
-                       =&gt; f:expand-percent('%%', 'percent')
-                       =&gt; f:expand-percent('%.', 'separator')
-                       =&gt; f:expand-percent('%p', 'page')
-                       =&gt; f:expand-percent('%o', 'olink-title')"/>
--->
 </xsl:template>
 
 <xsl:function name="f:expand-percent" as="element()*">
@@ -267,26 +243,11 @@
       <xsl:message select="'b:', $bpos, $epos, '|' || $token || '|', $rest, '::', $text"/>
       -->
 
-      <xsl:choose>
-        <xsl:when test="$locale/mappings/gentext[@key = $token]">
-          <xsl:for-each select="$locale/mappings/gentext[@key = $token]/node()">
-            <xsl:choose>
-              <xsl:when test="./self::text()">
-                <lt:text>
-                  <xsl:sequence select="."/>
-                </lt:text>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:sequence select="."/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:message
-                       select="'No gentext for &quot;' || $token || '&quot;'"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <lt:token key="{$token}"/>
+      
+      <xsl:if test="empty($locale/mappings/gentext[@key = $token])">
+        <xsl:message select="'Warning: no gentext for &quot;' || $token || '&quot;'"/>
+      </xsl:if>
 
       <xsl:sequence select="f:fix-text($rest)"/>
     </xsl:when>

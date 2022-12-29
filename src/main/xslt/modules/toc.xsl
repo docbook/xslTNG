@@ -55,7 +55,7 @@
           <div class="title">
             <xsl:apply-templates select="." mode="m:gentext">
               <xsl:with-param name="group" select="'title'"/>
-              <xsl:with-param name="key" select="'tableofcontents'"/>
+              <xsl:with-param name="key" select="'TableofContents'"/>
             </xsl:apply-templates>
           </div>
           <ul class="toc">
@@ -210,7 +210,7 @@
                       select=".//db:figure[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:figure]"/>
       <xsl:with-param name="class" select="'list-of-figures'"/>
-      <xsl:with-param name="title-key" select="'listoffigures'"/>
+      <xsl:with-param name="title-key" select="'ListofFigures'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -223,7 +223,7 @@
                       select=".//db:table[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:table]"/>
       <xsl:with-param name="class" select="'list-of-tables'"/>
-      <xsl:with-param name="title-key" select="'listoftables'"/>
+      <xsl:with-param name="title-key" select="'ListofTables'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -236,7 +236,7 @@
                       select=".//db:example[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:example]"/>
       <xsl:with-param name="class" select="'list-of-examples'"/>
-      <xsl:with-param name="title-key" select="'listofexamples'"/>
+      <xsl:with-param name="title-key" select="'ListofExamples'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -249,7 +249,7 @@
                       select=".//db:equation[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:figure]"/>
       <xsl:with-param name="class" select="'list-of-equations'"/>
-      <xsl:with-param name="title-key" select="'listofequations'"/>
+      <xsl:with-param name="title-key" select="'ListofEquations'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -260,7 +260,7 @@
     <xsl:call-template name="tp:list-of-titles">
       <xsl:with-param name="elements" select=".//db:procedure"/>
       <xsl:with-param name="class" select="'list-of-procedures'"/>
-      <xsl:with-param name="title-key" select="'listofprocedures'"/>
+      <xsl:with-param name="title-key" select="'ListofProcedures'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>

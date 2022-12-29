@@ -46,8 +46,8 @@
       <gentext key="appendix">liite</gentext>
       <gentext key="Article">Artikkeli</gentext>
       <gentext key="article">artikkeli</gentext>
-      <gentext key="author">Tekijä</gentext>
-      <gentext key="authors">Tekijät</gentext>
+      <gentext key="Author">Tekijä</gentext>
+      <gentext key="Authors">Tekijät</gentext>
       <gentext key="below">alla</gentext>
       <gentext key="Bibliography">Lähteet</gentext>
       <gentext key="bibliography">lähteet</gentext>
@@ -67,14 +67,14 @@
       <gentext key="copyright">tekijänoikeudet</gentext>
       <gentext key="Dedication">Omistus</gentext>
       <gentext key="dedication">omistus</gentext>
-      <gentext key="draft">Luonnos</gentext>
+      <gentext key="Draft">Luonnos</gentext>
       <gentext key="Edited">Toim.</gentext>
       <gentext key="edited">toim.</gentext>
       <gentext key="Editedby">Toimittanut</gentext>
       <gentext key="editedby">toimittanut</gentext>
       <gentext key="Edition">Edition</gentext>
       <gentext key="edition">edition</gentext>
-      <gentext key="editor">Toimittaja</gentext>
+      <gentext key="Editor">Toimittaja</gentext>
       <gentext key="endquote">”</gentext>
       <gentext key="Equation">Kaava</gentext>
       <gentext key="equation">kaava</gentext>
@@ -96,6 +96,7 @@
       <gentext key="Index">Indeksi</gentext>
       <gentext key="index">indeksi</gentext>
       <gentext key="index symbols">Symbolit</gentext>
+      <gentext key="ISBN">ISBN</gentext>
       <gentext key="isbn">ISBN</gentext>
       <gentext key="lastlistcomma">,</gentext>
       <gentext key="LegalNotice">Oikeudellinen ilmoitus</gentext>
@@ -143,22 +144,22 @@
       <gentext key="Procedure">Aliohjelma</gentext>
       <gentext key="procedure">aliohjelma</gentext>
       <gentext key="productioneditor">Production Editor</gentext>
-      <gentext key="productionset">Tuotanto</gentext>
+      <gentext key="ProductionSet">Tuotanto</gentext>
       <gentext key="PubDate">Julkaisupäivä</gentext>
       <gentext key="pubdate">julkaisupäivä</gentext>
       <gentext key="Published">Julkaistu</gentext>
       <gentext key="published">julkaistu</gentext>
-      <gentext key="publisher">Julkaisija</gentext>
+      <gentext key="Publisher">Julkaisija</gentext>
       <gentext key="Qandadiv">K ja V</gentext>
       <gentext key="qandadiv">k ja v</gentext>
-      <gentext key="qandaset">Usein kysytyt kysymykset</gentext>
+      <gentext key="QandASet">Usein kysytyt kysymykset</gentext>
       <gentext key="Question">K:</gentext>
       <gentext key="question">k:</gentext>
       <gentext key="RefEntry">Sivu</gentext>
       <gentext key="refentry">sivu</gentext>
       <gentext key="Reference">Lähdeluettelo</gentext>
       <gentext key="reference">lähdeluettelo</gentext>
-      <gentext key="references">References</gentext>
+      <gentext key="References">References</gentext>
       <gentext key="RefName">Nimi</gentext>
       <gentext key="refname">nimi</gentext>
       <gentext key="RefSection">Kohta</gentext>
@@ -184,6 +185,7 @@
       <gentext key="SeeAlso">Katso myös</gentext>
       <gentext key="Seealso">Katso myös</gentext>
       <gentext key="seealso">katso myös</gentext>
+      <gentext key="Set">Kokoelma</gentext>
       <gentext key="set">Kokoelma</gentext>
       <gentext key="SetIndex">Kokoelman indeksi</gentext>
       <gentext key="setindex">kokoelman indeksi</gentext>
@@ -250,15 +252,28 @@
       <property name="person-name" value="first-last"/>
    </property>
    <group name="label">
-      <template name="refname">{refname}</template>
-      <template name="see">{see} </template>
-      <template name="seealso">{seealso} </template>
-      <template name="edited-by">{editedby} </template>
+      <template name="refname">{RefName}</template>
+      <template name="see">{See} </template>
+      <template name="seealso">{Seealso} </template>
+      <template name="edited-by">{Editedby} </template>
+   </group>
+   <group name="label-separator">
+      <template name="appendix">. </template>
+      <template name="chapter">. </template>
+      <template name="equation">. </template>
+      <template name="example">. </template>
+      <template name="figure">. </template>
+      <template name="formalgroup">. </template>
+      <template name="part">. </template>
+      <template name="procedure">. </template>
+      <template name="reference">. </template>
+      <template name="table">. </template>
+      <template name="_default"> </template>
    </group>
    <group name="title">
       <template name="abstract">%c</template>
       <template name="answer">%c</template>
-      <template name="appendix">{Appendix} %l. %c</template>
+      <template name="appendix">{Appendix} %l%.%c</template>
       <template name="article">%c</template>
       <template name="authorblurb">%c</template>
       <template name="bibliodiv">%c</template>
@@ -271,12 +286,12 @@
       <template name="book">%c</template>
       <template name="calloutlist">%c</template>
       <template name="caution">%c</template>
-      <template name="chapter">{Chapter} %l. %c</template>
+      <template name="chapter">{Chapter} %l%.%c</template>
       <template name="colophon">%c</template>
       <template name="dedication">%c</template>
-      <template name="equation">{Equation} %l. %c</template>
-      <template name="example">{Example} %l. %c</template>
-      <template name="figure">{Figure} %l. %c</template>
+      <template name="equation">{Equation} %l%.%c</template>
+      <template name="example">{Example} %l%.%c</template>
+      <template name="figure">{Figure} %l%.%c</template>
       <template name="formalpara">%c</template>
       <template name="glossary">%c</template>
       <template name="glossdiv">%c</template>
@@ -295,13 +310,13 @@
       <template name="msgsub">%c</template>
       <template name="note">%c</template>
       <template name="orderedlist">%c</template>
-      <template name="part">{Part} %l. %c</template>
+      <template name="part">{Part} %l%.%c</template>
       <template name="partintro">%c</template>
       <template name="preface">%c</template>
       <template name="procedure">%c</template>
-      <template name="procedure.formal">{Procedure} %l. %c</template>
+      <template name="procedure.formal">{Procedure} %l%.%c</template>
       <template name="productionset">%c</template>
-      <template name="productionset.formal">{productionset} %l</template>
+      <template name="productionset.formal">{ProductionSet} %l</template>
       <template name="qandadiv">%c</template>
       <template name="qandaentry">%c</template>
       <template name="qandaset">%c</template>
@@ -319,18 +334,18 @@
       <template name="setindex">%c</template>
       <template name="sidebar">%c</template>
       <template name="step">%c</template>
-      <template name="table">{Table} %l. %c</template>
+      <template name="table">{Table} %l%.%c</template>
       <template name="tip">%c</template>
       <template name="toc">%c</template>
       <template name="variablelist">%c</template>
       <template name="warning">%c</template>
-      <template name="tableofcontents">{tableofcontents}</template>
-      <template name="listoffigures">{listoffigures}</template>
-      <template name="listoftables">{listoftables}</template>
-      <template name="listofequations">{listofequations}</template>
-      <template name="listofprocedures">{listofprocedures}</template>
-      <template name="listofexamples">{listofexamples}</template>
-      <template name="listofunknown">{listofunknown}</template>
+      <template name="TableofContents">{TableofContents}</template>
+      <template name="ListofFigures">{ListofFigures}</template>
+      <template name="ListofTables">{ListofTables}</template>
+      <template name="ListofEquations">{ListofEquations}</template>
+      <template name="ListofProcedures">{ListofProcedures}</template>
+      <template name="ListofExamples">{ListofExamples}</template>
+      <template name="ListofUnknown">{ListofUnknown}</template>
       <template name="_default">%c</template>
    </group>
    <group name="list-of-titles">
@@ -338,59 +353,64 @@
       <template name="bibliography">%c</template>
       <template name="book">%c</template>
       <template name="dedication">%c</template>
-      <template name="formalgroup"> %l%.%c</template>
+      <template name="formalgroup">%l%.%c</template>
       <template name="forward">%c</template>
       <template name="glossary">%c</template>
       <template name="index">%c</template>
       <template name="preface">%c</template>
       <template name="setindex">%c</template>
       <template name="topic">%c</template>
-      <template name="book/part">{part} %l%.%c</template>
-      <template name="book/reference">{reference} %l%.%c</template>
-      <template name="book/appendix">{appendix} %l%.%c</template>
-      <template name="book/chapter">{chapter} %l%.%c</template>
-      <template name="part/appendix">{appendix} %l%.%c</template>
-      <template name="part/chapter">{chapter} %l%.%c</template>
+      <template name="book/part">{Part} %l%.%c</template>
+      <template name="book/reference">{Reference} %l%.%c</template>
+      <template name="book/appendix">{Appendix} %l%.%c</template>
+      <template name="book/chapter">{Chapter} %l%.%c</template>
+      <template name="part/appendix">{Appendix} %l%.%c</template>
+      <template name="part/chapter">{Chapter} %l%.%c</template>
       <template name="_default">%l%.%c</template>
    </group>
    <group name="title-unnumbered">
       <template name="_default">%c</template>
    </group>
    <group name="title-numbered">
-      <template name="appendix">{Appendix} %l. %c</template>
+      <template name="appendix">{Appendix} %l%.%c</template>
       <template name="bridgehead">%c</template>
-      <template name="chapter">{Chapter} %l. %c</template>
-      <template name="part">{Part} %l. %c</template>
-      <template name="sect1">%l. %c</template>
-      <template name="sect2">%l. %c</template>
-      <template name="sect3">%l. %c</template>
-      <template name="sect4">%l. %c</template>
-      <template name="sect5">%l. %c</template>
-      <template name="section">%l. %c</template>
-      <template name="simplesect">%l. %c</template>
+      <template name="chapter">{Chapter} %l%.%c</template>
+      <template name="part">{Part} %l%.%c</template>
+      <template name="sect1">%l%.%c</template>
+      <template name="sect2">%l%.%c</template>
+      <template name="sect3">%l%.%c</template>
+      <template name="sect4">%l%.%c</template>
+      <template name="sect5">%l%.%c</template>
+      <template name="section">%l%.%c</template>
+      <template name="simplesect">%l%.%c</template>
       <template name="refsect1">%c</template>
       <template name="refsect2">%c</template>
       <template name="refsect3">%c</template>
       <template name="refsection">%c</template>
-      <template name="_default">%l %c</template>
+      <template name="_default">%l%.%c</template>
    </group>
-   <group name="subfigure-title"/>
+   <group name="subfigure-title">
+      <template name="figure">{subfigure} %l%.%c</template>
+      <template name="table">{subtable} %l%.%c</template>
+      <template name="equation">{subequation} %l%.%c</template>
+      <template name="example">{subexample} %l%.%c</template>
+   </group>
    <group name="title-generated">
-      <template name="abstract">{abstract}</template>
-      <template name="acknowledgements">{acknowledgements}</template>
-      <template name="bibliography">{bibliography}</template>
-      <template name="caution">{caution}</template>
-      <template name="danger">{danger}</template>
-      <template name="dedication">{dedication}</template>
-      <template name="glossary">{glossary}</template>
-      <template name="important">{important}</template>
-      <template name="index">{index}</template>
-      <template name="legalnotice">{legalnotice}</template>
-      <template name="note">{note}</template>
-      <template name="revhistory">{revhistory}</template>
-      <template name="setindex">{setindex}</template>
-      <template name="tip">{tip}</template>
-      <template name="warning">{warning}</template>
+      <template name="abstract">{Abstract}</template>
+      <template name="acknowledgements">{Acknowledgements}</template>
+      <template name="bibliography">{Bibliography}</template>
+      <template name="caution">{Caution}</template>
+      <template name="danger">{Danger}</template>
+      <template name="dedication">{Dedication}</template>
+      <template name="glossary">{Glossary}</template>
+      <template name="important">{Important}</template>
+      <template name="index">{Index}</template>
+      <template name="legalnotice">{LegalNotice}</template>
+      <template name="note">{Note}</template>
+      <template name="revhistory">{RevHistory}</template>
+      <template name="setindex">{SetIndex}</template>
+      <template name="tip">{Tip}</template>
+      <template name="warning">{Warning}</template>
    </group>
    <group name="xref">
       <template name="abstract">%c</template>
@@ -454,7 +474,7 @@
       <template name="page">(sivu %p)</template>
       <template name="docname"> kirjoitelmassa %o</template>
       <template name="docnamelong"> kirjoitelmassa otsikoltaan %o</template>
-      <template name="pageabbrev">(s. %p)</template>
+      <template name="pageabbrev">(s%.%p)</template>
       <template name="Page">Sivu %p</template>
       <template name="bridgehead">{startquote}%c{endquote}</template>
       <template name="refsection">{startquote}%c{endquote}</template>
@@ -468,6 +488,8 @@
       <template name="sect5">{startquote}%c{endquote}</template>
       <template name="section">{startquote}%c{endquote}</template>
       <template name="simplesect">{startquote}%c{endquote}</template>
+      <template name="step">{step} %l</template>
+      <template name="refnamediv">%c</template>
       <template name="_default">%l</template>
    </group>
    <group name="xref-number">
@@ -480,7 +502,7 @@
       <template name="figure">{Figure} %l</template>
       <template name="part">{Part} %l</template>
       <template name="procedure">{Procedure} %l</template>
-      <template name="productionset">{productionset} %l</template>
+      <template name="productionset">{ProductionSet} %l</template>
       <template name="qandadiv">{Qandadiv} %l</template>
       <template name="qandaentry">{Question} %l</template>
       <template name="question">{Question} %l</template>
@@ -501,7 +523,7 @@
       <template name="figure">{Figure} %l, {startquote}%c{endquote}</template>
       <template name="part">{Part} %l, {startquote}%c{endquote}</template>
       <template name="procedure">{Procedure} %l, {startquote}%c{endquote}</template>
-      <template name="productionset">{productionset} %l, {startquote}%c{endquote}</template>
+      <template name="productionset">{ProductionSet} %l, {startquote}%c{endquote}</template>
       <template name="qandadiv">{Qandadiv} %l, {startquote}%c{endquote}</template>
       <template name="refsect1">{sectioncalled} {startquote}%c{endquote}</template>
       <template name="refsect2">{sectioncalled} {startquote}%c{endquote}</template>
@@ -556,51 +578,51 @@
    </group>
    <group name="index"/>
    <group name="msgset">
-      <template name="MsgAud">{MsgAud}: </template>
-      <template name="MsgLevel">{MsgLevel}: </template>
-      <template name="MsgOrig">{MsgOrig}: </template>
+      <template name="msgaud">{msgaud}: </template>
+      <template name="msglevel">{msglevel}: </template>
+      <template name="msgorig">{msgorig}: </template>
    </group>
    <group name="datetime-full">
-      <template text="tammikuu" name="january"/>
-      <template text="helmikuu" name="february"/>
-      <template text="maaliskuu" name="march"/>
-      <template text="huhtikuu" name="april"/>
-      <template text="toukokuu" name="may"/>
-      <template text="kesäkuu" name="june"/>
-      <template text="heinäkuu" name="july"/>
-      <template text="elokuu" name="august"/>
-      <template text="syyskuu" name="september"/>
-      <template text="lokakuu" name="october"/>
-      <template text="marraskuu" name="november"/>
-      <template text="joulukuu" name="december"/>
-      <template text="maanantai" name="monday"/>
-      <template text="tiistai" name="tuesday"/>
-      <template text="keskiviikko" name="wednesday"/>
-      <template text="torstai" name="thursday"/>
-      <template text="perjantai" name="friday"/>
-      <template text="lauantai" name="saturday"/>
-      <template text="sunnuntai" name="sunday"/>
+      <template text="tammikuu" name="January"/>
+      <template text="helmikuu" name="February"/>
+      <template text="maaliskuu" name="March"/>
+      <template text="huhtikuu" name="April"/>
+      <template text="toukokuu" name="May"/>
+      <template text="kesäkuu" name="June"/>
+      <template text="heinäkuu" name="July"/>
+      <template text="elokuu" name="August"/>
+      <template text="syyskuu" name="September"/>
+      <template text="lokakuu" name="October"/>
+      <template text="marraskuu" name="November"/>
+      <template text="joulukuu" name="December"/>
+      <template text="maanantai" name="Monday"/>
+      <template text="tiistai" name="Tuesday"/>
+      <template text="keskiviikko" name="Wednesday"/>
+      <template text="torstai" name="Thursday"/>
+      <template text="perjantai" name="Friday"/>
+      <template text="lauantai" name="Saturday"/>
+      <template text="sunnuntai" name="Sunday"/>
    </group>
    <group name="datetime-abbrev">
-      <template text="tammi" name="jan"/>
-      <template text="helmi" name="feb"/>
-      <template text="maalis" name="mar"/>
-      <template text="huhti" name="apr"/>
-      <template text="touko" name="may"/>
-      <template text="kesä" name="jun"/>
-      <template text="heinä" name="jul"/>
-      <template text="elo" name="aug"/>
-      <template text="syys" name="sep"/>
-      <template text="loka" name="oct"/>
-      <template text="marras" name="nov"/>
-      <template text="joulu" name="dec"/>
-      <template text="ma" name="mon"/>
-      <template text="ti" name="tue"/>
-      <template text="ke" name="wed"/>
-      <template text="to" name="thu"/>
-      <template text="pe" name="fri"/>
-      <template text="la" name="sat"/>
-      <template text="su" name="sun"/>
+      <template text="tammi" name="Jan"/>
+      <template text="helmi" name="Feb"/>
+      <template text="maalis" name="Mar"/>
+      <template text="huhti" name="Apr"/>
+      <template text="touko" name="May"/>
+      <template text="kesä" name="Jun"/>
+      <template text="heinä" name="Jul"/>
+      <template text="elo" name="Aug"/>
+      <template text="syys" name="Sep"/>
+      <template text="loka" name="Oct"/>
+      <template text="marras" name="Nov"/>
+      <template text="joulu" name="Dec"/>
+      <template text="ma" name="Mon"/>
+      <template text="ti" name="Tue"/>
+      <template text="ke" name="Wed"/>
+      <template text="to" name="Thu"/>
+      <template text="pe" name="Fri"/>
+      <template text="la" name="Sat"/>
+      <template text="su" name="Sun"/>
    </group>
    <letters>
       <l i="-1"/>

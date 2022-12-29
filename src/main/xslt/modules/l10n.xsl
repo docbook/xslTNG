@@ -24,6 +24,7 @@
   <xsl:param name="content" as="item()*"/>
 
   <xsl:apply-templates select="*" mode="mp:localization">
+    <xsl:with-param name="lang" select="f:l10n-language($context)" tunnel="yes"/>
     <xsl:with-param name="context" select="$context" tunnel="yes"/>
     <xsl:with-param name="label" select="$label" tunnel="yes"/>
     <xsl:with-param name="content" select="$content" tunnel="yes"/>
@@ -38,24 +39,9 @@
   <xsl:param name="context" as="element()" tunnel="yes"/>
 
   <span class="sep">
-    <xsl:choose>
-      <xsl:when test="$context/self::db:table
-                      |$context/self::db:figure
-                      |$context/self::db:example
-                      |$context/self::db:equation
-                      |$context/self::db:procedure
-                      |$context/self::db:formalgroup
-                      |$context/self::db:chapter
-                      |$context/self::db:appendix
-                      |$context/self::db:part
-                      |$context/self::db:reference
-                     ">
-        <xsl:text>. </xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text> </xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="$context" mode="m:gentext">
+      <xsl:with-param name="group" select="'label-separator'"/>
+    </xsl:apply-templates>
   </span>
 </xsl:template>
 
@@ -87,6 +73,45 @@
     <xsl:with-param name="context" select="@context"/>
   </xsl:apply-templates>
 </xsl:template>
+
+<xsl:template match="lt:token" mode="mp:localization">
+  <xsl:param name="lang" tunnel="yes"/>
+  <xsl:sequence select="f:l10n-token($lang, @key)"/>
+</xsl:template>
+
+<xsl:function name="f:l10n-token" as="item()*" cache="yes">
+  <xsl:param name="lang" as="xs:string"/>
+  <xsl:param name="key" as="xs:string"/>
+  <xsl:sequence select="fp:l10n-token($lang, $key)"/>
+</xsl:function>
+
+<xsl:function name="fp:l10n-token" as="item()*" cache="yes">
+  <xsl:param name="lang" as="xs:string"/>
+  <xsl:param name="key" as="xs:string"/>
+
+  <xsl:variable name="l10n" select="fp:localization($lang)"/>
+  <xsl:choose>
+    <xsl:when test="exists($l10n/l:gentext/l:token[@key=$key])">
+      <xsl:sequence select="($l10n/l:gentext/l:token[@key=$key])[1]/node()"/>
+    </xsl:when>
+    <xsl:when test="$lang != 'en'">
+      <xsl:variable name="l10n" select="fp:localization('en')"/>
+      <xsl:choose>
+        <xsl:when test="exists($l10n/l:gentext/l:token[@key=$key])">
+          <xsl:sequence select="($l10n/l:gentext/l:token[@key=$key])[1]/node()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message select="'No gentext for ' || $key || ' in ' || $lang || ' or en'"/>
+          <xsl:text>MISSING</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message select="'No gentext for ' || $key || ' in ' || $lang"/>
+      <xsl:text>MISSING</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
 
 <xsl:template match="h:*" mode="mp:localization">
   <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
@@ -135,6 +160,7 @@
   <xsl:choose>
     <xsl:when test="empty($items/l:repeat)">
       <xsl:call-template name="tp:process-list">
+        <xsl:with-param name="lang" select="f:l10n-language(.)"/>
         <xsl:with-param name="list" select="$list"/>
         <xsl:with-param name="template" select="$items/*"/>
       </xsl:call-template>
@@ -163,6 +189,7 @@
       </xsl:variable>
 
       <xsl:call-template name="tp:process-list">
+        <xsl:with-param name="lang" select="f:l10n-language(.)"/>
         <xsl:with-param name="list" select="$list"/>
         <xsl:with-param name="template" select="$expanded-list"/>
       </xsl:call-template>
@@ -171,33 +198,40 @@
 </xsl:template>
 
 <xsl:template name="tp:process-list">
+  <xsl:param name="lang" select="xs:string"/>
   <xsl:param name="list" as="element()*"/>
   <xsl:param name="template" as="element()*"/>
 
-  <xsl:choose>
-    <xsl:when test="empty($template)"/>
-    <xsl:when test="$template[1]/self::lt:text">
-      <xsl:sequence select="$template[1]/node()"/>
-      <xsl:call-template name="tp:process-list">
-        <xsl:with-param name="list" select="$list"/>
-        <xsl:with-param name="template" select="$template[position() gt 1]"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$template[1]/self::lt:content">
-      <xsl:sequence select="$list[1]"/>
-      <xsl:call-template name="tp:process-list">
-        <xsl:with-param name="list" select="$list[position() gt 1]"/>
-        <xsl:with-param name="template" select="$template[position() gt 1]"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message select="'Unexpected element in list template:', node-name(.)"/>
-      <xsl:call-template name="tp:process-list">
-        <xsl:with-param name="list" select="$list"/>
-        <xsl:with-param name="template" select="$template[position() gt 1]"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:iterate select="$template">
+    <xsl:param name="list" select="$list"/>
+
+    <xsl:choose>
+      <xsl:when test="self::lt:text">
+        <xsl:sequence select="node()"/>
+        <xsl:next-iteration>
+          <xsl:with-param name="list" select="$list"/>
+        </xsl:next-iteration>
+      </xsl:when>
+      <xsl:when test="self::lt:content">
+        <xsl:sequence select="$list[1]"/>
+        <xsl:next-iteration>
+          <xsl:with-param name="list" select="$list[position() gt 1]"/>
+        </xsl:next-iteration>
+      </xsl:when>
+      <xsl:when test="self::lt:token">
+        <xsl:sequence select="f:l10n-token($lang, @key)"/>
+        <xsl:next-iteration>
+          <xsl:with-param name="list" select="$list"/>
+        </xsl:next-iteration>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message select="'Unexpected element in list template:', node-name(.)"/>
+        <xsl:next-iteration>
+          <xsl:with-param name="list" select="$list"/>
+        </xsl:next-iteration>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:iterate>
 </xsl:template>
 
 </xsl:stylesheet>
