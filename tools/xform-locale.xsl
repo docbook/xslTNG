@@ -3,71 +3,72 @@
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
+                xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
                 xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://docbook.org/ns/docbook"
-                exclude-result-prefixes="db f map xs"
+                exclude-result-prefixes="db f ls map xs"
                 expand-text="yes"
                 version="3.0">
 
 <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
-<xsl:key name="gentext" match="gentext" use="@key"/>
+<xsl:key name="gentext" match="ls:gentext" use="@key"/>
 
-<xsl:variable name="locale" select="/*" as="element(locale)"/>
+<xsl:variable name="locale" select="/*" as="element(ls:locale)"/>
 
-<xsl:template match="locale">
+<xsl:template match="ls:locale">
   <l:l10n language="{@language}"
           english-language-name="{@english-language-name}">
-    <xsl:apply-templates select="* except info"/>
+    <xsl:apply-templates select="* except ls:info"/>
   </l:l10n>
 </xsl:template>
 
-<xsl:template match="mappings">
+<xsl:template match="ls:mappings">
   <l:gentext>
-    <xsl:apply-templates select="gentext">
+    <xsl:apply-templates select="ls:gentext">
       <xsl:sort select="lower-case(@key)" case-order="lower-first"/>
     </xsl:apply-templates>
   </l:gentext>
 </xsl:template>
 
-<xsl:template match="gentext">
+<xsl:template match="ls:gentext">
   <l:token key="{@key}">
     <xsl:sequence select="node()"/>
   </l:token>
 </xsl:template>
 
-<xsl:template match="properties">
+<xsl:template match="ls:properties">
   <l:properties name="{@name}">
-    <xsl:apply-templates select="property"/>
+    <xsl:apply-templates select="ls:property"/>
   </l:properties>
 </xsl:template>
 
-<xsl:template match="property">
+<xsl:template match="ls:property">
   <l:property name="{@name}" value="{@value}"/>
 </xsl:template>
 
-<xsl:template match="group">
+<xsl:template match="ls:group">
   <l:group name="{@name}">
-    <xsl:apply-templates select="template"/>
+    <xsl:apply-templates select="ls:template"/>
   </l:group>
 </xsl:template>
 
-<xsl:template match="ref">
+<xsl:template match="ls:ref">
   <l:ref>
     <xsl:copy-of select="@*"/>
   </l:ref>
 </xsl:template>
 
-<xsl:template match="list">
+<xsl:template match="ls:list">
   <l:list>
     <xsl:copy-of select="@*"/>
-    <xsl:apply-templates select="items"/>
+    <xsl:apply-templates select="ls:items"/>
   </l:list>
 </xsl:template>
 
-<xsl:template match="template|repeat|items">
+<xsl:template match="ls:template|ls:repeat|ls:items">
   <xsl:variable name="expanded" as="node()*">
     <xsl:apply-templates mode="expand-template"/>
   </xsl:variable>
@@ -104,13 +105,13 @@
   </xsl:element>
 </xsl:template>
 
-<xsl:template match="letters">
+<xsl:template match="ls:letters">
   <l:letters>
     <xsl:apply-templates select="*"/>
   </l:letters>
 </xsl:template>
 
-<xsl:template match="l">
+<xsl:template match="ls:l">
   <l:l>
     <xsl:copy-of select="@*"/>
     <xsl:sequence select="string(.)"/>
@@ -123,19 +124,19 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="ref" mode="expand-template">
+<xsl:template match="ls:ref" mode="expand-template">
   <lt:ref>
     <xsl:copy-of select="@*"/>
   </lt:ref>
 </xsl:template>
 
-<xsl:template match="items" mode="expand-template">
+<xsl:template match="ls:items" mode="expand-template">
   <l:items>
     <xsl:apply-templates mode="expand-template"/>
   </l:items>
 </xsl:template>
 
-<xsl:template match="repeat" mode="expand-template">
+<xsl:template match="ls:repeat" mode="expand-template">
   <l:repeat>
     <xsl:apply-templates mode="expand-template"/>
   </l:repeat>
@@ -245,7 +246,7 @@
 
       <lt:token key="{$token}"/>
       
-      <xsl:if test="empty($locale/mappings/gentext[@key = $token])">
+      <xsl:if test="empty($locale/ls:mappings/ls:gentext[@key = $token])">
         <xsl:message select="'Warning: no gentext for &quot;' || $token || '&quot;'"/>
       </xsl:if>
 
