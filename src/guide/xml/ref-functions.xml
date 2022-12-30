@@ -147,7 +147,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Generated text has been reworked, see <xref linkend="sec.gentext"/>.</para>
+<para>Generated text has been reworked, see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -432,7 +432,7 @@ to false allows for the creation of globally unique IDs with
 <refsection>
 <title>Description</title>
 <para>Generated text now uses <mode>m:gentext</mode>.
-See <xref linkend="sec.gentext"/>.</para>
+See <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -571,7 +571,7 @@ or <parameter>default-language</parameter> if no such attribute exists.
 <refsection>
 <title>Description</title>
 <para>Separators are now part of the generated text template,
-see <xref linkend="sec.gentext"/>.</para>
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -642,6 +642,27 @@ matches the language of the <code>$target</code> node. If
 The <parameter>default-language</parameter>
 will be returned if there is no localization available for the declared
 language of the <code>$target</code>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_l10n-token">
+<?db filename="f_l10n-token"?>
+<refmeta>
+<refentrytitle>f:l10n-token</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:l10n-token</refname>
+<refpurpose>Returns the gentext token for a key</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the gentext token for a key. This is usually
+accomplished by looking in the <link linkend="gentext">localization</link>,
+but if you need an override for a specific element, you can replace this
+function.</para>
 </refsection>
 </refentry>
 
@@ -790,7 +811,7 @@ both.
 <refsection>
 <title>Description</title>
 <para>Separators are now part of the generated text template,
-see <xref linkend="sec.gentext"/>.</para>
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -1144,7 +1165,7 @@ the last value will be returned.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_post-label-punctuation">
+<refentry xml:id="f_post-label-punctuation" role="obsolete 2.0.0">
 <?db filename="f_post-label-punctuation"?>
 <refmeta>
 <refentrytitle>f:post-label-punctuation</refentrytitle>
@@ -1158,14 +1179,7 @@ the last value will be returned.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Titles consist of an optional label, followed by an optional number, followed
-by the title. In some contexts, additional prefixes and suffixes may also be involved.
-In the title “Chapter 1 Introduction”, the word “Chapter” is the label, “1”
-is the number, and “Introduction” is the title.</para>
-<para>When a label appears in a title, the
-<function>f:post-label-punctuation</function> function determines what
-punctuation, if any, should follow it.
-</para>
+<para>Generated text has been reworked, see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 

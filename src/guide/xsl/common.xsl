@@ -150,6 +150,8 @@
                 select="key('a-by-name', ../db:refmeta/db:refmiscinfo, $explorer)"/>
 
   <xsl:choose>
+    <xsl:when test="ancestor::db:refentry[contains-token(@role, 'obsolete')]
+                    and empty($objects)"/>
     <xsl:when test="db:refclass = 'function' and $objects/self::a:function">
       <xsl:variable name="synopsis">
         <refsynopsisdiv xmlns="http://docbook.org/ns/docbook">
@@ -292,7 +294,7 @@
     <xsl:when test="db:refclass = 'function'"/>
     <xsl:otherwise>
       <xsl:message select="'No match in refnamediv: ' || db:refname[1]"/>
-      <xsl:message select="."/>
+      <xsl:message select="., $objects"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

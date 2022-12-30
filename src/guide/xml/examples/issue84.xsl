@@ -16,7 +16,7 @@
   <xsl:output method="text"/>
 
   <!-- Suppress xslTNG's default HTML output; note that this template
-       must return a docuent node.  -->
+       must return a document node.  -->
   <xsl:template match="/" mode="m:docbook">
     <xsl:document>
       <xsl:apply-templates select="." mode="TOC"/>

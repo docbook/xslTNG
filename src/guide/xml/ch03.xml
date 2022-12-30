@@ -4,7 +4,7 @@
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
 	 version="5.0" xml:id="customization">
 <info>
-  <?db filename="ch03"?>
+  <?db filename="ch-customizing"?>
   <title>Customizing the stylesheets</title>
 </info>
 
@@ -271,11 +271,6 @@ normalized versions of your input documents. For example, whether or not you put
 <tag>info</tag> wrappers around the titles of your sections, in the pre-processed input,
 <tag>title</tag>s <emphasis>always</emphasis> appear inside <tag>info</tag> wrappers.
 This normalization greatly simplifies processing in many places.</para>
-</section>
-
-<section xml:id="sec.gentext">
-<title>Generated text</title>
-<para>…</para>
 </section>
 
 </chapter>

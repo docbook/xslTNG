@@ -400,6 +400,23 @@ footnote are in different chunks, this may lead to very confusing numeration!</p
 </refsection>
 </refentry>
 
+<refentry xml:id="v_custom-localizations">
+<?db filename="v_custom-localizations"?>
+<refmeta>
+<refentrytitle>$v:custom-localizations</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}custom-localizations</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:custom-localizations</refname>
+<refpurpose>Customize localizations</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Provides overrides for localization. See <xref linkend="gentext"/>.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR">
 <?db filename="v_dbe_DYNAMIC-PROFILE-EVAL-ERROR"?>
 <refmeta>
@@ -1042,7 +1059,24 @@ the first “dark” theme will automatically be selected.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_title-properties">
+<refentry xml:id="v_title-groups">
+<?db filename="v_title-groups"?>
+<refmeta>
+<refentrytitle>$v:title-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}title-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:title-groups</refname>
+<refpurpose>Controls how titles are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>FIXME: TBD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_title-properties" role="obsolete 2.0.0">
 <?db filename="v_title-properties"?>
 <refmeta>
 <refentrytitle>$v:title-properties</refentrytitle>
@@ -1055,50 +1089,7 @@ the first “dark” theme will automatically be selected.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Titles are complicated. They occur all over the place (on books,
-on chapters, on sections, on figures, on formal paragraphs, etc.) and
-they need to be rendered differently in different contexts. You are
-always free to write your own templates to completely customize the
-formatting, but the stylesheets provide five declarative properties that
-you can select for each title. As long as your formatting requirements
-are satisfied by these properties, you don’t have two write custom
-templates to do the formatting.</para>
-<para>The properties are label, number, number format, inherit, and “label-toc”.
-Consider the title in <xref linkend="fig.title-properties"/>.</para>
-
-<figure xml:id="fig.title-properties">
-<title>Title Properties</title>
-<mediaobject>
-<alt>Illustration of title properties in a section title.</alt>
-<imageobject>
-<imagedata fileref="media/title-properties.png"/>
-</imageobject>
-<textobject>
-<para>This image shows the title “Section 3.4 Changing the print head”
-identifying “Section” as the label, “3.4” as the number, and “3.” as
-the inherited number.</para>
-</textobject>
-</mediaobject>
-</figure>
-
-<para>For any title context, identified by an XPath expression, you
-can set the <literal>label</literal> and <literal>number</literal>
-properties to specify whether or not those elements should appear.
-If <literal>inherit</literal> is true, the number of the parent element
-is included (so the figure might be section 4 in chapter 3, for example).
-The <literal>number-format</literal> property determines what style
-of numeration is used (arabic, lower- or upper-alpha, or lower- or
-upper-roman, for example).</para>
-
-<para>The last property, <literal>label-toc</literal>, determines whether
-or not the label appears in the table of contents. This can be used, for example,
-to suppress the label “Figure” at the beginning of every figure in a list
-of figures.</para>
-
-<para>The stylesheets search this list sequentially and the first match
-is used. Observe that <varname>v:user-title-properties</varname> always comes
-first; if you want to override the default values, you can put your overrides
-in there. You do not have to redefine the entire list.</para>
+<para>Replaced by <varname>v:title-groups</varname>.</para>
 </refsection>
 </refentry>
 
@@ -1223,7 +1214,26 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-title-properties">
+<refentry xml:id="v_user-title-groups">
+<?db filename="v_user-title-groups"?>
+<refmeta>
+<refentrytitle>$v:user-title-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}user-title-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:user-title-groups</refname>
+<refpurpose>Controls how titles are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable contains user-supplied overrides to
+<varname>v:title-groups</varname>. See that variable for more details.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_user-title-properties" role="obsolete 2.0.0">
 <?db filename="v_user-title-properties"?>
 <refmeta>
 <refentrytitle>$v:user-title-properties</refentrytitle>
@@ -1236,13 +1246,30 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
+<para>Replaced by <varname>v:user-title-groups</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_user-xref-groups">
+<?db filename="v_user-xref-groups"?>
+<refmeta>
+<refentrytitle>$v:user-xref-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}user-xref-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:user-xref-groups</refname>
+<refpurpose>Controls how cross-references are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
 <para>This variable contains user-supplied overrides to
-<varname>v:title-properties</varname>. See that variable for more details.
+<varname>v:xref-groups</varname>. See that variable for more details.
 </para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-xref-properties">
+<refentry xml:id="v_user-xref-properties" role="obsolete 2.0.0">
 <?db filename="v_user-xref-properties"?>
 <refmeta>
 <refentrytitle>$v:user-xref-properties</refentrytitle>
@@ -1255,9 +1282,7 @@ computed with <parameter>pixels-per-inch</parameter>).</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This variable contains user-supplied overrides to
-<varname>v:xref-properties</varname>. See that variable for more details.
-</para>
+<para>Replaced by <varname>v:user-xref-groups</varname>.</para>
 </refsection>
 </refentry>
 
@@ -1624,7 +1649,24 @@ commit.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_xref-properties">
+<refentry xml:id="v_xref-groups">
+<?db filename="v_xref-groups"?>
+<refmeta>
+<refentrytitle>$v:xref-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}xref-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:xref-groups</refname>
+<refpurpose>Controls how cross-references are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>FIXME: TBD.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_xref-properties" role="obsolete 2.0.0">
 <?db filename="v_xref-properties"?>
 <refmeta>
 <refentrytitle>$v:xref-properties</refentrytitle>
@@ -1637,51 +1679,7 @@ commit.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Cross-references, like <link linkend="v_title-properties">title properties</link>,
-are complicated. They can occur almost anywhere and several styles are possible.
-</para>
-
-<figure xml:id="fig.xref-properties-1">
-<title>Cross-reference Properties (numbered)</title>
-<mediaobject>
-<alt>Illustration of cross-reference properties in a numbered section reference</alt>
-<imageobject>
-<imagedata fileref="media/xref-properties-1.png"/>
-</imageobject>
-<textobject>
-<para>This image shows the cross-reference “Section 3.4, Changing the print head”
-identifying “Section” as the label, “3.4” as the number, and “, ” as
-number separator and “Changing the print head” as the title.</para>
-</textobject>
-</mediaobject>
-</figure>
-
-<para>For documents with numbered sections, a style such as the one shown in
-<xref linkend="fig.xref-properties-1"/> is common. Here the label, number, and title 
-are sufficient.</para>
-
-<figure xml:id="fig.xref-properties-2">
-<title>Cross-reference Properties (contextual)</title>
-<mediaobject>
-<alt>Illustration of cross-reference properties in an unnumbered section reference</alt>
-<imageobject>
-<imagedata fileref="media/xref-properties-2.png"/>
-</imageobject>
-<textobject>
-<para>This image shows the title “Section 3.4 Changing the print head”
-identifying “Section” as the label, “3.4” as the number, and “3.” as
-the inherited number.</para>
-</textobject>
-</mediaobject>
-</figure>
-
-<para>For documents without section numbers, a different approach is required.
-In <xref linkend="fig.xref-properties-2"/>, we see how a prefix (which can be literal text
-or a key into a localization) precedes the title. If an inherit reference is defined, the
-cross reference will include a reference to that element as well. A separator can be placed
-between them. If the format for the inherited reference also specifies an inherited reference,
-the process will continue.</para>
-
+<para>Replaced by <varname>v:xref-groups</varname>.</para>
 </refsection>
 </refentry>
 
