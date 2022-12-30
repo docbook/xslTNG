@@ -283,16 +283,6 @@
 
 <!-- ============================================================ -->
 
-<xsl:function name="fp:gentext-token" as="item()*">
-  <xsl:param name="lang" as="xs:string"/>
-  <xsl:param name="token" as="xs:string"/>
-
-  <xsl:variable name="l10n" select="fp:localization($lang)"/>
-  <xsl:sequence select="($l10n/l:gentext/l:token[@key=$token])[1]/node()"/>
-</xsl:function>
-
-<!-- ============================================================ -->
-
 <xsl:mode name="mp:merge-custom" on-no-match="shallow-copy"/>
 
 <xsl:template match="l:l10n" mode="mp:merge-custom">
@@ -338,7 +328,6 @@
   <xsl:variable name="this" select="."/>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="mp:merge-custom"/>
     <xsl:for-each select="$custom/l:gentext/l:token">
       <xsl:variable name="key" select="string(@key)"/>
       <xsl:if test="empty($this/l:token[@key = $key])">
@@ -347,6 +336,7 @@
         <xsl:sequence select="."/>
       </xsl:if>
     </xsl:for-each>
+    <xsl:apply-templates mode="mp:merge-custom"/>
   </xsl:copy>
 </xsl:template>
 
@@ -378,7 +368,6 @@
   <xsl:variable name="this" select="."/>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="mp:merge-custom"/>
     <xsl:for-each select="$custom/l:properties[@name = $this/@name]/l:property">
       <xsl:variable name="name" select="string(@name)"/>
       <xsl:if test="empty($this/l:property[@name = $name])">
@@ -387,6 +376,7 @@
         <xsl:sequence select="."/>
       </xsl:if>
     </xsl:for-each>
+    <xsl:apply-templates mode="mp:merge-custom"/>
   </xsl:copy>
 </xsl:template>
 
@@ -419,7 +409,6 @@
   <xsl:variable name="this" select="."/>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="mp:merge-custom"/>
     <xsl:for-each select="$custom/l:group[@name = $this/@name]/l:template">
       <xsl:variable name="key" select="string(@key)"/>
       <xsl:if test="empty($this/l:template[@key = $key])">
@@ -428,6 +417,7 @@
         <xsl:sequence select="."/>
       </xsl:if>
     </xsl:for-each>
+    <xsl:apply-templates mode="mp:merge-custom"/>
   </xsl:copy>
 </xsl:template>
 

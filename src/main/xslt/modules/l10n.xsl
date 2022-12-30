@@ -75,11 +75,21 @@
 </xsl:template>
 
 <xsl:template match="lt:token" mode="mp:localization">
+  <xsl:param name="context" as="element()" tunnel="yes"/>
   <xsl:param name="lang" tunnel="yes"/>
-  <xsl:sequence select="f:l10n-token($lang, @key)"/>
+  <xsl:sequence select="f:l10n-token($context, $lang, @key)"/>
 </xsl:template>
 
 <xsl:function name="f:l10n-token" as="item()*" cache="yes">
+  <xsl:param name="context" as="element()"/>
+  <xsl:param name="key" as="xs:string"/>
+
+  <xsl:variable name="lang" select="f:l10n-language($context)"/>
+  <xsl:sequence select="fp:l10n-token($lang, $key)"/>
+</xsl:function>
+
+<xsl:function name="f:l10n-token" as="item()*" cache="yes">
+  <xsl:param name="context" as="element()"/>
   <xsl:param name="lang" as="xs:string"/>
   <xsl:param name="key" as="xs:string"/>
   <xsl:sequence select="fp:l10n-token($lang, $key)"/>
@@ -160,6 +170,7 @@
   <xsl:choose>
     <xsl:when test="empty($items/l:repeat)">
       <xsl:call-template name="tp:process-list">
+        <xsl:with-param name="context" select="."/>
         <xsl:with-param name="lang" select="f:l10n-language(.)"/>
         <xsl:with-param name="list" select="$list"/>
         <xsl:with-param name="template" select="$items/*"/>
@@ -189,6 +200,7 @@
       </xsl:variable>
 
       <xsl:call-template name="tp:process-list">
+        <xsl:with-param name="context" select="."/>
         <xsl:with-param name="lang" select="f:l10n-language(.)"/>
         <xsl:with-param name="list" select="$list"/>
         <xsl:with-param name="template" select="$expanded-list"/>
@@ -198,7 +210,8 @@
 </xsl:template>
 
 <xsl:template name="tp:process-list">
-  <xsl:param name="lang" select="xs:string"/>
+  <xsl:param name="context" as="element()"/>
+  <xsl:param name="lang" as="xs:string"/>
   <xsl:param name="list" as="element()*"/>
   <xsl:param name="template" as="element()*"/>
 
@@ -219,7 +232,7 @@
         </xsl:next-iteration>
       </xsl:when>
       <xsl:when test="self::lt:token">
-        <xsl:sequence select="f:l10n-token($lang, @key)"/>
+        <xsl:sequence select="f:l10n-token($context, $lang, @key)"/>
         <xsl:next-iteration>
           <xsl:with-param name="list" select="$list"/>
         </xsl:next-iteration>

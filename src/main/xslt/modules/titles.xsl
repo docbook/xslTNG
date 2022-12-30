@@ -17,57 +17,57 @@
                 exclude-result-prefixes="#all"
                 version="3.0">
 
-<xsl:variable name="v:user-title-properties" as="element()*"/>
+<xsl:variable name="v:user-title-groups" as="element()*"/>
 
-<xsl:variable name="v:title-properties" as="element()+"
+<xsl:variable name="v:title-groups" as="element()+"
               xmlns:db="http://docbook.org/ns/docbook">
-  <xsl:sequence select="$v:user-title-properties"/>
+  <xsl:sequence select="$v:user-title-groups"/>
 
   <title xpath="self::db:section[ancestor::db:preface]"
-         context="title-unnumbered"/>
+         group="title-unnumbered"/>
 
   <title xpath="self::db:section|self::db:sect1
                 |self::db:sect2|self::db:sect3|self::db:sect4|self::db:sect5
                 |self::db:refsection|self::db:refsect1|self::db:refsect2|self::db:refsect3"
-         context="{if (f:is-true($section-numbers))
+         group="{if (f:is-true($section-numbers))
                    then 'title-numbered'
                    else 'title-unnumbered'}"/>
 
   <title xpath="self::db:article"
-         context="title"/>
+         group="title"/>
 
   <title xpath="self::db:preface"
-         context="title"/>
+         group="title"/>
 
   <title xpath="self::db:part|self::db:reference|self::db:chapter|self::db:appendix"
-         context="title-numbered"/>
+         group="title-numbered"/>
 
   <title xpath="self::db:figure[parent::db:formalgroup]
                 |self::db:table[parent::db:formalgroup]
                 |self::db:equation[parent::db:formalgroup]
                 |self::db:example[parent::db:formalgroup]"
-         context="subfigure-title"/>
+         group="subfigure-title"/>
 
   <title xpath="self::db:figure|self::db:table|self::db:equation|self::db:example"
-         context="title"/>
+         group="title"/>
 
   <title xpath="self::db:formalgroup"
-         context="title"/>
+         group="title"/>
 
   <title xpath="self::db:step|self::db:listitem[parent::db:orderedlist]"
-         context="title-unnumbered"/>
+         group="title-unnumbered"/>
 
   <title xpath="self::db:glosssee|self::db:glossseealso"
-         context="title-unnumbered"/>
+         group="title-unnumbered"/>
 
   <title xpath="self::db:see|self::db:seealso"
-         context="title-unnumbered"/>
+         group="title-unnumbered"/>
 
   <title xpath="self::db:question|self::db:answer"
-         context="title-numbered"/>
+         group="title-numbered"/>
 
   <title xpath="self::*"
-         context="title"/>
+         group="title"/>
 </xsl:variable>
 
 <!-- ============================================================ -->
@@ -77,7 +77,7 @@
 
   <xsl:variable name="this" select="."/>
   <xsl:variable name="prop" as="element()?">
-    <xsl:iterate select="$v:title-properties">
+    <xsl:iterate select="$v:title-groups">
       <xsl:variable name="test" as="element()*">
         <xsl:evaluate context-item="$this" xpath="@xpath"/>
       </xsl:variable>
@@ -97,7 +97,7 @@
   <xsl:variable name="template"
                 select="if ($purpose = 'lot')
                         then fp:localization-template(., 'list-of-titles')
-                        else fp:localization-template(., $prop/@context)"/>
+                        else fp:localization-template(., $prop/@group)"/>
 
   <xsl:variable name="label" as="item()*">
     <xsl:if test="$template/lt:label">
@@ -106,7 +106,7 @@
   </xsl:variable>
 
   <!--
-  <xsl:message select="local-name(.), $prop/@context/string(), $template"/>
+  <xsl:message select="local-name(.), $prop/@group/string(), $template"/>
   -->
 
   <xsl:if test="$vp:olinkdb">
@@ -136,8 +136,7 @@
       <xsl:with-param name="purpose" select="$purpose"/>
     </xsl:next-match>
   </xsl:variable>
-  <xsl:variable name="lang" select="f:l10n-language(.)"/>
-  <xsl:sequence select="fp:gentext-token($lang, local-name(*[last()]))"/>
+  <xsl:sequence select="f:l10n-token(., local-name(*[last()]))"/>
   <xsl:text> </xsl:text>
   <xsl:sequence select="$headline"/>
 </xsl:template>

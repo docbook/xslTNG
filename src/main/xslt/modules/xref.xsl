@@ -17,32 +17,32 @@
                 exclude-result-prefixes="#all"
                 version="3.0">
 
-<xsl:variable name="v:user-xref-properties" as="element()*"/>
+<xsl:variable name="v:user-xref-groups" as="element()*"/>
 
-<xsl:variable name="v:xref-properties" as="element()+"
+<xsl:variable name="v:xref-groups" as="element()+"
               xmlns:db="http://docbook.org/ns/docbook">
-  <xsl:sequence select="$v:user-xref-properties"/>
+  <xsl:sequence select="$v:user-xref-groups"/>
 
   <crossref xpath="self::db:section[ancestor::db:preface]"
-            context="xref"
+            group="xref"
             template="section-in-preface"/>
 
   <crossref xpath="self::db:section"
-            context="xref-number-and-title"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::db:chapter|self::db:appendix"
-            context="xref-number-and-title"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::db:part|self::db:reference"
-            context="xref-number-and-title"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::db:figure|self::db:example|self::db:table
                    |self::db:procedure|self::db:equation
                    |self::db:formalgroup"
-            context="xref-number-and-title"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::*"
-            context="xref"/>
+            group="xref"/>
 </xsl:variable>
 
 <!-- ============================================================ -->
@@ -53,7 +53,7 @@
 
   <xsl:variable name="this" select="."/>
   <xsl:variable name="prop" as="element()?">
-    <xsl:iterate select="$v:xref-properties">
+    <xsl:iterate select="$v:xref-groups">
       <xsl:variable name="test" as="element()*">
         <xsl:evaluate context-item="$this" xpath="@xpath"/>
       </xsl:variable>
@@ -71,7 +71,7 @@
   </xsl:variable>
 
   <xsl:variable name="context"
-                select="($context, $prop/@context/string())[1]"/>
+                select="($context, $prop/@group/string())[1]"/>
   <xsl:variable name="template"
                 select="($template, $prop/@template/string(), local-name(.))[1]"/>
 
@@ -300,7 +300,7 @@
   <xsl:param name="node" as="element()"/>
 
   <xsl:variable name="prop" as="element()?">
-    <xsl:iterate select="(fp:document-crossref-properties($node), $v:xref-properties)">
+    <xsl:iterate select="(fp:document-crossref-properties($node), $v:xref-groups)">
       <xsl:variable name="test" as="element()*">
         <xsl:evaluate context-item="$node" xpath="@xpath"/>
       </xsl:variable>

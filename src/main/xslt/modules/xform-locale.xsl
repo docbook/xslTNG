@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
                 xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
                 xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
@@ -10,15 +10,13 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://docbook.org/ns/docbook"
                 default-mode="mp:transform-locale"
-                exclude-result-prefixes="db f ls map mp xs"
+                exclude-result-prefixes="db f fp ls map mp xs"
                 expand-text="yes"
                 version="3.0">
 
 <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
 <xsl:key name="gentext" match="ls:gentext" use="@key"/>
-
-<xsl:variable name="locale" select="/*" as="element(ls:locale)"/>
 
 <xsl:template match="ls:locale">
   <l:l10n language="{@language}"
@@ -72,7 +70,7 @@
 
 <xsl:template match="ls:template|ls:repeat|ls:items">
   <xsl:variable name="expanded" as="node()*">
-    <xsl:apply-templates mode="expand-template"/>
+    <xsl:apply-templates mode="mp:expand-l10n-template"/>
   </xsl:variable>
 
   <xsl:element name="l:{local-name(.)}" 
@@ -126,63 +124,40 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="ls:ref" mode="expand-template">
+<xsl:template match="ls:ref" mode="mp:expand-l10n-template">
   <lt:ref>
     <xsl:copy-of select="@*"/>
   </lt:ref>
 </xsl:template>
 
-<xsl:template match="ls:items" mode="expand-template">
+<xsl:template match="ls:items" mode="mp:expand-l10n-template">
   <l:items>
-    <xsl:apply-templates mode="expand-template"/>
+    <xsl:apply-templates mode="mp:expand-l10n-template"/>
   </l:items>
 </xsl:template>
 
-<xsl:template match="ls:repeat" mode="expand-template">
+<xsl:template match="ls:repeat" mode="mp:expand-l10n-template">
   <l:repeat>
-    <xsl:apply-templates mode="expand-template"/>
+    <xsl:apply-templates mode="mp:expand-l10n-template"/>
   </l:repeat>
 </xsl:template>
 
-<xsl:template match="*" mode="expand-template">
+<xsl:template match="*" mode="mp:expand-l10n-template">
+  <xsl:message select="."/>
+
   <lt:token key="{local-name(.)}"/>
   <xsl:if test="not(key('gentext', local-name(.)))">
     <xsl:message>Warning: no gentext for {local-name(.)}</xsl:message>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="text()" mode="expand-template">
-  <xsl:sequence select="f:fix-text(.)"/>
+<xsl:template match="text()" mode="mp:expand-l10n-template">
+  <xsl:sequence select="fp:fix-text(.)"/>
 </xsl:template>
-
-<xsl:function name="f:expand-percent" as="element()*">
-  <xsl:param name="parts" as="element()*"/>
-  <xsl:param name="perc" as="xs:string"/>
-  <xsl:param name="tok" as="xs:string"/>
-
-  <xsl:for-each select="$parts">
-    <xsl:choose>
-      <xsl:when test="./self::lt:text">
-        <xsl:for-each select="tokenize(., $perc)">
-          <xsl:if test="position() gt 1">
-            <xsl:element name="lt:{$tok}"
-                         namespace="http://docbook.org/ns/docbook/l10n/templates"/>
-          </xsl:if>
-          <xsl:if test=". != ''">
-            <lt:text>{.}</lt:text>
-          </xsl:if>
-        </xsl:for-each>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="."/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:for-each>
-</xsl:function>
 
 <!-- ============================================================ -->
 
-<xsl:function name="f:fix-text" as="node()*">
+<xsl:function name="fp:fix-text" as="node()*">
   <xsl:param name="text" as="xs:string"/>
 
   <xsl:variable name="bpos"
@@ -227,7 +202,7 @@
         </xsl:otherwise>
       </xsl:choose>
 
-      <xsl:sequence select="f:fix-text($rest)"/>
+      <xsl:sequence select="fp:fix-text($rest)"/>
     </xsl:when>
     <xsl:when test="$ppos lt 0 or ($bpos ge 0 and $ppos ge 0 and $bpos lt $ppos)">
       <xsl:if test="$bpos gt 0">
@@ -247,12 +222,8 @@
       -->
 
       <lt:token key="{$token}"/>
-      
-      <xsl:if test="empty($locale/ls:mappings/ls:gentext[@key = $token])">
-        <xsl:message select="'Warning: no gentext for &quot;' || $token || '&quot;'"/>
-      </xsl:if>
 
-      <xsl:sequence select="f:fix-text($rest)"/>
+      <xsl:sequence select="fp:fix-text($rest)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message terminate="yes">This can’t happen.</xsl:message>
