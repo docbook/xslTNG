@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
-         date="2022-11-10T10:05:43.426263Z">
+         date="2022-12-30T18:30:50.99151Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/transclude.xspec">
       <label>When transcluding with no fixup</label>
@@ -37,13 +37,13 @@
                               <ul class="toc">
                                  <li>
                                     <a href="#R_s1">
-                                       <span class="number">1<span class="sep"> </span>
-                                       </span>Subsection One</a>
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Subsection One</a>
                                  </li>
                                  <li>
                                     <a href="#R_s2">
-                                       <span class="number">2<span class="sep"> </span>
-                                       </span>Subsection Two</a>
+                                       <span class="label">2</span>
+                                       <span class="sep">. </span>Subsection Two</a>
                                  </li>
                               </ul>
                            </div>
@@ -109,8 +109,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s1" class="section">
                            <header>
                               <h2>
-                                 <span class="number">1<span class="sep"> </span>
-                                 </span>Subsection One</h2>
+                                 <span class="label">1</span>
+                                 <span class="sep">. </span>Subsection One</h2>
                            </header>
                            <p>Here it is <a href="#caution" class="link">repeated</a> in a subsection:</p>
                            <div id="caution" class="admonition caution">
@@ -138,8 +138,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s2" class="section">
                            <header>
                               <h2>
-                                 <span class="number">2<span class="sep"> </span>
-                                 </span>Subsection Two</h2>
+                                 <span class="label">2</span>
+                                 <span class="sep">. </span>Subsection Two</h2>
                            </header>
                            <p>Here it is <a href="#caution" class="link">repeated</a> in another subsection:</p>
                            <div id="caution" class="admonition caution">
@@ -200,13 +200,13 @@ introduce duplicate IDs in the document.
                                  <ul class="toc">
                                     <li>
                                        <a href="#R_s1">
-                                          <span class="number">1<span class="sep"> </span>
-                                          </span>Subsection One</a>
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Subsection One</a>
                                     </li>
                                     <li>
                                        <a href="#R_s2">
-                                          <span class="number">2<span class="sep"> </span>
-                                          </span>Subsection Two</a>
+                                          <span class="label">2</span>
+                                          <span class="sep">. </span>Subsection Two</a>
                                     </li>
                                  </ul>
                               </div>
@@ -272,8 +272,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s1" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">1<span class="sep"> </span>
-                                    </span>Subsection One</h2>
+                                    <span class="label">1</span>
+                                    <span class="sep">. </span>Subsection One</h2>
                               </header>
                               <p>Here it is <a href="#caution" class="link">repeated</a> in a subsection:</p>
                               <div id="caution" class="admonition caution">
@@ -301,8 +301,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s2" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">2<span class="sep"> </span>
-                                    </span>Subsection Two</h2>
+                                    <span class="label">2</span>
+                                    <span class="sep">. </span>Subsection Two</h2>
                               </header>
                               <p>Here it is <a href="#caution" class="link">repeated</a> in another subsection:</p>
                               <div id="caution" class="admonition caution">
@@ -349,7 +349,7 @@ introduce duplicate IDs in the document.
                <head>
                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-                  <title>Transclusion 001</title>
+                  <title>Transclusion 002</title>
                   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
@@ -362,7 +362,7 @@ introduce duplicate IDs in the document.
                   <main>
                      <article class="article component">
                         <header>
-                           <h1>Transclusion 001</h1>
+                           <h1>Transclusion 002</h1>
                         </header>
                         <div class="list-of-titles">
                            <div class="lot toc">
@@ -370,13 +370,13 @@ introduce duplicate IDs in the document.
                               <ul class="toc">
                                  <li>
                                     <a href="#R_s1">
-                                       <span class="number">1<span class="sep"> </span>
-                                       </span>Subsection One</a>
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Subsection One</a>
                                  </li>
                                  <li>
                                     <a href="#R_s2">
-                                       <span class="number">2<span class="sep"> </span>
-                                       </span>Subsection Two</a>
+                                       <span class="label">2</span>
+                                       <span class="sep">. </span>Subsection Two</a>
                                  </li>
                               </ul>
                            </div>
@@ -441,8 +441,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s1" class="section">
                            <header>
                               <h2>
-                                 <span class="number">1<span class="sep"> </span>
-                                 </span>Subsection One</h2>
+                                 <span class="label">1</span>
+                                 <span class="sep">. </span>Subsection One</h2>
                            </header>
                            <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in a subsection:</p>
                            <div id="caution---R_s1_caution1" class="admonition caution">
@@ -470,8 +470,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s2" class="section">
                            <header>
                               <h2>
-                                 <span class="number">2<span class="sep"> </span>
-                                 </span>Subsection Two</h2>
+                                 <span class="label">2</span>
+                                 <span class="sep">. </span>Subsection Two</h2>
                            </header>
                            <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in another subsection:</p>
                            <div id="caution---R_s2_caution1" class="admonition caution">
@@ -511,7 +511,7 @@ introduce duplicate IDs in the document.
                   <head>
                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                      <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-                     <title>Transclusion 001</title>
+                     <title>Transclusion 002</title>
                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
@@ -524,7 +524,7 @@ introduce duplicate IDs in the document.
                      <main>
                         <article class="article component">
                            <header>
-                              <h1>Transclusion 001</h1>
+                              <h1>Transclusion 002</h1>
                            </header>
                            <div class="list-of-titles">
                               <div class="lot toc">
@@ -532,13 +532,13 @@ introduce duplicate IDs in the document.
                                  <ul class="toc">
                                     <li>
                                        <a href="#R_s1">
-                                          <span class="number">1<span class="sep"> </span>
-                                          </span>Subsection One</a>
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Subsection One</a>
                                     </li>
                                     <li>
                                        <a href="#R_s2">
-                                          <span class="number">2<span class="sep"> </span>
-                                          </span>Subsection Two</a>
+                                          <span class="label">2</span>
+                                          <span class="sep">. </span>Subsection Two</a>
                                     </li>
                                  </ul>
                               </div>
@@ -603,8 +603,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s1" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">1<span class="sep"> </span>
-                                    </span>Subsection One</h2>
+                                    <span class="label">1</span>
+                                    <span class="sep">. </span>Subsection One</h2>
                               </header>
                               <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in a subsection:</p>
                               <div id="caution---R_s1_caution1" class="admonition caution">
@@ -632,8 +632,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s2" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">2<span class="sep"> </span>
-                                    </span>Subsection Two</h2>
+                                    <span class="label">2</span>
+                                    <span class="sep">. </span>Subsection Two</h2>
                               </header>
                               <p>Here it is <a href="#caution---R_caution1" class="link">repeated</a> in another subsection:</p>
                               <div id="caution---R_s2_caution1" class="admonition caution">
@@ -680,7 +680,7 @@ introduce duplicate IDs in the document.
                <head>
                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-                  <title>Transclusion 001</title>
+                  <title>Transclusion 003</title>
                   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
@@ -693,7 +693,7 @@ introduce duplicate IDs in the document.
                   <main>
                      <article class="article component">
                         <header>
-                           <h1>Transclusion 001</h1>
+                           <h1>Transclusion 003</h1>
                         </header>
                         <div class="list-of-titles">
                            <div class="lot toc">
@@ -701,13 +701,13 @@ introduce duplicate IDs in the document.
                               <ul class="toc">
                                  <li>
                                     <a href="#R_s1">
-                                       <span class="number">1<span class="sep"> </span>
-                                       </span>Subsection One</a>
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Subsection One</a>
                                  </li>
                                  <li>
                                     <a href="#R_s2">
-                                       <span class="number">2<span class="sep"> </span>
-                                       </span>Subsection Two</a>
+                                       <span class="label">2</span>
+                                       <span class="sep">. </span>Subsection Two</a>
                                  </li>
                               </ul>
                            </div>
@@ -773,8 +773,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s1" class="section">
                            <header>
                               <h2>
-                                 <span class="number">1<span class="sep"> </span>
-                                 </span>Subsection One</h2>
+                                 <span class="label">1</span>
+                                 <span class="sep">. </span>Subsection One</h2>
                            </header>
                            <p>Here it is <a href="#cautionone" class="link">repeated</a> in a subsection:</p>
                            <div id="cautionthree" class="admonition caution">
@@ -802,8 +802,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s2" class="section">
                            <header>
                               <h2>
-                                 <span class="number">2<span class="sep"> </span>
-                                 </span>Subsection Two</h2>
+                                 <span class="label">2</span>
+                                 <span class="sep">. </span>Subsection Two</h2>
                            </header>
                            <p>Here it is <a href="#cautionone" class="link">repeated</a> in another subsection:</p>
                            <div id="cautionfour" class="admonition caution">
@@ -843,7 +843,7 @@ introduce duplicate IDs in the document.
                   <head>
                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                      <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-                     <title>Transclusion 001</title>
+                     <title>Transclusion 003</title>
                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
@@ -856,7 +856,7 @@ introduce duplicate IDs in the document.
                      <main>
                         <article class="article component">
                            <header>
-                              <h1>Transclusion 001</h1>
+                              <h1>Transclusion 003</h1>
                            </header>
                            <div class="list-of-titles">
                               <div class="lot toc">
@@ -864,13 +864,13 @@ introduce duplicate IDs in the document.
                                  <ul class="toc">
                                     <li>
                                        <a href="#R_s1">
-                                          <span class="number">1<span class="sep"> </span>
-                                          </span>Subsection One</a>
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Subsection One</a>
                                     </li>
                                     <li>
                                        <a href="#R_s2">
-                                          <span class="number">2<span class="sep"> </span>
-                                          </span>Subsection Two</a>
+                                          <span class="label">2</span>
+                                          <span class="sep">. </span>Subsection Two</a>
                                     </li>
                                  </ul>
                               </div>
@@ -936,8 +936,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s1" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">1<span class="sep"> </span>
-                                    </span>Subsection One</h2>
+                                    <span class="label">1</span>
+                                    <span class="sep">. </span>Subsection One</h2>
                               </header>
                               <p>Here it is <a href="#cautionone" class="link">repeated</a> in a subsection:</p>
                               <div id="cautionthree" class="admonition caution">
@@ -965,8 +965,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s2" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">2<span class="sep"> </span>
-                                    </span>Subsection Two</h2>
+                                    <span class="label">2</span>
+                                    <span class="sep">. </span>Subsection Two</h2>
                               </header>
                               <p>Here it is <a href="#cautionone" class="link">repeated</a> in another subsection:</p>
                               <div id="cautionfour" class="admonition caution">
@@ -1013,7 +1013,7 @@ introduce duplicate IDs in the document.
                <head>
                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-                  <title>Transclusion 001</title>
+                  <title>Transclusion 004</title>
                   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                   <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                   <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
@@ -1026,7 +1026,7 @@ introduce duplicate IDs in the document.
                   <main>
                      <article class="article component">
                         <header>
-                           <h1>Transclusion 001</h1>
+                           <h1>Transclusion 004</h1>
                         </header>
                         <div class="list-of-titles">
                            <div class="lot toc">
@@ -1034,13 +1034,13 @@ introduce duplicate IDs in the document.
                               <ul class="toc">
                                  <li>
                                     <a href="#R_s1">
-                                       <span class="number">1<span class="sep"> </span>
-                                       </span>Subsection One</a>
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Subsection One</a>
                                  </li>
                                  <li>
                                     <a href="#R_s2">
-                                       <span class="number">2<span class="sep"> </span>
-                                       </span>Subsection Two</a>
+                                       <span class="label">2</span>
+                                       <span class="sep">. </span>Subsection Two</a>
                                  </li>
                               </ul>
                            </div>
@@ -1106,8 +1106,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s1" class="section">
                            <header>
                               <h2>
-                                 <span class="number">1<span class="sep"> </span>
-                                 </span>Subsection One</h2>
+                                 <span class="label">1</span>
+                                 <span class="sep">. </span>Subsection One</h2>
                            </header>
                            <p>Here it is <a href="#cautionthree" class="link">repeated</a> in a subsection:</p>
                            <div id="cautionthree" class="admonition caution">
@@ -1135,8 +1135,8 @@ introduce duplicate IDs in the document.
                         <section id="R_s2" class="section">
                            <header>
                               <h2>
-                                 <span class="number">2<span class="sep"> </span>
-                                 </span>Subsection Two</h2>
+                                 <span class="label">2</span>
+                                 <span class="sep">. </span>Subsection Two</h2>
                            </header>
                            <p>Here it is <a href="#cautionfour" class="link">repeated</a> in another subsection:</p>
                            <div id="cautionfour" class="admonition caution">
@@ -1176,7 +1176,7 @@ introduce duplicate IDs in the document.
                   <head>
                      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                      <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-                     <title>Transclusion 001</title>
+                     <title>Transclusion 004</title>
                      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                      <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
                      <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
@@ -1189,7 +1189,7 @@ introduce duplicate IDs in the document.
                      <main>
                         <article class="article component">
                            <header>
-                              <h1>Transclusion 001</h1>
+                              <h1>Transclusion 004</h1>
                            </header>
                            <div class="list-of-titles">
                               <div class="lot toc">
@@ -1197,13 +1197,13 @@ introduce duplicate IDs in the document.
                                  <ul class="toc">
                                     <li>
                                        <a href="#R_s1">
-                                          <span class="number">1<span class="sep"> </span>
-                                          </span>Subsection One</a>
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Subsection One</a>
                                     </li>
                                     <li>
                                        <a href="#R_s2">
-                                          <span class="number">2<span class="sep"> </span>
-                                          </span>Subsection Two</a>
+                                          <span class="label">2</span>
+                                          <span class="sep">. </span>Subsection Two</a>
                                     </li>
                                  </ul>
                               </div>
@@ -1269,8 +1269,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s1" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">1<span class="sep"> </span>
-                                    </span>Subsection One</h2>
+                                    <span class="label">1</span>
+                                    <span class="sep">. </span>Subsection One</h2>
                               </header>
                               <p>Here it is <a href="#cautionthree" class="link">repeated</a> in a subsection:</p>
                               <div id="cautionthree" class="admonition caution">
@@ -1298,8 +1298,8 @@ introduce duplicate IDs in the document.
                            <section id="R_s2" class="section">
                               <header>
                                  <h2>
-                                    <span class="number">2<span class="sep"> </span>
-                                    </span>Subsection Two</h2>
+                                    <span class="label">2</span>
+                                    <span class="sep">. </span>Subsection Two</h2>
                               </header>
                               <p>Here it is <a href="#cautionfour" class="link">repeated</a> in another subsection:</p>
                               <div id="cautionfour" class="admonition caution">

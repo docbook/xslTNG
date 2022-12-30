@@ -11,7 +11,57 @@
 <releaseinfo role="icon">https://docbook.org/graphics/defguide-icon16.png</releaseinfo>
 <pubdate/>
 <revhistory>
-  <?db revhistory-style="list"?>
+<?db revhistory-style="list"?>
+<revision>
+<revnumber>2.0.0</revnumber>
+<date>2022-12-30</date>
+<revdescription>
+<para>This is a pre-release; existing customization layers will very
+likely require work. Some generated text may be rendered
+differently.</para>
+<itemizedlist>
+<listitem>
+<para>The system for dealing with generated text has been completely rewritten.
+We’re back to using templates as described in <xref linkend="gentext"/>.
+Most of the parameters, variables, and functions associated with gentext have
+been removed.
+</para>
+<para>It’s likely that there are small changes to the way lists-of-titles
+and cross references are formatted by default in some cases.</para>
+</listitem>
+<listitem>
+<para>Labels for formal objects may be different, but I think the previous
+formatting was actually in error.
+</para>
+</listitem>
+<listitem>
+<para>In some contexts, for example callouts, labels are now used for the
+links instead of titles.</para>
+</listitem>
+<listitem>
+<para>The parameters for the <code role="template">t:top-nav</code> and
+<code role="template">t:bottom-nav</code> templates have changed. They are now always
+called, even when chunking is not being performed. The new
+<code>$chunk</code> parameter indicates whether or not a chunk is being formatted.
+</para>
+</listitem>
+<listitem>
+<para>Fixed a bug where <tag>orderedlist</tag> numeration was not handled
+correctly in cross-references to list items.</para>
+</listitem>
+<listitem>
+<para>Made <emphasis>another</emphasis> attempt at sorting out how
+media object URIs are resolved in the source (for reading their properties)
+and formatted in the output. If the
+<parameter>mediaobject-input-base-uri</parameter><indexterm><primary>param</primary><secondary>mediaobject-input-base-uri</secondary></indexterm> is specified, it is always
+used.</para>
+</listitem>
+</itemizedlist>
+<para>It’s possible that there are other changes as well, fixing localization
+was a pretty substantial change.</para>
+</revdescription>
+</revision>
+
   <revision>
     <revnumber>1.11.0</revnumber>
     <date>2022-11-07</date>
@@ -172,6 +222,7 @@
       </itemizedlist>
     </revdescription>
   </revision>
+<!--
   <revision>
     <revnumber>1.10.0</revnumber>
     <date>2022-10-26</date>
@@ -235,7 +286,6 @@ preparing it for execution each time.</para>
       </itemizedlist>
     </revdescription>
   </revision>
-<!--
   <revision>
     <revnumber>1.8.0</revnumber>
     <date>2022-07-24</date>
@@ -389,7 +439,7 @@ contained herein.</para>
 <title>Introduction</title>
 <preface version="5.0" xml:id="preface">
 <info>
-  <?db filename="ch00"?>
+  <?db filename="ch-preface"?>
   <title>Preface</title>
 </info>
 
@@ -484,7 +534,7 @@ of the XSLT 3.0 Recommendation.</para>
 </preface> <!-- preface -->
 <chapter version="5.0" xml:id="whatfor">
 <info>
-  <?db filename="ch01"?>
+  <?db filename="ch-overview"?>
   <title>Overview</title>
 </info>
 
@@ -597,7 +647,7 @@ some repository hierarchy well out of sight). Consequently, you may want to
 </chapter> <!-- getting -->
 <chapter version="5.0" xml:id="using">
 <info>
-  <?db filename="ch02"?>
+  <?db filename="ch-using"?>
   <title>Using the stylesheets</title>
 </info>
 
@@ -1562,7 +1612,7 @@ fonts, and constructing the final ZIP file.</para>
 </chapter> <!-- using -->
 <chapter version="5.0" xml:id="customization">
 <info>
-  <?db filename="ch03"?>
+  <?db filename="ch-customizing"?>
   <title>Customizing the stylesheets</title>
 </info>
 
@@ -1927,7 +1977,7 @@ Table of Contents for a DocBook document:</para>
   &lt;xsl:output method="text"/&gt;
 
   &lt;!-- Suppress xslTNG's default HTML output; note that this template
-       must return a docuent node.  --&gt;
+       must return a document node.  --&gt;
   &lt;xsl:template match="/" mode="m:docbook"&gt;
     &lt;xsl:document&gt;
       &lt;xsl:apply-templates select="." mode="TOC"/&gt;
@@ -1977,9 +2027,655 @@ This normalization greatly simplifies processing in many places.</para>
 </section>
 
 </chapter> <!-- customizing -->
+<chapter version="5.0" xml:id="gentext">
+<info>
+  <?db filename="ch-localization"?>
+  <title>Localization</title>
+</info>
+
+<para>The <citetitle>DocBook xslTNG</citetitle> stylesheets support
+localization in more than 70 languages. At the time of this writing:
+Afrikaans, Albanian, Amharic, Arabic, Assamese, Asturian, Azerbaijani,
+Bangla, Basque, Bosnian, Bulgarian, Catalan, Chinese, Chinese
+(Taiwan), Chinese Simplified, Croatian, Czech, Danish, Dutch, English,
+Esperanto, Estonian, Finnish, French, Galician, Georgian, German,
+Greek, Gujarati, Hebrew, Hindi, Hungarian, Icelandic, Indian Bangla,
+Indonesian, Irish, Italian, Japanese, Kannada, Kirghiz, Korean, Latin,
+Latvian, Lithuanian, Low German, Malayalam, Marathi, Mongolian,
+Northern Sami, Norwegian Bokmål, Norwegian Nynorsk, Oriya, Polish,
+Portuguese, Portuguese (Brazil), Punjabi, Romanian, Russian, Serbian
+in Cyrillic script, Serbian in Latin script, Slovak, Slovenian,
+Spanish, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Ukrainian,
+Urdu, Vietnamese, Welsh, and Xhosa.</para>
+
+<section xml:id="l10n-background">
+<title>Background</title>
+
+<para>Near the end of the previous millennium, I was working
+on the
+<link xlink:href="https://en.wikipedia.org/wiki/Document_Style_Semantics_and_Specification_Language">DSSSL</link>
+stylesheets for DocBook. They were popular enough that users of languages
+other than English wanted to use them.</para>
+
+<para>I invented a mechanism for doing simple localization
+so that the word “Chapter” in “Chapter 5” would, for example,
+be spelled “Chapitre” if the
+book was in French, and “Розділ” if it was in Ukrainian.
+What started as a simple word substitution system grew a few
+macro facilities and became a little more sophisticated<footnote>
+<para>I’m not sure you’d pick a twenty-something, monolingual Anglophone
+American to do this work if you were planning ahead, but that’s what
+happened.</para>
+</footnote>.</para>
+
+<para>Over time, with the aid of dozens of volunteers around the world
+who contributed files for their languages, the DocBook stylesheets
+developed localization capabilities that were for the most part good
+enough.</para>
+
+<para>Fast forward a few years and those language-specific
+localization files, and some of those mechanisms, were ported to the
+XSLT 1.0 stylesheets for DocBook.</para>
+
+<para>Fast forward another decade and those XSLT 1.0 localization
+files and some of the mechanisms were ported to the XSLT 2.0 stylesheets
+for DocBook.</para>
+
+<para>Fast forward the better part of <emphasis>another</emphasis>
+decade and those XSLT 2.0 localization files and some of the
+mechanisms were ported to the <citetitle>DocBook xslTNG</citetitle>
+stylesheets.</para>
+
+<para>Well. Sort of. Initially, I tried to replace the complex system
+of templates with a model that took the text that had to be generated
+and decomposed it into logical parts. It worked fine for English and
+many other languages, but didn’t account for the complexity of 
+many others, such as Chinese.<footnote>
+<para>Turns out a fifty-something, monolingual Anglophone American isn’t
+much of an improvement, really.</para></footnote></para>
+
+<para>Starting in version 2.0.0, the xslTNG stylesheets have reverted
+back to a templating system. The localization files have been
+transformed a little bit to make some of the customization easier (I
+hope). They can’t stray too far from the original designs because I
+must reuse the localization data I have. I don’t want to devise a
+system that requires another army of volunteers to provide new
+localization data.</para>
+
+<section xml:id="l10n-consequences">
+<title>Consequences</title>
+
+<para>One unfortunate consequence of this history is that there’s some
+cruft in the localization files. There are mappings, properties, and
+templates that aren’t actually used. Or, at least, they’re not used in
+the standard DocBook stylesheet. They might be used in customization
+layers.</para>
+
+<para>I made a few attempts to trim out cruft, but found all of the
+results unsatisfying. So, at least for the moment, I’ve left it in
+place. Like everything on earth, it’s <link xlink:href="https://en.wikipedia.org/wiki/Mostly_Harmless">mostly
+harmless</link>.
+</para>
+</section>
+</section>
+
+<section xml:id="l10n-overview">
+<title>Overview</title>
+
+<para>In this context, localization mostly refers to “generated text”,
+words and symbols that appear in a published DocBook document that
+aren’t present in the original XML. Consider <xref linkend="fig.l10n.en.xml"/>.</para>
+
+<figure xml:id="fig.l10n.en.xml">
+<title>Sample book source</title>
+<programlisting language="xml">&lt;book xmlns="http://docbook.org/ns/docbook"
+      version="5.0" xml:lang="en"&gt;
+&lt;info&gt;
+  &lt;title&gt;Localization Example&lt;/title&gt;
+&lt;/info&gt;
+&lt;part&gt;
+&lt;title&gt;Part the first&lt;/title&gt;
+&lt;chapter xml:id="chap"&gt;
+&lt;title&gt;Chapter the first&lt;/title&gt;
+&lt;para&gt;This is a tiny sample chapter.
+See also &lt;xref linkend="app"/&gt;.&lt;/para&gt;
+&lt;/chapter&gt;
+&lt;/part&gt;
+&lt;appendix xml:id="app"&gt;
+&lt;title&gt;An appendix&lt;/title&gt;
+&lt;para&gt;This is a tiny sample appendix.
+See also &lt;xref linkend="chap"/&gt;.&lt;/para&gt;
+&lt;/appendix&gt;
+&lt;/book&gt;
+</programlisting>
+</figure>
+
+<para>It might be published as shown in <xref linkend="fig.l10n.en"/>.
+Here we can see examples of several different kinds of generated
+text.</para>
+
+<figure xml:id="fig.l10n.en">
+<title>Sample book (annotated)</title>
+<mediaobject>
+<alt>Image of a stack of papers with the example book published on
+the uppermost page. The published book includes additional generated text
+highlighted.</alt>
+<imageobject>
+<imagedata fileref="media/l10n-en-ann.png"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>The title “Table of Contents” is entirely generated; it appears
+nowhere in the XML. The chapter title appears in the text, but it’s
+labeled “1.” in the list of titles, “Chapter 1.” in the chapter itself,
+and “Chapter 1” (without the title) in the cross reference.</para>
+
+<para>Now consider a French version of the document in
+<xref linkend="fig.l10n.fr.xml"/>.</para>
+
+<figure xml:id="fig.l10n.fr.xml">
+<title>Sample book source (French)</title>
+<programlisting language="xml">&lt;book xmlns="http://docbook.org/ns/docbook"
+      version="5.0" xml:lang="fr"&gt;
+&lt;info&gt;
+  &lt;title&gt;Exemple de Localisation&lt;/title&gt;
+&lt;/info&gt;
+&lt;part&gt;
+&lt;title&gt;Première partie&lt;/title&gt;
+&lt;chapter xml:id="chap"&gt;
+&lt;title&gt;Chapitre un&lt;/title&gt;
+&lt;para&gt;Ceci est un petit exemple de chapitre.
+Voir aussi &lt;xref linkend="app"/&gt;.&lt;/para&gt;
+&lt;/chapter&gt;
+&lt;/part&gt;
+&lt;appendix xml:id="app"&gt;
+&lt;title&gt;Annexe&lt;/title&gt;
+&lt;para&gt;Ceci est un petit exemple d’annexe.
+Voir aussi &lt;xref linkend="chap"/&gt;.&lt;/para&gt;
+&lt;/appendix&gt;
+&lt;/book&gt;
+</programlisting>
+</figure>
+
+<para>In this case, the published version will have different
+localization, as
+shown in <xref linkend="fig.l10n.fr"/>.</para>
+
+<figure xml:id="fig.l10n.fr">
+<title>Sample book (French)</title>
+<mediaobject>
+<alt>The published book again, this time with French generated
+text.</alt>
+<imageobject>
+<imagedata fileref="media/l10n-fr.png"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>The question is, how is this accomplished? The answer, I’m
+afraid, is not simple.</para>
+
+<para>It begins with a localization file.</para>
+
+</section>
+<section>
+<title>Localization files</title>
+
+<para>The localization files are in
+<filename class="directory">src/main/locale</filename> in the repository. The
+localization file is designed to be simple enough to edit by hand. The stylesheets
+use compiled versions created by processing the input locale with
+<filename>src/main/xslt/modules/xform-locale.xsl</filename> to produce
+the files in 
+<filename class="directory">xslt/locale</filename> in the distribution.</para>
+
+<para>A locale begins by defining the language it supports and
+providing an English language name for it. The <tag class="attribute">language</tag>
+attribute identifies the language (in the same terms as
+<tag class="attribute">xml:lang</tag>) to which this localization applies.</para>
+
+<para>That’s followed by metadata about the file (authors, etc.), then
+mappings, properties, groups, lists, and letters as shown in
+<xref linkend="l10n.local.ex"/>. We’ll consider each
+section in detail below.</para>
+
+<figure xml:id="l10n.local.ex">
+<title>Example locale file (excerpted)</title>
+<programlisting language="xml">&lt;locale xmlns="http://docbook.org/ns/docbook/l10n/source"
+        language="en" english-language-name="English"&gt;
+  &lt;info&gt;
+    …
+  &lt;/info&gt;
+  &lt;mappings&gt;
+    &lt;gentext key="above"&gt;above&lt;/gentext&gt;
+    …
+  &lt;/mappings&gt;
+  &lt;properties name="number-format"&gt;
+    &lt;property name="part" value="I"/&gt;
+    …
+  &lt;/properties&gt;
+  &lt;group name="title"&gt;
+    &lt;template name="chapter"&gt;{chapter} %l%.%c&lt;/template&gt;
+    …
+  &lt;/group&gt;
+  &lt;list name="_default"&gt;
+    &lt;items&gt;%c&lt;/items&gt;
+    &lt;items&gt;%c {and} %c&lt;/items&gt;
+    &lt;items&gt;%c&lt;repeat&gt;, %c&lt;/repeat&gt;, {and} %c&lt;/items&gt;
+  &lt;/list&gt;
+  &lt;letters&gt;
+    …
+  &lt;/letters&gt;
+&lt;/locale&gt;</programlisting>
+</figure>
+
+<section>
+<title>Mappings</title>
+
+<para>The mappings section is a simple list of key/value pairs.
+Each <tag>gentext</tag> element defines a key and its replacement.</para>
+
+<programlisting language="xml">  &lt;mappings&gt;
+    &lt;gentext key="above"&gt;above&lt;/gentext&gt;
+    &lt;gentext key="abstract"&gt;Abstract&lt;/gentext&gt;
+    …
+    &lt;gentext key="xrefto"&gt;xref to&lt;/gentext&gt;
+   &lt;/mappings&gt;</programlisting>
+
+<para>These mappings serve two purposes. For many languages, a lot of the
+work of defining a new localization is just updating these mappings.
+For a stylesheet customization layer, it provides a mechanism for remapping
+on an ad hoc basis.</para>
+
+<para>In a localization template, any key entered in curly braces will
+be replaced by the mapping. In other words, for the example above,
+<literal>{abstract}</literal> will be replaced by the word “Abstract”.
+This mapping is done when the document is transformed, not when the
+localization file is compiled.</para>
+</section>
+
+<section>
+<title>Properties</title>
+
+<para>Properties provide a mapping from one string to another.
+Properties are grouped into collections where each property maps from
+a name to a value. The property name is often the name of the element
+to which it applies.</para>
+
+<para>The stylesheets look for a property name in a property group.
+If there’s no property with the name specified, the property named
+“<code>_default</code>” is returned.</para>
+
+<para>The <literal>number-format</literal> properties determine how
+numbers in labels are formatted:</para>
+
+<programlisting language="xml">   &lt;properties name="number-format"&gt;
+      &lt;property name="part" value="I"/&gt;
+      &lt;property name="reference" value="I"/&gt;
+      &lt;property name="appendix" value="A"/&gt;
+      &lt;property name="_default" value="1"/&gt;
+   &lt;/properties&gt;</programlisting>
+
+<para>Parts and references are numbered in upper-case Roman,
+appendixes in upper-case Latin letters, and everything else is
+numbered with Arabic numerals.</para>
+</section>
+
+<section>
+<title>Group</title>
+
+<para>Groups are the primary templating system. In a context where
+generated text is required, a group is selected and within that group,
+a template is selected. The template name is often the name of the
+element being formatted. As with properties, the template name
+“<code>_default</code>” is used as a fallback.</para>
+
+<para>The <literal>title</literal> group determines how titles are
+formatted (but see also the <literal>title-numbered</literal>,
+<literal>title-unnumbered</literal>, and
+<literal>title-generated</literal> groups):</para>
+
+<programlisting language="xml">   &lt;group name="title"&gt;
+      &lt;template name="abstract"&gt;%c&lt;/template&gt;
+      &lt;template name="chapter"&gt;{chapter} %l%.%c&lt;/template&gt;
+      …
+      &lt;template name="_default"&gt;%c&lt;/template&gt;
+   &lt;/group&gt;</programlisting>
+
+<para>Within a template, two kinds of substitution are performed: names in
+curly braces are replaced by the corresponding mapping and %-letter values
+are substituted as follows:</para>
+
+<table>
+<title>Template %-letter substitutions</title>
+<tgroup cols="2">
+<thead>
+<row><entry>%-letter</entry><entry>Substitution</entry></row>
+</thead>
+<tbody>
+  <row>
+    <entry><code>%c</code></entry>
+    <entry>The content (for example, the text of the title)</entry>
+  </row>
+  <row>
+    <entry><code>%l</code></entry>
+    <entry>The label (for example, “Chapter 1” or “see also”)</entry>
+  </row>
+  <row>
+    <entry><code>%p</code></entry>
+    <entry>The page number (not yet implemented)</entry>
+  </row>
+  <row>
+    <entry><code>%o</code></entry>
+    <entry>The olink title (not yet implemented)</entry>
+  </row>
+  <row>
+    <entry><code>%.</code></entry>
+    <entry>The separator (often, “. ”)</entry>
+  </row>
+  <row>
+    <entry><code>%%</code></entry>
+    <entry>A literal <literal>%</literal> character</entry>
+  </row>
+</tbody>
+</tgroup>
+</table>
+
+<para>If the <literal>title</literal> group is being used to generate
+text for the chapter from <link linkend="fig.l10n.en.xml">our example
+document</link>:</para>
+
+<itemizedlist>
+<listitem>
+<para>The local name of the element, <literal>chapter</literal>, is used to select
+the template (<literal>{chapter} %l%.%c</literal>).</para>
+</listitem>
+<listitem>
+<para>The string <literal>{chapter}</literal> is replaced by the mapping for
+<literal>chapter</literal>, which is “Chapter” in English.</para>
+</listitem>
+<listitem>
+<para>The label <literal>%l</literal> is “1” because this is the first
+chapter. (In fact, constructing the label uses properties from the
+localization file as well.)</para>
+</listitem>
+<listitem>
+<para>The separator <literal>%.</literal> is “. ”. (Like the label, this is
+also constructed from a separate query to the localization file.)</para>
+</listitem>
+<listitem>
+<para>And the content <literal>%c</literal> is “Chapter the first”. (There’s no markup
+in this title, but if there was, it would be retained. The content is a list of items,
+not a string.)</para>
+</listitem>
+<listitem>
+<para>Literal text, such as the non-breakable space between “<literal>{chapter}</literal>”
+and “<literal>%l</literal>”, is retained verbatim.
+</para>
+</listitem>
+</itemizedlist>
+</section>
+
+<section>
+<title>List</title>
+
+<para>List elements are used to format items that can be repeated (terms
+in a variable list, lists of authors, lists of “see also” terms, etc.).
+The list consists of a series of items. Within each item, one or more
+content replacements is specified with <literal>%c</literal>. The items
+must be arranged so that there’s a match for one, two, three, etc. items.</para>
+
+<para>If an item contains a repeat, that repeat will be used for as many
+items as necessary to complete the list formatting. The default
+list format is:</para>
+
+<programlisting language="xml">   &lt;list name="_default"&gt;
+      &lt;items&gt;%c&lt;/items&gt;
+      &lt;items&gt;%c {and} %c&lt;/items&gt;
+      &lt;items&gt;%c&lt;repeat&gt;, %c&lt;/repeat&gt;, {and} %c&lt;/items&gt;
+   &lt;/list&gt;</programlisting>
+
+<para>Consider how a list of four authors in an <tag>authorgroup</tag>
+would be formatted. Call them A, B, C, D, for simplicity (and assume
+there’s no list for “<code>authorgroup</code>”, so the
+“<code>_default</code>” will be used).</para>
+
+<para>The first two items match one and two items, respectively. They
+aren’t appropriate for a list of four items. The third item contains
+three items and a repeat, so that can be used for a list of four (or
+more) items.</para>
+
+<para>The first <code>%c</code> is “A”. The second <code>%c</code> is
+in a repeat, followed by another <code>%c</code>. There are three
+elements left in the list at this point, so two will be used in the
+repeat and the last one will follow it.</para>
+
+<para>The result will be <literal>A, B, C, and D</literal> where the
+word “and” was found by looking for the <literal>and</literal> key in
+the mappings.</para>
+
+</section>
+
+<section>
+<title>Letters</title>
+
+<para>The letters group is used to identify the lexical order and grouping
+of letters.</para>
+
+<programlisting language="xml">   &lt;letters&gt;
+      &lt;l i="-1"/&gt;
+      &lt;l i="0"&gt;Symbols&lt;/l&gt;
+      &lt;l i="10"&gt;A&lt;/l&gt;
+      &lt;l i="10"&gt;a&lt;/l&gt;
+      …
+      &lt;l i="20"&gt;B&lt;/l&gt;
+      &lt;l i="20"&gt;b&lt;/l&gt;
+      …
+   &lt;/letters&gt;</programlisting>
+
+<para>All of the symbols with the same “i” value will be grouped
+together.</para>
+
+<para>(This mechanism dates from the days before XSLT supported
+language-specific collations. It’s very likely that it should simply
+be phased out.)</para>
+</section>
+</section>
+
+<section xml:id="l10n-customization">
+<title>Customizing a localization</title>
+
+<para>For many users, the localizations provided are entirely sufficient.
+But if you want to change them, you have a few options.</para>
+
+<section>
+<title>Replacing entire localization files</title>
+
+<para>If you want to replace an entire localization file (if, for example,
+you want to apply the same changes to a set of stylesheets), you can
+approach that as follows:</para>
+
+<orderedlist>
+<listitem>
+<para>Copy the localization source files.</para>
+</listitem>
+<listitem>
+<para>Update the ones you wish to change.</para>
+</listitem>
+<listitem>
+<para>Compile them all with
+<filename>src/main/xslt/modules/xform-locale.xsl</filename> saving
+the output in a new location.</para>
+</listitem>
+<listitem>
+<para>In your stylesheet, change the
+<varname>v:localization-base-uri</varname><indexterm><primary>variable</primary><secondary>v:localization-base-uri</secondary></indexterm> to point to the directory
+where the new locales reside. Those locale files will be used.
+</para>
+</listitem>
+</orderedlist>
+</section>
+
+<section>
+<title>Overriding mappings, groups, etc.</title>
+
+<para>If you only want to override a small number of localization
+features, it may be simpler to do so directly in your stylesheet.
+The varable <varname>v:custom-localizations</varname><indexterm><primary>variable</primary><secondary>v:custom-localizations</secondary></indexterm> will be merged
+with the default localizations before transformation begins.</para>
+
+<para>Suppose, for example, that you wanted:</para>
+
+<itemizedlist>
+<listitem><para>The table of contents title to simply be “Contents”,
+</para></listitem>
+<listitem><para>To omit the word “Appendix” from the appendix title, and
+</para></listitem>
+<listitem><para>To change the form of the cross reference to
+appendixes to read “App. A” instead of “Appendix A”.
+</para></listitem>
+</itemizedlist>
+
+<para>The following customization would accomplish that:</para>
+
+<programlisting language="xslt">&lt;xsl:variable name="v:custom-localizations"&gt;
+  &lt;locale xmlns="http://docbook.org/ns/docbook/l10n/source"
+          language="en"
+          english-language-name="English"&gt;
+    &lt;mappings&gt;
+      &lt;gentext key="TableofContents"&gt;Contents&lt;/gentext&gt;
+    &lt;/mappings&gt;
+    &lt;group name="title-numbered"&gt;
+      &lt;template name="appendix"&gt;%l%.%c&lt;/template&gt;
+    &lt;/group&gt;
+    &lt;group name="xref-number"&gt;
+      &lt;template name="appendix"&gt;App. %l&lt;/template&gt;
+    &lt;/group&gt;
+  &lt;/locale&gt;
+&lt;/xsl:variable&gt;</programlisting>
+
+<para>Note that it defines (a portion of) a locale source file for the
+language <code>en</code>. These changes only apply to that
+locale.</para>
+
+<para>This fragment replaces the mapping for
+<literal>TableofContents</literal> and the templates for numbered
+titles and numbered cross references.</para>
+
+<para>To update multiple languages, put additional <code>locale</code>
+elements in the variable as siblings.</para>
+
+<para>Formatting our example document above now produces:</para>
+
+<figure xml:id="fig.l10n.en-alt">
+<title>Sample book (Alternate)</title>
+<mediaobject>
+<alt>The published book again, this time with different generated
+text.</alt>
+<imageobject>
+<imagedata fileref="media/l10n-en-alt.png"/>
+</imageobject>
+</mediaobject>
+</figure>
+</section>
+
+<section>
+<title>Changing the group</title>
+
+<para>Sometimes, rather than change a template, you want to change
+which group of templates is used. This is controlled by two variables:
+<varname>v:user-title-groups</varname><indexterm><primary>variable</primary><secondary>v:user-title-groups</secondary></indexterm> and
+<varname>v:user-xref-groups</varname><indexterm><primary>variable</primary><secondary>v:user-xref-groups</secondary></indexterm>.
+</para>
+
+<section>
+<title>Changing the title group</title>
+
+<para>The <varname>v:user-title-groups</varname><indexterm><primary>variable</primary><secondary>v:user-title-groups</secondary></indexterm> element consists of a
+list of <code>title</code> elements, each with an <tag class="attribute">xpath</tag>
+attribute, a <tag class="attribute">group</tag> attribute, and an optional <tag class="attribute">template</tag>
+attribute.</para>
+
+<para>Suppose the stylesheet is trying to generate a title for an
+element. It considers each <tag>title</tag> element in turn. The
+<tag class="attribute">xpath</tag> expression is evaluated with the element as the
+context item. If the effective boolean value of the expression is
+<code>true()</code>, then that title is selected and templates from
+the corresponding <tag class="attribute">group</tag> are used.</para>
+
+<para>If a <tag class="attribute">template</tag> attribute is present, a template with
+that name is used. Otherwise the local name of the element is used as
+the template name.</para>
+
+<para>By default, sections in a preface are not numbered. That’s
+because the default title groups include:</para>
+
+<programlisting language="xml">&lt;title xpath="self::db:section[ancestor::db:preface]"
+       group="title-unnumbered"/&gt;</programlisting>
+
+<para>If you add a title that matches sections in a preface to
+<varname>v:user-title-groups</varname><indexterm><primary>variable</primary><secondary>v:user-title-groups</secondary></indexterm>, it will take precedence.
+For example:</para>
+
+<programlisting language="xml">&lt;title xpath="self::db:section"
+       group="title-numbered"/&gt;</programlisting>
+
+<para>Because all of the user groups are consulted first, it isn’t
+necessary to include the predicate that limits this title to sections
+in a preface (although it wouldn’t change the result if you did).</para>
+</section>
+
+<section>
+<title>Changing the cross reference group</title>
+
+<para>Cross references are processed just like titles, except that the
+<varname>v:user-xref-groups</varname><indexterm><primary>variable</primary><secondary>v:user-xref-groups</secondary></indexterm> element consists of a
+list of <code>crossref</code> elements.</para>
+
+<para>The default for cross references to chapters and appendixes is
+“<code>xref-number-and-title</code>”, so you get things like “Chapter
+1. The Chapter Title”. In order to get a different presentation in the
+localization example used in this chapter, the following localization
+is used:</para>
+
+<programlisting language="xslt">&lt;xsl:variable name="v:user-xref-groups" as="element()*"&gt;
+  &lt;crossref xpath="self::db:chapter|self::db:appendix"
+            context="xref-number"/&gt;
+&lt;/xsl:variable&gt;</programlisting>
+
+<para>That’s why the cross reference to the first chapter is just
+“Chapter 1”.
+</para>
+
+</section>
+</section>
+</section>
+
+<section xml:id="l10n-caveats">
+<title>Caveats</title>
+
+<para>There’s currently little documentation to tell you which group
+or template to change. The names are supposed to be somewhat self
+explanatory (for speakers of English), but sometimes you just have to
+look in the stylesheet.</para>
+
+<para>The <tag>formalgroup</tag> element is unique in DocBook in that
+its label depends on what it contains. A <tag>formalgroup</tag> of
+<tag>figure</tag> elements is itself a “Figure” where a
+<tag>formalgroup</tag> of <tag>example</tag> elements is an
+“Example”.
+If you need to change it, you may have to create your own
+template for the <tag>formalgroup</tag> element in the
+<code role="mode">m:headline</code> mode. The default version is in
+<filename>modules/titles.xsl</filename>.</para>
+
+</section>
+
+</chapter> <!-- gentext -->
 <chapter version="5.0" xml:id="implementation">
 <info>
-  <?db filename="ch04"?>
+  <?db filename="ch-implementation"?>
   <title>Implementation details</title>
 </info>
 
@@ -2576,7 +3272,7 @@ the transformation will be run.</entry>
 </chapter> <!-- implementation -->
 <chapter version="5.0" xml:id="building">
 <info>
-  <?db filename="ch05"?>
+  <?db filename="ch-building"?>
   <title>Building the stylesheets</title>
 </info>
 
@@ -4090,6 +4786,15 @@ to links.
             </varlistentry>
             <varlistentry>
                <term>
+                  <enumvalue>localization</enumvalue>
+               </term>
+               <listitem>
+                  <para>Display additional information about localization data.
+</para>
+               </listitem>
+            </varlistentry>
+            <varlistentry>
+               <term>
                   <enumvalue>objects</enumvalue>
                </term>
                <listitem>
@@ -4687,7 +5392,7 @@ generated. You must make sure those are provided in some other way.
 from any <tag>indexterm</tag>s found in the document.</para>
       </refsection>
    </refentry>
-   <refentry role="obsolete 1.12.0" xml:id="p_generate-nested-toc"><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm>
+   <refentry role="obsolete 2.0.0" xml:id="p_generate-nested-toc"><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm>
    <?db filename="p_generate-nested-toc"?>
       <refmeta>
          <refentrytitle>$generate-nested-toc</refentrytitle>
@@ -4700,7 +5405,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <para>Obsolete as of version 1.12.0.</para>
+         <para>Obsolete as of version 2.0.0.</para>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
@@ -4708,7 +5413,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
 that appear in a table of contents with the <code role="mode">m:toc-nested</code> mode.</para>
       </refsection>
    </refentry>
-   <refentry role="obsolete 1.12.0" xml:id="p_generate-toc"><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm>
+   <refentry role="obsolete 2.0.0" xml:id="p_generate-toc"><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm>
    <?db filename="p_generate-toc"?>
       <refmeta>
          <refentrytitle>$generate-toc</refentrytitle>
@@ -4721,7 +5426,7 @@ that appear in a table of contents with the <code role="mode">m:toc-nested</code
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <para>Obsolete as of version 1.12.0.</para>
+         <para>Obsolete as of version 2.0.0.</para>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
@@ -8047,6 +8752,27 @@ post-processing transformations in addition to the standard
 parameters. See <xref linkend="preprocessing-pipeline"/>.</para>
       </refsection>
    </refentry>
+   <refentry xml:id="p_warn-about-missing-localizations"><indexterm><primary>param</primary><secondary>warn-about-missing-localizations</secondary></indexterm>
+   <?db filename="p_warn-about-missing-localizations"?>
+      <refmeta>
+         <refentrytitle>$warn-about-missing-localizations</refentrytitle>
+         <refmiscinfo>{}warn-about-missing-localizations</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$warn-about-missing-localizations</refname>
+         <refpurpose>Warn about missing localization?</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$warn-about-missing-localizations as xs:string := 'true'</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>If this parameter <glossterm>is true</glossterm>, then warning
+messages will be issued for missing localizations.</para>
+      </refsection>
+   </refentry>
 </reference>
 
 <reference version="5.0" xml:id="variables">
@@ -8088,6 +8814,23 @@ Used mostly in debugging.</para>
 <title>Description</title>
 <para>This is a convience variable for serializing maps as JSON.
 Used mostly in debugging.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_localization-base-uri"><indexterm><primary>variable</primary><secondary>localization-base-uri</secondary></indexterm>
+<?db filename="v_localization-base-uri"?>
+<refmeta>
+<refentrytitle>$v:localization-base-uri</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}localization-base-uri</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:localization-base-uri</refname>
+<refpurpose>Base URI for localization data files</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This is the base URI used to resolve references to localization data.</para>
 </refsection>
 </refentry>
 
@@ -8444,6 +9187,23 @@ first mark in each chunk.</para>
 <para>If your document uses <tag>footnoteref</tag> and the reference and the
 footnote are in different chunks, this may lead to very confusing numeration!</para>
 </note>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_custom-localizations"><indexterm><primary>variable</primary><secondary>custom-localizations</secondary></indexterm>
+<?db filename="v_custom-localizations"?>
+<refmeta>
+<refentrytitle>$v:custom-localizations</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}custom-localizations</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:custom-localizations</refname>
+<refpurpose>Customize localizations</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Provides overrides for localization. See <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -9089,7 +9849,25 @@ the first “dark” theme will automatically be selected.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_title-properties"><indexterm><primary>variable</primary><secondary>title-properties</secondary></indexterm>
+<refentry xml:id="v_title-groups"><indexterm><primary>variable</primary><secondary>title-groups</secondary></indexterm>
+<?db filename="v_title-groups"?>
+<refmeta>
+<refentrytitle>$v:title-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}title-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:title-groups</refname>
+<refpurpose>Controls how titles are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The title groups variable determines which template group is
+used for a title. See <xref linkend="gentext"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_title-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>title-properties</secondary></indexterm>
 <?db filename="v_title-properties"?>
 <refmeta>
 <refentrytitle>$v:title-properties</refentrytitle>
@@ -9102,50 +9880,7 @@ the first “dark” theme will automatically be selected.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Titles are complicated. They occur all over the place (on books,
-on chapters, on sections, on figures, on formal paragraphs, etc.) and
-they need to be rendered differently in different contexts. You are
-always free to write your own templates to completely customize the
-formatting, but the stylesheets provide five declarative properties that
-you can select for each title. As long as your formatting requirements
-are satisfied by these properties, you don’t have two write custom
-templates to do the formatting.</para>
-<para>The properties are label, number, number format, inherit, and “label-toc”.
-Consider the title in <xref linkend="fig.title-properties"/>.</para>
-
-<figure xml:id="fig.title-properties">
-<title>Title Properties</title>
-<mediaobject>
-<alt>Illustration of title properties in a section title.</alt>
-<imageobject>
-<imagedata fileref="media/title-properties.png"/>
-</imageobject>
-<textobject>
-<para>This image shows the title “Section 3.4 Changing the print head”
-identifying “Section” as the label, “3.4” as the number, and “3.” as
-the inherited number.</para>
-</textobject>
-</mediaobject>
-</figure>
-
-<para>For any title context, identified by an XPath expression, you
-can set the <literal>label</literal> and <literal>number</literal>
-properties to specify whether or not those elements should appear.
-If <literal>inherit</literal> is true, the number of the parent element
-is included (so the figure might be section 4 in chapter 3, for example).
-The <literal>number-format</literal> property determines what style
-of numeration is used (arabic, lower- or upper-alpha, or lower- or
-upper-roman, for example).</para>
-
-<para>The last property, <literal>label-toc</literal>, determines whether
-or not the label appears in the table of contents. This can be used, for example,
-to suppress the label “Figure” at the beginning of every figure in a list
-of figures.</para>
-
-<para>The stylesheets search this list sequentially and the first match
-is used. Observe that <varname>v:user-title-properties</varname><indexterm><primary>variable</primary><secondary>v:user-title-properties</secondary></indexterm> always comes
-first; if you want to override the default values, you can put your overrides
-in there. You do not have to redefine the entire list.</para>
+<para>Replaced by <varname>v:title-groups</varname><indexterm><primary>variable</primary><secondary>v:title-groups</secondary></indexterm>.</para>
 </refsection>
 </refentry>
 
@@ -9270,7 +10005,26 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-title-properties"><indexterm><primary>variable</primary><secondary>user-title-properties</secondary></indexterm>
+<refentry xml:id="v_user-title-groups"><indexterm><primary>variable</primary><secondary>user-title-groups</secondary></indexterm>
+<?db filename="v_user-title-groups"?>
+<refmeta>
+<refentrytitle>$v:user-title-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}user-title-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:user-title-groups</refname>
+<refpurpose>Controls how titles are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable contains user-supplied overrides to
+<varname>v:title-groups</varname><indexterm><primary>variable</primary><secondary>v:title-groups</secondary></indexterm>. See that variable for more details.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_user-title-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>user-title-properties</secondary></indexterm>
 <?db filename="v_user-title-properties"?>
 <refmeta>
 <refentrytitle>$v:user-title-properties</refentrytitle>
@@ -9283,13 +10037,30 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refnamediv>
 <refsection>
 <title>Description</title>
+<para>Replaced by <varname>v:user-title-groups</varname><indexterm><primary>variable</primary><secondary>v:user-title-groups</secondary></indexterm>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_user-xref-groups"><indexterm><primary>variable</primary><secondary>user-xref-groups</secondary></indexterm>
+<?db filename="v_user-xref-groups"?>
+<refmeta>
+<refentrytitle>$v:user-xref-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}user-xref-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:user-xref-groups</refname>
+<refpurpose>Controls how cross-references are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
 <para>This variable contains user-supplied overrides to
-<varname>v:title-properties</varname><indexterm><primary>variable</primary><secondary>v:title-properties</secondary></indexterm>. See that variable for more details.
+<varname>v:xref-groups</varname><indexterm><primary>variable</primary><secondary>v:xref-groups</secondary></indexterm>. See that variable for more details.
 </para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-xref-properties"><indexterm><primary>variable</primary><secondary>user-xref-properties</secondary></indexterm>
+<refentry xml:id="v_user-xref-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>user-xref-properties</secondary></indexterm>
 <?db filename="v_user-xref-properties"?>
 <refmeta>
 <refentrytitle>$v:user-xref-properties</refentrytitle>
@@ -9302,9 +10073,7 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This variable contains user-supplied overrides to
-<varname>v:xref-properties</varname><indexterm><primary>variable</primary><secondary>v:xref-properties</secondary></indexterm>. See that variable for more details.
-</para>
+<para>Replaced by <varname>v:user-xref-groups</varname><indexterm><primary>variable</primary><secondary>v:user-xref-groups</secondary></indexterm>.</para>
 </refsection>
 </refentry>
 
@@ -9671,7 +10440,25 @@ commit.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_xref-properties"><indexterm><primary>variable</primary><secondary>xref-properties</secondary></indexterm>
+<refentry xml:id="v_xref-groups"><indexterm><primary>variable</primary><secondary>xref-groups</secondary></indexterm>
+<?db filename="v_xref-groups"?>
+<refmeta>
+<refentrytitle>$v:xref-groups</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}xref-groups</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:xref-groups</refname>
+<refpurpose>Controls how cross-references are formatted</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The cross-reference groups variable determines which template group is
+used for a cross-reference. See <xref linkend="gentext"/>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_xref-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>xref-properties</secondary></indexterm>
 <?db filename="v_xref-properties"?>
 <refmeta>
 <refentrytitle>$v:xref-properties</refentrytitle>
@@ -9684,51 +10471,7 @@ commit.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Cross-references, like <link linkend="v_title-properties">title properties</link>,
-are complicated. They can occur almost anywhere and several styles are possible.
-</para>
-
-<figure xml:id="fig.xref-properties-1">
-<title>Cross-reference Properties (numbered)</title>
-<mediaobject>
-<alt>Illustration of cross-reference properties in a numbered section reference</alt>
-<imageobject>
-<imagedata fileref="media/xref-properties-1.png"/>
-</imageobject>
-<textobject>
-<para>This image shows the cross-reference “Section 3.4, Changing the print head”
-identifying “Section” as the label, “3.4” as the number, and “, ” as
-number separator and “Changing the print head” as the title.</para>
-</textobject>
-</mediaobject>
-</figure>
-
-<para>For documents with numbered sections, a style such as the one shown in
-<xref linkend="fig.xref-properties-1"/> is common. Here the label, number, and title 
-are sufficient.</para>
-
-<figure xml:id="fig.xref-properties-2">
-<title>Cross-reference Properties (contextual)</title>
-<mediaobject>
-<alt>Illustration of cross-reference properties in an unnumbered section reference</alt>
-<imageobject>
-<imagedata fileref="media/xref-properties-2.png"/>
-</imageobject>
-<textobject>
-<para>This image shows the title “Section 3.4 Changing the print head”
-identifying “Section” as the label, “3.4” as the number, and “3.” as
-the inherited number.</para>
-</textobject>
-</mediaobject>
-</figure>
-
-<para>For documents without section numbers, a different approach is required.
-In <xref linkend="fig.xref-properties-2"/>, we see how a prefix (which can be literal text
-or a key into a localization) precedes the title. If an inherit reference is defined, the
-cross reference will include a reference to that element as well. A separator can be placed
-between them. If the format for the inherited reference also specifies an inherited reference,
-the process will continue.</para>
-
+<para>Replaced by <varname>v:xref-groups</varname><indexterm><primary>variable</primary><secondary>v:xref-groups</secondary></indexterm>.</para>
 </refsection>
 </refentry>
 
@@ -9755,6 +10498,25 @@ the process will continue.</para>
 <para>If your DocBook markup for media objects includes any of the size or scaling
 adjustment attributes, this function is called to construct the HTML markup that
 implements those adjustments.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_mediaobject-href"><indexterm><primary>function</primary><secondary>mediaobject-href</secondary></indexterm>
+<?db filename="f_mediaobject-href"?>
+<refmeta>
+<refentrytitle>f:mediaobject-href</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-href#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-href</refname>
+<refpurpose>Determines the URI for a media object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function is called for every media object that is rendered.
+It must return the URI reference to be used for the actual object (the
+value of the image <code>src</code> attribute, for example).</para>
 </refsection>
 </refentry>
 
@@ -9847,7 +10609,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_check-gentext"><indexterm><primary>function</primary><secondary>check-gentext</secondary></indexterm>
+<refentry xml:id="f_check-gentext" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>check-gentext</secondary></indexterm>
 <?db filename="f_check-gentext"?>
 <refmeta>
 <refentrytitle>f:check-gentext</refentrytitle>
@@ -9860,11 +10622,7 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Like <function>f:gentext</function>, this function returns the
-generated text appropriate for its arguments. However, if there is no
-appropriate generated text, this function returns an empty sequence
-<emphasis>without</emphasis> generating any warning messages.
-</para>
+<para>Generated text has been reworked, see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -10140,7 +10898,7 @@ to false allows for the creation of globally unique IDs with
 </refsection>
 </refentry>
 
-<refentry xml:id="f_gentext"><indexterm><primary>function</primary><secondary>gentext</secondary></indexterm>
+<refentry xml:id="f_gentext" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>gentext</secondary></indexterm>
 <?db filename="f_gentext"?>
 <refmeta>
 <refentrytitle>f:gentext</refentrytitle>
@@ -10154,15 +10912,8 @@ to false allows for the creation of globally unique IDs with
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Returns the generated text associated with the specified key in
-the specified context for the specified node. If key is not provided,
-the element name of the node is used.</para>
-<para>For example, if the <function>f:language</function> of the
-<code>$node</code> is English, then in the “title” context, the
-generated text for the key “tableofcontents” is “Table of Contents”.
-If the language is French, then the generated text is
-“Table des matières”.</para>
-<para>The contexts and the keys are defined in the locale files.</para>
+<para>Generated text now uses <code role="mode">m:gentext</code>.
+See <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -10268,7 +11019,26 @@ to spurious differences between documents.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_intra-number-separator"><indexterm><primary>function</primary><secondary>intra-number-separator</secondary></indexterm>
+<refentry xml:id="f_in-scope-language"><indexterm><primary>function</primary><secondary>in-scope-language</secondary></indexterm>
+<?db filename="f_in-scope-language"?>
+<refmeta>
+<refentrytitle>f:in-scope-language</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}in-scope-language#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:in-scope-language</refname>
+<refpurpose>Returns the in-scope-language associated with an element</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns the value of the nearest in-scope <tag class="attribute">xml:lang</tag> attribute
+or <parameter>default-language</parameter><indexterm><primary>param</primary><secondary>default-language</secondary></indexterm> if no such attribute exists.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_intra-number-separator" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>intra-number-separator</secondary></indexterm>
 <?db filename="f_intra-number-separator"?>
 <refmeta>
 <refentrytitle>f:intra-number-separator</refentrytitle>
@@ -10281,11 +11051,8 @@ to spurious differences between documents.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>When a compound number appears in a title, this function is used to obtain
-the intra number separator. The most common separator is “.” which results in numbers
-such as “Section 3.4”. If the function returned “*”, the section title would
-be rendered as “Section 3*4”.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -10351,8 +11118,32 @@ cast to an integer that is zero, or the empty sequence.</para>
 <refsection>
 <title>Description</title>
 <para>This function returns the localization language that best
-matches the language of the <code>$target</code> node. The default language
-will be returned if there is no localization available for that language.</para>
+matches the language of the <code>$target</code> node. If 
+<parameter>gentext-language</parameter><indexterm><primary>param</primary><secondary>gentext-language</secondary></indexterm> is specified, it is always returned.
+The <parameter>default-language</parameter><indexterm><primary>param</primary><secondary>default-language</secondary></indexterm>
+will be returned if there is no localization available for the declared
+language of the <code>$target</code>.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_l10n-token"><indexterm><primary>function</primary><secondary>l10n-token</secondary></indexterm>
+<?db filename="f_l10n-token"?>
+<refmeta>
+<refentrytitle>f:l10n-token</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#2</refmiscinfo>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:l10n-token</refname>
+<refpurpose>Returns the gentext token for a key</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function returns the gentext token for a key. This is usually
+accomplished by looking in the <link linkend="gentext">localization</link>,
+but if you need an override for a specific element, you can replace this
+function.</para>
 </refsection>
 </refentry>
 
@@ -10373,7 +11164,7 @@ will be returned if there is no localization available for that language.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_language"><indexterm><primary>function</primary><secondary>language</secondary></indexterm>
+<refentry xml:id="f_language" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>language</secondary></indexterm>
 <?db filename="f_language"?>
 <refmeta>
 <refentrytitle>f:language</refentrytitle>
@@ -10386,9 +11177,26 @@ will be returned if there is no localization available for that language.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Returns the value of the nearest in-scope <tag class="attribute">xml:lang</tag> attribute
-or <parameter>default-language</parameter><indexterm><primary>param</primary><secondary>default-language</secondary></indexterm> if no such attribute exists.
+<para>Renamed <function>f:in-scope-language</function>.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_languages"><indexterm><primary>function</primary><secondary>languages</secondary></indexterm>
+<?db filename="f_languages"?>
+<refmeta>
+<refentrytitle>f:languages</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}languages#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:languages</refname>
+<refpurpose>Returns all of the localizations used by a document</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns all of the localizations that might be used in formatting this
+document.</para>
 </refsection>
 </refentry>
 
@@ -10431,7 +11239,7 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refsection>
 </refentry>
 
-<refentry xml:id="f_locales"><indexterm><primary>function</primary><secondary>locales</secondary></indexterm>
+<refentry xml:id="f_locales" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>locales</secondary></indexterm>
 <?db filename="f_locales"?>
 <refmeta>
 <refentrytitle>f:locales</refentrytitle>
@@ -10444,9 +11252,7 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This function returns the locales (languages) detected in the document.
-It always returns the <varname>default-language</varname><indexterm><primary>variable</primary><secondary>default-language</secondary></indexterm> and “<code>en</code>” as well.
-This function replaces the <code>$v:locales</code> variable.</para>
+<para>Replaced by <function>f:languages</function>.</para>
 </refsection>
 </refentry>
 
@@ -10472,7 +11278,7 @@ both.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_number-separator"><indexterm><primary>function</primary><secondary>number-separator</secondary></indexterm>
+<refentry xml:id="f_number-separator" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>number-separator</secondary></indexterm>
 <?db filename="f_number-separator"?>
 <refmeta>
 <refentrytitle>f:number-separator</refentrytitle>
@@ -10485,8 +11291,8 @@ both.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The number separator separates a number (in a title) from the
-title that follows it.</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -10840,7 +11646,7 @@ the last value will be returned.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_post-label-punctuation"><indexterm><primary>function</primary><secondary>post-label-punctuation</secondary></indexterm>
+<refentry xml:id="f_post-label-punctuation" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>post-label-punctuation</secondary></indexterm>
 <?db filename="f_post-label-punctuation"?>
 <refmeta>
 <refentrytitle>f:post-label-punctuation</refentrytitle>
@@ -10854,14 +11660,7 @@ the last value will be returned.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>Titles consist of an optional label, followed by an optional number, followed
-by the title. In some contexts, additional prefixes and suffixes may also be involved.
-In the title “Chapter 1 Introduction”, the word “Chapter” is the label, “1”
-is the number, and “Introduction” is the title.</para>
-<para>When a label appears in a title, the
-<function>f:post-label-punctuation</function> function determines what
-punctuation, if any, should follow it.
-</para>
+<para>Generated text has been reworked, see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -12804,7 +13603,7 @@ label in a cross-reference.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-label-separator"><indexterm><primary>mode</primary><secondary>crossref-label-separator</secondary></indexterm>
+<refentry xml:id="m_crossref-label-separator" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>crossref-label-separator</secondary></indexterm>
 <?db filename="m_crossref-label-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-label-separator</refentrytitle>
@@ -12817,8 +13616,8 @@ label in a cross-reference.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:crossref-label-separator</code> mode is used to generate the
-separator between a label and what follows it in a cross-reference.</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -13029,6 +13828,142 @@ consists of nothing more than a single header element.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_gentext"><indexterm><primary>mode</primary><secondary>gentext</secondary></indexterm>
+<?db filename="m_gentext"?>
+<refmeta>
+<refentrytitle>m:gentext</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:gentext</refname>
+<refpurpose>Generate localization-specific text for an element</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to generate text by applying the appropriate
+locale-specific template, see <xref linkend="gentext"/>.
+When you apply templates in this mode, there are three parameters you
+can pass:</para>
+
+<variablelist>
+<varlistentry>
+<term><code>group</code> (required)</term>
+<listitem>
+<para>This identifies the localization group.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>key</code></term>
+<listitem>
+<para>This identifies the localization key. If not provided, the local name
+of the context item is used.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>content</code></term>
+<listitem>
+<para>The content of the element. If not provided, the empty sequence is used.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>For example, in the context of a book containing several chapters,</para>
+
+<programlisting language="xslt">&lt;xsl:apply-templates select="db:chapter[1]" mode="m:gentext"&gt;
+  &lt;xsl:with-param name="group" select="'title'"/&gt;
+  &lt;xsl:with-param name="content"&gt;
+    &lt;xsl:apply-templates select="db:chapter[1]/db:info/db:title/node()"/&gt;
+  &lt;/xsl:with-param&gt;
+&lt;/xsl:apply-templates&gt;</programlisting>
+
+<para>Would generate something like <code>Chapter 1 The Title</code>.</para>
+
+<para>Lists are generated with the <code role="mode">m:gentext-list</code> mode.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="m_gentext-list"><indexterm><primary>mode</primary><secondary>gentext-list</secondary></indexterm>
+<?db filename="m_gentext-list"?>
+<refmeta>
+<refentrytitle>m:gentext-list</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext-list</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:gentext-list</refname>
+<refpurpose>Generate localization-specific list for a sequence</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to generate a list with local-specific separators,
+see <xref linkend="gentext"/>.
+When you apply templates in this mode, there are two parameters you
+can pass:</para>
+
+<variablelist>
+<varlistentry>
+<term><code>list</code> (required)</term>
+<listitem>
+<para>A sequence of one or more items.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>name</code></term>
+<listitem>
+<para>This identifies the localization key. If not provided, the local name
+of the context item is used.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>For example, in the context of an <tag>authorgroup</tag>,</para>
+
+<programlisting language="xslt">&lt;xsl:apply-templates select="." mode="m:gentext-list"&gt;
+  &lt;xsl:with-param name="list" as="item()+"&gt;
+    &lt;xsl:apply-templates select="*"/&gt;
+  &lt;/xsl:with-param&gt;
+&lt;/xsl:apply-templates&gt;</programlisting>
+
+<para>Would generate different markup depending on the number of authors.
+For example, in the English localization, it would generate:</para>
+
+<variablelist>
+<varlistentry>
+<term>Author Name</term>
+<listitem>
+<para>for a single author</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Author Name and Second Author</term>
+<listitem>
+<para>for two authors</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Author Name, Second Author, and Third Author</term>
+<listitem>
+<para>for three authors</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Author Name, Second Author, Third Author, and Fourth Author</term>
+<listitem>
+<para>for four authors</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>And so on.</para>
+
+<para>Generated text not associated with lists is generated with the
+<code role="mode">m:gentext</code> mode.</para>
+
+</refsection>
+</refentry>
+
 <refentry xml:id="m_headline"><indexterm><primary>mode</primary><secondary>headline</secondary></indexterm>
 <?db filename="m_headline"?>
 <refmeta>
@@ -13066,8 +14001,8 @@ label in a headline.
 </para>
 </refsection>
 </refentry>
-
-<refentry xml:id="m_headline-label-separator"><indexterm><primary>mode</primary><secondary>headline-label-separator</secondary></indexterm>
+ 
+<refentry xml:id="m_headline-label-separator" role="obsolete 2.0.0 "><indexterm><primary>mode</primary><secondary>headline-label-separator</secondary></indexterm>
 <?db filename="m_headline-label-separator"?>
 <refmeta>
 <refentrytitle>m:headline-label-separator</refentrytitle>
@@ -13080,10 +14015,8 @@ label in a headline.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:headline-label-separator</code> mode is used to generate
-the separator that follows a label
-in a headline.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -13106,7 +14039,7 @@ in a headline.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-number-separator"><indexterm><primary>mode</primary><secondary>headline-number-separator</secondary></indexterm>
+<refentry xml:id="m_headline-number-separator" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>headline-number-separator</secondary></indexterm>
 <?db filename="m_headline-number-separator"?>
 <refmeta>
 <refentrytitle>m:headline-number-separator</refentrytitle>
@@ -13119,14 +14052,12 @@ in a headline.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:headline-number-separator</code> mode is used to
-generate the number separator
-in a headline.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-prefix"><indexterm><primary>mode</primary><secondary>headline-prefix</secondary></indexterm>
+<refentry xml:id="m_headline-prefix" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>headline-prefix</secondary></indexterm>
 <?db filename="m_headline-prefix"?>
 <refmeta>
 <refentrytitle>m:headline-prefix</refentrytitle>
@@ -13139,14 +14070,12 @@ in a headline.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:headline-prefix</code> mode is used to
-generate any text that should precede the text of
-a headline.
-</para>
+<para>Prefix text is now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-suffix"><indexterm><primary>mode</primary><secondary>headline-suffix</secondary></indexterm>
+<refentry xml:id="m_headline-suffix" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>headline-suffix</secondary></indexterm>
 <?db filename="m_headline-suffix"?>
 <refmeta>
 <refentrytitle>m:headline-suffix</refentrytitle>
@@ -13159,10 +14088,8 @@ a headline.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:headline-suffix</code> mode is used to
-generate any text that should follow the text of
-a headline.
-</para>
+<para>Suffix text is now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -14230,9 +15157,9 @@ version <?system-property xsl:product-version?> on
 </reference>
 </part>
 <appendix version="5.0" xml:id="gfdl">
-<?db filename="gfdl"?>
 <info>
-<title>GNU Free Documentation License</title>
+  <?db filename="gfdl"?>
+  <title>GNU Free Documentation License</title>
 </info>
 
 <literallayout class="normal">                GNU Free Documentation License
@@ -14770,8 +15697,10 @@ W3C Recommendation. 5 December 2006.</bibliomixed>
 
 </bibliography>
 <acknowledgements version="5.0" xml:id="acknowledgements">
-<?db filename="ackno"?>
-<title>Acknowledgements</title>
+<info>
+  <?db filename="ackno"?>
+  <title>Acknowledgements</title>
+</info>
 
 <para>I’d like to thank The Academy, the…no, wrong event.</para>
 

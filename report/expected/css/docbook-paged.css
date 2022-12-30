@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 1.11.1, https://xsltng.docbook.org */
+/* DocBook xslTNG version 2.0.0, https://xsltng.docbook.org */
 /* No embedded fonts by default. */
 :root {
   --symbol-fonts: "Arial Unicode", "Apple Symbols", "Symbol", "Symbola_hint";
@@ -509,11 +509,12 @@ ul.toc,
 }
 
 /* ============================================================ */
-.generated-index ul {
+.index-list ul {
   list-style: none;
   padding-left: 2rem;
 }
 
+.index-list > ul,
 .generated-index > ul,
 .generated-indexdiv > ul {
   padding-left: 0;
@@ -1062,14 +1063,14 @@ table.verbatim tr td pre {
   display: table-row;
 }
 
-.qandaentry .question .label,
-.qandaentry .answer .label {
+.qandaentry .question > .label,
+.qandaentry .answer > .label {
   display: table-cell;
   width: 3em;
 }
 
-.qandaentry .question .body,
-.qandaentry .answer .body {
+.qandaentry .question > .body,
+.qandaentry .answer > .body {
   display: table-cell;
 }
 
