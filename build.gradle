@@ -1065,11 +1065,11 @@ fileTree(dir: "${projectDir}/src/main/locale", include: "*.xml").each { xml ->
     type: SaxonXsltTask
   ) {
     inputs.file xml
-    inputs.file "${projectDir}/tools/xform-locale.xsl"
+    inputs.file "${projectDir}/src/main/xslt/modules/xform-locale.xsl"
     outputs.file "${buildDir}/xslt/locale/${base}"
 
     input xml
-    stylesheet "${projectDir}/tools/xform-locale.xsl"
+    stylesheet "${projectDir}/src/main/xslt/modules/xform-locale.xsl"
     output "${buildDir}/xslt/locale/${base}"
 
     if (base != 'en.xml') {
@@ -1500,6 +1500,7 @@ task guideCustomResources(type: Copy) {
   include "css/**"
   include "js/**"
   include "media/**"
+  include "*.html"
   into "${buildDir}/guide/"
 }
 
