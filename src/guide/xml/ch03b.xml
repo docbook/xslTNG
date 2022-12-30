@@ -100,7 +100,7 @@ harmless</link>.
 
 <para>In this context, localization mostly refers to “generated text”,
 words and symbols that appear in a published DocBook document that
-aren’t present in the original XML. Consider this document:</para>
+aren’t present in the original XML. Consider <xref linkend="fig.l10n.en.xml"/>.</para>
 
 <figure xml:id="fig.l10n.en.xml">
 <title>Sample book source</title>
@@ -129,7 +129,8 @@ nowhere in the XML. The chapter title appears in the text, but it’s
 labeled “1.” in the list of titles, “Chapter 1.” in the chapter itself,
 and “Chapter 1” (without the title) in the cross reference.</para>
 
-<para>Now consider a French version of the document:</para>
+<para>Now consider a French version of the document in
+<xref linkend="fig.l10n.fr.xml"/>.</para>
 
 <figure xml:id="fig.l10n.fr.xml">
 <title>Sample book source (French)</title>
@@ -175,9 +176,12 @@ attribute identifies the language (in the same terms as
 <att>xml:lang</att>) to which this localization applies.</para>
 
 <para>That’s followed by metadata about the file (authors, etc.), then
-mappings, properties, groups, lists, and letters. We’ll consider each
+mappings, properties, groups, lists, and letters as shown in
+<xref linkend="l10n.local.ex"/>. We’ll consider each
 section in detail below.</para>
 
+<figure xml:id="l10n.local.ex">
+<title>Example locale file (excerpted)</title>
 <programlisting language="xml"><![CDATA[<locale xmlns="http://docbook.org/ns/docbook/l10n/source"
         language="en" english-language-name="English">
   <info>
@@ -185,39 +189,26 @@ section in detail below.</para>
   </info>
   <mappings>
     <gentext key="above">above</gentext>
-    <gentext key="abstract">Abstract</gentext>
     …
-    <gentext key="xrefto">xref to</gentext>
-   </mappings>
-   <properties name="number-format">
-      <property name="part" value="I"/>
-      <property name="reference" value="I"/>
-      <property name="appendix" value="A"/>
-      <property name="_default" value="1"/>
-   </properties>
-   <group name="title">
-      <template name="abstract">%c</template>
-      <template name="chapter">{chapter} %l%.%c</template>
-      …
-      <template name="_default">%c</template>
-   </group>
-   <list name="varlistentry">
-      <items>%c</items>
-      <items>%c<repeat>, %c</repeat></items>
-   </list>
-   <list name="_default">
-      <items>%c</items>
-      <items>%c {and} %c</items>
-      <items>%c<repeat>, %c</repeat>, {and} %c</items>
-   </list>
-   <letters>
-      <l i="-1"/>
-      <l i="0">Symbols</l>
-      <l i="10">A</l>
-      <l i="10">a</l>
-      …
-   </letters>
+  </mappings>
+  <properties name="number-format">
+    <property name="part" value="I"/>
+    …
+  </properties>
+  <group name="title">
+    <template name="chapter">{chapter} %l%.%c</template>
+    …
+  </group>
+  <list name="_default">
+    <items>%c</items>
+    <items>%c {and} %c</items>
+    <items>%c<repeat>, %c</repeat>, {and} %c</items>
+  </list>
+  <letters>
+    …
+  </letters>
 </locale>]]></programlisting>
+</figure>
 
 <section>
 <title>Mappings</title>

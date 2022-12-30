@@ -1,0 +1,394 @@
+<revhistory xmlns='http://docbook.org/ns/docbook'
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+<?db revhistory-style="list"?>
+<revision>
+<revnumber>2.0.0</revnumber>
+<date>2022-12-30</date>
+<revdescription>
+<para>This is a pre-release; existing customization layers will very
+likely require work. Some generated text may be rendered
+differently.</para>
+<itemizedlist>
+<listitem>
+<para>The system for dealing with generated text has been completely rewritten.
+We’re back to using templates as described in <xref linkend="gentext"/>.
+Most of the parameters, variables, and functions associated with gentext have
+been removed.
+</para>
+<para>It’s likely that there are small changes to the way lists-of-titles
+and cross references are formatted by default in some cases.</para>
+</listitem>
+<listitem>
+<para>Labels for formal objects may be different, but I think the previous
+formatting was actually in error.
+</para>
+</listitem>
+<listitem>
+<para>In some contexts, for example callouts, labels are now used for the
+links instead of titles.</para>
+</listitem>
+<listitem>
+<para>The parameters for the <template>t:top-nav</template> and
+<template>t:bottom-nav</template> templates have changed. They are now always
+called, even when chunking is not being performed. The new
+<code>$chunk</code> parameter indicates whether or not a chunk is being formatted.
+</para>
+</listitem>
+<listitem>
+<para>Fixed a bug where <tag>orderedlist</tag> numeration was not handled
+correctly in cross-references to list items.</para>
+</listitem>
+<listitem>
+<para>Made <emphasis>another</emphasis> attempt at sorting out how
+media object URIs are resolved in the source (for reading their properties)
+and formatted in the output. If the
+<parameter>mediaobject-input-base-uri</parameter> is specified, it is always
+used.</para>
+</listitem>
+</itemizedlist>
+<para>It’s possible that there are other changes as well, fixing localization
+was a pretty substantial change.</para>
+</revdescription>
+</revision>
+
+  <revision>
+    <revnumber>1.11.0</revnumber>
+    <date>2022-11-07</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Added support for EPUB3 output.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how media objects are processed</para>
+          <itemizedlist>
+            <listitem>
+              <para>Reworked how <tag class="attribute">contentwidth</tag>,
+              <tag class="attribute">contentdepth</tag>, <tag class="attribute">width</tag>,
+              <tag class="attribute">depth</tag>, <tag class="attribute">scalefit</tag>, and
+              <tag class="attribute">scale</tag> are handled. Width and height (depth)
+              are now processed independently. The results are
+              <emphasis>supposed</emphasis> to be the same as
+              before.</para>
+            </listitem>
+            <listitem>
+              <para>It now makes sense to have both multiple <tag>imageobject</tag> elements
+    and multiple <tag>imagedata</tag> elements with an <tag>imageobject</tag>. (And, analogously,
+    multiple <tag>videoobject</tag> elements with multiple <tag>videodata</tag>, and
+    multiple <tag>audioobject</tag> elements with multiple <tag>audiodata</tag> inside.)</para>
+    <itemizedlist>
+            <listitem>
+              <para>The stylesheets select the first object for which none of
+      the data elements are excluded by <parameter>mediaobject-exclude-extensions</parameter>
+      and then process all of the data elements inside.</para>
+              <itemizedlist>
+                <listitem>
+                  <para>For images, all of the alternatives are placed in a <tag>picture</tag> element using
+        <tag>source</tag> and <tag>img</tag>.</para>
+                </listitem>
+                <listitem>
+                  <para>For videos, all of the alternatives are placed in a <tag>video</tag> element using
+        <tag>source</tag> unless the <parameter>mediaobject-video-element</parameter> is <tag>iframe</tag>.</para>
+                </listitem>
+                <listitem>
+                  <para>For audio, all of the alternatives are placed in an <tag>audio</tag> elemnt using
+        <tag>source</tag>.
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>The fallback for audio and video elements is a paragraph that offers download
+      links. This can be configured by overriding the <template>t:audio-fallback</template> and
+      <template>t:video-fallback</template> templates, respectively.
+              </para>
+            </listitem>
+            <listitem>
+            <para>Use <tag>multimediaparams</tag> to specify the controls for audio and vidoe objects.
+      If <emphasis>no</emphasis> parameters are specified, <tag class="attribute">controls</tag> will be added automatically.
+      (If you specify any parameters, you are responsible for specifying the controls
+      parameter.)
+              </para>
+            </listitem>
+            <listitem>
+              <para>If you have multiple data elements in an object, <emphasis>only</emphasis> the
+      attributes associated with the <emphasis>last</emphasis> alternative are considered
+      when calculating the viewport, alignment, etc. This is (a)
+      consistent with HTML, and (b) at least partly justifiable by the
+      observation that for scalable formats like SVG, it doesn’t make
+      sense to say that the image has a particular height or width.
+      Specify that on the raster fallback image where it makes sense.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+            <listitem>
+              <para>The actual nesting of divs and spans and some of the class values
+    have changed. Check your CSS.</para>
+            </listitem>
+            <listitem>
+              <para>Fixed a bug where the <tag class="attribute">summary</tag> accesibility attribute was not always output.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Reworked image maps.</para>
+              <itemizedlist>
+            <listitem>
+              <para>Simpified the code for computing how <code>calspair</code> coordinates are calculated. 
+              </para>
+            </listitem>
+            <listitem>
+              <para>Added support for <code>html-rect</code>, <code>html-circle</code>, and <code>html-poly</code>
+      styles. Use <code>units="other"</code> and place the new styles in
+      <code>otherunits</code>. See the <filename>calloutlist.005.xml</filename> unit test for
+      examples.</para>
+            </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>Changed the <parameter>mediaobject-exclude-extensions</parameter> parameter into
+      space-delimited string so that it’s easier to pass as a
+      parameter. The variable <varname>v:mediaobject-exclude-extensions</varname> is a
+      list constructed from the string.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Added <parameter>mediaobject-video-element</parameter> parameter.
+              </para>
+            </listitem>
+            <listitem>
+              <para>Changed <function>f:parse-length</function> so that it accepts <code>xs:string?</code> and returns
+      an empty sequence if it’s passed one.</para>
+            </listitem>
+            <listitem>
+              <para>Added support for <tag>db:textdata</tag>. If a text data element is present, the first
+      one encountered is used (unless it contains only a single <tag>db:phrase</tag> as those
+      where historically used for alt text).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>The icons used for admonitions have been changed. One or two of them
+  didn’t show up in EPUB readers.</para>
+        </listitem>
+        <listitem>
+          <para>Updated the extension functions that attempt to extract metadata
+  from images so that they accept filenames that aren’t URIs. Also
+  added support for a second “image” parameter, so that you can
+  prevent them from attempting to parse, for example, a video as an
+  image.</para>
+        </listitem>
+        <listitem>
+          <para>Added convenience variables
+          <varname>v:as-xml</varname> and <varname>v:as-json</varname> for
+          convenience in calls to <code>fn:serialize()</code>. Mostly
+          this is for debugging.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how the preprocessing pipeline is evaluated.</para>
+        </listitem>
+        <listitem>
+          <para>Switched to using Sass to generate CSS.</para>
+        </listitem>
+        <listitem>
+          <para>Fixed a bug in link processing that sometimes resulted in nested anchors.</para>
+        </listitem>
+        <listitem>
+          <para>Fixed bug where unnumbered verbatim listings still had room for line numbers.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>1.10.1</revnumber>
+    <date>2022-10-28</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+<para>Added support for <tag>enumsynopsis</tag>.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+<!--
+  <revision>
+    <revnumber>1.10.0</revnumber>
+    <date>2022-10-26</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+<para>Reworked the presentation of verbatim listings. The line numbers (in
+the “lines” format) are now padded to align on the right and have a space
+after them. This has no visible effect in a browser using CSS for rendering,
+but improves the result in text renderings. Also added a new “table” format
+that places the line numbers and the lines in separate columns of a table.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>1.9.0</revnumber>
+    <date>2022-10-02</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+<para>The styling process begins with a series of preprocessing
+transformations: cleaning up the logical structure of the input;
+expanding XIncludes, converting DocBook 4.x to 5.x, if necessary;
+transclusion processing; normalizing the document structure;
+processing annotations; dealing with link bases; etc.</para>
+
+<para>Starting in this release, these transformations are distributed in both
+“<link xlink:href="https://www.saxonica.com/documentation/#!using-xsl/compiling">compiled</link>”
+and source forms. By default, if you’re using a
+<link xlink:href="https://saxonica.com/">Saxonica</link> XSLT processor,
+the compiled forms will be used. This will generally result in faster
+transformations because it avoids the cost of analyzing the XSLT and
+preparing it for execution each time.</para>
+
+<para>You can disable them by setting
+<literal>use-compiled-transforms</literal> to “false”.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>1.8.1</revnumber>
+    <date>2022-09-06</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/173">a bug</link>
+          where ordered list continuations were being incorrectly identified.</para>
+        </listitem>
+        <listitem>
+          <para>Reworked how localizations
+          <link xlink:href="https://github.com/docbook/xslTNG/issues/166">are computed</link>.
+          The <code>$v:locales</code> variable has been replaced by the
+          <code>f:locales($context)</code> function which returns the locales (languages)
+          used by the document. (I’ve left the name <code>f:locales</code> for consistency
+          with <code>v:locales</code> though I suspect <code>f:languages</code> would be
+          a better name.) The correct locales are now loaded by default for modular documents.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>1.8.0</revnumber>
+    <date>2022-07-24</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Reworked CSS. The CSS stylesheets, especially the
+          stylesheets related to print output, have been updated and
+          the mechanism by which CSS links are added to the output
+          <link linkend="managing-css">has changed</link>.
+          </para>
+          <para>The <literal>$css-links</literal> parameter no longer
+          exists (nor does the corresponding
+          <literal>$v:css-links</literal> variable). It has been
+          replaced by the <parameter>user-css-links</parameter> and
+          <parameter>use-docbook-css</parameter> parameters.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Added an <parameter>output-media</parameter> parameter
+          to allow conditional behavior based on output medium (screen
+          or print).
+          </para>
+        </listitem>
+        <listitem>
+          <para>Added <parameter>page-style</parameter> and
+          <parameter>paper-size</parameter> parameters for controlling
+          aspects of print output.
+          </para>
+        </listitem>
+        <listitem>
+          <para>Some class attribute values have been changed.</para>
+          <itemizedlist>
+            <listitem>
+              <para>The page style, page size, and “draft” classes are
+              now reflected on the top-level <tag
+              namespace="http://www.w3.org/1999/xhtml">html</tag>
+              element.</para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>division</literal>” is
+              added to
+              <tag>book</tag>,
+              <tag>part</tag>, and
+              <tag>reference</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>component</literal>” is
+              added to
+              <tag>acknowledgements</tag>,
+              <tag>appendix</tag>,
+              <tag>article</tag>,
+              <tag>bibliography</tag>,
+              <tag>chapter</tag>,
+              <tag>colophon</tag>,
+              <tag>dedication</tag>,
+              <tag>glossary</tag>,
+              <tag>index</tag>,
+              <tag>partintro</tag>,
+              <tag>preface</tag>, and
+              <tag>refentry</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value “<literal>formalobject</literal>” is
+              added to
+              <tag>equation</tag>,
+              <tag>example</tag>,
+              <tag>figure</tag>,
+              <tag>formalgroup</tag>, and
+              <tag>table</tag> elements.
+              </para>
+            </listitem>
+            <listitem>
+              <para>The class attribute value
+              “<literal>informalobject</literal>” is
+              added to
+              <tag>informalequation</tag>,
+              <tag>informalexample</tag>,
+              <tag>informalfigure</tag>, and
+              <tag>informaltable</tag> elements.
+              </para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>There is now CSS support for adding a “draft” watermark
+          to documents with a draft status (for both screen and print
+          renderings).
+          </para>
+        </listitem>
+        <listitem>
+          <para>An extra wrapper has been added to the content of
+          <tag>revision</tag> in a <tag>revhistory</tag>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>A bug has been fixed where <tag>sidebar</tag> was
+          accidentally being rendered in the DocBook namespace.
+          </para>
+        </listitem>
+        <listitem>
+          <para><link xlink:href="https://prismjs.com/">Prism</link> highlighting
+          has been updated to version 1.28.0.</para>
+        </listitem>
+        <listitem>
+          <para><link xlink:href="https://highlightjs.org/">Highlight.js</link>
+          highlighting has been updated to version 11.6.0 and is now part
+          of the distribution rather than relying on CDN access.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+-->
+</revhistory>
