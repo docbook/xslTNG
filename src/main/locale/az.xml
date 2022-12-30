@@ -320,9 +320,11 @@
       <template name="_default">%c</template>
    </group>
    <group name="list-of-titles">
+      <template name="acknowledgements">%c</template>
       <template name="article">%c</template>
       <template name="bibliography">%c</template>
       <template name="book">%c</template>
+      <template name="colophon">%c</template>
       <template name="dedication">%c</template>
       <template name="formalgroup">%l%.%c</template>
       <template name="forward">%c</template>
