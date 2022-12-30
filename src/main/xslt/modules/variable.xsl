@@ -5,13 +5,14 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
+                xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db ext f fp h m v vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <!-- Note: These are variables used by the stylesheet. Many are
@@ -24,6 +25,9 @@
 
 <xsl:variable name="v:as-json" select="map {'method':'json','indent':true()}"/>
 <xsl:variable name="v:as-xml" select="map {'method':'xml','indent':true()}"/>
+
+<xsl:variable name="v:custom-localizations" as="document-node()?"
+              select="()"/>
 
 <xsl:variable name="v:localization-base-uri"
               select="resolve-uri('../locale/', static-base-uri())"/>

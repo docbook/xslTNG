@@ -59,6 +59,7 @@
 <xsl:import href="modules/chunk.xsl"/>
 <xsl:import href="modules/chunk-cleanup.xsl"/>
 <xsl:import href="modules/chunk-output.xsl"/>
+<xsl:import href="modules/xform-locale.xsl"/>
 
 <xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
             omit-xml-declaration="yes"/>

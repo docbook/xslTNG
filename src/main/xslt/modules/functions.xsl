@@ -271,21 +271,6 @@
 
 <!-- ============================================================ -->
 
-<xsl:function name="f:post-label-punctuation" as="xs:string?">
-  <xsl:param name="node" as="element()"/>
-  <xsl:sequence select="f:post-label-punctuation($node, ())"/>
-</xsl:function>
-
-<xsl:function name="f:post-label-punctuation" as="xs:string?">
-  <xsl:param name="node" as="element()"/>
-  <xsl:param name="context" as="xs:string?"/>
-  <xsl:sequence select="if ($context = 'xref')
-                        then ()
-                        else '.'"/>
-</xsl:function>
-
-<!-- ============================================================ -->
-
 <xsl:function name="fp:replace-element" as="array(*)">
   <xsl:param name="lines" as="array(*)"/>
   <xsl:param name="elemno" as="xs:integer"/>

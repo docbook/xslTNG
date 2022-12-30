@@ -4,6 +4,7 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
+                xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
                 xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
@@ -46,22 +47,41 @@
                                   then substring-before($fn-region, '_')
                                   else ()"/>
 
+  <xsl:variable name="base-locale" as="element(l:l10n)">
+    <xsl:choose>
+      <xsl:when test="doc-available('../locale/' || $fn-region || '.xml')">
+        <xsl:sequence select="doc('../locale/' || $fn-region || '.xml')/l:l10n"/>
+      </xsl:when>
+      <xsl:when test="exists($fn) and doc-available('../locale/' || $fn || '.xml')">
+        <xsl:sequence select="doc('../locale/' || $fn || '.xml')/l:l10n"/>
+      </xsl:when>
+      <xsl:when test="$language != $default-language">
+        <xsl:sequence select="fp:localization($default-language)"/>
+      </xsl:when>
+      <xsl:when test="doc-available('../locale/en.xml')">
+        <xsl:sequence select="doc('../locale/en.xml')/l:l10n"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message terminate="yes"
+                     select="'Failed to load localization or fallback localization'"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="doc-available('../locale/' || $fn-region || '.xml')">
-      <xsl:sequence select="doc('../locale/' || $fn-region || '.xml')/l:l10n"/>
-    </xsl:when>
-    <xsl:when test="exists($fn) and doc-available('../locale/' || $fn || '.xml')">
-      <xsl:sequence select="doc('../locale/' || $fn || '.xml')/l:l10n"/>
-    </xsl:when>
-    <xsl:when test="$language != $default-language">
-      <xsl:sequence select="fp:localization($default-language)"/>
-    </xsl:when>
-    <xsl:when test="doc-available('../locale/en.xml')">
-      <xsl:sequence select="doc('../locale/en.xml')/l:l10n"/>
+    <xsl:when test="$v:custom-localizations/ls:locale[@language = $base-locale/@language]">
+      <xsl:variable name="custom" as="element(l:l10n)">
+        <xsl:apply-templates
+            select="$v:custom-localizations/ls:locale[@language = $base-locale/@language]"
+            mode="mp:transform-locale"/>
+      </xsl:variable>
+      <xsl:apply-templates select="$base-locale" mode="mp:merge-custom">
+        <xsl:with-param name="custom" as="element(l:l10n)" tunnel="yes"
+                        select="$custom"/>
+      </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message terminate="yes"
-                   select="'Failed to load localization or fallback localization'"/>
+      <xsl:sequence select="$base-locale"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
@@ -273,6 +293,220 @@
 
 <!-- ============================================================ -->
 
+<xsl:mode name="mp:merge-custom" on-no-match="shallow-copy"/>
+
+<xsl:template match="l:l10n" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="this" select="."/>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="mp:merge-custom"/>
+
+    <xsl:for-each select="$custom/l:group">
+      <xsl:variable name="name" select="string(@name)"/>
+      <xsl:if test="empty($this/l:group[@name = $name])">
+        <xsl:message use-when="'localization' = $v:debug"
+                     select="'Add localization group: ' || $name"/>
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="$custom/l:properties">
+      <xsl:variable name="name" select="string(@name)"/>
+      <xsl:if test="empty($this/l:properties[@name = $name])">
+        <xsl:message use-when="'localization' = $v:debug"
+                     select="'Add localization properties: ' || $name"/>
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
+
+    <xsl:for-each select="$custom/l:list">
+      <xsl:variable name="name" select="string(@name)"/>
+      <xsl:if test="empty($this/l:list[@name = $name])">
+        <xsl:message use-when="'localization' = $v:debug"
+                     select="'Add localization list: ' || $name"/>
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="l:gentext" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="this" select="."/>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="mp:merge-custom"/>
+    <xsl:for-each select="$custom/l:gentext/l:token">
+      <xsl:variable name="key" select="string(@key)"/>
+      <xsl:if test="empty($this/l:token[@key = $key])">
+        <xsl:message use-when="'localization' = $v:debug"
+                     select="'Add localization token: ' || $key"/>
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="l:gentext/l:token" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="key" select="string(@key)"/>
+  <xsl:variable name="override"
+                select="$custom/l:gentext/l:token[@key=$key]"/>
+
+  <xsl:choose>
+    <xsl:when test="exists($override)">
+      <xsl:message use-when="'localization' = $v:debug"
+                   select="'Override localization token: ' || $key"/>
+      <xsl:sequence select="$override"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates mode="mp:merge-custom"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="l:properties" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="this" select="."/>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="mp:merge-custom"/>
+    <xsl:for-each select="$custom/l:properties[@name = $this/@name]/l:property">
+      <xsl:variable name="name" select="string(@name)"/>
+      <xsl:if test="empty($this/l:property[@name = $name])">
+        <xsl:message use-when="'localization' = $v:debug"
+                     select="'Add localization property: ' || $this/@name || '/' || $name"/>
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="l:properties/l:property" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="pname" select="string(../@name)"/>
+  <xsl:variable name="name" select="string(@name)"/>
+  <xsl:variable name="override"
+                select="$custom/l:properties[@name=$pname]/l:property[@name=$name]"/>
+
+  <xsl:choose>
+    <xsl:when test="exists($override)">
+      <xsl:message use-when="'localization' = $v:debug"
+                   select="'Override localization property: ' || $pname || '/' || $name"/>
+      <xsl:sequence select="$override"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates mode="mp:merge-custom"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="l:group" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="this" select="."/>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="mp:merge-custom"/>
+    <xsl:for-each select="$custom/l:group[@name = $this/@name]/l:template">
+      <xsl:variable name="key" select="string(@key)"/>
+      <xsl:if test="empty($this/l:template[@key = $key])">
+        <xsl:message use-when="'localization' = $v:debug"
+                     select="'Add localization template: ' || $this/@name || '/' || $key"/>
+        <xsl:sequence select="."/>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="l:group/l:template" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="pname" select="string(../@name)"/>
+  <xsl:variable name="key" select="string(@key)"/>
+  <xsl:variable name="override"
+                select="$custom/l:group[@name=$pname]/l:template[@key=$key]"/>
+
+  <xsl:choose>
+    <xsl:when test="exists($override)">
+      <xsl:message use-when="'localization' = $v:debug"
+                   select="'Override localization template: ' || $pname || '/' || $key"/>
+      <xsl:sequence select="$override"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates mode="mp:merge-custom"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="l:l10n/l:list" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="name" select="string(@name)"/>
+  <xsl:variable name="override"
+                select="$custom/l:list[@name=$name]"/>
+
+  <xsl:choose>
+    <xsl:when test="exists($override)">
+      <xsl:message use-when="'localization' = $v:debug"
+                   select="'Override localization list: ' || $name"/>
+      <xsl:sequence select="$override"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates mode="mp:merge-custom"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="l:letters/l:l[exists(node())]" mode="mp:merge-custom">
+  <xsl:param name="custom" as="element(l:l10n)" tunnel="yes"/>
+
+  <xsl:variable name="symbol" select="string(.)"/>
+  <xsl:variable name="override"
+                select="$custom/l:letters/l:l[string(.) = $symbol]"/>
+
+  <xsl:choose>
+    <xsl:when test="exists($override)">
+      <xsl:message use-when="'localization' = $v:debug"
+                   select="'Override localization symbol: ' || $symbol"/>
+      <xsl:sequence select="$override"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates mode="mp:merge-custom"/>
+      </xsl:copy>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="mp:merge-custom">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="mp:merge-custom"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:template match="*" mode="m:gentext">
   <xsl:param name="group" as="xs:string"/>
   <xsl:param name="key" as="xs:string" select="local-name(.)"/>
@@ -280,6 +514,10 @@
 
   <xsl:variable name="template"
                 select="fp:localization-template(., $group, $key)"/>
+
+  <!--
+  <xsl:message select="$group, $key, exists($content), $template"/>
+  -->
 
   <xsl:apply-templates select="$template" mode="mp:localization">
     <xsl:with-param name="context" select="."/>

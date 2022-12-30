@@ -197,7 +197,6 @@
     <xsl:when test="$label = 'number'">
       <xsl:number from="db:qandaset" level="multiple" select=".."
                   count="db:qandaentry|db:qandadiv"/>
-      <xsl:sequence select="f:post-label-punctuation(., $purpose)"/>
     </xsl:when>
     <xsl:when test="$label = 'qanda'">
       <xsl:text>Q:</xsl:text>

@@ -241,23 +241,22 @@
   </div>
 </xsl:template>
 
-<xsl:template match="db:question">
+<xsl:template match="db:question|db:answer">
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <div class="label">
-      <xsl:apply-templates select="." mode="m:headline-label"/>
-    </div>
-    <div class="body">
-      <xsl:apply-templates select="node() except db:label"/>
-    </div>
-  </div>
-</xsl:template>
 
-<xsl:template match="db:answer">
-  <div>
-    <xsl:apply-templates select="." mode="m:attributes"/>
-    <div class="label">
+    <!-- This is a bit of a hack... -->
+    <xsl:variable name="label">
       <xsl:apply-templates select="." mode="m:headline-label"/>
+    </xsl:variable>
+
+    <div class="label">
+      <xsl:sequence select="$label"/>
+      <xsl:if test="normalize-space($label) != ''">
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'label-separator'"/>
+        </xsl:apply-templates>
+      </xsl:if>
     </div>
     <div class="body">
       <xsl:apply-templates select="node() except db:label"/>

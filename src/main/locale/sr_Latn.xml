@@ -254,17 +254,7 @@
       <template name="edited-by">{Editedby} </template>
    </group>
    <group name="label-separator">
-      <template name="appendix">. </template>
-      <template name="chapter">. </template>
-      <template name="equation">. </template>
-      <template name="example">. </template>
-      <template name="figure">. </template>
-      <template name="formalgroup">. </template>
-      <template name="part">. </template>
-      <template name="procedure">. </template>
-      <template name="reference">. </template>
-      <template name="table">. </template>
-      <template name="_default"> </template>
+      <template name="_default">. </template>
    </group>
    <group name="title">
       <template name="abstract">%c</template>
@@ -368,10 +358,6 @@
       <template name="topic">%c</template>
       <template name="book/part">{Part} %l%.%c</template>
       <template name="book/reference">{Reference} %l%.%c</template>
-      <template name="book/appendix">{Appendix} %l%.%c</template>
-      <template name="book/chapter">{Chapter} %l%.%c</template>
-      <template name="part/appendix">{Appendix} %l%.%c</template>
-      <template name="part/chapter">{Chapter} %l%.%c</template>
       <template name="_default">%l%.%c</template>
    </group>
    <group name="title-unnumbered">

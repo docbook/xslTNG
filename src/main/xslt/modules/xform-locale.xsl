@@ -6,9 +6,11 @@
                 xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
                 xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://docbook.org/ns/docbook"
-                exclude-result-prefixes="db f ls map xs"
+                default-mode="mp:transform-locale"
+                exclude-result-prefixes="db f ls map mp xs"
                 expand-text="yes"
                 version="3.0">
 
