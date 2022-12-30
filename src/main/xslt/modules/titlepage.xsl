@@ -56,8 +56,10 @@
 
 <xsl:template match="db:editor" mode="m:titlepage">
   <span class="editedby">
-    <xsl:sequence select="f:gentext(., 'label', 'edited-by')"/>
-    <xsl:sequence select="f:label-separator(.)"/>
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'label'"/>
+      <xsl:with-param name="key" select="'edited-by'"/>
+    </xsl:apply-templates>
   </span>
   <xsl:apply-templates select="db:personname|db:orgname"/>
 </xsl:template>

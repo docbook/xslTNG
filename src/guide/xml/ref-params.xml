@@ -1048,6 +1048,15 @@ to links.
 </varlistentry>
 <varlistentry>
 <term>
+<enumvalue>localization</enumvalue>
+</term>
+<listitem>
+<para>Display additional information about localization data.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
 <enumvalue>objects</enumvalue>
 </term>
 <listitem>
@@ -1584,7 +1593,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
 </refsection>
 </refentry>
 
-<refentry role="obsolete 1.12.0">
+<refentry role="obsolete 2.0.0">
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1603,7 +1612,7 @@ that appear in a table of contents with the <mode>m:toc-nested</mode> mode.</par
 </refsection>
 </refentry>
 
-<refentry role="obsolete 1.12.0">
+<refentry role="obsolete 2.0.0">
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -4442,6 +4451,24 @@ has been transformed to HTML. See <xref linkend="preprocessing-pipeline"/>.</par
 <para>The dynamic profile variables are passed to each of the pre- and
 post-processing transformations in addition to the standard
 parameters. See <xref linkend="preprocessing-pipeline"/>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>warn-about-missing-localizations</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Warn about missing localization?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then warning
+messages will be issued for missing localizations.</para>
 </refsection>
 </refentry>
 

@@ -5,256 +5,102 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
+                xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
-                xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db dbe f fp l m map mp t v vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
-<!--
-    prefix, label, separator, title, suffix : context (title, lot)
 
-    section called Section 3.4 The Title
+<xsl:variable name="v:user-xref-groups" as="element()*"/>
 
-                             in Chapter 3, The Title,
-                                                      in Book Title
-
-                ^    ^   ^^^ ^    ^     ^
-                |    |   ||| |    |     +- the suffix
-                |    |   ||| |    +- the title
-                |    |   ||| +- the number separator
-                |    |   ||+- the intra-number separator
-                |    |   |+- the number (3.4)
-                |    |   +- the label separator
-                |    +- the label
-                +- the prefix
-
-    Chapter 3
-    Chapter 3 in Book Title
-    Chapter 3, The Title
-
-    Section 3.1
-    Section 3.1, The Title
-    Section 1 in Chapter 3
-    Section 1 in Chapter 3, The Title
-    Section 1, The Title in Chapter 3, The Title
-    section called The Title in Chapter 3 in Book Title
-    section called The Title in Chapter 3, The Title, in Book Title
-
-    Figure 4.2
-    Figure 4.2, The Title
-    Figure 2 in Section 3.1
-    Figure 2 in Section 1 in Chapter 3
-    Figure 2, The Title in Chapter 3
--->
-
-<!-- label defaults to false;
-     number defaults to false;
-     inherit is ignored if number is false -->
-
-<xsl:variable name="v:user-xref-properties" as="element()*"/>
-
-<xsl:variable name="v:xref-properties" as="element()+"
+<xsl:variable name="v:xref-groups" as="element()+"
               xmlns:db="http://docbook.org/ns/docbook">
-  <xsl:sequence select="$v:user-xref-properties"/>
+  <xsl:sequence select="$v:user-xref-groups"/>
 
   <crossref xpath="self::db:section[ancestor::db:preface]"
-            prefix-key="sectioncalled"
-            label="false"
-            number="false"
-            title="true"
-            inherit="ancestor::db:preface[1]"
-            inherit-separator="in the"/>
+            group="xref"
+            template="section-in-preface"/>
 
   <crossref xpath="self::db:section"
-            label="true"
-            number="true"
-            title="true"/>
-
-  <crossref xpath="self::db:preface|self::db:partintro"
-            label="false"
-            number="false"
-            title="true"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::db:chapter|self::db:appendix"
-            label="true"
-            number="true"
-            title="true"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::db:part|self::db:reference"
-            label="true"
-            number="true"
-            title="true"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::db:figure|self::db:example|self::db:table
                    |self::db:procedure|self::db:equation
                    |self::db:formalgroup"
-            label="true"
-            number="true"
-            title="true"/>
-
-  <crossref xpath="self::db:listitem[parent::db:orderedlist]"
-            label="false"
-            number="true"
-            title="false"/>
-
-  <crossref xpath="self::db:question|self::db:answer"
-            label="true"
-            number="false"
-            title="false"/>
-
-  <crossref xpath="self::db:step"
-            label="false"
-            number="true"
-            prefix-key="step"
-            title="false"/>
-
-  <crossref xpath="self::db:see"
-            prefix-key="see"
-            title="true"/>
-
-  <crossref xpath="self::db:seealso"
-            prefix-key="seealso"
-            title="true"/>
-
-  <crossref xpath="self::db:glosssee"
-            prefix-key="glosssee"
-            title="true"/>
-
-  <crossref xpath="self::db:glossseealso"
-            prefix-key="glossseealso"
-            title="true"/>
+            group="xref-number-and-title"/>
 
   <crossref xpath="self::*"
-            label="false"
-            number="false"
-            title="true"/>
+            group="xref"/>
 </xsl:variable>
 
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="m:crossref">
-  <xsl:variable name="properties" select="fp:crossref-properties(.)"/>
+  <xsl:param name="context" as="xs:string?"/>
+  <xsl:param name="template" as="xs:string?"/>
 
-  <xsl:if use-when="false()"
-          test="self::db:section">
-    <xsl:message select="path(.), ':'"/>
-    <xsl:for-each select="map:keys($properties)">
-      <xsl:message select="'  prop:', ., '=', map:get($properties, .)"/>
-    </xsl:for-each>
-  </xsl:if> 
+  <xsl:variable name="this" select="."/>
+  <xsl:variable name="prop" as="element()?">
+    <xsl:iterate select="$v:xref-groups">
+      <xsl:variable name="test" as="element()*">
+        <xsl:evaluate context-item="$this" xpath="@xpath"/>
+      </xsl:variable>
 
-  <xsl:variable name="title" as="item()*">
-    <xsl:if test="$properties?title">
-      <xsl:apply-templates select="." mode="m:crossref-title"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="number" as="item()*">
-    <xsl:if test="$properties?number">
       <xsl:choose>
-        <xsl:when test="@label">
-          <xsl:value-of select="@label/string()"/>
+        <xsl:when test="$test">
+          <xsl:sequence select="."/>
+          <xsl:break/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="." mode="m:crossref-number"/>
+          <xsl:next-iteration/>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:if>
+    </xsl:iterate>
   </xsl:variable>
 
-  <xsl:variable name="label" as="item()*">
-    <xsl:if test="$properties?label">
-      <xsl:apply-templates select="." mode="m:crossref-label">
-        <xsl:with-param name="number" select="$number"/>
-        <xsl:with-param name="title" select="$title"/>
-      </xsl:apply-templates>
-    </xsl:if>
-  </xsl:variable>
+  <xsl:variable name="context"
+                select="($context, $prop/@group/string())[1]"/>
+  <xsl:variable name="template"
+                select="($template, $prop/@template/string(), local-name(.))[1]"/>
+
+  <xsl:variable name="template"
+                select="fp:localization-template(., $context, $template)"/>
 
 <!--
-  <xsl:message select="node-name(.), ' l:', $label,' n:', $number, ' t:', $title"/>
+  <xsl:message select="local-name(.), $context, $template"/>
 -->
 
-  <xsl:variable name="link" as="element()">
-    <span>
-      <xsl:apply-templates select="." mode="m:crossref-prefix">
-        <xsl:with-param name="label" select="$label"/>
-        <xsl:with-param name="number" select="$number"/>
-        <xsl:with-param name="title" select="$title"/>
-      </xsl:apply-templates>
-
-      <xsl:if test="not(empty($label))">
-        <span class="label">
-          <xsl:sequence select="$label"/>
-          <xsl:variable name="sep" as="item()*">
-            <xsl:apply-templates select="." mode="m:crossref-label-separator">
-              <xsl:with-param name="label" select="$label"/>
-              <xsl:with-param name="number" select="$number"/>
-              <xsl:with-param name="title" select="$title"/>
-            </xsl:apply-templates>
-          </xsl:variable>
-          <xsl:if test="not(empty($sep))">
-            <span class="sep">
-              <xsl:sequence select="$sep"/>
-            </span>
-          </xsl:if>
-        </span>
-      </xsl:if>
-
-      <xsl:if test="not(empty($number))">
-        <span class="number">
-          <xsl:sequence select="$number"/>
-          <xsl:if test="not(empty($title))">
-            <xsl:apply-templates select="." mode="m:crossref-number-separator">
-              <xsl:with-param name="number" select="$number"/>
-              <xsl:with-param name="title" select="$title"/>
-            </xsl:apply-templates>
-          </xsl:if>
-        </span>
-      </xsl:if>
-
-      <xsl:if test="not(empty($title))">
-        <span class="xreftitle">
-          <xsl:sequence select="$title"/>
-        </span>
-      </xsl:if>
-
-      <xsl:apply-templates select="." mode="m:crossref-suffix">
-        <xsl:with-param name="title" select="$title"/>
-      </xsl:apply-templates>
-    </span>
+  <xsl:variable name="label" as="item()*">
+    <xsl:if test="$template/lt:label">
+      <xsl:apply-templates select="." mode="m:crossref-label"/>
+    </xsl:if>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="normalize-space(string($link)) = ''">
-      <span class="error broken-link">here</span>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="$link"/>
-    </xsl:otherwise>
-  </xsl:choose>
-
-  <xsl:if test="$properties?inherit">
-    <xsl:variable name="ancestor" as="element()?">
-      <xsl:evaluate context-item="." xpath="$properties?inherit"/>
-    </xsl:variable>
-    <xsl:variable name="ancestor" as="item()*">
-      <xsl:apply-templates select="$ancestor" mode="m:crossref"/>
-    </xsl:variable>
-    <xsl:if test="$ancestor">
-      <xsl:apply-templates select="." mode="m:crossref-inherit-separator">
-        <xsl:with-param name="title" select="$title"/>
-        <xsl:with-param name="parent" select="parent"/>
+  <xsl:variable name="title" as="node()*">
+    <xsl:if test="$template/lt:content">
+      <xsl:apply-templates select="." mode="m:crossref-title">
+        <xsl:with-param name="purpose" select="'xref'"/>
       </xsl:apply-templates>
-      <xsl:sequence select="$ancestor"/>
     </xsl:if>
-  </xsl:if>
+  </xsl:variable>
+
+  <xsl:apply-templates select="$template" mode="mp:localization">
+    <xsl:with-param name="context" select="."/>
+    <xsl:with-param name="label" select="$label"/>
+    <xsl:with-param name="content" select="$title"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -269,7 +115,8 @@
   <xsl:choose>
     <xsl:when test="$properties?prefix-key">
       <span class="prefix">
-        <xsl:sequence select="f:gentext(., 'xref', $properties?prefix-key)"/>
+        <xsl:sequence
+            select="fp:localization-template(., 'xref', $properties?prefix-key)"/>
         <span class="sep"> </span>
       </span>
     </xsl:when>
@@ -286,19 +133,12 @@
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="m:crossref-label" as="item()*">
-  <xsl:param name="number" as="item()*" required="yes"/>
-  <xsl:param name="title" as="item()*" required="yes"/>
   <xsl:apply-templates select="." mode="m:headline-label">
-    <xsl:with-param name="purpose" select="'crossref'"/>
-    <xsl:with-param name="number" select="$number"/>
-    <xsl:with-param name="title" select="$title"/>
+    <xsl:with-param name="purpose" select="'xref'"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:answer" mode="m:crossref-label" as="item()*">
-  <xsl:param name="number" as="item()*" required="yes"/>
-  <xsl:param name="title" as="item()*" required="yes"/>
-
   <xsl:variable name="label"
                 select="ancestor::db:qandaset[@defaultlabel][1]/@defaultlabel/string()"/>
   <xsl:variable name="label"
@@ -309,29 +149,29 @@
   <xsl:choose>
     <xsl:when test="$label = 'none' or $label='number'">
       <xsl:apply-templates select="preceding-sibling::db:question"
-                           mode="m:crossref-label">
-        <xsl:with-param name="number" select="$number"/>
-        <xsl:with-param name="title" select="$title"/>
-      </xsl:apply-templates>
+                           mode="m:crossref-label"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:next-match>
-        <xsl:with-param name="number" select="$number"/>
-        <xsl:with-param name="title" select="$title"/>
-      </xsl:next-match>
+      <xsl:next-match/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
-<!-- ============================================================ -->
-
-<xsl:template match="*" mode="m:crossref-label-separator">
-  <xsl:apply-templates select="." mode="m:headline-label-separator">
-    <xsl:with-param name="purpose" select="'crossref'"/>
-    <xsl:with-param name="label" select="()"/>
-    <xsl:with-param name="number" select="()"/>
-    <xsl:with-param name="title" select="()"/>
-  </xsl:apply-templates>
+<xsl:template match="db:bibliomixed|db:biblioentry" mode="m:crossref-label">
+  <xsl:choose>
+    <xsl:when test="node()[1]/self::db:abbrev
+                    or (node()[1]/text()
+                        and normalize-space(node()[1]) = ''
+                        and node()[2]/self::db:abbrev)">
+      <xsl:apply-templates select="db:abbrev[1]"/>
+    </xsl:when>
+    <xsl:when test="@xml:id">
+      <xsl:value-of select="@xml:id"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:next-match/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -369,19 +209,19 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="db:glossentry" mode="m:crossref-title">
+<xsl:template match="db:glossentry" mode="m:crossref-label">
   <xsl:apply-templates select="db:glossterm[1]/node()"/>
 </xsl:template>
 
-<xsl:template match="db:glossterm" mode="m:crossref-title">
+<xsl:template match="db:glossterm" mode="m:crossref-label">
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="db:see|db:seealso" mode="m:crossref-title">
+<xsl:template match="db:see|db:seealso" mode="m:crossref-label">
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="db:area|db:areaset|db:co" mode="m:crossref-title">
+<xsl:template match="db:area|db:areaset|db:co" mode="m:crossref-label">
   <xsl:apply-templates select="." mode="m:callout-bug"/>
 </xsl:template>
 
@@ -391,7 +231,7 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="db:refentry" mode="m:crossref-title">
+<xsl:template match="db:refentry" mode="m:crossref-label">
   <xsl:apply-templates select="." mode="m:headline-title">
     <xsl:with-param name="purpose" select="'crossref'"/>
   </xsl:apply-templates>
@@ -460,7 +300,7 @@
   <xsl:param name="node" as="element()"/>
 
   <xsl:variable name="prop" as="element()?">
-    <xsl:iterate select="(fp:document-crossref-properties($node), $v:xref-properties)">
+    <xsl:iterate select="(fp:document-crossref-properties($node), $v:xref-groups)">
       <xsl:variable name="test" as="element()*">
         <xsl:evaluate context-item="$node" xpath="@xpath"/>
       </xsl:variable>

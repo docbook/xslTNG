@@ -83,6 +83,14 @@ p .refpurpose-sep {
     text-align: center;
 }
 
+img {
+    max-width: 80%;
+}
+
+.cover img {
+    max-width: inherit;
+}
+
 .figure {
     border: 2px solid #afafaf;
     border-radius: 1em;

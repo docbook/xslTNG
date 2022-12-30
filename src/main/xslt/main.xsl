@@ -26,6 +26,7 @@
 <xsl:import href="modules/titles.xsl"/>
 <xsl:import href="modules/units.xsl"/>
 <xsl:import href="modules/gentext.xsl"/>
+<xsl:import href="modules/l10n.xsl"/>
 <xsl:import href="modules/functions.xsl"/>
 <xsl:import href="modules/toc.xsl"/>
 <xsl:import href="modules/divisions.xsl"/>
@@ -58,6 +59,7 @@
 <xsl:import href="modules/chunk.xsl"/>
 <xsl:import href="modules/chunk-cleanup.xsl"/>
 <xsl:import href="modules/chunk-output.xsl"/>
+<xsl:import href="modules/xform-locale.xsl"/>
 
 <xsl:output method="xhtml" encoding="utf-8" indent="no" html-version="5"
             omit-xml-declaration="yes"/>

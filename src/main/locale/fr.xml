@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale xmlns="http://docbook.org/ns/docbook/l10n/source"
+         language="fr"
+         english-language-name="French">
+   <info>
+      <authorgroup>
+         <author>
+            <firstname>Sylvain</firstname>
+            <surname>Amrani</surname>
+         </author>
+         <author>
+            <firstname>Frédéric</firstname>
+            <surname>Boiteux</surname>
+            <email>fboiteux@calistel.com</email>
+         </author>
+         <author>
+            <firstname>David</firstname>
+            <surname>Prévot</surname>
+         </author>
+      </authorgroup>
+   </info>
+   <mappings>
+      <gentext key="above">au-dessus</gentext>
+      <gentext key="Abstract">Résumé</gentext>
+      <gentext key="abstract">Résumé</gentext>
+      <gentext key="Acknowledgements">Remerciements</gentext>
+      <gentext key="acknowledgements">Remerciements</gentext>
+      <gentext key="and">et</gentext>
+      <gentext key="Answer">R :</gentext>
+      <gentext key="answer">R :</gentext>
+      <gentext key="Appendix">Annexe</gentext>
+      <gentext key="appendix">annexe</gentext>
+      <gentext key="Article">Article</gentext>
+      <gentext key="article">Article</gentext>
+      <gentext key="Author">Auteur</gentext>
+      <gentext key="Authors">Auteurs</gentext>
+      <gentext key="below">au-dessous</gentext>
+      <gentext key="Bibliography">Bibliographie</gentext>
+      <gentext key="bibliography">Bibliographie</gentext>
+      <gentext key="Book">Livre</gentext>
+      <gentext key="book">Livre</gentext>
+      <gentext key="bullet">•</gentext>
+      <gentext key="by">par</gentext>
+      <gentext key="Caution">Attention</gentext>
+      <gentext key="caution">Attention</gentext>
+      <gentext key="CAUTION">ATTENTION</gentext>
+      <gentext key="Chapter">Chapitre</gentext>
+      <gentext key="chapter">chapitre</gentext>
+      <gentext key="Colophon">Achevé d'imprimer</gentext>
+      <gentext key="colophon">Achevé d'imprimer</gentext>
+      <gentext key="copyeditor">Relecteur</gentext>
+      <gentext key="Copyright">Copyright</gentext>
+      <gentext key="copyright">Copyright</gentext>
+      <gentext key="Danger">Danger</gentext>
+      <gentext key="Dedication">Dédicace</gentext>
+      <gentext key="dedication">Dédicace</gentext>
+      <gentext key="Draft">Brouillon</gentext>
+      <gentext key="Edited">Publié</gentext>
+      <gentext key="edited">Publié</gentext>
+      <gentext key="Editedby">Publié par</gentext>
+      <gentext key="editedby">Publié par</gentext>
+      <gentext key="Edition">Édition</gentext>
+      <gentext key="edition">Édition</gentext>
+      <gentext key="Editor">Éditeur</gentext>
+      <gentext key="endquote"> »</gentext>
+      <gentext key="Equation">Équation</gentext>
+      <gentext key="equation">Équation</gentext>
+      <gentext key="Example">Exemple</gentext>
+      <gentext key="example">Exemple</gentext>
+      <gentext key="Figure">Figure</gentext>
+      <gentext key="figure">Figure</gentext>
+      <gentext key="Glossary">Glossaire</gentext>
+      <gentext key="glossary">Glossaire</gentext>
+      <gentext key="GlossSee">Voir</gentext>
+      <gentext key="glosssee">Voir</gentext>
+      <gentext key="GlossSeeAlso">Voir aussi</gentext>
+      <gentext key="glossseealso">Voir aussi</gentext>
+      <gentext key="graphicdesigner">Graphiste</gentext>
+      <gentext key="IMPORTANT">IMPORTANT</gentext>
+      <gentext key="important">Important</gentext>
+      <gentext key="Important">Important</gentext>
+      <gentext key="in">dans</gentext>
+      <gentext key="Index">Index</gentext>
+      <gentext key="index">Index</gentext>
+      <gentext key="index symbols">Symboles</gentext>
+      <gentext key="ISBN">ISBN</gentext>
+      <gentext key="isbn">ISBN</gentext>
+      <gentext key="lastlistcomma">,</gentext>
+      <gentext key="LegalNotice">Note légale</gentext>
+      <gentext key="legalnotice">Note légale</gentext>
+      <gentext key="listcomma">,</gentext>
+      <gentext key="listofequations">Liste des équations</gentext>
+      <gentext key="ListofEquations">Liste des équations</gentext>
+      <gentext key="ListofExamples">Liste des exemples</gentext>
+      <gentext key="listofexamples">Liste des exemples</gentext>
+      <gentext key="ListofFigures">Liste des illustrations</gentext>
+      <gentext key="listoffigures">Liste des illustrations</gentext>
+      <gentext key="ListofProcedures">Liste des procédures</gentext>
+      <gentext key="listofprocedures">Liste des procédures</gentext>
+      <gentext key="listoftables">Liste des tableaux</gentext>
+      <gentext key="ListofTables">Liste des tableaux</gentext>
+      <gentext key="ListofUnknown">Liste inconnue</gentext>
+      <gentext key="listofunknown">Liste inconnue</gentext>
+      <gentext key="MsgAud">Public visé</gentext>
+      <gentext key="msgaud">Public visé</gentext>
+      <gentext key="MsgLevel">Niveau</gentext>
+      <gentext key="msglevel">Niveau</gentext>
+      <gentext key="MsgOrig">Origine</gentext>
+      <gentext key="msgorig">Origine</gentext>
+      <gentext key="nav-home">Sommaire</gentext>
+      <gentext key="nav-next">Suivant</gentext>
+      <gentext key="nav-next-sibling">Avance rapide</gentext>
+      <gentext key="nav-prev">Précédent</gentext>
+      <gentext key="nav-prev-sibling">Arrière rapide</gentext>
+      <gentext key="nav-toc">TdM</gentext>
+      <gentext key="nav-up">Niveau supérieur</gentext>
+      <gentext key="nestedendquote">”</gentext>
+      <gentext key="nestedstartquote">“</gentext>
+      <gentext key="NOTE">NOTE</gentext>
+      <gentext key="Note">Note</gentext>
+      <gentext key="note">Note</gentext>
+      <gentext key="notes">Notes</gentext>
+      <gentext key="Notes">Notes</gentext>
+      <gentext key="or">ou</gentext>
+      <gentext key="Part">Partie</gentext>
+      <gentext key="part">Partie</gentext>
+      <gentext key="Pgs">Pages</gentext>
+      <gentext key="pgs">Pages</gentext>
+      <gentext key="Preface">Préface</gentext>
+      <gentext key="preface">Préface</gentext>
+      <gentext key="Procedure">Procédure</gentext>
+      <gentext key="procedure">Procédure</gentext>
+      <gentext key="productioneditor">Directeur de la production</gentext>
+      <gentext key="ProductionSet">Production</gentext>
+      <gentext key="PubDate">Date de publication</gentext>
+      <gentext key="pubdate">Date de publication</gentext>
+      <gentext key="Published">Publié le</gentext>
+      <gentext key="published">Publié le</gentext>
+      <gentext key="Publisher">Éditeur</gentext>
+      <gentext key="Qandadiv">Q &amp; R</gentext>
+      <gentext key="qandadiv">Q &amp; R</gentext>
+      <gentext key="QandASet">Questions fréquemment posées</gentext>
+      <gentext key="Question">Q :</gentext>
+      <gentext key="question">Q :</gentext>
+      <gentext key="RefEntry"/>
+      <gentext key="refentry"/>
+      <gentext key="Reference">Référence</gentext>
+      <gentext key="reference">Référence</gentext>
+      <gentext key="References">Références</gentext>
+      <gentext key="RefName">Nom</gentext>
+      <gentext key="refname">Nom</gentext>
+      <gentext key="RefSection"/>
+      <gentext key="refsection"/>
+      <gentext key="RefSynopsisDiv">Synopsis</gentext>
+      <gentext key="refsynopsisdiv">Synopsis</gentext>
+      <gentext key="RevHistory">Historique des versions</gentext>
+      <gentext key="revhistory">Historique des versions</gentext>
+      <gentext key="Revisedby">Revu et corrigé par : </gentext>
+      <gentext key="revisedby">Revu et corrigé par : </gentext>
+      <gentext key="Revision">Version</gentext>
+      <gentext key="revision">Version</gentext>
+      <gentext key="sect1">Section</gentext>
+      <gentext key="sect2">Section</gentext>
+      <gentext key="sect3">Section</gentext>
+      <gentext key="sect4">Section</gentext>
+      <gentext key="sect5">Section</gentext>
+      <gentext key="section">section</gentext>
+      <gentext key="Section">Section</gentext>
+      <gentext key="sectioncalled">la section intitulée</gentext>
+      <gentext key="see">voir</gentext>
+      <gentext key="See">Voir</gentext>
+      <gentext key="seealso">voir aussi</gentext>
+      <gentext key="Seealso">Voir aussi</gentext>
+      <gentext key="SeeAlso">Voir Aussi</gentext>
+      <gentext key="set">Ensemble</gentext>
+      <gentext key="Set">Ensemble</gentext>
+      <gentext key="setindex">Index</gentext>
+      <gentext key="SetIndex">Index</gentext>
+      <gentext key="Sidebar">Filet vertical</gentext>
+      <gentext key="sidebar">Filet vertical</gentext>
+      <gentext key="singleendquote">›</gentext>
+      <gentext key="singlestartquote">‹</gentext>
+      <gentext key="startquote">« </gentext>
+      <gentext key="step">étape</gentext>
+      <gentext key="Step">Étape</gentext>
+      <gentext key="Table">Tableau</gentext>
+      <gentext key="table">Tableau</gentext>
+      <gentext key="TableNotes">Remarques</gentext>
+      <gentext key="tablenotes">Remarques</gentext>
+      <gentext key="TableofContents">Table des matières</gentext>
+      <gentext key="tableofcontents">Table des matières</gentext>
+      <gentext key="task">Tâche</gentext>
+      <gentext key="Task">Tâche</gentext>
+      <gentext key="technicaleditor">Rédacteur technique</gentext>
+      <gentext key="tip">Astuce</gentext>
+      <gentext key="TIP">ASTUCE</gentext>
+      <gentext key="Tip">Astuce</gentext>
+      <gentext key="translator">Traducteur</gentext>
+      <gentext key="unexpectedelementname">Nom d'élément inattendu</gentext>
+      <gentext key="unsupported">Non reconnu par le système</gentext>
+      <gentext key="Warning">Avertissement</gentext>
+      <gentext key="warning">Avertissement</gentext>
+      <gentext key="WARNING">AVERTISSEMENT</gentext>
+      <gentext key="xrefto">Référence vers</gentext>
+   </mappings>
+   <properties name="language">
+      <property name="writing-mode" value="lr-tb"/>
+      <property name="hyphenation-character" value="-"/>
+      <property name="hyphenation-push-character-count" value="2"/>
+      <property name="hyphenation-remain-character-count" value="2"/>
+   </properties>
+   <properties name="number-format">
+      <property name="part" value="I"/>
+      <property name="reference" value="I"/>
+      <property name="appendix" value="A"/>
+      <property name="_default" value="1"/>
+   </properties>
+   <properties name="datetime">
+      <property name="format" value="d/m/Y"/>
+   </properties>
+   <properties name="number-separator">
+      <property name="_default" value="."/>
+   </properties>
+   <group name="refentry">
+      <template name="refname-sep">, </template>
+      <template name="refpurpose-sep"> — </template>
+   </group>
+   <group name="variablelist">
+      <template name="sep">, </template>
+      <template name="sep2">, </template>
+      <template name="seplast">, </template>
+   </group>
+   <group name="refentry">
+      <template name="refname-sep">, </template>
+      <template name="refpurpose-sep"> — </template>
+   </group>
+   <group name="xlink">
+      <template name="xlink-arclist-before"> [</template>
+      <template name="xlink-arclist-after">] </template>
+      <template name="xlink-arclist-titlesep">: </template>
+      <template name="xlink-arclist-sep">, </template>
+   </group>
+   <group name="keycap">
+      <template name="alt">Alt</template>
+      <template name="backspace">Suppr arrière</template>
+      <template name="command">⌘</template>
+      <template name="control">Ctrl</template>
+      <template name="delete">Suppr</template>
+      <template name="down">↓</template>
+      <template name="end">Fin</template>
+      <template name="enter">Entrée</template>
+      <template name="escape">Echap</template>
+      <template name="home">Home</template>
+      <template name="insert">Inser</template>
+      <template name="left">←</template>
+      <template name="meta">Meta</template>
+      <template name="option">⌥</template>
+      <template name="pagedown">↓</template>
+      <template name="pageup">↑</template>
+      <template name="right">→</template>
+      <template name="shift">Maj</template>
+      <template name="space">Espace</template>
+      <template name="tab">→|</template>
+      <template name="up">↑</template>
+   </group>
+   <property name="styles">
+      <property name="person-name" value="first-last"/>
+   </property>
+   <group name="label">
+      <template name="refname">{RefName}</template>
+      <template name="see">{See} </template>
+      <template name="seealso">{Seealso} </template>
+      <template name="edited-by">{Editedby} </template>
+   </group>
+   <group name="label-separator">
+      <template name="_default">. </template>
+   </group>
+   <group name="title">
+      <template name="abstract">%c</template>
+      <template name="acknowledgements">%c</template>
+      <template name="answer">%c</template>
+      <template name="appendix">{Appendix} %l%.%c</template>
+      <template name="article">%c</template>
+      <template name="authorblurb">%c</template>
+      <template name="bibliodiv">%c</template>
+      <template name="biblioentry">%c</template>
+      <template name="bibliography">%c</template>
+      <template name="bibliolist">%c</template>
+      <template name="bibliomixed">%c</template>
+      <template name="bibliomset">%c</template>
+      <template name="biblioset">%c</template>
+      <template name="blockquote">%c</template>
+      <template name="book">%c</template>
+      <template name="calloutlist">%c</template>
+      <template name="caution">%c</template>
+      <template name="chapter">{Chapter} %l%.%c</template>
+      <template name="colophon">%c</template>
+      <template name="dedication">%c</template>
+      <template name="equation">{Equation} %l%.%c</template>
+      <template name="example">{Example} %l%.%c</template>
+      <template name="figure">{Figure} %l%.%c</template>
+      <template name="foil">%c</template>
+      <template name="foilgroup">%c</template>
+      <template name="formalpara">%c</template>
+      <template name="glossary">%c</template>
+      <template name="glossdiv">%c</template>
+      <template name="glosslist">%c</template>
+      <template name="glossentry">%c</template>
+      <template name="important">%c</template>
+      <template name="index">%c</template>
+      <template name="indexdiv">%c</template>
+      <template name="itemizedlist">%c</template>
+      <template name="legalnotice">%c</template>
+      <template name="listitem"/>
+      <template name="lot">%c</template>
+      <template name="msg">%c</template>
+      <template name="msgexplan">%c</template>
+      <template name="msgmain">%c</template>
+      <template name="msgrel">%c</template>
+      <template name="msgset">%c</template>
+      <template name="msgsub">%c</template>
+      <template name="note">%c</template>
+      <template name="orderedlist">%c</template>
+      <template name="part">%c</template>
+      <template name="partintro">%c</template>
+      <template name="preface">%c</template>
+      <template name="procedure">%c</template>
+      <template name="procedure.formal">{Procedure} %l%.%c</template>
+      <template name="productionset">%c</template>
+      <template name="productionset.formal">{ProductionSet} %l</template>
+      <template name="qandadiv">%c</template>
+      <template name="qandaentry">%c</template>
+      <template name="qandaset">%c</template>
+      <template name="question">%c</template>
+      <template name="refentry">%c</template>
+      <template name="reference">%c</template>
+      <template name="refsection">%c</template>
+      <template name="refsect1">%c</template>
+      <template name="refsect2">%c</template>
+      <template name="refsect3">%c</template>
+      <template name="refsynopsisdiv">%c</template>
+      <template name="refsynopsisdivinfo">%c</template>
+      <template name="segmentedlist">%c</template>
+      <template name="set">%c</template>
+      <template name="setindex">%c</template>
+      <template name="sidebar">%c</template>
+      <template name="step">%c</template>
+      <template name="table">{Table} %l%.%c</template>
+      <template name="task">%c</template>
+      <template name="tasksummary">%c</template>
+      <template name="taskprerequisites">%c</template>
+      <template name="taskrelated">%c</template>
+      <template name="tip">%c</template>
+      <template name="toc">%c</template>
+      <template name="variablelist">%c</template>
+      <template name="varlistentry"/>
+      <template name="warning">%c</template>
+      <template name="TableofContents">{TableofContents}</template>
+      <template name="ListofFigures">{ListofFigures}</template>
+      <template name="ListofTables">{ListofTables}</template>
+      <template name="ListofEquations">{ListofEquations}</template>
+      <template name="ListofProcedures">{ListofProcedures}</template>
+      <template name="ListofExamples">{ListofExamples}</template>
+      <template name="ListofUnknown">{ListofUnknown}</template>
+      <template name="_default">%c</template>
+   </group>
+   <group name="list-of-titles">
+      <template name="acknowledgements">%c</template>
+      <template name="article">%c</template>
+      <template name="bibliography">%c</template>
+      <template name="book">%c</template>
+      <template name="colophon">%c</template>
+      <template name="dedication">%c</template>
+      <template name="formalgroup">%l%.%c</template>
+      <template name="forward">%c</template>
+      <template name="glossary">%c</template>
+      <template name="index">%c</template>
+      <template name="preface">%c</template>
+      <template name="setindex">%c</template>
+      <template name="topic">%c</template>
+      <template name="book/part">{Part} %l%.%c</template>
+      <template name="book/reference">{Reference} %l%.%c</template>
+      <template name="_default">%l%.%c</template>
+   </group>
+   <group name="title-unnumbered">
+      <template name="_default">%c</template>
+   </group>
+   <group name="title-numbered">
+      <template name="article/appendix">%l%.%c</template>
+      <template name="appendix">{Appendix} %l%.%c</template>
+      <template name="bridgehead">%l%.%c</template>
+      <template name="chapter">{Chapter} %l%.%c</template>
+      <template name="part">{Part} %l%.%c</template>
+      <template name="sect1">%l%.%c</template>
+      <template name="sect2">%l%.%c</template>
+      <template name="sect3">%l%.%c</template>
+      <template name="sect4">%l%.%c</template>
+      <template name="sect5">%l%.%c</template>
+      <template name="section">%l%.%c</template>
+      <template name="simplesect">%c</template>
+      <template name="refsect1">%c</template>
+      <template name="refsect2">%c</template>
+      <template name="refsect3">%c</template>
+      <template name="refsection">%c</template>
+      <template name="_default">%l%.%c</template>
+   </group>
+   <group name="subfigure-title">
+      <template name="figure">{subfigure} %l%.%c</template>
+      <template name="table">{subtable} %l%.%c</template>
+      <template name="equation">{subequation} %l%.%c</template>
+      <template name="example">{subexample} %l%.%c</template>
+   </group>
+   <group name="title-generated">
+      <template name="abstract">{Abstract}</template>
+      <template name="acknowledgements">{Acknowledgements}</template>
+      <template name="bibliography">{Bibliography}</template>
+      <template name="caution">{Caution}</template>
+      <template name="danger">{Danger}</template>
+      <template name="dedication">{Dedication}</template>
+      <template name="glossary">{Glossary}</template>
+      <template name="important">{Important}</template>
+      <template name="index">{Index}</template>
+      <template name="legalnotice">{LegalNotice}</template>
+      <template name="note">{Note}</template>
+      <template name="revhistory">{RevHistory}</template>
+      <template name="setindex">{SetIndex}</template>
+      <template name="tip">{Tip}</template>
+      <template name="warning">{Warning}</template>
+   </group>
+   <group name="xref">
+      <template name="abstract">%c</template>
+      <template name="acknowledgements">%c</template>
+      <template name="answer">{Answer} %l</template>
+      <template name="appendix">%c</template>
+      <template name="article">%c</template>
+      <template name="authorblurb">%c</template>
+      <template name="bibliodiv">%c</template>
+      <template name="bibliography">%c</template>
+      <template name="bibliomset">%c</template>
+      <template name="biblioset">%c</template>
+      <template name="blockquote">%c</template>
+      <template name="book">%c</template>
+      <template name="calloutlist">%c</template>
+      <template name="caution">%c</template>
+      <template name="chapter">%c</template>
+      <template name="colophon">%c</template>
+      <template name="constraintdef">%c</template>
+      <template name="dedication">%c</template>
+      <template name="equation">%c</template>
+      <template name="example">%c</template>
+      <template name="figure">%c</template>
+      <template name="foil">%c</template>
+      <template name="foilgroup">%c</template>
+      <template name="formalpara">%c</template>
+      <template name="glossary">%c</template>
+      <template name="glossdiv">%c</template>
+      <template name="important">%c</template>
+      <template name="index">%c</template>
+      <template name="indexdiv">%c</template>
+      <template name="itemizedlist">%c</template>
+      <template name="legalnotice">%c</template>
+      <template name="lot">%c</template>
+      <template name="msg">%c</template>
+      <template name="msgexplan">%c</template>
+      <template name="msgmain">%c</template>
+      <template name="msgrel">%c</template>
+      <template name="msgset">%c</template>
+      <template name="msgsub">%c</template>
+      <template name="note">%c</template>
+      <template name="orderedlist">%c</template>
+      <template name="part">%c</template>
+      <template name="partintro">%c</template>
+      <template name="preface">%c</template>
+      <template name="procedure">%c</template>
+      <template name="productionset">%c</template>
+      <template name="qandadiv">%c</template>
+      <template name="qandaentry">{Question} %l</template>
+      <template name="qandaset">%c</template>
+      <template name="question">{Question} %l</template>
+      <template name="reference">%c</template>
+      <template name="refsynopsisdiv">%c</template>
+      <template name="segmentedlist">%c</template>
+      <template name="set">%c</template>
+      <template name="setindex">%c</template>
+      <template name="sidebar">%c</template>
+      <template name="table">%c</template>
+      <template name="task">%c</template>
+      <template name="tip">%c</template>
+      <template name="toc">%c</template>
+      <template name="variablelist">%c</template>
+      <template name="warning">%c</template>
+      <template name="olink.document.citation"> in %o</template>
+      <template name="olink.page.citation"> (page %p)</template>
+      <template name="page.citation"> [%p]</template>
+      <template name="page">(page %p)</template>
+      <template name="docname"> dans %o</template>
+      <template name="docnamelong"> dans le document intitulé %o</template>
+      <template name="pageabbrev">(p%.%p)</template>
+      <template name="Page">Page %p</template>
+      <template name="bridgehead">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsection">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsect1">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsect2">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsect3">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="sect1">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="sect2">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="sect3">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="sect4">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="sect5">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="section">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="simplesect">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="step">{step} %l</template>
+      <template name="refnamediv">%c</template>
+      <template name="_default">%l</template>
+   </group>
+   <group name="xref-number">
+      <template name="answer">{Answer} %l</template>
+      <template name="appendix">{Appendix} %l</template>
+      <template name="bridgehead">{Section} %l</template>
+      <template name="chapter">{Chapter} %l</template>
+      <template name="equation">{Equation} %l</template>
+      <template name="example">{Example} %l</template>
+      <template name="figure">{Figure} %l</template>
+      <template name="part">{Part} %l</template>
+      <template name="procedure">{Procedure} %l</template>
+      <template name="productionset">{ProductionSet} %l</template>
+      <template name="qandadiv">{Qandadiv} %l</template>
+      <template name="qandaentry">{Question} %l</template>
+      <template name="question">{Question} %l</template>
+      <template name="sect1">{Section} %l</template>
+      <template name="sect2">{Section} %l</template>
+      <template name="sect3">{Section} %l</template>
+      <template name="sect4">{Section} %l</template>
+      <template name="sect5">{Section} %l</template>
+      <template name="section">{Section} %l</template>
+      <template name="table">{Table} %l</template>
+   </group>
+   <group name="xref-number-and-title">
+      <template name="appendix">{Appendix} %l, %c</template>
+      <template name="bridgehead">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="chapter">{Chapter} %l, %c</template>
+      <template name="equation">{Equation} %l, {startquote}%c{endquote}</template>
+      <template name="example">{Example} %l, {startquote}%c{endquote}</template>
+      <template name="figure">{Figure} %l, {startquote}%c{endquote}</template>
+      <template name="part">{Part} %l, {startquote}%c{endquote}</template>
+      <template name="procedure">{Procedure} %l, {startquote}%c{endquote}</template>
+      <template name="productionset">{ProductionSet} %l, {startquote}%c{endquote}</template>
+      <template name="qandadiv">{Qandadiv} %l, {startquote}%c{endquote}</template>
+      <template name="refsect1">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsect2">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsect3">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="refsection">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="sect1">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="sect2">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="sect3">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="sect4">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="sect5">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="section">{Section} %l, {startquote}%c{endquote}</template>
+      <template name="simplesect">{sectioncalled} {startquote}%c{endquote}</template>
+      <template name="table">{Table} %l, {startquote}%c{endquote}</template>
+      <template name="_default">%l%.%c</template>
+   </group>
+   <group name="authorgroup">
+      <template name="sep">{listcomma} </template>
+      <template name="sep2"> {and} </template>
+      <template name="seplast">{lastlistcomma} {and} </template>
+   </group>
+   <list name="index-seealso">
+      <items>({seealso} %c)</items>
+      <items>({seealso} %c<repeat>, %c</repeat>)</items>
+   </list>
+   <list name="index-seeie">
+      <items>({see} %c)</items>
+      <items>({see} %c<repeat>, %c</repeat>)</items>
+   </list>
+   <list name="index-seealsoie">
+      <items>({seealso} %c)</items>
+      <items>({seealso} %c<repeat>, %c</repeat>)</items>
+   </list>
+   <list name="glossary-seealso">
+      <items>{Seealso} %c.</items>
+      <items>{Seealso} %c<repeat>, %c</repeat>.</items>
+   </list>
+   <list name="varlistentry">
+      <items>%c</items>
+      <items>%c<repeat>, %c</repeat>
+      </items>
+   </list>
+   <list name="_default">
+      <items>%c</items>
+      <items>%c {and} %c</items>
+      <items>%c<repeat>, %c</repeat>, {and} %c</items>
+   </list>
+   <group name="glossary">
+      <template name="see">{GlossSee} %c.</template>
+      <template name="seealso">{GlossSeeAlso} %c.</template>
+      <template name="seealso-separator">, </template>
+      <template name="glossterm-separator">, </template>
+   </group>
+   <group name="index">
+      <template name="term-separator">, </template>
+      <template name="number-separator">, </template>
+      <template name="range-separator">-</template>
+   </group>
+   <group name="msgset">
+      <template name="msgaud">{msgaud}: </template>
+      <template name="msglevel">{msglevel}: </template>
+      <template name="msgorig">{msgorig}: </template>
+   </group>
+   <group name="termdef">
+      <template name="prefix">[Définition : </template>
+      <template name="suffix">]</template>
+   </group>
+   <group name="datetime-full">
+      <template name="January">janvier</template>
+      <template name="February">février</template>
+      <template name="March">mars</template>
+      <template name="April">avril</template>
+      <template name="May">mai</template>
+      <template name="June">juin</template>
+      <template name="July">juillet</template>
+      <template name="August">août</template>
+      <template name="September">septembre</template>
+      <template name="October">octobre</template>
+      <template name="November">novembre</template>
+      <template name="December">décembre</template>
+      <template name="Monday">lundi</template>
+      <template name="Tuesday">mardi</template>
+      <template name="Wednesday">mercredi</template>
+      <template name="Thursday">jeudi</template>
+      <template name="Friday">vendredi</template>
+      <template name="Saturday">samedi</template>
+      <template name="Sunday">dimanche</template>
+   </group>
+   <group name="datetime-abbrev">
+      <template name="Jan">jan</template>
+      <template name="Feb">fév</template>
+      <template name="Mar">mar</template>
+      <template name="Apr">avr</template>
+      <template name="May">mai</template>
+      <template name="Jun">jun</template>
+      <template name="Jul">jui</template>
+      <template name="Aug">aoû</template>
+      <template name="Sep">sep</template>
+      <template name="Oct">oct</template>
+      <template name="Nov">nov</template>
+      <template name="Dec">déc</template>
+      <template name="Mon">lun</template>
+      <template name="Tue">mar</template>
+      <template name="Wed">mer</template>
+      <template name="Thu">jeu</template>
+      <template name="Fri">ven</template>
+      <template name="Sat">sam</template>
+      <template name="Sun">dim</template>
+   </group>
+   <group name="iso690">
+      <template name="lastfirst.sep">, </template>
+      <template name="alt.person.two.sep"> – </template>
+      <template name="alt.person.last.sep"> – </template>
+      <template name="alt.person.more.sep"> – </template>
+      <template name="primary.editor"> (éd.)</template>
+      <template name="primary.many">, et al.</template>
+      <template name="primary.sep">. </template>
+      <template name="submaintitle.sep">: </template>
+      <template name="title.sep">. </template>
+      <template name="othertitle.sep">, </template>
+      <template name="medium1"> [</template>
+      <template name="medium2">]</template>
+      <template name="secondary.person.sep">; </template>
+      <template name="secondary.sep">. </template>
+      <template name="respons.sep">. </template>
+      <template name="edition.sep">. </template>
+      <template name="edition.serial.sep">, </template>
+      <template name="issuing.range">-</template>
+      <template name="issuing.div">, </template>
+      <template name="issuing.sep">. </template>
+      <template name="partnr.sep">. </template>
+      <template name="placepubl.sep">: </template>
+      <template name="publyear.sep">, </template>
+      <template name="pubinfo.sep">. </template>
+      <template name="spec.pubinfo.sep">, </template>
+      <template name="upd.sep">, </template>
+      <template name="datecit1"> [cited </template>
+      <template name="datecit2">]</template>
+      <template name="extent.sep">. </template>
+      <template name="locs.sep">, </template>
+      <template name="location.sep">. </template>
+      <template name="serie.sep">. </template>
+      <template name="notice.sep">. </template>
+      <template name="access">Disponible </template>
+      <template name="acctoo">Également disponible </template>
+      <template name="onwww">sur World Wide Web</template>
+      <template name="oninet">sur Internet</template>
+      <template name="access.end">: </template>
+      <template name="link1">&lt;</template>
+      <template name="link2">&gt;</template>
+      <template name="access.sep">. </template>
+      <template name="isbn">ISBN </template>
+      <template name="issn">ISSN </template>
+      <template name="stdnum.sep">. </template>
+      <template name="patcountry.sep">. </template>
+      <template name="pattype.sep">, </template>
+      <template name="patnum.sep">. </template>
+      <template name="patdate.sep">. </template>
+   </group>
+   <letters>
+      <l i="-1"/>
+      <l i="0">Symboles</l>
+      <l i="1">A</l>
+      <l i="1">a</l>
+      <l i="1">à</l>
+      <l i="1">À</l>
+      <l i="1">â</l>
+      <l i="1">Â</l>
+      <l i="1">Æ</l>
+      <l i="1">æ</l>
+      <l i="2">B</l>
+      <l i="2">b</l>
+      <l i="3">C</l>
+      <l i="3">c</l>
+      <l i="3">ç</l>
+      <l i="4">D</l>
+      <l i="4">d</l>
+      <l i="5">E</l>
+      <l i="5">e</l>
+      <l i="5">ê</l>
+      <l i="5">Ê</l>
+      <l i="5">é</l>
+      <l i="5">É</l>
+      <l i="5">è</l>
+      <l i="5">È</l>
+      <l i="5">ë</l>
+      <l i="5">Ë</l>
+      <l i="5">€</l>
+      <l i="6">F</l>
+      <l i="6">f</l>
+      <l i="7">G</l>
+      <l i="7">g</l>
+      <l i="8">H</l>
+      <l i="8">h</l>
+      <l i="9">I</l>
+      <l i="9">i</l>
+      <l i="9">Î</l>
+      <l i="9">î</l>
+      <l i="9">Ï</l>
+      <l i="9">ï</l>
+      <l i="10">J</l>
+      <l i="10">j</l>
+      <l i="11">K</l>
+      <l i="11">k</l>
+      <l i="12">L</l>
+      <l i="12">l</l>
+      <l i="13">M</l>
+      <l i="13">m</l>
+      <l i="14">N</l>
+      <l i="14">n</l>
+      <l i="15">O</l>
+      <l i="15">o</l>
+      <l i="15">Ö</l>
+      <l i="15">ö</l>
+      <l i="15">Œ</l>
+      <l i="15">œ</l>
+      <l i="16">P</l>
+      <l i="16">p</l>
+      <l i="17">Q</l>
+      <l i="17">q</l>
+      <l i="18">R</l>
+      <l i="18">r</l>
+      <l i="19">S</l>
+      <l i="19">s</l>
+      <l i="20">T</l>
+      <l i="20">t</l>
+      <l i="21">U</l>
+      <l i="21">u</l>
+      <l i="21">Ù</l>
+      <l i="21">ù</l>
+      <l i="21">Û</l>
+      <l i="21">û</l>
+      <l i="21">Ü</l>
+      <l i="21">ü</l>
+      <l i="22">V</l>
+      <l i="22">v</l>
+      <l i="23">W</l>
+      <l i="23">w</l>
+      <l i="24">X</l>
+      <l i="24">x</l>
+      <l i="25">Y</l>
+      <l i="25">y</l>
+      <l i="26">Z</l>
+      <l i="26">z</l>
+   </letters>
+</locale>

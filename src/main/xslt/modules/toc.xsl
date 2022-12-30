@@ -3,9 +3,9 @@
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:dbe="http://docbook.org/ns/docbook/errors"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
-                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
@@ -53,7 +53,10 @@
       <xsl:if test="$size gt 1 or (f:is-true($generate-trivial-toc) and $size eq 1)">
         <div class="lot toc">
           <div class="title">
-            <xsl:sequence select="f:gentext(., 'title', 'tableofcontents')"/>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'title'"/>
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:apply-templates>
           </div>
           <ul class="toc">
             <xsl:sequence select="$entries"/>
@@ -207,7 +210,7 @@
                       select=".//db:figure[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:figure]"/>
       <xsl:with-param name="class" select="'list-of-figures'"/>
-      <xsl:with-param name="title-key" select="'listoffigures'"/>
+      <xsl:with-param name="title-key" select="'ListofFigures'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -220,7 +223,7 @@
                       select=".//db:table[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:table]"/>
       <xsl:with-param name="class" select="'list-of-tables'"/>
-      <xsl:with-param name="title-key" select="'listoftables'"/>
+      <xsl:with-param name="title-key" select="'ListofTables'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -233,7 +236,7 @@
                       select=".//db:example[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:example]"/>
       <xsl:with-param name="class" select="'list-of-examples'"/>
-      <xsl:with-param name="title-key" select="'listofexamples'"/>
+      <xsl:with-param name="title-key" select="'ListofExamples'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -246,7 +249,7 @@
                       select=".//db:equation[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:figure]"/>
       <xsl:with-param name="class" select="'list-of-equations'"/>
-      <xsl:with-param name="title-key" select="'listofequations'"/>
+      <xsl:with-param name="title-key" select="'ListofEquations'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -257,7 +260,7 @@
     <xsl:call-template name="tp:list-of-titles">
       <xsl:with-param name="elements" select=".//db:procedure"/>
       <xsl:with-param name="class" select="'list-of-procedures'"/>
-      <xsl:with-param name="title-key" select="'listofprocedures'"/>
+      <xsl:with-param name="title-key" select="'ListofProcedures'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -270,7 +273,10 @@
   <xsl:if test="$elements">
     <div class="{$class} lot">
       <div class="title">
-        <xsl:sequence select="f:gentext(., 'title', $title-key)"/>
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'title'"/>
+          <xsl:with-param name="key" select="$title-key"/>
+        </xsl:apply-templates>
       </div>
       <ul class="toc">
         <xsl:apply-templates select="$elements" mode="m:list-of-titles"/>

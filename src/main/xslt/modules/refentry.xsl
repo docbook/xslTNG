@@ -16,6 +16,7 @@
   <xsl:variable name="gi" select="if (parent::*)
                                   then 'div'
                                   else 'article'"/>
+
   <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
@@ -32,8 +33,11 @@
     <xsl:choose>
       <xsl:when test="$refentry-generate-name">
         <h2>
-          <xsl:sequence
-              select="f:gentext(., 'label', 'refname')"/>
+          <xsl:apply-templates select="." mode="m:gentext">
+            <xsl:with-param name="group" select="'label'"/>
+            <xsl:with-param name="key" select="'refname'"/>
+            <xsl:with-param name="content" select="()"/>
+          </xsl:apply-templates>
         </h2>
       </xsl:when>
 
@@ -114,8 +118,10 @@
   </span>
   <xsl:if test="not($purpose = 'lot') and following-sibling::db:refname">
     <span class="refname-sep">
-      <xsl:sequence
-          select="f:gentext(., 'separator', 'refname-sep')"/>
+      <xsl:apply-templates select="." mode="m:gentext">
+        <xsl:with-param name="group" select="'refentry'"/>
+        <xsl:with-param name="key" select="'refname-sep'"/>
+      </xsl:apply-templates>
     </span>
   </xsl:if>
 </xsl:template>
@@ -131,9 +137,18 @@
         <xsl:apply-templates select="." mode="m:attributes"/>
       </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:variable name="template" as="node()*">
+      <xsl:apply-templates select="." mode="m:gentext">
+        <xsl:with-param name="group" select="'refentry'"/>
+        <xsl:with-param name="key" select="'refpurpose-sep'"/>
+      </xsl:apply-templates>
+    </xsl:variable>
+
     <span class="refpurpose-sep">
-      <xsl:sequence
-          select="f:gentext(., 'separator', 'refpurpose-sep')"/>
+      <xsl:apply-templates select="$template" mode="m:localization">
+        <xsl:with-param name="context" select="."/>
+      </xsl:apply-templates>
     </span>
     <span class="refpurpose-text">
       <xsl:apply-templates/>

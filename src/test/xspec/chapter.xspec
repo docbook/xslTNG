@@ -6,34 +6,6 @@
      chapter xref
 -->
 
-<x:scenario label="When converting a chapter">
-  <x:context xmlns="http://docbook.org/ns/docbook">
-    <chapter>
-      <info>
-        <title>Chapter title<superscript>2</superscript></title>
-      </info>
-      <para>Content</para>
-    </chapter>
-  </x:context>
-  <x:expect xmlns="http://www.w3.org/1999/xhtml" label="a chapter article should be created">
-     <body class="home">
-        <nav class="top"/>
-         <main>
-           <article class="chapter component">
-             <header>
-               <h1>
-                 <span class="label">Chapter<span class="sep"> </span></span>
-                 <span class="number">1<span class="sep">. </span></span>Chapter title<sup>2</sup>
-               </h1>
-             </header>
-             <p>Content</p>
-           </article>
-         </main>
-        <nav class="bottom"/>
-       </body>
-  </x:expect>
-</x:scenario>
-
 <x:scenario label="When converting a chapter with a label">
   <x:context xmlns="http://docbook.org/ns/docbook">
     <chapter label="Boring">

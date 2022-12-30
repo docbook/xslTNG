@@ -1,0 +1,19 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      version="5.0" xml:lang="fr">
+<info>
+  <title>Exemple de Localisation</title>
+</info>
+<part>
+<title>Première partie</title>
+<chapter xml:id="chap">
+<title>Chapitre un</title>
+<para>Ceci est un petit exemple de chapitre.
+Voir aussi <xref linkend="app"/>.</para>
+</chapter>
+</part>
+<appendix xml:id="app">
+<title>Annexe</title>
+<para>Ceci est un petit exemple d’annexe.
+Voir aussi <xref linkend="chap"/>.</para>
+</appendix>
+</book>

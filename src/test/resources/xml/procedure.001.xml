@@ -2,15 +2,15 @@
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
 <title>Article wrapper</title>
 
-<para>This is a procedure. See <xref linkend="step-z-1"/> and
+<para>This is a procedure. See <xref linkend="f1"/>, <xref linkend="step-z-1"/>, and
 <xref linkend="step-y-1"/>.</para>
 
 <procedure xml:id="notitle">
-  <step>
+  <step xml:id="f1">
     <para>First step.</para>
   </step>
   <step>
-    <para>Seconds step.</para>
+    <para>Second step.</para>
     <substeps>
       <step>
         <para>First substep.</para>
@@ -46,7 +46,7 @@
     <para>First step.</para>
   </step>
   <step>
-    <para>Seconds step.</para>
+    <para>Second step.</para>
   </step>
   <step>
     <para>Third step.</para>

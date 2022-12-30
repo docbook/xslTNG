@@ -9,7 +9,7 @@
                 version="3.0">
 
 <xsl:template match="*">
-  <xsl:message
+  <xsl:message terminate="yes"
       select="'No template for ' || node-name(.) || ': ' || f:generate-id(.)"/>
   <xsl:variable name="inline-style"
                 select="'font: monospace;

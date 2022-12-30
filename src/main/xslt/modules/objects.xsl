@@ -1144,65 +1144,75 @@
 <xsl:function name="fp:compute-uris" as="map(*)" cache="yes">
   <xsl:param name="node" as="element()"/>
 
-  <xsl:variable name="href" select="resolve-uri($node/@fileref, base-uri($node))"/>
-
-  <xsl:if use-when="'mediaobject-uris' = $v:debug"
-          test="$node/@fileref">
-    <xsl:message select="'1: m/o fileref:', base-uri(.)"/>
-    <xsl:message select="'              +', $node/@fileref/string()"/>
-    <xsl:message select="'              →', $href"/>
-  </xsl:if>
-
   <!-- imagedata, videodata, audiodata -->
   <xsl:variable name="uri" as="xs:string?">
     <xsl:choose>
       <xsl:when test="not($node/@fileref)">
         <xsl:sequence select="()"/>
       </xsl:when>
-      <xsl:when test="exists($v:mediaobject-input-base-uri)">
-        <xsl:sequence select="resolve-uri($href, $v:mediaobject-input-base-uri)"/>
-      </xsl:when>
       <xsl:otherwise>
-        <xsl:sequence select="resolve-uri($href, base-uri($node))"/>
+        <xsl:sequence select="resolve-uri($node/@fileref, base-uri($node))"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
   <xsl:if use-when="'mediaobject-uris' = $v:debug"
           test="$node/@fileref">
-    <xsl:message select="'2: m/o input:', $node/@fileref/string()"/>
-    <xsl:message select="'            →', $uri"/>
+    <xsl:message select="'1: m/o baseuri:', base-uri($node)"/>
+    <xsl:message select="'      fileref +', $node/@fileref/string()"/>
+    <xsl:message select="'      inputbu +', $v:mediaobject-input-base-uri"/>
+    <xsl:message select="'              →', $uri"/>
   </xsl:if>
 
-  <xsl:variable name="expected-location"
-                select="exists($v:mediaobject-input-base-uri)
-                        and starts-with($uri, $v:mediaobject-input-base-uri)"/>
-
-  <xsl:variable name="input-uri"
-                select="if ($expected-location)
-                        then substring-after($uri, $v:mediaobject-input-base-uri)
-                        else $uri"/>
-
-  <xsl:message use-when="'mediaobject-uris' = $v:debug"
-               select="'3: m/o input-uri:', $input-uri"/>
-
   <xsl:variable name="output-uri"
-                select="if (exists($v:mediaobject-output-base-uri)
-                            and $expected-location)
-                        then $v:mediaobject-output-base-uri || $input-uri
-                        else $input-uri"/>
+                select="f:mediaobject-href($node, $node/@fileref/string())"/>
 
-  <xsl:message use-when="'mediaobject-uris' = $v:debug"
-               select="'5: mediaobject output:', $uri, '→', $output-uri"/>
+  <xsl:if use-when="'mediaobject-uris' = $v:debug"
+          test="$node/@fileref">
+    <xsl:message select="'2:   outputbu :', $v:mediaobject-output-base-uri"/>
+    <xsl:message select="'3: output uri :', $output-uri"/>
+  </xsl:if>
 
   <xsl:sequence select="map {
       'fileref': $node/@fileref/string(),
-      'uri': $href,
+      'uri': $uri,
       'href': $output-uri,
-      'properties': (if (exists($href))
-                     then f:object-properties($href, exists($node/self::db:imagedata))
+      'properties': (if (exists($uri))
+                     then f:object-properties($uri, exists($node/self::db:imagedata))
                      else ())
     }"/>
+</xsl:function>
+
+<xsl:function name="f:mediaobject-href" as="xs:string?">
+  <xsl:param name="node" as="element()"/>
+  <xsl:param name="uri" as="xs:string?"/>
+
+  <xsl:choose>
+    <xsl:when test="exists($v:mediaobject-input-base-uri)
+                    and exists($v:mediaobject-output-base-uri)">
+      <xsl:variable
+          name="abs-uri"
+          select="resolve-uri($uri, base-uri($node))"/>
+
+      <xsl:variable name="expected-location"
+                    select="exists($v:mediaobject-input-base-uri)
+                            and starts-with($abs-uri, $v:mediaobject-input-base-uri)"/>
+
+      <xsl:variable name="input-uri"
+                    select="if ($expected-location)
+                            then substring-after($abs-uri, $v:mediaobject-input-base-uri)
+                            else $abs-uri"/>
+
+      <xsl:sequence
+          select="if (exists($v:mediaobject-output-base-uri)
+                      and $expected-location)
+                  then $v:mediaobject-output-base-uri || $input-uri
+                  else $input-uri"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$uri"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:function>
 
 </xsl:stylesheet>

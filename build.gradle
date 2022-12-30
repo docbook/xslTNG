@@ -470,11 +470,7 @@ task validateAll() {
   // Just something to hang dependencies on
 }
 
-task generateXslTNGLocales() {
-  // Just something to hang dependencies on
-}
-
-task generateLocales(dependsOn: ['generateXslTNGLocales']) {
+task generateLocales() {
   // Just something to hang dependencies on
 }
 
@@ -1057,34 +1053,32 @@ testDrivers.each { driver ->
 // ============================================================
 
 // Generate tasks to generate the locale files
-fileTree(dir: "${projectDir}/src/main/locales/locale-10", include: "*.xml").each { xml ->
+fileTree(dir: "${projectDir}/src/main/locale", include: "*.xml").each { xml ->
   // Work out the base filename of the test
   def base = xml.toString()
-  def pos = base.indexOf("/locales/locale-10/")
+  def pos = base.lastIndexOf("/")
   if (pos > 0) {
-    base = base.substring(pos+19)
+    base = base.substring(pos+1)
   }
 
-  // The following is only needed while we're generating
-  // from the 1.0 files.
-  def localetng = xml.toString().replace("/locale-10/", "/locale/")
-  Task t = task "locale10_${base}"(type: SaxonXsltTask) {
-    inputs.file "${projectDir}/tools/xform-10-tng.xsl"
+  Task t = task "locale_${base}"(
+    type: SaxonXsltTask
+  ) {
+    inputs.file xml
+    inputs.file "${projectDir}/src/main/xslt/modules/xform-locale.xsl"
+    outputs.file "${buildDir}/xslt/locale/${base}"
 
     input xml
-    stylesheet "${projectDir}/tools/xform-10-tng.xsl"
-    output localetng
-  }
-  generateXslTNGLocales.dependsOn t
-
-  Task u = task "locale_${base}"(type: SaxonXsltTask) {
-    inputs.files "${projectDir}/tools/xform-locale.xsl"
-    input localetng
-    stylesheet "${projectDir}/tools/xform-locale.xsl"
+    stylesheet "${projectDir}/src/main/xslt/modules/xform-locale.xsl"
     output "${buildDir}/xslt/locale/${base}"
+
+    if (base != 'en.xml') {
+      parameters(
+        'fallback.locale': "${projectDir}/src/main/locale/en.xml"
+      )
+    }
   }
-  u.dependsOn t
-  generateLocales.dependsOn u
+  generateLocales.dependsOn t
 }
 
 task makeVersion(type: SaxonXsltTask) {
@@ -1506,6 +1500,7 @@ task guideCustomResources(type: Copy) {
   include "css/**"
   include "js/**"
   include "media/**"
+  include "*.html"
   into "${buildDir}/guide/"
 }
 

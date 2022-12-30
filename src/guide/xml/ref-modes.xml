@@ -367,7 +367,7 @@ label in a cross-reference.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-label-separator">
+<refentry xml:id="m_crossref-label-separator" role="obsolete 2.0.0">
 <?db filename="m_crossref-label-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-label-separator</refentrytitle>
@@ -380,8 +380,8 @@ label in a cross-reference.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:crossref-label-separator</mode> mode is used to generate the
-separator between a label and what follows it in a cross-reference.</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -592,6 +592,142 @@ consists of nothing more than a single header element.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_gentext">
+<?db filename="m_gentext"?>
+<refmeta>
+<refentrytitle>m:gentext</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:gentext</refname>
+<refpurpose>Generate localization-specific text for an element</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to generate text by applying the appropriate
+locale-specific template, see <xref linkend="gentext"/>.
+When you apply templates in this mode, there are three parameters you
+can pass:</para>
+
+<variablelist>
+<varlistentry>
+<term><code>group</code> (required)</term>
+<listitem>
+<para>This identifies the localization group.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>key</code></term>
+<listitem>
+<para>This identifies the localization key. If not provided, the local name
+of the context item is used.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>content</code></term>
+<listitem>
+<para>The content of the element. If not provided, the empty sequence is used.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>For example, in the context of a book containing several chapters,</para>
+
+<programlisting language="xslt"><![CDATA[<xsl:apply-templates select="db:chapter[1]" mode="m:gentext">
+  <xsl:with-param name="group" select="'title'"/>
+  <xsl:with-param name="content">
+    <xsl:apply-templates select="db:chapter[1]/db:info/db:title/node()"/>
+  </xsl:with-param>
+</xsl:apply-templates>]]></programlisting>
+
+<para>Would generate something like <code>Chapter 1 The Title</code>.</para>
+
+<para>Lists are generated with the <mode>m:gentext-list</mode> mode.</para>
+
+</refsection>
+</refentry>
+
+<refentry xml:id="m_gentext-list">
+<?db filename="m_gentext-list"?>
+<refmeta>
+<refentrytitle>m:gentext-list</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext-list</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:gentext-list</refname>
+<refpurpose>Generate localization-specific list for a sequence</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode is used to generate a list with local-specific separators,
+see <xref linkend="gentext"/>.
+When you apply templates in this mode, there are two parameters you
+can pass:</para>
+
+<variablelist>
+<varlistentry>
+<term><code>list</code> (required)</term>
+<listitem>
+<para>A sequence of one or more items.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>name</code></term>
+<listitem>
+<para>This identifies the localization key. If not provided, the local name
+of the context item is used.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>For example, in the context of an <tag>authorgroup</tag>,</para>
+
+<programlisting language="xslt"><![CDATA[<xsl:apply-templates select="." mode="m:gentext-list">
+  <xsl:with-param name="list" as="item()+">
+    <xsl:apply-templates select="*"/>
+  </xsl:with-param>
+</xsl:apply-templates>]]></programlisting>
+
+<para>Would generate different markup depending on the number of authors.
+For example, in the English localization, it would generate:</para>
+
+<variablelist>
+<varlistentry>
+<term>Author Name</term>
+<listitem>
+<para>for a single author</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Author Name and Second Author</term>
+<listitem>
+<para>for two authors</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Author Name, Second Author, and Third Author</term>
+<listitem>
+<para>for three authors</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Author Name, Second Author, Third Author, and Fourth Author</term>
+<listitem>
+<para>for four authors</para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para>And so on.</para>
+
+<para>Generated text not associated with lists is generated with the
+<mode>m:gentext</mode> mode.</para>
+
+</refsection>
+</refentry>
+
 <refentry xml:id="m_headline">
 <?db filename="m_headline"?>
 <refmeta>
@@ -629,8 +765,8 @@ label in a headline.
 </para>
 </refsection>
 </refentry>
-
-<refentry xml:id="m_headline-label-separator">
+ 
+<refentry xml:id="m_headline-label-separator" role="obsolete 2.0.0 ">
 <?db filename="m_headline-label-separator"?>
 <refmeta>
 <refentrytitle>m:headline-label-separator</refentrytitle>
@@ -643,10 +779,8 @@ label in a headline.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:headline-label-separator</mode> mode is used to generate
-the separator that follows a label
-in a headline.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -669,7 +803,7 @@ in a headline.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-number-separator">
+<refentry xml:id="m_headline-number-separator" role="obsolete 2.0.0">
 <?db filename="m_headline-number-separator"?>
 <refmeta>
 <refentrytitle>m:headline-number-separator</refentrytitle>
@@ -682,14 +816,12 @@ in a headline.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:headline-number-separator</mode> mode is used to
-generate the number separator
-in a headline.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-prefix">
+<refentry xml:id="m_headline-prefix" role="obsolete 2.0.0">
 <?db filename="m_headline-prefix"?>
 <refmeta>
 <refentrytitle>m:headline-prefix</refentrytitle>
@@ -702,14 +834,12 @@ in a headline.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:headline-prefix</mode> mode is used to
-generate any text that should precede the text of
-a headline.
-</para>
+<para>Prefix text is now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-suffix">
+<refentry xml:id="m_headline-suffix" role="obsolete 2.0.0">
 <?db filename="m_headline-suffix"?>
 <refmeta>
 <refentrytitle>m:headline-suffix</refentrytitle>
@@ -722,10 +852,8 @@ a headline.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:headline-suffix</mode> mode is used to
-generate any text that should follow the text of
-a headline.
-</para>
+<para>Suffix text is now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 

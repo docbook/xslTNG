@@ -7,6 +7,7 @@
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
@@ -20,6 +21,11 @@
 
 <!-- This will all be in XProc 3.0 eventually, hack for now... -->
 <xsl:import href="main.xsl"/>
+
+<!--
+<xsl:mode xmlns:saxon="http://saxon.sf.net/"
+          name="m:docbook" saxon:trace="yes"/>
+-->
 
 <xsl:variable name="v:standard-transforms" as="map(*)*">
   <xsl:map>
@@ -137,7 +143,23 @@
 <!-- If a document or element is being processed in the default
      mode (and not the m:docbook mode), assume we're starting 
      a transformation. -->
-<xsl:template match="/" name="t:docbook">
+<xsl:template match="/">
+  <xsl:choose>
+    <!-- Hack: if the source is a localization source document, transform
+         it into a localization document. -->
+    <xsl:when xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
+              test="/ls:locale">
+      <xsl:result-document method="xml" indent="yes">
+        <xsl:apply-templates select="/ls:locale" mode="mp:transform-locale"/>
+      </xsl:result-document>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="t:docbook"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="t:docbook">
   <xsl:param name="vp:loop-count" select="0" tunnel="yes"/>
   <xsl:param name="return" as="xs:string" select="'main-document'"/>
 

@@ -2,13 +2,14 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f m t v xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:template name="t:inline">
@@ -188,7 +189,7 @@
                               starts-with(system-property('xsl:product-version'), 'EE')
                               ))"
               select="format-dateTime(xs:dateTime(.), $format,
-                                      f:language(.), (), ())"/>
+                                      f:l10n-language(.), (), ())"/>
         </xsl:with-param>
         <xsl:with-param name="extra-attributes" as="attribute()*">
           <xsl:attribute name="time" select="."/>
@@ -211,7 +212,7 @@
                               starts-with(system-property('xsl:product-version'), 'EE')
                               ))"
               select="format-date(xs:date(.), $format,
-                                  f:language(.), (), ())"/>
+                                  f:l10n-language(.), (), ())"/>
         </xsl:with-param>
         <xsl:with-param name="extra-attributes" as="attribute()*">
           <xsl:attribute name="time" select="."/>
@@ -368,10 +369,13 @@
     <xsl:when test="exists(node())">
       <xsl:call-template name="t:inline"/>
     </xsl:when>
-    <xsl:when test="exists(f:check-gentext(., 'keycap', $lookup))">
+    <xsl:when test="exists(fp:localization-template(., 'keycap', $lookup))">
       <xsl:call-template name="t:inline">
         <xsl:with-param name="content" as="item()*">
-          <xsl:sequence select="f:gentext(., 'keycap', $lookup)"/>
+          <xsl:apply-templates select="." mode="m:gentext">
+            <xsl:with-param name="group" select="'keycap'"/>
+            <xsl:with-param name="key" select="$lookup"/>
+          </xsl:apply-templates>
         </xsl:with-param>
         <xsl:with-param name="class" select="$lookup"/>
       </xsl:call-template>

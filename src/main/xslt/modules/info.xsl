@@ -216,9 +216,9 @@
 
   <xsl:variable name="style" as="xs:string?"
                 select="if (empty($style))
-                        then if (f:check-gentext(., 'style', 'personname'))
-                             then  f:gentext(., 'style', 'personname')
-                             else  $default-personal-name-style
+                        then if (fp:lookup-localization-property(., f:l10n-language(.), 'style', 'personname'))
+                             then fp:localization-property(., 'style', 'personname')
+                             else $default-personal-name-style
                         else $style"/>
 
   <span>
@@ -374,13 +374,22 @@
 
       <xsl:choose>
         <xsl:when test="$person.count = 2 and $count = 1">
-          <xsl:sequence select="f:gentext(., 'separator', 'author-sep2')"/>
+          <xsl:apply-templates select="." mode="m:gentext">
+            <xsl:with-param name="group" select="'authorgroup'"/>
+            <xsl:with-param name="key" select="'sep2'"/>
+          </xsl:apply-templates>
         </xsl:when>
         <xsl:when test="$person.count &gt; 2 and $count+1 = $person.count">
-          <xsl:sequence select="f:gentext(., 'separator', 'author-seplast')"/>
+          <xsl:apply-templates select="." mode="m:gentext">
+            <xsl:with-param name="group" select="'authorgroup'"/>
+            <xsl:with-param name="key" select="'seplast'"/>
+          </xsl:apply-templates>
         </xsl:when>
         <xsl:when test="$count &lt; $person.count">
-          <xsl:sequence select="f:gentext(., 'separator', 'author-sep')"/>
+          <xsl:apply-templates select="." mode="m:gentext">
+            <xsl:with-param name="group" select="'authorgroup'"/>
+            <xsl:with-param name="key" select="'sep'"/>
+          </xsl:apply-templates>
         </xsl:when>
       </xsl:choose>
 

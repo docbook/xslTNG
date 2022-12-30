@@ -6,22 +6,22 @@
      listitem term variablelist
 -->
 
-<x:scenario label="When converting a variablelist">
+<x:scenario label="When converting variablelist.001">
   <x:context href="../resources/xml/variablelist.001.xml"/>
   <x:expect label="an appropriate dl" href="../resources/expected/variablelist.001.html"/>
 </x:scenario>
 
-<x:scenario label="When converting a variablelist">
+<x:scenario label="When converting variablelist.002">
   <x:context href="../resources/xml/variablelist.002.xml"/>
   <x:expect label="an appropriate dl" href="../resources/expected/variablelist.002.html"/>
 </x:scenario>
 
-<x:scenario label="When converting a variablelist">
+<x:scenario label="When converting variablelist.003">
   <x:context href="../resources/xml/variablelist.003.xml"/>
   <x:expect label="an appropriate dl" href="../resources/expected/variablelist.003.html"/>
 </x:scenario>
 
-<x:scenario label="When converting a variablelist">
+<x:scenario label="When converting variablelist.004">
   <x:context href="../resources/xml/variablelist.004.xml"/>
   <x:expect label="an appropriate dl" href="../resources/expected/variablelist.004.html"/>
 </x:scenario>

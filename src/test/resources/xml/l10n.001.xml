@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xml:id="article"
+      version="5.0" xml:lang="zh_cn">
+<info>
+  <title xml:lang="en">Unit Test: l10n.001.xml</title>
+  <abstract xml:lang="en">
+    <para>This isn’t really in Chinese.</para>
+  </abstract>
+</info>
+<part>
+<title>First part</title>
+
+<preface xml:id="preface">
+<title>Preface</title>
+<para>The preface.</para>
+<para>Chapter: <xref linkend="chapter"/></para>
+<para>Appendix: <xref linkend="appendix"/></para>
+<section xml:id="p1">
+  <title>Section</title>
+  <section xml:id="p11">
+    <title>Subsection</title>
+    <section xml:id="p111">
+      <title>Subsubsection</title>
+      <para>…</para>
+    </section>
+  </section>
+</section>
+</preface>
+<chapter xml:id="chapter">
+<title>Chapter Title</title>
+<para>The chapter.</para>
+<para>Preface: <xref linkend="preface"/></para>
+<para>Appendix: <xref linkend="appendix"/></para>
+<section xml:id="c1">
+  <title>Section</title>
+  <section xml:id="c11">
+    <title>Subsection</title>
+    <section xml:id="c111">
+      <title>Subsubsection</title>
+      <para>…</para>
+    </section>
+  </section>
+</section>
+</chapter>
+</part>
+<part>
+<title>Second part</title>
+<appendix xml:id="appendix">
+<title>Appendix Title</title>
+<para>The appendix.</para>
+<para>Preface: <xref linkend="preface"/></para>
+<para>Chapter: <xref linkend="chapter"/></para>
+<para>Preface section: <xref linkend="p11"/></para>
+<para>Chapter section: <xref linkend="c11"/></para>
+</appendix>
+</part>
+</book>

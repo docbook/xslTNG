@@ -1,0 +1,93 @@
+/* Paper effect inspired by https://freefrontend.com/css-paper-effects/ */
+html {
+ margin: 0px;
+ background-color: #fffff8;
+ height: 100%;
+ width: 100%;
+ overflow-x: hidden;
+}
+
+body {
+ padding-top: 1rem;
+ margin: 0px;
+ height: 100%;
+ width: 100%;
+ overflow-x: hidden;
+}
+
+h3 {
+    margin: 45px 0 0;
+    text-align: right;
+    transform:  rotate(-10deg);
+}
+
+main {
+    background: #fafafa;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3), 0 0 300px 25px rgba(222,198,122,0.1) inset;
+    width: 600px;
+    height: 800px;
+    margin: 1.5% 50% auto;
+    left: -225px;
+    padding: 24px;
+    position: relative;
+}
+
+main:before, main:after {
+    content: "";
+    background: #fafafa;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3), inset 0 0 300px rgba(222,198,122,0.2);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -2;
+    transition: .5s;
+}
+
+main:before {
+    left: -5px;
+    top: 2px;  
+    transform: rotate(-1.5deg);
+}
+
+main:after {
+    right: -3px;
+    top: 0px;
+    transform: rotate(2.4deg);
+}
+
+.book > header {
+    border: none;
+    padding: 0;
+}
+
+.book > header h1 {
+    font-size: 3rem;
+}
+
+.book .part header,
+.book .appendix header,
+.book .chapter header {
+    border-top: none;
+    margin-top: 1rem;
+    padding-top: 0;
+}
+
+.book header h1 {
+    text-align: left;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    background-color: inherit;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    background-color: inherit;
+}
+
+.title {
+    background-color: inherit;
+}
