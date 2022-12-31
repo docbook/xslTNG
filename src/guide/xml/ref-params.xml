@@ -2096,12 +2096,14 @@ by the <parameter>local-conventions</parameter> stylesheet. This
 stylesheet is run during the <varname>v:standard-transforms</varname>,
 just before validation
 (see <parameter>relax-ng-grammar</parameter>).</para>
-<para>The example stylesheet from the test suite looks like this:</para>
+
+<para>For example, the test suite stylesheet
+that transforms pseudo-DocBook elements “<code>att</code>” and
+“<code>mode</code>” into valid DocBook markup looks like this:</para>
+
 <programlisting language="xml" linenumbering="unnumbered">
 <xi:include href="../../../src/test/resources/local.xsl" parse="text"/>
 </programlisting>
-<para>It transforms pseudo-DocBook elements “<code>att</code>” and
-“<code>mode</code>” into valid DocBook markup.</para>
 </refsection>
 </refentry>
 
