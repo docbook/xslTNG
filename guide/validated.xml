@@ -5971,7 +5971,9 @@ by the <parameter>local-conventions</parameter><indexterm><primary>param</primar
 stylesheet is run during the <varname>v:standard-transforms</varname><indexterm><primary>variable</primary><secondary>v:standard-transforms</secondary></indexterm>,
 just before validation
 (see <parameter>relax-ng-grammar</parameter><indexterm><primary>param</primary><secondary>relax-ng-grammar</secondary></indexterm>).</para>
-         <para>The example stylesheet from the test suite looks like this:</para>
+         <para>For example, the test suite stylesheet
+that transforms pseudo-DocBook elements “<code>att</code>” and
+“<code>mode</code>” into valid DocBook markup looks like this:</para>
          <programlisting language="xml" linenumbering="unnumbered">
             &lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -6011,8 +6013,6 @@ just before validation
 &lt;/xsl:stylesheet&gt;
 
          </programlisting>
-         <para>It transforms pseudo-DocBook elements “<code>att</code>” and
-“<code>mode</code>” into valid DocBook markup.</para>
       </refsection>
    </refentry>
    <refentry xml:id="p_mathml-js"><indexterm><primary>param</primary><secondary>mathml-js</secondary></indexterm>
