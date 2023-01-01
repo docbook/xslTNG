@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0">
+<info>
+  <title>Unit Test: iso690.001.xml</title>
+  <style xmlns="http://www.w3.org/1999/xhtml">
+    table tr td:first-child + td { white-space: nowrap; }
+  </style>
+</info>
+
+<para>Examples are adapted from ISO 690 and ISO 690-2 standards.</para>
+
+<para>Elements marked with * are optional, + marks mandatory elements
+for online documents and optional for others.</para>
+
+<section>
+<title>Monographs</title>
+
+<para>Non-serial bibliographic item, i.e. an item either complete in
+one part or complete (or intended to be completed) in a finite number
+of separate parts.</para>
+
+<informaltable>
+<tgroup cols="3" rowsep="1">
+<colspec colname="c1"/>
+<colspec colname="c2"/>
+<colspec colname="c3"/>
+<thead>
+<row>
+<entry/><entry colsep="1">Element</entry>
+<entry>Example</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry/><entry colsep="1">Primary responsibility</entry>
+<entry>LOMINADZE, DG.</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title</entry>
+<entry><emphasis>Cyclotron waves in plasma</emphasis>
+</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Subordinate responsibility</entry>
+<entry>Translated by AN. Dellis; edited by SM. Hamberger</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Edition</entry>
+<entry>1st ed.</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Place of publication</entry>
+<entry>Oxford</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Publisher</entry>
+<entry>Pergamon Press</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Year of publication</entry>
+<entry>1981</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Extent</entry>
+<entry>206 p.</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Series</entry>
+<entry>International series in natural philosophy</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Notes</entry>
+<entry>Translation of: Ciklotronnye volny v plasme</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Standard number</entry>
+<entry>ISBN 0-08-021680-3</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Markup:</para>
+
+<informalexample>
+<programlisting language="xml"
+><xi:include href="iso690.001.entry" parse="text"
+             fragid="line=3,24;length=889"/></programlisting>
+</informalexample>
+
+<para>Output according to ISO 690 standard:</para>
+
+<para>LOMINADZE, DG. <emphasis>Cyclotron waves in plasma</emphasis>. Translated by AN.
+Dellis; edited by SM. Hamberger. 1st ed. Oxford: Pergamon Press, 1981.
+206 p. International series in natural philosophy. Translation of:
+Ciklotronnye volny v plasme. ISBN 0-08-021680-3.</para>
+
+<para>DocBook xslTNG output:</para>
+
+<xi:include href="iso690.001.entry"/>
+
+</section>
+</article>

@@ -96,6 +96,29 @@ obtained by processing the DocBook element in the <mode>m:attributes</mode> mode
 </refsection>
 </refentry>
 
+<refentry xml:id="m_biblio690">
+<?db filename="m_biblio690"?>
+<refmeta>
+<refentrytitle>m:biblio690</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}biblio690</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:biblio690</refname>
+<refpurpose>Mode for processing ISO 690 <tag>biblioentry</tag> bibliographic entries</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>DocBook bibliographic entries come in two forms:
+<link xlink:href="https://tdg.docbook.org/tdg/5.2/ch02.html#s.bibliography">raw
+and cooked</link>. The <tag>biblioentry</tag> form is the “raw” form.
+When the <parameter>bibliography-style</parameter> parameter is
+“<literal>iso690</literal>”, this mode is used to process
+<tag>biblioentry</tag> elements.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_biblioentry">
 <?db filename="m_biblioentry"?>
 <refmeta>

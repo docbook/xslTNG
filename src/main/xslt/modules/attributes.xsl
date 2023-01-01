@@ -332,6 +332,27 @@
   <xsl:sequence select="f:attributes(., $attr, (local-name(.), 'component'), ())"/>
 </xsl:template>
 
+<xsl:template match="db:biblioset"
+              mode="m:attributes" as="attribute()*">
+  <xsl:variable name="attr" select="fp:common-attributes(., false())"/>
+  <xsl:sequence select="f:attributes(., $attr, (local-name(.), @relation), ())"/>
+</xsl:template>
+
+<xsl:template match="db:biblioentry"
+              mode="m:attributes" as="attribute()*">
+  <xsl:param name="style" select="$bibliography-style"/>
+  <xsl:choose>
+    <xsl:when test="$style = 'iso690'">
+      <xsl:variable name="attr" select="fp:common-attributes(., false())"/>
+      <xsl:sequence select="f:attributes(., $attr, (local-name(.), 'iso690'), ())"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="attr" select="fp:common-attributes(., false())"/>
+      <xsl:sequence select="f:attributes(., $attr)"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="db:qandaset|db:qandadiv|db:qandaentry|db:question|db:answer
                      |db:indexdiv|db:bibliodiv|db:glossdiv"
               mode="m:attributes" as="attribute()*">

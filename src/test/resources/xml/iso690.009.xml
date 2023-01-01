@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0">
+<info>
+  <title>Unit Test: iso690.008.xml</title>
+  <style xmlns="http://www.w3.org/1999/xhtml">
+    table tr td:first-child + td { white-space: nowrap; }
+  </style>
+</info>
+
+<para>Examples are adapted from ISO 690 and ISO 690-2 standards.</para>
+
+<para>Elements marked with * are optional, + marks mandatory elements
+for online documents and optional for others.</para>
+
+<section>
+<title>Contributions to monographs, databases and computer programs</title>
+
+<informaltable>
+<tgroup cols="3" rowsep="1">
+<colspec colname="c1"/>
+<colspec colname="c2"/>
+<colspec colname="c3"/>
+<thead>
+<row>
+<entry/><entry colsep="1">Element</entry>
+<entry>Example</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry/><entry colsep="1">Primary responsibility (of contribution)</entry>
+<entry>MCCONNELL, W. H.</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title (of contribution)</entry>
+<entry>Constitutional History</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Primary responsibility of host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title of host document</entry>
+<entry><emphasis>The Canadian Encyclopedia</emphasis>
+</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Type of medium</entry>
+<entry>[CD-ROM]</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Subordinate responsibility of host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Edition</entry>
+<entry>Macintosh version 1.1</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Place of publication</entry>
+<entry>Toronto</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Publisher</entry>
+<entry>McClelland &amp; Stewart</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of publication</entry>
+<entry>c1993</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of update/revision</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>+</entry><entry colsep="1">Date of citation</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Numeration within host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Location within host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Notes</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>+</entry><entry colsep="1">Availability and access</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Standard number</entry>
+<entry>ISBN 0-7710-1932-7</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Markup:</para>
+
+<informalexample>
+<programlisting language="xml"
+><xi:include href="iso690.009.entry" parse="text"
+             fragid="line=4,26;length=821"/></programlisting>
+</informalexample>
+
+<para>Output according to ISO 690 standard:</para>
+
+<para>MCCONNELL, W. H. Constitutional History. In <emphasis>The Canadian
+Encyclopedia</emphasis> [CD-ROM]. Macintosh version 1.1. Toronto: McClelland &amp;
+Stewart, c1993. ISBN 0-7710-1932-7.</para>
+
+<para>DocBook xslTNG output:</para>
+
+<xi:include href="iso690.009.entry"/>
+
+</section>
+</article>

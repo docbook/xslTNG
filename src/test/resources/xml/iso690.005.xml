@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0">
+<info>
+  <title>Unit Test: iso690.005.xml</title>
+  <style xmlns="http://www.w3.org/1999/xhtml">
+    table tr td:first-child + td { white-space: nowrap; }
+  </style>
+</info>
+
+<para>Examples are adapted from ISO 690 and ISO 690-2 standards.</para>
+
+<para>Elements marked with * are optional, + marks mandatory elements
+for online documents and optional for others.</para>
+
+<section>
+<title>Articles, etc., in serials</title>
+
+<informaltable>
+<tgroup cols="3" rowsep="1">
+<colspec colname="c1"/>
+<colspec colname="c2"/>
+<colspec colname="c3"/>
+<thead>
+<row>
+<entry/><entry colsep="1">Element</entry>
+<entry>Example</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry/><entry colsep="1">Primary responsibility</entry>
+<entry>WEAVER, William</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title</entry>
+<entry>The collectors: command performances</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Subordinate responsibility</entry>
+<entry>Photography by Robert Emmett Bright</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title of host document</entry>
+<entry><emphasis>Architectural Digest</emphasis>
+</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Edition</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry namest="c1" nameend="c3">Location within host:</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Year, Issue designation, Pagination of the part</entry>
+<entry>December 1985, vol. 42, no. 12, p. 126-133</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Markup:</para>
+
+<informalexample>
+<programlisting language="xml"
+><xi:include href="iso690.005.entry" parse="text"
+             fragid="line=4,24;length=788"/></programlisting>
+</informalexample>
+
+<para>Output according to ISO 690 standard:</para>
+
+<para>WEAVER, William. The collectors: command performances.
+Photography by Robert Emmett Bright. <emphasis>Architectural
+Digest</emphasis>. December 1985, vol. 42, no. 12, p. 126-133.</para>
+
+<para>DocBook xslTNG output:</para>
+
+<xi:include href="iso690.005.entry"/>
+
+</section>
+</article>

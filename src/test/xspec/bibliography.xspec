@@ -72,4 +72,78 @@
      <x:expect label="expect a bibliography" href="../resources/expected/bibliomixed.001.html"/>
   </x:scenario>
 
+  <!-- ============================================================ -->
+
+  <x:scenario label="When transforming a iso690.001">
+     <x:context href="../resources/xml/iso690.001.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.001.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.002">
+     <x:context href="../resources/xml/iso690.002.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.002.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.003">
+     <x:context href="../resources/xml/iso690.003.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.003.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.004">
+     <x:context href="../resources/xml/iso690.004.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.004.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.005">
+     <x:context href="../resources/xml/iso690.005.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.005.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.006">
+     <x:context href="../resources/xml/iso690.006.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.006.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.007">
+     <x:context href="../resources/xml/iso690.007.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.007.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.008">
+     <x:context href="../resources/xml/iso690.008.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.008.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.009">
+     <x:context href="../resources/xml/iso690.009.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.009.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.010">
+     <x:context href="../resources/xml/iso690.010.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.010.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.011">
+     <x:context href="../resources/xml/iso690.011.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.011.html"/>
+  </x:scenario>
+
+  <x:scenario label="When transforming a iso690.012">
+     <x:context href="../resources/xml/iso690.012.xml"/>
+     <x:expect label="expect a an ISO 690 bibliography"
+               href="../resources/expected/iso690.012.html"/>
+  </x:scenario>
+
 </x:description>

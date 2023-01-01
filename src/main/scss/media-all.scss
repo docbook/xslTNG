@@ -531,6 +531,29 @@ ul.toc,
     margin-top: 1em;
 }
 
+.iso690 .author {
+    text-transform: uppercase;
+}
+
+.iso690.article .part .firstname,
+.iso690.article .part .givenname {
+    text-transform: none;
+}
+
+.iso690.patent {
+    .country, .patenttype {
+        font-style: italic;
+    }
+}
+
+.iso690 .title {
+    font-weight: inherit;
+    font-family: inherit;
+    color: inherit;
+    background-color: inherit;
+    margin-bottom: inherit;
+}
+
 /* ============================================================ */
 
 .index-list ul {
@@ -1233,6 +1256,10 @@ blockquote p + .attribution {
 }
 
 /* ============================================================ */
+
+.formalobject + .formalobject {
+    margin-top: 1rem;
+}
 
 .figure,
 .example,

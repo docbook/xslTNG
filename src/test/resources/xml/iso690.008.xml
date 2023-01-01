@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0">
+<info>
+  <title>Unit Test: iso690.008.xml</title>
+  <style xmlns="http://www.w3.org/1999/xhtml">
+    table tr td:first-child + td { white-space: nowrap; }
+  </style>
+</info>
+
+<para>Examples are adapted from ISO 690 and ISO 690-2 standards.</para>
+
+<para>Elements marked with * are optional, + marks mandatory elements
+for online documents and optional for others.</para>
+
+<section>
+<title>Parts of monographs, databases and computer programs</title>
+
+<informaltable>
+<tgroup cols="3" rowsep="1">
+<colspec colname="c1"/>
+<colspec colname="c2"/>
+<colspec colname="c3"/>
+<thead>
+<row>
+<entry/><entry colsep="1">Element</entry>
+<entry>Example</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry/><entry colsep="1">Primary responsibility of host document</entry>
+<entry>CARROLL, Lewis</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title of host document</entry>
+<entry><emphasis>Alice's Adventures in Wonderland</emphasis>
+</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Type of medium</entry>
+<entry>[online]</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Subordinate responsibility of host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Edition</entry>
+<entry>Textinfo ed. 2.2</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Place of publication</entry>
+<entry>[Dortmund, Germany]</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Publisher</entry>
+<entry>Windspiel</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of publication</entry>
+<entry>November 1994</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of update/revision</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>+</entry><entry colsep="1">Date of citation</entry>
+<entry>[cited 30 March 1995]</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Chapter or equivalent designation (of part)</entry>
+<entry>Chapter VII</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title (of part)</entry>
+<entry>Mad Tea-Party</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Numeration within host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Location within host document</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Notes</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry>+</entry><entry colsep="1">Availability and access</entry>
+<entry>Available from World Wide Web: &lt;http://germany.eu.net/books/carroll/alice_10.html#SEC13&gt;</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Standard number</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Markup:</para>
+
+<informalexample>
+<programlisting language="xml"
+><xi:include href="iso690.008.entry" parse="text"
+             fragid="line=4,26;length=899"/></programlisting>
+</informalexample>
+
+<para>Output according to ISO 690 standard:</para>
+
+<para>CARROLL, Lewis.
+<emphasis>Alice's Adventures in Wonderland</emphasis> [online].
+Textinfo ed. 2.2.
+[Dortmund, Germany]: Windspiel, November 1994 [cited 30 March 1995].
+Chapter VII, Mad Tea-Party.
+Available from World Wide Web: &lt;http://germany.eu.net/books/carroll/alice_10.html#SEC13&gt;.
+</para>
+
+<para>DocBook xslTNG output:</para>
+
+<xi:include href="iso690.008.entry"/>
+
+</section>
+</article>

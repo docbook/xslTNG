@@ -419,6 +419,61 @@ shared bibliography.
 <refentry>
   <refmeta>
     <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>bibliography-style</varname>
+      <initializer>'default'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>The bibliography style</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Bibliographies are complicated and many different styles
+exist. These stylesheets attempt to implement ISO 690.</para>
+
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>default</enumvalue>
+</term>
+<listitem>
+<para>The default style. This is just “what the stylesheets have always done”.
+All <tag>biblioentry</tag> elements will be processed in
+<mode>m:biblioentry</mode> mode.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>iso690</enumvalue>
+</term>
+<listitem>
+<para>Attempts to implement ISO 690 bibliographic formatting.
+All <tag>biblioentry</tag> elements will be processed in
+<mode>m:biblio690</mode> mode.
+</para>
+<para>The default style specified by
+<parameter>bibliography-style</parameter> can be overridden on a
+case-by-case basis with the
+<literal>db</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+</indexterm> processing instruction using the
+<literal>bibliography-style</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+<secondary>bibliography-style pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
       <varname>callout-default-column</varname>
       <initializer>60</initializer>
     </fieldsynopsis>
@@ -3240,9 +3295,10 @@ as the base URI for these resources.
 <refsection>
 <title>Description</title>
 <para>The <tag>revhistory</tag> element can be rendered as a list or a table.
-If <parameter>revhistory-style</parameter> is “<enumvalue>table</enumvalue>>”, it will be rendered
-using the tabular style, if it is “<enumvalue>list</enumvalue>”, 
-it will be rendered using the list style.</para>
+If <parameter>revhistory-style</parameter> is
+“<enumvalue>table</enumvalue>>”, it will be rendered using the tabular
+style, if it is “<enumvalue>list</enumvalue>”, it will be rendered
+using the list style.</para>
 <para>
 <xref linkend="ex-revhistory"/> shows an example of a <tag>revhistory</tag> element.</para>
 <example xml:id="ex-revhistory">
