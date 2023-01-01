@@ -78,9 +78,9 @@
   <xsl:variable name="template"
                 select="fp:localization-template(., $context, $template)"/>
 
-<!--
+  <!--
   <xsl:message select="local-name(.), $context, $template"/>
--->
+  -->
 
   <xsl:variable name="label" as="item()*">
     <xsl:if test="$template/lt:label">
@@ -136,6 +136,10 @@
   <xsl:apply-templates select="." mode="m:headline-label">
     <xsl:with-param name="purpose" select="'xref'"/>
   </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="db:varlistentry" mode="m:crossref-label" as="item()*">
+  <xsl:apply-templates select="db:term[1]"/>
 </xsl:template>
 
 <xsl:template match="db:answer" mode="m:crossref-label" as="item()*">

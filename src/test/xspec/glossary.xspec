@@ -22,6 +22,11 @@
      <x:expect label="expect a glossary" href="../resources/expected/glossary.003.html"/>
   </x:scenario>
 
+  <x:scenario label="When transforming glossary.004">
+     <x:context href="../resources/xml/glossary.004.xml"/>
+     <x:expect label="expect a glossary" href="../resources/expected/glossary.004.html"/>
+  </x:scenario>
+
   <x:scenario label="When transforming glosslist.001">
      <x:context href="../resources/xml/glosslist.001.xml"/>
      <x:expect label="expect a glossary list" href="../resources/expected/glosslist.001.html"/>

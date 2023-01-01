@@ -27,4 +27,14 @@
    <x:expect label="expect qandaset markup" href="../resources/expected/qandaset.005.html"/>
 </x:scenario>
 
+<x:scenario label="When converting qandaset.006">
+   <x:context href="../resources/xml/qandaset.006.xml"/>
+   <x:expect label="expect qandaset markup" href="../resources/expected/qandaset.006.html"/>
+</x:scenario>
+
+<x:scenario label="When converting qandaset.007">
+   <x:context href="../resources/xml/qandaset.007.xml"/>
+   <x:expect label="expect qandaset markup" href="../resources/expected/qandaset.007.html"/>
+</x:scenario>
+
 </x:description>

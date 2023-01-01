@@ -321,12 +321,16 @@
       <template name="topic">%c</template>
       <template name="book/part">{Part} %l%.%c</template>
       <template name="book/reference">{Reference} %l%.%c</template>
+      <template name="preface/section">%c</template>
+      <template name="preface/sect1">%c</template>
       <template name="_default">%l%.%c</template>
    </group>
    <group name="title-unnumbered">
       <template name="_default">%c</template>
    </group>
    <group name="title-numbered">
+      <template name="preface/section">%c</template>
+      <template name="preface/sect1">%c</template>
       <template name="article/appendix">%l.%c</template>
       <template name="appendix">{Appendix}%l.%c</template>
       <template name="bridgehead">%l.%c</template>
@@ -369,6 +373,12 @@
       <template name="warning">{Warning}</template>
    </group>
    <group name="xref">
+      <template name="preface/section">{sectioncalled} %c</template>
+      <template name="preface/sect1">{sectioncalled} %c</template>
+      <template name="danger">%c</template>
+      <template name="production">%c</template>
+      <template name="bibliolist">%c</template>
+      <template name="glosslist">%c</template>
       <template name="abstract">%c</template>
       <template name="answer">{Answer}%l</template>
       <template name="appendix">%c</template>

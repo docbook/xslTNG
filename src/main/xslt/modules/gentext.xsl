@@ -517,4 +517,44 @@
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="db:question|db:answer" mode="m:gentext">
+  <xsl:param name="group" as="xs:string"/>
+  <xsl:param name="key" as="xs:string" select="local-name(.)"/>
+  <xsl:param name="content" as="item()*" select="()"/>
+
+  <!-- This is a weird special case because the default label
+       ends in a colon. If we're looking for a label separator,
+       and we're using the 'qanda' label style, and the label
+       text ends with punctuation, just output a space.
+       Note: there are some extra conditionals in here to
+       avoid doing extra work if the conditions don't apply. -->
+
+  <xsl:variable name="label" as="xs:string?"
+                select="if ($group = 'label-separator')
+                        then ancestor::db:qandaset[@defaultlabel][1]/@defaultlabel/string()
+                        else ()"/>
+  <xsl:variable name="label" as="xs:string"
+                select="if ($label)
+                        then $label
+                        else $qandaset-default-label"/>
+  <xsl:variable name="text"
+                select="if ($group = 'label-separator' and $label = 'qanda')
+                        then f:l10n-token(., local-name(.))
+                        else string(db:label)"/>
+
+  <xsl:choose>
+    <xsl:when test="$group = 'label-separator' and exists($text)
+                    and matches($text, '\p{Po}$')">
+      <xsl:sequence select="' '"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:next-match>
+        <xsl:with-param name="group" select="$group"/>
+        <xsl:with-param name="key" select="$key"/>
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:next-match>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>

@@ -145,14 +145,7 @@
 
 <xsl:template match="*" mode="m:headline-label">
   <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:choose>
-    <xsl:when test="@xreflabel">
-      <xsl:sequence select="@xreflabel/string()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates select="." mode="m:headline-number"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates select="." mode="m:headline-number"/>
 </xsl:template>
 
 <xsl:template match="db:appendix" mode="m:headline-label">
@@ -197,13 +190,13 @@
       <xsl:number from="db:qandaset" level="multiple" select=".."
                   count="db:qandaentry|db:qandadiv"/>
     </xsl:when>
-    <xsl:when test="$label = 'qanda'">
-      <xsl:text>Q:</xsl:text>
-    </xsl:when>
     <xsl:otherwise>
-      <xsl:message
-          select="'Unexpected qandaset label: ' || $label || ', using qanda'"/>
-      <xsl:text>Q:</xsl:text>
+      <xsl:if test="$label != 'qanda'">
+        <xsl:message
+            select="'Unexpected qandaset label: ' || $label || ', using qanda'"/>
+      </xsl:if>
+
+      <xsl:sequence select="f:l10n-token(., 'question')"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -233,6 +226,7 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
 
 <xsl:template match="db:formalgroup" mode="mp:label-number" as="xs:integer">
   <xsl:variable name="ancestor" select="fp:nearest-relevant-ancestor(.)"/>
@@ -325,6 +319,12 @@
   <xsl:apply-templates select="." mode="m:headline-number"/>
 </xsl:template>
 
+<xsl:template match="db:orderedlist"
+              mode="mp:headline-number-prefix">
+  <xsl:apply-templates select="ancestor::db:listitem[parent::db:orderedlist][1]"
+                       mode="m:headline-number"/>
+</xsl:template>
+
 <xsl:template match="*"
               mode="mp:headline-number-prefix">
   <xsl:sequence select="()"/>
@@ -337,7 +337,7 @@
   </xsl:variable>
 
   <xsl:variable name="number" as="xs:integer"
-                select="f:orderedlist-item-number(.)"/>
+                select="f:orderedlist-item-number(.)[last()]"/>
 
   <xsl:variable name="format"
                 select="f:orderedlist-item-numeration(.)"/>
@@ -556,7 +556,11 @@
 
 <xsl:template match="db:question" mode="m:headline-title">
   <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:apply-templates select="*[1]" mode="m:title">
+  <xsl:apply-templates mode="m:title"
+      select="(* except (db:label|db:info|db:tip|db:note|db:danger|db:important
+                         |db:caution|db:sidebar|db:figure|db:example
+                         |db:procedure|db:table|db:equation)
+              )[1]">
     <xsl:with-param name="purpose" select="$purpose"/>
   </xsl:apply-templates>
 </xsl:template>
