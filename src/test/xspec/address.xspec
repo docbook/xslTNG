@@ -12,4 +12,10 @@
             href="../resources/expected/address.001.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming address.002">
+  <x:context href="../resources/xml/address.002.xml"/>
+  <x:expect label="expect the address to be rendered"
+            href="../resources/expected/address.002.html"/>
+</x:scenario>
+
 </x:description>

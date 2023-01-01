@@ -6,12 +6,29 @@
 
 <!-- Issue https://github.com/docbook/xslTNG/issues/155 -->
 <qandaset defaultlabel="qanda" >
+  <title>F.A.Q.</title>
   <qandadiv>
+    <title>First set</title>
      <qandaentry>
         <question>
            <tip>
             <para>Hi there!</para>
            </tip>
+        </question>
+     </qandaentry>
+     <qandaentry>
+        <question>
+          <para>Why did the chicken cross the road?</para>
+        </question>
+        <answer>
+          <para>Because it was there.</para>
+        </answer>
+     </qandaentry>
+     <qandaentry>
+        <question>
+           <note>
+            <para>Bye there!</para>
+           </note>
         </question>
      </qandaentry>
   </qandadiv>

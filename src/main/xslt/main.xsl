@@ -33,6 +33,7 @@
 <xsl:import href="modules/components.xsl"/>
 <xsl:import href="modules/refentry.xsl"/>
 <xsl:import href="modules/bibliography.xsl"/>
+<xsl:import href="modules/biblio690.xsl"/>
 <xsl:import href="modules/glossary.xsl"/>
 <xsl:import href="modules/index.xsl"/>
 <xsl:import href="modules/sections.xsl"/>

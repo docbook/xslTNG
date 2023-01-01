@@ -24,10 +24,19 @@
 </xsl:template>
 
 <xsl:template match="db:biblioentry">
-  <p>
-    <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:call-template name="t:biblioentry"/>
-  </p>
+  <xsl:variable name="style"
+                select="f:pi(.., 'bibliography-style', $bibliography-style)"/>
+  <xsl:choose>
+    <xsl:when test="$style = 'iso690'">
+      <xsl:apply-templates select="." mode="m:biblio690"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <p>
+        <xsl:apply-templates select="." mode="m:attributes"/>
+        <xsl:call-template name="t:biblioentry"/>
+      </p>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:bibliomixed">

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0">
+<info>
+  <title>Unit Test: iso690.006.xml</title>
+  <style xmlns="http://www.w3.org/1999/xhtml">
+    table tr td:first-child + td { white-space: nowrap; }
+  </style>
+</info>
+
+<para>Examples are adapted from ISO 690 and ISO 690-2 standards.</para>
+
+<para>Elements marked with * are optional, + marks mandatory elements
+for online documents and optional for others.</para>
+
+<section>
+<title>Patent documents</title>
+
+<informaltable>
+<tgroup cols="3" rowsep="1">
+<colspec colname="c1"/>
+<colspec colname="c2"/>
+<colspec colname="c3"/>
+<thead>
+<row>
+<entry/><entry colsep="1">Element</entry>
+<entry>Example</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>*</entry><entry colsep="1">Primary responsibility (applicant)</entry>
+<entry>Carl Zeiss Jena, VEB</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Title of the invention</entry>
+<entry><emphasis>Anordnung zur lichtelektrischen Erfassung der Mitte eines Lichtfeldes</emphasis>
+</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Subordinate responsibility</entry>
+<entry>Erfinder: W. FEIST, C. WAHNERT, E. FEISTAUER</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Notes</entry>
+<entry>Int. Cl.<superscript>3</superscript>: G02 B 27/14</entry>
+</row>
+<row>
+<entry namest="c1" nameend="c3">Identification:</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Country or issuing office</entry>
+<entry>Schweiz</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Kind of patent document</entry>
+<entry>Patentschrift</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Number</entry>
+<entry>608 626</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of publication of cited document</entry>
+<entry>1979-01-15</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Markup:</para>
+
+<informalexample>
+<programlisting language="xml"
+><xi:include href="iso690.006.entry" parse="text"
+             fragid="line=4,18;length=759"/></programlisting>
+</informalexample>
+
+<para>Output according to ISO 690 standard:</para>
+
+<para>CARL ZEISS JENA, VEB. <emphasis>Anordnung zur lichtelektrischen
+Erfassung der Mitte eines Lichtfeldes</emphasis>. Erfinder: W. FEIST,
+C. WAHNERT, E. FEISTAUER. Int. Cl.3: G02 B 27/14. <emphasis>Schweiz
+Patentschrift</emphasis>, 608 626. 1979-01-15.</para>
+
+<para>DocBook xslTNG output:</para>
+
+<xi:include href="iso690.006.entry"/>
+
+</section>
+</article>
