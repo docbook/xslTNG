@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0">
+<info>
+  <title>Unit Test: iso690.012.xml</title>
+  <style xmlns="http://www.w3.org/1999/xhtml">
+    table tr td:first-child + td { white-space: nowrap; }
+  </style>
+</info>
+
+<para>Examples are adapted from ISO 690 and ISO 690-2 standards.</para>
+
+<para>Elements marked with * are optional, + marks mandatory elements
+for online documents and optional for others.</para>
+
+<section>
+<title>Electronic messages</title>
+
+<informaltable>
+<tgroup cols="3" rowsep="1">
+<colspec colname="c1"/>
+<colspec colname="c2"/>
+<colspec colname="c3"/>
+<thead>
+<row>
+<entry/><entry colsep="1">Element</entry>
+<entry>Example</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry/><entry colsep="1">Primary responsibility of message</entry>
+<entry>PARKER, Elliot</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title of message</entry>
+<entry>Re: Citing Electronic Journals</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Title of host message system</entry>
+<entry><emphasis>PACS-L (Public Access Computer Systems Forum)</emphasis>
+</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Type of medium</entry>
+<entry>[online]</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Subordinate responsibility/applicant(s)</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Place of publication</entry>
+<entry>Houston (Tex.)</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Publisher</entry>
+<entry>University of Houston Libraries</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of publication</entry>
+<entry>24 November 1989; 13:29:35 CST</entry>
+</row>
+<row>
+<entry/><entry colsep="1">Date of citation</entry>
+<entry>[cited 1 January 1995; 16:15 EST]</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Numeration within host message system</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Location within host message system</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+<row>
+<entry/><entry colsep="1">Availability and access</entry>
+<entry>Available from Internet: &lt;telnet://brsuser@a.cni.org&gt;</entry>
+</row>
+<row>
+<entry>*</entry><entry colsep="1">Notes</entry><entry>— <emphasis>(not in this example)</emphasis></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+
+<para>Markup:</para>
+
+<informalexample>
+<programlisting language="xml"
+><xi:include href="iso690.013.entry" parse="text"
+             fragid="line=4,26;length=935"/></programlisting>
+</informalexample>
+
+<para>Output according to ISO 690 standard:</para>
+
+<para>PARKER, Elliot. Re: Citing Electronic Journals. In
+<emphasis>PACS-L (Public Access Computer Systems Forum)</emphasis>
+[online]. Houston (Tex.): University of Houston Libraries, 24 November
+1989; 13:29:35 CST [cited 1 January 1995; 16:15 EST]. Available from
+Internet: &lt;telnet://brsuser@a.cni.org&gt;.</para>
+
+<para>DocBook xslTNG output:</para>
+
+<xi:include href="iso690.013.entry"/>
+
+</section>
+</article>
