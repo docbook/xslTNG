@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<title>Unit Test: bibliolist.005</title>
+</info>
+
+<para>Tests for lists of names.</para>
+
+<bibliolist>
+<biblioentry>
+  <author><personname>Jane Smith</personname></author>
+  <title>A book with one author</title>
+</biblioentry>
+
+<biblioentry>
+  <authorgroup>
+  <author><personname>Jane Smith</personname></author>
+  </authorgroup>
+  <title>A book with a list of one author</title>
+</biblioentry>
+
+<biblioentry>
+  <authorgroup>
+  <author><personname>Jane Smith</personname></author>
+  <author><personname>John Smith</personname></author>
+  </authorgroup>
+  <title>A book with two authors</title>
+</biblioentry>
+
+<biblioentry>
+  <authorgroup>
+  <author><personname>Jane Smith</personname></author>
+  <author><personname>John Smith</personname></author>
+  <author><personname>Sarah Smith</personname></author>
+  </authorgroup>
+  <title>A book with three authors</title>
+</biblioentry>
+
+<biblioentry>
+  <authorgroup>
+  <author><personname>Jane Smith</personname></author>
+  <author><personname>John Smith</personname></author>
+  <author><personname>Sarah Smith</personname></author>
+  <author><personname>John Doe</personname></author>
+  </authorgroup>
+  <title>A book with four authors</title>
+</biblioentry>
+
+<biblioentry>
+  <authorgroup>
+  <author><personname>Jane Smith</personname></author>
+  <author><personname>John Smith</personname></author>
+  <author><personname>Sarah Smith</personname></author>
+  <author><personname>John Doe</personname></author>
+  <author><personname>John Bigboote</personname></author>
+  </authorgroup>
+  <title>A book with five authors</title>
+</biblioentry>
+
+</bibliolist>
+
+</article>

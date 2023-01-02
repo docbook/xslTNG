@@ -67,6 +67,11 @@
      <x:expect label="expect a bibliography" href="../resources/expected/bibliolist.004.html"/>
   </x:scenario>
 
+  <x:scenario label="When transforming a bibliolist.005">
+     <x:context href="../resources/xml/bibliolist.005.xml"/>
+     <x:expect label="expect a bibliography" href="../resources/expected/bibliolist.005.html"/>
+  </x:scenario>
+
   <x:scenario label="When transforming a bibliomixed.001">
      <x:context href="../resources/xml/bibliomixed.001.xml"/>
      <x:expect label="expect a bibliography" href="../resources/expected/bibliomixed.001.html"/>
