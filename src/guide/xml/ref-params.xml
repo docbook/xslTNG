@@ -1301,19 +1301,19 @@ magnitude and unit are used for that length. See <xref linkend="units"/>.
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <varname>default-personal-name-style</varname>
-      <initializer>'first-last'</initializer>
+      <varname>personal-name-style</varname>
+      <initializer>()</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
-    <refpurpose>The default style for formatting personal names</refpurpose>
+    <refpurpose>The style for formatting personal names</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
 <para>The stylesheets can format personal names in a variety of ways.
-Absent any indication of what style to use, the
-<parameter>default-personal-name-style</parameter> will be used;
-see
+This is usually locale dependent. If <parameter>personal-name-style</parameter>
+is specified, it wil be used in preferance to the locale dependent style.
+See
 <template>t:person-name</template>.</para>
 </refsection>
 </refentry>
@@ -4268,6 +4268,74 @@ If trailing newlines aren’t significant, setting
 <parameter>verbatim-trim-trailing-blank-lines</parameter> will cause
 the stylesheets to trim blank (that is, entirely empty) lines from
 the end of verbatim environments.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-before</varname>
+      <initializer>' ['</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Prefix used for inline rendering of a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this precedes the list.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-after</varname>
+      <initializer>'] '</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Suffix used for inline rendering of a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this precedes the list.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-titlesep</varname>
+      <initializer>': '</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Title separator used when rendering a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this separates the link titles.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-sep</varname>
+      <initializer>', '</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Link separator used when rendering a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this separates the links.
+</para>
 </refsection>
 </refentry>
 

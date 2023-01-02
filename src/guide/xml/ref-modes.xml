@@ -352,7 +352,7 @@ and <varname>copyright-collapse-years</varname>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-inherit-separator">
+<refentry xml:id="m_crossref-inherit-separator" role="obsolete 2.0.0">
 <?db filename="m_crossref-inherit-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-inherit-separator</refentrytitle>
@@ -365,9 +365,8 @@ and <varname>copyright-collapse-years</varname>.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:crossref-inherit-separator</mode> mode is used to generate the
-text that should follow the element when an inherited reference is used.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -444,7 +443,7 @@ separator between a number and what follows it in a cross-reference.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-prefix">
+<refentry xml:id="m_crossref-prefix" role="obsolete 2.0.0">
 <?db filename="m_crossref-prefix"?>
 <refmeta>
 <refentrytitle>m:crossref-prefix</refentrytitle>
@@ -457,8 +456,8 @@ separator between a number and what follows it in a cross-reference.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:crossref-prefix</mode> mode is used to generate any text
-that precedes a cross reference.</para>
+<para>Prefixes are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 

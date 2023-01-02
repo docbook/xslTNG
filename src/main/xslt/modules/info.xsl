@@ -214,16 +214,29 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="style" as="xs:string?"
-                select="if (empty($style))
-                        then if (fp:lookup-localization-property(., f:l10n-language(.), 'style', 'personname'))
-                             then fp:localization-property(., 'style', 'personname')
-                             else $default-personal-name-style
-                        else $style"/>
+  <xsl:variable name="style">
+    <xsl:choose>
+      <xsl:when test="empty($style)">
+        <xsl:choose>
+          <xsl:when test="exists($personal-name-style)">
+            <xsl:sequence select="$personal-name-style"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'name-style'"/>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$style"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <span>
     <xsl:apply-templates select="." mode="m:attributes">
-      <xsl:with-param name="style" select="$style"/>
+      <xsl:with-param name="style" select="string($style)"/>
     </xsl:apply-templates>
     <xsl:call-template name="t:person-name">
       <xsl:with-param name="style" select="$style"/>

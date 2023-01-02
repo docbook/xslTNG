@@ -54,8 +54,7 @@
         <div class="lot toc">
           <div class="title">
             <xsl:apply-templates select="." mode="m:gentext">
-              <xsl:with-param name="group" select="'title'"/>
-              <xsl:with-param name="key" select="'TableofContents'"/>
+              <xsl:with-param name="group" select="'table-of-contents'"/>
             </xsl:apply-templates>
           </div>
           <ul class="toc">
@@ -210,7 +209,7 @@
                       select=".//db:figure[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:figure]"/>
       <xsl:with-param name="class" select="'list-of-figures'"/>
-      <xsl:with-param name="title-key" select="'ListofFigures'"/>
+      <xsl:with-param name="group" select="'list-of-figures'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -223,7 +222,7 @@
                       select=".//db:table[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:table]"/>
       <xsl:with-param name="class" select="'list-of-tables'"/>
-      <xsl:with-param name="title-key" select="'ListofTables'"/>
+      <xsl:with-param name="group" select="'list-of-tables'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -236,7 +235,7 @@
                       select=".//db:example[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:example]"/>
       <xsl:with-param name="class" select="'list-of-examples'"/>
-      <xsl:with-param name="title-key" select="'ListofExamples'"/>
+      <xsl:with-param name="group" select="'list-of-examples'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -249,7 +248,7 @@
                       select=".//db:equation[not(ancestor::db:formalgroup)]
                               |.//db:formalgroup[db:figure]"/>
       <xsl:with-param name="class" select="'list-of-equations'"/>
-      <xsl:with-param name="title-key" select="'ListofEquations'"/>
+      <xsl:with-param name="group" select="'list-of-equations'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -260,7 +259,7 @@
     <xsl:call-template name="tp:list-of-titles">
       <xsl:with-param name="elements" select=".//db:procedure"/>
       <xsl:with-param name="class" select="'list-of-procedures'"/>
-      <xsl:with-param name="title-key" select="'ListofProcedures'"/>
+      <xsl:with-param name="group" select="'list-of-procedures'"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
@@ -268,14 +267,13 @@
 <xsl:template name="tp:list-of-titles">
   <xsl:param name="elements" as="element()*" required="yes"/>
   <xsl:param name="class" as="xs:string" required="yes"/>
-  <xsl:param name="title-key" as="xs:string" required="yes"/>
+  <xsl:param name="group" as="xs:string" required="yes"/>
 
   <xsl:if test="$elements">
     <div class="{$class} lot">
       <div class="title">
         <xsl:apply-templates select="." mode="m:gentext">
-          <xsl:with-param name="group" select="'title'"/>
-          <xsl:with-param name="key" select="$title-key"/>
+          <xsl:with-param name="group" select="$group"/>
         </xsl:apply-templates>
       </div>
       <ul class="toc">

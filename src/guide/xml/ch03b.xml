@@ -81,7 +81,7 @@ localization data.</para>
 <title>Consequences</title>
 
 <para>One unfortunate consequence of this history is that there’s some
-cruft in the localization files. There are mappings, properties, and
+cruft in the localization files. There are mappings and possibly
 templates that aren’t actually used. Or, at least, they’re not used in
 the standard DocBook stylesheet. They might be used in customization
 layers.</para>
@@ -176,13 +176,14 @@ attribute identifies the language (in the same terms as
 <att>xml:lang</att>) to which this localization applies.</para>
 
 <para>That’s followed by metadata about the file (authors, etc.), then
-mappings, properties, groups, lists, and letters as shown in
+mappings, groups, lists, and letters as shown in
 <xref linkend="l10n.local.ex"/>. We’ll consider each
 section in detail below.</para>
 
 <figure xml:id="l10n.local.ex">
 <title>Example locale file (excerpted)</title>
 <programlisting language="xml"><![CDATA[<locale xmlns="http://docbook.org/ns/docbook/l10n/source"
+        xmlns:db="http://docbook.org/ns/docbook"
         language="en" english-language-name="English">
   <info>
     …
@@ -191,12 +192,8 @@ section in detail below.</para>
     <gentext key="above">above</gentext>
     …
   </mappings>
-  <properties name="number-format">
-    <property name="part" value="I"/>
-    …
-  </properties>
   <group name="title">
-    <template name="chapter">{chapter} %l%.%c</template>
+    <template match="self::db:chapter">{chapter} %l%.%c</template>
     …
   </group>
   <list name="_default">
@@ -236,52 +233,26 @@ localization file is compiled.</para>
 </section>
 
 <section>
-<title>Properties</title>
-
-<para>Properties provide a mapping from one string to another.
-Properties are grouped into collections where each property maps from
-a name to a value. The property name is often the name of the element
-to which it applies.</para>
-
-<para>The stylesheets look for a property name in a property group.
-If there’s no property with the name specified, the property named
-“<code>_default</code>” is returned.</para>
-
-<para>The <literal>number-format</literal> properties determine how
-numbers in labels are formatted:</para>
-
-<programlisting language="xml"><![CDATA[   <properties name="number-format">
-      <property name="part" value="I"/>
-      <property name="reference" value="I"/>
-      <property name="appendix" value="A"/>
-      <property name="_default" value="1"/>
-   </properties>]]></programlisting>
-
-<para>Parts and references are numbered in upper-case Roman,
-appendixes in upper-case Latin letters, and everything else is
-numbered with Arabic numerals.</para>
-</section>
-
-<section>
 <title>Group</title>
 
 <para>Groups are the primary templating system. In a context where
 generated text is required, a group is selected and within that group,
-a template is selected. The template name is often the name of the
-element being formatted. As with properties, the template name
-“<code>_default</code>” is used as a fallback.</para>
+a template is selected. The template is selected by evaluating the
+expression in the <att>match</att> attribute with the current node
+as the context item. A template with the match express <code>true()</code>
+wall always succeed; it is used as a fallback.</para>
 
 <para>The <literal>title</literal> group determines how titles are
 formatted (but see also the <literal>title-numbered</literal>,
 <literal>title-unnumbered</literal>, and
 <literal>title-generated</literal> groups):</para>
 
-<programlisting language="xml"><![CDATA[   <group name="title">
-      <template name="abstract">%c</template>
-      <template name="chapter">{chapter} %l%.%c</template>
-      …
-      <template name="_default">%c</template>
-   </group>]]></programlisting>
+<programlisting language="xml"><![CDATA[<group name="title">
+   <template match="self::db:abstract">%c</template>
+   <template match="self::db:caution">%c</template>
+   …
+   <template match="true()">%c</template>
+</group>]]></programlisting>
 
 <para>Within a template, two kinds of substitution are performed: names in
 curly braces are replaced by the corresponding mapping and %-letter values
@@ -328,7 +299,7 @@ document</link>:</para>
 
 <itemizedlist>
 <listitem>
-<para>The local name of the element, <literal>chapter</literal>, is used to select
+<para>The <literal>chapter</literal> context is used to select
 the template (<literal>{chapter} %l%.%c</literal>).</para>
 </listitem>
 <listitem>
@@ -337,7 +308,7 @@ the template (<literal>{chapter} %l%.%c</literal>).</para>
 </listitem>
 <listitem>
 <para>The label <literal>%l</literal> is “1” because this is the first
-chapter. (In fact, constructing the label uses properties from the
+chapter. (In fact, constructing the label uses templates from the
 localization file as well.)</para>
 </listitem>
 <listitem>
@@ -417,9 +388,9 @@ of letters.</para>
 <para>All of the symbols with the same “i” value will be grouped
 together.</para>
 
-<para>(This mechanism dates from the days before XSLT supported
-language-specific collations. It’s very likely that it should simply
-be phased out.)</para>
+<para>This mechanism dates from the days before XSLT supported
+language-specific collations. It is used in generated indexes, but perhaps it should simply
+be phased out.</para>
 </section>
 </section>
 

@@ -382,13 +382,12 @@ results are undefined.)</para>
 attirbute of its parent is inspected.</para>
 </listitem>
 <listitem>
-<para>If a style still hasn’t been selected and the in-context language
-localization file contains a “<literal>personname</literal>” key, the value of that
-key is taken as the style.</para>
+<para>If the <parameter>personal-name-style</parameter> is defined, it is
+is selected.</para>
 </listitem>
 <listitem>
-<para>Failing all those options, the <parameter>default-personal-name-style</parameter>
-is selected.</para>
+<para>If a style still hasn’t been selected the style in the
+localization file is used.</para>
 </listitem>
 </orderedlist>
 

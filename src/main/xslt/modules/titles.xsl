@@ -99,15 +99,15 @@
                         then fp:localization-template(., 'list-of-titles')
                         else fp:localization-template(., $prop/@group)"/>
 
+  <!--
+  <xsl:message select="local-name(.), $purpose, $template"/>
+  -->
+
   <xsl:variable name="label" as="item()*">
     <xsl:if test="$template/lt:label">
       <xsl:apply-templates select="." mode="m:headline-label"/>
     </xsl:if>
   </xsl:variable>
-
-  <!--
-  <xsl:message select="local-name(.), $prop/@group/string(), $template"/>
-  -->
 
   <xsl:if test="$vp:olinkdb">
     <xsl:attribute name="db-label" select="$label"/>
@@ -350,11 +350,11 @@
 
   <xsl:choose>
     <xsl:when test="exists($prefix) and exists($formatted-number)">
-      <xsl:variable name="sep"
-                    select="fp:localization-property(., 'number-separator', local-name(..))"/>
       <xsl:sequence select="$prefix"/>
       <span class="sep">
-        <xsl:sequence select="$sep"/>
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'number-separator'"/>
+        </xsl:apply-templates>
       </span>
       <xsl:sequence select="$formatted-number"/>
     </xsl:when>
@@ -383,20 +383,23 @@
     </xsl:iterate>
   </xsl:variable>
 
-  <xsl:variable name="sep"
-                select="fp:localization-property(., 'number-separator', 'step')"/>
+  <xsl:variable name="sep">
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'number-separator'"/>
+    </xsl:apply-templates>
+  </xsl:variable>
 
   <xsl:variable name="formatted-number" as="xs:string">
-    <xsl:sequence select="string-join(reverse($fnumber), $sep)"/>
+    <xsl:sequence select="string-join(reverse($fnumber), string($sep))"/>
   </xsl:variable>
 
   <xsl:choose>
     <xsl:when test="exists($prefix) and exists($formatted-number)">
-      <xsl:variable name="sep"
-                    select="fp:localization-property(., 'number-separator', local-name(..))"/>
       <xsl:sequence select="$prefix"/>
       <span class="sep">
-        <xsl:sequence select="$sep"/>
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'number-separator'"/>
+        </xsl:apply-templates>
       </span>
       <xsl:sequence select="$formatted-number"/>
     </xsl:when>
@@ -423,16 +426,15 @@
     </xsl:choose>
   </xsl:variable>
 
-  <!--
-  <xsl:message select="local-name(.), $prefix"/>
-  -->
-
   <xsl:variable name="number" as="xs:integer">
     <xsl:apply-templates select="." mode="mp:label-number"/>
   </xsl:variable>
 
-  <xsl:variable name="format"
-                select="fp:localization-property(., 'number-format', local-name(.))"/>
+  <xsl:variable name="format">
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'number-format'"/>
+    </xsl:apply-templates>
+  </xsl:variable>
 
   <xsl:variable name="formatted-number" as="xs:string?">
     <xsl:if test="exists($format)">
@@ -442,11 +444,11 @@
 
   <xsl:choose>
     <xsl:when test="exists($prefix) and exists($formatted-number)">
-      <xsl:variable name="sep"
-                    select="fp:localization-property(., 'number-separator', local-name(..))"/>
       <xsl:sequence select="$prefix"/>
       <span class="sep">
-        <xsl:sequence select="$sep"/>
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'number-separator'"/>
+        </xsl:apply-templates>
       </span>
       <xsl:sequence select="$formatted-number"/>
     </xsl:when>

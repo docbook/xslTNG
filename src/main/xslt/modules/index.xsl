@@ -550,7 +550,7 @@
   <xsl:param name="lang" select="'en'"/>
 
   <xsl:apply-templates select="db:see" mode="m:gentext">
-    <xsl:with-param name="group" select="'index'"/>
+    <xsl:with-param name="group" select="'see'"/>
     <xsl:with-param name="content">
       <span class="see">
         <xsl:apply-templates select="db:see/node()"/>
