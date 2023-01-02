@@ -2044,6 +2044,7 @@ task epubGuide(
 // ============================================================
 
 task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  outputs.upToDateWhen { false }
   doFirst {
     if (dbsource = '') {
       throw new GradleException("You must specify -Pdbsource=...")
