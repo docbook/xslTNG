@@ -53,7 +53,15 @@ jobs:
           curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
           cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
 
-      - name: Checkout the branch
+      - name: Checkout the gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: 'gh-pages'
+
+      - name: Save EPUB and PDFs
+        run: tar cf - epub pdf | gzip > /tmp/save-epub-pdf.tar.gz
+
+      - name: Checkout the main branch
         uses: actions/checkout@v3
 
       - name: Setup SaxonEE
@@ -67,6 +75,9 @@ jobs:
       - name: Cleanup SaxonEE
         if: ${{ env.HAVE_SAXON_EE == 'true' }}
         run: rm -rf lib
+
+      - name: Restore EPUB and PDFs
+        run: cd build/website && tar zxf /tmp/save-epub-pdf.tar.gz
 
       - name: Deploy main to gh-pages
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
