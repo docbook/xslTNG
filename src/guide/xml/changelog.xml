@@ -2,6 +2,30 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 <revision>
+<revnumber>2.0.1</revnumber>
+<date>2023-01-02</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r200">2.0.0</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Added support for ISO 690 bibliographies via a
+<parameter>bibliography-style</parameter> parameter.
+</para>
+</listitem>
+<listitem>
+<para>Fixed bug where <tag>authorgroup</tag> wasn’t being processed in
+<tag>biblioentry</tag>.
+</para>
+</listitem>
+<listitem>
+<para>A number of additional changes have been made to improve localization
+support. (I discovered a small number of tests that weren’t being run in automation;
+those revealed new errors, mostly in generated text for cross references.)</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+<revision xml:id="r200">
 <revnumber>2.0.0</revnumber>
 <date>2022-12-30</date>
 <revdescription>
