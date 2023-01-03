@@ -1660,6 +1660,9 @@ task website(type: Copy, dependsOn: ['webGuide', 'webReport', 'webExplorer',
   into "${buildDir}/website/epub"
   from "${buildDir}/epub"
   include "*.epub"
+  rename { filename ->
+    "DocBook-${filename}"
+  }
 }
 
 task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {
