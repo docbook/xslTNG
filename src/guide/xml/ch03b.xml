@@ -242,17 +242,25 @@ expression in the <att>match</att> attribute with the current node
 as the context item. A template with the match express <code>true()</code>
 wall always succeed; it is used as a fallback.</para>
 
-<para>The <literal>title</literal> group determines how titles are
-formatted (but see also the <literal>title-numbered</literal>,
-<literal>title-unnumbered</literal>, and
-<literal>title-generated</literal> groups):</para>
+<para>The <literal>title-numbered</literal> group determines how
+titles are formatted if they are numbered, (there’s also
+<literal>title-unnumbered</literal> when titles aren’t being
+numbered):</para>
 
-<programlisting language="xml"><![CDATA[<group name="title">
-   <template match="self::db:abstract">%c</template>
-   <template match="self::db:caution">%c</template>
+<programlisting language="xml"><![CDATA[<group name="title-numbered">
+   <template match="self::db:section[ancestor::db:preface]">%c</template>
    …
-   <template match="true()">%c</template>
+   <template match="self::db:appendix">{Appendix} %l%.%c</template>
+   …
+   <template match="self::db:warning">%c</template>
+   <template match="true()">%l%.%c</template>
 </group>]]></programlisting>
+
+<para>(Note that not all titles <emphasis>are</emphasis> numbered,
+this is just the group that’s used if they could be. See
+<parameter>division-numbers</parameter>,
+<parameter>component-numbers</parameter>, and
+<parameter>section-numbers</parameter>.)</para>
 
 <para>Within a template, two kinds of substitution are performed: names in
 curly braces are replaced by the corresponding mapping and %-letter values

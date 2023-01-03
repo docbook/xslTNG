@@ -809,6 +809,28 @@ will be indented by this amount.</para>
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
+      <varname>component-numbers</varname>
+      <initializer>'1'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Are components numbered?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>component-numbers</parameter> <glossterm>is true</glossterm>,
+components (chapters, appendixes, etc.) that do not have
+an explicit label will be labeled with their component number.</para>
+<para>See also <parameter>division-numbers-inherit</parameter>
+and
+<varname>v:title-properties</varname>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
       <varname>component-numbers-inherit</varname>
       <initializer>'false'</initializer>
     </fieldsynopsis>
@@ -1339,6 +1361,27 @@ See <varname>theme-list</varname> for a list of themes. You can add
 your own themes with custom CSS (with <mode>m:html-head-links</mode> mode, for
 example).
 </para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>division-numbers</varname>
+      <initializer>'1'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Are divisions numbered?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>division-numbers</parameter> <glossterm>is true</glossterm>,
+divisions (books, parts, references, etc.) that do not have
+an explicit label will be labeled with their division number.</para>
+<para>See also
+<varname>v:title-properties</varname>.</para>
 </refsection>
 </refentry>
 
@@ -3409,7 +3452,8 @@ case-by-case basis with the
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If <parameter>section-numbers</parameter> is true, sections that do not have
+<para>If <parameter>section-numbers</parameter> <glossterm>is true</glossterm>,
+sections that do not have
 an explicit label will be labeled with their section number.</para>
 <para>See also <parameter>division-numbers-inherit</parameter>,
 <parameter>section-numbers-inherit</parameter>, and

@@ -23,24 +23,22 @@
               xmlns:db="http://docbook.org/ns/docbook">
   <xsl:sequence select="$v:user-title-groups"/>
 
-  <title xpath="self::db:section[ancestor::db:preface]"
-         group="title-unnumbered"/>
-
   <title xpath="self::db:section|self::db:sect1
                 |self::db:sect2|self::db:sect3|self::db:sect4|self::db:sect5
                 |self::db:refsection|self::db:refsect1|self::db:refsect2|self::db:refsect3"
          group="{if (f:is-true($section-numbers))
-                   then 'title-numbered'
-                   else 'title-unnumbered'}"/>
+                 then 'title-numbered'
+                 else 'title-unnumbered'}"/>
 
-  <title xpath="self::db:article"
-         group="title"/>
+  <title xpath="self::db:article|self::db:preface|self::db:chapter|self::db:appendix"
+         group="{if (f:is-true($component-numbers))
+                 then 'title-numbered'
+                 else 'title-unnumbered'}"/>
 
-  <title xpath="self::db:preface"
-         group="title"/>
-
-  <title xpath="self::db:part|self::db:reference|self::db:chapter|self::db:appendix"
-         group="title-numbered"/>
+  <title xpath="self::db:book|self::db:part|self::db:reference"
+         group="{if (f:is-true($division-numbers))
+                 then 'title-numbered'
+                 else 'title-unnumbered'}"/>
 
   <title xpath="self::db:figure[parent::db:formalgroup]
                 |self::db:table[parent::db:formalgroup]
@@ -49,10 +47,10 @@
          group="subfigure-title"/>
 
   <title xpath="self::db:figure|self::db:table|self::db:equation|self::db:example"
-         group="title"/>
+         group="title-numbered"/>
 
   <title xpath="self::db:formalgroup"
-         group="title"/>
+         group="title-numbered"/>
 
   <title xpath="self::db:step|self::db:listitem[parent::db:orderedlist]"
          group="title-unnumbered"/>
@@ -67,7 +65,7 @@
          group="title-numbered"/>
 
   <title xpath="self::*"
-         group="title"/>
+         group="title-unnumbered"/>
 </xsl:variable>
 
 <!-- ============================================================ -->
