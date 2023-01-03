@@ -32,8 +32,10 @@
   <xsl:variable name="localizations" as="map(*)+">
     <xsl:for-each select="f:locales($context)">
       <xsl:variable name="locale" select="."/>
-      <xsl:variable name="doc" select="doc('../locale/' || $locale || '.xml')"/>
-      <xsl:sequence select="map:entry($doc/l:l10n/@language, $doc)"/>
+      <xsl:if test="doc-available('../locale/' || $locale || '.xml')">
+        <xsl:variable name="doc" select="doc('../locale/' || $locale || '.xml')"/>
+        <xsl:sequence select="map:entry($doc/l:l10n/@language, $doc)"/>
+      </xsl:if>
     </xsl:for-each>
   </xsl:variable>
 
