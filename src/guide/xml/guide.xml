@@ -15,6 +15,29 @@
 <revhistory>
   <?db revhistory-style="list"?>
   <revision>
+    <revnumber>1.11.2</revnumber>
+    <date>2023-01-03</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed bug where a missing localization file would cause the
+transformation to fail.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
+    <revnumber>1.11.1</revnumber>
+    <date>2022-11-08</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed a CSS problem and removed some debugging cruft.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
+  <revision>
     <revnumber>1.11.0</revnumber>
     <date>2022-11-07</date>
     <revdescription>
