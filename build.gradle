@@ -93,6 +93,7 @@ ext {
     "gif": "image/gif",
     "svg": "image/svg"
   ]
+  computedGitRef = null
 }
 
 // Set saxonLicenseDir in gradle.properties, or from the
@@ -139,8 +140,8 @@ relaxng_validate.configure {
 
 // If this is running on the CI infrastructure and it's not
 // a tagged build, add -SNAPSHOT to the version.
-if (System.getenv()["CIRCLECI"] == "true"
-    && System.getenv()["CIRCLE_TAG"] == null
+if (System.getenv()["CIWORKFLOW"] == "yes"
+    && System.getenv()["CI_TAG"] == ""
     && !xslTNGversion.contains('SNAPSHOT')) {
   xslTNGversion = xslTNGversion + "-SNAPSHOT"
 }
@@ -190,8 +191,12 @@ class CheckTextFile extends DefaultTask {
 def gitRef() {
   // Depending on the state of your repo, this can be time consuming,
   // so don't bother unless you're demanding complete success...
+  if (computedGitRef != null) {
+    return computedGitRef
+  }
+
   def ref = null;
-  if (requireCompileSuccess)  {
+  if (requireCompileSuccess) {
     def gitRepo = new File(".git")
     if (gitRepo.exists() && gitRepo.isDirectory()) {
       def command = ['git', 'rev-parse', '--short', '--verify', 'HEAD']
@@ -218,6 +223,8 @@ def gitRef() {
     ref = "SNAPSHOT"
   }
 
+  computedGitRef = ref
+  
   if (ref == null) {
     ref = "Unknown"
     println("This doesn't appear to be a git clone; using VERSION-ID: ${ref}")

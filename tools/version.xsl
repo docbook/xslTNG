@@ -10,6 +10,8 @@
 	    omit-xml-declaration="yes"/>
 
 <xsl:template match="/">
+  <xsl:message select="'Version:', $version, ':', $gitref"/>
+
   <xsl:element name="xsl:stylesheet" namespace="http://www.w3.org/1999/XSL/Transform">
     <xsl:namespace name="v" select="'http://docbook.org/ns/docbook/variables'"/>
     <xsl:attribute name="version" select="'3.0'"/>
