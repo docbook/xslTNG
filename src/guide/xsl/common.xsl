@@ -56,7 +56,8 @@
 <!-- ============================================================ -->
 
 <xsl:key name="sections" match="db:section" use="db:info/db:biblioid"/>
-<xsl:key name="refentry" match="db:refentry" use="db:refmeta/db:refmiscinfo"/>
+<xsl:key name="refentry" match="db:refentry"
+         use="db:refmeta/db:refmiscinfo[not(@class)]"/>
 
 <xsl:key name="modes" match="a:template" use="@mode"/>
 <xsl:key name="functions" match="a:function" use="@name"/>
@@ -125,7 +126,7 @@
 <!-- ============================================================ -->
 
 <xsl:template match="db:refnamediv">
-  <xsl:for-each select="../db:refmeta/db:refmiscinfo">
+  <xsl:for-each select="../db:refmeta/db:refmiscinfo[not(@class)]">
     <div id="{../../db:refnamediv/db:refclass}-{fg:checksum(.)}"/>
   </xsl:for-each>
 
@@ -146,8 +147,9 @@
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:variable name="objects"
-                select="key('a-by-name', ../db:refmeta/db:refmiscinfo, $explorer)"/>
+  <xsl:variable
+      name="objects"
+      select="key('a-by-name', ../db:refmeta/db:refmiscinfo[not(@class)], $explorer)"/>
 
   <xsl:choose>
     <xsl:when test="ancestor::db:refentry[contains-token(@role, 'obsolete')]
@@ -606,8 +608,9 @@
 <!-- ============================================================ -->
 
 <xsl:template name="tg:detail">
-  <xsl:variable name="objects"
-                select="key('a-by-name', ../db:refmeta/db:refmiscinfo, $explorer)"/>
+  <xsl:variable
+      name="objects"
+      select="key('a-by-name', ../db:refmeta/db:refmiscinfo[not(@class)], $explorer)"/>
 
   <div class="a-detail mode-detail">
     <div>
@@ -638,9 +641,9 @@
           </xsl:otherwise>
         </xsl:choose>
       </div>
-      <div><xsl:sequence select="../db:refmeta/db:refmiscinfo[1]/node()"/></div>
+      <div><xsl:sequence select="../db:refmeta/db:refmiscinfo[not(@class)][1]/node()"/></div>
     </div>
-    <xsl:for-each select="../db:refmeta/db:refmiscinfo[position() gt 1]">
+    <xsl:for-each select="../db:refmeta/db:refmiscinfo[not(@class)][position() gt 1]">
       <div>
         <div/>
         <div><xsl:sequence select="node()"/></div>
@@ -648,7 +651,7 @@
     </xsl:for-each>
 
     <xsl:choose>
-      <xsl:when test="contains(../db:refmeta/db:refmiscinfo[1],
+      <xsl:when test="contains(../db:refmeta/db:refmiscinfo[not(@class)][1],
                       '{http://docbook.org/extensions/xslt}')">
         <!-- this is an extension function -->
       </xsl:when>
@@ -657,7 +660,7 @@
       </xsl:when>
       <xsl:when test="empty($objects)">
         <xsl:message select="'Non-existant:',
-                             ../db:refmeta/db:refmiscinfo/string()"/>
+                             ../db:refmeta/db:refmiscinfo[not(@class)]/string()"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="defined-in" as="element()*">
@@ -737,6 +740,15 @@
           <div>
             <div class="prop">Static:</div>
             <div>Yes</div>
+          </div>
+        </xsl:if>
+        <xsl:if test="../db:refmeta/db:refmiscinfo[@class='version']">
+          <div>
+            <div class="prop">Since:</div>
+            <div>
+              <xsl:apply-templates
+                  select="../db:refmeta/db:refmiscinfo[@class='version']/node()"/>
+            </div>
           </div>
         </xsl:if>
       </xsl:otherwise>
