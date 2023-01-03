@@ -485,9 +485,10 @@
                                 then fp:iso690(., 'onwww')
                                 else fp:iso690(., 'oninet')"/>
         </xsl:if>
-        <xsl:text>: &lt;</xsl:text>
+        <xsl:text>: </xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link1')"/>
         <xsl:sequence select="string(@xlink:href)"/>
-        <xsl:text>&gt;</xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link2')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:sequence select="fp:iso690(., 'access')"/>
@@ -497,9 +498,10 @@
                                 then fp:iso690(., 'onwww')
                                 else fp:iso690(., 'oninet')"/>
         </xsl:if>
-        <xsl:text>: &lt;</xsl:text>
+        <xsl:text>: </xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link1')"/>
         <xsl:sequence select="string(@xlink:href)"/>
-        <xsl:text>&gt;</xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link2')"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:sequence select="fp:optional-sep(., 'primary.sep')"/> <!-- ??? -->
@@ -555,10 +557,7 @@
   <xsl:param name="context" as="element()"/>
   <xsl:param name="key" as="xs:string"/>
 
-  <xsl:apply-templates select="$context" mode="m:gentext">
-    <xsl:with-param name="group" select="'iso690'"/>
-    <xsl:with-param name="key" select="$key"/>
-  </xsl:apply-templates>
+  <xsl:sequence select="f:l10n-token($context, 'iso690.'||$key)"/>
 </xsl:function>
 
 <xsl:function name="fp:optional-sep" as="item()*">
@@ -570,10 +569,7 @@
       <xsl:text> </xsl:text>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="$context" mode="m:gentext">
-        <xsl:with-param name="group" select="'iso690'"/>
-        <xsl:with-param name="key" select="$key"/>
-      </xsl:apply-templates>
+      <xsl:sequence select="f:l10n-token($context, 'iso690.'||$key)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>

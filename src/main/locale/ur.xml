@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locale xmlns="http://docbook.org/ns/docbook/l10n/source"
+         xmlns:db="http://docbook.org/ns/docbook"
          language="ur"
          english-language-name="Urdu">
    <info>
@@ -71,6 +72,9 @@
       <gentext key="GlossSeeAlso">یہ بھی دیکھیں</gentext>
       <gentext key="glossseealso">یہ بھی دیکھیں</gentext>
       <gentext key="graphicdesigner">ترسیم تراش</gentext>
+      <gentext key="hyphenation-character">‐</gentext>
+      <gentext key="hyphenation-push-character-count">2</gentext>
+      <gentext key="hyphenation-remain-character-count">2</gentext>
       <gentext key="IMPORTANT">اہم</gentext>
       <gentext key="important">اہم</gentext>
       <gentext key="Important">اہم</gentext>
@@ -196,358 +200,489 @@
       <gentext key="Warning">انتباہ</gentext>
       <gentext key="warning">انتباہ</gentext>
       <gentext key="WARNING">انتباہ</gentext>
+      <gentext key="writing-mode">rl-tb</gentext>
       <gentext key="xrefto">بحوالہ</gentext>
+      <gentext key="iso690.lastfirst.sep">, </gentext>
+      <gentext key="iso690.alt.person.two.sep"> – </gentext>
+      <gentext key="iso690.alt.person.last.sep"> – </gentext>
+      <gentext key="iso690.alt.person.more.sep"> – </gentext>
+      <gentext key="iso690.primary.editor"> (ed.)</gentext>
+      <gentext key="iso690.primary.many">, et al.</gentext>
+      <gentext key="iso690.primary.sep">. </gentext>
+      <gentext key="iso690.submaintitle.sep">: </gentext>
+      <gentext key="iso690.title.sep">. </gentext>
+      <gentext key="iso690.othertitle.sep">, </gentext>
+      <gentext key="iso690.medium1"> [</gentext>
+      <gentext key="iso690.medium2">]</gentext>
+      <gentext key="iso690.secondary.person.sep">; </gentext>
+      <gentext key="iso690.secondary.sep">. </gentext>
+      <gentext key="iso690.respons.sep">. </gentext>
+      <gentext key="iso690.edition.sep">. </gentext>
+      <gentext key="iso690.edition.serial.sep">, </gentext>
+      <gentext key="iso690.issuing.range">-</gentext>
+      <gentext key="iso690.issuing.div">, </gentext>
+      <gentext key="iso690.issuing.sep">. </gentext>
+      <gentext key="iso690.partnr.sep">. </gentext>
+      <gentext key="iso690.placepubl.sep">: </gentext>
+      <gentext key="iso690.publyear.sep">, </gentext>
+      <gentext key="iso690.pubinfo.sep">. </gentext>
+      <gentext key="iso690.spec.pubinfo.sep">, </gentext>
+      <gentext key="iso690.upd.sep">, </gentext>
+      <gentext key="iso690.datecit1"> [cited </gentext>
+      <gentext key="iso690.datecit2">]</gentext>
+      <gentext key="iso690.extent.sep">. </gentext>
+      <gentext key="iso690.locs.sep">, </gentext>
+      <gentext key="iso690.location.sep">. </gentext>
+      <gentext key="iso690.serie.sep">. </gentext>
+      <gentext key="iso690.notice.sep">. </gentext>
+      <gentext key="iso690.access">Available </gentext>
+      <gentext key="iso690.acctoo">Also available </gentext>
+      <gentext key="iso690.onwww">from World Wide Web</gentext>
+      <gentext key="iso690.oninet">from Internet</gentext>
+      <gentext key="iso690.access.end">: </gentext>
+      <gentext key="iso690.link1">&lt;</gentext>
+      <gentext key="iso690.link2">&gt;</gentext>
+      <gentext key="iso690.access.sep">. </gentext>
+      <gentext key="iso690.isbn">ISBN </gentext>
+      <gentext key="iso690.issn">ISSN </gentext>
+      <gentext key="iso690.stdnum.sep">. </gentext>
+      <gentext key="iso690.patcountry.sep">. </gentext>
+      <gentext key="iso690.pattype.sep">, </gentext>
+      <gentext key="iso690.patnum.sep">. </gentext>
+      <gentext key="iso690.patdate.sep">. </gentext>
    </mappings>
-   <properties name="language">
-      <property name="writing-mode" value="rl-tb"/>
-      <property name="hyphenation-character" value="‐"/>
-      <property name="hyphenation-push-character-count" value="2"/>
-      <property name="hyphenation-remain-character-count" value="2"/>
-   </properties>
-   <properties name="number-format">
-      <property name="part" value="I"/>
-      <property name="reference" value="I"/>
-      <property name="appendix" value="A"/>
-      <property name="_default" value="1"/>
-   </properties>
-   <properties name="datetime">
-      <property name="format" value="d/m/Y"/>
-   </properties>
-   <properties name="number-separator">
-      <property name="_default" value="."/>
-   </properties>
-   <group name="refentry">
-      <template name="refname-sep">, </template>
-      <template name="refpurpose-sep"> — </template>
+   <group name="number-format">
+      <template match="self::db:part">I</template>
+      <template match="self::db:reference">I</template>
+      <template match="self::db:appendix">A</template>
+      <template match="true()">1</template>
    </group>
-   <group name="variablelist">
-      <template name="sep">, </template>
-      <template name="sep2">, </template>
-      <template name="seplast">, </template>
+   <group name="date-format">
+      <template match="true()">[D01]/[M01]/[Y0001]</template>
    </group>
-   <group name="refentry">
-      <template name="refname-sep">, </template>
-      <template name="refpurpose-sep"> — </template>
+   <group name="datetime-format">
+      <template match="true()">[D01]/[M01]/[Y0001]</template>
    </group>
-   <group name="xlink">
-      <template name="xlink-arclist-before"> [</template>
-      <template name="xlink-arclist-after">] </template>
-      <template name="xlink-arclist-titlesep">: </template>
-      <template name="xlink-arclist-sep">, </template>
+   <group name="number-separator">
+      <template match="true()">.</template>
    </group>
-   <property name="styles">
-      <property name="person-name" value="first-last"/>
-   </property>
+   <group name="keycap"/>
+   <group name="name-style">
+      <template match="self::db:personname">first-last</template>
+   </group>
    <group name="label">
-      <template name="refname">{RefName}</template>
-      <template name="see">{See} </template>
-      <template name="seealso">{Seealso} </template>
-      <template name="edited-by">{Editedby} </template>
+      <template match="self::db:refnamediv">{RefName}</template>
+      <template match="self::db:refname">{RefName}</template>
+      <template match="self::db:see">{See}</template>
+      <template match="self::db:seealso">{Seealso}</template>
+      <template match="self::db:editor">{Editedby}</template>
+      <template match="self::db:msgaud">{msgaud}</template>
+      <template match="self::db:msglevel">{msglevel}</template>
+      <template match="self::db:msgorig">{msgorig}</template>
    </group>
    <group name="label-separator">
-      <template name="_default">. </template>
+      <template match="self::db:msgaud">: </template>
+      <template match="self::db:msglevel">: </template>
+      <template match="self::db:msgorig">: </template>
+      <template match="self::db:editor"> </template>
+      <template match="self::db:see"> </template>
+      <template match="self::db:seealso"> </template>
+      <template match="true()">. </template>
    </group>
-   <group name="title">
-      <template name="abstract">%c</template>
-      <template name="acknowledgements">%c</template>
-      <template name="answer">%c</template>
-      <template name="appendix">ضمیمہ %l%.%c</template>
-      <template name="article">%c</template>
-      <template name="authorblurb">%c</template>
-      <template name="bibliodiv">%c</template>
-      <template name="biblioentry">%c</template>
-      <template name="bibliography">%c</template>
-      <template name="bibliolist">%c</template>
-      <template name="bibliomixed">%c</template>
-      <template name="bibliomset">%c</template>
-      <template name="biblioset">%c</template>
-      <template name="blockquote">%c</template>
-      <template name="book">%c</template>
-      <template name="calloutlist">%c</template>
-      <template name="caution">%c</template>
-      <template name="chapter">باب %l%.%c</template>
-      <template name="colophon">%c</template>
-      <template name="dedication">%c</template>
-      <template name="equation">مساوات %l%.%c</template>
-      <template name="example">مثال %l%.%c</template>
-      <template name="figure">صورت %l%.%c</template>
-      <template name="foil">%c</template>
-      <template name="foilgroup">%c</template>
-      <template name="formalpara">%c</template>
-      <template name="glossary">%c</template>
-      <template name="glossdiv">%c</template>
-      <template name="glosslist">%c</template>
-      <template name="glossentry">%c</template>
-      <template name="important">%c</template>
-      <template name="index">%c</template>
-      <template name="indexdiv">%c</template>
-      <template name="itemizedlist">%c</template>
-      <template name="legalnotice">%c</template>
-      <template name="listitem"/>
-      <template name="lot">%c</template>
-      <template name="msg">%c</template>
-      <template name="msgexplan">%c</template>
-      <template name="msgmain">%c</template>
-      <template name="msgrel">%c</template>
-      <template name="msgset">%c</template>
-      <template name="msgsub">%c</template>
-      <template name="note">%c</template>
-      <template name="orderedlist">%c</template>
-      <template name="part">جزو %l%.%c</template>
-      <template name="partintro">%c</template>
-      <template name="preface">%c</template>
-      <template name="procedure">%c</template>
-      <template name="procedure.formal">اجرا %l%.%c</template>
-      <template name="productionset">%c</template>
-      <template name="productionset.formal">پیشکش %l</template>
-      <template name="qandadiv">%c</template>
-      <template name="qandaentry">%c</template>
-      <template name="qandaset">%c</template>
-      <template name="question">%c</template>
-      <template name="refentry">%c</template>
-      <template name="reference">%c</template>
-      <template name="refsection">%c</template>
-      <template name="refsect1">%c</template>
-      <template name="refsect2">%c</template>
-      <template name="refsect3">%c</template>
-      <template name="refsynopsisdiv">%c</template>
-      <template name="refsynopsisdivinfo">%c</template>
-      <template name="segmentedlist">%c</template>
-      <template name="set">%c</template>
-      <template name="setindex">%c</template>
-      <template name="sidebar">%c</template>
-      <template name="step">%c</template>
-      <template name="table">جدول %l%.%c</template>
-      <template name="task">%c</template>
-      <template name="tasksummary">%c</template>
-      <template name="taskprerequisites">%c</template>
-      <template name="taskrelated">%c</template>
-      <template name="tip">%c</template>
-      <template name="toc">%c</template>
-      <template name="variablelist">%c</template>
-      <template name="varlistentry"/>
-      <template name="warning">%c</template>
-      <template name="TableofContents">{TableofContents}</template>
-      <template name="ListofFigures">{ListofFigures}</template>
-      <template name="ListofTables">{ListofTables}</template>
-      <template name="ListofEquations">{ListofEquations}</template>
-      <template name="ListofProcedures">{ListofProcedures}</template>
-      <template name="ListofExamples">{ListofExamples}</template>
-      <template name="ListofUnknown">{ListofUnknown}</template>
-      <template name="_default">%c</template>
+   <group name="separator">
+      <template match="true()">, </template>
+   </group>
+   <group name="table-of-contents">
+      <template match="true()">{TableofContents}</template>
+   </group>
+   <group name="list-of-figures">
+      <template match="true()">{ListofFigures}</template>
+   </group>
+   <group name="list-of-tables">
+      <template match="true()">{ListofTables}</template>
+   </group>
+   <group name="list-of-equations">
+      <template match="true()">{ListofEquations}</template>
+   </group>
+   <group name="list-of-procedures">
+      <template match="true()">{ListofProcedures}</template>
+   </group>
+   <group name="list-of-examples">
+      <template match="true()">{ListofExamples}</template>
+   </group>
+   <group name="list-of-unknown">
+      <template match="true()">{ListofUnknown}</template>
    </group>
    <group name="list-of-titles">
-      <template name="acknowledgements">%c</template>
-      <template name="article">%c</template>
-      <template name="bibliography">%c</template>
-      <template name="book">%c</template>
-      <template name="colophon">%c</template>
-      <template name="dedication">%c</template>
-      <template name="formalgroup">%l%.%c</template>
-      <template name="forward">%c</template>
-      <template name="glossary">%c</template>
-      <template name="index">%c</template>
-      <template name="preface">%c</template>
-      <template name="setindex">%c</template>
-      <template name="topic">%c</template>
-      <template name="book/part">{Part} %l%.%c</template>
-      <template name="book/reference">{Reference} %l%.%c</template>
-      <template name="preface/section">%c</template>
-      <template name="preface/sect1">%c</template>
-      <template name="_default">%l%.%c</template>
+      <template match="self::db:part[parent::db:book]">{Part} %l%.%c</template>
+      <template match="self::db:reference[parent::db:book]">{Reference} %l%.%c</template>
+      <template match="self::db:section[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect1[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect2[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect3[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect4[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect5[ancestor::db:preface]">%c</template>
+      <template match="self::db:acknowledgements">%c</template>
+      <template match="self::db:article">%c</template>
+      <template match="self::db:bibliography">%c</template>
+      <template match="self::db:book">%c</template>
+      <template match="self::db:colophon">%c</template>
+      <template match="self::db:dedication">%c</template>
+      <template match="self::db:formalgroup">%l%.%c</template>
+      <template match="self::db:forward">%c</template>
+      <template match="self::db:glossary">%c</template>
+      <template match="self::db:index">%c</template>
+      <template match="self::db:preface">%c</template>
+      <template match="self::db:setindex">%c</template>
+      <template match="self::db:topic">%c</template>
+      <template match="true()">%l%.%c</template>
    </group>
    <group name="title-unnumbered">
-      <template name="_default">%c</template>
+      <template match="self::db:abstract">%c</template>
+      <template match="self::db:acknowledgements">%c</template>
+      <template match="self::db:answer">%c</template>
+      <template match="self::db:article">%c</template>
+      <template match="self::db:authorblurb">%c</template>
+      <template match="self::db:bibliodiv">%c</template>
+      <template match="self::db:biblioentry">%c</template>
+      <template match="self::db:bibliography">%c</template>
+      <template match="self::db:bibliolist">%c</template>
+      <template match="self::db:bibliomixed">%c</template>
+      <template match="self::db:bibliomset">%c</template>
+      <template match="self::db:biblioset">%c</template>
+      <template match="self::db:blockquote">%c</template>
+      <template match="self::db:book">%c</template>
+      <template match="self::db:calloutlist">%c</template>
+      <template match="self::db:caution">%c</template>
+      <template match="self::db:colophon">%c</template>
+      <template match="self::db:dedication">%c</template>
+      <template match="self::db:equation">مساوات %l%.%c</template>
+      <template match="self::db:example">مثال %l%.%c</template>
+      <template match="self::db:figure">صورت %l%.%c</template>
+      <template match="self::db:foil">%c</template>
+      <template match="self::db:foilgroup">%c</template>
+      <template match="self::db:formalpara">%c</template>
+      <template match="self::db:glossary">%c</template>
+      <template match="self::db:glossdiv">%c</template>
+      <template match="self::db:glosslist">%c</template>
+      <template match="self::db:glossentry">%c</template>
+      <template match="self::db:important">%c</template>
+      <template match="self::db:index">%c</template>
+      <template match="self::db:indexdiv">%c</template>
+      <template match="self::db:itemizedlist">%c</template>
+      <template match="self::db:legalnotice">%c</template>
+      <template match="self::db:listitem"/>
+      <template match="self::db:lot">%c</template>
+      <template match="self::db:msg">%c</template>
+      <template match="self::db:msgexplan">%c</template>
+      <template match="self::db:msgmain">%c</template>
+      <template match="self::db:msgrel">%c</template>
+      <template match="self::db:msgset">%c</template>
+      <template match="self::db:msgsub">%c</template>
+      <template match="self::db:note">%c</template>
+      <template match="self::db:orderedlist">%c</template>
+      <template match="self::db:partintro">%c</template>
+      <template match="self::db:preface">%c</template>
+      <template match="self::db:procedure">%c</template>
+      <template match="self::db:procedure.formal">اجرا %l%.%c</template>
+      <template match="self::db:productionset">%c</template>
+      <template match="self::db:productionset.formal">پیشکش %l</template>
+      <template match="self::db:qandadiv">%c</template>
+      <template match="self::db:qandaentry">%c</template>
+      <template match="self::db:qandaset">%c</template>
+      <template match="self::db:question">%c</template>
+      <template match="self::db:refentry">%c</template>
+      <template match="self::db:reference">%c</template>
+      <template match="self::db:refsection">%c</template>
+      <template match="self::db:refsect1">%c</template>
+      <template match="self::db:refsect2">%c</template>
+      <template match="self::db:refsect3">%c</template>
+      <template match="self::db:refsynopsisdiv">%c</template>
+      <template match="self::db:refsynopsisdivinfo">%c</template>
+      <template match="self::db:segmentedlist">%c</template>
+      <template match="self::db:set">%c</template>
+      <template match="self::db:setindex">%c</template>
+      <template match="self::db:sidebar">%c</template>
+      <template match="self::db:step">%c</template>
+      <template match="self::db:table">جدول %l%.%c</template>
+      <template match="self::db:task">%c</template>
+      <template match="self::db:tasksummary">%c</template>
+      <template match="self::db:taskprerequisites">%c</template>
+      <template match="self::db:taskrelated">%c</template>
+      <template match="self::db:tip">%c</template>
+      <template match="self::db:toc">%c</template>
+      <template match="self::db:variablelist">%c</template>
+      <template match="self::db:varlistentry"/>
+      <template match="self::db:warning">%c</template>
+      <template match="true()">%c</template>
    </group>
    <group name="title-numbered">
-      <template name="preface/section">%c</template>
-      <template name="preface/sect1">%c</template>
-      <template name="article/appendix">%l%.%c</template>
-      <template name="appendix">ضمیمہ %l%.%c</template>
-      <template name="bridgehead">%l%.%c</template>
-      <template name="chapter">باب %l%.%c</template>
-      <template name="part">جزو %l%.%c</template>
-      <template name="sect1">%l%.%c</template>
-      <template name="sect2">%l%.%c</template>
-      <template name="sect3">%l%.%c</template>
-      <template name="sect4">%l%.%c</template>
-      <template name="sect5">%l%.%c</template>
-      <template name="section">%l%.%c</template>
-      <template name="simplesect">%c</template>
-      <template name="topic">%c</template>
-      <template name="refsect1">%c</template>
-      <template name="refsect2">%c</template>
-      <template name="refsect3">%c</template>
-      <template name="refsection">%c</template>
-      <template name="_default">%l%.%c</template>
+      <template match="self::db:section[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect1[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect2[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect3[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect4[ancestor::db:preface]">%c</template>
+      <template match="self::db:sect5[ancestor::db:preface]">%c</template>
+      <template match="self::db:appendix[parent::db:article]">%l%.%c</template>
+      <template match="self::db:appendix">ضمیمہ %l%.%c</template>
+      <template match="self::db:bridgehead">%l%.%c</template>
+      <template match="self::db:chapter">باب %l%.%c</template>
+      <template match="self::db:part">جزو %l%.%c</template>
+      <template match="self::db:sect1">%l%.%c</template>
+      <template match="self::db:sect2">%l%.%c</template>
+      <template match="self::db:sect3">%l%.%c</template>
+      <template match="self::db:sect4">%l%.%c</template>
+      <template match="self::db:sect5">%l%.%c</template>
+      <template match="self::db:section">%l%.%c</template>
+      <template match="self::db:simplesect">%c</template>
+      <template match="self::db:topic">%c</template>
+      <template match="self::db:refsection">%c</template>
+      <template match="self::db:refsect1">%c</template>
+      <template match="self::db:refsect2">%c</template>
+      <template match="self::db:refsect3">%c</template>
+      <template match="self::db:abstract">%c</template>
+      <template match="self::db:acknowledgements">%c</template>
+      <template match="self::db:answer">%c</template>
+      <template match="self::db:article">%c</template>
+      <template match="self::db:authorblurb">%c</template>
+      <template match="self::db:bibliodiv">%c</template>
+      <template match="self::db:biblioentry">%c</template>
+      <template match="self::db:bibliography">%c</template>
+      <template match="self::db:bibliolist">%c</template>
+      <template match="self::db:bibliomixed">%c</template>
+      <template match="self::db:bibliomset">%c</template>
+      <template match="self::db:biblioset">%c</template>
+      <template match="self::db:blockquote">%c</template>
+      <template match="self::db:book">%c</template>
+      <template match="self::db:calloutlist">%c</template>
+      <template match="self::db:caution">%c</template>
+      <template match="self::db:colophon">%c</template>
+      <template match="self::db:dedication">%c</template>
+      <template match="self::db:equation">مساوات %l%.%c</template>
+      <template match="self::db:example">مثال %l%.%c</template>
+      <template match="self::db:figure">صورت %l%.%c</template>
+      <template match="self::db:foil">%c</template>
+      <template match="self::db:foilgroup">%c</template>
+      <template match="self::db:formalpara">%c</template>
+      <template match="self::db:glossary">%c</template>
+      <template match="self::db:glossdiv">%c</template>
+      <template match="self::db:glosslist">%c</template>
+      <template match="self::db:glossentry">%c</template>
+      <template match="self::db:important">%c</template>
+      <template match="self::db:index">%c</template>
+      <template match="self::db:indexdiv">%c</template>
+      <template match="self::db:itemizedlist">%c</template>
+      <template match="self::db:legalnotice">%c</template>
+      <template match="self::db:listitem"/>
+      <template match="self::db:lot">%c</template>
+      <template match="self::db:msg">%c</template>
+      <template match="self::db:msgexplan">%c</template>
+      <template match="self::db:msgmain">%c</template>
+      <template match="self::db:msgrel">%c</template>
+      <template match="self::db:msgset">%c</template>
+      <template match="self::db:msgsub">%c</template>
+      <template match="self::db:note">%c</template>
+      <template match="self::db:orderedlist">%c</template>
+      <template match="self::db:partintro">%c</template>
+      <template match="self::db:preface">%c</template>
+      <template match="self::db:procedure">%c</template>
+      <template match="self::db:procedure.formal">اجرا %l%.%c</template>
+      <template match="self::db:productionset">%c</template>
+      <template match="self::db:productionset.formal">پیشکش %l</template>
+      <template match="self::db:qandadiv">%c</template>
+      <template match="self::db:qandaentry">%c</template>
+      <template match="self::db:qandaset">%c</template>
+      <template match="self::db:question">%c</template>
+      <template match="self::db:refentry">%c</template>
+      <template match="self::db:reference">%c</template>
+      <template match="self::db:refsynopsisdiv">%c</template>
+      <template match="self::db:refsynopsisdivinfo">%c</template>
+      <template match="self::db:segmentedlist">%c</template>
+      <template match="self::db:set">%c</template>
+      <template match="self::db:setindex">%c</template>
+      <template match="self::db:sidebar">%c</template>
+      <template match="self::db:step">%c</template>
+      <template match="self::db:table">جدول %l%.%c</template>
+      <template match="self::db:task">%c</template>
+      <template match="self::db:tasksummary">%c</template>
+      <template match="self::db:taskprerequisites">%c</template>
+      <template match="self::db:taskrelated">%c</template>
+      <template match="self::db:tip">%c</template>
+      <template match="self::db:toc">%c</template>
+      <template match="self::db:variablelist">%c</template>
+      <template match="self::db:varlistentry"/>
+      <template match="self::db:warning">%c</template>
+      <template match="true()">%l%.%c</template>
    </group>
    <group name="subfigure-title">
-      <template name="figure">{subfigure} %l%.%c</template>
-      <template name="table">{subtable} %l%.%c</template>
-      <template name="equation">{subequation} %l%.%c</template>
-      <template name="example">{subexample} %l%.%c</template>
+      <template match="self::db:figure">{subfigure} %l%.%c</template>
+      <template match="self::db:table">{subtable} %l%.%c</template>
+      <template match="self::db:equation">{subequation} %l%.%c</template>
+      <template match="self::db:example">{subexample} %l%.%c</template>
    </group>
    <group name="title-generated">
-      <template name="abstract">{Abstract}</template>
-      <template name="acknowledgements">{Acknowledgements}</template>
-      <template name="bibliography">{Bibliography}</template>
-      <template name="caution">{Caution}</template>
-      <template name="danger">{Danger}</template>
-      <template name="dedication">{Dedication}</template>
-      <template name="glossary">{Glossary}</template>
-      <template name="important">{Important}</template>
-      <template name="index">{Index}</template>
-      <template name="legalnotice">{LegalNotice}</template>
-      <template name="note">{Note}</template>
-      <template name="revhistory">{RevHistory}</template>
-      <template name="setindex">{SetIndex}</template>
-      <template name="tip">{Tip}</template>
-      <template name="warning">{Warning}</template>
+      <template match="self::db:abstract">{Abstract}</template>
+      <template match="self::db:acknowledgements">{Acknowledgements}</template>
+      <template match="self::db:bibliography">{Bibliography}</template>
+      <template match="self::db:caution">{Caution}</template>
+      <template match="self::db:danger">{Danger}</template>
+      <template match="self::db:dedication">{Dedication}</template>
+      <template match="self::db:glossary">{Glossary}</template>
+      <template match="self::db:important">{Important}</template>
+      <template match="self::db:index">{Index}</template>
+      <template match="self::db:legalnotice">{LegalNotice}</template>
+      <template match="self::db:note">{Note}</template>
+      <template match="self::db:revhistory">{RevHistory}</template>
+      <template match="self::db:setindex">{SetIndex}</template>
+      <template match="self::db:tip">{Tip}</template>
+      <template match="self::db:warning">{Warning}</template>
    </group>
    <group name="xref">
-      <template name="preface/section">{sectioncalled} %c</template>
-      <template name="preface/sect1">{sectioncalled} %c</template>
-      <template name="danger">%c</template>
-      <template name="production">%c</template>
-      <template name="bibliolist">%c</template>
-      <template name="glosslist">%c</template>
-      <template name="abstract">%c</template>
-      <template name="acknowledgements">%c</template>
-      <template name="answer">جواب: %l</template>
-      <template name="appendix">%c</template>
-      <template name="article">%c</template>
-      <template name="authorblurb">%c</template>
-      <template name="bibliodiv">%c</template>
-      <template name="bibliography">%c</template>
-      <template name="bibliomset">%c</template>
-      <template name="biblioset">%c</template>
-      <template name="blockquote">%c</template>
-      <template name="book">%c</template>
-      <template name="calloutlist">%c</template>
-      <template name="caution">%c</template>
-      <template name="chapter">%c</template>
-      <template name="colophon">%c</template>
-      <template name="constraintdef">%c</template>
-      <template name="dedication">%c</template>
-      <template name="equation">%c</template>
-      <template name="example">%c</template>
-      <template name="figure">%c</template>
-      <template name="foil">%c</template>
-      <template name="foilgroup">%c</template>
-      <template name="formalpara">%c</template>
-      <template name="glossary">%c</template>
-      <template name="glossdiv">%c</template>
-      <template name="important">%c</template>
-      <template name="index">%c</template>
-      <template name="indexdiv">%c</template>
-      <template name="itemizedlist">%c</template>
-      <template name="legalnotice">%c</template>
-      <template name="lot">%c</template>
-      <template name="msg">%c</template>
-      <template name="msgexplan">%c</template>
-      <template name="msgmain">%c</template>
-      <template name="msgrel">%c</template>
-      <template name="msgset">%c</template>
-      <template name="msgsub">%c</template>
-      <template name="note">%c</template>
-      <template name="orderedlist">%c</template>
-      <template name="part">%c</template>
-      <template name="partintro">%c</template>
-      <template name="preface">%c</template>
-      <template name="procedure">%c</template>
-      <template name="productionset">%c</template>
-      <template name="qandadiv">%c</template>
-      <template name="qandaentry">سوال: %l</template>
-      <template name="qandaset">%c</template>
-      <template name="question">سوال: %l</template>
-      <template name="reference">%c</template>
-      <template name="refsynopsisdiv">%c</template>
-      <template name="segmentedlist">%c</template>
-      <template name="set">%c</template>
-      <template name="setindex">%c</template>
-      <template name="sidebar">%c</template>
-      <template name="table">%c</template>
-      <template name="task">%c</template>
-      <template name="tip">%c</template>
-      <template name="toc">%c</template>
-      <template name="variablelist">%c</template>
-      <template name="warning">%c</template>
-      <template name="olink.document.citation"> in %o</template>
-      <template name="olink.page.citation"> (page %p)</template>
-      <template name="page.citation"> [%p]</template>
-      <template name="page">(page %p)</template>
-      <template name="docname"> in %o</template>
-      <template name="docnamelong"> in the document titled %o</template>
-      <template name="pageabbrev">(p%.%p)</template>
-      <template name="Page">صفحہ %p</template>
-      <template name="topic">%c</template>
-      <template name="bridgehead">حصہ کا نام “%c”</template>
-      <template name="refsection">حصہ کا نام “%c”</template>
-      <template name="refsect1">حصہ کا نام “%c”</template>
-      <template name="refsect2">حصہ کا نام “%c”</template>
-      <template name="refsect3">حصہ کا نام “%c”</template>
-      <template name="sect1">حصہ کا نام “%c”</template>
-      <template name="sect2">حصہ کا نام “%c”</template>
-      <template name="sect3">حصہ کا نام “%c”</template>
-      <template name="sect4">حصہ کا نام “%c”</template>
-      <template name="sect5">حصہ کا نام “%c”</template>
-      <template name="section">حصہ کا نام “%c”</template>
-      <template name="simplesect">حصہ کا نام “%c”</template>
-      <template name="step">{step} %l</template>
-      <template name="refnamediv">%c</template>
-      <template name="_default">%l</template>
+      <template match="self::db:section[ancestor::db:preface]">{sectioncalled} %c</template>
+      <template match="self::db:sect1[ancestor::db:preface]">{sectioncalled} %c</template>
+      <template match="self::db:sect2[ancestor::db:preface]">{sectioncalled} %c</template>
+      <template match="self::db:sect3[ancestor::db:preface]">{sectioncalled} %c</template>
+      <template match="self::db:sect4[ancestor::db:preface]">{sectioncalled} %c</template>
+      <template match="self::db:sect5[ancestor::db:preface]">{sectioncalled} %c</template>
+      <template match="self::db:danger">%c</template>
+      <template match="self::db:production">%c</template>
+      <template match="self::db:bibliolist">%c</template>
+      <template match="self::db:glosslist">%c</template>
+      <template match="self::db:abstract">%c</template>
+      <template match="self::db:acknowledgements">%c</template>
+      <template match="self::db:answer">جواب: %l</template>
+      <template match="self::db:appendix">%c</template>
+      <template match="self::db:article">%c</template>
+      <template match="self::db:authorblurb">%c</template>
+      <template match="self::db:bibliodiv">%c</template>
+      <template match="self::db:bibliography">%c</template>
+      <template match="self::db:bibliomset">%c</template>
+      <template match="self::db:biblioset">%c</template>
+      <template match="self::db:blockquote">%c</template>
+      <template match="self::db:book">%c</template>
+      <template match="self::db:calloutlist">%c</template>
+      <template match="self::db:caution">%c</template>
+      <template match="self::db:chapter">%c</template>
+      <template match="self::db:colophon">%c</template>
+      <template match="self::db:constraintdef">%c</template>
+      <template match="self::db:dedication">%c</template>
+      <template match="self::db:equation">%c</template>
+      <template match="self::db:example">%c</template>
+      <template match="self::db:figure">%c</template>
+      <template match="self::db:foil">%c</template>
+      <template match="self::db:foilgroup">%c</template>
+      <template match="self::db:formalpara">%c</template>
+      <template match="self::db:glossary">%c</template>
+      <template match="self::db:glossdiv">%c</template>
+      <template match="self::db:important">%c</template>
+      <template match="self::db:index">%c</template>
+      <template match="self::db:indexdiv">%c</template>
+      <template match="self::db:itemizedlist">%c</template>
+      <template match="self::db:legalnotice">%c</template>
+      <template match="self::db:lot">%c</template>
+      <template match="self::db:msg">%c</template>
+      <template match="self::db:msgexplan">%c</template>
+      <template match="self::db:msgmain">%c</template>
+      <template match="self::db:msgrel">%c</template>
+      <template match="self::db:msgset">%c</template>
+      <template match="self::db:msgsub">%c</template>
+      <template match="self::db:note">%c</template>
+      <template match="self::db:orderedlist">%c</template>
+      <template match="self::db:part">%c</template>
+      <template match="self::db:partintro">%c</template>
+      <template match="self::db:preface">%c</template>
+      <template match="self::db:procedure">%c</template>
+      <template match="self::db:productionset">%c</template>
+      <template match="self::db:qandadiv">%c</template>
+      <template match="self::db:qandaentry">سوال: %l</template>
+      <template match="self::db:qandaset">%c</template>
+      <template match="self::db:question">سوال: %l</template>
+      <template match="self::db:reference">%c</template>
+      <template match="self::db:refsynopsisdiv">%c</template>
+      <template match="self::db:segmentedlist">%c</template>
+      <template match="self::db:set">%c</template>
+      <template match="self::db:setindex">%c</template>
+      <template match="self::db:sidebar">%c</template>
+      <template match="self::db:table">%c</template>
+      <template match="self::db:task">%c</template>
+      <template match="self::db:tip">%c</template>
+      <template match="self::db:toc">%c</template>
+      <template match="self::db:variablelist">%c</template>
+      <template match="self::db:warning">%c</template>
+      <template match="self::db:olink.document.citation"> in %o</template>
+      <template match="self::db:olink.page.citation"> (page %p)</template>
+      <template match="self::db:page.citation"> [%p]</template>
+      <template match="self::db:page">(page %p)</template>
+      <template match="self::db:docname"> in %o</template>
+      <template match="self::db:docnamelong"> in the document titled %o</template>
+      <template match="self::db:pageabbrev">(p%.%p)</template>
+      <template match="self::db:Page">صفحہ %p</template>
+      <template match="self::db:topic">%c</template>
+      <template match="self::db:bridgehead">حصہ کا نام “%c”</template>
+      <template match="self::db:refsection">حصہ کا نام “%c”</template>
+      <template match="self::db:refsect1">حصہ کا نام “%c”</template>
+      <template match="self::db:refsect2">حصہ کا نام “%c”</template>
+      <template match="self::db:refsect3">حصہ کا نام “%c”</template>
+      <template match="self::db:sect1">حصہ کا نام “%c”</template>
+      <template match="self::db:sect2">حصہ کا نام “%c”</template>
+      <template match="self::db:sect3">حصہ کا نام “%c”</template>
+      <template match="self::db:sect4">حصہ کا نام “%c”</template>
+      <template match="self::db:sect5">حصہ کا نام “%c”</template>
+      <template match="self::db:section">حصہ کا نام “%c”</template>
+      <template match="self::db:simplesect">حصہ کا نام “%c”</template>
+      <template match="self::db:step">{step} %l</template>
+      <template match="self::db:refnamediv">%c</template>
+      <template match="true()">%l</template>
    </group>
    <group name="xref-number">
-      <template name="answer">جواب: %l</template>
-      <template name="appendix">ضمیمہ %l</template>
-      <template name="bridgehead">قسم %l</template>
-      <template name="chapter">باب %l</template>
-      <template name="equation">مساوات %l</template>
-      <template name="example">مثال %l</template>
-      <template name="figure">صورت %l</template>
-      <template name="part">جزو %l</template>
-      <template name="procedure">اجرا %l</template>
-      <template name="productionset">پیشکش %l</template>
-      <template name="qandadiv">سوال و جواب %l</template>
-      <template name="qandaentry">سوال: %l</template>
-      <template name="question">سوال: %l</template>
-      <template name="sect1">حصہ %l</template>
-      <template name="sect2">حصہ %l</template>
-      <template name="sect3">حصہ %l</template>
-      <template name="sect4">حصہ %l</template>
-      <template name="sect5">حصہ %l</template>
-      <template name="section">حصہ %l</template>
-      <template name="table">جدول %l</template>
+      <template match="self::db:answer">جواب: %l</template>
+      <template match="self::db:appendix">ضمیمہ %l</template>
+      <template match="self::db:bridgehead">قسم %l</template>
+      <template match="self::db:chapter">باب %l</template>
+      <template match="self::db:equation">مساوات %l</template>
+      <template match="self::db:example">مثال %l</template>
+      <template match="self::db:figure">صورت %l</template>
+      <template match="self::db:part">جزو %l</template>
+      <template match="self::db:procedure">اجرا %l</template>
+      <template match="self::db:productionset">پیشکش %l</template>
+      <template match="self::db:qandadiv">سوال و جواب %l</template>
+      <template match="self::db:qandaentry">سوال: %l</template>
+      <template match="self::db:question">سوال: %l</template>
+      <template match="self::db:sect1">حصہ %l</template>
+      <template match="self::db:sect2">حصہ %l</template>
+      <template match="self::db:sect3">حصہ %l</template>
+      <template match="self::db:sect4">حصہ %l</template>
+      <template match="self::db:sect5">حصہ %l</template>
+      <template match="self::db:section">حصہ %l</template>
+      <template match="self::db:table">جدول %l</template>
    </group>
    <group name="xref-number-and-title">
-      <template name="appendix">ضمیمہ %l, %c</template>
-      <template name="bridgehead">قسم %l, “%c”</template>
-      <template name="chapter">باب %l, %c</template>
-      <template name="equation">مساوات %l, “%c”</template>
-      <template name="example">مثال %l, “%c”</template>
-      <template name="figure">صورت %l, “%c”</template>
-      <template name="part">جزو %l, “%c”</template>
-      <template name="procedure">اجرا %l, “%c”</template>
-      <template name="productionset">پیشکش %l, “%c”</template>
-      <template name="qandadiv">سوال و جواب %l, “%c”</template>
-      <template name="refsect1">حصے کا نام “%c”</template>
-      <template name="refsect2">حصے کا نام “%c”</template>
-      <template name="refsect3">حصے کا نام “%c”</template>
-      <template name="refsection">حصے کا نام “%c”</template>
-      <template name="sect1">حصہ %l, “%c”</template>
-      <template name="sect2">حصہ %l, “%c”</template>
-      <template name="sect3">حصہ %l, “%c”</template>
-      <template name="sect4">حصہ %l, “%c”</template>
-      <template name="sect5">حصہ %l, “%c”</template>
-      <template name="section">حصہ %l, “%c”</template>
-      <template name="simplesect">حصے کا نام “%c”</template>
-      <template name="table">جدول %l, “%c”</template>
-      <template name="_default">%l%.%c</template>
+      <template match="self::db:appendix">ضمیمہ %l, %c</template>
+      <template match="self::db:bridgehead">قسم %l, “%c”</template>
+      <template match="self::db:chapter">باب %l, %c</template>
+      <template match="self::db:equation">مساوات %l, “%c”</template>
+      <template match="self::db:example">مثال %l, “%c”</template>
+      <template match="self::db:figure">صورت %l, “%c”</template>
+      <template match="self::db:part">جزو %l, “%c”</template>
+      <template match="self::db:procedure">اجرا %l, “%c”</template>
+      <template match="self::db:productionset">پیشکش %l, “%c”</template>
+      <template match="self::db:qandadiv">سوال و جواب %l, “%c”</template>
+      <template match="self::db:refsect1">حصے کا نام “%c”</template>
+      <template match="self::db:refsect2">حصے کا نام “%c”</template>
+      <template match="self::db:refsect3">حصے کا نام “%c”</template>
+      <template match="self::db:refsection">حصے کا نام “%c”</template>
+      <template match="self::db:sect1">حصہ %l, “%c”</template>
+      <template match="self::db:sect2">حصہ %l, “%c”</template>
+      <template match="self::db:sect3">حصہ %l, “%c”</template>
+      <template match="self::db:sect4">حصہ %l, “%c”</template>
+      <template match="self::db:sect5">حصہ %l, “%c”</template>
+      <template match="self::db:section">حصہ %l, “%c”</template>
+      <template match="self::db:simplesect">حصے کا نام “%c”</template>
+      <template match="self::db:table">جدول %l, “%c”</template>
+      <template match="true()">%l%.%c</template>
    </group>
-   <group name="authorgroup">
-      <template name="sep">، </template>
-      <template name="sep2"> اور </template>
-      <template name="seplast">، اور </template>
+   <group name="see">
+      <template match="self::db:glosssee">دیکھیں %c.</template>
    </group>
    <list name="index-seealso">
       <items>({seealso} %c)</items>
@@ -575,118 +710,6 @@
       <items>%c {and} %c</items>
       <items>%c<repeat>, %c</repeat>, {and} %c</items>
    </list>
-   <group name="glossary">
-      <template name="see">دیکھیں %c.</template>
-      <template name="seealso">یہ بھی دیکھیں %c.</template>
-      <template name="seealso-separator">، </template>
-      <template name="glossterm-separator">, </template>
-   </group>
-   <group name="index">
-      <template name="term-separator">, </template>
-      <template name="number-separator">, </template>
-      <template name="range-separator">-</template>
-   </group>
-   <group name="msgset">
-      <template name="msgaud">سامعین: </template>
-      <template name="msglevel">سطح: </template>
-      <template name="msgorig">ماخذ: </template>
-   </group>
-   <group name="termdef">
-      <template name="prefix">[تعریف: </template>
-      <template lang="en" name="suffix">]</template>
-   </group>
-   <group name="datetime-full">
-      <template name="January">جنوری</template>
-      <template name="February">فروری</template>
-      <template name="March">مارچ</template>
-      <template name="April">اپریل</template>
-      <template name="May">مئی</template>
-      <template name="June">جون</template>
-      <template name="July">جولائی</template>
-      <template name="August">اگست</template>
-      <template name="September">ستمبر</template>
-      <template name="October">اکتوبر</template>
-      <template name="November">نومبر</template>
-      <template name="December">دسمبر</template>
-      <template name="Monday">پیر</template>
-      <template name="Tuesday">منگل</template>
-      <template name="Wednesday">بدھ</template>
-      <template name="Thursday">جمعرات</template>
-      <template name="Friday">جمعہ</template>
-      <template name="Saturday">ہفتہ</template>
-      <template name="Sunday">اتوار</template>
-   </group>
-   <group name="datetime-abbrev">
-      <template name="Jan">جنوری</template>
-      <template name="Feb">فروری</template>
-      <template name="Mar">مارچ</template>
-      <template name="Apr">اپریل</template>
-      <template name="May">مئی</template>
-      <template name="Jun">جون</template>
-      <template name="Jul">جولائی</template>
-      <template name="Aug">اگست</template>
-      <template name="Sep">ستمبر</template>
-      <template name="Oct">اکتوبر</template>
-      <template name="Nov">نومبر</template>
-      <template name="Dec">دسمبر</template>
-      <template name="Mon">پیر</template>
-      <template name="Tue">منگل</template>
-      <template name="Wed">بدھ</template>
-      <template name="Thu">جمعرات</template>
-      <template name="Fri">جمعہ</template>
-      <template name="Sat">ہفتہ</template>
-      <template name="Sun">اتوار</template>
-   </group>
-   <group name="iso690">
-      <template lang="en" name="lastfirst.sep">, </template>
-      <template lang="en" name="alt.person.two.sep"> – </template>
-      <template lang="en" name="alt.person.last.sep"> – </template>
-      <template lang="en" name="alt.person.more.sep"> – </template>
-      <template lang="en" name="primary.editor"> (ed.)</template>
-      <template lang="en" name="primary.many">, et al.</template>
-      <template lang="en" name="primary.sep">. </template>
-      <template lang="en" name="submaintitle.sep">: </template>
-      <template lang="en" name="title.sep">. </template>
-      <template lang="en" name="othertitle.sep">, </template>
-      <template lang="en" name="medium1"> [</template>
-      <template lang="en" name="medium2">]</template>
-      <template lang="en" name="secondary.person.sep">; </template>
-      <template lang="en" name="secondary.sep">. </template>
-      <template lang="en" name="respons.sep">. </template>
-      <template lang="en" name="edition.sep">. </template>
-      <template lang="en" name="edition.serial.sep">, </template>
-      <template lang="en" name="issuing.range">-</template>
-      <template lang="en" name="issuing.div">, </template>
-      <template lang="en" name="issuing.sep">. </template>
-      <template lang="en" name="partnr.sep">. </template>
-      <template lang="en" name="placepubl.sep">: </template>
-      <template lang="en" name="publyear.sep">, </template>
-      <template lang="en" name="pubinfo.sep">. </template>
-      <template lang="en" name="spec.pubinfo.sep">, </template>
-      <template lang="en" name="upd.sep">, </template>
-      <template lang="en" name="datecit1"> [cited </template>
-      <template lang="en" name="datecit2">]</template>
-      <template lang="en" name="extent.sep">. </template>
-      <template lang="en" name="locs.sep">, </template>
-      <template lang="en" name="location.sep">. </template>
-      <template lang="en" name="serie.sep">. </template>
-      <template lang="en" name="notice.sep">. </template>
-      <template lang="en" name="access">Available </template>
-      <template lang="en" name="acctoo">Also available </template>
-      <template lang="en" name="onwww">from World Wide Web</template>
-      <template lang="en" name="oninet">from Internet</template>
-      <template lang="en" name="access.end">: </template>
-      <template lang="en" name="link1">&lt;</template>
-      <template lang="en" name="link2">&gt;</template>
-      <template lang="en" name="access.sep">. </template>
-      <template lang="en" name="isbn">ISBN </template>
-      <template lang="en" name="issn">ISSN </template>
-      <template lang="en" name="stdnum.sep">. </template>
-      <template lang="en" name="patcountry.sep">. </template>
-      <template lang="en" name="pattype.sep">, </template>
-      <template lang="en" name="patnum.sep">. </template>
-      <template lang="en" name="patdate.sep">. </template>
-   </group>
    <letters>
       <l i="-1"/>
       <l i="0">Symbols</l>

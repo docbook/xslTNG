@@ -1656,8 +1656,10 @@ task "guide.olinkdb"(type: SaxonXsltTask, dependsOn: ['guide']) {
 // ============================================================
 
 task website(type: Copy, dependsOn: ['webGuide', 'webReport', 'webExplorer',
-                                     'webHtml', 'webResources']) {
-  // nop
+                                     'webHtml', 'webResources', 'epubGuide']) {
+  into "${buildDir}/website/epub"
+  from "${buildDir}/epub"
+  include "*.epub"
 }
 
 task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {
@@ -2042,6 +2044,7 @@ task epubGuide(
 // ============================================================
 
 task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
+  outputs.upToDateWhen { false }
   doFirst {
     if (dbsource = '') {
       throw new GradleException("You must specify -Pdbsource=...")

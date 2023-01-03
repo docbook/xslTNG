@@ -10,7 +10,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://docbook.org/ns/docbook"
                 default-mode="mp:transform-locale"
-                exclude-result-prefixes="db f fp ls map mp xs"
+                exclude-result-prefixes="f fp ls map mp xs"
                 expand-text="yes"
                 version="3.0">
 
@@ -39,31 +39,22 @@
   </l:token>
 </xsl:template>
 
-<xsl:template match="ls:properties">
-  <l:properties name="{@name}">
-    <xsl:apply-templates select="ls:property"/>
-  </l:properties>
-</xsl:template>
-
-<xsl:template match="ls:property">
-  <l:property name="{@name}" value="{@value}"/>
-</xsl:template>
-
 <xsl:template match="ls:group">
-  <l:group name="{@name}">
+  <l:group>
+    <xsl:copy-of select="@*,namespace::*[local-name(.) != '']"/>
     <xsl:apply-templates select="ls:template"/>
   </l:group>
 </xsl:template>
 
 <xsl:template match="ls:ref">
   <l:ref>
-    <xsl:copy-of select="@*"/>
+    <xsl:copy-of select="@*,namespace::*[local-name(.) != '']"/>
   </l:ref>
 </xsl:template>
 
 <xsl:template match="ls:list">
   <l:list>
-    <xsl:copy-of select="@*"/>
+    <xsl:copy-of select="@*,namespace::*[local-name(.) != '']"/>
     <xsl:apply-templates select="ls:items"/>
   </l:list>
 </xsl:template>
@@ -75,9 +66,7 @@
 
   <xsl:element name="l:{local-name(.)}" 
                namespace="http://docbook.org/ns/docbook/l10n">
-    <xsl:if test="@name">
-      <xsl:attribute name="key" select="@name"/>
-    </xsl:if>
+    <xsl:copy-of select="@*,namespace::*[local-name(.) != '']"/>
     <xsl:iterate select="$expanded">
       <xsl:param name="result" select="()"/>
       <xsl:param name="last" select="()"/>
@@ -85,9 +74,10 @@
       <xsl:choose>
         <xsl:when test="./self::lt:text and $last/self::lt:text">
           <xsl:variable name="text" as="element()">
-            <lt:text>
+            <xsl:element name="lt:text"
+                         namespace="http://docbook.org/ns/docbook/l10n/templates">
               <xsl:sequence select="string($last) || string(.)"/>
-            </lt:text>
+            </xsl:element>
           </xsl:variable>
           <xsl:next-iteration>
             <xsl:with-param name="result" select="($result[position() lt last()], $text)"/>
@@ -107,13 +97,14 @@
 
 <xsl:template match="ls:letters">
   <l:letters>
+    <xsl:copy-of select="@*,namespace::*[local-name(.) != '']"/>
     <xsl:apply-templates select="*"/>
   </l:letters>
 </xsl:template>
 
 <xsl:template match="ls:l">
   <l:l>
-    <xsl:copy-of select="@*"/>
+    <xsl:copy-of select="@*,namespace::*[local-name(.) != '']"/>
     <xsl:sequence select="string(.)"/>
   </l:l>
 </xsl:template>
@@ -171,15 +162,17 @@
   <xsl:choose>
     <xsl:when test="$text = ''"/>
     <xsl:when test="$bpos lt 0 and $ppos lt 0">
-      <lt:text>
+      <xsl:element name="lt:text"
+                   namespace="http://docbook.org/ns/docbook/l10n/templates">
         <xsl:value-of select="$text"/>
-      </lt:text>
+      </xsl:element>
     </xsl:when>
     <xsl:when test="$bpos lt 0 or ($bpos ge 0 and $ppos ge 0 and $ppos lt $bpos)">
       <xsl:if test="$ppos gt 0">
-        <lt:text>
+        <xsl:element name="lt:text"
+                     namespace="http://docbook.org/ns/docbook/l10n/templates">
           <xsl:value-of select="substring-before($text, '%')"/>
-        </lt:text>
+        </xsl:element>
       </xsl:if>
 
       <xsl:variable name="perc" select="substring($text, $ppos+2, 1)"/>
@@ -206,9 +199,10 @@
     </xsl:when>
     <xsl:when test="$ppos lt 0 or ($bpos ge 0 and $ppos ge 0 and $bpos lt $ppos)">
       <xsl:if test="$bpos gt 0">
-        <lt:text>
+        <xsl:element name="lt:text"
+                     namespace="http://docbook.org/ns/docbook/l10n/templates">
           <xsl:value-of select="substring-before($text, '{')"/>
-        </lt:text>
+        </xsl:element>
       </xsl:if>
       <xsl:variable name="text"
                     select="substring($text, $bpos+2)"/>

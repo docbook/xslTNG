@@ -524,7 +524,7 @@
 <xsl:function name="fp:separator" as="node()*">
   <xsl:param name="node" as="element()"/>
   <xsl:param name="key" as="xs:string"/>
-  <xsl:sequence select="fp:localization-template($node, 'separator', $key)"/>
+  <xsl:sequence select="fp:localization-template($node, 'separator')"/>
 </xsl:function>
 
 <xsl:function name="f:label-separator" as="node()*">

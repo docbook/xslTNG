@@ -2,6 +2,40 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 <revision>
+<revnumber>2.0.1</revnumber>
+<date>2023-01-03</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r200">2.0.0</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Added support for ISO 690 bibliographies via a
+<parameter>bibliography-style</parameter> parameter.
+</para>
+</listitem>
+<listitem>
+<para>Fixed bug where <tag>authorgroup</tag> wasn’t being processed in
+<tag>biblioentry</tag>.
+</para>
+</listitem>
+<listitem>
+<para>Another few (but hopefully nearly the last) refactorings in the area of
+localization. Properties have been removed and all template lookups are now
+done with XPath expressions instead ad hoc string matching.</para>
+</listitem>
+<listitem>
+<para>A number of smaller changes have also been made to improve localization.
+(I discovered a small number of tests that weren’t being run in automation;
+those revealed new errors, mostly in generated text for cross references.)</para>
+</listitem>
+<listitem>
+<para>The way lists-of-titles and the persistent table of contents
+are generated has been changed. This happened in the 2.0.0 release, but was lost
+behind all the localization changes.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+<revision xml:id="r200">
 <revnumber>2.0.0</revnumber>
 <date>2022-12-30</date>
 <revdescription>
@@ -51,6 +85,17 @@ was a pretty substantial change.</para>
 </revdescription>
 </revision>
 
+  <revision>
+    <revnumber>1.11.1</revnumber>
+    <date>2022-11-08</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed a CSS problem and removed some debugging cruft.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
   <revision>
     <revnumber>1.11.0</revnumber>
     <date>2022-11-07</date>
@@ -200,6 +245,7 @@ was a pretty substantial change.</para>
       </itemizedlist>
     </revdescription>
   </revision>
+<!--
   <revision>
     <revnumber>1.10.1</revnumber>
     <date>2022-10-28</date>
@@ -211,7 +257,6 @@ was a pretty substantial change.</para>
       </itemizedlist>
     </revdescription>
   </revision>
-<!--
   <revision>
     <revnumber>1.10.0</revnumber>
     <date>2022-10-26</date>

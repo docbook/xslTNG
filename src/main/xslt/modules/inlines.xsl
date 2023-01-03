@@ -369,12 +369,11 @@
     <xsl:when test="exists(node())">
       <xsl:call-template name="t:inline"/>
     </xsl:when>
-    <xsl:when test="exists(fp:localization-template(., 'keycap', $lookup))">
+    <xsl:when test="exists(fp:localization-template(., 'keycap'))">
       <xsl:call-template name="t:inline">
         <xsl:with-param name="content" as="item()*">
           <xsl:apply-templates select="." mode="m:gentext">
             <xsl:with-param name="group" select="'keycap'"/>
-            <xsl:with-param name="key" select="$lookup"/>
           </xsl:apply-templates>
         </xsl:with-param>
         <xsl:with-param name="class" select="$lookup"/>

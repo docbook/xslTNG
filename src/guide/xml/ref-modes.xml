@@ -101,6 +101,7 @@ obtained by processing the DocBook element in the <mode>m:attributes</mode> mode
 <refmeta>
 <refentrytitle>m:biblio690</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}biblio690</refmiscinfo>
+<refmiscinfo class="version">2.0.1</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:biblio690</refname>
@@ -357,6 +358,7 @@ and <varname>copyright-collapse-years</varname>.</para>
 <refmeta>
 <refentrytitle>m:crossref-inherit-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-inherit-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:crossref-inherit-separator</refname>
@@ -365,9 +367,8 @@ and <varname>copyright-collapse-years</varname>.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:crossref-inherit-separator</mode> mode is used to generate the
-text that should follow the element when an inherited reference is used.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -390,11 +391,12 @@ label in a cross-reference.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-label-separator" role="obsolete 2.0.0">
+<refentry xml:id="m_crossref-label-separator">
 <?db filename="m_crossref-label-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-label-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:crossref-label-separator</refname>
@@ -449,6 +451,7 @@ separator between a number and what follows it in a cross-reference.</para>
 <refmeta>
 <refentrytitle>m:crossref-prefix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-prefix</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:crossref-prefix</refname>
@@ -457,8 +460,8 @@ separator between a number and what follows it in a cross-reference.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <mode>m:crossref-prefix</mode> mode is used to generate any text
-that precedes a cross reference.</para>
+<para>Prefixes are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -620,6 +623,7 @@ consists of nothing more than a single header element.
 <refmeta>
 <refentrytitle>m:gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:gentext</refname>
@@ -677,6 +681,7 @@ of the context item is used.</para>
 <refmeta>
 <refentrytitle>m:gentext-list</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext-list</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:gentext-list</refname>
@@ -789,11 +794,12 @@ label in a headline.
 </refsection>
 </refentry>
  
-<refentry xml:id="m_headline-label-separator" role="obsolete 2.0.0 ">
+<refentry xml:id="m_headline-label-separator">
 <?db filename="m_headline-label-separator"?>
 <refmeta>
 <refentrytitle>m:headline-label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-label-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-label-separator</refname>
@@ -826,11 +832,12 @@ in a headline.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-number-separator" role="obsolete 2.0.0">
+<refentry xml:id="m_headline-number-separator">
 <?db filename="m_headline-number-separator"?>
 <refmeta>
 <refentrytitle>m:headline-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-number-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-number-separator</refname>
@@ -844,11 +851,12 @@ see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-prefix" role="obsolete 2.0.0">
+<refentry xml:id="m_headline-prefix">
 <?db filename="m_headline-prefix"?>
 <refmeta>
 <refentrytitle>m:headline-prefix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-prefix</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-prefix</refname>
@@ -862,11 +870,12 @@ see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-suffix" role="obsolete 2.0.0">
+<refentry xml:id="m_headline-suffix">
 <?db filename="m_headline-suffix"?>
 <refmeta>
 <refentrytitle>m:headline-suffix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-suffix</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-suffix</refname>
@@ -1444,6 +1453,7 @@ produce that list.
 <refmeta>
 <refentrytitle>m:list-of-titles</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-titles</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:list-of-titles</refname>
@@ -1500,6 +1510,7 @@ their input and output URIs.</para>
 <refmeta>
 <refentrytitle>m:persistent-toc</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}persistent-toc</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:persistent-toc</refname>
@@ -1782,6 +1793,7 @@ it is formatted in this mode to produce the entry in the list.
 <refmeta>
 <refentrytitle>m:toc-nested</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}toc-nested</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:toc-nested</refname>

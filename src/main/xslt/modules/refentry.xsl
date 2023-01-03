@@ -35,7 +35,6 @@
         <h2>
           <xsl:apply-templates select="." mode="m:gentext">
             <xsl:with-param name="group" select="'label'"/>
-            <xsl:with-param name="key" select="'refname'"/>
             <xsl:with-param name="content" select="()"/>
           </xsl:apply-templates>
         </h2>
@@ -117,12 +116,7 @@
     <xsl:apply-templates/>
   </span>
   <xsl:if test="not($purpose = 'lot') and following-sibling::db:refname">
-    <span class="refname-sep">
-      <xsl:apply-templates select="." mode="m:gentext">
-        <xsl:with-param name="group" select="'refentry'"/>
-        <xsl:with-param name="key" select="'refname-sep'"/>
-      </xsl:apply-templates>
-    </span>
+    <span class="refname-sep">, </span>
   </xsl:if>
 </xsl:template>
 
@@ -137,19 +131,7 @@
         <xsl:apply-templates select="." mode="m:attributes"/>
       </xsl:otherwise>
     </xsl:choose>
-
-    <xsl:variable name="template" as="node()*">
-      <xsl:apply-templates select="." mode="m:gentext">
-        <xsl:with-param name="group" select="'refentry'"/>
-        <xsl:with-param name="key" select="'refpurpose-sep'"/>
-      </xsl:apply-templates>
-    </xsl:variable>
-
-    <span class="refpurpose-sep">
-      <xsl:apply-templates select="$template" mode="m:localization">
-        <xsl:with-param name="context" select="."/>
-      </xsl:apply-templates>
-    </span>
+    <span class="refpurpose-sep"> — </span>
     <span class="refpurpose-text">
       <xsl:apply-templates/>
     </span>

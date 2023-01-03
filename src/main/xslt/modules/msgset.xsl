@@ -45,7 +45,10 @@
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:gentext">
-      <xsl:with-param name="group" select="'msgset'"/>
+      <xsl:with-param name="group" select="'label'"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'label-separator'"/>
     </xsl:apply-templates>
     <xsl:apply-templates/>
   </div>

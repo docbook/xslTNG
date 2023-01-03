@@ -91,41 +91,31 @@
 <xsl:function name="fp:localization-template" as="item()*">
   <xsl:param name="node" as="element()"/>
   <xsl:param name="group" as="xs:string"/>
-  <xsl:sequence select="fp:localization-template($node, $group, ())"/>
-</xsl:function>
-
-<xsl:function name="fp:localization-template" as="item()*">
-  <xsl:param name="node" as="element()"/>
-  <xsl:param name="group" as="xs:string"/>
-  <xsl:param name="key" as="xs:string?"/>
 
   <xsl:variable name="lang" select="f:l10n-language($node)"/>
 
   <xsl:choose>
-    <xsl:when test="exists(fp:lookup-localization-template($node, $lang, $group, $key))">
-      <xsl:sequence select="fp:lookup-localization-template($node, $lang, $group, $key)"/>
+    <xsl:when test="exists(fp:lookup-localization-template($node, $lang, $group))">
+      <xsl:sequence select="fp:lookup-localization-template($node, $lang, $group)"/>
     </xsl:when>
-    <xsl:when test="exists(fp:lookup-localization-template($node, $default-language, $group, $key))">
+    <xsl:when test="exists(fp:lookup-localization-template($node, $default-language, $group))">
       <xsl:if test="f:is-true($warn-about-missing-localizations)">
-        <xsl:variable name="dkey" select="($key, local-name($node))[1]"/>
         <xsl:message expand-text="yes"
-        >No localization for {$group}/{$dkey} in {$lang}, using {$default-language}</xsl:message>
+        >No localization for {$group}/{local-name($node)} in {$lang}, using {$default-language}</xsl:message>
       </xsl:if>
-      <xsl:sequence select="fp:lookup-localization-template($node, $default-language, $group, $key)"/>
+      <xsl:sequence select="fp:lookup-localization-template($node, $default-language, $group)"/>
     </xsl:when>
-    <xsl:when test="exists(fp:lookup-localization-template($node, 'en', $group, $key))">
+    <xsl:when test="exists(fp:lookup-localization-template($node, 'en', $group))">
       <xsl:if test="f:is-true($warn-about-missing-localizations)">
-        <xsl:variable name="dkey" select="($key, local-name($node))[1]"/>
         <xsl:message expand-text="yes"
-        >No localization for {$group}/{$dkey} in {$lang}, using en</xsl:message>
+        >No localization for {$group}/{local-name($node)} in {$lang}, using en</xsl:message>
       </xsl:if>
-      <xsl:sequence select="fp:lookup-localization-template($node, 'en', $group, $key)"/>
+      <xsl:sequence select="fp:lookup-localization-template($node, 'en', $group)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:if test="f:is-true($warn-about-missing-localizations)">
-        <xsl:variable name="dkey" select="($key, local-name($node))[1]"/>
         <xsl:message expand-text="yes"
-        >No localization for {$group}/{$dkey} in {$lang}, using "MISSING"</xsl:message>
+        >No localization for {$group}/{local-name($node)} in {$lang}, using "MISSING"</xsl:message>
       </xsl:if>
       <lt:text>MISSING</lt:text>
     </xsl:otherwise>
@@ -136,40 +126,31 @@
   <xsl:param name="node" as="element()"/>
   <xsl:param name="lang" as="xs:string"/>
   <xsl:param name="group" as="xs:string"/>
-  <xsl:param name="key" as="xs:string?"/>
 
   <xsl:variable name="l10n" select="fp:localization($lang)"/>
 
   <xsl:variable name="templates"
                 select="$l10n/l:group[@name=$group]"/>
 
-  <xsl:variable name="path"
-                select="'/' || string-join($node/ancestor-or-self::* ! local-name(.), '/')"/>
+  <!--
+  <xsl:message select="'lookup:', local-name($node), $lang, $group"/>
+  -->
 
-  <xsl:variable name="templates" as="element(l:template)*">
-    <xsl:for-each select="$templates/l:template">
-      <xsl:choose>
-        <xsl:when test="@key = '_default'">
-          <xsl:sequence select="."/>
-        </xsl:when>
-        <xsl:when test="exists($key) and @key = $key">
-          <xsl:sequence select="."/>
-        </xsl:when>
-        <xsl:when test="empty($key) and @key = local-name($node)">
-          <xsl:sequence select="."/>
-        </xsl:when>
-        <xsl:when test="starts-with(@key, '/') and @key = $path">
-          <xsl:sequence select="."/>
-        </xsl:when>
-        <xsl:when test="contains(@key, '/') and ends-with($path, '/'||@key)">
-          <xsl:sequence select="."/>
-        </xsl:when>
-        <xsl:otherwise/>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <xsl:sequence select="$templates[1]"/>
+  <xsl:iterate select="$templates/l:template">
+    <xsl:variable name="result" as="item()*">
+      <xsl:evaluate xpath="@match" context-item="$node"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="boolean($result)">
+        <!--<xsl:message select="'Y:', @match/string()"/>-->
+        <xsl:break select="."/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!--<xsl:message select="'N:', @match/string()"/>-->
+        <xsl:next-iteration/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:iterate>
 </xsl:function>
 
 <!-- ============================================================ -->
@@ -226,59 +207,6 @@
       <xsl:sequence select="()"/>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:function>
-
-<!-- ============================================================ -->
-
-<xsl:function name="fp:localization-property" as="xs:string">
-  <xsl:param name="node" as="element()"/>
-  <xsl:param name="properties" as="xs:string"/>
-  <xsl:param name="key" as="xs:string"/>
-
-  <xsl:variable name="lang" select="f:l10n-language($node)"/>
-
-  <xsl:choose>
-    <xsl:when test="exists(fp:lookup-localization-property($node, $lang, $properties, $key))">
-      <xsl:sequence select="fp:lookup-localization-property($node, $lang, $properties, $key)"/>
-    </xsl:when>
-    <xsl:when test="exists(fp:lookup-localization-property($node, $default-language, $properties, $key))">
-      <xsl:if test="f:is-true($warn-about-missing-localizations)">
-        <xsl:message expand-text="yes"
-        >No localization for {$properties}/{$key} in {$lang}, using {$default-language}</xsl:message>
-      </xsl:if>
-      <xsl:sequence select="fp:lookup-localization-property($node, $default-language, $properties, $key)"/>
-    </xsl:when>
-    <xsl:when test="exists(fp:lookup-localization-property($node, 'en', $properties, $key))">
-      <xsl:if test="f:is-true($warn-about-missing-localizations)">
-        <xsl:message expand-text="yes"
-        >No localization for {$properties}/{$key} in {$lang}, using en</xsl:message>
-      </xsl:if>
-      <xsl:sequence select="fp:lookup-localization-property($node, 'en', $properties, $key)"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:if test="f:is-true($warn-about-missing-localizations)">
-        <xsl:message expand-text="yes"
-        >No localization for {$properties}/{$key} in {$lang}, using "MISSING"</xsl:message>
-      </xsl:if>
-        <xsl:sequence select="'MISSING'"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="fp:lookup-localization-property" as="xs:string?">
-  <xsl:param name="node" as="element()"/>
-  <xsl:param name="lang" as="xs:string"/>
-  <xsl:param name="properties" as="xs:string"/>
-  <xsl:param name="key" as="xs:string"/>
-
-  <xsl:variable name="l10n" select="fp:localization($lang)"/>
-  <xsl:variable name="props"
-                select="$l10n/l:properties[@name=$properties]"/>
-  <xsl:variable name="property"
-                select="($props/l:property[@name = $key],
-                        $props/l:property[@name = '_default'])[1]"/>
-
-  <xsl:sequence select="$property/@value/string()"/>
 </xsl:function>
 
 <!-- ============================================================ -->
@@ -499,27 +427,24 @@
 
 <xsl:template match="*" mode="m:gentext">
   <xsl:param name="group" as="xs:string"/>
-  <xsl:param name="key" as="xs:string" select="local-name(.)"/>
   <xsl:param name="content" as="item()*" select="()"/>
 
   <xsl:variable name="template"
-                select="fp:localization-template(., $group, $key)"/>
+                select="fp:localization-template(., $group)"/>
 
   <!--
-  <xsl:message select="$group, $key, exists($content), $template"/>
+  <xsl:message select="'GENTEXT:', local-name(.), $group, exists($content), $template"/>>
   -->
 
   <xsl:apply-templates select="$template" mode="mp:localization">
     <xsl:with-param name="context" select="."/>
     <xsl:with-param name="content" select="$content"/>
     <xsl:with-param name="group" select="$group"/>
-    <xsl:with-param name="key" select="$key"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:question|db:answer" mode="m:gentext">
   <xsl:param name="group" as="xs:string"/>
-  <xsl:param name="key" as="xs:string" select="local-name(.)"/>
   <xsl:param name="content" as="item()*" select="()"/>
 
   <!-- This is a weird special case because the default label
@@ -550,7 +475,6 @@
     <xsl:otherwise>
       <xsl:next-match>
         <xsl:with-param name="group" select="$group"/>
-        <xsl:with-param name="key" select="$key"/>
         <xsl:with-param name="content" select="$content"/>
       </xsl:next-match>
     </xsl:otherwise>

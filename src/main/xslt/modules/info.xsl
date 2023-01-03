@@ -214,16 +214,29 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:variable name="style" as="xs:string?"
-                select="if (empty($style))
-                        then if (fp:lookup-localization-property(., f:l10n-language(.), 'style', 'personname'))
-                             then fp:localization-property(., 'style', 'personname')
-                             else $default-personal-name-style
-                        else $style"/>
+  <xsl:variable name="style">
+    <xsl:choose>
+      <xsl:when test="empty($style)">
+        <xsl:choose>
+          <xsl:when test="exists($personal-name-style)">
+            <xsl:sequence select="$personal-name-style"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'name-style'"/>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$style"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <span>
     <xsl:apply-templates select="." mode="m:attributes">
-      <xsl:with-param name="style" select="$style"/>
+      <xsl:with-param name="style" select="string($style)"/>
     </xsl:apply-templates>
     <xsl:call-template name="t:person-name">
       <xsl:with-param name="style" select="$style"/>
@@ -362,44 +375,13 @@
      or
        John Doe, Jane Doe, and A. Nonymous
   -->
-  <xsl:param name="person.list"
-             select="db:author|db:corpauthor|db:othercredit|db:editor"/>
-  <xsl:param name="person.count" select="count($person.list)"/>
-  <xsl:param name="count" select="1"/>
 
-  <xsl:choose>
-    <xsl:when test="$count &gt; $person.count"></xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates select="$person.list[position()=$count]"/>
-
-      <xsl:choose>
-        <xsl:when test="$person.count = 2 and $count = 1">
-          <xsl:apply-templates select="." mode="m:gentext">
-            <xsl:with-param name="group" select="'authorgroup'"/>
-            <xsl:with-param name="key" select="'sep2'"/>
-          </xsl:apply-templates>
-        </xsl:when>
-        <xsl:when test="$person.count &gt; 2 and $count+1 = $person.count">
-          <xsl:apply-templates select="." mode="m:gentext">
-            <xsl:with-param name="group" select="'authorgroup'"/>
-            <xsl:with-param name="key" select="'seplast'"/>
-          </xsl:apply-templates>
-        </xsl:when>
-        <xsl:when test="$count &lt; $person.count">
-          <xsl:apply-templates select="." mode="m:gentext">
-            <xsl:with-param name="group" select="'authorgroup'"/>
-            <xsl:with-param name="key" select="'sep'"/>
-          </xsl:apply-templates>
-        </xsl:when>
-      </xsl:choose>
-
-      <xsl:call-template name="t:person-name-list">
-        <xsl:with-param name="person.list" select="$person.list"/>
-        <xsl:with-param name="person.count" select="$person.count"/>
-        <xsl:with-param name="count" select="$count+1"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates select="." mode="m:gentext-list">
+    <xsl:with-param name="list" as="element()*">
+      <xsl:apply-templates
+        select="db:author|db:corpauthor|db:othercredit|db:editor"/>
+    </xsl:with-param>
+  </xsl:apply-templates>
 </xsl:template>
 
 <!-- ============================================================ -->

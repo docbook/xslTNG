@@ -113,7 +113,9 @@
       <script type="text/html" class="toc">
         <header>
           <span>
-            <xsl:sequence select="fp:localization-template(., 'title', 'tableofcontents')"/>
+            <xsl:apply-templates select="." mode="m:gentext">
+              <xsl:with-param name="group" select="'table-of-contents'"/>
+            </xsl:apply-templates>
           </span>
           <span class="close">
             <xsl:sequence select="$v:toc-close"/>

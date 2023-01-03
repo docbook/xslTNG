@@ -31,6 +31,7 @@ implements those adjustments.</para>
 <refmeta>
 <refentrytitle>f:mediaobject-href</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-href#2</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:mediaobject-href</refname>
@@ -134,11 +135,12 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_check-gentext" role="obsolete 2.0.0">
+<refentry xml:id="f_check-gentext">
 <?db filename="f_check-gentext"?>
 <refmeta>
 <refentrytitle>f:check-gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}check-gentext#3</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:check-gentext</refname>
@@ -417,12 +419,13 @@ to false allows for the creation of globally unique IDs with
 </refsection>
 </refentry>
 
-<refentry xml:id="f_gentext" role="obsolete 2.0.0">
+<refentry xml:id="f_gentext">
 <?db filename="f_gentext"?>
 <refmeta>
 <refentrytitle>f:gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#2</refmiscinfo>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#3</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:gentext</refname>
@@ -543,6 +546,7 @@ to spurious differences between documents.</para>
 <refmeta>
 <refentrytitle>f:in-scope-language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}in-scope-language#1</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:in-scope-language</refname>
@@ -557,11 +561,12 @@ or <parameter>default-language</parameter> if no such attribute exists.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_intra-number-separator" role="obsolete 2.0.0">
+<refentry xml:id="f_intra-number-separator">
 <?db filename="f_intra-number-separator"?>
 <refmeta>
 <refentrytitle>f:intra-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}intra-number-separator#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:intra-number-separator</refname>
@@ -651,6 +656,7 @@ language of the <code>$target</code>.</para>
 <refentrytitle>f:l10n-token</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#2</refmiscinfo>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#3</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:l10n-token</refname>
@@ -683,11 +689,12 @@ function.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_language" role="obsolete 2.0.0">
+<refentry xml:id="f_language">
 <?db filename="f_language"?>
 <refmeta>
 <refentrytitle>f:language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}language#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:language</refname>
@@ -706,6 +713,7 @@ function.</para>
 <refmeta>
 <refentrytitle>f:languages</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}languages#1</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:languages</refname>
@@ -758,11 +766,12 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refsection>
 </refentry>
 
-<refentry xml:id="f_locales" role="obsolete 2.0.0">
+<refentry xml:id="f_locales">
 <?db filename="f_locales"?>
 <refmeta>
 <refentrytitle>f:locales</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}locales#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:locales</refname>
@@ -797,11 +806,12 @@ both.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_number-separator" role="obsolete 2.0.0">
+<refentry xml:id="f_number-separator">
 <?db filename="f_number-separator"?>
 <refmeta>
 <refentrytitle>f:number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}number-separator#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:number-separator</refname>
@@ -1165,12 +1175,13 @@ the last value will be returned.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_post-label-punctuation" role="obsolete 2.0.0">
+<refentry xml:id="f_post-label-punctuation">
 <?db filename="f_post-label-punctuation"?>
 <refmeta>
 <refentrytitle>f:post-label-punctuation</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#1</refmiscinfo>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#2</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:post-label-punctuation</refname>

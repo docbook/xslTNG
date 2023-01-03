@@ -58,7 +58,9 @@
   <span class="editedby">
     <xsl:apply-templates select="." mode="m:gentext">
       <xsl:with-param name="group" select="'label'"/>
-      <xsl:with-param name="key" select="'edited-by'"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'label-separator'"/>
     </xsl:apply-templates>
   </span>
   <xsl:apply-templates select="db:personname|db:orgname"/>

@@ -579,6 +579,7 @@
     <span class="biblioset article">
       <tmp:apply-templates select="db:title"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:subtitle"><tmp:content/>. </tmp:apply-templates>
+      <tmp:apply-templates select="db:authorgroup"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:author"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:pubdate"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:copyright"><tmp:content/>. </tmp:apply-templates>
@@ -592,6 +593,7 @@
     <span class="biblioset journal">
       <tmp:apply-templates select="db:title"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:subtitle"><tmp:content/>. </tmp:apply-templates>
+      <tmp:apply-templates select="db:authorgroup"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:author"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:pubdate"><tmp:content/>. </tmp:apply-templates>
       <tmp:apply-templates select="db:copyright"><tmp:content/>. </tmp:apply-templates>
@@ -608,6 +610,7 @@
   <tmp:apply-templates select="db:subtitle"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:address"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:artpagenums"><tmp:content/>. </tmp:apply-templates>
+  <tmp:apply-templates select="db:authorgroup"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:author"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:authorinitials"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:collab"><tmp:content/>. </tmp:apply-templates>

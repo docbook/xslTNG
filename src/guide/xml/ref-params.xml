@@ -430,7 +430,10 @@ shared bibliography.
 <refsection>
 <title>Description</title>
 <para>Bibliographies are complicated and many different styles
-exist. These stylesheets attempt to implement ISO 690.</para>
+exist. Creating properly formatted bibliographies from
+<link xlink:href="https://tdg.docbook.org/tdg/5.2/ch02.html#s.bibliography">raw
+</link> bibliography entries is especially challenging.
+(This parameter does not apply to formatting <tag>bibliomixed</tag> entries.)</para>
 
 <variablelist role="enumeration">
 <varlistentry>
@@ -438,7 +441,8 @@ exist. These stylesheets attempt to implement ISO 690.</para>
 <enumvalue>default</enumvalue>
 </term>
 <listitem>
-<para>The default style. This is just “what the stylesheets have always done”.
+<para>The default style. This is controlled by the <literal>biblioentry</literal>
+template. See <varname>v:templates</varname>.
 All <tag>biblioentry</tag> elements will be processed in
 <mode>m:biblioentry</mode> mode.
 </para>
@@ -451,8 +455,10 @@ All <tag>biblioentry</tag> elements will be processed in
 <listitem>
 <para>Attempts to implement ISO 690 bibliographic formatting.
 All <tag>biblioentry</tag> elements will be processed in
-<mode>m:biblio690</mode> mode.
+<mode>m:biblio690</mode> mode. This is adapted from the examples in
+<link xlink:href="https://documents.docbook.org/iso690.html">Bibliography according to ISO 690 and ISO 690-2 standards</link>.
 </para>
+
 <para>The default style specified by
 <parameter>bibliography-style</parameter> can be overridden on a
 case-by-case basis with the
@@ -464,7 +470,9 @@ case-by-case basis with the
 <indexterm>
 <primary>db processing instruction</primary>
 <secondary>bibliography-style pseudo-attribute</secondary>
-</indexterm> pseudo-attribute.</para>
+</indexterm> pseudo-attribute. This must appear in the
+<tag>bibliography</tag> or <tag>bibliolist</tag> that contains the entries.
+</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -794,6 +802,28 @@ as a separate parameter.</para>
 <title>Description</title>
 <para>Elements inside a class synopsis (field and method declarations, for example)
 will be indented by this amount.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>component-numbers</varname>
+      <initializer>'1'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Are components numbered?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>component-numbers</parameter> <glossterm>is true</glossterm>,
+components (chapters, appendixes, etc.) that do not have
+an explicit label will be labeled with their component number.</para>
+<para>See also <parameter>division-numbers-inherit</parameter>
+and
+<varname>v:title-properties</varname>.</para>
 </refsection>
 </refentry>
 
@@ -1293,19 +1323,19 @@ magnitude and unit are used for that length. See <xref linkend="units"/>.
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <varname>default-personal-name-style</varname>
-      <initializer>'first-last'</initializer>
+      <varname>personal-name-style</varname>
+      <initializer>()</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
-    <refpurpose>The default style for formatting personal names</refpurpose>
+    <refpurpose>The style for formatting personal names</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
 <para>The stylesheets can format personal names in a variety of ways.
-Absent any indication of what style to use, the
-<parameter>default-personal-name-style</parameter> will be used;
-see
+This is usually locale dependent. If <parameter>personal-name-style</parameter>
+is specified, it wil be used in preferance to the locale dependent style.
+See
 <template>t:person-name</template>.</para>
 </refsection>
 </refentry>
@@ -1331,6 +1361,27 @@ See <varname>theme-list</varname> for a list of themes. You can add
 your own themes with custom CSS (with <mode>m:html-head-links</mode> mode, for
 example).
 </para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>division-numbers</varname>
+      <initializer>'1'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Are divisions numbered?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>division-numbers</parameter> <glossterm>is true</glossterm>,
+divisions (books, parts, references, etc.) that do not have
+an explicit label will be labeled with their division number.</para>
+<para>See also
+<varname>v:title-properties</varname>.</para>
 </refsection>
 </refentry>
 
@@ -1648,7 +1699,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
 </refsection>
 </refentry>
 
-<refentry role="obsolete 2.0.0">
+<refentry>
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1656,6 +1707,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
       <initializer>'not(f:section(.))
 or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Determines if subsubections appear in the table of contents</refpurpose>
@@ -1667,7 +1719,7 @@ that appear in a table of contents with the <mode>m:toc-nested</mode> mode.</par
 </refsection>
 </refentry>
 
-<refentry role="obsolete 2.0.0">
+<refentry>
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1676,6 +1728,7 @@ that appear in a table of contents with the <mode>m:toc-nested</mode> mode.</par
 or self::db:set or self::db:book
 or self::db:part or self::db:reference'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Generate a table-of-contents?</refpurpose>
@@ -3401,7 +3454,8 @@ case-by-case basis with the
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If <parameter>section-numbers</parameter> is true, sections that do not have
+<para>If <parameter>section-numbers</parameter> <glossterm>is true</glossterm>,
+sections that do not have
 an explicit label will be labeled with their section number.</para>
 <para>See also <parameter>division-numbers-inherit</parameter>,
 <parameter>section-numbers-inherit</parameter>, and
@@ -4260,6 +4314,74 @@ If trailing newlines aren’t significant, setting
 <parameter>verbatim-trim-trailing-blank-lines</parameter> will cause
 the stylesheets to trim blank (that is, entirely empty) lines from
 the end of verbatim environments.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-before</varname>
+      <initializer>' ['</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Prefix used for inline rendering of a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this precedes the list.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-after</varname>
+      <initializer>'] '</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Suffix used for inline rendering of a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this precedes the list.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-titlesep</varname>
+      <initializer>': '</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Title separator used when rendering a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this separates the link titles.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>xlink-arclist-sep</varname>
+      <initializer>', '</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Link separator used when rendering a list of XLink arcs</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When rendering a list of XLinks inline, this separates the links.
+</para>
 </refsection>
 </refentry>
 

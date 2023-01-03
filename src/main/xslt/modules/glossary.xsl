@@ -59,8 +59,7 @@
   </span>
   <xsl:if test="following-sibling::db:glossterm">
     <xsl:apply-templates select="." mode="m:gentext">
-      <xsl:with-param name="group" select="'glossary'"/>
-      <xsl:with-param name="key" select="'glossterm-separator'"/>
+      <xsl:with-param name="group" select="'separator'"/>
     </xsl:apply-templates>
   </xsl:if>
 </xsl:template>
@@ -73,8 +72,7 @@
   <xsl:if test="following-sibling::db:acronym
                 |following-sibling::db:abbrev">
     <xsl:apply-templates select="." mode="m:gentext">
-      <xsl:with-param name="group" select="'glossary'"/>
-      <xsl:with-param name="key" select="'glossterm-separator'"/>
+      <xsl:with-param name="group" select="'separator'"/>
     </xsl:apply-templates>
   </xsl:if>
 </xsl:template>
@@ -87,8 +85,7 @@
   <xsl:if test="following-sibling::db:acronym
                 |following-sibling::db:abbrev">
     <xsl:apply-templates select="." mode="m:gentext">
-      <xsl:with-param name="group" select="'glossary'"/>
-      <xsl:with-param name="key" select="'glossterm-separator'"/>
+      <xsl:with-param name="group" select="'separator'"/>
     </xsl:apply-templates>
   </xsl:if>
 </xsl:template>
@@ -102,8 +99,7 @@
     <xsl:apply-templates select="." mode="m:attributes"/>
     <p>
       <xsl:apply-templates select="." mode="m:gentext">
-        <xsl:with-param name="group" select="'glossary'"/>
-        <xsl:with-param name="key" select="'see'"/>
+        <xsl:with-param name="group" select="'see'"/>
         <xsl:with-param name="content">
           <xsl:choose>
             <xsl:when test="$target">
