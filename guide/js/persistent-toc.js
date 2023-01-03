@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.0.0
+/* DocBook xslTNG version 2.0.1
  *
  * This is persistent-toc.js providing support for the ToC popup
  *

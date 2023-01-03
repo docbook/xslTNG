@@ -13,6 +13,40 @@
 <revhistory>
 <?db revhistory-style="list"?>
 <revision>
+<revnumber>2.0.1</revnumber>
+<date>2023-01-03</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r200">2.0.0</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Added support for ISO 690 bibliographies via a
+<parameter>bibliography-style</parameter><indexterm><primary>param</primary><secondary>bibliography-style</secondary></indexterm> parameter.
+</para>
+</listitem>
+<listitem>
+<para>Fixed bug where <tag>authorgroup</tag> wasn’t being processed in
+<tag>biblioentry</tag>.
+</para>
+</listitem>
+<listitem>
+<para>Another few (but hopefully nearly the last) refactorings in the area of
+localization. Properties have been removed and all template lookups are now
+done with XPath expressions instead ad hoc string matching.</para>
+</listitem>
+<listitem>
+<para>A number of smaller changes have also been made to improve localization.
+(I discovered a small number of tests that weren’t being run in automation;
+those revealed new errors, mostly in generated text for cross references.)</para>
+</listitem>
+<listitem>
+<para>The way lists-of-titles and the persistent table of contents
+are generated has been changed. This happened in the 2.0.0 release, but was lost
+behind all the localization changes.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+<revision xml:id="r200">
 <revnumber>2.0.0</revnumber>
 <date>2022-12-30</date>
 <revdescription>
@@ -62,6 +96,17 @@ was a pretty substantial change.</para>
 </revdescription>
 </revision>
 
+  <revision>
+    <revnumber>1.11.1</revnumber>
+    <date>2022-11-08</date>
+    <revdescription>
+      <itemizedlist>
+        <listitem>
+          <para>Fixed a CSS problem and removed some debugging cruft.</para>
+        </listitem>
+      </itemizedlist>
+    </revdescription>
+  </revision>
   <revision>
     <revnumber>1.11.0</revnumber>
     <date>2022-11-07</date>
@@ -211,6 +256,7 @@ was a pretty substantial change.</para>
       </itemizedlist>
     </revdescription>
   </revision>
+<!--
   <revision>
     <revnumber>1.10.1</revnumber>
     <date>2022-10-28</date>
@@ -222,7 +268,6 @@ was a pretty substantial change.</para>
       </itemizedlist>
     </revdescription>
   </revision>
-<!--
   <revision>
     <revnumber>1.10.0</revnumber>
     <date>2022-10-26</date>
@@ -405,7 +450,7 @@ preparing it for execution each time.</para>
 </revhistory>
 <legalnotice>
 <literallayout><citetitle>DocBook xslTNG</citetitle>
-Copyright © 2020–2022 Norman Walsh.
+Copyright © 2020–2023 Norman Walsh.
 All Rights Reserved.</literallayout>
 
 <para>Permission is granted to copy, distribute and/or modify this
@@ -432,6 +477,7 @@ contained herein.</para>
 <year>2020</year>
 <year>2021</year>
 <year>2022</year>
+<year>2023</year>
 <holder>Norman Walsh</holder>
 </copyright>
 </info>
@@ -2106,7 +2152,7 @@ localization data.</para>
 <title>Consequences</title>
 
 <para>One unfortunate consequence of this history is that there’s some
-cruft in the localization files. There are mappings, properties, and
+cruft in the localization files. There are mappings and possibly
 templates that aren’t actually used. Or, at least, they’re not used in
 the standard DocBook stylesheet. They might be used in customization
 layers.</para>
@@ -2236,13 +2282,14 @@ attribute identifies the language (in the same terms as
 <tag class="attribute">xml:lang</tag>) to which this localization applies.</para>
 
 <para>That’s followed by metadata about the file (authors, etc.), then
-mappings, properties, groups, lists, and letters as shown in
+mappings, groups, lists, and letters as shown in
 <xref linkend="l10n.local.ex"/>. We’ll consider each
 section in detail below.</para>
 
 <figure xml:id="l10n.local.ex">
 <title>Example locale file (excerpted)</title>
 <programlisting language="xml">&lt;locale xmlns="http://docbook.org/ns/docbook/l10n/source"
+        xmlns:db="http://docbook.org/ns/docbook"
         language="en" english-language-name="English"&gt;
   &lt;info&gt;
     …
@@ -2251,12 +2298,8 @@ section in detail below.</para>
     &lt;gentext key="above"&gt;above&lt;/gentext&gt;
     …
   &lt;/mappings&gt;
-  &lt;properties name="number-format"&gt;
-    &lt;property name="part" value="I"/&gt;
-    …
-  &lt;/properties&gt;
   &lt;group name="title"&gt;
-    &lt;template name="chapter"&gt;{chapter} %l%.%c&lt;/template&gt;
+    &lt;template match="self::db:chapter"&gt;{chapter} %l%.%c&lt;/template&gt;
     …
   &lt;/group&gt;
   &lt;list name="_default"&gt;
@@ -2296,52 +2339,34 @@ localization file is compiled.</para>
 </section>
 
 <section>
-<title>Properties</title>
-
-<para>Properties provide a mapping from one string to another.
-Properties are grouped into collections where each property maps from
-a name to a value. The property name is often the name of the element
-to which it applies.</para>
-
-<para>The stylesheets look for a property name in a property group.
-If there’s no property with the name specified, the property named
-“<code>_default</code>” is returned.</para>
-
-<para>The <literal>number-format</literal> properties determine how
-numbers in labels are formatted:</para>
-
-<programlisting language="xml">   &lt;properties name="number-format"&gt;
-      &lt;property name="part" value="I"/&gt;
-      &lt;property name="reference" value="I"/&gt;
-      &lt;property name="appendix" value="A"/&gt;
-      &lt;property name="_default" value="1"/&gt;
-   &lt;/properties&gt;</programlisting>
-
-<para>Parts and references are numbered in upper-case Roman,
-appendixes in upper-case Latin letters, and everything else is
-numbered with Arabic numerals.</para>
-</section>
-
-<section>
 <title>Group</title>
 
 <para>Groups are the primary templating system. In a context where
 generated text is required, a group is selected and within that group,
-a template is selected. The template name is often the name of the
-element being formatted. As with properties, the template name
-“<code>_default</code>” is used as a fallback.</para>
+a template is selected. The template is selected by evaluating the
+expression in the <tag class="attribute">match</tag> attribute with the current node
+as the context item. A template with the match express <code>true()</code>
+wall always succeed; it is used as a fallback.</para>
 
-<para>The <literal>title</literal> group determines how titles are
-formatted (but see also the <literal>title-numbered</literal>,
-<literal>title-unnumbered</literal>, and
-<literal>title-generated</literal> groups):</para>
+<para>The <literal>title-numbered</literal> group determines how
+titles are formatted if they are numbered, (there’s also
+<literal>title-unnumbered</literal> when titles aren’t being
+numbered):</para>
 
-<programlisting language="xml">   &lt;group name="title"&gt;
-      &lt;template name="abstract"&gt;%c&lt;/template&gt;
-      &lt;template name="chapter"&gt;{chapter} %l%.%c&lt;/template&gt;
-      …
-      &lt;template name="_default"&gt;%c&lt;/template&gt;
-   &lt;/group&gt;</programlisting>
+<programlisting language="xml">&lt;group name="title-numbered"&gt;
+   &lt;template match="self::db:section[ancestor::db:preface]"&gt;%c&lt;/template&gt;
+   …
+   &lt;template match="self::db:appendix"&gt;{Appendix} %l%.%c&lt;/template&gt;
+   …
+   &lt;template match="self::db:warning"&gt;%c&lt;/template&gt;
+   &lt;template match="true()"&gt;%l%.%c&lt;/template&gt;
+&lt;/group&gt;</programlisting>
+
+<para>(Note that not all titles <emphasis>are</emphasis> numbered,
+this is just the group that’s used if they could be. See
+<parameter>division-numbers</parameter><indexterm><primary>param</primary><secondary>division-numbers</secondary></indexterm>,
+<parameter>component-numbers</parameter><indexterm><primary>param</primary><secondary>component-numbers</secondary></indexterm>, and
+<parameter>section-numbers</parameter><indexterm><primary>param</primary><secondary>section-numbers</secondary></indexterm>.)</para>
 
 <para>Within a template, two kinds of substitution are performed: names in
 curly braces are replaced by the corresponding mapping and %-letter values
@@ -2388,7 +2413,7 @@ document</link>:</para>
 
 <itemizedlist>
 <listitem>
-<para>The local name of the element, <literal>chapter</literal>, is used to select
+<para>The <literal>chapter</literal> context is used to select
 the template (<literal>{chapter} %l%.%c</literal>).</para>
 </listitem>
 <listitem>
@@ -2397,7 +2422,7 @@ the template (<literal>{chapter} %l%.%c</literal>).</para>
 </listitem>
 <listitem>
 <para>The label <literal>%l</literal> is “1” because this is the first
-chapter. (In fact, constructing the label uses properties from the
+chapter. (In fact, constructing the label uses templates from the
 localization file as well.)</para>
 </listitem>
 <listitem>
@@ -2477,9 +2502,9 @@ of letters.</para>
 <para>All of the symbols with the same “i” value will be grouped
 together.</para>
 
-<para>(This mechanism dates from the days before XSLT supported
-language-specific collations. It’s very likely that it should simply
-be phased out.)</para>
+<para>This mechanism dates from the days before XSLT supported
+language-specific collations. It is used in generated indexes, but perhaps it should simply
+be phased out.</para>
 </section>
 </section>
 
@@ -4108,14 +4133,18 @@ shared bibliography.
       <refsection>
          <title>Description</title>
          <para>Bibliographies are complicated and many different styles
-exist. These stylesheets attempt to implement ISO 690.</para>
+exist. Creating properly formatted bibliographies from
+<link xlink:href="https://tdg.docbook.org/tdg/5.2/ch02.html#s.bibliography">raw
+</link> bibliography entries is especially challenging.
+(This parameter does not apply to formatting <tag>bibliomixed</tag> entries.)</para>
          <variablelist role="enumeration">
             <varlistentry>
                <term>
                   <enumvalue>default</enumvalue>
                </term>
                <listitem>
-                  <para>The default style. This is just “what the stylesheets have always done”.
+                  <para>The default style. This is controlled by the <literal>biblioentry</literal>
+template. See <varname>v:templates</varname><indexterm><primary>variable</primary><secondary>v:templates</secondary></indexterm>.
 All <tag>biblioentry</tag> elements will be processed in
 <code role="mode">m:biblioentry</code> mode.
 </para>
@@ -4128,7 +4157,8 @@ All <tag>biblioentry</tag> elements will be processed in
                <listitem>
                   <para>Attempts to implement ISO 690 bibliographic formatting.
 All <tag>biblioentry</tag> elements will be processed in
-<code role="mode">m:biblio690</code> mode.
+<code role="mode">m:biblio690</code> mode. This is adapted from the examples in
+<link xlink:href="https://documents.docbook.org/iso690.html">Bibliography according to ISO 690 and ISO 690-2 standards</link>.
 </para>
                   <para>The default style specified by
 <parameter>bibliography-style</parameter><indexterm><primary>param</primary><secondary>bibliography-style</secondary></indexterm> can be overridden on a
@@ -4141,7 +4171,9 @@ case-by-case basis with the
                      <indexterm>
                         <primary>db processing instruction</primary>
                         <secondary>bibliography-style pseudo-attribute</secondary>
-                     </indexterm> pseudo-attribute.</para>
+                     </indexterm> pseudo-attribute. This must appear in the
+<tag>bibliography</tag> or <tag>bibliolist</tag> that contains the entries.
+</para>
                </listitem>
             </varlistentry>
          </variablelist>
@@ -4509,6 +4541,32 @@ as a separate parameter.</para>
          <title>Description</title>
          <para>Elements inside a class synopsis (field and method declarations, for example)
 will be indented by this amount.</para>
+      </refsection>
+   </refentry>
+   <refentry xml:id="p_component-numbers"><indexterm><primary>param</primary><secondary>component-numbers</secondary></indexterm>
+   <?db filename="p_component-numbers"?>
+      <refmeta>
+         <refentrytitle>$component-numbers</refentrytitle>
+         <refmiscinfo>{}component-numbers</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$component-numbers</refname>
+         <refpurpose>Are components numbered?</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$component-numbers as xs:string := '1'</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>If <parameter>component-numbers</parameter><indexterm><primary>param</primary><secondary>component-numbers</secondary></indexterm>
+            <glossterm>is true</glossterm>,
+components (chapters, appendixes, etc.) that do not have
+an explicit label will be labeled with their component number.</para>
+         <para>See also <parameter>division-numbers-inherit</parameter><indexterm><primary>param</primary><secondary>division-numbers-inherit</secondary></indexterm>
+and
+<varname>v:title-properties</varname><indexterm><primary>variable</primary><secondary>v:title-properties</secondary></indexterm>.</para>
       </refsection>
    </refentry>
    <refentry xml:id="p_component-numbers-inherit"><indexterm><primary>param</primary><secondary>component-numbers-inherit</secondary></indexterm>
@@ -5039,27 +5097,27 @@ magnitude and unit are used for that length. See <xref linkend="units"/>.
 </para>
       </refsection>
    </refentry>
-   <refentry xml:id="p_default-personal-name-style"><indexterm><primary>param</primary><secondary>default-personal-name-style</secondary></indexterm>
-   <?db filename="p_default-personal-name-style"?>
+   <refentry xml:id="p_personal-name-style"><indexterm><primary>param</primary><secondary>personal-name-style</secondary></indexterm>
+   <?db filename="p_personal-name-style"?>
       <refmeta>
-         <refentrytitle>$default-personal-name-style</refentrytitle>
-         <refmiscinfo>{}default-personal-name-style</refmiscinfo>
+         <refentrytitle>$personal-name-style</refentrytitle>
+         <refmiscinfo>{}personal-name-style</refmiscinfo>
       </refmeta>
       <refnamediv>
-         <refname>$default-personal-name-style</refname>
-         <refpurpose>The default style for formatting personal names</refpurpose>
+         <refname>$personal-name-style</refname>
+         <refpurpose>The style for formatting personal names</refpurpose>
          <refclass>param</refclass>
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <synopsis>$default-personal-name-style := 'first-last'</synopsis>
+         <synopsis>$personal-name-style := ()</synopsis>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
          <para>The stylesheets can format personal names in a variety of ways.
-Absent any indication of what style to use, the
-<parameter>default-personal-name-style</parameter><indexterm><primary>param</primary><secondary>default-personal-name-style</secondary></indexterm> will be used;
-see
+This is usually locale dependent. If <parameter>personal-name-style</parameter><indexterm><primary>param</primary><secondary>personal-name-style</secondary></indexterm>
+is specified, it wil be used in preferance to the locale dependent style.
+See
 <code role="template">t:person-name</code>.</para>
       </refsection>
    </refentry>
@@ -5088,6 +5146,31 @@ See <varname>theme-list</varname><indexterm><primary>variable</primary><secondar
 your own themes with custom CSS (with <code role="mode">m:html-head-links</code> mode, for
 example).
 </para>
+      </refsection>
+   </refentry>
+   <refentry xml:id="p_division-numbers"><indexterm><primary>param</primary><secondary>division-numbers</secondary></indexterm>
+   <?db filename="p_division-numbers"?>
+      <refmeta>
+         <refentrytitle>$division-numbers</refentrytitle>
+         <refmiscinfo>{}division-numbers</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$division-numbers</refname>
+         <refpurpose>Are divisions numbered?</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$division-numbers as xs:string := '1'</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>If <parameter>division-numbers</parameter><indexterm><primary>param</primary><secondary>division-numbers</secondary></indexterm>
+            <glossterm>is true</glossterm>,
+divisions (books, parts, references, etc.) that do not have
+an explicit label will be labeled with their division number.</para>
+         <para>See also
+<varname>v:title-properties</varname><indexterm><primary>variable</primary><secondary>v:title-properties</secondary></indexterm>.</para>
       </refsection>
    </refentry>
    <refentry xml:id="p_division-numbers-inherit"><indexterm><primary>param</primary><secondary>division-numbers-inherit</secondary></indexterm>
@@ -5449,10 +5532,11 @@ generated. You must make sure those are provided in some other way.
 from any <tag>indexterm</tag>s found in the document.</para>
       </refsection>
    </refentry>
-   <refentry role="obsolete 2.0.0" xml:id="p_generate-nested-toc"><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm>
+   <refentry xml:id="p_generate-nested-toc"><indexterm><primary>param</primary><secondary/></indexterm><indexterm><primary>param</primary><secondary>generate-nested-toc</secondary></indexterm>
    <?db filename="p_generate-nested-toc"?>
       <refmeta>
          <refentrytitle>$generate-nested-toc</refentrytitle>
+         <refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
          <refmiscinfo>{}generate-nested-toc</refmiscinfo>
       </refmeta>
       <refnamediv>
@@ -5462,7 +5546,8 @@ from any <tag>indexterm</tag>s found in the document.</para>
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <para>Obsolete as of version 2.0.0.</para>
+         <synopsis>$generate-nested-toc as xs:string := 'not(f:section(.)) 
+                                     or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)'</synopsis>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
@@ -5470,10 +5555,11 @@ from any <tag>indexterm</tag>s found in the document.</para>
 that appear in a table of contents with the <code role="mode">m:toc-nested</code> mode.</para>
       </refsection>
    </refentry>
-   <refentry role="obsolete 2.0.0" xml:id="p_generate-toc"><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm>
+   <refentry xml:id="p_generate-toc"><indexterm><primary>param</primary><secondary/></indexterm><indexterm><primary>param</primary><secondary>generate-toc</secondary></indexterm>
    <?db filename="p_generate-toc"?>
       <refmeta>
          <refentrytitle>$generate-toc</refentrytitle>
+         <refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
          <refmiscinfo>{}generate-toc</refmiscinfo>
       </refmeta>
       <refnamediv>
@@ -5483,7 +5569,9 @@ that appear in a table of contents with the <code role="mode">m:toc-nested</code
       </refnamediv>
       <refsynopsisdiv>
          <title>Synopsis</title>
-         <para>Obsolete as of version 2.0.0.</para>
+         <synopsis>$generate-toc as xs:string := '(empty(parent::*) and self::db:article) 
+                              or self::db:set or self::db:book 
+                              or self::db:part or self::db:reference'</synopsis>
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
@@ -7520,7 +7608,9 @@ case-by-case basis with the
       </refsynopsisdiv>
       <refsection>
          <title>Description</title>
-         <para>If <parameter>section-numbers</parameter><indexterm><primary>param</primary><secondary>section-numbers</secondary></indexterm> is true, sections that do not have
+         <para>If <parameter>section-numbers</parameter><indexterm><primary>param</primary><secondary>section-numbers</secondary></indexterm>
+            <glossterm>is true</glossterm>,
+sections that do not have
 an explicit label will be labeled with their section number.</para>
          <para>See also <parameter>division-numbers-inherit</parameter><indexterm><primary>param</primary><secondary>division-numbers-inherit</secondary></indexterm>,
 <parameter>section-numbers-inherit</parameter><indexterm><primary>param</primary><secondary>section-numbers-inherit</secondary></indexterm>, and
@@ -8530,6 +8620,90 @@ the stylesheets to trim blank (that is, entirely empty) lines from
 the end of verbatim environments.</para>
       </refsection>
    </refentry>
+   <refentry xml:id="p_xlink-arclist-before"><indexterm><primary>param</primary><secondary>xlink-arclist-before</secondary></indexterm>
+   <?db filename="p_xlink-arclist-before"?>
+      <refmeta>
+         <refentrytitle>$xlink-arclist-before</refentrytitle>
+         <refmiscinfo>{}xlink-arclist-before</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$xlink-arclist-before</refname>
+         <refpurpose>Prefix used for inline rendering of a list of XLink arcs</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$xlink-arclist-before := ' ['</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>When rendering a list of XLinks inline, this precedes the list.
+</para>
+      </refsection>
+   </refentry>
+   <refentry xml:id="p_xlink-arclist-after"><indexterm><primary>param</primary><secondary>xlink-arclist-after</secondary></indexterm>
+   <?db filename="p_xlink-arclist-after"?>
+      <refmeta>
+         <refentrytitle>$xlink-arclist-after</refentrytitle>
+         <refmiscinfo>{}xlink-arclist-after</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$xlink-arclist-after</refname>
+         <refpurpose>Suffix used for inline rendering of a list of XLink arcs</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$xlink-arclist-after := '] '</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>When rendering a list of XLinks inline, this precedes the list.
+</para>
+      </refsection>
+   </refentry>
+   <refentry xml:id="p_xlink-arclist-titlesep"><indexterm><primary>param</primary><secondary>xlink-arclist-titlesep</secondary></indexterm>
+   <?db filename="p_xlink-arclist-titlesep"?>
+      <refmeta>
+         <refentrytitle>$xlink-arclist-titlesep</refentrytitle>
+         <refmiscinfo>{}xlink-arclist-titlesep</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$xlink-arclist-titlesep</refname>
+         <refpurpose>Title separator used when rendering a list of XLink arcs</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$xlink-arclist-titlesep := ': '</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>When rendering a list of XLinks inline, this separates the link titles.
+</para>
+      </refsection>
+   </refentry>
+   <refentry xml:id="p_xlink-arclist-sep"><indexterm><primary>param</primary><secondary>xlink-arclist-sep</secondary></indexterm>
+   <?db filename="p_xlink-arclist-sep"?>
+      <refmeta>
+         <refentrytitle>$xlink-arclist-sep</refentrytitle>
+         <refmiscinfo>{}xlink-arclist-sep</refmiscinfo>
+      </refmeta>
+      <refnamediv>
+         <refname>$xlink-arclist-sep</refname>
+         <refpurpose>Link separator used when rendering a list of XLink arcs</refpurpose>
+         <refclass>param</refclass>
+      </refnamediv>
+      <refsynopsisdiv>
+         <title>Synopsis</title>
+         <synopsis>$xlink-arclist-sep := ', '</synopsis>
+      </refsynopsisdiv>
+      <refsection>
+         <title>Description</title>
+         <para>When rendering a list of XLinks inline, this separates the links.
+</para>
+      </refsection>
+   </refentry>
    <refentry xml:id="p_xlink-icon-closed"><indexterm><primary>param</primary><secondary>xlink-icon-closed</secondary></indexterm>
    <?db filename="p_xlink-icon-closed"?>
       <refmeta>
@@ -8875,11 +9049,12 @@ Used mostly in debugging.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_localization-base-uri"><indexterm><primary>variable</primary><secondary>localization-base-uri</secondary></indexterm>
+<refentry xml:id="v_localization-base-uri"><indexterm><primary>variable</primary><secondary>localization-base-uri</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_localization-base-uri"?>
 <refmeta>
 <refentrytitle>$v:localization-base-uri</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}localization-base-uri</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:localization-base-uri</refname>
@@ -9248,11 +9423,12 @@ footnote are in different chunks, this may lead to very confusing numeration!</p
 </refsection>
 </refentry>
 
-<refentry xml:id="v_custom-localizations"><indexterm><primary>variable</primary><secondary>custom-localizations</secondary></indexterm>
+<refentry xml:id="v_custom-localizations"><indexterm><primary>variable</primary><secondary>custom-localizations</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_custom-localizations"?>
 <refmeta>
 <refentrytitle>$v:custom-localizations</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}custom-localizations</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:custom-localizations</refname>
@@ -9907,11 +10083,12 @@ the first “dark” theme will automatically be selected.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_title-groups"><indexterm><primary>variable</primary><secondary>title-groups</secondary></indexterm>
+<refentry xml:id="v_title-groups"><indexterm><primary>variable</primary><secondary>title-groups</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_title-groups"?>
 <refmeta>
 <refentrytitle>$v:title-groups</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}title-groups</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:title-groups</refname>
@@ -9925,11 +10102,12 @@ used for a title. See <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_title-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>title-properties</secondary></indexterm>
+<refentry xml:id="v_title-properties"><indexterm><primary>variable</primary><secondary>title-properties</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_title-properties"?>
 <refmeta>
 <refentrytitle>$v:title-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}title-properties</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:title-properties</refname>
@@ -10063,11 +10241,12 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-title-groups"><indexterm><primary>variable</primary><secondary>user-title-groups</secondary></indexterm>
+<refentry xml:id="v_user-title-groups"><indexterm><primary>variable</primary><secondary>user-title-groups</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_user-title-groups"?>
 <refmeta>
 <refentrytitle>$v:user-title-groups</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}user-title-groups</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:user-title-groups</refname>
@@ -10082,11 +10261,12 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-title-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>user-title-properties</secondary></indexterm>
+<refentry xml:id="v_user-title-properties"><indexterm><primary>variable</primary><secondary>user-title-properties</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_user-title-properties"?>
 <refmeta>
 <refentrytitle>$v:user-title-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}user-title-properties</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:user-title-properties</refname>
@@ -10099,11 +10279,12 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-xref-groups"><indexterm><primary>variable</primary><secondary>user-xref-groups</secondary></indexterm>
+<refentry xml:id="v_user-xref-groups"><indexterm><primary>variable</primary><secondary>user-xref-groups</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_user-xref-groups"?>
 <refmeta>
 <refentrytitle>$v:user-xref-groups</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}user-xref-groups</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:user-xref-groups</refname>
@@ -10118,11 +10299,12 @@ computed with <parameter>pixels-per-inch</parameter><indexterm><primary>param</p
 </refsection>
 </refentry>
 
-<refentry xml:id="v_user-xref-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>user-xref-properties</secondary></indexterm>
+<refentry xml:id="v_user-xref-properties"><indexterm><primary>variable</primary><secondary>user-xref-properties</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_user-xref-properties"?>
 <refmeta>
 <refentrytitle>$v:user-xref-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}user-xref-properties</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:user-xref-properties</refname>
@@ -10498,11 +10680,12 @@ commit.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_xref-groups"><indexterm><primary>variable</primary><secondary>xref-groups</secondary></indexterm>
+<refentry xml:id="v_xref-groups"><indexterm><primary>variable</primary><secondary>xref-groups</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_xref-groups"?>
 <refmeta>
 <refentrytitle>$v:xref-groups</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}xref-groups</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:xref-groups</refname>
@@ -10516,11 +10699,12 @@ used for a cross-reference. See <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="v_xref-properties" role="obsolete 2.0.0"><indexterm><primary>variable</primary><secondary>xref-properties</secondary></indexterm>
+<refentry xml:id="v_xref-properties"><indexterm><primary>variable</primary><secondary>xref-properties</secondary></indexterm><indexterm><primary>variable</primary><secondary/></indexterm>
 <?db filename="v_xref-properties"?>
 <refmeta>
 <refentrytitle>$v:xref-properties</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}xref-properties</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:xref-properties</refname>
@@ -10559,11 +10743,12 @@ implements those adjustments.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_mediaobject-href"><indexterm><primary>function</primary><secondary>mediaobject-href</secondary></indexterm>
+<refentry xml:id="f_mediaobject-href"><indexterm><primary>function</primary><secondary>mediaobject-href</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_mediaobject-href"?>
 <refmeta>
 <refentrytitle>f:mediaobject-href</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-href#2</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:mediaobject-href</refname>
@@ -10667,11 +10852,12 @@ elements as well as the attributes on the cell itself and its ancestors.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_check-gentext" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>check-gentext</secondary></indexterm>
+<refentry xml:id="f_check-gentext"><indexterm><primary>function</primary><secondary>check-gentext</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_check-gentext"?>
 <refmeta>
 <refentrytitle>f:check-gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}check-gentext#3</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:check-gentext</refname>
@@ -10956,12 +11142,13 @@ to false allows for the creation of globally unique IDs with
 </refsection>
 </refentry>
 
-<refentry xml:id="f_gentext" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>gentext</secondary></indexterm>
+<refentry xml:id="f_gentext"><indexterm><primary>function</primary><secondary>gentext</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_gentext"?>
 <refmeta>
 <refentrytitle>f:gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#2</refmiscinfo>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}gentext#3</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:gentext</refname>
@@ -11077,11 +11264,12 @@ to spurious differences between documents.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_in-scope-language"><indexterm><primary>function</primary><secondary>in-scope-language</secondary></indexterm>
+<refentry xml:id="f_in-scope-language"><indexterm><primary>function</primary><secondary>in-scope-language</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_in-scope-language"?>
 <refmeta>
 <refentrytitle>f:in-scope-language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}in-scope-language#1</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:in-scope-language</refname>
@@ -11096,11 +11284,12 @@ or <parameter>default-language</parameter><indexterm><primary>param</primary><se
 </refsection>
 </refentry>
 
-<refentry xml:id="f_intra-number-separator" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>intra-number-separator</secondary></indexterm>
+<refentry xml:id="f_intra-number-separator"><indexterm><primary>function</primary><secondary>intra-number-separator</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_intra-number-separator"?>
 <refmeta>
 <refentrytitle>f:intra-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}intra-number-separator#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:intra-number-separator</refname>
@@ -11184,12 +11373,13 @@ language of the <code>$target</code>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_l10n-token"><indexterm><primary>function</primary><secondary>l10n-token</secondary></indexterm>
+<refentry xml:id="f_l10n-token"><indexterm><primary>function</primary><secondary>l10n-token</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_l10n-token"?>
 <refmeta>
 <refentrytitle>f:l10n-token</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#2</refmiscinfo>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}l10n-token#3</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:l10n-token</refname>
@@ -11222,11 +11412,12 @@ function.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_language" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>language</secondary></indexterm>
+<refentry xml:id="f_language"><indexterm><primary>function</primary><secondary>language</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_language"?>
 <refmeta>
 <refentrytitle>f:language</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}language#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:language</refname>
@@ -11240,11 +11431,12 @@ function.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_languages"><indexterm><primary>function</primary><secondary>languages</secondary></indexterm>
+<refentry xml:id="f_languages"><indexterm><primary>function</primary><secondary>languages</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_languages"?>
 <refmeta>
 <refentrytitle>f:languages</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}languages#1</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:languages</refname>
@@ -11297,11 +11489,12 @@ associated with the length. Returns an empty sequence for relative lengths.</par
 </refsection>
 </refentry>
 
-<refentry xml:id="f_locales" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>locales</secondary></indexterm>
+<refentry xml:id="f_locales"><indexterm><primary>function</primary><secondary>locales</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_locales"?>
 <refmeta>
 <refentrytitle>f:locales</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}locales#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:locales</refname>
@@ -11336,11 +11529,12 @@ both.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_number-separator" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>number-separator</secondary></indexterm>
+<refentry xml:id="f_number-separator"><indexterm><primary>function</primary><secondary>number-separator</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_number-separator"?>
 <refmeta>
 <refentrytitle>f:number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}number-separator#1</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:number-separator</refname>
@@ -11704,12 +11898,13 @@ the last value will be returned.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_post-label-punctuation" role="obsolete 2.0.0"><indexterm><primary>function</primary><secondary>post-label-punctuation</secondary></indexterm>
+<refentry xml:id="f_post-label-punctuation"><indexterm><primary>function</primary><secondary>post-label-punctuation</secondary></indexterm><indexterm><primary>function</primary><secondary/></indexterm>
 <?db filename="f_post-label-punctuation"?>
 <refmeta>
 <refentrytitle>f:post-label-punctuation</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#1</refmiscinfo>
 <refmiscinfo>{http://docbook.org/ns/docbook/functions}post-label-punctuation#2</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>f:post-label-punctuation</refname>
@@ -12989,13 +13184,12 @@ results are undefined.)</para>
 attirbute of its parent is inspected.</para>
 </listitem>
 <listitem>
-<para>If a style still hasn’t been selected and the in-context language
-localization file contains a “<literal>personname</literal>” key, the value of that
-key is taken as the style.</para>
+<para>If the <parameter>personal-name-style</parameter><indexterm><primary>param</primary><secondary>personal-name-style</secondary></indexterm> is defined, it is
+is selected.</para>
 </listitem>
 <listitem>
-<para>Failing all those options, the <parameter>default-personal-name-style</parameter><indexterm><primary>param</primary><secondary>default-personal-name-style</secondary></indexterm>
-is selected.</para>
+<para>If a style still hasn’t been selected the style in the
+localization file is used.</para>
 </listitem>
 </orderedlist>
 
@@ -13390,11 +13584,12 @@ obtained by processing the DocBook element in the <code role="mode">m:attributes
 </refsection>
 </refentry>
 
-<refentry xml:id="m_biblio690"><indexterm><primary>mode</primary><secondary>biblio690</secondary></indexterm>
+<refentry xml:id="m_biblio690"><indexterm><primary>mode</primary><secondary>biblio690</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_biblio690"?>
 <refmeta>
 <refentrytitle>m:biblio690</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}biblio690</refmiscinfo>
+<refmiscinfo class="version">2.0.1</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:biblio690</refname>
@@ -13646,11 +13841,12 @@ and <varname>copyright-collapse-years</varname><indexterm><primary>variable</pri
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-inherit-separator"><indexterm><primary>mode</primary><secondary>crossref-inherit-separator</secondary></indexterm>
+<refentry xml:id="m_crossref-inherit-separator"><indexterm><primary>mode</primary><secondary>crossref-inherit-separator</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_crossref-inherit-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-inherit-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-inherit-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:crossref-inherit-separator</refname>
@@ -13659,9 +13855,8 @@ and <varname>copyright-collapse-years</varname><indexterm><primary>variable</pri
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:crossref-inherit-separator</code> mode is used to generate the
-text that should follow the element when an inherited reference is used.
-</para>
+<para>Separators are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -13684,11 +13879,12 @@ label in a cross-reference.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-label-separator" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>crossref-label-separator</secondary></indexterm>
+<refentry xml:id="m_crossref-label-separator"><indexterm><primary>mode</primary><secondary>crossref-label-separator</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_crossref-label-separator"?>
 <refmeta>
 <refentrytitle>m:crossref-label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-label-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:crossref-label-separator</refname>
@@ -13738,11 +13934,12 @@ separator between a number and what follows it in a cross-reference.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_crossref-prefix"><indexterm><primary>mode</primary><secondary>crossref-prefix</secondary></indexterm>
+<refentry xml:id="m_crossref-prefix"><indexterm><primary>mode</primary><secondary>crossref-prefix</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_crossref-prefix"?>
 <refmeta>
 <refentrytitle>m:crossref-prefix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}crossref-prefix</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:crossref-prefix</refname>
@@ -13751,8 +13948,8 @@ separator between a number and what follows it in a cross-reference.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The <code role="mode">m:crossref-prefix</code> mode is used to generate any text
-that precedes a cross reference.</para>
+<para>Prefixes are now part of the generated text template,
+see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
@@ -13909,11 +14106,12 @@ consists of nothing more than a single header element.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_gentext"><indexterm><primary>mode</primary><secondary>gentext</secondary></indexterm>
+<refentry xml:id="m_gentext"><indexterm><primary>mode</primary><secondary>gentext</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_gentext"?>
 <refmeta>
 <refentrytitle>m:gentext</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:gentext</refname>
@@ -13966,11 +14164,12 @@ of the context item is used.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_gentext-list"><indexterm><primary>mode</primary><secondary>gentext-list</secondary></indexterm>
+<refentry xml:id="m_gentext-list"><indexterm><primary>mode</primary><secondary>gentext-list</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_gentext-list"?>
 <refmeta>
 <refentrytitle>m:gentext-list</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}gentext-list</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:gentext-list</refname>
@@ -14083,11 +14282,12 @@ label in a headline.
 </refsection>
 </refentry>
  
-<refentry xml:id="m_headline-label-separator" role="obsolete 2.0.0 "><indexterm><primary>mode</primary><secondary>headline-label-separator</secondary></indexterm>
+<refentry xml:id="m_headline-label-separator"><indexterm><primary>mode</primary><secondary>headline-label-separator</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_headline-label-separator"?>
 <refmeta>
 <refentrytitle>m:headline-label-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-label-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-label-separator</refname>
@@ -14120,11 +14320,12 @@ in a headline.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-number-separator" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>headline-number-separator</secondary></indexterm>
+<refentry xml:id="m_headline-number-separator"><indexterm><primary>mode</primary><secondary>headline-number-separator</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_headline-number-separator"?>
 <refmeta>
 <refentrytitle>m:headline-number-separator</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-number-separator</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-number-separator</refname>
@@ -14138,11 +14339,12 @@ see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-prefix" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>headline-prefix</secondary></indexterm>
+<refentry xml:id="m_headline-prefix"><indexterm><primary>mode</primary><secondary>headline-prefix</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_headline-prefix"?>
 <refmeta>
 <refentrytitle>m:headline-prefix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-prefix</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-prefix</refname>
@@ -14156,11 +14358,12 @@ see <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_headline-suffix" role="obsolete 2.0.0"><indexterm><primary>mode</primary><secondary>headline-suffix</secondary></indexterm>
+<refentry xml:id="m_headline-suffix"><indexterm><primary>mode</primary><secondary>headline-suffix</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_headline-suffix"?>
 <refmeta>
 <refentrytitle>m:headline-suffix</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}headline-suffix</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:headline-suffix</refname>
@@ -14733,11 +14936,12 @@ produce that list.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_list-of-titles"><indexterm><primary>mode</primary><secondary>list-of-titles</secondary></indexterm>
+<refentry xml:id="m_list-of-titles"><indexterm><primary>mode</primary><secondary>list-of-titles</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_list-of-titles"?>
 <refmeta>
 <refentrytitle>m:list-of-titles</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}list-of-titles</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:list-of-titles</refname>
@@ -14789,11 +14993,12 @@ their input and output URIs.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="m_persistent-toc"><indexterm><primary>mode</primary><secondary>persistent-toc</secondary></indexterm>
+<refentry xml:id="m_persistent-toc"><indexterm><primary>mode</primary><secondary>persistent-toc</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_persistent-toc"?>
 <refmeta>
 <refentrytitle>m:persistent-toc</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}persistent-toc</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:persistent-toc</refname>
@@ -15071,11 +15276,12 @@ it is formatted in this mode to produce the entry in the list.
 </refsection>
 </refentry>
 
-<refentry xml:id="m_toc-nested"><indexterm><primary>mode</primary><secondary>toc-nested</secondary></indexterm>
+<refentry xml:id="m_toc-nested"><indexterm><primary>mode</primary><secondary>toc-nested</secondary></indexterm><indexterm><primary>mode</primary><secondary/></indexterm>
 <?db filename="m_toc-nested"?>
 <refmeta>
 <refentrytitle>m:toc-nested</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}toc-nested</refmiscinfo>
+<refmiscinfo class="version">2.0.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:toc-nested</refname>
