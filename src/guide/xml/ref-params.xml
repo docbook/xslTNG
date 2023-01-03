@@ -1699,7 +1699,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
 </refsection>
 </refentry>
 
-<refentry role="obsolete 2.0.0">
+<refentry>
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1707,6 +1707,7 @@ from any <tag>indexterm</tag>s found in the document.</para>
       <initializer>'not(f:section(.))
 or (f:section(.) and f:section-depth(.) le $vp:section-toc-depth)'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Determines if subsubections appear in the table of contents</refpurpose>
@@ -1718,7 +1719,7 @@ that appear in a table of contents with the <mode>m:toc-nested</mode> mode.</par
 </refsection>
 </refentry>
 
-<refentry role="obsolete 2.0.0">
+<refentry>
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
@@ -1727,6 +1728,7 @@ that appear in a table of contents with the <mode>m:toc-nested</mode> mode.</par
 or self::db:set or self::db:book
 or self::db:part or self::db:reference'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.0</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Generate a table-of-contents?</refpurpose>

@@ -132,15 +132,18 @@
 
   <xsl:next-match/>
 
+  <xsl:variable name="obsolete"
+                select="../db:refmeta/db:refmiscinfo[@otherclass='obsolete']"/>
+
   <xsl:choose>
-    <xsl:when test="not(ancestor::db:refentry[contains-token(@role, 'obsolete')])">
+    <xsl:when test="empty($obsolete)">
       <xsl:call-template name="tg:detail"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:if test="db:refclass = 'mode'">
         <p>
           <xsl:text>Obsolete as of version </xsl:text>
-          <xsl:sequence select="substring-after(ancestor::db:refentry/@role, 'obsolete ')"/>
+          <xsl:apply-templates select="$obsolete/node()"/>
           <xsl:text>.</xsl:text>
         </p>
       </xsl:if>
@@ -152,8 +155,7 @@
       select="key('a-by-name', ../db:refmeta/db:refmiscinfo[not(@class)], $explorer)"/>
 
   <xsl:choose>
-    <xsl:when test="ancestor::db:refentry[contains-token(@role, 'obsolete')]
-                    and empty($objects)"/>
+    <xsl:when test="exists($obsolete) and empty($objects)"/>
     <xsl:when test="db:refclass = 'function' and $objects/self::a:function">
       <xsl:variable name="synopsis">
         <refsynopsisdiv xmlns="http://docbook.org/ns/docbook">
@@ -320,8 +322,11 @@
 </xsl:template>
 
 <xsl:template match="db:refentrytitle">
+  <xsl:variable name="obsolete"
+                select="../db:refmiscinfo[@otherclass='obsolete']"/>
+
   <xsl:choose>
-    <xsl:when test="ancestor::db:refentry[contains-token(@role, 'obsolete')]">
+    <xsl:when test="exists($obsolete)">
       <xsl:variable name="name">
         <xsl:next-match/>
       </xsl:variable>
