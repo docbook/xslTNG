@@ -485,9 +485,10 @@
                                 then fp:iso690(., 'onwww')
                                 else fp:iso690(., 'oninet')"/>
         </xsl:if>
-        <xsl:text>: &lt;</xsl:text>
+        <xsl:text>: </xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link1')"/>
         <xsl:sequence select="string(@xlink:href)"/>
-        <xsl:text>&gt;</xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link2')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:sequence select="fp:iso690(., 'access')"/>
@@ -497,9 +498,10 @@
                                 then fp:iso690(., 'onwww')
                                 else fp:iso690(., 'oninet')"/>
         </xsl:if>
-        <xsl:text>: &lt;</xsl:text>
+        <xsl:text>: </xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link1')"/>
         <xsl:sequence select="string(@xlink:href)"/>
-        <xsl:text>&gt;</xsl:text>
+        <xsl:sequence select="fp:iso690(., 'link2')"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:sequence select="fp:optional-sep(., 'primary.sep')"/> <!-- ??? -->
