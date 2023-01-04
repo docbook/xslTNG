@@ -738,6 +738,13 @@ chunked results (see <xref linkend="chunking"/>), this parameter has no effect.<
 value for this parameter. If the extension isn’t available, you must
 provide a value for this parameter.
 </para>
+<para>Note: if you’re using the stylesheets from Maven, the <code>static-base-uri()</code>
+will be something like <replaceable>https://cdn.docbook.org/release/…</replaceable>
+and resolving the current working directory against that won’t be useful. It’s
+better in those cases to specify the parameter explicitly with a <code>file:</code>
+URI. (And note that it may need to be a <code>file:/path</code> URI, not a 
+<code>file:///path</code> URI, in order to match correctly.)
+</para>
 </refsection>
 </refentry>
 
