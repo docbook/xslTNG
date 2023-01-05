@@ -882,6 +882,102 @@ verbatim options only apply when Pygments is used.</para>
 <parameter>verbatim-syntax-highlighter</parameter> parameter.</para>
 </section>
 
+<section xml:id="persistent-toc">
+<title>Persistent ToC</title>
+
+<para>The persistent Table of Contents (ToC) provides a full ToC for
+an entire document accessible from each <link linkend="chunking">chunked</link>
+page.</para>
+
+<para>The ToC is accessed by clicking on the “book” icon in the upper right
+corner of the page as shown in <xref linkend="fig.ptoc.1"/>.</para>
+
+<figure xml:id="fig.ptoc.1">
+<title>Opening the ToC</title>
+<mediaobject>
+<alt>Screen capture with an arrow pointing at the closed book icon in
+the upper-right corner.</alt>
+<imageobject>
+<imagedata fileref="media/ptoc-1.png"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>The icon and other aspects of the style can be changed by providing
+<parameter>persistent-toc-css</parameter>.</para>
+
+<para>Once open, the ToC is displayed. A long ToC will be scrolled to
+the location of the current page in the document as shown in
+<xref linkend="fig.ptoc.2"/>.</para>
+
+<figure xml:id="fig.ptoc.2">
+<title>The Persistent ToC</title>
+<mediaobject>
+<alt>Screen capture showing the persistent ToC window on the right.</alt>
+<imageobject>
+<imagedata fileref="media/ptoc-2.png"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<para>The persistent ToC popup is transient by default, meaning that
+it will disappear if you use it to navigate to a different page. If
+you open the popup by “shift-clicking” on it, the ToC will persist
+until you dismiss it. This can also be accomplished by selecting the
+check box in the ToC. The presense of the search bar is controlled by
+the <parameter>persistent-toc-search</parameter> parameter.</para>
+
+<para>The ToC can be stored in a separate file or stored in each chunk.
+This is controlled by the <parameter>persistent-toc-filename</parameter>.</para>
+
+<orderedlist>
+<listitem>
+<para>If <link linkend="chunking">chunking</link> is enabled and the
+<parameter>persistent-toc-filename</parameter> parameter is non-empty,
+it’s used as a filename and a single copy of the ToC will be saved in
+that file.</para>
+<para>The benefit of this approach is that the HTML chunks are
+smaller. If the persistent ToC is written into every chunk, the size
+of each HTML chunk increases in proportion to the size of the ToC. For
+a large document with lots of small pages, this can be a significant
+percentage of the overall size.</para>
+<para>The disadvantage of this approach is that opening the ToC
+requires another document to be loaded into the browser. For a large
+ToC, this can introduce visible latency, although browser caching
+tends to reduce that after the document has been loaded once. More
+significantly, this will not work unless the documents are served with
+<code>http</code> (and in some environments, perhaps
+<code>https</code>). The browser will (quite reasonably) not allow
+JavaScript to load documents from the filesystem.</para>
+</listitem>
+<listitem>
+<para>If the 
+<parameter>persistent-toc-filename</parameter> parameter is the empty
+sequence, a copy of the ToC is stored in each chunk.</para>
+
+<note>
+<para>When stored in each chunk, the Table of Contents is secreted away in a
+<tag namespace="http://www.w3.org/1999/xhtml">script</tag> element so that
+it will be ignored by screen readers and other user agents that don’t
+support JavaScript or CSS.
+</para>
+</note>
+
+<para>The benefit of this approach is that it requires no additional
+document to be loaded and will work even if the documents are loaded
+with <code>file</code> URIs.</para>
+<para>The disadvantage of this approach is that it increases the size of
+each chunk. Whether that matters depends on the size of the ToC, the relative
+size of the chunks, bandwidth and other constraints.</para>
+</listitem>
+<listitem>
+<para>If chunking <emphasis>is not</emphasis> being used, there will
+only be one HTML result and the ToC will always be stored in that chunk.
+</para>
+</listitem>
+</orderedlist>
+</section>
+
 <section xml:id="print">
 <title>Print output (dead tree editions)</title>
 
