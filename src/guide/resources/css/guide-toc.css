@@ -33,13 +33,22 @@ nav.toc {
     z-index: 2;
     top: 0;
     right: 0;
-    transition: 0.25s;
     background-color: rgb(114,105,155);
     padding: 0;
     margin: 0;
     font-size: 12pt;
     opacity: 1;
     padding-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+nav.toc.slide {
+    transition: 0.33s;
+}
+
+nav.toc > div {
+    flex: 1;
 }
 
 @media only screen {
@@ -52,6 +61,12 @@ nav.toc header {
     height: 4rem;
     font-family: "Noto Sans", sans-serif;
     font-size: 1.25em;
+}
+
+nav.toc header p.ptoc-search {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 1rem;
 }
 
 nav.toc header .close {
@@ -72,10 +87,6 @@ nav.toc li.nav-title {
     padding-bottom: 0.25em;
     font-family: var(--title-family);
     font-size: 1.25em;
-}
-
-nav.toc div {
-    height: calc(100% - 40px);
 }
 
 @media only screen {
