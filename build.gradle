@@ -681,7 +681,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['profile-os'] = 'win;linux'
   }
 
-  if (base == "fit.001") {
+  if (base == "fit.001" || base == "fit.002") {
     stylesheetParams['profile-outputformat'] = 'online'
   }
 
@@ -707,12 +707,14 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   if (base.startsWith("olink.")) {
     def dirs = ["${buildDir}/actual/guide.olinkdb",
                 "${buildDir}/actual/fit.001.olinkdb",
+                "${buildDir}/actual/fit.002.olinkdb",
                 "${projectDir}/src/website/resources/olinkdb/website.olinkdb"]
     stylesheetParams['olink-databases'] = dirs.join(",")
   }
 
   def schemaFn = "${projectDir}/src/test/resources/docbook.rng"
-  if (base.contains("xinclude") || base.contains('iso690') || base == "fit.001") {
+  if (base.contains("xinclude") || base.contains('iso690')
+      || base == "fit.001" || base == "fit.002") {
     schemaFn = "${projectDir}/src/test/resources/docbookxi.rng"
   }
 
@@ -783,7 +785,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
   allExpectedDocuments.dependsOn t
 
-  if (base == "fit.001") {
+  if (base == "fit.001" || base == "fit.002") {
     stylesheetParams = [:]
     stylesheetParams['chunk'] = 'index.html'
     stylesheetParams['chunk-output-base-uri'] = 'https://xsltng.docbook.org/samples/fit/'
@@ -811,7 +813,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
 
   stylesheetParams = [:]
 
-  if (base == "fit.001") {
+  if (base == "fit.001" || base == "fit.002") {
     stylesheetParams['annotation-style'] = 'javascript'
     stylesheetParams['profile-outputformat'] = 'online'
     stylesheetParams['persistent-toc'] = true
@@ -927,6 +929,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
 
 // Now that we have the html olink targets
 tasks.findByName("docbook.xspec").dependsOn "fit.001.olinkdb"
+tasks.findByName("docbook.xspec").dependsOn "fit.002.olinkdb"
 tasks.findByName("docbook.xspec").dependsOn "guide.olinkdb"
 
 fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { xml ->
@@ -941,10 +944,12 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
   if (base.startsWith("olink.")) {
     Task t = tasks.findByName("${base}.html")
     t.dependsOn "fit.001.olinkdb"
+    t.dependsOn "fit.002.olinkdb"
     t.dependsOn "guide.olinkdb"
 
     t = tasks.findByName("${base}.expected")
     t.dependsOn "fit.001.olinkdb"
+    t.dependsOn "fit.002.olinkdb"
     t.dependsOn "guide.olinkdb"
   }
 }
