@@ -2690,12 +2690,15 @@ in CSS.</para>
 <refsection>
 <title>Description</title>
 <para>If this value <glossterm>is true</glossterm>, then a copy of the
-Table of Contents (ToC) will be added to every file produced. This
-Table of Contents is read by JavaScript when displayed in the browser
-and provides a “popup” ToC on every page.
+Table of Contents (ToC) will generated. This
+Table of Contents is read by JavaScript, when displayed in the browser,
+and can provide a “popup” ToC on every page.
 </para>
+<para>The ToC can be stored in a separate file or stored in each chunk.
+This is controlled by the <parameter>persistent-toc-filename</parameter>.</para>
 <note>
-<para>The Table of Contents is secreted away in a <tag namespace="http://www.w3.org/1999/xhtml">script</tag> element so that
+<para>When stored in each chunk, the Table of Contents is secreted away in a
+<tag namespace="http://www.w3.org/1999/xhtml">script</tag> element so that
 it will be ignored by screen readers and other user agents that don’t
 support JavaScript or CSS.
 </para>
@@ -2721,6 +2724,66 @@ until you dismiss it.</para>
 <title>Description</title>
 <para>If the persistent ToC popup is enabled, a link to this
 CSS file will be added to the HTML HEAD.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>persistent-toc-filename</varname>
+      <initializer>'persistent-toc.html'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.0.2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Name of file that holds the persistent ToC</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>When the
+<parameter>persistent-toc</parameter> parameter <glossterm>is true</glossterm>,
+a copy of the Table of Contents (ToC) will be stored either in each HTML
+file, or in a single file that is loaded dynamically.</para>
+
+<orderedlist>
+<listitem>
+<para>If <link linkend="chunking">chunking</link> is enabled and the
+<parameter>persistent-toc-filename</parameter> parameter is non-empty,
+it’s used as a filename and a single copy of the ToC will be saved in
+that file.</para>
+<para>The benefit of this approach is that the HTML chunks are
+smaller. If the persistent ToC is written into every chunk, the size
+of each HTML chunk increases in proportion to the size of the ToC. For
+a large document with lots of small pages, this can be a significant
+percentage of the overall size.</para>
+<para>The disadvantage of this approach is that opening the ToC
+requires another document to be loaded into the browser. For a large
+ToC, this can introduce visible latency, although browser caching
+tends to reduce that after the document has been loaded once. More
+significantly, this will not work unless the documents are served with
+<code>http</code> (and in some environments, perhaps
+<code>https</code>). The browser will (quite reasonably) not allow
+JavaScript to load documents from the filesystem.</para>
+</listitem>
+<listitem>
+<para>If the 
+<parameter>persistent-toc-filename</parameter> parameter is the empty
+sequence, a copy of the ToC is stored in each chunk.</para>
+<para>The benefit of this approach is that it requires no additional
+document to be loaded and will work even if the documents are loaded
+with <code>file</code> URIs.</para>
+<para>The disadvantage of this approach is that it increases the size of
+each chunk. Whether that matters depends on the size of the ToC, the relative
+size of the chunks, bandwidth and other constraints.</para>
+</listitem>
+<listitem>
+<para>If chunking <emphasis>is not</emphasis> being used, there will
+only be one HTML result and the ToC will always be stored in that chunk.
+</para>
+</listitem>
+</orderedlist>
 </refsection>
 </refentry>
 
