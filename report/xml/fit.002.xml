@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xml:id="book" version="5.1">
+<info>
+  <title>Five Interesting Things</title>
+  <author>
+    <personname>
+      <firstname>Norman</firstname>
+      <surname>Tovey-Walsh</surname>
+    </personname>
+    <email>ndw@nwalsh.com</email>
+  </author>
+  <pubdate>2020-07-18</pubdate>
+  <abstract>
+    <para>This book highlights five interesting things about the
+    <citetitle>DocBook xslTNG Stylesheets</citetitle>.</para>
+  </abstract>
+  <revhistory>
+    <revision>
+      <revnumber>1.1.1</revnumber>
+      <date>2023-01-04</date>
+      <authorinitials>ndw</authorinitials>
+      <revremark>Chunks into different directories to test linking.</revremark>
+    </revision>
+    <revision>
+      <revnumber>1.1.0</revnumber>
+      <date>2020-07-18</date>
+      <authorinitials>ndw</authorinitials>
+      <revremark>Renamed chapter 1 and chapter 5 on the advice of a reviewer.</revremark>
+    </revision>
+    <revision>
+      <revnumber>1.0.1</revnumber>
+      <date>2020-06-29</date>
+      <authorinitials>ndw</authorinitials>
+      <revremark>Small changes motivated by improvements in the CSS for paged media.</revremark>
+    </revision>
+    <revision>
+      <revnumber>1.0.0</revnumber>
+      <date>2020-06-28</date>
+      <authorinitials>ndw</authorinitials>
+      <revremark>First publication.</revremark>
+    </revision>
+    <revision>
+      <revnumber>0.0.1</revnumber>
+      <date>2020-06-20</date>
+      <authorinitials>ndw</authorinitials>
+      <revremark>Initial draft.</revremark>
+    </revision>
+  </revhistory>
+  <copyright>
+    <year>2020</year>
+    <holder>Norman Tovey-Walsh</holder>
+  </copyright>
+  <?db xlink-style="javascript" page-style="verso"?>
+</info>
+
+<chapter xml:id="look">
+<?db filename="ch01.html"?>
+<title>Clean Look and Feel</title>
+
+<para>The output from the <citetitle>DocBook xslTNG
+Stylesheets</citetitle> is designed to be clean, semantic
+<biblioref linkend="HTML"/> with
+accessibility features wherever possible. The online presentation is
+driven by modern, <link linkend="caniuse">widely-available</link>
+CSS and JavaScript APIs.</para>
+
+<figure pgwide="1">
+<title>Look and Feel in Firefox</title>
+<screenshot>
+<mediaobject>
+<alt>Screenshot of this chapter as rendered in Firefox on the Mac</alt>
+<imageobjectco>
+<areaspec>
+  <area xml:id="lf.header" linkends="lf.header.co" units="calspair"
+        coords="350,6200 2200,7800"/>
+  <area xml:id="lf.access" linkends="lf.access.co" units="calspair"
+        coords="1150,5000 2500,6100"/>
+  <area xml:id="lf.footer" linkends="lf.footer.co" units="calspair"
+        coords="500,2000 2200,4100"/>
+  <area xml:id="lf.perstoc" linkends="lf.perstoc.co" units="calspair"
+        coords="7300,7200 9100,8400"/>
+  <area xml:id="lf.cleaner" linkends="lf.cleaner.co" units="calspair"
+        coords="7300,5650 9300,6900"/>
+  <area xml:id="lf.customize" linkends="lf.customize.co" units="calspair"
+        coords="7150,2200 9600,4900"/>
+</areaspec>
+<imageobject outputformat="print">
+<imagedata width="5.5in" fileref="../media/fit-screenshot.png"/>
+</imageobject>
+<imageobject outputformat="online">
+<imagedata fileref="../media/fit-screenshot.png"/>
+</imageobject>
+</imageobjectco>
+<textobject>
+<para>Screenshot of the new look and feel as rendered in Firefox.
+There’s a header across the top with Home, Up, Next, and Previous
+links. There’s a footer across the bottom with similar navigation
+features divided into a three column table: Previous on the left, Up
+and Home in the center, and Next on the right. The titles of preceding
+and next pages are shown in the footer.</para>
+</textobject>
+</mediaobject>
+</screenshot>
+</figure>
+
+<calloutlist>
+<callout xml:id="lf.header.co" arearefs="lf.header">
+<para>The header is fixed to the top of the page so navigation links
+are always available.</para>
+</callout>
+<callout xml:id="lf.access.co" arearefs="lf.access">
+<para>Accessibility features include long descriptions of images and tables,
+alt-text for images, and headers for table rows and columns. Where JavaScript is
+used, reasonable non-JavaScript fallbacks are provided.</para>
+</callout>
+<callout xml:id="lf.footer.co" arearefs="lf.footer">
+<para>On short pages, the footer always floats to the bottom of the page.
+</para>
+</callout>
+<callout xml:id="lf.perstoc.co" arearefs="lf.perstoc">
+<para>The “persistent ToC” feature puts the whole document’s Table of
+Contents within easy reach on every page.</para>
+</callout>
+<callout xml:id="lf.cleaner.co" arearefs="lf.cleaner">
+<para>The design is generally cleaner. There are different and
+slightly larger fonts, the column width never exceeds a practical
+reading width, and media queries make the design responsive to the
+narrower displays on phones and tablets.</para>
+</callout>
+<callout xml:id="lf.customize.co" arearefs="lf.customize">
+<para>The focus on clean, semantic markup means that you can create
+new (and better!) styles with CSS. You can also write stylesheet
+extensions to customize the markup, to add additional details to
+the header and footer, for example.
+</para>
+</callout>
+</calloutlist>
+</chapter>
+
+<chapter xml:id="toc">
+<?db filename="ch/even/ch02.html"?>
+<info>
+<title>Persistent Table of Contents</title>
+<titleabbrev>Persistent ToC</titleabbrev>
+</info>
+
+<para>The Persistent Table of Contents brings the document’s Table of
+Contents navigation hierarchy to every page. Clicking on the
+<inlinemediaobject><alt>[toc]</alt><imageobject>
+<imagedata fileref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"/>
+</imageobject></inlinemediaobject>
+link in the upper right corner slides out the Table of Contents window
+from the right hand edge of the screen.
+</para>
+
+<figure pgwide="1">
+<title>Persistent Table of Contents in Firefox</title>
+<screenshot>
+<mediaobject>
+<alt>Screenshot of this chapter with the persistent ToC as rendered in
+Firefox on the Mac</alt>
+<imageobject outputformat="print">
+<imagedata width="5.5in" fileref="../media/fit-ptoc.png"/>
+</imageobject>
+<imageobject outputformat="online">
+<imagedata fileref="../media/fit-ptoc.png"/>
+</imageobject>
+<textobject>
+<para>Screenshot showing the persistent table of contents rendered
+as a popup on the right hand side of the page.</para>
+</textobject>
+</mediaobject>
+</screenshot>
+</figure>
+
+<para>Links in the persistent ToC navigate to the pages they identify.
+For large documents with long ToCs, the window scrolls and attempts to
+place the current page at the top of the ToC view.</para>
+
+</chapter>
+
+<chapter xml:id="callouts">
+<?db filename="ch/odd/ch03.html"?>
+<title>Callouts</title>
+
+<para>Callouts are a mechanism for decorating the verbatim content of
+<tag>programlisting</tag> elements with marks that can be
+cross-referenced in documentation. They have the real advantage that
+they can be used to decorate the actual code or other
+listing. Importing the actual
+listing assures that the documented listing and the actual listing
+will be the same.</para>
+
+<para>A system where you have to import the code or add the markup
+inline introduces the risk that the listing being documented will not
+be updated when the underlying resource is updated.</para>
+
+<para>The program below computes the
+“<emphasis>n</emphasis>th” Fibonacci number.</para>
+
+<programlistingco>
+<areaspec>
+  <area xml:id="py.importclick" linkends="py.importclick.co" coords="7 15">
+    <alt>Highlights the click library</alt>
+  </area>
+  <area xml:id="py.sqrt5" linkends="py.sqrt5.co" coords="9 23">
+    <alt>Constant: √5</alt>
+  </area>
+</areaspec>
+<programlisting language="python"
+><xi:include href="../fibonacci.py"
+parse="text" xpointer="line=,10"/></programlisting>
+<calloutlist>
+<callout xml:id="py.importclick.co" arearefs="py.importclick">
+<para><biblioref linkend="Click"/> is my current favorite library for
+parsing command line arguments in Python.</para>
+</callout>
+<callout xml:id="py.sqrt5.co" arearefs="py.sqrt5">
+<para>This <phrase xml:id="fibmml">constant</phrase> is the 
+<inlineequation>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+<msqrt><mrow><mn>5</mn></mrow></msqrt></math></inlineequation>.
+</para>
+</callout>
+</calloutlist>
+</programlistingco>
+
+<para>I’m also taking advantage of the ability to use
+<biblioref linkend="XInclude"/> (and <biblioref linkend="RFC5147"/>)
+to break the listing into manageable
+fragments for documentation. The listing above, and the one below,
+are lines from the same file.</para>
+
+<programlistingco>
+<areaspec>
+  <?db starting-callout-number="continues"?>
+  <!-- Observe that line numbers here are numbers on this listing,
+       not numbers from the underlying file. -->
+  <area xml:id="py.click" linkends="py.click.co" coords="3 16">
+    <alt>Click takes care of type checking the arguments</alt>
+  </area>
+  <area xml:id="py.fib" linkends="py.fib.co" coords="9 60">
+    <alt>Closed-form calculation of n’th Fibonacci number</alt>
+  </area>
+  <area xml:id="py.ordinal" linkends="py.ordinal.co" units="linerange" coords="18">
+    <alt>Stackoverflow answer to the question “how do I make an
+    ordinal number in Python”?</alt>
+  </area>
+  <area xml:id="py.main" linkends="py.main.co" coords="26 18">
+    <alt>If this is a main program, run it!</alt>
+  </area>
+</areaspec>
+<!-- N.B. the syntax highlighter discards leading blank lines -->
+<programlisting language="python" startinglinenumber="11"
+><xi:include href="../fibonacci.py"
+parse="text" xpointer="line=10,"/></programlisting>
+<calloutlist>
+<callout xml:id="py.click.co" arearefs="py.click">
+<para>One of the real strengths of using a tool like Click to wrangle
+arguments is that you get type and range checking pretty much for free.</para>
+</callout>
+<callout xml:id="py.fib.co" arearefs="py.fib">
+<para>This is the closed-form solution to finding the
+“<emphasis>n</emphasis>th” Fibonacci number:</para>
+<informalequation>
+<math xmlns="http://www.w3.org/1998/Math/MathML" class="equation" display="block">
+<mfrac>
+  <mrow><mn>1</mn></mrow>
+  <mrow><msqrt><mrow><mn>5</mn></mrow></msqrt></mrow></mfrac> <mfenced separators="" open="(" close=")"><mrow><msup><mrow><mfenced separators="" open="(" close=")"><mrow><mfrac><mrow><mn>1</mn> <mo class="MathClass-bin">+</mo> <msqrt><mrow><mn>5</mn></mrow></msqrt></mrow>
+  <mrow><mn>2</mn></mrow></mfrac>    </mrow></mfenced></mrow><mrow><mi>n</mi></mrow></msup> <mo class="MathClass-bin">-</mo><msup><mrow><mfenced separators="" open="(" close=")"><mrow><mfrac><mrow><mn>1</mn> <mo class="MathClass-bin">-</mo><msqrt><mrow><mn>5</mn></mrow></msqrt></mrow>
+  <mrow><mn>2</mn></mrow></mfrac></mrow></mfenced></mrow>
+  <mrow><mi>n</mi></mrow></msup></mrow></mfenced>
+</math></informalequation>
+<annotation annotates="fibmml">
+<para>If you use <biblioref linkend="MathML"/>, the stylesheets automatically include the
+<biblioref linkend="MathJax"/> libraries (or the MathML rendering libraries of
+your choosing). This allows you to display complex equations, of course, but it
+can also improve the appearance of even simple expressions, such as
+√5.</para>
+<para outputformat="online">(This is an annotation, more about them in
+the next chapter.)</para>
+</annotation>
+<para>The closed-form solution amuses me because I used calculating Fibonacci
+numbers
+(recursively) as an argument for greater expressive power in XSLT 1.0.
+“What if I wanted to number a list with the Fibonacci numbers?”
+</para>
+</callout>
+<callout xml:id="py.ordinal.co" arearefs="py.ordinal">
+<para>Stackoverflow showed me how to print the number as an ordinal.</para>
+</callout>
+<callout xml:id="py.main.co" arearefs="py.main">
+<para>Finally, if this is a main program, compute the answer.</para>
+</callout>
+</calloutlist>
+</programlistingco>
+
+<para outputformat="online">If you hover over the callout numbers in the listing,
+alt-text will be displayed.</para>
+
+</chapter>
+
+<chapter xml:id="annotations">
+<?db filename="ch/even/ch04.html"?>
+<info>
+<title xml:id="atitle">Annotations</title>
+</info>
+
+<para>Annotations, as the name
+<phrase xml:id="implies">implies</phrase>, allow you to associate
+annotations with content in your document. Annotations are
+non-local (they’re associated by ID/IDREF not containment)
+and the linking markup is <phrase annotations="bi-directional">bi-directional</phrase>.
+The same annotation <phrase xml:id="u1">can</phrase>
+be used
+<phrase annotations="repeated">more than once</phrase>.</para>
+
+<para>Annotations can be rendered with or without JavaScript support.
+With JavaScript, the annotations are popups. Without JavaScript,
+they’re presented at the bottom of the page, similar to footnotes, but
+styled somewhat differently. In paged media,
+annotations are rendered as footnotes and their titles are ignored.
+</para>
+
+<annotation annotates="u1" xml:id="repeated">
+<para>This one is pointless, but it is used twice.</para>
+</annotation>
+
+<annotation annotates="implies">
+<title>Annotation, noun</title>
+<para>According to Merriam-Webster,
+<link xlink:href="https://www.merriam-webster.com/dictionary/annotation">an
+annotation</link> is a note added by way of comment or explanation.
+They give as an example quotation:
+</para>
+<blockquote>
+<para>The bibliography was provided with helpful annotations.</para>
+</blockquote>
+</annotation>
+
+<annotation xml:id="bi-directional">
+<para>Annotations can point to the elements the annotate.
+Alternatively, elements can point to their annotations.</para>
+</annotation>
+
+</chapter>
+
+<chapter xml:id="xlink">
+<?db filename="ch/five/ch05.html"?>
+<title>Extended Links</title>
+
+<para xml:id="xlinkpara"><biblioref linkend="XLink"/> extended links, like
+<link xlink:href="annotations">annotations</link>, can be non-local.
+The more interesting feature is that
+unlike HTML anchors, they can also have multiple endpoints. Consider
+the following link:
+</para>
+
+<programlisting language="xml"><![CDATA[<phrase xmlns:xlink="http://www.w3.org/1999/xlink"
+        xlink:type="extended">
+  <link xlink:title="DocBook.org"
+        xlink:label="target"
+        xlink:href="http://docbook.org/"
+        xlink:type="locator"/>
+  <link xlink:title="DocBook on Wikipedia"
+        xlink:label="target"
+        xlink:href="http://en.wikipedia.org/wiki/DocBook"
+        xlink:type="locator"/>
+  <citetitle xlink:label="source" xlink:type="resource"
+  >DocBook</citetitle>
+  <link xlink:to="target" xlink:from="source" xlink:type="arc"/>
+</phrase>]]></programlisting>
+
+<para>With JavaScript enabled, this link to
+<phrase xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+  <link xlink:title="DocBook.org"
+        xlink:label="target"
+        xlink:href="http://docbook.org/"
+        xlink:type="locator"/>
+  <link xlink:title="DocBook on Wikipedia"
+        xlink:label="target"
+        xlink:href="http://en.wikipedia.org/wiki/DocBook"
+        xlink:type="locator"/>
+  <citetitle xlink:label="source" xlink:type="resource">DocBook</citetitle>
+  <link xlink:to="target" xlink:from="source" xlink:type="arc"/>
+</phrase> has a popup menu to select the link target. Rendered without JavaScript,
+the link choices are presented as alternatives after the link.
+In print media, the link URIs are also shown in
+parenthesis.</para>
+
+<annotation role="wide tall" outputformat="online" annotates="xlinkpara">
+<title>Simplifying link markup</title>
+<para>It’s worth noting that although the XLink vocabulary is defined
+purely in terms of attributes so that it can more easily be embedded in
+other vocabularies, there’s no reason a DocBook customization couldn’t
+use simplified markup to identify links:</para>
+
+<programlisting linenumbering="unnumbered" language="xml"><![CDATA[<extended-link>
+  <target title="DocBook.org" href="http://docbook.org/"/>
+  <target title="DocBook on Wikipedia"
+          href="http://en.wikipedia.org/wiki/DocBook"/>
+  <citetitle>DocBook</citetitle>
+</extended-link>]]></programlisting>
+
+<para>In this example, I’ve adopted the convention that an <tag>extended-link</tag>
+element identifies an extended link with the semantic that <tag>target</tag> element(s)
+identify the link target and any other element identifies the source.</para>
+
+<para>This is equivalent to the attribute form and could easily be translated into it.</para>
+</annotation>
+
+</chapter>
+
+<appendix xml:id="pdf">
+<?db filename="ap/ap01.html"?>
+<title>Paged media support</title>
+
+<para>The <citetitle>DocBook xslTNG Stylesheets</citetitle> anticipate
+that “print” output, that is, paged media, will be provided with a CSS
+formatter such as <biblioref linkend="AntennaHouse"/> or <biblioref
+linkend="Prince"/>.</para>
+
+<para>The stylesheet intended for paged media output produces slightly
+different HTML than the online stylesheet. This print customization
+assures that JavaScript features are disabled and changes the markup
+used for some elements.</para>
+
+<para>The resulting “<filename class="extension">.pdf.html</filename>” file
+is then processed by the formatter.</para>
+
+<para>In as much as the different CSS formatters behave differently
+and have different extensions for features that are needed in print
+but not yet standardized, additional customization may be necessary.</para>
+
+</appendix>
+
+<bibliography>
+<?db filename="back/bib.html"?>
+<title>References</title>
+
+<bibliomixed xml:id="AntennaHouse"><abbrev>AntennaHouse</abbrev><citetitle
+xlink:href="https://www.antennahouse.com/">AH Formatter</citetitle>. Version 7.0.3.
+</bibliomixed>
+
+<bibliomixed xml:id="caniuse"><abbrev>CanIUse</abbrev><citetitle
+xlink:href="https://caniuse.com/">Can I use… Support tables for
+HTML5, CSS3, etc</citetitle>. 20 June 2020.</bibliomixed>
+
+<bibliomixed xml:id="Click"><abbrev>Click</abbrev><citetitle
+xlink:href="https://click.palletsprojects.com/en/7.x/">Click</citetitle>.
+Version 7.2.</bibliomixed>
+
+<bibliomixed xml:id="CSS"><abbrev>CSS</abbrev><citetitle
+xlink:href="https://www.w3.org/Style/CSS/specs.en.html">CSS Specifications</citetitle>.
+World Wide Web Consortium. 2020.</bibliomixed>
+
+<bibliomixed xml:id="HTML"><abbrev>HTML</abbrev><citetitle
+xlink:href="https://html.spec.whatwg.org/">HTML: Living Standard</citetitle>.
+18 June 2020.</bibliomixed>
+
+<bibliomixed xml:id="MathJax"><abbrev>MathJax</abbrev><citetitle
+xlink:href="https://www.mathjax.org/">MathJax</citetitle>.
+</bibliomixed>
+
+<bibliomixed xml:id="MathML"><abbrev>MathML</abbrev><citetitle
+xlink:href="https://www.w3.org/TR/MathML3/">Mathematical Markup
+Language (MathML) Version 3.0</citetitle>. World Wide Web
+Consortium. 2014.
+</bibliomixed>
+
+<bibliomixed xml:id="metadata-extractor"><abbrev>metadata-extractor</abbrev><citetitle
+xlink:href="https://drewnoakes.com/code/exif/">metadata-extractor</citetitle>.
+Version 2.14.0.</bibliomixed>
+
+<bibliomixed xml:id="Prince"><abbrev>Prince</abbrev><citetitle
+xlink:href="https://www.princexml.com/">Prince</citetitle>.
+Version 13.5.</bibliomixed>
+
+<bibliomixed xml:id="RFC5147"><abbrev>RFC 5147</abbrev><citetitle
+xlink:href="https://tools.ietf.org/html/rfc5147">URI Fragment Identifiers
+for the text/plain Media Type</citetitle>. E. Wilde and M. Duerst,
+editors. Internet Engineering Task Force. 2008.
+</bibliomixed>
+
+<bibliomixed xml:id="XInclude"><abbrev>XInclude</abbrev><citetitle
+xlink:href="https://www.w3.org/TR/xinclude/">XML Inclusions (XInclude)
+Version 1.0 (Second Edition)</citetitle>. World Wide Web
+Consortium. 2006.
+</bibliomixed>
+
+<bibliomixed xml:id="XLink"><abbrev>XLink</abbrev><citetitle
+xlink:href="https://www.w3.org/TR/xlink/">XML Linking Language (XLink) Version 1.1</citetitle>
+World Wide Web Consortium. 2010.
+</bibliomixed>
+</bibliography>
+
+<colophon>
+<?db filename="back/colophon.html"?>
+<title>Colophon</title>
+<para condition="$xspec=false">This book was authored in DocBook 5.1
+with Emacs. It was formatted for presentation with the
+<citetitle>DocBook xslTNG Stylesheets</citetitle> version
+<?DocBook-xslTNG-version?> using
+<phrase role="nobreak"><?system-property xsl:product-name?> <?system-property xsl:product-version?></phrase>.</para>
+<para condition="$xspec=true">This book was authored in DocBook 5.1
+with Emacs. It was formatted for presentation with the
+<citetitle>DocBook xslTNG Stylesheets</citetitle>.
+</para>
+</colophon>
+</book>
