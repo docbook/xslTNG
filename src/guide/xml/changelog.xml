@@ -2,6 +2,30 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 <revision>
+<revnumber>2.0.2</revnumber>
+<date>2023-01-05</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r200">2.0.1</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Reworked the way the <link linkend="persistent-toc">persistent ToC</link>
+is generated.</para>
+</listitem>
+<listitem>
+<para>Documented some subtleties with respect to the 
+<parameter>chunk-output-base-uri</parameter> parameter.</para>
+</listitem>
+<listitem>
+<para>Documentation improvements.</para>
+</listitem>
+<listitem>
+<para>Cleaned up the build scripts a bit.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
+<revision>
 <revnumber>2.0.1</revnumber>
 <date>2023-01-03</date>
 <revdescription>
@@ -35,6 +59,7 @@ behind all the localization changes.</para>
 </itemizedlist>
 </revdescription>
 </revision>
+
 <revision xml:id="r200">
 <revnumber>2.0.0</revnumber>
 <date>2022-12-30</date>
