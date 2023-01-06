@@ -69,6 +69,7 @@ jobs:
           mkdir /tmp/guide
           rsync -var guide/ /tmp/guide/
           rm -f /tmp/guide/*.html /tmp/guide/validated.xml
+          rm -rf /tmp/guide/css /tmp/guide/js
           ls -l /tmp/guide/
 
       - name: Checkout the main branch
