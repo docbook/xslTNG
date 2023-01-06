@@ -1688,6 +1688,7 @@ task webGuide(
     copy {
       from "${buildDir}/guide"
       exclude "guide.xml"
+      exclude "validated.xml"
       into "${buildDir}/website/guide/${guideVersion}"
     }
   }
