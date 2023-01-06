@@ -91,7 +91,7 @@ jobs:
         run: cd build/website && tar zxf /tmp/save-epub-pdf.tar.gz
 
       - name: Restore previous version(s) of the guide
-        run: rsync -var /tmp/guide/ guide/
+        run: rsync -var /tmp/guide/ build/website/guide/
 
       - name: Deploy main to gh-pages
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
