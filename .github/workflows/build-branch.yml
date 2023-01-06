@@ -49,7 +49,7 @@ jobs:
         run: python3 -m pip install pygments==2.6.1 click
 
       - name: Install epubcheck
-        run: sudo apt-get install epubcheck
+        run: sudo apt-get install epubcheck rsync
 
       - name: Download and install SASS
         run: |
@@ -63,6 +63,12 @@ jobs:
 
       - name: Save EPUB and PDFs
         run: tar cf - epub pdf | gzip > /tmp/save-epub-pdf.tar.gz
+
+      - name: Save the current version(s) of the guide
+        run: |
+          mkdir /tmp/guide
+          rsync -ar guide/ /tmp/guide/
+          rm -f /tmp/guide/*.html /tmp/guide/validated.xml
 
       - name: Checkout the main branch
         uses: actions/checkout@v3
@@ -81,6 +87,9 @@ jobs:
 
       - name: Restore EPUB and PDFs
         run: cd build/website && tar zxf /tmp/save-epub-pdf.tar.gz
+
+      - name: Restore previous version(s) of the guide
+        run: rsync -ar /tmp/guide/ guide/
 
       - name: Deploy main to gh-pages
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
