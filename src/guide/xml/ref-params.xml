@@ -664,7 +664,7 @@ adding the <parameter>chunk-nav-js</parameter> script to the generated HTML.
 </row>
 <row>
 <entry>
-<keycap>U</keycap> or <keycap>↑</keycap>
+<keycap>U</keycap>
 </entry>
 <entry>Parent</entry>
 </row>
@@ -674,13 +674,35 @@ adding the <parameter>chunk-nav-js</parameter> script to the generated HTML.
 </entry>
 <entry>Home</entry>
 </row>
+<row>
+<entry>
+<keycap>S</keycap>
+</entry>
+<entry>Toggle between normal and speaker view</entry>
+</row>
+<!-- undocumented...
+<row>
+<entry>
+<keycap>A</keycap> and <keycap>R</keycap>
+</entry>
+<entry>Toggle all “progressive reveal” items on and off.
+</entry>
+</row>
+-->
 </tbody>
 </tgroup>
 </table>
-<para>In addition, if the speaker notes extension is used,
-<keycap>S</keycap> will toggle between the normal view and the speaker
-notes view.
-</para>
+<para>Notes:</para>
+<orderedlist>
+<listitem><para>The <keycap>↑</keycap> used to be a shortcut
+for “parent”, like <keycap>U</keycap>, but that breaks the ability to
+navigate up and down the page with the arrow keys. It was removed in
+version 2.0.3.</para>
+</listitem>
+<listitem><para>The <keycap>S</keycap> functionality is really only relevant to
+when <link linkend="speaker-notes">speaker notes</link> are enabled.</para>
+</listitem>
+</orderedlist>
 </refsection>
 </refentry>
 
