@@ -67,8 +67,10 @@ jobs:
       - name: Save the current version(s) of the guide
         run: |
           mkdir /tmp/guide
-          rsync -ar guide/ /tmp/guide/
+          rsync -var guide/ /tmp/guide/
           rm -f /tmp/guide/*.html /tmp/guide/validated.xml
+          rm -rf /tmp/guide/css /tmp/guide/js
+          ls -l /tmp/guide/
 
       - name: Checkout the main branch
         uses: actions/checkout@v3
@@ -89,7 +91,7 @@ jobs:
         run: cd build/website && tar zxf /tmp/save-epub-pdf.tar.gz
 
       - name: Restore previous version(s) of the guide
-        run: rsync -ar /tmp/guide/ guide/
+        run: rsync -var /tmp/guide/ guide/
 
       - name: Deploy main to gh-pages
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
