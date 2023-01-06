@@ -4,6 +4,17 @@
 <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
 <title>DocBook xslTNG</title>
 <link href="css/style.css" rel="stylesheet" />
+<style>
+.note {
+  font-size: 80%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: 4px solid #ffbc42;
+  border-radius: 1rem;
+}
+</style>
 <link rel="shortcut icon" href="media/xsltng-icon.png" />
 </head>
 <body>
@@ -26,16 +37,24 @@ also supported.</p>
 <div>
 <h3 id="documentation">Documentation</h3>
 
-<p>The stylesheets are documented in the
-<a href="guide/index.html"><cite>DocBook: xslTNG Reference</cite></a>.
-You can also get <a href="/epub/DocBook-xslTNG-1.11.0.epub">EPUB</a>
-and <a href="/pdf/DocBook-xslTNG-1.11.0.pdf">PDF</a> versions
-of the documentation for the 1.11.x releases (the current release).</p>
+<p>The current release is documented in the
+<a href="guide/index.html"><cite>DocBook: xslTNG Reference</cite>
+(<a href="/epub/DocBook-xslTNG-1.11.0.epub">EPUB</a>,
+<a href="/pdf/DocBook-xslTNG-1.11.0.pdf">PDF</a>).
+</a></p>
 
-<p>At the time of
-this writing <a href="/epub/DocBook-xslTNG-2.0.1.epub">EPUB</a> and
-<a href="/pdf/DocBook-xslTNG-2.0.1.pdf">PDF</a> versions of the documentation
-for the 2.0.1 experimental release are also available.</p>
+<p>Documentation for the preview release
+is <a href="guide/2.0.2/">also available</a>
+(<a href="/epub/DocBook-xslTNG-2.0.2.epub">EPUB</a>,
+<a href="/pdf/DocBook-xslTNG-2.0.2.pdf">PDF</a>).</p>
+
+<p class="note">The ability to publish different versions of the documentation
+simultaneously was added on 6 January 2023. If you have bookmarked pages from
+earlier releases, you’ll need to update them. The plan is that
+<code>/guide</code> will always redirect you to the documentation for
+the current “production” release. Other releases are available under
+<code>/guide/<em>version</em></code>, for example
+<a href="guide/2.0.2/">guide/2.0.2/</a>.</p>
 
 <p>The <a href="https://xslt.xmlexplorer.com/">XSLT Explorer</a>
 summary of the stylesheets <a href="explorer/index.html">is also available</a>.
@@ -170,7 +189,7 @@ They are also available
 is version 1.11.2 published at 11:29 <a href="https://www.timeanddate.com/time/zones/gmt">GMT</a> on 03 Jan 2023.</p>
 </div>
 
-<p>The <a href="https://github.com/docbook/xslTNG/releases/latest">latest prerelease</a>
+<p>The <a href="https://github.com/docbook/xslTNG/releases/2.0.2">latest prerelease</a>
 is version <?xsltng-version?> published <?pubdate?>.</p>
 </div>
 
