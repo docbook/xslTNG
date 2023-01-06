@@ -1,0 +1,151 @@
+/* guide.css */
+
+:root {
+    --tng-blue: rgb(11, 0, 89);
+    max-width: inherit;
+}
+
+nav .title {
+    background-color: var(--tng-blue);
+    color: #ffffff;
+}
+
+html {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: inherit;
+}
+
+body {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+header .copyright {
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+.refnamediv h2 {
+    font-size: 2.2rem;
+    margin-top: 0;
+}
+
+.a-detail {
+    width: 100%;
+    font-size: 11pt;
+    display: table;
+    border: 1px solid #afafaf;
+}
+
+.a-detail > div {
+    display: table-row;
+}
+
+.a-detail > div > div {
+    display: table-cell;
+    border-bottom: 1px dotted #afafaf;
+}
+
+.a-detail div.prop {
+    white-space: nowrap;
+    width: 4em;
+}
+
+p .refname,
+p .refname-sep,
+p .refpurpose-sep {
+    display: none;
+}
+
+.funcprototype .parameter {
+    font-family: inherit;
+    font-style: inherit;
+}
+
+.informalfigure {
+    border: 2px solid #afafaf;
+    border-radius: 1em;
+    margin-left: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-right: 2em;
+}
+
+.informalfigure .imageobject {
+    text-align: center;
+}
+
+.figure {
+    border: 2px solid #afafaf;
+    border-radius: 1em;
+    margin-left: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-right: 2em;
+}
+
+.figure table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.figure .title {
+    text-align: center;
+}
+
+.example {
+    border: 2px solid #afafaf;
+    margin-left: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-right: 2em;
+}
+
+.funcname,
+.varname,
+.paramname {
+    white-space: nowrap;
+}
+
+.todo {
+    font-size: 80%;
+    text-align: center;
+}
+
+.property-table {
+    margin-bottom: 1em;
+    font-size: 80%;
+}
+
+.property-table tr td,
+.property-table tr th {
+    border: 1px solid #7f7f7f;
+}
+
+.center {
+    text-align: center;
+}
+
+pre.border {
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    width: 99%;
+}
+
+@media only screen {
+    pre.border {
+        overflow: scroll;
+    }
+}
+
+pre.border .line .ld {
+    padding-left: 4px;
+}
