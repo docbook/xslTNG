@@ -9,7 +9,7 @@
  *
  * 1. The stylesheets store next/prev/up/home links in the HTML head
  *    using link/@rel elements.
- * 2. If chunk-nav.js is loaded, N/→, P/←, U/↑, and H/Home navigate to
+ * 2. If chunk-nav.js is loaded, N/→, P/←, U, and H/Home navigate to
  *    the next, previous, "up", and home pages.
  * 3. If the HTML pages contain a meta element with the name
  *    "localStorage.key", the value of that element is used as a key
@@ -93,7 +93,6 @@
         nav_to(event, "prev");
         break;
       case KEY_U:
-      case KEY_UP:
         nav_to(event, "up");
         break;
       case KEY_H:
