@@ -1677,10 +1677,38 @@ task website(type: Copy, dependsOn: ['webGuide', 'webReport', 'webExplorer',
   }
 }
 
-task webGuide(type: Copy, dependsOn: ['guide', 'guide.olinkdb']) {
-  from "${buildDir}/guide"
-  exclude "guide.xml"
-  into "${buildDir}/website/guide"
+task webGuide(
+  dependsOn: ['guide', 'guide.olinkdb']
+) {
+  inputs.dir "${buildDir}/guide"
+  outputs.dir "${buildDir}/website/guide/${guideVersion}"
+  outputs.file "${buildDir}/website/guide/index.html"
+
+  doLast {
+    copy {
+      from "${buildDir}/guide"
+      exclude "guide.xml"
+      into "${buildDir}/website/guide/${guideVersion}"
+    }
+  }
+
+  doLast {
+    if (!guidePrerelease) {
+      File html = new File("${buildDir}/website/guide/index.html")
+      def writer = new PrintStream(html)
+      writer.println('<!DOCTYPE html>')
+      writer.println('<html>')
+      writer.println('<head>')
+      writer.println("<meta http-equiv='refresh' content=\"0; url='${guideVersion}/'\" />")
+      writer.println('</head>')
+      writer.println('<body>')
+      writer.println('<p>The current guide is ')
+      writer.println("<a href='${guideVersion}/'>version ${guideVersion}</a>.</p>")
+      writer.println('</body>')
+      writer.println('</html>')
+      writer.close()
+    }
+  }
 }
 
 task webExplorer(type: Copy, dependsOn: ['explorer']) {
