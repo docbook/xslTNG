@@ -114,7 +114,6 @@ dependencies {
     [group: 'org.relaxng', name: 'trang', version: "20181222" ],
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
-    [group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion ],
     files("${projectDir}/buildSrc/build/classes/java/main"),
     files(saxonLicenseDir)
   )
