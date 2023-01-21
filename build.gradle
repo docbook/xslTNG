@@ -351,8 +351,7 @@ def pkglist = ["net.sf.saxon:Saxon-HE:${saxonVersion}",
                "com.drewnoakes:metadata-extractor:${metadataExtractorVersion}",
                "org.relaxng:jing:${jingVersion}",
                "org.xmlresolver:xmlresolver:${xmlresolverVersion}",
-               "com.nwalsh:sinclude:${sincludeVersion}",
-               "org.slf4j:slf4j-simple:${slf4jVersion}"]
+               "com.nwalsh:sinclude:${sincludeVersion}"]
 
 task copyBin(type: Copy) {
   def packages = ""
