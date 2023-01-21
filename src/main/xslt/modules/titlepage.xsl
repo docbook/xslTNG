@@ -5,11 +5,12 @@
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/l10n/title"
+                xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f fp m t vp xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:template match="db:title" mode="m:titlepage">
@@ -71,8 +72,10 @@
 </xsl:template>
 
 <xsl:template match="*" mode="m:titlepage">
-  <xsl:message select="'No titlepage template for: ' || node-name(.)"/>
-  <xsl:apply-templates select="node()"/>
+  <xsl:if test="'templates' = $v:debug">
+    <xsl:message select="'No titlepage template for: ' || node-name(.)"/>
+  </xsl:if>
+  <xsl:apply-templates select="."/>
 </xsl:template>
 
 </xsl:stylesheet>
