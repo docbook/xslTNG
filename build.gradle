@@ -2130,7 +2130,7 @@ task xformtest(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
   pluginConfiguration "docbook"
   input "${projectDir}/test.xml"
   stylesheet "${buildDir}/xslt/docbook.xsl"
-  output "${projectDir}/test.html"
+  output "${buildDir}/actual/test.html"
   parameters(
   )
 }
