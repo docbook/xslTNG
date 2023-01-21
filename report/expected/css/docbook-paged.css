@@ -256,6 +256,10 @@ span.remark {
   box-shadow: var(--keycap-box-shadow);
 }
 
+.keycombo .keycap + .keycap {
+  margin-left: 0.4em;
+}
+
 code {
   font-family: var(--mono-family);
   background-color: var(--verbatim-odd-background-color);
