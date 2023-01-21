@@ -369,6 +369,9 @@
     <xsl:when test="exists(node())">
       <xsl:call-template name="t:inline"/>
     </xsl:when>
+    <xsl:when test="empty($lookup)">
+      <xsl:message select="'Ignoring keycap without function attribute or content'"/>
+    </xsl:when>
     <xsl:when test="exists(fp:localization-template(., 'keycap'))">
       <xsl:call-template name="t:inline">
         <xsl:with-param name="content" as="item()*">

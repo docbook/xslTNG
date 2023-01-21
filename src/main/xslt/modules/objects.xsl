@@ -91,7 +91,9 @@
         <xsl:variable name="alternatives"
                       select="count(db:audiodata|db:imagedata|db:videodata)"/>
         <xsl:variable name="selected-alternatives"
-                      select="array:size($info?datas)"/>
+                      select="if (exists($info) and map:contains($info, 'datas'))
+                              then array:size($info?datas)
+                              else 0"/>
 
         <xsl:choose>
           <xsl:when test="./self::db:textobject and not(db:phrase)">
