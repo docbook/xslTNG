@@ -50,7 +50,14 @@
       <xsl:copy-of select="$toc/h:html/h:head"/>
       <body>
         <nav xmlns:epub="http://www.idpf.org/2007/ops" epub:type="toc" id="toc">
-          <xsl:copy-of select="($toc//h:ol[contains-token(@class, 'toc')])[1]"/>
+          <xsl:variable
+              name="lot"
+              select="($toc//h:div[contains-token(@class, 'list-of-titles')])[1]"/>
+          <h1>
+            <xsl:sequence
+                select="($lot/h:div/h:div[contains-token(@class, 'title')])[1]/node()"/>
+          </h1>
+          <xsl:sequence select="($lot//h:ol[contains-token(@class, 'toc')])[1]"/>
         </nav>
       </body>
     </xsl:copy>

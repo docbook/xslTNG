@@ -3,11 +3,28 @@
 <?db revhistory-style="list"?>
 <revision>
 <revnumber>2.0.3</revnumber>
-<date>2023-01-06</date>
+<date>2023-01-21</date>
 <revdescription>
 <itemizedlist>
 <listitem>
 <para>Removed <keycap>↑</keycap> from <parameter>chunk-nav</parameter>.</para>
+</listitem>
+<listitem>
+<para>Support media objects that have no media (e.g., a media object that contains
+only inline text objects).</para>
+</listitem>
+<listitem>
+<para>Process unexected elements in titlepage templates in the normal way; removed
+the warning message associated with them. Added it back by putting
+<code>templates</code> in <parameter>debug</parameter>.</para>
+</listitem>
+<listitem>
+<para>Improved presentation of multiple <tag>keycap</tag> elements in a 
+<tag>keycombo</tag>.</para>
+</listitem>
+<listitem>
+<para>Added table-of-contents to the linear flow of EPUBs. This fixes an
+<application>epubcheck</application> 3.3 error. Fixed the CSS for the ToC.</para>
 </listitem>
 </itemizedlist>
 </revdescription>

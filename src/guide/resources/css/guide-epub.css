@@ -105,3 +105,16 @@
     page-break-after: avoid;
     display: inherit;
 }
+
+nav ol.toc {
+    list-style: none;
+}
+
+.toc .toc {
+    margin-top: 0;
+}
+
+nav ol.toc a,
+nav ol.toc a:visited {
+    color: inherit;
+}

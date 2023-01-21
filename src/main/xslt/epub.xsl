@@ -116,6 +116,7 @@
         <itemref idref="cover" linear="no"/>
         -->
         <itemref idref="titlepage" linear="yes"/>
+        <itemref idref="toc" linear="yes"/>
         <!--
         <itemref idref="brief-toc" linear="yes"/>
         -->
@@ -127,7 +128,6 @@
         <!--
         <itemref idref="copyright" linear="yes"/>
         -->
-        <itemref idref="toc" linear="no"/>
       </spine>
     </package>
   </xsl:result-document>
