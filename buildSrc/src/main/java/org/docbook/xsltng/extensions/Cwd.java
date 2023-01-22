@@ -16,7 +16,7 @@ import net.sf.saxon.value.SequenceType;
  * <a href="http://saxonica.com/">Saxon</a>
  * extension to return the current working directory (the user.dir system property).
  *
- * <p>Copyright © 2011-2020 Norman Walsh.
+ * <p>Copyright © 2011-2023 Norman Walsh.
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
@@ -61,7 +61,16 @@ public class Cwd extends ExtensionFunctionDefinition {
             if (!dir.endsWith("/")) {
                 dir += "/";
             }
-            return new AnyURIValue(dir);
+
+            // 21 Jan 2023, make this a file: URI. Previously, this was left as just a path
+            // and it was made absolute against the static base uri. But that doesn't work
+            // correctly if the static base URI is, for example https://cdn.docbook.org/...
+            if (dir.startsWith("/")) {
+                return new AnyURIValue("file:" + dir);
+            } else {
+                // Windows, for example, where dir might be C:\...
+                return new AnyURIValue("file:/" + dir);
+            }
         }
     }
 }

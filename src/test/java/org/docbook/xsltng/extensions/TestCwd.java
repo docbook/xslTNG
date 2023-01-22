@@ -49,7 +49,18 @@ public class TestCwd extends TestCase {
             transformer.setInitialTemplate(new QName("", "main"));
             transformer.transform();
             XdmValue value = result.getXdmValue();
-            assertEquals(System.getProperty("user.dir") + "/", value.toString());
+
+            String expected = System.getProperty("user.dir");
+            if (expected.startsWith("/")) {
+                expected = "file:" + expected;
+            } else {
+                expected = "file:/" + expected;
+            }
+            if (!expected.endsWith("/")) {
+                expected += "/";
+            }
+
+            assertEquals(expected, value.toString());
         } catch (SaxonApiException sae) {
             sae.printStackTrace();
             TestCase.fail();
