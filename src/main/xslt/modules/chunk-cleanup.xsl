@@ -9,10 +9,11 @@
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:chunk-cleanup"
-                exclude-result-prefixes="db dbe f fp h m mp t v xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:key name="hid" match="*" use="@id"/>
@@ -276,8 +277,7 @@
       <xsl:otherwise>
         <xsl:sequence
             select="resolve-uri($node/@db-chunk,
-                                resolve-uri($chunk-output-base-uri,
-                                            base-uri(root($node)/*)))"/>
+                                $vp:chunk-output-base-uri)"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -566,8 +566,7 @@
       <xsl:sequence select="base-uri(root($node)/*)"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="resolve-uri($chunk-output-base-uri,
-                                        base-uri(root($node)/*))"/>
+      <xsl:sequence select="$vp:chunk-output-base-uri"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>

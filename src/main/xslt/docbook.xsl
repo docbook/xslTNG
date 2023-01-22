@@ -172,8 +172,7 @@
   <xsl:variable name="starting-base-uri" as="xs:string">
     <xsl:choose>
       <xsl:when test="true()" use-when="function-available('ext:cwd')">
-        <xsl:sequence select="resolve-uri(base-uri(.),
-                                          resolve-uri(ext:cwd(), static-base-uri()))"/>
+        <xsl:sequence select="resolve-uri(base-uri(.), ext:cwd())"/>
       </xsl:when>
       <xsl:when test="true()">
         <xsl:sequence select="resolve-uri(base-uri(.), static-base-uri())"/>
