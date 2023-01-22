@@ -1,5 +1,6 @@
 name: build-docbook
 on: push
+
 jobs:
   check_branch:
     runs-on: ubuntu-latest
@@ -36,6 +37,7 @@ jobs:
     needs: check_branch
     env:
       HAVE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN != '' }}
+      HAVE_GPGKEYURI: ${{ secrets.ACCESS_TOKEN != '' && secrets.GPGKEYURI != '' }}
       HAVE_SAXON_EE: ${{ secrets.SAXON_PASSPHRASE != '' }}
       CIWORKFLOW: yes
       CI_SHA1: ${{ github.sha }}
@@ -134,6 +136,18 @@ jobs:
           fail_on_unmatched_files: true
           files: |
             build/distributions/docbook-xslTNG-${{ env.CI_TAG }}.zip
+
+      - name: Publish to Sonatype
+        if: ${{ env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        run: |
+          curl -s -o secret.gpg ${{ secrets.GPGKEYURI }}
+          ./gradlew -PsonatypeUsername=${{ secrets.SONATYPEUSER }} \
+                  -PsonatypePassword="${{ secrets.SONATYPEPASS }}" \
+                  -Psigning.keyId="${{ secrets.SIGNKEY }}" \
+                  -Psigning.password="${{ secrets.SIGNPSW }}" \
+                  -Psigning.secretKeyRingFile=./secret.gpg \
+                  publish
+          rm -f secret.gpg
 
       - name: Checkout the CDN
         uses: actions/checkout@v3

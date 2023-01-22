@@ -152,10 +152,27 @@
 <!-- Make sure we've resolved it so that file:///, file://, file:/, etc.
      get normalized because later on we're going to want to compare
      the prefix of this base URI with the prefix of another URI. -->
-<xsl:variable name="vp:chunk-output-base-uri" as="xs:anyURI?"
-              select="if ($v:chunk)
-                      then resolve-uri($chunk-output-base-uri, static-base-uri())
-                      else ()"/>
+<xsl:variable name="vp:chunk-output-base-uri" as="xs:anyURI?">
+  <xsl:choose>
+    <xsl:when use-when="function-available('ext:cwd')"
+              test="true()">
+      <xsl:if test="'chunks' = $v:debug">
+        <xsl:message select="'Chunk output base uri:',
+                             resolve-uri($chunk-output-base-uri, ext:cwd())"/>
+      </xsl:if>
+      <xsl:sequence select="resolve-uri($chunk-output-base-uri, ext:cwd())"/>
+    </xsl:when>
+    <xsl:when test="$v:chunk">
+      <xsl:if test="'chunks' = $v:debug">
+        <xsl:message select="'Chunk output base uri:', $chunk-output-base-uri"/>
+      </xsl:if>
+      <xsl:sequence select="$chunk-output-base-uri"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$chunk-output-base-uri"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
 
 <!-- I tinkered a bit to find images that would display across
      a variety of devices. YMMV. -->

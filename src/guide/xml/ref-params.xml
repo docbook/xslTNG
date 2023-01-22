@@ -736,9 +736,7 @@ support keyboard navigation.</para>
   </xsl:when>
   <xsl:when use-when="function-available('ext:cwd')"
             test="true()">
-    <xsl:message select="'Default output base uri:',
-                         resolve-uri(ext:cwd(), static-base-uri())"/>
-    <xsl:sequence select="resolve-uri(ext:cwd(), static-base-uri())"/>
+    <xsl:sequence select="ext:cwd()"/>
   </xsl:when>
   <xsl:otherwise>
     <xsl:message terminate="yes"
@@ -2381,7 +2379,7 @@ format.
       <type>xs:string</type>
       <varname>mediaobject-input-base-uri</varname>
       <initializer><xsl:sequence use-when="function-available('ext:cwd')"
-              select="resolve-uri(ext:cwd(), static-base-uri())"/>
+              select="ext:cwd()"/>
 <xsl:sequence use-when="not(function-available('ext:cwd'))"
               select="''"/></initializer>
     </fieldsynopsis>

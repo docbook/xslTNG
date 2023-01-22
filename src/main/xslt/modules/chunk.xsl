@@ -9,10 +9,11 @@
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db dbe f fp h m mp t v xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:function name="f:chunk" as="attribute()*">
@@ -207,7 +208,7 @@
 
 <xsl:function name="fp:root-base-uri" as="xs:anyURI" cache="yes">
   <xsl:param name="node" as="element()"/>
-  <xsl:sequence select="resolve-uri($chunk-output-base-uri, base-uri(root($node)/*))"/>
+  <xsl:sequence select="$vp:chunk-output-base-uri"/>
 </xsl:function>
 
 <!-- ============================================================ -->
