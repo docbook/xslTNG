@@ -164,10 +164,9 @@
     </xsl:when>
     <xsl:when test="$v:chunk">
       <xsl:if test="'chunks' = $v:debug">
-        <xsl:message select="'Chunk output base uri:',
-                             resolve-uri($chunk-output-base-uri, ext:cwd())"/>
+        <xsl:message select="'Chunk output base uri:', $chunk-output-base-uri"/>
       </xsl:if>
-      <xsl:sequence select="resolve-uri($chunk-output-base-uri, ext:cwd())"/>
+      <xsl:sequence select="$chunk-output-base-uri"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:sequence select="$chunk-output-base-uri"/>
