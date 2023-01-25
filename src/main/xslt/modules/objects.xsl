@@ -254,6 +254,7 @@
       <xsl:variable name="params" select="array:flatten($last?params)"/>
 
       <picture>
+        <xsl:apply-templates select="." mode="m:attributes"/>
         <xsl:apply-templates select="$params"/>
         <xsl:for-each select="$non-svg">
           <xsl:choose>
@@ -292,6 +293,7 @@
         <xsl:message select="'Fallback is not supported with iframes'"/>
       </xsl:if>
       <iframe src="{$datas[1]?href}">
+        <xsl:apply-templates select="." mode="m:attributes"/>
         <xsl:if test="exists($last?width)">
           <xsl:attribute name="width" select="f:absolute-length($last?width)"/>
         </xsl:if>
@@ -306,6 +308,7 @@
     </xsl:when>
     <xsl:otherwise>
       <video>
+        <xsl:apply-templates select="." mode="m:attributes"/>
         <xsl:if test="exists($last?width)">
           <xsl:attribute name="width" select="f:absolute-length($last?width)"/>
         </xsl:if>
@@ -365,6 +368,7 @@
   <xsl:variable name="params" select="array:flatten($last?params)"/>
 
   <audio>
+    <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="$params"/>
     <xsl:if test="empty($params)">
       <xsl:attribute name="controls" select="'controls'"/>
@@ -412,14 +416,34 @@
   <xsl:param name="viewport" as="map(*)?"/>
   <xsl:param name="datas" as="map(*)*"/>
 
+  <xsl:variable name="content" as="item()*">
+    <xsl:choose>
+      <xsl:when test="db:textdata">
+        <xsl:apply-templates select="db:textdata[1]">
+          <xsl:with-param name="info" select="$datas[1]"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="db:textdata">
-      <xsl:apply-templates select="db:textdata[1]">
-        <xsl:with-param name="info" select="$datas[1]"/>
-      </xsl:apply-templates>
+    <xsl:when test="parent::db:inlinemediaobject">
+      <span>
+        <xsl:apply-templates select="." mode="m:attributes"/>
+        <xsl:sequence select="$content"/>
+      </span>
+    </xsl:when>
+    <xsl:when test="parent::db:mediaobject">
+      <div>
+        <xsl:apply-templates select="." mode="m:attributes"/>
+        <xsl:sequence select="$content"/>
+      </div>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates/>
+      <xsl:sequence select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
