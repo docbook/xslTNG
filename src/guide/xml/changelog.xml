@@ -1,10 +1,42 @@
 <revhistory xmlns='http://docbook.org/ns/docbook'
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
-<revision>
+<revision xml:id="r205">
+<revnumber>2.0.5</revnumber>
+<date>2023-01-25</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r203">2.0.4</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Fixed the bug where attributes on image, video, audio, and text objects
+in <tag>mediaobject</tag> and <tag>inlinemediaobject</tag> were not being preserved
+in the output. In particular, this meant that <tag class="attribute">role</tag>
+attributes on those objects were not reflected in the HTML
+<tag class="attribute">class</tag> attribute.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
+<revision xml:id="r204">
+<revnumber>2.0.4</revnumber>
+<date>2023-01-22</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r203">2.0.3</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Changed <code>ext:cwd()</code> so that it always returns an absolute URI.
+This fixes a bug in chunk output base URI handling. Tidied up some code.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
+<revision xml:id="r203">
 <revnumber>2.0.3</revnumber>
 <date>2023-01-21</date>
 <revdescription>
+<para>This is still a pre-release; see <link linkend="r202">2.0.2</link>.</para>
 <itemizedlist>
 <listitem>
 <para>Removed <keycap>↑</keycap> from <parameter>chunk-nav</parameter>.</para>
@@ -30,11 +62,11 @@ the warning message associated with them. Added it back by putting
 </revdescription>
 </revision>
 
-<revision>
+<revision xml:id="r202">
 <revnumber>2.0.2</revnumber>
 <date>2023-01-05</date>
 <revdescription>
-<para>This is still a pre-release; see <link linkend="r200">2.0.1</link>.</para>
+<para>This is still a pre-release; see <link linkend="r201">2.0.1</link>.</para>
 <itemizedlist>
 <listitem>
 <para>Reworked the way the <link linkend="persistent-toc">persistent ToC</link>
@@ -54,7 +86,7 @@ is generated.</para>
 </revdescription>
 </revision>
 
-<revision>
+<revision xml:id="r201">
 <revnumber>2.0.1</revnumber>
 <date>2023-01-03</date>
 <revdescription>
