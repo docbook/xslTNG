@@ -20,6 +20,8 @@
 <xsl:key name="hfootnote" match="h:db-footnote" use="@id"/>
 <xsl:key name="hanno" match="h:db-annotation" use="@id"/>
 
+<xsl:mode name="m:chunk-cleanup" on-no-match="shallow-copy"/>
+
 <xsl:template match="/">
   <xsl:param name="docbook" as="document-node()" tunnel="yes" required="yes"/>
   <xsl:document>
@@ -168,7 +170,10 @@
 
       <main>
         <xsl:copy>
-          <xsl:apply-templates select="@*,node()"/>
+          <xsl:apply-templates select="@*,node()">
+            <xsl:with-param name="rootbaseuri" select="$rbu" tunnel="yes"/>
+            <xsl:with-param name="chunkbaseuri" select="$cbu" tunnel="yes"/>
+          </xsl:apply-templates>
         </xsl:copy>
       </main>
 
@@ -459,6 +464,77 @@
   <xsl:sequence select="$renumber"/>
 </xsl:template>
 
+<xsl:template match="h:img/@src
+                     |h:video/h:source/@src
+                     |h:audio/h:source/@src
+                     |h:iframe/@src
+                     |h:audio//h:a/@href
+                     |h:video//h:a/@href
+                     |h:source/@srcset">
+  <xsl:param name="rootbaseuri" tunnel="yes"/>
+  <xsl:param name="chunkbaseuri" tunnel="yes"/>
+
+  <xsl:variable name="uri" as="xs:string">
+    <xsl:choose>
+      <xsl:when test="exists(f:uri-scheme(.)) and f:uri-scheme(.) != 'file'">
+        <xsl:sequence select="."/>
+      </xsl:when>
+      <xsl:when test="exists($mediaobject-output-base-uri)">
+        <xsl:choose>
+          <xsl:when test="f:is-true($mediaobject-output-paths)">
+            <xsl:sequence
+                select="fp:relative-uri($rootbaseuri, $chunkbaseuri, '')
+                        || $mediaobject-output-base-uri
+                        || ."/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence
+                select="fp:relative-uri($rootbaseuri, $chunkbaseuri, '')
+                        || $mediaobject-output-base-uri
+                        || tokenize(., '/')[last()]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="true()">
+        <xsl:sequence
+            select="fp:relative-uri($rootbaseuri, $chunkbaseuri, '') || ."/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="adjusted-uri" as="xs:string">
+    <xsl:apply-templates select="." mode="m:mediaobject-output-adjust">
+      <xsl:with-param name="adjusted-uri" select="$uri"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
+  <xsl:message use-when="'mediaobject-uris' = $v:debug">
+    <xsl:text>Cleanup </xsl:text>
+    <xsl:value-of
+        select="substring(local-name((parent::h:img,
+                                      parent::h:iframe,
+                                      parent::h:a,
+                                      ../..)[1]), 1, 3)"/>
+    <xsl:choose>
+      <xsl:when test="$uri = $adjusted-uri">
+        <xsl:value-of select="': ' || . || ' &#9;→ ' || $adjusted-uri"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="': ' || . || ' &#9;→ ' || $uri || ' → &#9;' || $adjusted-uri"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:message>
+
+  <xsl:attribute name="{local-name(.)}" select="$adjusted-uri"/>
+</xsl:template>
+
+<xsl:template match="@*" mode="m:mediaobject-output-adjust">
+  <xsl:param name="adjusted-uri" as="xs:string"/>
+  <xsl:sequence select="$adjusted-uri"/>
+</xsl:template>
+
 <xsl:template match="element()">
   <xsl:copy>
     <xsl:apply-templates select="@*"/>
@@ -657,7 +733,7 @@
   <xsl:param name="top" as="element()?"/>
 
   <xsl:if test="$chunk">
-    <table width="100%">
+    <table>
       <tr>
         <td class="previous">
           <xsl:if test="$prev">

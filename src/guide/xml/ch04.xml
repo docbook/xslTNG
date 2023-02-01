@@ -334,21 +334,90 @@ irrespective of which alternative is selected.</para>
 <section xml:id="mediaobject-uris">
 <title>Mediaobject URIs</title>
 
-<para>Media object (images, video, audio) URIs are tricky to handle. It’s most
+<para>Media object URIs are tricky to handle. It’s most
 convenient if the URIs in the source documents point to the actual media files.
 This allows extensions, like the image properties
 <link linkend="extensions">extension function</link>, to access the files.
 At the same time, the references generated in the HTML have to point to the
 locations where they will be published.</para>
 
-<para>The stylesheets attempt to handle this by using
-<parameter>mediaobject-input-base-uri</parameter> to locate the files from the
-XML sources and <parameter>mediaobject-output-base-uri</parameter> to create
-the HTML links.</para>
+<para>In previous versions, the stylesheets attempted (broadly) to use
+the relative difference between the input and output base URIs to work out
+the correct relative URIs for media. That imposed restrictions on the
+authoring environment that weren’t always easy to work with.
+Starting in verison 2.0.6, the mechanisms for finding sources
+and producing references in the output has changed. Three parameters
+are used:</para>
 
-<para>If you need a completely different organization of images in the
-input and output, you may need to define your own resolution with
-templates in the <mode>m:mediaobject-uris</mode> mode.</para>
+<variablelist>
+<varlistentry>
+<term><parameter>mediaobject-input-base-uri</parameter></term>
+<listitem>
+<para>If the <parameter>mediaobject-input-base-uri</parameter> is empty (the default),
+then URIs in the source document are assumed to be relative to the base URI on
+which they occur. This is the usual case if you mix XML and media into the same
+directory structure on the filesystem.</para>
+<para>If the <parameter>mediaobject-input-base-uri</parameter> is not empty, it is
+used to resolve all media URIs. If it’s initialized with a relative URI, that URI will
+be made absolute against the base URI if the input document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><parameter>mediaobject-output-base-uri</parameter></term>
+<listitem>
+<para>If the <parameter>mediaobject-output-base-uri</parameter> is empty (the default),
+then URIs in the output are treated as parallel to the URIs in the input. If the
+reference <filename>../image.png</filename> works in the source document, it’s assumed
+that will also work in the output document.</para>
+<para>If the <parameter>mediaobject-input-base-uri</parameter> is not empty, it is
+the base URI used for media objects. If this is a relative URI, it is taken to be
+relative to the root of the output hierarchy.</para>
+<para>Suppose the output base URI is <uri>https://images.example.com/</uri>, then
+a reference to <filename>image.png</filename> will appear as
+<uri>https://images.example.com/image.png</uri> in the output.</para>
+<para>If the output base URI is <uri>media/</uri>, then
+a reference to <filename>image.png</filename> will appear as
+<uri>media/image.png</uri> in the output. If the document is chunked, the paths back
+to the output directory are relative. In otherwords, if the reference to
+<filename>image.png</filename> appears in a chunk that will be located at
+<filename>back/appendix.html</filename>, then the media URI will be
+<uri>../media/image.png</uri>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><parameter>mediaobject-output-paths</parameter></term>
+<listitem>
+<para>This parameter controls whether the relative paths in the input URIs apply
+to the output URIs as well. If the parameter <glossterm>is true</glossterm>,
+the output base URI is <uri>media/</uri>, and the input URI is
+<filename>path/to/image.png</filename>, then the output reference will be to
+<uri>media/path/to/image.png</uri>. If it’s false, then the output reference
+will be to <uri>media/image.png</uri>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>The <link xlink:href="https://github.com/docbook/xslTNG">source repository</link>
+for the stylesheets contains
+<link xlink:href="https://github.com/docbook/xslTNG/tree/main/src/test/resources/xml">several
+examples</link> of possible hierarchies and how they might be used to produce
+output. (See them <filename>mo-<replaceable>n</replaceable></filename> directories
+and the corresponding build targets; if you checkout the repository and run
+the build with <command>./gradlew all_mo_tests</command>, all of the output options
+will be present in the <filename>build/actual</filename> directory).</para>
+
+<para>If you have specific requirements that don’t fit into these parameters,
+you can use templates in the <mode>m:mediaobject-output-adjust</mode> mode to
+make any additional changes you need.</para>
+
+<important>
+<para>The stylesheets are not responsible for actually copying the media files
+into the correct locations in the output. The stylesheets only generate the HTML
+files and the references. You must copy the images and other media with some
+other process.</para>
+</important>
 </section>
 </section>
 
@@ -530,7 +599,7 @@ extension function is available and the stylesheet specifies a
 </listitem>
 <listitem>
 <para>Process Oxygen change markup. Only occurs if 
-<parameter>oxy-markup</parameter> is true and the document contains
+<parameter>oxy-markup</parameter> <glossterm>is true</glossterm> and the document contains
 Oxygen change markup processing instructions.
 </para>
 </listitem>

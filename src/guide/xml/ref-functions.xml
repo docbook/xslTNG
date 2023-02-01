@@ -26,26 +26,6 @@ implements those adjustments.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_mediaobject-href">
-<?db filename="f_mediaobject-href"?>
-<refmeta>
-<refentrytitle>f:mediaobject-href</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-href#2</refmiscinfo>
-<refmiscinfo class="version">2.0.0</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:mediaobject-href</refname>
-<refpurpose>Determines the URI for a media object</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>This function is called for every media object that is rendered.
-It must return the URI reference to be used for the actual object (the
-value of the image <code>src</code> attribute, for example).</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_absolute-length">
 <?db filename="f_absolute-length"?>
 <refmeta>
@@ -806,6 +786,32 @@ both.
 </refsection>
 </refentry>
 
+<refentry xml:id="f_mediaobject-input-base-uri">
+<?db filename="f_mediaobject-input-base-uri"?>
+<refmeta>
+<refentrytitle>f:mediaobject-input-base-uri</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-input-base-uri#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-input-base-uri</refname>
+<refpurpose>Identify the input base URI for media</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This value is calculated from the
+<parameter>mediaobject-input-base-uri</parameter> parameter. If the
+parameter is the empty string, then this value is the empty sequence. Otherwise,
+this value is the absolute URI that results from resolving the value of the
+<parameter>mediaobject-input-base-uri</parameter> parameter against
+the base URI of the input document.
+</para>
+<para>In previous versions of the stylesheet, this value was computed once
+as a global variable. It was changed to a function because of failures
+resolving the base URI of documents when using XSpec.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_number-separator">
 <?db filename="f_number-separator"?>
 <refmeta>
@@ -1233,6 +1239,29 @@ For a discussion of units, see <xref linkend="units"/>.
 </refsection>
 </refentry>
 
+<refentry xml:id="f_relative-path">
+<?db filename="f_relative-path"?>
+<refmeta>
+<refentrytitle>f:relative-path</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}relative-path#2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:relative-path</refname>
+<refpurpose>Give two file paths, what’s the relative path between them?</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function attempts to determine the relative path between two 
+absolute paths. For example, given a base path of 
+<filename>/a/base/uri/path/</filename> and a path of
+<filename>/a/base/uri/with/other</filename>, the results is
+<filename>../with/other</filename>.</para>
+<para>If the path is an absolute URI (that isn’t a <code>file:</code> URI),
+then the URI is returned unchanged.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_section">
 <?db filename="f_section"?>
 <refmeta>
@@ -1464,6 +1493,25 @@ is automatically escaped.</para>
 a transformation to disambiguate between different elements that happen to have
 the same <att>xml:id</att>, as can occur if transclusion is performed.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_uri-scheme">
+<?db filename="f_uri-scheme"?>
+<refmeta>
+<refentrytitle>f:uri-scheme</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}uri-scheme#1</refmiscinfo>
+<refmiscinfo class="version">2.0.6</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:uri-scheme</refname>
+<refpurpose>Returns the scheme portion of a URI</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the URI begins with a scheme, this function returns the scheme.
+Otherwise, it returns an empty sequence.</para>
 </refsection>
 </refentry>
 

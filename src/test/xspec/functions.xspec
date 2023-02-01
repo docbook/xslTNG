@@ -66,4 +66,42 @@
    <x:expect label="expect them to be concatenated" select="'          '"/>
 </x:scenario>
 
+<x:scenario label="The uri scheme is 'https'">
+   <x:call function="f:uri-scheme">
+     <x:param select="'https://docbook.org/'"/>
+   </x:call>
+   <x:expect label="expect the scheme" select="'https'"/>
+</x:scenario>
+
+<x:scenario label="The uri scheme is the empty sequence">
+   <x:call function="f:uri-scheme">
+     <x:param select="'/just/a/path'"/>
+   </x:call>
+   <x:expect label="expect the scheme" select="()"/>
+</x:scenario>
+
+<x:scenario label="If the path is a direct extension of the base">
+   <x:call function="f:relative-path">
+     <x:param select="'/a/base/uri/path/'"/>
+     <x:param select="'/a/base/uri/path/with/more'"/>
+   </x:call>
+   <x:expect label="expect the relative path" select="'with/more'"/>
+</x:scenario>
+
+<x:scenario label="If the path is an extension of a shorter prefix">
+   <x:call function="f:relative-path">
+     <x:param select="'/a/base/uri/path/'"/>
+     <x:param select="'/a/base/uri/with/other'"/>
+   </x:call>
+   <x:expect label="expect the relative path" select="'../with/other'"/>
+</x:scenario>
+
+<x:scenario label="If the URI is absolute">
+   <x:call function="f:relative-path">
+     <x:param select="'/a/base/uri/path/'"/>
+     <x:param select="'https://docbook.org/'"/>
+   </x:call>
+   <x:expect label="expect the URI" select="'https://docbook.org/'"/>
+</x:scenario>
+
 </x:description>

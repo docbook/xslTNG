@@ -1487,6 +1487,69 @@ See <xref linkend="processing-mediaobjects"/>.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="m_mediaobject-output-adjust">
+<?db filename="m_mediaobject-output-adjust"?>
+<refmeta>
+<refentrytitle>m:mediaobject-output-adjust</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-output-adjust</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-output-adjust</refname>
+<refpurpose>Adjust the URI references to media objects</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Once the stylesheets have used the
+<parameter>mediaobject-input-base-uri</parameter>,
+<parameter>mediaobject-output-base-uri</parameter>,
+and <parameter>mediaobject-output-paths</parameter> to compute
+the URI of a media reference, the reference is processed in
+<mode>m:mediaobject-output-adjust</mode> mode. This is the stylesheet’s
+opportunity to make any final adjustments.</para>
+<para>The context item for the template will be the
+attribute that contains the author’s original value. The
+adjusted value is passed in as the <code>$adjusted-uri</code> parameter.
+The value returned by the template is used in the HTML.</para>
+<para>Here is an example that groups images, audio, and video files
+in their own directories:</para>
+
+<programlisting language="xslt"><![CDATA[<xsl:template match="@*" mode="m:mediaobject-output-adjust">
+  <xsl:param name="adjusted-uri" as="xs:string"/>
+
+  <xsl:choose>
+    <xsl:when test="exists(f:uri-scheme(.))">
+      <!-- Don't mess with absolute URIs... -->
+      <xsl:sequence select="$adjusted-uri"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="type" as="xs:string">
+        <xsl:choose>
+          <xsl:when test="../self::h:img">image</xsl:when>
+          <xsl:when test="ancestor::h:video">video</xsl:when>
+          <xsl:when test="ancestor::h:audio">audio</xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence select="'media-cleanup-err'"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:variable name="parts" select="tokenize($adjusted-uri, '/')"/>
+      <xsl:sequence select="string-join($parts[position() lt last()], '/')
+                            || (if (count($parts) gt 1) then '/' else '')
+                            || $type || '/'
+                            || $parts[position() eq last()]"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>]]></programlisting>
+
+<para>In other words, if the adjusted URI for an image is
+<code>path/to/somewhere.png</code>, this template will
+return <code>path/to/image/somewhere.png</code> and make
+similar adjustments to the audio and video paths.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_mediaobject-uris">
 <?db filename="m_mediaobject-uris"?>
 <refmeta>
