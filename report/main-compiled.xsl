@@ -44,7 +44,7 @@
             <xsl:attribute name="stylesheet" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl</xsl:attribute>
             <xsl:attribute name="date" namespace="" select="current-dateTime()"/>
             <!-- invoke each compiled top-level x:scenario -->
-            <xsl:for-each select="1 to 84">
+            <xsl:for-each select="1 to 89">
                <xsl:choose>
                   <xsl:when test=". eq 1">
                      <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario1"/>
@@ -298,6 +298,21 @@
                   <xsl:when test=". eq 84">
                      <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84"/>
                   </xsl:when>
+                  <xsl:when test=". eq 85">
+                     <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario85"/>
+                  </xsl:when>
+                  <xsl:when test=". eq 86">
+                     <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario86"/>
+                  </xsl:when>
+                  <xsl:when test=". eq 87">
+                     <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario87"/>
+                  </xsl:when>
+                  <xsl:when test=". eq 88">
+                     <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario88"/>
+                  </xsl:when>
+                  <xsl:when test=". eq 89">
+                     <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario89"/>
+                  </xsl:when>
                   <xsl:otherwise>
                      <xsl:message terminate="yes">ERROR: Unhandled scenario invocation</xsl:message>
                   </xsl:otherwise>
@@ -334,7 +349,7 @@
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d146e1-doc" as="document-node()">
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d151e1-doc" as="document-node()">
                <xsl:document>
                   <xsl:element name="db:year" namespace="http://docbook.org/ns/docbook">
                      <xsl:namespace name="fp">http://docbook.org/ns/docbook/functions/private</xsl:namespace>
@@ -346,13 +361,13 @@
             <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d146e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d151e1"
                            as="element()+"
-                           select="$Q{urn:x-xspec:compile:impl}param-d146e1-doc ! ( node() )"/>
+                           select="$Q{urn:x-xspec:compile:impl}param-d151e1-doc ! ( node() )"/>
             <xsl:sequence xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d146e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d151e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -373,7 +388,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>a single year</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e9-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e9-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -405,11 +420,11 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e9"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e9-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e9"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e9-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e9, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e9, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -422,7 +437,7 @@
             <xsl:text>a single year</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e9"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e9"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -460,7 +475,7 @@
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d155e1-doc" as="document-node()">
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d160e1-doc" as="document-node()">
                <xsl:document>
                   <xsl:element name="db:year" namespace="http://docbook.org/ns/docbook">
                      <xsl:namespace name="fp">http://docbook.org/ns/docbook/functions/private</xsl:namespace>
@@ -477,13 +492,13 @@
             <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d155e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d160e1"
                            as="element()+"
-                           select="$Q{urn:x-xspec:compile:impl}param-d155e1-doc ! ( node() )"/>
+                           select="$Q{urn:x-xspec:compile:impl}param-d160e1-doc ! ( node() )"/>
             <xsl:sequence xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d155e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d160e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -504,7 +519,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>a single range</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e20-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e20-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -551,11 +566,11 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e20"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e20-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e20"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e20-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e20, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e20, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -568,7 +583,7 @@
             <xsl:text>a single range</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e20"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e20"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -611,7 +626,7 @@
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d164e1-doc" as="document-node()">
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d169e1-doc" as="document-node()">
                <xsl:document>
                   <xsl:element name="db:year" namespace="http://docbook.org/ns/docbook">
                      <xsl:namespace name="fp">http://docbook.org/ns/docbook/functions/private</xsl:namespace>
@@ -633,13 +648,13 @@
             <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d164e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d169e1"
                            as="element()+"
-                           select="$Q{urn:x-xspec:compile:impl}param-d164e1-doc ! ( node() )"/>
+                           select="$Q{urn:x-xspec:compile:impl}param-d169e1-doc ! ( node() )"/>
             <xsl:sequence xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d164e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d169e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -660,7 +675,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>a range and a year</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e36-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e36-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -722,11 +737,11 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e36"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e36-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e36"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e36-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e36, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e36, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -739,7 +754,7 @@
             <xsl:text>a range and a year</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e36"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e36"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -807,7 +822,7 @@
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d173e1-doc" as="document-node()">
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d178e1-doc" as="document-node()">
                <xsl:document>
                   <xsl:element name="db:year" namespace="http://docbook.org/ns/docbook">
                      <xsl:namespace name="fp">http://docbook.org/ns/docbook/functions/private</xsl:namespace>
@@ -854,13 +869,13 @@
             <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d173e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d178e1"
                            as="element()+"
-                           select="$Q{urn:x-xspec:compile:impl}param-d173e1-doc ! ( node() )"/>
+                           select="$Q{urn:x-xspec:compile:impl}param-d178e1-doc ! ( node() )"/>
             <xsl:sequence xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d173e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d178e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -881,7 +896,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>two ranges</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e65-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e65-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -958,11 +973,11 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e65"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e65-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e65"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e65-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e65, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e65, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -975,7 +990,7 @@
             <xsl:text>two ranges</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e65"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e65"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1053,7 +1068,7 @@
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d182e1-doc" as="document-node()">
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d187e1-doc" as="document-node()">
                <xsl:document>
                   <xsl:element name="db:year" namespace="http://docbook.org/ns/docbook">
                      <xsl:namespace name="fp">http://docbook.org/ns/docbook/functions/private</xsl:namespace>
@@ -1110,13 +1125,13 @@
             <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d182e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d187e1"
                            as="element()+"
-                           select="$Q{urn:x-xspec:compile:impl}param-d182e1-doc ! ( node() )"/>
+                           select="$Q{urn:x-xspec:compile:impl}param-d187e1-doc ! ( node() )"/>
             <xsl:sequence xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d182e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d187e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -1137,7 +1152,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>two ranges</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e101-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e101-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -1214,11 +1229,11 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e101"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e101-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e101"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e101-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e101, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e101, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1231,7 +1246,7 @@
             <xsl:text>two ranges</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e101"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e101"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1314,7 +1329,7 @@
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d191e1-doc" as="document-node()">
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d196e1-doc" as="document-node()">
                <xsl:document>
                   <xsl:element name="db:year" namespace="http://docbook.org/ns/docbook">
                      <xsl:namespace name="fp">http://docbook.org/ns/docbook/functions/private</xsl:namespace>
@@ -1376,13 +1391,13 @@
             <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d191e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d196e1"
                            as="element()+"
-                           select="$Q{urn:x-xspec:compile:impl}param-d191e1-doc ! ( node() )"/>
+                           select="$Q{urn:x-xspec:compile:impl}param-d196e1-doc ! ( node() )"/>
             <xsl:sequence xmlns:db="http://docbook.org/ns/docbook"
                            xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d191e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions/private}collapse-years($Q{urn:x-xspec:compile:impl}param-d196e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -1403,7 +1418,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>two ranges</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e139-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e139-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
@@ -1495,11 +1510,11 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e139"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e139-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e139"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e139-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e139, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e139, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1512,7 +1527,7 @@
             <xsl:text>two ranges</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e139"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e139"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1538,7 +1553,7 @@
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='today']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d199e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d204e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -1546,13 +1561,13 @@
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d199e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d199e0-doc ! ( //db:para[@xml:id='today']/db:date )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d204e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d204e0-doc ! ( //db:para[@xml:id='today']/db:date )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d199e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d204e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d199e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d204e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -1579,18 +1594,18 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect a verbatim copy</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e161-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e161-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e161"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e161-doc ! ( //h:p[@id='today']/h:span )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e161"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e161-doc ! ( //h:p[@id='today']/h:span )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e161, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e161, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1603,7 +1618,7 @@
             <xsl:text>expect a verbatim copy</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e161"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e161"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1629,7 +1644,7 @@
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='date']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d207e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d212e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -1637,13 +1652,13 @@
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d207e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d207e0-doc ! ( //db:para[@xml:id='date']/db:date )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d212e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d212e0-doc ! ( //db:para[@xml:id='date']/db:date )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d207e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d212e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d207e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d212e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -1670,18 +1685,18 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect a formatted date</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e164-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e164-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e164"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e164-doc ! ( //h:p[@id='date']/h:span )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e164"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e164-doc ! ( //h:p[@id='date']/h:span )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e164, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e164, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1694,7 +1709,7 @@
             <xsl:text>expect a formatted date</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e164"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e164"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1720,7 +1735,7 @@
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='amtime']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d215e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d220e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -1728,13 +1743,13 @@
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d215e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d215e0-doc ! ( //db:para[@xml:id='amtime']/db:date )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d220e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d220e0-doc ! ( //db:para[@xml:id='amtime']/db:date )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d215e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d220e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d215e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d220e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -1761,18 +1776,18 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect formatted date time</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e167-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e167-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e167"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e167-doc ! ( //h:p[@id='amtime']/h:span )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e167"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e167-doc ! ( //h:p[@id='amtime']/h:span )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e167, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e167, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1785,7 +1800,7 @@
             <xsl:text>expect formatted date time</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e167"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e167"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1811,7 +1826,7 @@
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='pmtime']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d223e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d228e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -1819,13 +1834,13 @@
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d223e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d223e0-doc ! ( //db:para[@xml:id='pmtime']/db:date )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d228e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d228e0-doc ! ( //db:para[@xml:id='pmtime']/db:date )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d223e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d228e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d223e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d228e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -1852,18 +1867,18 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect a formatted date time</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e170-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e170-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e170"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e170-doc ! ( //h:p[@id='pmtime']/h:span )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e170"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e170-doc ! ( //h:p[@id='pmtime']/h:span )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e170, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e170, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1876,7 +1891,7 @@
             <xsl:text>expect a formatted date time</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e170"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e170"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1902,7 +1917,7 @@
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='dtformat']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d231e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d236e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -1910,13 +1925,13 @@
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d231e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d231e0-doc ! ( //db:para[@xml:id='dtformat']/db:date )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d236e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d236e0-doc ! ( //db:para[@xml:id='dtformat']/db:date )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d231e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d236e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d231e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d236e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -1943,18 +1958,18 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect the custom format to be used</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e173-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e173-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/dates.001.html')"/>
       <xsl:variable xmlns:db="http://docbook.org/ns/docbook"
                      xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e173"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e173-doc ! ( //h:p[@id='dtformat']/h:span )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e173"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e173-doc ! ( //h:p[@id='dtformat']/h:span )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e173, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e173, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -1967,7 +1982,7 @@
             <xsl:text>expect the custom format to be used</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e173"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e173"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -1993,7 +2008,7 @@
                <xsl:attribute name="select" namespace="">//db:para[@xml:id='dtformat-fr']/db:date</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d239e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d244e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml')"/>
          <xsl:variable xmlns="http://docbook.org/ns/docbook"
@@ -2001,13 +2016,13 @@
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d239e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d239e0-doc ! ( //db:para[@xml:id='dtformat-fr']/db:date )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d244e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d244e0-doc ! ( //db:para[@xml:id='dtformat-fr']/db:date )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d239e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d244e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d239e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d244e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2034,7 +2049,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect the result to be in French (maybe)</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e176" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e176" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -2110,7 +2125,7 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e176"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e176"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2134,19 +2149,19 @@
                <xsl:attribute name="select" namespace="">//*[@xml:id='ansi1']</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d252e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d257e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d252e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d252e0-doc ! ( //*[@xml:id='ansi1'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d257e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d257e0-doc ! ( //*[@xml:id='ansi1'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d252e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d257e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d252e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d257e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2173,17 +2188,17 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect non-tabular ANSI output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e180-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e180-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e180"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e180-doc ! ( //h:div[@id='ansi1'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e180"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e180-doc ! ( //h:div[@id='ansi1'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e180, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e180, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2196,7 +2211,7 @@
             <xsl:text>expect non-tabular ANSI output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e180"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e180"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2220,19 +2235,19 @@
                <xsl:attribute name="select" namespace="">//*[@xml:id='ansi2']</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d260e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d265e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d260e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d260e0-doc ! ( //*[@xml:id='ansi2'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d265e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d265e0-doc ! ( //*[@xml:id='ansi2'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d260e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d265e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d260e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d265e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2259,17 +2274,17 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect tabular ANSI output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e183-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e183-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e183"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e183-doc ! ( //h:div[@id='ansi2'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e183"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e183-doc ! ( //h:div[@id='ansi2'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e183, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e183, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2282,7 +2297,7 @@
             <xsl:text>expect tabular ANSI output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e183"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e183"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2306,19 +2321,19 @@
                <xsl:attribute name="select" namespace="">//*[@xml:id='ansi3']</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d268e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d273e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d268e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d268e0-doc ! ( //*[@xml:id='ansi3'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d273e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d273e0-doc ! ( //*[@xml:id='ansi3'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d268e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d273e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d268e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d273e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2345,17 +2360,17 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect tabular ANSI output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e186-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e186-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e186"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e186-doc ! ( //h:div[@id='ansi3'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e186"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e186-doc ! ( //h:div[@id='ansi3'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e186, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e186, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2368,7 +2383,7 @@
             <xsl:text>expect tabular ANSI output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e186"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e186"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2392,19 +2407,19 @@
                <xsl:attribute name="select" namespace="">//*[@xml:id='kr1']</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d276e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d281e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d276e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d276e0-doc ! ( //*[@xml:id='kr1'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d281e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d281e0-doc ! ( //*[@xml:id='kr1'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d276e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d281e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d276e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d281e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2431,17 +2446,17 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect non-tabular K&amp;R output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e189-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e189-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e189"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e189-doc ! ( //h:div[@id='kr1'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e189"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e189-doc ! ( //h:div[@id='kr1'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e189, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e189, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2454,7 +2469,7 @@
             <xsl:text>expect non-tabular K&amp;R output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e189"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e189"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2478,19 +2493,19 @@
                <xsl:attribute name="select" namespace="">//*[@xml:id='kr2']</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d284e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d289e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d284e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d284e0-doc ! ( //*[@xml:id='kr2'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d289e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d289e0-doc ! ( //*[@xml:id='kr2'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d284e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d289e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d284e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d289e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2517,17 +2532,17 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect tabular K&amp;R output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e193-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e193-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e193"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e193-doc ! ( //h:div[@id='kr2'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e193"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e193-doc ! ( //h:div[@id='kr2'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e193, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e193, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2540,7 +2555,7 @@
             <xsl:text>expect tabular K&amp;R output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e193"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e193"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2564,19 +2579,19 @@
                <xsl:attribute name="select" namespace="">//*[@xml:id='kr3']</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d292e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d297e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/funcsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d292e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d292e0-doc ! ( //*[@xml:id='kr3'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d297e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d297e0-doc ! ( //*[@xml:id='kr3'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d292e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d297e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d292e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d297e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -2603,17 +2618,17 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect tabular K&amp;R output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e196-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e196-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/funcsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e196"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e196-doc ! ( //h:div[@id='kr3'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e196"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e196-doc ! ( //h:div[@id='kr3'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e196, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e196, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2626,7 +2641,7 @@
             <xsl:text>expect tabular K&amp;R output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e196"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e196"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2654,11 +2669,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d301e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d306e1"
                            select="()"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d301e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d306e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -2681,11 +2696,11 @@
       <xsl:message>expect the empty sequence</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e200"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e200"
                      select="()"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e200, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e200, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2698,7 +2713,7 @@
             <xsl:text>expect the empty sequence</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e200"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e200"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2726,11 +2741,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d310e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d315e1"
                            select="0"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d310e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d315e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -2753,11 +2768,11 @@
       <xsl:message>expect the empty string</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e204"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e204"
                      select="''"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e204, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e204, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2770,7 +2785,7 @@
             <xsl:text>expect the empty string</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e204"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e204"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2798,11 +2813,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d319e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d324e1"
                            select="-3"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d319e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d324e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -2825,11 +2840,11 @@
       <xsl:message>expect the empty sequence</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e208"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e208"
                      select="()"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e208, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e208, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2842,7 +2857,7 @@
             <xsl:text>expect the empty sequence</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e208"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e208"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2870,11 +2885,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d328e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d333e1"
                            select="1"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d328e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d333e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -2897,11 +2912,11 @@
       <xsl:message>expect a string of that length</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e212"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e212"
                      select="' '"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e212, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e212, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2914,7 +2929,7 @@
             <xsl:text>expect a string of that length</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e212"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e212"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -2942,11 +2957,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d337e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d342e1"
                            select="12"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d337e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d342e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -2969,11 +2984,11 @@
       <xsl:message>expect a string of that length</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e216"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e216"
                      select="'            '"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e216, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e216, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -2986,7 +3001,7 @@
             <xsl:text>expect a string of that length</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e216"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e216"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -3014,11 +3029,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d346e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d351e1"
                            select="'3'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d346e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d351e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -3041,11 +3056,11 @@
       <xsl:message>expect a string of that length</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e220"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e220"
                      select="'   '"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e220, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e220, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -3058,7 +3073,7 @@
             <xsl:text>expect a string of that length</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e220"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e220"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -3086,11 +3101,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d355e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d360e1"
                            select="'test'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d355e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d360e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -3113,11 +3128,11 @@
       <xsl:message>expect a string equal in length to the length of the string value of the length argument</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e224"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e224"
                      select="'    '"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e224, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e224, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -3130,7 +3145,7 @@
             <xsl:text>expect a string equal in length to the length of the string value of the length argument</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e224"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e224"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -3158,11 +3173,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d364e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d369e1"
                            select="('a', 'b', '3')"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d364e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d369e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -3185,11 +3200,11 @@
       <xsl:message>expect them to be concatenated</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e228"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e228"
                      select="'   '"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e228, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e228, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -3202,7 +3217,7 @@
             <xsl:text>expect them to be concatenated</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e228"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e228"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -3230,11 +3245,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d373e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d378e1"
                            select="('0', '1', '0')"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d373e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}spaces($Q{urn:x-xspec:compile:impl}param-d378e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -3257,11 +3272,11 @@
       <xsl:message>expect them to be concatenated</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e232"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e232"
                      select="'          '"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e232, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e232, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -3274,7 +3289,7 @@
             <xsl:text>expect them to be concatenated</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e232"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e232"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -3282,9 +3297,393 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When converting an anchor element with an xml:id and roles</xsl:message>
+      <xsl:message>The uri scheme is 'https'</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario28</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>The uri scheme is 'https'</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:uri-scheme</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'https://docbook.org/'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d387e1"
+                           select="'https://docbook.org/'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}uri-scheme($Q{urn:x-xspec:compile:impl}param-d387e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>expect the scheme</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e237"
+                     select="'https'"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e237, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario28-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>expect the scheme</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e237"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario29"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>The uri scheme is the empty sequence</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario29</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>The uri scheme is the empty sequence</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:uri-scheme</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'/just/a/path'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d396e1"
+                           select="'/just/a/path'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}uri-scheme($Q{urn:x-xspec:compile:impl}param-d396e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario29-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario29-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>expect the scheme</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e241"
+                     select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e241, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario29-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>expect the scheme</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e241"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>If the path is a direct extension of the base</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario30</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>If the path is a direct extension of the base</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:relative-path</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'/a/base/uri/path/'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'/a/base/uri/path/with/more'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d405e1"
+                           select="'/a/base/uri/path/'"/>
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d405e2"
+                           select="'/a/base/uri/path/with/more'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}relative-path($Q{urn:x-xspec:compile:impl}param-d405e1, $Q{urn:x-xspec:compile:impl}param-d405e2)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>expect the relative path</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e246"
+                     select="'with/more'"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e246, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario30-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>expect the relative path</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e246"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>If the path is an extension of a shorter prefix</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario31</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>If the path is an extension of a shorter prefix</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:relative-path</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'/a/base/uri/path/'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'/a/base/uri/with/other'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d415e1"
+                           select="'/a/base/uri/path/'"/>
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d415e2"
+                           select="'/a/base/uri/with/other'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}relative-path($Q{urn:x-xspec:compile:impl}param-d415e1, $Q{urn:x-xspec:compile:impl}param-d415e2)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>expect the relative path</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e251"
+                     select="'../with/other'"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e251, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario31-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>expect the relative path</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e251"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>If the URI is absolute</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario32</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>If the URI is absolute</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:relative-path</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'/a/base/uri/path/'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'https://docbook.org/'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d425e1"
+                           select="'/a/base/uri/path/'"/>
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d425e2"
+                           select="'https://docbook.org/'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}relative-path($Q{urn:x-xspec:compile:impl}param-d425e1, $Q{urn:x-xspec:compile:impl}param-d425e2)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>expect the URI</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e256"
+                     select="'https://docbook.org/'"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e256, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario32-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>expect the URI</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e256"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting an anchor element with an xml:id and roles</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario33</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an anchor element with an xml:id and roles</xsl:text>
@@ -3318,7 +3717,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d381e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d434e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="anchor" namespace="http://docbook.org/ns/docbook">
@@ -3344,13 +3743,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d381e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d381e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d434e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d434e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d381e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d434e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d381e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d434e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -3359,31 +3758,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -3391,7 +3790,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -3401,7 +3800,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single a element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e240" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e263" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -3453,7 +3852,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario28-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario33-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -3474,12 +3873,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e240"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e263"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -3489,7 +3888,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e241" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e264" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -3541,7 +3940,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario28-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario33-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -3562,12 +3961,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e241"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e264"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -3577,7 +3976,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e242" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e265" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -3629,7 +4028,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario28-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario33-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -3650,12 +4049,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e242"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e265"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -3665,7 +4064,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e243" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e266" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -3717,7 +4116,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario28-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario33-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -3738,12 +4137,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e243"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e266"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario28-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -3753,7 +4152,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should be empty</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e244" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e267" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -3805,7 +4204,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario28-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario33-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -3826,17 +4225,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e244"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e267"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario29"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting an emphasis element with a bold role</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario29</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario34</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an emphasis element with a bold role</xsl:text>
@@ -3863,7 +4262,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d422e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d475e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
@@ -3882,13 +4281,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d422e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d422e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d475e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d475e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d422e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d475e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d422e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d475e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -3897,7 +4296,7 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario29-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -3905,7 +4304,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario29-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -3915,7 +4314,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a strong element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e249-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e272-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="strong" namespace="http://www.w3.org/1999/xhtml">
@@ -3934,16 +4333,16 @@
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e249"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e249-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e272"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e272-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e249, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e272, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario29-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario34-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -3951,17 +4350,17 @@
             <xsl:text>it should return a strong element</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e249"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e272"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a code element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario30</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario35</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a code element</xsl:text>
@@ -3980,7 +4379,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d430e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d483e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="code" namespace="http://docbook.org/ns/docbook">
@@ -3991,13 +4390,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d430e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d430e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d483e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d483e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d430e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d483e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d430e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d483e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -4006,25 +4405,25 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -4032,7 +4431,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4042,7 +4441,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single code element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e256" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e279" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4094,7 +4493,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario30-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario35-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4115,12 +4514,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e256"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e279"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4130,7 +4529,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>the name shouldn't become a class</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e257" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e280" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4182,7 +4581,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario30-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario35-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4203,12 +4602,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e257"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e280"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4218,7 +4617,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e258" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e281" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4270,7 +4669,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario30-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario35-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4291,12 +4690,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e258"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e281"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario30-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4306,7 +4705,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e259" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e282" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4358,7 +4757,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario30-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario35-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4379,17 +4778,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e259"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e282"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a code element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario31</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario36</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a code element with an xml:id and roles</xsl:text>
@@ -4424,7 +4823,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d464e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d517e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="code" namespace="http://docbook.org/ns/docbook">
@@ -4451,13 +4850,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d464e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d464e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d517e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d517e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d464e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d517e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d464e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d517e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -4466,31 +4865,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -4498,7 +4897,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4508,7 +4907,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single code element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e264" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e288" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4560,7 +4959,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario31-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario36-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4581,12 +4980,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e264"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e288"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4596,7 +4995,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e265" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e289" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4648,7 +5047,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario31-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario36-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4669,12 +5068,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e265"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e289"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4684,7 +5083,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e266" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e290" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4736,7 +5135,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario31-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario36-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4757,12 +5156,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e266"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e290"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4772,7 +5171,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e267" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e291" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4824,7 +5223,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario31-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario36-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4845,12 +5244,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e267"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e291"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario31-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -4860,7 +5259,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e268" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e292" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -4912,7 +5311,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario31-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario36-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -4933,17 +5332,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e268"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e292"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a quote element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario32</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario37</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a quote element</xsl:text>
@@ -4962,7 +5361,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d505e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d558e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="quote" namespace="http://docbook.org/ns/docbook">
@@ -4973,13 +5372,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d505e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d505e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d558e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d558e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d505e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d558e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d505e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d558e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -4988,25 +5387,25 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -5014,7 +5413,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5024,7 +5423,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single q element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e273" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e297" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5076,7 +5475,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario32-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario37-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5097,12 +5496,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e273"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e297"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5112,7 +5511,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>the name shouldn't become a class</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e274" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e298" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5164,7 +5563,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario32-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario37-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5185,12 +5584,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e274"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e298"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5200,7 +5599,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e275" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e299" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5252,7 +5651,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario32-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario37-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5273,12 +5672,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e275"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e299"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario32-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5288,7 +5687,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e276" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e300" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5340,7 +5739,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario32-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario37-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5361,17 +5760,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e276"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e300"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a quote element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario33</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario38</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a quote element with an xml:id and roles</xsl:text>
@@ -5406,7 +5805,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d539e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d592e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="quote" namespace="http://docbook.org/ns/docbook">
@@ -5433,13 +5832,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d539e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d539e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d592e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d592e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d539e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d592e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d539e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d592e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -5448,31 +5847,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -5480,7 +5879,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5490,7 +5889,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single q element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e281" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e305" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5542,7 +5941,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario33-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario38-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5563,12 +5962,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e281"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e305"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5578,7 +5977,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e282" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e306" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5630,7 +6029,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario33-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario38-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5651,12 +6050,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e282"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e306"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5666,7 +6065,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e283" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e307" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5718,7 +6117,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario33-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario38-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5739,12 +6138,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e283"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e307"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5754,7 +6153,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e284" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e308" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5806,7 +6205,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario33-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario38-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5827,12 +6226,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e284"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e308"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario33-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -5842,7 +6241,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e285" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e309" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -5894,7 +6293,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario33-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario38-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -5915,17 +6314,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e285"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e309"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a subscript element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario34</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario39</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a subscript element</xsl:text>
@@ -5944,7 +6343,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d580e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d633e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="subscript" namespace="http://docbook.org/ns/docbook">
@@ -5955,13 +6354,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d580e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d580e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d633e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d633e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d580e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d633e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d580e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d633e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -5970,25 +6369,25 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -5996,7 +6395,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6006,7 +6405,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single sub element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e290" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e314" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6058,7 +6457,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario34-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario39-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6079,12 +6478,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e290"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e314"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6094,7 +6493,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>the name shouldn't become a class</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e291" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e315" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6146,7 +6545,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario34-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario39-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6167,12 +6566,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e291"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e315"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6182,7 +6581,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e292" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e316" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6234,7 +6633,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario34-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario39-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6255,12 +6654,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e292"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e316"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario34-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6270,7 +6669,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e293" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e317" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6322,7 +6721,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario34-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario39-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6343,17 +6742,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e293"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e317"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a subscript element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario35</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario40</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a subscript element with an xml:id and roles</xsl:text>
@@ -6388,7 +6787,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d614e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d667e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="subscript" namespace="http://docbook.org/ns/docbook">
@@ -6415,13 +6814,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d614e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d614e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d667e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d667e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d614e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d667e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d614e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d667e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -6430,31 +6829,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -6462,7 +6861,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6472,7 +6871,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single sub element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e298" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e322" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6524,7 +6923,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario35-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario40-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6545,12 +6944,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e298"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e322"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6560,7 +6959,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e299" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e323" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6612,7 +7011,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario35-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario40-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6633,12 +7032,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e299"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e323"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6648,7 +7047,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e300" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e324" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6700,7 +7099,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario35-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario40-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6721,12 +7120,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e300"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e324"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6736,7 +7135,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e301" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e325" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6788,7 +7187,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario35-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario40-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6809,12 +7208,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e301"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e325"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario35-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6824,7 +7223,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e302" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e326" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -6876,7 +7275,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario35-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario40-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -6897,17 +7296,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e302"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e326"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a superscript element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario36</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario41</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a superscript element</xsl:text>
@@ -6926,7 +7325,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d655e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d708e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="superscript" namespace="http://docbook.org/ns/docbook">
@@ -6937,13 +7336,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d655e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d655e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d708e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d708e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d655e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d708e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d655e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d708e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -6952,25 +7351,25 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -6978,7 +7377,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -6988,7 +7387,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single sup element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e307" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e331" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7040,7 +7439,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario36-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario41-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7061,12 +7460,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e307"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e331"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7076,7 +7475,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>the name shouldn't become a class</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e308" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e332" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7128,7 +7527,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario36-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario41-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7149,12 +7548,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e308"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e332"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7164,7 +7563,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e309" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e333" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7216,7 +7615,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario36-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario41-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7237,12 +7636,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e309"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e333"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario36-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7252,7 +7651,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e310" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e334" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7304,7 +7703,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario36-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario41-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7325,17 +7724,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e310"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e334"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a superscript element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario37</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario42</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a superscript element with an xml:id and roles</xsl:text>
@@ -7370,7 +7769,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d689e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d742e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="superscript" namespace="http://docbook.org/ns/docbook">
@@ -7397,13 +7796,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d689e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d689e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d742e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d742e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d689e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d742e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d689e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d742e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -7412,31 +7811,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -7444,7 +7843,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7454,7 +7853,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single sup element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e315" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e339" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7506,7 +7905,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario37-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario42-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7527,12 +7926,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e315"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e339"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7542,7 +7941,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e316" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e340" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7594,7 +7993,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario37-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario42-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7615,12 +8014,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e316"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e340"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7630,7 +8029,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e317" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e341" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7682,7 +8081,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario37-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario42-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7703,12 +8102,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e317"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e341"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7718,7 +8117,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e318" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e342" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7770,7 +8169,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario37-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario42-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7791,12 +8190,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e318"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e342"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario37-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7806,7 +8205,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e319" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e343" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -7858,7 +8257,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario37-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario42-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -7879,17 +8278,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e319"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e343"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a tag element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario38</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario43</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a tag element</xsl:text>
@@ -7908,7 +8307,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d730e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d783e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="tag" namespace="http://docbook.org/ns/docbook">
@@ -7919,13 +8318,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d730e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d730e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d783e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d783e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d730e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d783e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d730e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d783e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -7934,25 +8333,25 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -7960,7 +8359,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -7970,7 +8369,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single code element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e324" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e348" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8022,7 +8421,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario38-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario43-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8043,12 +8442,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e324"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e348"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8058,7 +8457,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the DocBook name as the class</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e325" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e349" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8110,7 +8509,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario38-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario43-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8131,12 +8530,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e325"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e349"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8146,7 +8545,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e326" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e350" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8198,7 +8597,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario38-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario43-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8219,12 +8618,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e326"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e350"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario38-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8234,7 +8633,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e327" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e351" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8286,7 +8685,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario38-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario43-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8307,17 +8706,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e327"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e351"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a tag element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario39</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario44</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a tag element with an xml:id and roles</xsl:text>
@@ -8352,7 +8751,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d764e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d817e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="tag" namespace="http://docbook.org/ns/docbook">
@@ -8379,13 +8778,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d764e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d764e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d817e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d817e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d764e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d817e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d764e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d817e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -8394,31 +8793,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -8426,7 +8825,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8436,7 +8835,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single code element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e333" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e356" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8488,7 +8887,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario39-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario44-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8509,12 +8908,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e333"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e356"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8524,7 +8923,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e334" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e357" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8576,7 +8975,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario39-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario44-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8597,12 +8996,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e334"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e357"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8612,7 +9011,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e335" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e358" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8664,7 +9063,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario39-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario44-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8685,12 +9084,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e335"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e358"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8700,7 +9099,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e336" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e359" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8752,7 +9151,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario39-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario44-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8773,12 +9172,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e336"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e359"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario39-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8788,7 +9187,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e337" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e360" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -8840,7 +9239,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario39-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario44-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -8861,17 +9260,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e337"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e360"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a personname element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario40</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario45</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a personname element</xsl:text>
@@ -8890,7 +9289,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d805e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d858e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="personname" namespace="http://docbook.org/ns/docbook">
@@ -8901,13 +9300,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d805e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d805e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d858e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d858e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d805e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d858e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d805e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d858e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -8916,25 +9315,25 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -8942,7 +9341,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -8952,7 +9351,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single span element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e342" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e365" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9004,7 +9403,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario40-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario45-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9025,12 +9424,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e342"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e365"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9040,7 +9439,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the DocBook name as the class</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e343" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e366" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9092,7 +9491,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario40-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario45-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9113,12 +9512,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e343"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e366"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9128,7 +9527,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e344" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e367" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9180,7 +9579,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario40-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario45-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9201,12 +9600,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e344"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e367"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario40-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9216,7 +9615,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e345" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e368" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9268,7 +9667,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario40-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario45-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9289,17 +9688,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e345"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e368"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a personname element with an xml:id and roles</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario41</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario46</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a personname element with an xml:id and roles</xsl:text>
@@ -9334,7 +9733,7 @@
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d839e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d892e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="personname" namespace="http://docbook.org/ns/docbook">
@@ -9361,13 +9760,13 @@
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d839e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d839e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d892e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d892e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d839e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d892e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d839e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d892e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -9376,31 +9775,31 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect2">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect2">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect3">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect3">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect4">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect4">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
          </xsl:call-template>
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect5">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect5">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -9408,7 +9807,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9418,7 +9817,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return a single span element</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e350" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e373" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9470,7 +9869,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario41-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario46-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9491,12 +9890,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e350"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e373"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect2"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect2"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9506,7 +9905,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the xml:id in the id</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e351" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e374" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9558,7 +9957,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario41-expect2</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario46-expect2</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9579,12 +9978,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e351"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e374"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect3"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect3"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9594,7 +9993,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the roles as classes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e352" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e375" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9646,7 +10045,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario41-expect3</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario46-expect3</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9667,12 +10066,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e352"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e375"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect4"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect4"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9682,7 +10081,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should not return any other attributes</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e353" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e376" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9734,7 +10133,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario41-expect4</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario46-expect4</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9755,12 +10154,12 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e353"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e376"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario41-expect5"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect5"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9770,7 +10169,7 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>it should return the correct text</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e354" select="()"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e377" select="()"><!--expected result--></xsl:variable>
       <!-- wrap $x:result into a document node if possible -->
       <xsl:variable name="Q{urn:x-xspec:compile:impl}test-items" as="item()*">
          <xsl:choose>
@@ -9822,7 +10221,7 @@
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario41-expect5</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario46-expect5</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9843,17 +10242,17 @@
             </xsl:call-template>
          </xsl:if>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e354"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e377"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario47"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When transforming classsynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario42</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario47</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming classsynopsis.001</xsl:text>
@@ -9867,19 +10266,19 @@
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d880e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d933e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/classsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d880e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d880e0-doc ! ( //*[@xml:id='class'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d933e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d933e0-doc ! ( //*[@xml:id='class'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d880e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d933e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d880e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d933e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -9888,7 +10287,7 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario47-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -9896,7 +10295,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario42-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario47-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9906,22 +10305,22 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect a class synopsis</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e358-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e382-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/classsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e358"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e358-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e382"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e382-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e358, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e382, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario42-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario47-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -9929,17 +10328,17 @@
             <xsl:text>expect a class synopsis</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e358"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e382"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario48"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When transforming methodsynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario43</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario48</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming methodsynopsis.001</xsl:text>
@@ -9953,19 +10352,19 @@
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d888e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d941e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/methodsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d888e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d888e0-doc ! ( //*[@xml:id='class'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d941e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d941e0-doc ! ( //*[@xml:id='class'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d888e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d941e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d888e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d941e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -9974,7 +10373,7 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario48-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -9982,7 +10381,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario43-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario48-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -9992,22 +10391,22 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect a class synopsis</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e361-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e385-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/methodsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e361"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e361-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e385"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e385-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e361, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e385, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario43-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario48-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -10015,17 +10414,17 @@
             <xsl:text>expect a class synopsis</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e361"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e385"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario49"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When transforming synopsisinfo.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario44</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario49</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming synopsisinfo.001</xsl:text>
@@ -10039,19 +10438,19 @@
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d896e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d949e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/synopsisinfo.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d896e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d896e0-doc ! ( //*[@xml:id='class'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d949e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d949e0-doc ! ( //*[@xml:id='class'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d896e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d949e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d896e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d949e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -10060,7 +10459,7 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario49-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -10068,7 +10467,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario44-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario49-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -10078,22 +10477,22 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect synopses</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e364-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e388-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/synopsisinfo.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e364"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e364-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e388"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e388-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e364, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e388, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario44-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario49-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -10101,17 +10500,17 @@
             <xsl:text>expect synopses</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e364"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e388"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario50"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When transforming packagesynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario45</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario50</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming packagesynopsis.001</xsl:text>
@@ -10123,16 +10522,16 @@
                <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/packagesynopsis.001.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d904e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d957e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/packagesynopsis.001.xml')"/>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d904e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d904e0-doc ! ( . )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d957e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d957e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d904e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d957e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d904e0"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d957e0"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -10140,7 +10539,7 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario50-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -10148,7 +10547,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario45-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario50-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -10158,19 +10557,19 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect a package synopsis</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e367-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e391-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/packagesynopsis.001.html')"/>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e367"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e367-doc ! ( . )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e391"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e391-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e367, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e391, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario45-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario50-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -10178,17 +10577,17 @@
             <xsl:text>expect a package synopsis</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e367"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e391"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario51"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When transforming enumsynopsis.001</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario46</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario51</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When transforming enumsynopsis.001</xsl:text>
@@ -10202,19 +10601,19 @@
                <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d912e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d965e0-doc"
                         as="document-node()"
                         select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/enumsynopsis.001.xml')"/>
          <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d912e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d912e0-doc ! ( //*[@xml:id='class'] )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d965e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d965e0-doc ! ( //*[@xml:id='class'] )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d912e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d965e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d912e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d965e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
@@ -10223,7 +10622,7 @@
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario51-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -10231,7 +10630,7 @@
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario46-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario51-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -10241,22 +10640,22 @@
                   as="item()*"
                   required="yes"/>
       <xsl:message>expect an enum synopsis</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e370-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e394-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/enumsynopsis.001.html')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e370"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e370-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e394"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e394-doc ! ( //h:*[@id='class'] )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e370, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e394, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario46-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario51-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -10264,17 +10663,17 @@
             <xsl:text>expect an enum synopsis</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e370"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e394"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario47"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario52"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When computing the length 1.0in</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario47</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario52</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When computing the length 1.0in</xsl:text>
@@ -10292,371 +10691,11 @@
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d921e1"
+                           name="Q{urn:x-xspec:compile:impl}param-d974e1"
                            select="'1.0in'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d921e1)"/>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario47-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario47-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e374"
-                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'in' }"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e374, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario47-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>return the correct parse</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e374"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario48"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 1.0m</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario48</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 1.0m</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'1.0m'</xsl:attribute>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d930e1"
-                           select="'1.0m'"/>
-            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d930e1)"/>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario48-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario48-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e378"
-                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'm' }"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e378, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario48-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>return the correct parse</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e378"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario49"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 1.0cm</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario49</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 1.0cm</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'1.0cm'</xsl:attribute>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d939e1"
-                           select="'1.0cm'"/>
-            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d939e1)"/>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario49-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario49-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e383"
-                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'cm' }"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e383, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario49-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>return the correct parse</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e383"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario50"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 1.0mm</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario50</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 1.0mm</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'1.0mm'</xsl:attribute>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d948e1"
-                           select="'1.0mm'"/>
-            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d948e1)"/>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario50-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario50-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e387"
-                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'mm' }"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e387, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario50-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>return the correct parse</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e387"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario51"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 1.0pc</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario51</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 1.0pc</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'1.0pc'</xsl:attribute>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d957e1"
-                           select="'1.0pc'"/>
-            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d957e1)"/>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario51-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario51-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>return the correct parse</xsl:message>
-      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e391"
-                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pc' }"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e391, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario51-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>return the correct parse</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e391"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario52"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 1.0pt</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario52</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 1.0pt</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'1.0pt'</xsl:attribute>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d966e1"
-                           select="'1.0pt'"/>
-            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d966e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d974e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -10679,11 +10718,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e395"
-                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pt' }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e398"
+                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'in' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e395, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e398, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -10696,7 +10735,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e395"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e398"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -10704,12 +10743,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario53"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 3.14barleycorn</xsl:message>
+      <xsl:message>When computing the length 1.0m</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario53</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 3.14barleycorn</xsl:text>
+            <xsl:text>When computing the length 1.0m</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -10717,18 +10756,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'3.14barleycorn'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'1.0m'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d975e1"
-                           select="'3.14barleycorn'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d983e1"
+                           select="'1.0m'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d975e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d983e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -10751,11 +10790,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e399"
-                     select="map { 'magnitude': 3.14, 'relative': 0.0, 'unit': 'barleycorn' }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e402"
+                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'm' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e399, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e402, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -10768,7 +10807,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e399"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e402"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -10776,12 +10815,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario54"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 1.0smoot</xsl:message>
+      <xsl:message>When computing the length 1.0cm</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario54</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 1.0smoot</xsl:text>
+            <xsl:text>When computing the length 1.0cm</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -10789,18 +10828,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'1.0smoot'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'1.0cm'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d984e1"
-                           select="'1.0smoot'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d992e1"
+                           select="'1.0cm'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d984e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d992e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -10823,11 +10862,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e403"
-                     select="map { 'magnitude': $default-length-magnitude,                            'relative': 0.0,                             'unit': $default-length-unit }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e406"
+                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'cm' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e403, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e406, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -10840,7 +10879,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e403"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e406"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -10848,12 +10887,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario55"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 25%</xsl:message>
+      <xsl:message>When computing the length 1.0mm</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario55</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 25%</xsl:text>
+            <xsl:text>When computing the length 1.0mm</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -10861,18 +10900,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'25%'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'1.0mm'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d993e1"
-                           select="'25%'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d1001e1"
+                           select="'1.0mm'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d993e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1001e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -10895,11 +10934,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e407"
-                     select="map { 'magnitude': 25.0, 'relative': 0.0, 'unit': '%' }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e410"
+                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'mm' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e407, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e410, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -10912,7 +10951,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e407"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e410"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -10920,12 +10959,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario56"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 100%</xsl:message>
+      <xsl:message>When computing the length 1.0pc</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario56</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 100%</xsl:text>
+            <xsl:text>When computing the length 1.0pc</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -10933,18 +10972,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'100%'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'1.0pc'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d1002e1"
-                           select="'100%'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d1010e1"
+                           select="'1.0pc'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1002e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1010e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -10967,11 +11006,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e411"
-                     select="map { 'magnitude': 100.0, 'relative': 0.0, 'unit': '%' }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e414"
+                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pc' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e411, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e414, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -10984,7 +11023,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e411"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e414"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -10992,12 +11031,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario57"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 125%</xsl:message>
+      <xsl:message>When computing the length 1.0pt</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario57</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 125%</xsl:text>
+            <xsl:text>When computing the length 1.0pt</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -11005,18 +11044,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'125%'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'1.0pt'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d1011e1"
-                           select="'125%'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d1019e1"
+                           select="'1.0pt'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1011e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1019e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -11039,11 +11078,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e415"
-                     select="map { 'magnitude': 125.0, 'relative': 0.0, 'unit': '%' }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e418"
+                     select="map { 'magnitude': 1.0, 'relative': 0.0, 'unit': 'pt' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e415, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e418, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -11056,7 +11095,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e415"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e418"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -11064,12 +11103,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario58"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 3*+0.5in</xsl:message>
+      <xsl:message>When computing the length 3.14barleycorn</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario58</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 3*+0.5in</xsl:text>
+            <xsl:text>When computing the length 3.14barleycorn</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -11077,18 +11116,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'3*+0.5in'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'3.14barleycorn'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d1020e1"
-                           select="'3*+0.5in'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d1028e1"
+                           select="'3.14barleycorn'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1020e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1028e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -11111,11 +11150,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e419"
-                     select="map { 'magnitude': 0.5, 'unit': 'in', 'relative': 3.0 }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e423"
+                     select="map { 'magnitude': 3.14, 'relative': 0.0, 'unit': 'barleycorn' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e419, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e423, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -11128,7 +11167,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e419"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e423"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -11136,12 +11175,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario59"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 75</xsl:message>
+      <xsl:message>When computing the length 1.0smoot</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario59</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 75</xsl:text>
+            <xsl:text>When computing the length 1.0smoot</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -11149,18 +11188,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'75'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'1.0smoot'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d1029e1"
-                           select="'75'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d1037e1"
+                           select="'1.0smoot'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1029e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1037e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -11183,11 +11222,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e423"
-                     select="map { 'magnitude': 75, 'relative': 0.0, 'unit': 'px' }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e427"
+                     select="map { 'magnitude': $default-length-magnitude,                            'relative': 0.0,                             'unit': $default-length-unit }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e423, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e427, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -11200,7 +11239,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e423"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e427"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -11208,12 +11247,12 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario60"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When computing the length 2.5*</xsl:message>
+      <xsl:message>When computing the length 25%</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario60</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When computing the length 2.5*</xsl:text>
+            <xsl:text>When computing the length 25%</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
@@ -11221,18 +11260,18 @@
                <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
                <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
                   <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
-                  <xsl:attribute name="select" namespace="">'2.5*'</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'25%'</xsl:attribute>
                </xsl:element>
             </xsl:element>
          </xsl:element>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{urn:x-xspec:compile:impl}param-d1038e1"
-                           select="'2.5*'"/>
+                           name="Q{urn:x-xspec:compile:impl}param-d1046e1"
+                           select="'25%'"/>
             <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1038e1)"/>
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1046e1)"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -11255,11 +11294,11 @@
       <xsl:message>return the correct parse</xsl:message>
       <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e428"
-                     select="map { 'magnitude': 0, 'unit': 'px', 'relative': 2.5 }"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e431"
+                     select="map { 'magnitude': 25.0, 'relative': 0.0, 'unit': '%' }"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e428, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e431, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -11272,7 +11311,7 @@
             <xsl:text>return the correct parse</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e428"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e431"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -11280,9 +11319,369 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario61"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When converting an address in the raw style</xsl:message>
+      <xsl:message>When computing the length 100%</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario61</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When computing the length 100%</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'100%'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d1055e1"
+                           select="'100%'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1055e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario61-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario61-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>return the correct parse</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e435"
+                     select="map { 'magnitude': 100.0, 'relative': 0.0, 'unit': '%' }"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e435, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario61-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>return the correct parse</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e435"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario62"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When computing the length 125%</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario62</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When computing the length 125%</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'125%'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d1064e1"
+                           select="'125%'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1064e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario62-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario62-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>return the correct parse</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e439"
+                     select="map { 'magnitude': 125.0, 'relative': 0.0, 'unit': '%' }"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e439, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario62-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>return the correct parse</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e439"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario63"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When computing the length 3*+0.5in</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario63</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When computing the length 3*+0.5in</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'3*+0.5in'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d1073e1"
+                           select="'3*+0.5in'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1073e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario63-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario63-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>return the correct parse</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e443"
+                     select="map { 'magnitude': 0.5, 'unit': 'in', 'relative': 3.0 }"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e443, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario63-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>return the correct parse</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e443"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario64"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When computing the length 75</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario64</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When computing the length 75</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'75'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d1082e1"
+                           select="'75'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1082e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario64-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario64-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>return the correct parse</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e447"
+                     select="map { 'magnitude': 75, 'relative': 0.0, 'unit': 'px' }"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e447, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario64-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>return the correct parse</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e447"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario65"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When computing the length 2.5*</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario65</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When computing the length 2.5*</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:call" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+               <xsl:attribute name="function" namespace="">f:parse-length</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="f">http://docbook.org/ns/docbook/functions</xsl:namespace>
+                  <xsl:attribute name="select" namespace="">'2.5*'</xsl:attribute>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{urn:x-xspec:compile:impl}param-d1091e1"
+                           select="'2.5*'"/>
+            <xsl:sequence xmlns:f="http://docbook.org/ns/docbook/functions"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           select="Q{http://docbook.org/ns/docbook/functions}parse-length($Q{urn:x-xspec:compile:impl}param-d1091e1)"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario65-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario65-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>return the correct parse</xsl:message>
+      <xsl:variable xmlns:f="http://docbook.org/ns/docbook/functions"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e451"
+                     select="map { 'magnitude': 0, 'unit': 'px', 'relative': 2.5 }"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e451, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario65-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>return the correct parse</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e451"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario66"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting an address in the raw style</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario66</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an address in the raw style</xsl:text>
@@ -11312,7 +11711,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1046e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1099e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="address" namespace="http://docbook.org/ns/docbook">
@@ -11327,11 +11726,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1046e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1046e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1099e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1099e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1046e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1099e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11339,7 +11738,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'raw'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1046e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1099e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11355,7 +11754,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario61-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario66-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -11363,7 +11762,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario61-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario66-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -11373,7 +11772,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e437-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e461-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -11409,16 +11808,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e437"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e437-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e461"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e461-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e437, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e461, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario61-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario66-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -11426,17 +11825,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e437"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e461"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario62"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario67"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a literallayout in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario62</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario67</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a literallayout in the raw style</xsl:text>
@@ -11466,7 +11865,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1054e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1107e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="literallayout" namespace="http://docbook.org/ns/docbook">
@@ -11481,11 +11880,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1054e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1054e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1107e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1107e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1054e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1107e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11493,7 +11892,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'raw'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1054e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1107e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11509,7 +11908,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario62-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario67-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -11517,7 +11916,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario62-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario67-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -11527,7 +11926,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e446-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e470-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -11563,16 +11962,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e446"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e446-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e470"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e470-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e446, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e470, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario62-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario67-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -11580,17 +11979,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e446"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e470"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario63"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario68"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a programlisting in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario63</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario68</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a programlisting in the raw style</xsl:text>
@@ -11620,7 +12019,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1062e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1115e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -11635,11 +12034,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1062e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1062e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1115e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1115e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1062e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1115e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11647,7 +12046,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'raw'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1062e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1115e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11663,7 +12062,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario63-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario68-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -11671,7 +12070,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario63-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario68-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -11681,7 +12080,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e455-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e479-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -11722,16 +12121,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e455"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e455-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e479"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e479-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e455, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e479, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario63-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario68-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -11739,17 +12138,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e455"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e479"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario64"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario69"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a screen in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario64</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario69</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a screen in the raw style</xsl:text>
@@ -11779,7 +12178,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1070e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1123e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="screen" namespace="http://docbook.org/ns/docbook">
@@ -11794,11 +12193,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1070e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1070e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1123e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1123e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1070e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1123e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11806,7 +12205,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'raw'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1070e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1123e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11822,7 +12221,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario64-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario69-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -11830,7 +12229,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario64-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario69-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -11840,7 +12239,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e465-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e489-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -11881,16 +12280,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e465"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e465-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e489"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e489-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e465, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e489, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario64-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario69-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -11898,17 +12297,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e465"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e489"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario65"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario70"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a synopsis in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario65</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario70</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a synopsis in the raw style</xsl:text>
@@ -11938,7 +12337,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1078e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1131e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="synopsis" namespace="http://docbook.org/ns/docbook">
@@ -11953,11 +12352,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1078e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1078e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1131e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1131e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1078e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1131e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11965,7 +12364,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'raw'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1078e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1131e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -11981,7 +12380,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario65-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario70-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -11989,7 +12388,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario65-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario70-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -11999,7 +12398,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e475-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e499-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -12040,16 +12439,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e475"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e475-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e499"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e499-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e475, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e499, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario65-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario70-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -12057,17 +12456,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e475"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e499"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario66"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario71"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a verbatim with inline markup in the raw style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario66</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario71</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the raw style</xsl:text>
@@ -12111,7 +12510,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1086e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1139e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -12140,11 +12539,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1086e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1086e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1139e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1139e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1086e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1139e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12152,7 +12551,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'raw'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1086e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1139e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12168,7 +12567,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario66-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario71-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -12176,7 +12575,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario66-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario71-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -12186,7 +12585,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>the inline markup should be transformed.</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e491-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e515-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -12241,16 +12640,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e491"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e491-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e515"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e515-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e491, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e515, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario66-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario71-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -12258,17 +12657,17 @@ Line five</xsl:text>
             <xsl:text>the inline markup should be transformed.</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e491"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e515"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario67"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario72"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting an address in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario67</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario72</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an address in the plain style</xsl:text>
@@ -12298,7 +12697,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1094e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1147e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="address" namespace="http://docbook.org/ns/docbook">
@@ -12313,11 +12712,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1094e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1094e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1147e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1147e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1094e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1147e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12325,7 +12724,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1094e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1147e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12341,7 +12740,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario67-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario72-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -12349,7 +12748,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario67-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario72-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -12359,7 +12758,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e509-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e532-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -12395,16 +12794,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e509"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e509-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e532"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e532-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e509, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e532, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario67-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario72-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -12412,17 +12811,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e509"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e532"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario68"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario73"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a literallayout in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario68</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario73</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a literallayout in the plain style</xsl:text>
@@ -12452,7 +12851,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1102e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1155e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="literallayout" namespace="http://docbook.org/ns/docbook">
@@ -12467,11 +12866,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1102e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1102e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1155e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1155e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1102e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1155e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12479,7 +12878,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1102e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1155e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12495,7 +12894,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario68-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario73-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -12503,7 +12902,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario68-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario73-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -12513,7 +12912,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e518-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e541-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -12549,16 +12948,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e518"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e518-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e541"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e541-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e518, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e541, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario68-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario73-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -12566,17 +12965,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e518"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e541"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario69"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario74"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a programlisting in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario69</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario74</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a programlisting in the plain style</xsl:text>
@@ -12606,7 +13005,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1110e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1163e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -12621,11 +13020,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1110e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1110e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1163e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1163e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1110e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1163e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12633,7 +13032,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1110e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1163e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12649,7 +13048,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario69-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario74-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -12657,7 +13056,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario69-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario74-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -12667,7 +13066,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e527-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e550-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -12708,16 +13107,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e527"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e527-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e550"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e550-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e527, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e550, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario69-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario74-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -12725,17 +13124,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e527"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e550"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario70"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario75"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a screen in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario70</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario75</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a screen in the plain style</xsl:text>
@@ -12765,7 +13164,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1118e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1171e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="screen" namespace="http://docbook.org/ns/docbook">
@@ -12780,11 +13179,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1118e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1118e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1171e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1171e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1118e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1171e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12792,7 +13191,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1118e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1171e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12808,7 +13207,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario70-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario75-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -12816,7 +13215,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario70-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario75-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -12826,7 +13225,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e537-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e560-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -12867,16 +13266,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e537"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e537-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e560"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e560-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e537, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e560, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario70-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario75-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -12884,17 +13283,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e537"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e560"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario71"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario76"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a synopsis in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario71</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario76</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a synopsis in the plain style</xsl:text>
@@ -12924,7 +13323,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1126e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1179e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="synopsis" namespace="http://docbook.org/ns/docbook">
@@ -12939,11 +13338,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1126e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1126e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1179e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1179e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1126e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1179e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12951,7 +13350,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1126e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1179e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -12967,7 +13366,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario71-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario76-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -12975,7 +13374,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario71-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario76-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -12985,7 +13384,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e547-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e571-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -13026,16 +13425,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e547"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e547-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e571"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e571-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e547, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e571, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario71-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario76-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -13043,17 +13442,17 @@ Line five</xsl:text>
             <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e547"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e571"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario72"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario77"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting a verbatim with inline markup in the plain style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario72</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario77</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the plain style</xsl:text>
@@ -13111,7 +13510,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1134e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1187e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="div" namespace="http://docbook.org/ns/docbook">
@@ -13157,11 +13556,11 @@ Line five</xsl:text>
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d1134e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1134e0-doc ! ( /*/* )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d1187e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1187e0-doc ! ( /*/* )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1134e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1187e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -13169,7 +13568,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1134e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1187e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -13185,7 +13584,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario72-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario77-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -13193,7 +13592,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario72-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario77-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -13203,7 +13602,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>the inline markup should be transformed.</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e565-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e589-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -13265,16 +13664,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e565"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e565-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e589"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e589-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e565, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e589, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario72-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario77-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -13282,17 +13681,17 @@ Line five</xsl:text>
             <xsl:text>the inline markup should be transformed.</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e565"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e589"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario73"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario78"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When converting an address in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario73</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario78</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting an address in the lines style</xsl:text>
@@ -13322,7 +13721,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1142e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1195e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="address" namespace="http://docbook.org/ns/docbook">
@@ -13337,11 +13736,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1142e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1142e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1195e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1195e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1142e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1195e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -13349,656 +13748,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1142e0"
-                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
-               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
-                                xmlns:h="http://www.w3.org/1999/xhtml"
-                                xmlns:m="http://docbook.org/ns/docbook/modes"
-                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                                name="Q{}style"
-                                select="$Q{}style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario73-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario73-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e585-doc"
-                     as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-001.xml')"/>
-      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e585"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e585-doc ! ( /* )"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e585, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario73-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>you should get all the lines</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e585"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario74"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When converting a literallayout in the lines style</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario74</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When converting a literallayout in the lines style</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
-                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
-               </xsl:element>
-               <xsl:element name="literallayout" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1150e0-doc"
-                        as="document-node()">
-            <xsl:document>
-               <xsl:element name="literallayout" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:document>
-         </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1150e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1150e0-doc ! ( node() )"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                        as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1150e0"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                           xmlns:h="http://www.w3.org/1999/xhtml"
-                           xmlns:m="http://docbook.org/ns/docbook/modes"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{}style"
-                           select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1150e0"
-                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
-               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
-                                xmlns:h="http://www.w3.org/1999/xhtml"
-                                xmlns:m="http://docbook.org/ns/docbook/modes"
-                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                                name="Q{}style"
-                                select="$Q{}style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario74-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario74-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e591-doc"
-                     as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-002.xml')"/>
-      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e591"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e591-doc ! ( /* )"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e591, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario74-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>you should get all the lines</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e591"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario75"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When converting a programlisting in the lines style</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario75</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When converting a programlisting in the lines style</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
-                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
-               </xsl:element>
-               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1158e0-doc"
-                        as="document-node()">
-            <xsl:document>
-               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:document>
-         </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1158e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1158e0-doc ! ( node() )"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                        as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1158e0"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                           xmlns:h="http://www.w3.org/1999/xhtml"
-                           xmlns:m="http://docbook.org/ns/docbook/modes"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{}style"
-                           select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1158e0"
-                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
-               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
-                                xmlns:h="http://www.w3.org/1999/xhtml"
-                                xmlns:m="http://docbook.org/ns/docbook/modes"
-                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                                name="Q{}style"
-                                select="$Q{}style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario75-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario75-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e597-doc"
-                     as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-003.xml')"/>
-      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e597"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e597-doc ! ( /* )"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e597, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario75-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>you should get all the lines</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e597"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario76"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When converting a screen in the lines style</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario76</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When converting a screen in the lines style</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
-                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
-               </xsl:element>
-               <xsl:element name="screen" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1166e0-doc"
-                        as="document-node()">
-            <xsl:document>
-               <xsl:element name="screen" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:document>
-         </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1166e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1166e0-doc ! ( node() )"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                        as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1166e0"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                           xmlns:h="http://www.w3.org/1999/xhtml"
-                           xmlns:m="http://docbook.org/ns/docbook/modes"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{}style"
-                           select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1166e0"
-                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
-               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
-                                xmlns:h="http://www.w3.org/1999/xhtml"
-                                xmlns:m="http://docbook.org/ns/docbook/modes"
-                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                                name="Q{}style"
-                                select="$Q{}style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario76-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario76-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e603-doc"
-                     as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-004.xml')"/>
-      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e603"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e603-doc ! ( /* )"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e603, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario76-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>you should get all the lines</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e603"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario77"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When converting a synopsis in the lines style</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario77</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When converting a synopsis in the lines style</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
-                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
-               </xsl:element>
-               <xsl:element name="synopsis" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1174e0-doc"
-                        as="document-node()">
-            <xsl:document>
-               <xsl:element name="synopsis" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line two
-Line three
-Line four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:document>
-         </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1174e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1174e0-doc ! ( node() )"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                        as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1174e0"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                           xmlns:h="http://www.w3.org/1999/xhtml"
-                           xmlns:m="http://docbook.org/ns/docbook/modes"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{}style"
-                           select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1174e0"
-                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
-               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
-                                xmlns:h="http://www.w3.org/1999/xhtml"
-                                xmlns:m="http://docbook.org/ns/docbook/modes"
-                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                                name="Q{}style"
-                                select="$Q{}style"/>
-            </xsl:apply-templates>
-         </xsl:variable>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-            <xsl:with-param name="report-name" select="'result'"/>
-         </xsl:call-template>
-         <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario77-expect1">
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
-            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario77-expect1"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
-      <xsl:context-item use="absent"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
-                  as="item()*"
-                  required="yes"/>
-      <xsl:message>you should get all the lines</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e610-doc"
-                     as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-005.xml')"/>
-      <xsl:variable xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e610"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e610-doc ! ( /* )"><!--expected result--></xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
-                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e610, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
-      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
-         <xsl:message>      FAILED</xsl:message>
-      </xsl:if>
-      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario77-expect1</xsl:attribute>
-         <xsl:attribute name="successful"
-                         namespace=""
-                         select="$Q{urn:x-xspec:compile:impl}successful"/>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>you should get all the lines</xsl:text>
-         </xsl:element>
-         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e610"/>
-            <xsl:with-param name="report-name" select="'expect'"/>
-         </xsl:call-template>
-      </xsl:element>
-   </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario78"
-                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
-      <xsl:context-item use="absent"/>
-      <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
-      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario78</xsl:attribute>
-         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
-         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When converting a verbatim with inline markup in the lines style</xsl:text>
-         </xsl:element>
-         <xsl:element name="input-wrap" namespace="">
-            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
-               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
-                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
-                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
-               </xsl:element>
-               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line </xsl:text>
-                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
-                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                     <xsl:text>two</xsl:text>
-                  </xsl:element>
-                  <xsl:text>
-Line </xsl:text>
-                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
-                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                     <xsl:text>end of three
-Start of line</xsl:text>
-                  </xsl:element>
-                  <xsl:text> four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:element>
-         </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1182e0-doc"
-                        as="document-node()">
-            <xsl:document>
-               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
-                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                  <xsl:text>Line one
-Line </xsl:text>
-                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
-                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                     <xsl:text>two</xsl:text>
-                  </xsl:element>
-                  <xsl:text>
-Line </xsl:text>
-                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
-                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
-                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
-                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
-                     <xsl:text>end of three
-Start of line</xsl:text>
-                  </xsl:element>
-                  <xsl:text> four
-Line five</xsl:text>
-               </xsl:element>
-            </xsl:document>
-         </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1182e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1182e0-doc ! ( node() )"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
-                        as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1182e0"/>
-         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:variable xmlns="http://docbook.org/ns/docbook"
-                           xmlns:h="http://www.w3.org/1999/xhtml"
-                           xmlns:m="http://docbook.org/ns/docbook/modes"
-                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                           name="Q{}style"
-                           select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1182e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1195e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14031,18 +13781,18 @@ Line five</xsl:text>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                   as="item()*"
                   required="yes"/>
-      <xsl:message>the inline markup should not cross line boundaries.</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e622-doc"
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e609-doc"
                      as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-006.xml')"/>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-001.xml')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e622"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e622-doc ! ( /* )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e609"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e609-doc ! ( /* )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e622, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e609, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -14052,10 +13802,10 @@ Line five</xsl:text>
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>the inline markup should not cross line boundaries.</xsl:text>
+            <xsl:text>you should get all the lines</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e622"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e609"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
@@ -14063,9 +13813,658 @@ Line five</xsl:text>
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario79"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
+      <xsl:message>When converting a literallayout in the lines style</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario79</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When converting a literallayout in the lines style</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="literallayout" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1203e0-doc"
+                        as="document-node()">
+            <xsl:document>
+               <xsl:element name="literallayout" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:document>
+         </xsl:variable>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1203e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1203e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                        as="item()*"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1203e0"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                           xmlns:h="http://www.w3.org/1999/xhtml"
+                           xmlns:m="http://docbook.org/ns/docbook/modes"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{}style"
+                           select="'lines'"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1203e0"
+                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
+               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
+                                xmlns:h="http://www.w3.org/1999/xhtml"
+                                xmlns:m="http://docbook.org/ns/docbook/modes"
+                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                                name="Q{}style"
+                                select="$Q{}style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario79-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario79-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e615-doc"
+                     as="document-node()"
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-002.xml')"/>
+      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e615"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e615-doc ! ( /* )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e615, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario79-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>you should get all the lines</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e615"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario80"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting a programlisting in the lines style</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario80</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When converting a programlisting in the lines style</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1211e0-doc"
+                        as="document-node()">
+            <xsl:document>
+               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:document>
+         </xsl:variable>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1211e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1211e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                        as="item()*"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1211e0"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                           xmlns:h="http://www.w3.org/1999/xhtml"
+                           xmlns:m="http://docbook.org/ns/docbook/modes"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{}style"
+                           select="'lines'"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1211e0"
+                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
+               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
+                                xmlns:h="http://www.w3.org/1999/xhtml"
+                                xmlns:m="http://docbook.org/ns/docbook/modes"
+                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                                name="Q{}style"
+                                select="$Q{}style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario80-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario80-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e621-doc"
+                     as="document-node()"
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-003.xml')"/>
+      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e621"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e621-doc ! ( /* )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e621, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario80-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>you should get all the lines</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e621"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario81"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting a screen in the lines style</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario81</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When converting a screen in the lines style</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="screen" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1219e0-doc"
+                        as="document-node()">
+            <xsl:document>
+               <xsl:element name="screen" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:document>
+         </xsl:variable>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1219e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1219e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                        as="item()*"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1219e0"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                           xmlns:h="http://www.w3.org/1999/xhtml"
+                           xmlns:m="http://docbook.org/ns/docbook/modes"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{}style"
+                           select="'lines'"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1219e0"
+                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
+               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
+                                xmlns:h="http://www.w3.org/1999/xhtml"
+                                xmlns:m="http://docbook.org/ns/docbook/modes"
+                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                                name="Q{}style"
+                                select="$Q{}style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario81-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario81-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e627-doc"
+                     as="document-node()"
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-004.xml')"/>
+      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e627"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e627-doc ! ( /* )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e627, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario81-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>you should get all the lines</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e627"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario82"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting a synopsis in the lines style</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario82</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When converting a synopsis in the lines style</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="synopsis" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1227e0-doc"
+                        as="document-node()">
+            <xsl:document>
+               <xsl:element name="synopsis" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line two
+Line three
+Line four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:document>
+         </xsl:variable>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1227e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1227e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                        as="item()*"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1227e0"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                           xmlns:h="http://www.w3.org/1999/xhtml"
+                           xmlns:m="http://docbook.org/ns/docbook/modes"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{}style"
+                           select="'lines'"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1227e0"
+                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
+               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
+                                xmlns:h="http://www.w3.org/1999/xhtml"
+                                xmlns:m="http://docbook.org/ns/docbook/modes"
+                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                                name="Q{}style"
+                                select="$Q{}style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario82-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario82-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>you should get all the lines</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e633-doc"
+                     as="document-node()"
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-005.xml')"/>
+      <xsl:variable xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e633"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e633-doc ! ( /* )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e633, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario82-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>you should get all the lines</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e633"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario83"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario83</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When converting a verbatim with inline markup in the lines style</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+               <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+               <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+               <xsl:attribute name="mode" namespace="">m:docbook</xsl:attribute>
+               <xsl:element name="x:param" namespace="http://www.jenitennison.com/xslt/xspec">
+                  <xsl:namespace name="">http://docbook.org/ns/docbook</xsl:namespace>
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:attribute name="name" namespace="">style</xsl:attribute>
+                  <xsl:attribute name="select" namespace="">'lines'</xsl:attribute>
+               </xsl:element>
+               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line </xsl:text>
+                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
+                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                     <xsl:text>two</xsl:text>
+                  </xsl:element>
+                  <xsl:text>
+Line </xsl:text>
+                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
+                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                     <xsl:text>end of three
+Start of line</xsl:text>
+                  </xsl:element>
+                  <xsl:text> four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1235e0-doc"
+                        as="document-node()">
+            <xsl:document>
+               <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
+                  <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                  <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                  <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                  <xsl:text>Line one
+Line </xsl:text>
+                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
+                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                     <xsl:text>two</xsl:text>
+                  </xsl:element>
+                  <xsl:text>
+Line </xsl:text>
+                  <xsl:element name="emphasis" namespace="http://docbook.org/ns/docbook">
+                     <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
+                     <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
+                     <xsl:namespace name="x">http://www.jenitennison.com/xslt/xspec</xsl:namespace>
+                     <xsl:text>end of three
+Start of line</xsl:text>
+                  </xsl:element>
+                  <xsl:text> four
+Line five</xsl:text>
+               </xsl:element>
+            </xsl:document>
+         </xsl:variable>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1235e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1235e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                        as="item()*"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1235e0"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:variable xmlns="http://docbook.org/ns/docbook"
+                           xmlns:h="http://www.w3.org/1999/xhtml"
+                           xmlns:m="http://docbook.org/ns/docbook/modes"
+                           xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                           name="Q{}style"
+                           select="'lines'"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1235e0"
+                                  mode="Q{http://docbook.org/ns/docbook/modes}docbook">
+               <xsl:with-param xmlns="http://docbook.org/ns/docbook"
+                                xmlns:h="http://www.w3.org/1999/xhtml"
+                                xmlns:m="http://docbook.org/ns/docbook/modes"
+                                xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                                name="Q{}style"
+                                select="$Q{}style"/>
+            </xsl:apply-templates>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario83-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario83-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>the inline markup should not cross line boundaries.</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e645-doc"
+                     as="document-node()"
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-006.xml')"/>
+      <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e645"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e645-doc ! ( /* )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e645, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario83-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>the inline markup should not cross line boundaries.</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e645"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When converting a verbatim with inline markup in the lines style</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario84</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When converting a verbatim with inline markup in the lines style</xsl:text>
@@ -14125,7 +14524,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1190e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1243e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -14170,11 +14569,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1190e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1190e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1243e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1243e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1190e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1243e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14182,7 +14581,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'lines'"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1190e0"
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1243e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14198,7 +14597,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario79-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -14206,7 +14605,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario79-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -14216,22 +14615,22 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>ID attributes should not be repeated.</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e634-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e657-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-007.xml')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e634"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e634-doc ! ( /* )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e657"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e657-doc ! ( /* )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e634, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e657, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario79-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario84-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -14239,17 +14638,17 @@ Line five</xsl:text>
             <xsl:text>ID attributes should not be repeated.</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e634"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e657"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario80"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario85"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario80</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario85</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
@@ -14333,7 +14732,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1198e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1251e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -14348,11 +14747,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1198e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1198e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1251e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1251e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1198e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1251e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14360,7 +14759,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'lines'"/>
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1198e2-doc"
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1251e2-doc"
                            as="document-node()">
                <xsl:document>
                   <xsl:element name="areaspec" namespace="http://docbook.org/ns/docbook">
@@ -14418,8 +14817,8 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}inject"
                            as="element()"
-                           select="$Q{urn:x-xspec:compile:impl}param-d1198e2-doc ! ( node() )"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1198e0"
+                           select="$Q{urn:x-xspec:compile:impl}param-d1251e2-doc ! ( node() )"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1251e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14442,7 +14841,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario80-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario85-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -14450,7 +14849,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario80-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario85-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -14460,22 +14859,22 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>they should appear in the output</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e648-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e671-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-008.xml')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e648"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e648-doc ! ( /* )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e671"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e671-doc ! ( /* )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e648, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e671, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario80-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario85-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -14483,17 +14882,17 @@ Line five</xsl:text>
             <xsl:text>they should appear in the output</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e648"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e671"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario81"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario86"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario81</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario86</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
@@ -14577,7 +14976,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1206e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1259e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -14592,11 +14991,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1206e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1206e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1259e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1259e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1206e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1259e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14604,7 +15003,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'lines'"/>
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1206e2-doc"
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1259e2-doc"
                            as="document-node()">
                <xsl:document>
                   <xsl:element name="areaspec" namespace="http://docbook.org/ns/docbook">
@@ -14662,8 +15061,8 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}inject"
                            as="element()"
-                           select="$Q{urn:x-xspec:compile:impl}param-d1206e2-doc ! ( node() )"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1206e0"
+                           select="$Q{urn:x-xspec:compile:impl}param-d1259e2-doc ! ( node() )"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1259e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14686,7 +15085,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario81-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario86-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -14694,7 +15093,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario81-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario86-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -14704,22 +15103,22 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>they can extend the listing</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e662-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e686-doc"
                      as="document-node()"
                      select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/verbatim-xspec-009.xml')"/>
       <xsl:variable xmlns:h="http://www.w3.org/1999/xhtml"
                      xmlns:m="http://docbook.org/ns/docbook/modes"
                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     name="Q{urn:x-xspec:compile:impl}expect-d143e662"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e662-doc ! ( /* )"><!--expected result--></xsl:variable>
+                     name="Q{urn:x-xspec:compile:impl}expect-d148e686"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e686-doc ! ( /* )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e662, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e686, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario81-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario86-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -14727,17 +15126,17 @@ Line five</xsl:text>
             <xsl:text>they can extend the listing</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e662"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e686"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario82"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario87"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario82</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario87</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
@@ -14821,7 +15220,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1214e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1267e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -14836,11 +15235,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1214e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1214e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1267e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1267e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1214e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1267e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14848,7 +15247,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1214e2-doc"
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1267e2-doc"
                            as="document-node()">
                <xsl:document>
                   <xsl:element name="areaspec" namespace="http://docbook.org/ns/docbook">
@@ -14906,8 +15305,8 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}inject"
                            as="element()"
-                           select="$Q{urn:x-xspec:compile:impl}param-d1214e2-doc ! ( node() )"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1214e0"
+                           select="$Q{urn:x-xspec:compile:impl}param-d1267e2-doc ! ( node() )"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1267e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -14930,7 +15329,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario82-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario87-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -14938,7 +15337,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario82-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario87-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -14948,7 +15347,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>plain mode also works</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e676-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e700-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -15105,16 +15504,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e676"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e676-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e700"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e700-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e676, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e700, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario82-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario87-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -15122,17 +15521,17 @@ Line five</xsl:text>
             <xsl:text>plain mode also works</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e676"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e700"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario83"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario88"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When callouts are added to a verbatim element</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario83</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario88</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are added to a verbatim element</xsl:text>
@@ -15263,7 +15662,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1222e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1275e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="programlisting" namespace="http://docbook.org/ns/docbook">
@@ -15278,11 +15677,11 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:document>
          </xsl:variable>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1222e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1222e0-doc ! ( node() )"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1275e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1275e0-doc ! ( node() )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1222e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1275e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -15290,7 +15689,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1222e2-doc"
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1275e2-doc"
                            as="document-node()">
                <xsl:document>
                   <xsl:element name="areaspec" namespace="http://docbook.org/ns/docbook">
@@ -15395,8 +15794,8 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}inject"
                            as="element()"
-                           select="$Q{urn:x-xspec:compile:impl}param-d1222e2-doc ! ( node() )"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1222e0"
+                           select="$Q{urn:x-xspec:compile:impl}param-d1275e2-doc ! ( node() )"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1275e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -15419,7 +15818,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario83-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario88-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -15427,7 +15826,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario83-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario88-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -15437,7 +15836,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>markup can also be inserted</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e705-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e729-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -15594,16 +15993,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e705"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e705-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e729"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e729-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e705, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e729, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario83-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario88-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -15611,17 +16010,17 @@ Line five</xsl:text>
             <xsl:text>markup can also be inserted</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e705"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e729"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario89"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
       <xsl:message>When callouts are inserted into markup</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario84</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario89</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:text>When callouts are inserted into markup</xsl:text>
@@ -15732,7 +16131,7 @@ Line five</xsl:text>
                </xsl:element>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1230e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d1283e0-doc"
                         as="document-node()">
             <xsl:document>
                <xsl:element name="div" namespace="http://docbook.org/ns/docbook">
@@ -15777,11 +16176,11 @@ Line five</xsl:text>
                         xmlns:h="http://www.w3.org/1999/xhtml"
                         xmlns:m="http://docbook.org/ns/docbook/modes"
                         xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                        name="Q{urn:x-xspec:compile:impl}context-d1230e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1230e0-doc ! ( /*/* )"/>
+                        name="Q{urn:x-xspec:compile:impl}context-d1283e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d1283e0-doc ! ( /*/* )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d1230e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d1283e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
             <xsl:variable xmlns="http://docbook.org/ns/docbook"
                            xmlns:h="http://www.w3.org/1999/xhtml"
@@ -15789,7 +16188,7 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}style"
                            select="'plain'"/>
-            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1230e2-doc"
+            <xsl:variable name="Q{urn:x-xspec:compile:impl}param-d1283e2-doc"
                            as="document-node()">
                <xsl:document>
                   <xsl:element name="areaspec" namespace="http://docbook.org/ns/docbook">
@@ -15847,8 +16246,8 @@ Line five</xsl:text>
                            xmlns:x="http://www.jenitennison.com/xslt/xspec"
                            name="Q{}inject"
                            as="element()"
-                           select="$Q{urn:x-xspec:compile:impl}param-d1230e2-doc ! ( node() )"/>
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1230e0"
+                           select="$Q{urn:x-xspec:compile:impl}param-d1283e2-doc ! ( node() )"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d1283e0"
                                   mode="Q{http://docbook.org/ns/docbook/modes}docbook">
                <xsl:with-param xmlns="http://docbook.org/ns/docbook"
                                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -15871,7 +16270,7 @@ Line five</xsl:text>
             <xsl:with-param name="report-name" select="'result'"/>
          </xsl:call-template>
          <!-- invoke each compiled x:expect -->
-         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84-expect1">
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario89-expect1">
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
                              select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
             <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
@@ -15879,7 +16278,7 @@ Line five</xsl:text>
          </xsl:call-template>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario84-expect1"
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario89-expect1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
       <xsl:context-item use="absent"/>
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
@@ -15889,7 +16288,7 @@ Line five</xsl:text>
                   as="item()*"
                   required="yes"/>
       <xsl:message>they interrupt that markup</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e738-doc"
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e762-doc"
                      as="document-node()">
          <xsl:document>
             <xsl:element name="div" namespace="http://www.w3.org/1999/xhtml">
@@ -16078,16 +16477,16 @@ Line five</xsl:text>
             </xsl:element>
          </xsl:document>
       </xsl:variable>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d143e738"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d143e738-doc ! ( node() )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d148e762"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d148e762-doc ! ( node() )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d143e738, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d148e762, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
       <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
-         <xsl:attribute name="id" namespace="">scenario84-expect1</xsl:attribute>
+         <xsl:attribute name="id" namespace="">scenario89-expect1</xsl:attribute>
          <xsl:attribute name="successful"
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
@@ -16095,7 +16494,7 @@ Line five</xsl:text>
             <xsl:text>they interrupt that markup</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d143e738"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d148e762"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>

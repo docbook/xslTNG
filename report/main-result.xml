@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/main.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xslt/xspec-driver.xsl"
-         date="2023-01-25T13:41:33.983705Z">
+         date="2023-02-01T15:04:18.279141Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/copyright.xspec">
       <label>when formatting a single copyright year</label>
@@ -1213,6 +1213,89 @@
       </test>
    </scenario>
    <scenario id="scenario28"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
+      <label>The uri scheme is 'https'</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
+                  xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                  function="f:uri-scheme">
+            <x:param select="'https://docbook.org/'"/>
+         </x:call>
+      </input-wrap>
+      <result select="'https'"/>
+      <test id="scenario28-expect1" successful="true">
+         <label>expect the scheme</label>
+         <expect select="'https'"/>
+      </test>
+   </scenario>
+   <scenario id="scenario29"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
+      <label>The uri scheme is the empty sequence</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
+                  xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                  function="f:uri-scheme">
+            <x:param select="'/just/a/path'"/>
+         </x:call>
+      </input-wrap>
+      <result select="()"/>
+      <test id="scenario29-expect1" successful="true">
+         <label>expect the scheme</label>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario30"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
+      <label>If the path is a direct extension of the base</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
+                  xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                  function="f:relative-path">
+            <x:param select="'/a/base/uri/path/'"/>
+            <x:param select="'/a/base/uri/path/with/more'"/>
+         </x:call>
+      </input-wrap>
+      <result select="'with/more'"/>
+      <test id="scenario30-expect1" successful="true">
+         <label>expect the relative path</label>
+         <expect select="'with/more'"/>
+      </test>
+   </scenario>
+   <scenario id="scenario31"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
+      <label>If the path is an extension of a shorter prefix</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
+                  xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                  function="f:relative-path">
+            <x:param select="'/a/base/uri/path/'"/>
+            <x:param select="'/a/base/uri/with/other'"/>
+         </x:call>
+      </input-wrap>
+      <result select="'../with/other'"/>
+      <test id="scenario31-expect1" successful="true">
+         <label>expect the relative path</label>
+         <expect select="'../with/other'"/>
+      </test>
+   </scenario>
+   <scenario id="scenario32"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/functions.xspec">
+      <label>If the URI is absolute</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:f="http://docbook.org/ns/docbook/functions"
+                  xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                  function="f:relative-path">
+            <x:param select="'/a/base/uri/path/'"/>
+            <x:param select="'https://docbook.org/'"/>
+         </x:call>
+      </input-wrap>
+      <result select="'https://docbook.org/'"/>
+      <test id="scenario32-expect1" successful="true">
+         <label>expect the URI</label>
+         <expect select="'https://docbook.org/'"/>
+      </test>
+   </scenario>
+   <scenario id="scenario33"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting an anchor element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -1229,7 +1312,7 @@
             <span xmlns="http://www.w3.org/1999/xhtml" id="d1e32" class="a anchor b c"/>
          </content-wrap>
       </result>
-      <test id="scenario28-expect1" successful="true">
+      <test id="scenario33-expect1" successful="true">
          <label>it should return a single a element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1239,7 +1322,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario28-expect2" successful="true">
+      <test id="scenario33-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1249,7 +1332,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario28-expect3" successful="true">
+      <test id="scenario33-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1259,7 +1342,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario28-expect4" successful="true">
+      <test id="scenario33-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1269,7 +1352,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario28-expect5" successful="true">
+      <test id="scenario33-expect5" successful="true">
          <label>it should be empty</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1280,7 +1363,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario29"
+   <scenario id="scenario34"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting an emphasis element with a bold role</label>
       <input-wrap xmlns="">
@@ -1297,7 +1380,7 @@
             <strong xmlns="http://www.w3.org/1999/xhtml" class="bold">This is strongly emphasized</strong>
          </content-wrap>
       </result>
-      <test id="scenario29-expect1" successful="true">
+      <test id="scenario34-expect1" successful="true">
          <label>it should return a strong element</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -1310,7 +1393,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario30"
+   <scenario id="scenario35"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a code element</label>
       <input-wrap xmlns="">
@@ -1327,7 +1410,7 @@
             <code xmlns="http://www.w3.org/1999/xhtml">This is a code element.</code>
          </content-wrap>
       </result>
-      <test id="scenario30-expect1" successful="true">
+      <test id="scenario35-expect1" successful="true">
          <label>it should return a single code element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1337,7 +1420,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario30-expect2" successful="true">
+      <test id="scenario35-expect2" successful="true">
          <label>the name shouldn't become a class</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1347,7 +1430,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario30-expect3" successful="true">
+      <test id="scenario35-expect3" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1357,7 +1440,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario30-expect4" successful="true">
+      <test id="scenario35-expect4" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1368,7 +1451,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario31"
+   <scenario id="scenario36"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a code element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -1385,7 +1468,7 @@
             <code xmlns="http://www.w3.org/1999/xhtml" id="d15e0" class="a b c">This is a code element.</code>
          </content-wrap>
       </result>
-      <test id="scenario31-expect1" successful="true">
+      <test id="scenario36-expect1" successful="true">
          <label>it should return a single code element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1395,7 +1478,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario31-expect2" successful="true">
+      <test id="scenario36-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1405,7 +1488,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario31-expect3" successful="true">
+      <test id="scenario36-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1415,7 +1498,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario31-expect4" successful="true">
+      <test id="scenario36-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1425,7 +1508,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario31-expect5" successful="true">
+      <test id="scenario36-expect5" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1436,7 +1519,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario32"
+   <scenario id="scenario37"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a quote element</label>
       <input-wrap xmlns="">
@@ -1453,7 +1536,7 @@
             <q xmlns="http://www.w3.org/1999/xhtml">This is a quote element.</q>
          </content-wrap>
       </result>
-      <test id="scenario32-expect1" successful="true">
+      <test id="scenario37-expect1" successful="true">
          <label>it should return a single q element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1463,7 +1546,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario32-expect2" successful="true">
+      <test id="scenario37-expect2" successful="true">
          <label>the name shouldn't become a class</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1473,7 +1556,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario32-expect3" successful="true">
+      <test id="scenario37-expect3" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1483,7 +1566,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario32-expect4" successful="true">
+      <test id="scenario37-expect4" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1494,7 +1577,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario33"
+   <scenario id="scenario38"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a quote element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -1511,7 +1594,7 @@
             <q xmlns="http://www.w3.org/1999/xhtml" id="d80e0" class="a b c">This is a quote element.</q>
          </content-wrap>
       </result>
-      <test id="scenario33-expect1" successful="true">
+      <test id="scenario38-expect1" successful="true">
          <label>it should return a single q element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1521,7 +1604,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario33-expect2" successful="true">
+      <test id="scenario38-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1531,7 +1614,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario33-expect3" successful="true">
+      <test id="scenario38-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1541,7 +1624,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario33-expect4" successful="true">
+      <test id="scenario38-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1551,7 +1634,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario33-expect5" successful="true">
+      <test id="scenario38-expect5" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1562,7 +1645,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario34"
+   <scenario id="scenario39"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a subscript element</label>
       <input-wrap xmlns="">
@@ -1579,7 +1662,7 @@
             <sub xmlns="http://www.w3.org/1999/xhtml">This is a subscript element.</sub>
          </content-wrap>
       </result>
-      <test id="scenario34-expect1" successful="true">
+      <test id="scenario39-expect1" successful="true">
          <label>it should return a single sub element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1589,7 +1672,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario34-expect2" successful="true">
+      <test id="scenario39-expect2" successful="true">
          <label>the name shouldn't become a class</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1599,7 +1682,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario34-expect3" successful="true">
+      <test id="scenario39-expect3" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1609,7 +1692,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario34-expect4" successful="true">
+      <test id="scenario39-expect4" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1620,7 +1703,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario35"
+   <scenario id="scenario40"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a subscript element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -1637,7 +1720,7 @@
             <sub xmlns="http://www.w3.org/1999/xhtml" id="d85e0" class="a b c">This is a subscript element.</sub>
          </content-wrap>
       </result>
-      <test id="scenario35-expect1" successful="true">
+      <test id="scenario40-expect1" successful="true">
          <label>it should return a single sub element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1647,7 +1730,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario35-expect2" successful="true">
+      <test id="scenario40-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1657,7 +1740,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario35-expect3" successful="true">
+      <test id="scenario40-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1667,7 +1750,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario35-expect4" successful="true">
+      <test id="scenario40-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1677,7 +1760,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario35-expect5" successful="true">
+      <test id="scenario40-expect5" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1688,7 +1771,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario36"
+   <scenario id="scenario41"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a superscript element</label>
       <input-wrap xmlns="">
@@ -1705,7 +1788,7 @@
             <sup xmlns="http://www.w3.org/1999/xhtml">This is a superscript element.</sup>
          </content-wrap>
       </result>
-      <test id="scenario36-expect1" successful="true">
+      <test id="scenario41-expect1" successful="true">
          <label>it should return a single sup element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1715,7 +1798,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario36-expect2" successful="true">
+      <test id="scenario41-expect2" successful="true">
          <label>the name shouldn't become a class</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1725,7 +1808,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario36-expect3" successful="true">
+      <test id="scenario41-expect3" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1735,7 +1818,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario36-expect4" successful="true">
+      <test id="scenario41-expect4" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1746,7 +1829,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario37"
+   <scenario id="scenario42"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a superscript element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -1763,7 +1846,7 @@
             <sup xmlns="http://www.w3.org/1999/xhtml" id="d86e0" class="a b c">This is a superscript element.</sup>
          </content-wrap>
       </result>
-      <test id="scenario37-expect1" successful="true">
+      <test id="scenario42-expect1" successful="true">
          <label>it should return a single sup element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1773,7 +1856,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario37-expect2" successful="true">
+      <test id="scenario42-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1783,7 +1866,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario37-expect3" successful="true">
+      <test id="scenario42-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1793,7 +1876,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario37-expect4" successful="true">
+      <test id="scenario42-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1803,7 +1886,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario37-expect5" successful="true">
+      <test id="scenario42-expect5" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1814,7 +1897,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario38"
+   <scenario id="scenario43"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a tag element</label>
       <input-wrap xmlns="">
@@ -1831,7 +1914,7 @@
             <code xmlns="http://www.w3.org/1999/xhtml" class="tag tag-element">This is a tag element.</code>
          </content-wrap>
       </result>
-      <test id="scenario38-expect1" successful="true">
+      <test id="scenario43-expect1" successful="true">
          <label>it should return a single code element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1841,7 +1924,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario38-expect2" successful="true">
+      <test id="scenario43-expect2" successful="true">
          <label>it should return the DocBook name as the class</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1851,7 +1934,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario38-expect3" successful="true">
+      <test id="scenario43-expect3" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1861,7 +1944,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario38-expect4" successful="true">
+      <test id="scenario43-expect4" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1872,7 +1955,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario39"
+   <scenario id="scenario44"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a tag element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -1891,7 +1974,7 @@
                    class="a b c tag tag-element">This is a tag element.</code>
          </content-wrap>
       </result>
-      <test id="scenario39-expect1" successful="true">
+      <test id="scenario44-expect1" successful="true">
          <label>it should return a single code element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1901,7 +1984,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario39-expect2" successful="true">
+      <test id="scenario44-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1911,7 +1994,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario39-expect3" successful="true">
+      <test id="scenario44-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1921,7 +2004,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario39-expect4" successful="true">
+      <test id="scenario44-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1931,7 +2014,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario39-expect5" successful="true">
+      <test id="scenario44-expect5" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1942,7 +2025,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario40"
+   <scenario id="scenario45"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a personname element</label>
       <input-wrap xmlns="">
@@ -1959,7 +2042,7 @@
             <span xmlns="http://www.w3.org/1999/xhtml" class="first-last personname">This is a personname element.</span>
          </content-wrap>
       </result>
-      <test id="scenario40-expect1" successful="true">
+      <test id="scenario45-expect1" successful="true">
          <label>it should return a single span element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1969,7 +2052,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario40-expect2" successful="true">
+      <test id="scenario45-expect2" successful="true">
          <label>it should return the DocBook name as the class</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1979,7 +2062,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario40-expect3" successful="true">
+      <test id="scenario45-expect3" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -1989,7 +2072,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario40-expect4" successful="true">
+      <test id="scenario45-expect4" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2000,7 +2083,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario41"
+   <scenario id="scenario46"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/inlines.xspec">
       <label>When converting a personname element with an xml:id and roles</label>
       <input-wrap xmlns="">
@@ -2019,7 +2102,7 @@
                    class="a b c first-last personname">This is a personname element.</span>
          </content-wrap>
       </result>
-      <test id="scenario41-expect1" successful="true">
+      <test id="scenario46-expect1" successful="true">
          <label>it should return a single span element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2029,7 +2112,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario41-expect2" successful="true">
+      <test id="scenario46-expect2" successful="true">
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2039,7 +2122,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario41-expect3" successful="true">
+      <test id="scenario46-expect3" successful="true">
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2049,7 +2132,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario41-expect4" successful="true">
+      <test id="scenario46-expect4" successful="true">
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2059,7 +2142,7 @@
          </expect-test-wrap>
          <expect select="()"/>
       </test>
-      <test id="scenario41-expect5" successful="true">
+      <test id="scenario46-expect5" successful="true">
          <label>it should return the correct text</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
@@ -2070,7 +2153,7 @@
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario42"
+   <scenario id="scenario47"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming classsynopsis.001</label>
       <input-wrap xmlns="">
@@ -2102,7 +2185,7 @@
             </div>
          </content-wrap>
       </result>
-      <test id="scenario42-expect1" successful="true">
+      <test id="scenario47-expect1" successful="true">
          <label>expect a class synopsis</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2127,7 +2210,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario43"
+   <scenario id="scenario48"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming methodsynopsis.001</label>
       <input-wrap xmlns="">
@@ -2148,7 +2231,7 @@
             </div>
          </content-wrap>
       </result>
-      <test id="scenario43-expect1" successful="true">
+      <test id="scenario48-expect1" successful="true">
          <label>expect a class synopsis</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2162,7 +2245,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario44"
+   <scenario id="scenario49"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming synopsisinfo.001</label>
       <input-wrap xmlns="">
@@ -2195,7 +2278,7 @@
             </div>
          </content-wrap>
       </result>
-      <test id="scenario44-expect1" successful="true">
+      <test id="scenario49-expect1" successful="true">
          <label>expect synopses</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2221,7 +2304,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario45"
+   <scenario id="scenario50"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming packagesynopsis.001</label>
       <input-wrap xmlns="">
@@ -2279,7 +2362,7 @@
             </html>
          </content-wrap>
       </result>
-      <test id="scenario45-expect1" successful="true">
+      <test id="scenario50-expect1" successful="true">
          <label>expect a package synopsis</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
@@ -2332,7 +2415,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario46"
+   <scenario id="scenario51"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/oosynopsis.xspec">
       <label>When transforming enumsynopsis.001</label>
       <input-wrap xmlns="">
@@ -2344,12 +2427,12 @@
                      mode="m:docbook"/>
       </input-wrap>
       <result select="()"/>
-      <test id="scenario46-expect1" successful="true">
+      <test id="scenario51-expect1" successful="true">
          <label>expect an enum synopsis</label>
          <expect select="()"/>
       </test>
    </scenario>
-   <scenario id="scenario47"
+   <scenario id="scenario52"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0in</label>
       <input-wrap xmlns="">
@@ -2364,7 +2447,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario47-expect1" successful="true">
+      <test id="scenario52-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2373,7 +2456,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario48"
+   <scenario id="scenario53"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0m</label>
       <input-wrap xmlns="">
@@ -2388,7 +2471,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"m","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario48-expect1" successful="true">
+      <test id="scenario53-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2397,7 +2480,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario49"
+   <scenario id="scenario54"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0cm</label>
       <input-wrap xmlns="">
@@ -2412,7 +2495,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"cm","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario49-expect1" successful="true">
+      <test id="scenario54-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2421,7 +2504,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario50"
+   <scenario id="scenario55"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0mm</label>
       <input-wrap xmlns="">
@@ -2436,7 +2519,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"mm","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario50-expect1" successful="true">
+      <test id="scenario55-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2445,7 +2528,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario51"
+   <scenario id="scenario56"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0pc</label>
       <input-wrap xmlns="">
@@ -2460,7 +2543,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pc","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario51-expect1" successful="true">
+      <test id="scenario56-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2469,7 +2552,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario52"
+   <scenario id="scenario57"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0pt</label>
       <input-wrap xmlns="">
@@ -2484,7 +2567,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"pt","relative":0,"magnitude":1.0e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario52-expect1" successful="true">
+      <test id="scenario57-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2493,7 +2576,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario53"
+   <scenario id="scenario58"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 3.14barleycorn</label>
       <input-wrap xmlns="">
@@ -2508,7 +2591,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"barleycorn","relative":0,"magnitude":3.14e0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario53-expect1" successful="true">
+      <test id="scenario58-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2517,7 +2600,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario54"
+   <scenario id="scenario59"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 1.0smoot</label>
       <input-wrap xmlns="">
@@ -2532,7 +2615,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":25}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario54-expect1" successful="true">
+      <test id="scenario59-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2541,7 +2624,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario55"
+   <scenario id="scenario60"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 25%</label>
       <input-wrap xmlns="">
@@ -2556,7 +2639,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":2.5e1}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario55-expect1" successful="true">
+      <test id="scenario60-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2565,7 +2648,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario56"
+   <scenario id="scenario61"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 100%</label>
       <input-wrap xmlns="">
@@ -2580,7 +2663,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":1.0e2}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario56-expect1" successful="true">
+      <test id="scenario61-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2589,7 +2672,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario57"
+   <scenario id="scenario62"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 125%</label>
       <input-wrap xmlns="">
@@ -2604,7 +2687,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"%","relative":0,"magnitude":1.25e2}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario57-expect1" successful="true">
+      <test id="scenario62-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2613,7 +2696,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario58"
+   <scenario id="scenario63"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 3*+0.5in</label>
       <input-wrap xmlns="">
@@ -2628,7 +2711,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"in","relative":3,"magnitude":5.0e-1}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario58-expect1" successful="true">
+      <test id="scenario63-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2637,7 +2720,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario59"
+   <scenario id="scenario64"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 75</label>
       <input-wrap xmlns="">
@@ -2652,7 +2735,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":0,"magnitude":7.5e1}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario59-expect1" successful="true">
+      <test id="scenario64-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2661,7 +2744,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario60"
+   <scenario id="scenario65"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/units.xspec">
       <label>When computing the length 2.5*</label>
       <input-wrap xmlns="">
@@ -2676,7 +2759,7 @@
             <pseudo-map xmlns="http://www.jenitennison.com/xslt/xspec">map{"unit":"px","relative":2.5,"magnitude":0}</pseudo-map>
          </content-wrap>
       </result>
-      <test id="scenario60-expect1" successful="true">
+      <test id="scenario65-expect1" successful="true">
          <label>return the correct parse</label>
          <expect select="/*">
             <content-wrap xmlns="">
@@ -2685,7 +2768,7 @@
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario61"
+   <scenario id="scenario66"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the raw style</label>
       <input-wrap xmlns="">
@@ -2713,7 +2796,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario61-expect1" successful="true">
+      <test id="scenario66-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2732,7 +2815,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario62"
+   <scenario id="scenario67"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the raw style</label>
       <input-wrap xmlns="">
@@ -2760,7 +2843,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario62-expect1" successful="true">
+      <test id="scenario67-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2779,7 +2862,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario63"
+   <scenario id="scenario68"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the raw style</label>
       <input-wrap xmlns="">
@@ -2809,7 +2892,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario63-expect1" successful="true">
+      <test id="scenario68-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2830,7 +2913,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario64"
+   <scenario id="scenario69"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the raw style</label>
       <input-wrap xmlns="">
@@ -2860,7 +2943,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario64-expect1" successful="true">
+      <test id="scenario69-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2881,7 +2964,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario65"
+   <scenario id="scenario70"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the raw style</label>
       <input-wrap xmlns="">
@@ -2911,7 +2994,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario65-expect1" successful="true">
+      <test id="scenario70-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2932,7 +3015,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario66"
+   <scenario id="scenario71"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the raw style</label>
       <input-wrap xmlns="">
@@ -2962,7 +3045,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario66-expect1" successful="true">
+      <test id="scenario71-expect1" successful="true">
          <label>the inline markup should be transformed.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -2983,7 +3066,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario67"
+   <scenario id="scenario72"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the plain style</label>
       <input-wrap xmlns="">
@@ -3011,7 +3094,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario67-expect1" successful="true">
+      <test id="scenario72-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3030,7 +3113,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario68"
+   <scenario id="scenario73"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the plain style</label>
       <input-wrap xmlns="">
@@ -3058,7 +3141,7 @@ Line five</pre>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario68-expect1" successful="true">
+      <test id="scenario73-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3077,7 +3160,7 @@ Line five</pre>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario69"
+   <scenario id="scenario74"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the plain style</label>
       <input-wrap xmlns="">
@@ -3107,7 +3190,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario69-expect1" successful="true">
+      <test id="scenario74-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3128,7 +3211,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario70"
+   <scenario id="scenario75"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the plain style</label>
       <input-wrap xmlns="">
@@ -3158,7 +3241,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario70-expect1" successful="true">
+      <test id="scenario75-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3179,7 +3262,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario71"
+   <scenario id="scenario76"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the plain style</label>
       <input-wrap xmlns="">
@@ -3209,7 +3292,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario71-expect1" successful="true">
+      <test id="scenario76-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3230,7 +3313,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario72"
+   <scenario id="scenario77"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the plain style</label>
       <input-wrap xmlns="">
@@ -3263,7 +3346,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario72-expect1" successful="true">
+      <test id="scenario77-expect1" successful="true">
          <label>the inline markup should be transformed.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3286,7 +3369,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario73"
+   <scenario id="scenario78"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting an address in the lines style</label>
       <input-wrap xmlns="">
@@ -3356,7 +3439,7 @@ Line five</address>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario73-expect1" successful="true">
+      <test id="scenario78-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3413,7 +3496,7 @@ Line five</address>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario74"
+   <scenario id="scenario79"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a literallayout in the lines style</label>
       <input-wrap xmlns="">
@@ -3483,7 +3566,7 @@ Line five</literallayout>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario74-expect1" successful="true">
+      <test id="scenario79-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3540,7 +3623,7 @@ Line five</literallayout>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario75"
+   <scenario id="scenario80"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a programlisting in the lines style</label>
       <input-wrap xmlns="">
@@ -3619,7 +3702,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario75-expect1" successful="true">
+      <test id="scenario80-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3685,7 +3768,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario76"
+   <scenario id="scenario81"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a screen in the lines style</label>
       <input-wrap xmlns="">
@@ -3765,7 +3848,7 @@ Line five</screen>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario76-expect1" successful="true">
+      <test id="scenario81-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3832,7 +3915,7 @@ Line five</screen>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario77"
+   <scenario id="scenario82"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a synopsis in the lines style</label>
       <input-wrap xmlns="">
@@ -3912,7 +3995,7 @@ Line five</synopsis>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario77-expect1" successful="true">
+      <test id="scenario82-expect1" successful="true">
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -3979,7 +4062,7 @@ Line five</synopsis>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario78"
+   <scenario id="scenario83"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
@@ -4061,7 +4144,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario78-expect1" successful="true">
+      <test id="scenario83-expect1" successful="true">
          <label>the inline markup should not cross line boundaries.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4130,7 +4213,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario79"
+   <scenario id="scenario84"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
@@ -4212,7 +4295,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario79-expect1" successful="true">
+      <test id="scenario84-expect1" successful="true">
          <label>ID attributes should not be repeated.</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4281,7 +4364,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario80"
+   <scenario id="scenario85"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4378,7 +4461,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario80-expect1" successful="true">
+      <test id="scenario85-expect1" successful="true">
          <label>they should appear in the output</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4455,7 +4538,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario81"
+   <scenario id="scenario86"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4591,7 +4674,7 @@ Line five</programlisting>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario81-expect1" successful="true">
+      <test id="scenario86-expect1" successful="true">
          <label>they can extend the listing</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4707,7 +4790,7 @@ Line five</programlisting>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario82"
+   <scenario id="scenario87"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4754,7 +4837,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario82-expect1" successful="true">
+      <test id="scenario87-expect1" successful="true">
          <label>plain mode also works</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4785,7 +4868,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario83"
+   <scenario id="scenario88"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
@@ -4838,7 +4921,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario83-expect1" successful="true">
+      <test id="scenario88-expect1" successful="true">
          <label>markup can also be inserted</label>
          <expect select="/element()">
             <content-wrap xmlns="">
@@ -4869,7 +4952,7 @@ Line five</code>
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario84"
+   <scenario id="scenario89"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/verbatim.xspec">
       <label>When callouts are inserted into markup</label>
       <input-wrap xmlns="">
@@ -4928,7 +5011,7 @@ Line five</code>
             </div>
          </content-wrap>
       </result>
-      <test id="scenario84-expect1" successful="true">
+      <test id="scenario89-expect1" successful="true">
          <label>they interrupt that markup</label>
          <expect select="/element()">
             <content-wrap xmlns="">
