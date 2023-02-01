@@ -49,7 +49,8 @@ jobs:
     steps:
       - name: Setup python dependencies
         run: |
-          python3 -m pip install pygments==2.6.1 click
+          python3 -m pip install pygments==2.6.1 click cython
+          python3 -m pip install saxonche libxml2 libxslt
           python3 -m pip install --no-binary lxml html5-parser
 
       - name: Install epubcheck
