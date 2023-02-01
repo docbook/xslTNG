@@ -49,9 +49,9 @@ jobs:
     steps:
       - name: Setup python dependencies
         run: |
-          python3 -m pip install pygments==2.6.1 click cython
-          python3 -m pip install saxonche libxml2 libxslt
-          python3 -m pip install --no-binary lxml html5-parser
+          sudo python3 -m pip install pygments==2.6.1 click cython
+          sudo python3 -m pip install saxonche
+          sudo python3 -m pip install --no-binary lxml html5-parser
 
       - name: Install epubcheck
         run: sudo apt-get install epubcheck rsync
