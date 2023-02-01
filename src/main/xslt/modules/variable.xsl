@@ -90,26 +90,15 @@
 <xsl:variable name="v:verbatim-syntax-highlight-pygments-options"
            select="map { }"/>
 
-<xsl:variable name="v:mediaobject-input-base-uri" as="xs:string?">
-  <xsl:message use-when="'mediaobject-uris' = $v:debug"
-               select="'Mediaobject input base URI:',
-                       if ($mediaobject-input-base-uri = '')
-                       then ()
-                       else resolve-uri($mediaobject-input-base-uri, static-base-uri())"/>
-  <xsl:sequence select="if ($mediaobject-input-base-uri = '')
-                        then ()
-                        else resolve-uri($mediaobject-input-base-uri, static-base-uri())"/>
-</xsl:variable>
-
 <xsl:variable name="v:mediaobject-output-base-uri" as="xs:string?">
   <xsl:message use-when="'mediaobject-uris' = $v:debug"
-               select="'Mediaobject output base URI:',
-                       if ($mediaobject-output-base-uri = '')
+               select="'Mediaobject out. base URI:',
+                       if (empty($mediaobject-output-base-uri))
                        then ()
                        else if (ends-with($mediaobject-output-base-uri, '/'))
                             then $mediaobject-output-base-uri
                             else $mediaobject-output-base-uri || '/'"/>
-  <xsl:sequence select="if ($mediaobject-output-base-uri = '')
+  <xsl:sequence select="if (empty($mediaobject-output-base-uri))
                         then ()
                         else if (ends-with($mediaobject-output-base-uri, '/'))
                              then $mediaobject-output-base-uri

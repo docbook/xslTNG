@@ -727,4 +727,70 @@
   <xsl:sequence select="tokenize($string, $tchar)"/>
 </xsl:function>
 
+<xsl:function name="f:uri-scheme" as="xs:string?">
+  <xsl:param name="uri" as="xs:string"/>
+
+  <xsl:if test="matches($uri, '^[-a-zA-Z0-9]+:')">
+    <xsl:sequence select="replace($uri, '^([-a-zA-Z0-9]+):.*$', '$1')"/>
+  </xsl:if>
+</xsl:function>
+
+<xsl:function name="f:relative-path" as="xs:string">
+  <xsl:param name="base" as="xs:string"/>
+  <xsl:param name="path" as="xs:string"/>
+
+  <xsl:choose>
+    <xsl:when test="exists(f:uri-scheme($path)) and f:uri-scheme($path) ne 'file'">
+      <!-- It starts with a non-file: scheme, just assume it's absolute. -->
+      <xsl:sequence select="$path"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="base-parts" select="tokenize($base, '/')[position() lt last()]"/>
+      <xsl:variable name="path-parts" select="tokenize($path, '/')"/>
+
+      <!--
+          <xsl:message select="'BP:', $base-parts"/>
+          <xsl:message select="'PP:', $path-parts"/>
+      -->
+
+      <xsl:variable name="common-prefix" as="xs:string*">
+        <xsl:iterate select="$base-parts">
+          <xsl:param name="pos" select="1"/>
+          <xsl:param name="common" select="()"/>
+          <xsl:on-completion select="$common"/>
+          <xsl:if test="$base-parts[$pos] = $path-parts[$pos]">
+            <xsl:next-iteration>
+              <xsl:with-param name="pos" select="$pos + 1"/>
+              <xsl:with-param name="common" select="($common, $base-parts[$pos])"/>
+            </xsl:next-iteration>
+          </xsl:if>
+        </xsl:iterate>
+      </xsl:variable>
+
+      <!--
+          <xsl:message select="'CP:', $common-prefix"/>
+      -->
+
+      <xsl:variable name="base-tail"
+                    select="$base-parts[position() gt count($common-prefix)]"/>
+      <xsl:variable name="path-tail"
+                    select="$path-parts[position() gt count($common-prefix)]"/>
+
+      <!--
+          <xsl:message select="'BT:', $base-tail"/>
+          <xsl:message select="'PT:', $path-tail"/>
+      -->
+
+      <xsl:variable name="final-parts" as="xs:string*">
+        <xsl:for-each select="1 to count($base-tail)">
+          <xsl:sequence select="'..'"/>
+        </xsl:for-each>
+        <xsl:sequence select="$path-tail"/>
+      </xsl:variable>
+
+      <xsl:sequence select="string-join($final-parts, '/')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
 </xsl:stylesheet>

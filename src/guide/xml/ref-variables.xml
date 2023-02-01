@@ -854,6 +854,7 @@ increase the column count as they’re passed.
 <refmeta>
 <refentrytitle>$v:mediaobject-input-base-uri</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/variables}mediaobject-input-base-uri</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.6</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>$v:mediaobject-input-base-uri</refname>
@@ -862,12 +863,7 @@ increase the column count as they’re passed.
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This value is calculated from the
-<parameter>mediaobject-input-base-uri</parameter> parameter. If the
-parameter is the empty string, then this value is the empty sequence. Otherwise,
-this value is the absolute URI that results from resolving the value of the
-<parameter>mediaobject-input-base-uri</parameter> parameter against
-the static base URI of the stylesheet.
+<para>This variable was replaced with <function>f:mediaobject-input-base-uri</function>.
 </para>
 </refsection>
 </refentry>

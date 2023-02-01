@@ -2376,12 +2376,9 @@ format.
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <type>xs:string</type>
+      <type>xs:string?</type>
       <varname>mediaobject-input-base-uri</varname>
-      <initializer><xsl:sequence use-when="function-available('ext:cwd')"
-              select="ext:cwd()"/>
-<xsl:sequence use-when="not(function-available('ext:cwd'))"
-              select="''"/></initializer>
+      <initializer>()</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -2408,9 +2405,9 @@ See <varname>v:mediaobject-input-base-uri</varname>.
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <type>xs:string</type>
+      <type>xs:string?</type>
       <varname>mediaobject-output-base-uri</varname>
-      <initializer>''</initializer>
+      <initializer>()</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -2426,6 +2423,23 @@ the base URI of media objects in the output.
 <para>It defaults to the empty string.
 See <varname>v:mediaobject-output-base-uri</varname>.
 </para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>mediaobject-output-paths</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Preserve input mediaobject paths in output</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>FIXME:</para>
 </refsection>
 </refentry>
 

@@ -29,9 +29,9 @@
 <xsl:param name="additional-languages" select="'de en fr cs'"/>
 
 <xsl:param name="xspec" select="'true'"/>
-<xsl:param name="mediaobject-input-base-uri"
-           select="resolve-uri('../../src/test/resources/media/')"/>
 <xsl:param name="mediaobject-output-base-uri" select="'media/'"/>
+<xsl:param name="mediaobject-output-paths" select="'false'"/>
+
 <xsl:param name="pixels-per-inch" select="96.0"/>
 <xsl:param name="nominal-page-width" select="'6in'"/>
 <xsl:param name="default-length" select="144"/>

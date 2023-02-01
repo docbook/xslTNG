@@ -1,11 +1,31 @@
 <revhistory xmlns='http://docbook.org/ns/docbook'
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
+
+<revision xml:id="r206">
+<revnumber>2.0.6</revnumber>
+<date>2023-02-01</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r205">2.0.5</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Completely refactored the way that media objects are located
+during the transformation and how the URIs for them are generated in
+the output. It is now possible to store the media objects in a location
+independent of the source files. Four separate source arrangements are represented
+in the test suite and each can be processed to produce several different outputs;
+see the <code>mediaobject-test</code> group of tasks. (Run
+<command>./gradlew tasks</command> in the source repository.)</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r205">
 <revnumber>2.0.5</revnumber>
 <date>2023-01-25</date>
 <revdescription>
-<para>This is still a pre-release; see <link linkend="r203">2.0.4</link>.</para>
+<para>This is still a pre-release; see <link linkend="r204">2.0.4</link>.</para>
 <itemizedlist>
 <listitem>
 <para>Fixed the bug where attributes on image, video, audio, and text objects
