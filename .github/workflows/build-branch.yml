@@ -48,7 +48,9 @@ jobs:
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
     steps:
       - name: Setup python dependencies
-        run: python3 -m pip install pygments==2.6.1 click
+        run: |
+          python3 -m pip install pygments==2.6.1 click
+          python3 -m pip install --no-binary lxml html5-parser
 
       - name: Install epubcheck
         run: sudo apt-get install epubcheck rsync
