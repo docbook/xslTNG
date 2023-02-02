@@ -399,18 +399,8 @@ will be to <uri>media/image.png</uri>.
 </varlistentry>
 </variablelist>
 
-<para>The <link xlink:href="https://github.com/docbook/xslTNG">source repository</link>
-for the stylesheets contains
-<link xlink:href="https://github.com/docbook/xslTNG/tree/main/src/test/resources/xml">several
-examples</link> of possible hierarchies and how they might be used to produce
-output. (See them <filename>mo-<replaceable>n</replaceable></filename> directories
-and the corresponding build targets; if you checkout the repository and run
-the build with <command>./gradlew all_mo_tests</command>, all of the output options
-will be present in the <filename>build/actual</filename> directory).</para>
-
-<para>If you have specific requirements that don’t fit into these parameters,
-you can use templates in the <mode>m:mediaobject-output-adjust</mode> mode to
-make any additional changes you need.</para>
+<para>For a further discussion of the options, see
+<xref linkend="media"/>.</para>
 
 <important>
 <para>The stylesheets are not responsible for actually copying the media files
