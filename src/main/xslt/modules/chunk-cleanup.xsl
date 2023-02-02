@@ -327,8 +327,8 @@
 </xsl:template>
 
 <xsl:function name="fp:relative-uri" as="xs:string">
-  <xsl:param name="rootbaseuri" as="xs:anyURI" required="yes"/>
-  <xsl:param name="chunkbaseuri" as="xs:anyURI" required="yes"/>
+  <xsl:param name="rootbaseuri" as="xs:string" required="yes"/>
+  <xsl:param name="chunkbaseuri" as="xs:string" required="yes"/>
   <xsl:param name="href" as="xs:string" required="yes"/>
 
   <xsl:variable name="absuri"

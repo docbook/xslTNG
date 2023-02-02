@@ -2,6 +2,21 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r207">
+<revnumber>2.0.7</revnumber>
+<date>2023-02-02</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r206">2.0.6</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Fix a small bug caused by the fact that a string was being passed
+to a function that expected an <code>xs:anyURI</code>. It’s not a public function,
+so the simplest thing was just to let it accept strings.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r206">
 <revnumber>2.0.6</revnumber>
 <date>2023-02-01</date>
