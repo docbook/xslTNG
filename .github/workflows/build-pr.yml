@@ -49,13 +49,15 @@ jobs:
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
       CI_PULL: ${{ github.event.number }}
     steps:
+      - name: Install system dependencies
+        run: sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
+
+      # lxml needed by html5-parser needs libxml2-dev and libxslt-dev, apparently
       - name: Setup python dependencies
         run: |
-          python3 -m pip install pygments==2.6.1 click
+          python3 -m pip install pygments==2.6.1 click cython
+          python3 -m pip install saxonche
           python3 -m pip install --no-binary lxml html5-parser
-
-      - name: Install epubcheck
-        run: sudo apt-get install epubcheck
 
       - name: Download and install SASS
         run: |
