@@ -226,6 +226,255 @@ a customization layer.</para>
 </orderedlist>
 </section>
 
+<section xml:id="media">
+<title>Managing media</title>
+
+<para>References to external media through <tag>imagedata</tag>,
+<tag>videodata</tag>, <tag>audiodata</tag>, and even
+<tag>textdata</tag> can be tricky to manage. On the one hand, it’s
+most convenient if the URIs in the source documents point to the
+actual media files. This allows extensions, like the image properties
+<link linkend="extensions">extension function</link>, to access the
+files. At the same time, the references generated in the HTML have to
+point to the locations where they will be published. It is often, but
+not always, the case that the authoring structures and the publishing
+structures are the same.</para>
+
+<para>The stylesheets are regularly tested against four possible
+arrangements: three where the media are stored in locations relative
+to the XML files and one where the media are stored in a separate
+hierarchy. These are unimaginative named “mo-1”, “mo-2”, “mo-3”, and “mo-4”.
+You can find them in the
+<filename xlink:href="https://github.com/docbook/xslTNG/tree/main/src/test/resources/xml"
+>src/test/resources/xml</filename> hierarchy in the repository.</para>
+
+<variablelist>
+<varlistentry xml:id="mo_mo-1">
+<term>mo-1</term>
+<listitem>
+<para>All of the XML files are in a single directory, the media are in the same
+hierarchy. Media references in the source use relative URIs to refer to the
+underlying media: <filename>preface.xml</filename> refers to the “this is a test”
+audio clip as <uri>media/this-is-a-test.mp3</uri>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry xml:id="mo_mo-2">
+<term>mo-2</term>
+<listitem>
+<para>The XML files are in different directories (this changes the
+base URI of the media elements). The media are in the same hierarchy.
+Media references in the source use relative URIs to refer to the
+underlying media: <filename>front/preface.xml</filename> refers to the “this is a test”
+audio clip as <uri>../media/spinning-top.mp4</uri>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry xml:id="mo_mo-3">
+<term>mo-3</term>
+<listitem>
+<para>The XML files are in different directories, but the structure is
+deeper. This scenario represents the case where there might be multiple books, each
+with their own media, but also a shared media folder “above” the book hierarchies.
+The media are in the same hierarchy, but some are “above” the book.
+Media references in the source use relative URIs to refer to the
+underlying media: <filename>book/front/preface.xml</filename> refers to the “this is a test”
+audio clip as <uri>../../media/spinning-top.mp4</uri>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry xml:id="mo_mo-4">
+<term>mo-4</term>
+<listitem>
+<para>The XML files are still in different directories, but the significant change
+here is that the media are in their own hierarchy. 
+Media references in the source use URIs relative to the root of <emphasis>that</emphasis>
+hierarchy: <filename>book/front/preface.xml</filename> refers to the “this is a test”
+audio clip as <uri>spinning-top.mp4</uri>.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>For each arrangement, we look at five possible output structures:</para>
+
+<orderedlist>
+<listitem xml:id="mo_s-1">
+<para>A single HTML document with the media in the same relative locations
+as the sources.
+</para>
+</listitem>
+<listitem xml:id="mo_s-2">
+<para>A single HTML document with the media in a single <filename>media</filename>
+subdirectory.
+</para>
+</listitem>
+<listitem xml:id="mo_s-3">
+<para>“Chunked” HTML output with the media in the same relative locations
+as the sources.
+</para>
+</listitem>
+<listitem xml:id="mo_s-4">
+<para>“Chunked” HTML output with the media in custom locations.
+</para>
+</listitem>
+<listitem xml:id="mo_s-5">
+<para>“Chunked” HTML output with the media in a single <filename>media</filename>
+subdirectory.
+</para>
+</listitem>
+</orderedlist>
+
+<para>The list below gives a brief summary of the parameters used to achieve
+the desired results for each combination of input and output arrangements.</para>
+
+<note>
+<para>Remember that in each case, the questions are: can the
+stylesheets find the media files to query them and are the correct
+HTML references produced? Actually copying the media files from where
+they are in the source system to where they need to be in the HTML is
+“not our problem.”</para>
+</note>
+
+<variablelist>
+<varlistentry>
+<term><link linkend="mo_mo-1">mo-1</link>, <link linkend="mo_mo-2">mo-2</link>, and <link linkend="mo_mo-3">mo-3</link> /
+      <link linkend="mo_s-1">scenario 1</link></term>
+<listitem>
+<para>No parameters are needed, this combination works correctly with the defaults.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-1">mo-1</link>, <link linkend="mo_mo-2">mo-2</link>, and <link linkend="mo_mo-3">mo-3</link> /
+      <link linkend="mo_s-2">scenario 2</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">mediaobject-output-base-uri = "media/"
+mediaobject-output-paths = "false"</programlisting>
+<para>The output base URI is relative to the “root” of the HTML result.
+Setting the output paths to “false” removes intermediate hierarchy from the
+image references.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-1">mo-1</link>, <link linkend="mo_mo-2">mo-2</link>, and <link linkend="mo_mo-3">mo-3</link> /
+      <link linkend="mo_s-3">scenario 3</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">chunk = "index.html"
+chunk-output-base-uri = "/path/to/output/location/"</programlisting>
+<para>These parameters aren’t related to media objects, they just tell
+the stylesheets how and where to “chunk” the output.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-1">mo-1</link>, <link linkend="mo_mo-2">mo-2</link>, and <link linkend="mo_mo-3">mo-3</link> /
+      <link linkend="mo_s-4">scenario 4</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">chunk = "index.html"
+chunk-output-base-uri = "/path/to/output/location/"</programlisting>
+<para>This combination is really the same as the previous except that
+it uses a
+<link xlink:href="https://github.com/docbook/xslTNG/blob/main/src/test/resources/mo_1_test_4.xsl">custom stylesheet</link>
+with a template in the <mode>m:mediaobject-output-adjust</mode> mode
+to add an extra level of hierarchy to the output URIs. This is just an
+example of arbitrary, custom processing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-1">mo-1</link>, <link linkend="mo_mo-2">mo-2</link>, and <link linkend="mo_mo-3">mo-3</link> /
+      <link linkend="mo_s-5">scenario 5</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">chunk = "index.html"
+chunk-output-base-uri = "/path/to/output/location/"
+mediaobject-output-base-uri = "media/"
+mediaobject-output-paths = "false"</programlisting>
+<para>The output base URI is relative to the “root” of the HTML result.
+Setting the output paths to “false” removes intermediate hierarchy from the
+image references.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-4">mo-4</link> /
+      <link linkend="mo_s-1">scenario 1</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">mediaobject-input-base-uri = "../media/"</programlisting>
+<para>The input base URI will be made absolute relative to the base URI
+of the input document, so it’s often convenient to specify it as a relative
+URI. It’s equally possible to specify it as an absolute URI.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-4">mo-4</link> /
+      <link linkend="mo_s-2">scenario 2</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">mediaobject-input-base-uri = "../media/"
+mediaobject-output-base-uri = "media/"
+mediaobject-output-paths = "true"</programlisting>
+<para>This example has two images with the same name in different directories,
+so it’s necessary to preserve the output paths.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-4">mo-4</link> /
+      <link linkend="mo_s-3">scenario 3</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">chunk = "index.html"
+chunk-output-base-uri = "/path/to/output/location/"
+mediaobject-input-base-uri = "../media/"</programlisting>
+<para>This is the combination of chunking and a single media directory.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-4">mo-4</link> /
+      <link linkend="mo_s-4">scenario 4</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">chunk = "index.html"
+chunk-output-base-uri = "/path/to/output/location/"
+mediaobject-input-base-uri = "../media/"</programlisting>
+<para>This combination is really the same as the previous except that
+it uses a
+<link xlink:href="https://github.com/docbook/xslTNG/blob/main/src/test/resources/mo_1_test_4.xsl">custom stylesheet</link>
+with a template in the <mode>m:mediaobject-output-adjust</mode> mode
+to add an extra level of hierarchy to the output URIs. This is just an
+example of arbitrary, custom processing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="mo_mo-4">mo-4</link> /
+      <link linkend="mo_s-5">scenario 5</link></term>
+<listitem>
+<programlisting linenumbering="unnumbered">chunk = "index.html"
+chunk-output-base-uri = "/path/to/output/location/"
+mediaobject-input-base-uri = "../media/"
+mediaobject-output-base-uri = "media/"
+mediaobject-output-paths = "true"</programlisting>
+<para>This is effectively scenario 2 with chunking.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>If you download the source repository, you can see these combinations
+in action with the build targets
+“<literal>mo_<replaceable>number</replaceable>_test_<replaceable>scenario</replaceable></literal>”,
+for example, run:</para>
+
+<screen linenumbering="unnumbered">./gradlew mo_3_test_2</screen>
+
+<para>to see the results of processing “mo-3” in scenario 2. The output
+will be in the <filename>build/actual</filename> directory. The build target
+<buildtarget>all_mo_tests</buildtarget> will run them all.</para>
+
+</section>
+
 <section xml:id="different">
 <title>Creating something completely different</title>
 
