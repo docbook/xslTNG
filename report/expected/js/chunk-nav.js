@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.0.6
+/* DocBook xslTNG version 2.0.6-SNAPSHOT
  *
  * This is chunk-nav.js providing support for keyboard
  * navigation between chunks.
