@@ -240,7 +240,7 @@ generated text is required, a group is selected and within that group,
 a template is selected. The template is selected by evaluating the
 expression in the <att>match</att> attribute with the current node
 as the context item. A template with the match express <code>true()</code>
-wall always succeed; it is used as a fallback.</para>
+will always succeed; it is used as a fallback.</para>
 
 <para>The <literal>title-numbered</literal> group determines how
 titles are formatted if they are numbered, (there’s also
