@@ -7,25 +7,6 @@
 <title>Function reference</title>
 </info>
 
-<refentry xml:id="f_mediaobject-viewport">
-<?db filename="f_mediaobject-viewport"?>
-<refmeta>
-<refentrytitle>f:mediaobject-viewport</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-viewport#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:mediaobject-viewport</refname>
-<refpurpose>Construct the “viewport” for media objects</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>If your DocBook markup for media objects includes any of the size or scaling
-adjustment attributes, this function is called to construct the HTML markup that
-implements those adjustments.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_absolute-length">
 <?db filename="f_absolute-length"?>
 <refmeta>
@@ -786,6 +767,42 @@ both.
 </refsection>
 </refentry>
 
+<refentry xml:id="f_mediaobject-amend-uri">
+<?db filename="f_mediaobject-amend-uri"?>
+<refmeta>
+<refentrytitle>f:mediaobject-amend-uri</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-amend-uri#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-amend-uri</refname>
+<refpurpose>Amend the URI for media objects</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>After the media object URI has been calculated,
+<function>f:mediaobject-amend-uri</function> is called. This is an opportunity
+to update the URI so that the media object will be found.</para>
+<para>The default version of this function returns the URI unchanged unless
+<parameter>mediaobject-grouped-by-type</parameter> <glossterm>is true</glossterm>.
+If media objects are grouped by type, the media object type is added to the
+URI. The media object type is determined by calling
+<function>f:mediaobject-type</function>.</para>
+<para>Suppose, for example, that the calculated URI is
+<uri>file:///path/to/image.jpg</uri> and the
+<function>f:mediaobject-type</function> returns “<code>jpeg</code>”. In that
+case, the URI returned will be
+<uri>file:///path/to/jpeg/image.jpg</uri>.</para>
+<important>
+<para>Consider how <emphasis>this</emphasis> function interacts with
+the <mode>m:mediaobject-output-adjust</mode> mode. In particular, beware that
+the value processed in the
+<mode>m:mediaobject-output-adjust</mode> mode will <emphasis>already</emphasis>
+have been updated by <function>f:mediaobject-amend-uri</function>.</para>
+</important>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_mediaobject-input-base-uri">
 <?db filename="f_mediaobject-input-base-uri"?>
 <refmeta>
@@ -809,6 +826,46 @@ the base URI of the input document.
 <para>In previous versions of the stylesheet, this value was computed once
 as a global variable. It was changed to a function because of failures
 resolving the base URI of documents when using XSpec.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_mediaobject-type">
+<?db filename="f_mediaobject-type"?>
+<refmeta>
+<refentrytitle>f:mediaobject-type</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-type#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-type</refname>
+<refpurpose>Return the type of a media object</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If 
+<parameter>mediaobject-grouped-by-type</parameter> <glossterm>is true</glossterm>,
+this function will be called to determine the type of each media object.
+The default version simply returns the media object extension, if there is one.
+(The type of <filename>image.png</filename> is <code>png</code>.)</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_mediaobject-viewport">
+<?db filename="f_mediaobject-viewport"?>
+<refmeta>
+<refentrytitle>f:mediaobject-viewport</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-viewport#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:mediaobject-viewport</refname>
+<refpurpose>Construct the “viewport” for media objects</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If your DocBook markup for media objects includes any of the size or scaling
+adjustment attributes, this function is called to construct the HTML markup that
+implements those adjustments.</para>
 </refsection>
 </refentry>
 

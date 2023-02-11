@@ -1200,10 +1200,13 @@
         <xsl:sequence select="()"/>
       </xsl:when>
       <xsl:when test="empty($mediaobject-input-base-uri)">
-        <xsl:sequence select="resolve-uri(@fileref, base-uri(.))"/>
+        <xsl:sequence
+            select="f:mediaobject-amend-uri(resolve-uri(@fileref, base-uri(.)))"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:sequence select="resolve-uri(@fileref, f:mediaobject-input-base-uri(.))"/>
+        <xsl:sequence
+            select="f:mediaobject-amend-uri(
+                       resolve-uri(@fileref, f:mediaobject-input-base-uri(.)))"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -1251,5 +1254,38 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<xsl:function name="f:mediaobject-amend-uri" as="xs:string">
+  <xsl:param name="uri" as="xs:string"/>
+
+  <xsl:choose>
+    <xsl:when test="exists(f:uri-scheme($uri)) and f:uri-scheme($uri) ne 'file'">
+      <!-- It starts with a non-file: scheme, just assume it's absolute. -->
+      <xsl:sequence select="$uri"/>
+    </xsl:when>
+    <xsl:when test="f:is-true($mediaobject-grouped-by-type)">
+      <xsl:variable name="type" select="f:mediaobject-type($uri)"/>
+      <xsl:sequence
+          select="if (exists($type))
+                  then string-join((tokenize($uri, '/')[position() lt last()],
+                                    $type,
+                                    tokenize($uri, '/')[position() eq last()]), '/')
+                 else $uri"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$uri"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="f:mediaobject-type" as="xs:string?">
+  <xsl:param name="uri" as="xs:string"/>
+
+  <xsl:variable name="fn" select="tokenize($uri, '/')[last()]"/>
+
+  <xsl:if test="contains($fn, '.')">
+    <xsl:sequence select="tokenize($fn, '\.')[last()]"/>
+  </xsl:if>
+</xsl:function>
 
 </xsl:stylesheet>

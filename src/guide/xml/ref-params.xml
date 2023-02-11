@@ -2405,6 +2405,30 @@ See <varname>v:mediaobject-input-base-uri</varname>.
 <refentry>
   <refmeta>
     <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>mediaobject-grouped-by-type</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.0.8</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Are media grouped by type?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>mediaobject-grouped-by-type</parameter> <glossterm>is true</glossterm>,
+an extra directory level is implicit in the input path. Images are grouped
+by type, so <filename>image.png</filename> is assumed to be in
+<code><replaceable>$mediaobject-input-base-uri</replaceable>/png/image.png</code>.
+</para>
+<para>The <function>f:mediaobject-amend-uri</function> function adds the type,
+which is computed by <function>f:mediaobject-type</function>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
       <type>xs:string?</type>
       <varname>mediaobject-output-base-uri</varname>
       <initializer>()</initializer>

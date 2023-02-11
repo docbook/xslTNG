@@ -240,10 +240,11 @@ point to the locations where they will be published. It is often, but
 not always, the case that the authoring structures and the publishing
 structures are the same.</para>
 
-<para>The stylesheets are regularly tested against four possible
+<para>The stylesheets are regularly tested against five possible
 arrangements: three where the media are stored in locations relative
-to the XML files and one where the media are stored in a separate
-hierarchy. These are unimaginative named “mo-1”, “mo-2”, “mo-3”, and “mo-4”.
+to the XML files and two where the media are stored in a separate
+hierarchy. These are unimaginative named “mo-1”, “mo-2”, “mo-3”, “mo-4”,
+and “mo-5”.
 You can find them in the
 <filename xlink:href="https://github.com/docbook/xslTNG/tree/main/src/test/resources/xml"
 >src/test/resources/xml</filename> hierarchy in the repository.</para>
@@ -294,6 +295,21 @@ audio clip as <uri>spinning-top.mp4</uri>.
 </para>
 </listitem>
 </varlistentry>
+<varlistentry xml:id="mo_mo-5">
+<term>mo-5</term>
+<listitem>
+<para>The XML files are in different directories and the media are in their own
+hierarchy. What’s different here is that the media hierarchy is <emphasis>further</emphasis>
+subdivided by media type.
+Media references in the source use URIs relative to the root of media
+hierarchy <emphasis>without</emphasis> the media type:
+<filename>book/front/preface.xml</filename> still refers to the “this is a test”
+audio clip as <uri>spinning-top.mp4</uri>, but this time it is found in
+<filename>media/mp4/spinning-top.mp4</filename> rather than directly in
+<filename>media</filename>.
+</para>
+</listitem>
+</varlistentry>
 </variablelist>
 
 <para>For each arrangement, we look at five possible output structures:</para>
@@ -315,7 +331,8 @@ as the sources.
 </para>
 </listitem>
 <listitem xml:id="mo_s-4">
-<para>“Chunked” HTML output with the media in custom locations.
+<para>“Chunked” HTML output with the media in custom locations. (This is especially
+tricky for the “mo-5 case because there are two kinds of customization involved.)
 </para>
 </listitem>
 <listitem xml:id="mo_s-5">
@@ -397,6 +414,7 @@ image references.
 </para>
 </listitem>
 </varlistentry>
+
 <varlistentry>
 <term><link linkend="mo_mo-4">mo-4</link> /
       <link linkend="mo_s-1">scenario 1</link></term>
@@ -457,6 +475,20 @@ mediaobject-input-base-uri = "../media/"
 mediaobject-output-base-uri = "media/"
 mediaobject-output-paths = "true"</programlisting>
 <para>This is effectively scenario 2 with chunking.
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><link linkend="mo_mo-5">mo-5</link> / scenarios 1-5</term>
+<listitem>
+<para>The “mo-5” scenarios are all the same as the “mo-4” scenarios
+with the addition of one more parameter:</para>
+
+<programlisting linenumbering="unnumbered">mediaobject-grouped-by-type = "true"</programlisting>
+
+<para>In each case, this adds the extra “media object type” level to the 
+URI path.
 </para>
 </listitem>
 </varlistentry>
