@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xml:id="article" version="5.0">
+<info>
+  <title>Unit Test: xinclude.024</title>
+</info>
+
+<preface>
+<title>Preface</title>
+<para>This is a test of a multilingual document where one of the inputs
+explicitly specifies the empty string as the value of <tag class="attribute">xml:lang</tag>.
+</para>
+</preface>
+
+<chapter>
+  <title>English text</title>
+  <para>Life goes on.</para>
+</chapter>
+
+<xi:include href="../default-chapter.xml" xpointer="element(/1)"/>
+
+</book>
