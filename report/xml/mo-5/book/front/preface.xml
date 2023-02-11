@@ -1,0 +1,58 @@
+<preface xmlns="http://docbook.org/ns/docbook"
+         version="5.0">
+<?db filename="preface.html"?>
+<info>
+<title>Preface</title>
+</info>
+
+<para>In this example, the media are stored in a separate
+hierarchy. Media references in the source all resolve relative to the
+root of that hierarchy irrespective of the base URIs of the elements
+on which they occur.</para>
+
+<mediaobject>
+<imageobject>
+<imagedata fileref="left/duck.png"/>
+</imageobject>
+</mediaobject>
+
+<mediaobject>
+<imageobject>
+<imagedata fileref="right/duck.png"/>
+</imageobject>
+</mediaobject>
+
+<mediaobject>
+  <videoobject>
+    <videodata fileref="spinning-top.mp4" width="360"/>
+  </videoobject>
+</mediaobject>
+
+<mediaobject>
+  <audioobject>
+    <audiodata fileref="this_is_a_test.mp3">
+      <multimediaparam name="controls" value="controls"/>
+    </audiodata>
+  </audioobject>
+</mediaobject>
+
+<para>What follows is a reference to an external video identified with
+an absolute uri.</para>
+
+<mediaobject>
+  <videoobject>
+    <?db video="iframe"?>
+    <videodata width="560" depth="315" scalefit="1"
+               fileref="https://www.youtube.com/embed/twj8G5_hu_0">
+      <multimediaparam name="frameborder" value="0"/>
+      <multimediaparam name="allow"
+                       value="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
+      <multimediaparam name="allowfullscreen" value="allowfullscreen"/>
+      <multimediaparam name="controls" value="controls"/>
+    </videodata>
+  </videoobject>
+</mediaobject>
+
+<para>Absolute URIs aren’t changed by mediaobject processing.</para>
+
+</preface>
