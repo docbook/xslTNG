@@ -2993,10 +2993,15 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
     }
   }
 
+  def xslt = "${buildDir}/xslt/docbook.xsl"
+  if (dbstyle != '') {
+    xslt = dbstyle
+  }
+
   pluginConfiguration "docbook"
 
   input "${dbsource}"
-  stylesheet "${buildDir}/xslt/docbook.xsl"
+  stylesheet "${xslt}"
 
   if (dboutput != '-') {
     output "${dboutput}"

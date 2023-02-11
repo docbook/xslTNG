@@ -121,4 +121,10 @@
             href="../resources/expected/xinclude.023.html"/>
 </x:scenario>
 
+<x:scenario label="When converting xinclude.024">
+  <x:context href="../resources/xml/xinclude.024.xml"/>
+  <x:expect label="expect the XInclude to be expanded"
+            href="../resources/expected/xinclude.024.html"/>
+</x:scenario>
+
 </x:description>

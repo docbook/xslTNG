@@ -139,10 +139,15 @@
 <xsl:function name="f:l10n-language" as="xs:string" cache="yes">
   <xsl:param name="target" as="element()"/>
 
+  <xsl:variable name="nearest-lang"
+                select="$target/ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+
   <xsl:variable name="mc-language" as="xs:string"
-                select="($gentext-language,
-                         $target/ancestor-or-self::*[@xml:lang][1]/@xml:lang,
-                         $default-language)[1]"/>
+                select="if (exists($gentext-language))
+                        then $gentext-language
+                        else if (exists($nearest-lang) and $nearest-lang = '')
+                             then $default-language
+                             else ($nearest-lang, $default-language)[1]"/>
 
   <xsl:variable name="language" select="lower-case($mc-language)"/>
 
@@ -165,7 +170,7 @@
     </xsl:when>
     <!-- or use the default -->
     <xsl:otherwise>
-      <xsl:message terminate="yes">
+      <xsl:message>
         <xsl:text>No localization exists for "</xsl:text>
         <xsl:sequence select="$adjusted-language"/>
         <xsl:text>" or "</xsl:text>
