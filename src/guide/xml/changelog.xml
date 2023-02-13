@@ -2,16 +2,34 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
-<revision xml:id="r207">
-<revnumber>2.0.7</revnumber>
-<date>2023-02-02</date>
+<revision xml:id="r209">
+<revnumber>2.0.9</revnumber>
+<date>2023-02-13</date>
 <revdescription>
-<para>This is still a pre-release; see <link linkend="r206">2.0.6</link>.</para>
+<para>This is still a pre-release; see <link linkend="r208">2.0.8</link>.</para>
 <itemizedlist>
 <listitem>
-<para>Fix a small bug caused by the fact that a string was being passed
-to a function that expected an <code>xs:anyURI</code>. It’s not a public function,
-so the simplest thing was just to let it accept strings.</para>
+<para>There are no changes to the stylesheets in this release. It
+simply updates the XML Resolver to version 5.0.0 and the XInclude
+extension function to version 5.0.0.</para>
+<para>Hopefully, this is the last pre-release of the 2.x stylesheets.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
+<revision xml:id="r208">
+<revnumber>2.0.8</revnumber>
+<date>2023-02-11</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r206">2.0.7</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Fixed a bug in localization support (a missing localization file accidentally
+caused the transformation to terminate). Fixed a bug the initializer for
+<varname>v:chunk-output-base-uri</varname>. Added
+<parameter>mediaobject-grouped-by-type</parameter> to group media objects by
+type.</para>
 </listitem>
 </itemizedlist>
 </revdescription>
