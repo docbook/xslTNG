@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url='ch-implementation.html'" />
+    </noscript>
+  </head>
+  <body>
+    <p>This page <a href="ch-implementation.html">has moved</a>.</p>
+    <script>
+      const url = window.location.toString();
+      const pos = url.lastIndexOf("/");
+      const redirect = url.substring(0, pos+1) + "ch-implementation.html";
+      window.location.href = redirect + window.location.search + window.location.hash;
+    </script>
+  </body>
+</html>
