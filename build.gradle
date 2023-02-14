@@ -111,7 +111,7 @@ dependencies {
     [group: saxonGroup, name: saxonEdition, version: saxonVersion],
     [group: 'com.drewnoakes', name: 'metadata-extractor', version: metadataExtractorVersion],
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
-    [group: 'org.relaxng', name: 'trang', version: "20181222" ],
+    [group: 'org.relaxng', name: 'trang', version: jingVersion ],
     [group: 'org.xmlresolver', name: 'xmlresolver', version: xmlresolverVersion],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
     files("${projectDir}/buildSrc/build/classes/java/main"),

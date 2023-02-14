@@ -462,7 +462,13 @@ wrapper sets these automatically.
             if usever:
                 pass
             elif not self._cp[group][artifact]:
+                # Sigh. If we're seeding with this package, use the
+                # version in the seed, regardless of the version here.
+                # (Prevent Saxon 9.x from getting into the classpath.)
                 usever = version
+                for pkg in self.seeds:
+                    if pkg.startswith(basepkg):
+                        usever = pkg[len(basepkg) + 1 :]
             else:
                 # Sigh again. We've already got a jar for this artifact
                 # but we're being asked to add another. Pick the one
