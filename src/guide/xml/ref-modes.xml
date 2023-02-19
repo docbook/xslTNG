@@ -934,17 +934,29 @@ The default template returns the <att>language</att> attribute if one is present
 <refmeta>
 <refentrytitle>m:html-body-script</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}html-body-script</refmiscinfo>
+<refmiscinfo class="other" otherclass="deprecated">2.1.0</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:html-body-script</refname>
 <refpurpose>Add script elements to the end of a document</refpurpose>
 <refclass>mode</refclass>
 </refnamediv>
+
+<refsection>
+<title>Deprecated</title>
+<para>The technique described here is no longer necessary. Modern
+browsers accept a <tag class="attribute">defer</tag> attribute on the
+<tag namespace="http://www.w3.org/1999/xhtml">script</tag> tag to
+explicitly specify when scripts are to execute.</para>
+</refsection>
+
 <refsection>
 <title>Description</title>
+
 <para>One way to assure that JavaScript will only be invoked by the user agent
 after the DOM tree has been constructed is to put the script elements for that
 code at the end of the file.</para>
+
 <para>The root element of each result document is formatted once in
 the <mode>m:html-body-script</mode> mode. Any elements constructed in
 this mode will be added to the end of the HTML
