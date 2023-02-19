@@ -456,7 +456,7 @@ html.book-style.Letter {
     size: A5;
     margin-left: var(--margin-outer);
     margin-right: var(--margin-outer);
-    background-image: url('draft.svg');
+    background-image: url('draft-left.svg');
     background-position: 0.5cm 0.5cm;
     background-repeat: no-repeat;
     background-size: 2.5cm;
@@ -602,7 +602,7 @@ html.book-style.Letter {
     size: Letter;
     margin-left: var(--margin-outer);
     margin-right: var(--margin-outer);
-    background-image: url('draft.svg');
+    background-image: url('draft-left.svg');
     background-position: 0.5cm 0.5cm;
     background-repeat: no-repeat;
     background-size: 2.5cm;
@@ -612,7 +612,7 @@ html.book-style.Letter {
 
 @page Letter-book-flow-draft {
     size: Letter;
-    background-image: url('draft.svg');
+    background-image: url('draft-left.svg');
     background-position: 0.5cm 0.5cm;
     background-repeat: no-repeat;
     background-size: 2.5cm;
