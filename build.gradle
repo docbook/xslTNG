@@ -728,7 +728,11 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   Task t = null
   def htmlDependsOn = ['makeXslt']
   if (base.startsWith("local.")) {
-    // This won't pass validation...
+    t = task "validate_${base}"() {
+      doLast {
+        println("Not validating ${base}")
+      }
+    }
   } else {
     t = task "validate_${base}"(type: RelaxNGValidateTask) {
       input xml

@@ -756,6 +756,15 @@
             </div>
           </div>
         </xsl:if>
+        <xsl:if test="../db:refmeta/db:refmiscinfo[@otherclass='deprecated']">
+          <div>
+            <div class="prop">Deprecated since:</div>
+            <div>
+              <xsl:apply-templates
+                  select="../db:refmeta/db:refmiscinfo[@otherclass='deprecated']/node()"/>
+            </div>
+          </div>
+        </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </div>
