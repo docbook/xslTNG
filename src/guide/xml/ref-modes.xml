@@ -1823,14 +1823,22 @@ the upper-case name.
 </refmeta>
 <refnamediv>
 <refname>m:toc</refname>
-<refpurpose>Mode for generating tables of contents</refpurpose>
+<refpurpose>Mode for generating lists of titles (e.g, the table of contents)</refpurpose>
 <refclass>mode</refclass>
 </refnamediv>
 <refsection>
 <title>Description</title>
 <para>Elements are processed in <mode>m:toc</mode> when automatically
-constructing a Table of Contents (or, more generally, any list of elements).
+constructing a Table of Contents (or, more generally, any list of titles).
 </para>
+<para>Where a generated list of titles appears is controlled by several parameters.
+For manual control, place an empty
+<tag>toc</tag> element where you would like it to appear. If the 
+<tag>toc</tag> element is not valid where you would like the list to appear, use
+the <tag class="pi">db-toc</tag> processing instruction instead. These must appear as
+the direct children of the element for which the list is being constructed.
+</para>
+
 <para>See also
 <varname>generate-toc</varname>,
 <varname>generate-nested-toc</varname>,

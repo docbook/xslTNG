@@ -2,6 +2,33 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r210">
+<revnumber>2.0.10</revnumber>
+<date>2023-02-21</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r208">2.0.9</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Reworked ToC handling. Added <parameter>auto-toc</parameter> parameter.
+The placement of generated lists-of-titles can now be controlled with an
+empty <tag>toc</tag> element (or <tag class="pi">db-toc</tag> processing
+instruction).</para>
+</listitem>
+<listitem>
+<para>Updated the XML Resolver to version 5.1.0.</para>
+</listitem> 
+<listitem>
+<para>Deprecated the <mode>m:html-body-script</mode> mode.</para>
+</listitem> 
+<listitem>
+<para>Fixed incorrect URIs for SVG draft overlay in print CSS.</para>
+</listitem> 
+</itemizedlist>
+<para>Hopefully, <emphasis>this</emphasis>
+is the last pre-release of the 2.x stylesheets.</para>
+</revdescription>
+</revision>
+
 <revision xml:id="r209">
 <revnumber>2.0.9</revnumber>
 <date>2023-02-13</date>
