@@ -2,9 +2,14 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
                stylesheet="../xslt/xspec-driver.xsl">
 
+<!-- Moved table tests first because the order doesn't actually
+     matter and this avoids https://saxonica.plan.io/issues/5890 -->
+<x:import href="tablecals.xspec"/>
+<x:import href="tablehtml.xspec"/>
+
 <x:import href="address.xspec"/>
+<x:import href="adhoc.xspec"/>
 <x:import href="admonitions.xspec"/>
-<x:import href="generated-admonitions.xspec"/>
 <x:import href="annotations.xspec"/>
 <x:import href="appendix.xspec"/>
 <x:import href="article.xspec"/>
@@ -14,7 +19,6 @@
 <x:import href="books.xspec"/>
 <x:import href="callouts.xspec"/>
 <x:import href="changemarkup.xspec"/>
-<x:import href="generated-callouts.xspec"/>
 <x:import href="chapter.xspec"/>
 <x:import href="cmdsynopsis.xspec"/>
 <x:import href="equation.xspec"/>
@@ -22,11 +26,14 @@
 <x:import href="figure.xspec"/>
 <x:import href="footnote.xspec"/>
 <x:import href="formalgroup.xspec"/>
+<x:import href="generated-admonitions.xspec"/>
+<x:import href="generated-callouts.xspec"/>
+<x:import href="generated-inlines.xspec"/>
+<x:import href="generated-verbatim-attributes.xspec"/>
 <x:import href="glossary.xspec"/>
 <x:import href="indexes.xspec"/>
 <x:import href="info.xspec"/>
 <x:import href="inlines-docbook.xspec"/>
-<x:import href="generated-inlines.xspec"/>
 <x:import href="itemizedlist.xspec"/>
 <x:import href="keywordset.xspec"/>
 <x:import href="legalnotice.xspec"/>
@@ -44,6 +51,7 @@
 <x:import href="profiling.xspec"/>
 <x:import href="programlisting.xspec"/>
 <x:import href="publishing.xspec"/>
+<x:import href="pygments.xspec"/>
 <x:import href="qandaset.xspec"/>
 <x:import href="refentry.xspec"/>
 <x:import href="remark.xspec"/>
@@ -52,19 +60,14 @@
 <x:import href="segmentedlist.xspec"/>
 <x:import href="set.xspec"/>
 <x:import href="simplelist.xspec"/>
-<x:import href="tablecals.xspec"/>
-<x:import href="tablehtml.xspec"/>
 <x:import href="task.xspec"/>
 <x:import href="themes.xspec"/>
 <x:import href="topic.xspec"/>
 <x:import href="variablelist.xspec"/>
 <x:import href="verbatim-docbook.xspec"/>
-<x:import href="generated-verbatim-attributes.xspec"/>
-<x:import href="pygments.xspec"/>
 <x:import href="video.xspec"/>
 <x:import href="xinclude.xspec"/>
 <x:import href="xlink.xspec"/>
-<x:import href="adhoc.xspec"/>
 <x:import href="xref.xspec"/>
 
 </x:description>
