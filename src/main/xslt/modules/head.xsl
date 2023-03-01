@@ -16,6 +16,8 @@
                 exclude-result-prefixes="#all"
                 version="3.0">
 
+<xsl:mode name="m:html-head" on-no-match="shallow-copy"/>
+
 <xsl:template match="*" mode="m:html-head" as="element(h:head)">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -94,11 +96,6 @@
   <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="@*,node()" mode="m:html-head"/>
   </xsl:element>
-</xsl:template>
-
-<xsl:template match="attribute()|text()|comment()|processing-instruction()"
-              mode="m:html-head">
-  <xsl:copy/>
 </xsl:template>
 
 <!-- ============================================================ -->

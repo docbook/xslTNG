@@ -98,6 +98,8 @@
                               'Syntax highlighting called when not available')"/>
 </xsl:function>
 
+<xsl:mode name="mp:fix-html" on-no-match="shallow-copy"/>
+
 <xsl:template match="element()" mode="mp:fix-html">
   <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="@*,node()" mode="mp:fix-html"/>
@@ -105,10 +107,5 @@
 </xsl:template>
 
 <xsl:template match="span[empty(node()) and empty(@*)]" mode="mp:fix-html"/>
-
-<xsl:template match="attribute()|text()|comment()|processing-instruction()" 
-              mode="mp:fix-html">
-  <xsl:copy/>
-</xsl:template>
 
 </xsl:stylesheet>

@@ -16,11 +16,23 @@
                 exclude-result-prefixes="#all"
                 version="3.0">
 
-<xsl:template match="*" mode="m:toc"/>
-<xsl:template match="text()|processing-instruction()|comment()" mode="m:toc"/>
+<xsl:mode name="m:toc" on-no-match="shallow-skip"/>
+
+<xsl:template match="*" mode="m:toc">
+  <xsl:param name="placed-by-author" select="false()"/>
+  <xsl:if test="$placed-by-author">
+    <xsl:call-template name="tp:toc"/>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="/db:article|db:set|db:book|db:part|db:reference"
               mode="m:toc">
-  <xsl:call-template name="tp:toc"/>
+  <xsl:param name="placed-by-author" select="false()"/>
+  <xsl:if test="$placed-by-author
+                or (f:is-true($auto-toc)
+                    and not(db:toc|processing-instruction('db-toc')))">
+    <xsl:call-template name="tp:toc"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- By default, the persistent ToC is the same as the regular ToC.
@@ -295,27 +307,72 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="db:toc|db:tocdiv">
+<xsl:template match="db:toc[not(*)] | processing-instruction('db-toc')">
+  <xsl:apply-templates select=".." mode="m:toc">
+    <xsl:with-param name="placed-by-author" select="true()"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="db:toc[*]">
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates select="." mode="m:generate-titlepage"/>
-    <xsl:choose>
-      <xsl:when test="db:tocentry">
+    <div class="lot toc">
+      <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+      <xsl:where-populated>
         <ul>
-          <xsl:apply-templates select="db:tocentry"/>
+          <xsl:apply-templates select="db:tocdiv|db:tocentry"/>
         </ul>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
+      </xsl:where-populated>
+    </div>
   </div>
 </xsl:template>
 
+<xsl:template match="db:tocdiv">
+  <li>
+    <xsl:call-template name="tp:tocentry-link">
+      <xsl:with-param name="content" as="node()">
+        <xsl:apply-templates select="db:info/db:title/node()"/>
+      </xsl:with-param>
+    </xsl:call-template>
+    <xsl:where-populated>
+      <ul>
+        <xsl:apply-templates select="db:tocdiv|db:tocentry"/>
+      </ul>
+    </xsl:where-populated>
+  </li>
+</xsl:template>
+
 <xsl:template match="db:tocentry">
-  <ul>
-    <xsl:apply-templates/>
-  </ul>
+  <li>
+    <xsl:call-template name="tp:tocentry-link">
+      <xsl:with-param name="content" as="node()">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </li>
+</xsl:template>
+
+<xsl:template name="tp:tocentry-link">
+  <xsl:param name="content" as="node()*"/>
+
+  <xsl:variable name="target" select="if (@linkend)
+                                      then key('id', @linkend)
+                                      else ()"/>
+  <xsl:choose>
+    <xsl:when test="not(@linkend)">
+      <xsl:sequence select="$content"/>
+    </xsl:when>
+    <xsl:when test="empty($target)">
+      <xsl:message select="'Link to non-existent ID: ' || @linkend"/>
+      <xsl:sequence select="$content"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="tp:link">
+        <xsl:with-param name="href" select="f:href(., $target)"/>
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
