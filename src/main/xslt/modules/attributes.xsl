@@ -365,6 +365,11 @@
   <xsl:sequence select="f:attributes(., $attr, ('annotation-wrapper'), ())"/>
 </xsl:template>
 
+<xsl:template match="db:toc" mode="m:attributes" as="attribute()*">
+  <xsl:variable name="attr" select="fp:common-attributes(.)"/>
+  <xsl:sequence select="f:attributes(., $attr, ('list-of-titles'), ())"/>
+</xsl:template>
+
 <xsl:template match="*" mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" select="fp:common-attributes(., false())"/>
   <xsl:sequence select="f:attributes(., $attr)"/>

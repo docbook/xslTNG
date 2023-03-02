@@ -30,7 +30,7 @@ plugins {
   id "groovy"
   id "maven-publish"
   id "signing"
-  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.9.6'
+  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.10.0'
   id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
   id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
   id "de.undercouch.download" version "4.0.4"
@@ -47,7 +47,6 @@ sourceSets {
   }
 }
 
-//import com.github.eerohele.SaxonXsltTask
 import com.nwalsh.gradle.saxon.SaxonXsltTask
 import com.nwalsh.gradle.relaxng.validate.RelaxNGValidateTask
 import com.nwalsh.gradle.relaxng.translate.RelaxNGTranslateTask
@@ -126,12 +125,7 @@ dependencies {
 
 defaultTasks 'report'
 
-saxon.configure {
-}
-
-saxon.configure("docbook") {
-  initializer 'org.docbook.xsltng.extensions.Register'
-}
+def docbookXsltArgs = ['-init:org.docbook.xsltng.extensions.Register']
 
 relaxng_validate.configure {
   classpath configurations.validateRuntime
@@ -501,11 +495,10 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
       type: SaxonXsltTask,
       dependsOn: ['makeXslt']
     ) {
-      inputs.file("${projectDir}/tools/copy-xspec.xsl")
-      pluginConfiguration "docbook"
       input xspec
       stylesheet "${projectDir}/tools/copy-xspec.xsl"
       output "${buildDir}/xspec/${base}.xspec"
+      args docbookXsltArgs 
     }
     copiedXSpecTasks << t
 
@@ -749,8 +742,6 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
 
-    pluginConfiguration "docbook"
-
     stylesheetParams['mediaobject-output-base-uri'] = "media/"
     stylesheetParams['mediaobject-output-paths'] = "false"
     stylesheetParams['dynamic-profiles'] = true
@@ -760,6 +751,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     input xml
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/${base}.html"
+    args docbookXsltArgs 
     parameters(stylesheetParams)
   }
   actualResults.dependsOn t
@@ -774,13 +766,12 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
     inputs.file file("${buildDir}/xslt/xspec-driver.xsl")
 
-    pluginConfiguration "docbook"
-
     stylesheetParams['dynamic-profiles'] = true
 
     input xml
     stylesheet "${buildDir}/xslt/xspec-driver.xsl"
     output "${projectDir}/src/test/resources/expected/${base}.html"
+    args docbookXsltArgs 
     parameters(stylesheetParams)
   }
   allExpectedDocuments.dependsOn t
@@ -796,8 +787,6 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: "expected")
     inputs.file file("${buildDir}/xslt/olinkdb.xsl")
 
-    pluginConfiguration "docbook"
-
     stylesheetParams['dynamic-profiles'] = true
     stylesheetParams['olink-targetdoc'] = base
 
@@ -806,6 +795,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     input xml
     stylesheet "${buildDir}/xslt/olinkdb.xsl"
     output "${buildDir}/actual/${base}.olinkdb"
+    args docbookXsltArgs 
     parameters(stylesheetParams)
   }
 
@@ -836,14 +826,13 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     inputs.file file("${buildDir}/xslt/docbook.xsl")
     outputs.files fileTree(dir: "${buildDir}/actual", include: "**/*.html")
 
-    pluginConfiguration "docbook"
-
     stylesheetParams['chunk'] = 'index.html'
     stylesheetParams['chunk-output-base-uri'] = "${buildDir}/actual/"
     stylesheetParams['dynamic-profiles'] = true
 
     input xml
     stylesheet "${buildDir}/xslt/docbook.xsl"
+    args docbookXsltArgs 
     parameters(stylesheetParams)
   }
 
@@ -863,14 +852,13 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file "${buildDir}/xslt/print.xsl"
 
-    pluginConfiguration "docbook"
-
     stylesheetParams['resource-base-uri'] = ''
     stylesheetParams['dynamic-profiles'] = true
 
     input xml
     stylesheet "${buildDir}/xslt/print.xsl"
     output "${buildDir}/actual/${base}.pdf.html"
+    args docbookXsltArgs 
     parameters(stylesheetParams)
   }
 
@@ -1011,13 +999,10 @@ testDrivers.each { driver ->
         Task t = task "${basename}.html"(
           type: SaxonXsltTask, dependsOn: ['makeXslt']
         ) {
-          inputs.file "${buildDir}/xslt/docbook.xsl"
-
-          pluginConfiguration "docbook"
-
           input "${buildDir}/generated-xml/${basename}.xml"
           stylesheet "${buildDir}/xslt/docbook.xsl"
           output "${buildDir}/actual/${basename}.html"
+          args docbookXsltArgs 
         }
         t.dependsOn g
         tasks.findByName("${source}.html").dependsOn t
@@ -1026,13 +1011,10 @@ testDrivers.each { driver ->
           type: SaxonXsltTask,
           dependsOn: ['makeXslt']
         ) {
-          inputs.file "${buildDir}/xslt/xspec-driver.xsl"
-
-          pluginConfiguration "docbook"
-
           input "${buildDir}/generated-xml/${basename}.xml"
           stylesheet "${buildDir}/xslt/xspec-driver.xsl"
           output "${projectDir}/src/test/resources/expected/${basename}.html"
+          args docbookXsltArgs 
           parameters(
             'xspec-expected': 1,
           )
@@ -1058,10 +1040,6 @@ fileTree(dir: "${projectDir}/src/main/locale", include: "*.xml").each { xml ->
   Task t = task "locale_${base}"(
     type: SaxonXsltTask
   ) {
-    inputs.file xml
-    inputs.file "${projectDir}/src/main/xslt/modules/xform-locale.xsl"
-    outputs.file "${buildDir}/xslt/locale/${base}"
-
     input xml
     stylesheet "${projectDir}/src/main/xslt/modules/xform-locale.xsl"
     output "${buildDir}/xslt/locale/${base}"
@@ -1259,10 +1237,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/index.html"
+    args docbookXsltArgs 
     /*
     parameters([
       "debug": "mediaobject-uris"
@@ -1327,10 +1305,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/index.html"
+    args docbookXsltArgs 
     parameters([
       "mediaobject-output-base-uri": "media/",
       "mediaobject-output-paths": "false"
@@ -1381,10 +1359,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
@@ -1459,10 +1437,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
@@ -1524,10 +1502,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -1584,10 +1562,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/book/index.html"
+    args docbookXsltArgs 
 
     doLast {
       exec {
@@ -1637,10 +1615,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/book/index.html"
+    args docbookXsltArgs 
     parameters([
       "mediaobject-output-base-uri": "media/",
       "mediaobject-output-paths": "false"
@@ -1690,10 +1668,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/book/"
@@ -1764,10 +1742,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/book/"
@@ -1822,10 +1800,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -1878,10 +1856,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/index.html"
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
     ])
@@ -1927,10 +1905,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/index.html"
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-output-base-uri": "media/",
@@ -1980,10 +1958,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "chunk": "index.html",
@@ -2049,10 +2027,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-4
     // no output
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "chunk": "index.html",
@@ -2100,10 +2078,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -2157,10 +2135,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/index.html"
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-grouped-by-type": "true"
@@ -2207,10 +2185,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/index.html"
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-output-base-uri": "media/",
@@ -2261,10 +2239,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "chunk": "index.html",
@@ -2329,10 +2307,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_5_test_4.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-grouped-by-type": "true",
@@ -2381,10 +2359,10 @@ task all_mo_tests(
       }
     }
 
-    pluginConfiguration "docbook"
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
+    args docbookXsltArgs 
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -2651,11 +2629,11 @@ task explorer(type: SaxonXsltTask,
   inputs.files fileTree(dir: "${buildDir}/xslt")
   outputs.file("${buildDir}/docbook-xslTNG.xml")
 
-  pluginConfiguration "docbook"
   input "${buildDir}/xslt/docbook.xsl"
   stylesheet "${buildDir}/xsltexplorer-${xsltExplorerVersion}/xslt/explorer.xsl"
   output "${buildDir}/explorer/index.html"
-  lineNumbers true
+  args docbookXsltArgs 
+  arg '-l:on'
   parameters(
     'debug-analyze': "${buildDir}/docbook-xslTNG.xml"
   )
@@ -2696,10 +2674,6 @@ task prepareToXIncludeGuideCopy(type: Copy) {
 }
 
 task prepareToXIncludeGuideTransform(type: SaxonXsltTask) {
-  inputs.files "${projectDir}/src/guide/xml/ref-params.xml"
-  inputs.files "${projectDir}/tools/generate-ref-params.xsl"
-  outputs.files "${buildDir}/tmp/guide/ref-params.xml"
-
   input "${projectDir}/src/guide/xml/ref-params.xml"
   stylesheet "${projectDir}/tools/generate-ref-params.xsl"
   output "${buildDir}/tmp/guide/ref-params.xml"
@@ -2711,11 +2685,10 @@ task xincludeGuide(type: SaxonXsltTask,
   inputs.files fileTree(dir: "${buildDir}/tmp/guide")
   inputs.file "${projectDir}/tools/xinclude.xsl"
 
-  pluginConfiguration "docbook"
-
   input "${buildDir}/tmp/guide/guide.xml"
   stylesheet "${projectDir}/tools/xinclude.xsl"
   output "${buildDir}/guide.xml"
+  args docbookXsltArgs 
 }
 
 task copyGuide(type: SaxonXsltTask, dependsOn: ['xincludeGuide']) {
@@ -2740,10 +2713,10 @@ task guide(
   inputs.file("${buildDir}/docbook-xslTNG.xml")
   outputs.file("${buildDir}/guide/index.html")
 
-  pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/guide.xsl"
   output "${buildDir}/guide/irrelevant-and-deleted-file.html"
+  args docbookXsltArgs 
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -2778,10 +2751,10 @@ task "guide.pdf.html"(
   inputs.file "${buildDir}/docbook-xslTNG.xml"
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
 
-  pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/print.xsl"
   output "${buildDir}/guide/guide.pdf.html"
+  args docbookXsltArgs 
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -2817,10 +2790,10 @@ task "guide.olinkdb"(type: SaxonXsltTask, dependsOn: ['guide']) {
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
   inputs.file("${buildDir}/docbook-xslTNG.xml")
 
-  pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${buildDir}/xslt/olinkdb.xsl"
   output "${buildDir}/actual/guide.olinkdb"
+  args docbookXsltArgs 
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -3200,10 +3173,10 @@ task epubGuideFormat(
   inputs.file "${buildDir}/guide/guide.xml"
   outputs.files fileTree(dir: "${buildDir}/epub")
 
-  pluginConfiguration "docbook"
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/epub.xsl"
   output "${buildDir}/epub/mimetype"
+  args docbookXsltArgs 
   parameters(
     'profile-outputformat': 'online',
     'chunk': 'titlepage.xhtml',
@@ -3284,10 +3257,9 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
     xslt = dbstyle
   }
 
-  pluginConfiguration "docbook"
-
   input "${dbsource}"
   stylesheet "${xslt}"
+  args docbookXsltArgs 
 
   if (dboutput != '-') {
     output "${dboutput}"

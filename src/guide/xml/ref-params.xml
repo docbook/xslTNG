@@ -377,6 +377,34 @@ necessary to support the popup annotations feature.</para>
   <refmeta>
     <fieldsynopsis>
       <type>xs:string</type>
+      <varname>auto-toc</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.0.10</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Automatically generate tables of contents</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, then a table
+of contents, or more generally, “lists of titles”, will be generated.
+If it is not true, such lists will only appear where an explicit
+<tag>toc</tag> element appears. An empty <tag>toc</tag> can be used to
+identify the place where an automatically generated list should
+appear. In either case, if the <tag>toc</tag> is not empty, then the
+hand-authored list appears instead of an automatically generated one.</para>
+
+<para>Which elements will have an automatically generated list of titles
+is determined by how elements are processed in the <mode>m:toc</mode>
+mode.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
       <varname>bibliography-collection</varname>
       <initializer>''</initializer>
     </fieldsynopsis>

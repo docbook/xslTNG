@@ -748,10 +748,6 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="comment()|processing-instruction()">
-  <!-- drop these on the floor -->
-</xsl:template>
-
 <xsl:template match="processing-instruction('DocBook-xslTNG-version')" as="text()">
   <xsl:value-of select="$v:VERSION"/>
 </xsl:template>

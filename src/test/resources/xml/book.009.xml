@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="book">
+  <info>
+    <title>Unit Test: book.009</title>
+    <abstract>
+      <para>Some abstract. Some abstract. Some abstract. Some
+      abstract. Some abstract. Some abstract. Some abstract. Some
+      abstract.
+      </para>
+    </abstract>
+    <keywordset>
+      <keyword>keyword1</keyword>
+      <keyword>keyword2</keyword>
+    </keywordset>
+    <pubdate>5 May 2020</pubdate>
+    <revhistory>
+      <revision>
+        <revnumber>1.0</revnumber>
+        <date>5 May 2020</date>
+        <authorinitials>ndw</authorinitials>
+        <revremark>Test for automatically generated section IDs</revremark>
+      </revision>
+    </revhistory>
+  </info>
+  <preface>
+    <title>Preface</title>
+    <para>This is just a test.</para>
+  </preface>
+  <toc/>
+  <chapter xml:id="ch01">
+    <title>Chapter</title>
+    <para>This is just a test. There are more tests in <xref linkend="ch02"/>.</para>
+  </chapter>
+  <chapter xml:id="ch02">
+    <title>Chapter</title>
+    <para>This is just a test. There are more tests in <xref linkend="ch01"/>.</para>
+    <sect1>
+      <title>Sect1</title>
+      <para xml:id="annotateme">This is just a test.</para>
+      <annotation annotates="annotateme">
+        <para>This is an annotation!</para>
+      </annotation>
+      <para annotations="a1">This is just another test.</para>
+      <annotation xml:id="a1">
+        <para>This is another annotation!</para>
+      </annotation>
+    </sect1>
+    <sect1>
+      <title>Sect1</title>
+      <para>This is just a test.</para>
+      <sect2>
+        <title>Sect2</title>
+        <para>This is just a test.</para>
+        <sect3>
+          <title>Sect3</title>
+          <para>This is just a test.</para>
+          <sect4>
+            <title>Sect4</title>
+            <para>This is just a test.</para>
+            <sect5>
+              <title>Sect5</title>
+              <para>This is just a test.</para>
+            </sect5>
+          </sect4>
+        </sect3>
+      </sect2>
+    </sect1>
+  </chapter>
+  <chapter xml:id="chap3id">
+    <title>Chapter</title>
+    <toc/>
+    <para>This is just a test.</para>
+    <sect1>
+      <title>Sect1</title>
+      <para>This is just a test.</para>
+    </sect1>
+    <sect1>
+      <title>Sect1</title>
+      <para>This is just a test.</para>
+      <sect2>
+        <title>Sect2</title>
+        <para>This is just a test.</para>
+        <sect3>
+          <title>Sect3</title>
+          <para>This is just a test.</para>
+          <sect4>
+            <title>Sect4</title>
+            <para>This is just a test.</para>
+            <sect5>
+              <title>Sect5</title>
+              <para>This is just a test.</para>
+            </sect5>
+          </sect4>
+        </sect3>
+      </sect2>
+    </sect1>
+  </chapter>
+  <appendix>
+    <title>Chapter</title>
+    <para>This is just a test.</para>
+    <section>
+      <title>Section</title>
+      <para>This is just a test.</para>
+    </section>
+    <section>
+      <title>Section</title>
+      <para>This is just a test.</para>
+      <section>
+        <title>Section</title>
+        <para>This is just a test.</para>
+        <section>
+          <title>Section</title>
+          <para>This is just a test.</para>
+          <section>
+            <title>Section</title>
+            <para>This is just a test.</para>
+            <section>
+              <title>Section</title>
+              <para>This is just a test.</para>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
+  </appendix>
+</book>
