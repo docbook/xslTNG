@@ -1343,8 +1343,7 @@
                               || local-name(.))"/>
 </xsl:template>
 
-<xsl:template match="attribute()|text()|comment()|processing-instruction()"
-              mode="mp:inj-map"/>
+<xsl:mode name="mp:inj-map" on-no-match="shallow-skip"/>
 
 <xsl:template match="db:co">
   <a>
@@ -1553,10 +1552,7 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="attribute()|text()|comment()|processing-instruction()"
-              mode="mp:flatten-markup">
-  <xsl:copy/>
-</xsl:template>
+<xsl:mode name="mp:flatten-markup" on-no-match="shallow-copy"/>
 
 <xsl:function name="fp:verbatim-properties" as="map(*)">
   <xsl:param name="context" as="element()"/>
