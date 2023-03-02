@@ -48,7 +48,9 @@ jobs:
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
     steps:
       - name: Install system dependencies
-        run: sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
 
       # lxml needed by html5-parser needs libxml2-dev and libxslt-dev, apparently
       - name: Setup python dependencies
