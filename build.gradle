@@ -30,7 +30,7 @@ plugins {
   id "groovy"
   id "maven-publish"
   id "signing"
-  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.10.0'
+  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.10.1'
   id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
   id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
   id "de.undercouch.download" version "4.0.4"
@@ -2920,10 +2920,34 @@ task makeVersionProperties() {
   }
 }
 
-task jarStageCatalog(type: SaxonXsltTask, dependsOn: ['makeUriList']) {
+task jarStageCatalog(
+  dependsOn: ['jarStageCatalog_xslt', 'jarStageCatalog_resolver']
+) {
+  // just somewhere to hang dependencies
+}
+
+task jarStageCatalog_xslt(type: SaxonXsltTask, dependsOn: ['makeUriList']) {
   input makeUriList.outputs.files.getSingleFile()
   stylesheet "${projectDir}/src/main/resources/org/docbook/xsltng/etc/make-catalog.xsl"
   output "${buildDir}/resources/main/org/docbook/xsltng/catalog.xml"
+  parameters(
+    'version': xslTNGversion,
+    'jarloc': 'classpath:org/docbook/xsltng/'
+  )
+  doLast {
+    copy {
+      into "${buildDir}/resources/main/org/xmlresolver"
+      from ("${buildDir}/resources/main/org/docbook/xsltng") {
+        include "catalog.xml"
+      }
+    }
+  }
+}
+
+task jarStageCatalog_resolver(type: SaxonXsltTask, dependsOn: ['makeUriList']) {
+  input makeUriList.outputs.files.getSingleFile()
+  stylesheet "${projectDir}/src/main/resources/org/docbook/xsltng/etc/make-catalog.xsl"
+  output "${buildDir}/resources/main/org/xmlresolver/catalog.xml"
   parameters(
     'version': xslTNGversion,
     'jarloc': 'classpath:org/docbook/xsltng/'
