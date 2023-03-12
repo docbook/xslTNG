@@ -2061,3 +2061,83 @@ ol.reveal {
 .oxy_delete::after {
   content: var(--revdeleted-after);
 }
+
+/* This provides CSS support for the in-page ToC */
+html.js .pagebody {
+  display: flex;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 1rem;
+}
+html.js .pagetoc {
+  padding-top: 3rem;
+  width: 18rem;
+  order: 2;
+  margin-right: 1rem;
+  font-size: 95%;
+}
+html.js .pagetoc .toggle {
+  cursor: pointer;
+}
+html.js .pagetoc a {
+  text-decoration: none;
+}
+html.js .tocwrapper {
+  position: sticky;
+  top: 0;
+  border-left: 1px solid #aaaaaa;
+  padding-left: 0.25rem;
+}
+html.js .pagetoc .ctrl {
+  position: sticky;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  opacity: 1;
+  height: 0;
+  text-align: right;
+}
+html.js .tocwrapper .li::before {
+  display: inline-block;
+  content: " ";
+  width: 0.75rem;
+}
+html.js .tocwrapper .li.active::before {
+  content: "•";
+}
+html.js .tocwrapper .li {
+  /*border-left: 4px solid transparent;
+  padding-left: 2px;*/
+  color: var(--primary-variant-color);
+}
+html.js .tocwrapper .li.active {
+  /*border-left: 4px solid black;
+  background-color: var(--secondary-color);*/
+  color: var(--on-secondary-color);
+}
+html.js .tocwrapper .depth1 {
+  padding-left: 1.5rem;
+}
+html.js .tocwrapper .depth2 {
+  padding-left: 2.5rem;
+}
+html.js .tocwrapper .depth3 {
+  padding-left: 3.5rem;
+  font-size: 80%;
+}
+html.js .tocwrapper .depth4 {
+  padding-left: 4rem;
+  font-size: 80%;
+}
+html.js .tocwrapper .depth5 {
+  padding-left: 4.5rem;
+  font-size: 80%;
+}
+html.js .tocwrapper .depth6 {
+  padding-left: 5rem;
+  font-size: 80%;
+}
+@media screen and (max-width: 80rem) {
+  html.js .pagetoc {
+    display: none;
+  }
+}
