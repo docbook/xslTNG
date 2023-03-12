@@ -177,8 +177,12 @@
   <xsl:if test="f:is-true($use-docbook-css)">
     <link href="{$resource-base-uri}{fp:minified-css('css/docbook.css')}"
           rel="stylesheet" media="screen"/>
-    <link href="{$resource-base-uri}{fp:minified-css('css/docbook-paged.css')}"
-          rel="stylesheet" media="print"/>
+    <!-- This stylesheet was made conditional in 2.1.0 because modern
+         browsers generate a lot of warnings for print-specific features. -->
+    <xsl:if test="$output-media != 'screen'">
+      <link href="{$resource-base-uri}{fp:minified-css('css/docbook-paged.css')}"
+            rel="stylesheet" media="print"/>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 

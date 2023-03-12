@@ -1,0 +1,92 @@
+/* @@TITLE@@ version @@VERSION@@
+ *
+ * This is pagetoc.css. This CSS supports the notion of "speaker
+ * notes" in the chunked output. It allows chunked output to be used
+ * as a set of foils for a presentation.
+ *
+ * See https://xsltng.docbook.org/
+ *
+ */
+
+.pagebody {
+    display: flex;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 1rem;
+}
+
+main {
+}
+
+.pagetoc {
+    padding-top: 3rem;
+    order: 2;
+}
+
+.pagetoc ul {
+    list-style-type: none;
+}
+
+.pagetoc a {
+    text-decoration: none;
+}
+
+.pagetoc li::before {
+    content: "  ";
+}
+
+.pagetoc li.active::before {
+    content: "⏵ ";
+}
+
+.pagetoc > .tocwrapper {
+}
+
+.tocwrapper {
+    position: sticky;
+    top: 0;
+}
+
+.tocwrapper .li {
+    border-left: 4px solid transparent;
+    padding-left: 2px;
+    color: #555555;
+}
+
+.tocwrapper .li.active {
+    border-left: 4px solid black;
+    color: black;
+}
+
+.tocwrapper .depth1 {
+    padding-left: 1.5rem;
+}
+
+.tocwrapper .depth2 {
+    padding-left: 2.5rem;
+}
+
+.tocwrapper .depth3 {
+    padding-left: 3.5rem;
+    font-size: 80%;
+}
+
+.tocwrapper .depth4 {
+    padding-left: 4.0rem;
+    font-size: 80%;
+}
+
+.tocwrapper .depth5 {
+    padding-left: 4.5rem;
+    font-size: 80%;
+}
+
+.tocwrapper .depth6 {
+    padding-left: 5.0rem;
+    font-size: 80%;
+}
+
+@media screen and (max-width: 80rem) {
+    .pagetoc {
+        display: none;
+    }
+}
