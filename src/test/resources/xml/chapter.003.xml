@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
-	 version="5.0" xml:id="using">
+         version="5.0">
 <info>
-  <?db filename="ch-using"?>
-  <title>Using the stylesheets</title>
+   <title>Unit Test: chapter.003.xml</title>
+   <abstract><para>A more complex chapter with lots of sections.
+Originally extracted from the Guide with all the cross references elided.
+   </para></abstract>
 </info>
 
 <para>In principle, the stylesheets will run with any conformant XSLT
@@ -33,8 +35,7 @@ that attempts, among other things, to make sure all of the
 dependencies are available.</para>
 
 <para>If you’re an experience Java user, you may prefer to simply run
-the stylesheets
-<link linkend="run-with-java">directly with Java</link>.</para>
+the stylesheets directly with Java.</para>
 
 <para>Irrespective of which method you choose, running the stylesheets
 is simply a matter of processing your input document
@@ -69,14 +70,13 @@ used in the output document.</para>
 </note>
 
 <para>Many aspects of the transformation can be controlled simply by
-setting parameters (see <link linkend="params"/>). It’s also possible
-to change the transformation by writing your own customization layer
-(see <link linkend="customization"/>).</para>
+setting parameters. It’s also possible
+to change the transformation by writing your own customization layer.</para>
 
 <section xml:id="java-main">
 <title>Using the Jar</title>
 
-<para>The <link linkend="get-github">ZIP distribution</link> includes a
+<para>The ZIP distribution includes a
 JAR file that you can run directly. That
 JAR file is
 <filename><replaceable>$ROOT</replaceable
@@ -113,26 +113,8 @@ that HTML in a file:
 
 <para>If you now open <filename>article.html</filename> in your
 favorite web browser, you’ll see the transformed sample document
-which should look like <xref linkend="fig-sample"/>.
+which should look like …
 </para>
-
-<figure xml:id="fig-sample">
-<title>The sample document: article.xml</title>
-<mediaobject>
-<alt>A rendering of the sample document</alt>
-<imageobject>
-<imagedata fileref="media/sample.png" width="5.0in"/>
-</imageobject>
-<textobject>
-<para>This is a rendering of the sample document. It consists of the
-title “Sample Article” centered on the screen with a short paragraph
-of text below it. The text reads: This is a very simple DocBook
-document. It serves as a kind of "smoke test" to demonstrate that the
-stylesheets are working.
-</para>
-</textobject>
-</mediaobject>
-</figure>
 
 <para xml:id="caveats">The JAR file, run this way, accepts the same
 <link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with a few caveats:</para>
@@ -149,7 +131,7 @@ includes the files in the distribution.
 <varlistentry><term>No <code>-init</code> option</term>
 <listitem>
 <para>The <citetitle>DocBook xslTNG</citetitle>
-<link linkend="extensions">extension functions</link> will be registered
+extension functions will be registered
 automatically.</para>
 </listitem>
 </varlistentry>
@@ -172,7 +154,7 @@ the <filename>xslt/docbook.xsl</filename> stylesheet will be used automatically.
 <section xml:id="python-script">
 <title>Using the Python script</title>
 
-<para>The <link linkend="get-github">ZIP distribution</link> includes a
+<para>The ZIP distribution includes a
 Python script in the <filename class="directory">bin</filename> directory.
 This helper script is a convenience wrapper around Saxon. It sets up
 the Java classpath and automatically configures a catalog resolver and
@@ -186,11 +168,9 @@ running the script. For example:</para>
 <programlisting linenumbering="unnumbered">python3 -m pip install pygments=2.6.1 click</programlisting>
 </important>
 
-<para>This script behaves much like the JAR file described in
-<xref linkend="java-main"/>. In particular,
+<para>This script behaves much like the JAR file described in …. In particular,
 it accepts the same
-<link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with
-<link linkend="caveats">the same caveats</link>.</para>
+<link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with the same caveats.</para>
 
 <para>The significant feature of the Python script is that it will
 attempt to sort out the dependencies for you. It assumes that you’ve
@@ -308,7 +288,7 @@ For Saxon PE and EE, the class is <classname>com.saxonica.Transform</classname>.
 
 </section>
 
-<section xml:id="run-with-docker">
+<section xml:id="top">
 <title>Run with Docker</title>
 
 <para>This is experimental.</para>
@@ -352,7 +332,7 @@ stylesheets irrespective of the version in the Dockerfile.</para>
 <para>If you chose a different tag when you built the image, use that
 tag in place of <quote><code>docbook-xsltng</code></quote> in the <command>run</command>
 command. Everything after the container tag becomes options to the
-<link linkend="python-script"><command>docbook</command> Python script</link>.
+<command>docbook</command> Python script.
 </para>
 </listitem>
 </orderedlist>
@@ -416,29 +396,29 @@ like any other directory.</para>
 <listitem>
 <para>Returns much more comprehensive image properties and understands
 far more image types than <function>ext:image-properties</function>.
-Requires the <biblioref linkend="metadata-extractor"/> libraries.
+Requires the … libraries.
 </para>
 </listitem>
 </varlistentry>
 <varlistentry><term><function>ext:pygmentize</function></term>
 <listitem>
-<para>Runs the external <biblioref linkend="Pygments"/> processor on
+<para>Runs the external … processor on
 a verbatim listing to add syntax highlighting.
 </para>
 </listitem>
 </varlistentry>
 <varlistentry><term><function>ext:pygmentize-available</function></term>
 <listitem>
-<para>Returns true if the external <biblioref linkend="Pygments"/> processor
+<para>Returns true if the external … processor
 is available on the current system.
 </para>
 </listitem>
 </varlistentry>
 <varlistentry><term><function>ext:xinclude</function></term>
 <listitem>
-<para>Performs <biblioref linkend="xinclude"/> processing. This extension supports
-the basic XPointer schemes, <biblioref linkend="RFC5147"/> fragment identifiers,
-and <biblioref linkend="searchfid"/>, a scheme that supports searching in text
+<para>Performs XInclude processing. This extension supports
+the basic XPointer schemes, RFC 5147 fragment identifiers,
+and …, a scheme that supports searching in text
 documents.
 </para>
 </listitem>
@@ -577,19 +557,19 @@ source document will be considered “chunks” in the output.</para>
 </varlistentry>
 <varlistentry><term><parameter>persistent-toc</parameter></term>
 <listitem>
-<para>If this parameter <glossterm>is true</glossterm>, then a JavaScript
+<para>If this parameter is true, then a JavaScript
 “fly-out” table of contents will be available on every page.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term><parameter>chunk-nav</parameter></term>
 <listitem>
-<para>This parameter, discussed more thoroughly in
-<link linkend="speaker-notes"/> enables keyboard navigation between
+<para>This parameter, discussed more thoroughly in speaker notes
+enables keyboard navigation between
 chunks.</para>
 </listitem>
 </varlistentry>
-<varlistentry><term><template>t:top-nav</template> and
-<template>t:bottom-nav</template></term>
+<varlistentry><term>t:top-nav and
+t:bottom-nav</term>
 <listitem>
 <para>These templates control how the top-of-page and bottom-of-page
 navigation aids are constructed.</para>
@@ -600,11 +580,11 @@ navigation aids are constructed.</para>
 <section xml:id="speaker-notes">
 <title>Keyboard navigation and speaker notes</title>
 
-<para>If the <parameter>chunk-nav</parameter> parameter <glossterm>is
-true</glossterm>, a reference to an additional JavaScript library will
+<para>If the <parameter>chunk-nav</parameter> parameter is
+true, a reference to an additional JavaScript library will
 be included in the resulting pages. This library supports keyboard
 navigation between the pages. The navigation keys are described in the
-<link linkend="p_chunk-nav">parameter reference page</link>.
+parameter reference page.
 </para>
 
 <para>There is an additional customization layer
@@ -720,18 +700,18 @@ purpose:</para>
 </table>
 
 <para>In addition, the stylesheets support profiling on several common attributes
-that are not explicitly for effectivity: <att>xml:lang</att>, <att>revisionflag</att>,
-and <att>role</att>.</para>
+that are not explicitly for effectivity: <tag class="attribute">xml:lang</tag>, <tag class="attribute">revisionflag</tag>,
+and <tag class="attribute">role</tag>.</para>
 
 <note>
 <para>DocBook places no constraints on the values used for effectivity
 and the stylesheets don’t either. You’re free to use “cat” and “dog”
-as effectivity values in the <att>wordsize</att> attribute, if you
+as effectivity values in the <tag class="attribute">wordsize</tag> attribute, if you
 wish. The further you deviate from the nominal meaning, the more
 important it is to document your system!</para>
 </note>
 
-<para>Consider <xref linkend="ex-profile-os"/>.</para>
+<para>Consider ….</para>
 
 <example xml:id="ex-profile-os">
 <title>A contrived effectivity example</title>
@@ -824,12 +804,12 @@ You can, for example, produce different output depending on whether or not
 chunking is enabled or JavaScript is being used for annotations.</para>
 
 <para>To enable dynamic profiling, set the <parameter>dynamic-profiles</parameter>
-parameter to “<glossterm baseform="is true">true</glossterm>”.</para>
+parameter to “true”.</para>
 
 <para>In the interest of performance, security, and legibility,
 dynamic profiles don’t support arbitrary expressions.
 You can use a variable name by itself, <code>$flag</code>, which tests
-if that variable <glossterm>is true</glossterm>, or you can use a
+if that variable is true, or you can use a
 simple comparison, <code>$var=value</code> which tests if (the string value of)
 <code>$var</code> has the value <code>value</code>.
 (If <code>$var</code> is a list, it’s an existential
@@ -863,7 +843,7 @@ any of it’s values match.</para>
 that is, the significant tokens in the listing can be colored differently (keywords in red,
 quoted strings in blue, that sort of thing).</para>
 
-<para>The default syntax highlighter is <biblioref linkend="Pygments"/>, an external
+<para>The default syntax highlighter is …, an external
 Python program. This has the advantage that the highlighted listing is available to
 the stylesheets. The stylesheets can then render line numbers, call outs, and other
 features.</para>
@@ -873,7 +853,7 @@ features.</para>
 environments, may slow down the formatting process</para>
 
 <para>An alternative is to use a JavaScript highlighter in the browser such as
-<biblioref linkend="highlight.js"/> or <biblioref linkend="Prism"/>. This approach
+highlight.js or Prism. This approach
 has no impact on formatting and doesn’t require an external process. However, it means the
 <citetitle>xslTNG Stylesheets</citetitle> have no control over the process. Most of the 
 verbatim options only apply when Pygments is used.</para>
@@ -883,42 +863,21 @@ verbatim options only apply when Pygments is used.</para>
 </section>
 
 <section xml:id="persistent-toc">
-<title>Persistent table of contents</title>
+<title>Persistent ToC</title>
 
 <para>The persistent Table of Contents (ToC) provides a full ToC for
-an entire document accessible from each <link linkend="chunking">chunked</link>
+an entire document accessible from each chunked
 page.</para>
 
 <para>The ToC is accessed by clicking on the “book” icon in the upper right
-corner of the page as shown in <xref linkend="fig.ptoc.1"/>.</para>
-
-<figure xml:id="fig.ptoc.1">
-<title>Opening the ToC</title>
-<mediaobject>
-<alt>Screen capture with an arrow pointing at the closed book icon in
-the upper-right corner.</alt>
-<imageobject>
-<imagedata fileref="media/ptoc-1.png"/>
-</imageobject>
-</mediaobject>
-</figure>
+corner of the page as shown in ….</para>
 
 <para>The icon and other aspects of the style can be changed by providing
 <parameter>persistent-toc-css</parameter>.</para>
 
 <para>Once open, the ToC is displayed. A long ToC will be scrolled to
 the location of the current page in the document as shown in
-<xref linkend="fig.ptoc.2"/>.</para>
-
-<figure xml:id="fig.ptoc.2">
-<title>The Persistent ToC</title>
-<mediaobject>
-<alt>Screen capture showing the persistent ToC window on the right.</alt>
-<imageobject>
-<imagedata fileref="media/ptoc-2.png"/>
-</imageobject>
-</mediaobject>
-</figure>
+….</para>
 
 <para>The persistent ToC popup is transient by default, meaning that
 it will disappear if you use it to navigate to a different page. If
@@ -932,7 +891,7 @@ This is controlled by the <parameter>persistent-toc-filename</parameter>.</para>
 
 <orderedlist>
 <listitem>
-<para>If <link linkend="chunking">chunking</link> is enabled and the
+<para>If chunking is enabled and the
 <parameter>persistent-toc-filename</parameter> parameter is non-empty,
 it’s used as a filename and a single copy of the ToC will be saved in
 that file.</para>
@@ -978,82 +937,6 @@ only be one HTML result and the ToC will always be stored in that chunk.
 </orderedlist>
 </section>
 
-<section xml:id="onpage-toc">
-<title>On-page table of contents</title>
-
-<para>Documents come in many shapes and sizes. Consequently, there are
-a variety of navigation mechanisms available. For long documents, such as books,
-a Table of Contents (ToC) is traditional (as are indexes). For web presentation,
-long documents may be broken into chunks, for example at the chapter level.
-In this case, header and footer navigation between chunks is almost always
-available. For large documents a “<link linkend="persistent-toc">persistent
-ToC</link>” can enable quick navigation from any chunk.</para>
-
-<para>You can also enable an on-page ToC. The on-page ToC provides a
-navigation mechanism for sections within a page. By default, it
-appears on the right of the page if the window is wide enough to
-comfortably display it next to the main body.</para>
-
-<para>The current implementation requires JavaScript. In fact it is not
-constructed from the DocBook markup, but instead from the HTML markup when
-the page is rendered. To be precise, the ToC is constructed from HTML
-<tag namespace="http://www.w3.org/1999/xhtml">section</tag> elements that
-begin with a <tag namespace="http://www.w3.org/1999/xhtml">header</tag> that
-contains an
-<tag namespace="http://www.w3.org/1999/xhtml"
->h1</tag>…<tag namespace="http://www.w3.org/1999/xhtml">h6</tag>
-element. It is therefore either a bug or a feature, depending on your perspective,
-that a customization layer that changes how sections are marked up will change
-what appears in the ToC. If you simply wish to suppress a particular section
-from appearing in the ToC, add <literal>nopagetoc</literal> to its
-<tag class="attribute">class</tag> attribute.</para>
-
-<para>Several parameters control presentation and formatting of the on-page ToC.</para>
-
-<variablelist>
-<varlistentry><term><parameter>pagetoc-elements</parameter></term>
-<listitem>
-<para>A list of the names of the elements (technically, the classes of
-the sections) that should get an on-page ToC. It’s empty by default (meaning no
-such ToC is rendered). For the standard presentation of this guide,
-the list is set to <code>preface chapter appendix refentry</code>.
-(The sneaky among you may wonder if you could simply set it to “<code>component</code>”
-because that class is used for all those elements; “Yes. Yes, you could.”)
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><parameter>pagetoc-dynamic</parameter></term>
-<listitem>
-<para>Determines whether or not the ToC is “dynamic”. Inspired by
-Kevin Drum’s
-<link xlink:href="https://kld.dev/toc-animation/">table of contents progress
-animation</link>, the ToC keeps track of the reader’s location in the main
-view and highlights the corresponding sections in the ToC (albeit without the
-clever SVG animation of the original).</para>
-<para>Set this parameter to false if you find the animation distracting.
-(If the animation is enabled, a control is provided to let the reader turn it off,
-in case <emphasis>they</emphasis> find it distracting.)</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><parameter>pagetoc-js</parameter></term>
-<listitem>
-<para>This is the JavaScript taht implements the on-page ToC. Changing this
-parameter allows you to replace it with JavaScript of your own invention.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term>CSS</term>
-<listitem>
-<para>There is no <literal>pagetoc-css</literal> parameter; the CSS is integrated
-into the standard CSS. You can find it in the <filename>pagetoc.scss</filename> file
-in the repository if you want to change the presentation. (Don’t change that file,
-simply add overriding rules later in the cascade.)
-</para>
-</listitem>
-</varlistentry>
-</variablelist>
-</section>
-
 <section xml:id="print">
 <title>Print output (dead tree editions)</title>
 
@@ -1063,14 +946,13 @@ fiendishly difficult to write.</para>
 
 <para>In the XML space, there have been a number of standards and
 vendor-specific solutions to this problem. The current standards are
-<biblioref linkend="XSLFO"/> and <biblioref linkend="CSS"/>.
+XSL FO and CSS.
 </para>
 
 <para>At present, the <citetitle>DocBook xslTNG Stylesheets</citetitle>
 are focused on CSS for print output. There’s a customization layer
 that produces “paged-media-ready” HTML that can be processed with
-a CSS formatter such as <biblioref linkend="AntennaHouse"/>
-or <biblioref linkend="Prince"/>.</para>
+a CSS formatter such as Antenna House or Prince.</para>
 
 <para>To get print output, format your documents with the
 <filename>print.xsl</filename> stylesheet instead of the
@@ -1156,4 +1038,3 @@ fonts, and constructing the final ZIP file.</para>
 </section>
 </section>
 </chapter>
-

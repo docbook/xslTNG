@@ -120,6 +120,11 @@
         <db-toc-script>
           <script src="{$resource-base-uri}{$persistent-toc-js}" defer="defer"/>
         </db-toc-script>
+        <db-pagetoc-script>
+          <script src="{$resource-base-uri}{$pagetoc-js}"
+                  data-dynamic-pagetoc="{f:is-true($pagetoc-dynamic)}"
+                  defer="defer"/>
+        </db-pagetoc-script>
         <db-mathml-script>
           <script src="{if (starts-with($mathml-js, 'http:')
                             or starts-with($mathml-js, 'https:'))

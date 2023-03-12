@@ -93,6 +93,14 @@ ext {
     "svg": "image/svg"
   ]
   computedGitRef = null
+  extraParams = [:]
+}
+
+project.properties.keySet().each { key ->
+  if (key.startsWith("ep_")) {
+    println("SETTING ${key.substring(3)}")
+    extraParams[key.substring(3)] = project.properties.get(key).trim()
+  }
 }
 
 // Set saxonLicenseDir in gradle.properties, or from the
@@ -745,8 +753,13 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['mediaobject-output-base-uri'] = "media/"
     stylesheetParams['mediaobject-output-paths'] = "false"
     stylesheetParams['dynamic-profiles'] = true
+    stylesheetParams += extraParams
 
-    //println("Task ${base}.html: ${stylesheetParams}")
+    /*
+    if (base == "chapter.003") {
+      println("Task ${base}.html: ${stylesheetParams}")
+    }
+     */
 
     input xml
     stylesheet "${buildDir}/xslt/docbook.xsl"
@@ -2722,6 +2735,7 @@ task guide(
     'bookVersion': guideVersion,
     'xslTNGversion': xslTNGversion,
     'profile-outputformat': 'online',
+    'pagetoc-elements': 'preface chapter appendix refentry',
     'chunk': 'index.html',
     'chunk-output-base-uri': "${projectDir}/build/guide/"
   )

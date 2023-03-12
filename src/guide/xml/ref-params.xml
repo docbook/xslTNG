@@ -2696,24 +2696,78 @@ element.</para>
 </refsection>
 </refentry>
 
-<!--
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <varname>oxy-markup-css</varname>
-      <initializer>'css/oxy-markup.css'</initializer>
+      <varname>pagetoc-elements</varname>
+      <initializer>''</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
-    <refpurpose>CSS markup for Oxygen changebar markup</refpurpose>
+    <refpurpose>Elements that should have an on-page ToC</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If Oxygen change markup is rendered, this CSS file is added to the output
-for styling the added and deleted regions.</para>
+<para>This parameter is a space-separated list of element names (local names).
+An <link linkend="onpage-toc">on-page ToC</link> will be generated for
+elements with these names.</para>
 </refsection>
 </refentry>
--->
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>pagetoc-dynamic</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Make the on-page ToC dynamic?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this value <glossterm>is true</glossterm>, and the on-page
+ToC is displayed, then it will be updated dynamically to reflect the
+readers position. This has two consequences. First, the section titles
+that are currently in view will be highlighted. The default
+highlighting is to make them a little darker and place a bullet next
+to them. The highlighting can be changed with CSS. Second, a clickable
+symbol is added in the upper left corner. This lets the reader toggle
+between dynamic, non-dynamic, and hidden views.</para>
+<para>If the on-page ToC is not dynamic, then no highlighting is performed.</para>
+<para>The clickable symbols can be changed as well, but it requires adding
+a bit more JavaScript to the page. Ensure that your code runs first and set the
+following properties:</para>
+<programlisting language="javascript">
+window.DocBook = {};
+window.DocBook.pagetoc = {};
+window.DocBook.pagetoc.decorated = "ON";
+window.DocBook.pagetoc.plain = "OFF";
+window.DocBook.pagetoc.hidden = "HIDDEN";
+</programlisting>
+<para>The values can be strings or markup, such as an
+<tag namespace="http://www.w3.org/1999/xhtml">img</tag> element.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>pagetoc-js</varname>
+      <initializer>'js/pagetoc.js'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Script to support the on-page ToC</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the on-page ToC is enabled, a link to this script will be
+added to the document. This script must contain the JavaScript
+necessary to support the on-page ToC feature.</para>
+</refsection>
+</refentry>
 
 <refentry>
   <refmeta>
