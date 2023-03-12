@@ -102,7 +102,7 @@
           <script type="text/html" class="annotation-close">
             <xsl:sequence select="$v:annotation-close"/>
           </script>
-          <script src="{$resource-base-uri}{$annotations-js}"/>
+          <script src="{$resource-base-uri}{$annotations-js}" defer="defer"/>
         </db-annotation-script>
         <db-xlink-script>
           <xsl:if test="$xlink-icon-open">
@@ -115,23 +115,24 @@
               <xsl:sequence select="$xlink-icon-closed"/>
             </script>
           </xsl:if>
-          <script src="{$resource-base-uri}{$xlink-js}"/>
+          <script src="{$resource-base-uri}{$xlink-js}" defer="defer"/>
         </db-xlink-script>
         <db-toc-script>
-          <script src="{$resource-base-uri}{$persistent-toc-js}"/>
+          <script src="{$resource-base-uri}{$persistent-toc-js}" defer="defer"/>
         </db-toc-script>
         <db-mathml-script>
           <script src="{if (starts-with($mathml-js, 'http:')
                             or starts-with($mathml-js, 'https:'))
                         then $mathml-js
-                        else $resource-base-uri || $mathml-js}"/>
+                        else $resource-base-uri || $mathml-js}"
+                  defer="defer"/>
         </db-mathml-script>
         <db-script>
           <xsl:if test="exists($chunk) and f:is-true($chunk-nav)">
-            <script src="{$resource-base-uri}{$chunk-nav-js}"/>
+            <script src="{$resource-base-uri}{$chunk-nav-js}" defer="defer"/>
           </xsl:if>
           <xsl:if test="f:is-true($theme-picker) and $vp:js-controls">
-            <script src="{$resource-base-uri}{$control-js}"/>
+            <script src="{$resource-base-uri}{$control-js}" defer="defer"/>
           </xsl:if>
         </db-script>
       </xsl:if>
