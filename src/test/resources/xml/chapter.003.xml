@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.0">
+<info>
+   <title>Unit Test: chapter.003.xml</title>
+   <abstract><para>A more complex chapter with lots of sections.
+Originally extracted from the Guide with all the cross references elided.
+   </para></abstract>
+</info>
+
+<para>In principle, the stylesheets will run with any conformant XSLT
+3.0 processor. For many users, that means
+<link xlink:href="http://saxonica.com/">Saxon</link>. Although earlier versions
+may work, Saxon 10.1 or later is recommended.</para>
+
+<para>In principle, the instructions for using the stylesheets are
+straightforward: using your XSLT 3.0 processor of choice, transform your
+DocBook source documents with the <filename>docbook.xsl</filename>
+stylesheet in the <filename class="directory">xslt</filename>
+directory of the distribution.</para>
+
+<para>In practice, for most users, running the stylesheets will
+require getting a Java environment configured appropriately. For many,
+one of the most significant challenges is getting all of the
+dependencies sorted out. Modern software development, for better or
+worse, often consists of one library relying on another which relies
+on another, etc.</para>
+
+<para>The <citetitle>DocBook xslTNG</citetitle> stylesheets attempt to
+simplify this process, especially for the “out of the box” experience
+by providing two convenience methods for running the stylesheets: a
+jar file with a <classname>Main</classname> class, and a Python script
+that attempts, among other things, to make sure all of the
+dependencies are available.</para>
+
+<para>If you’re an experience Java user, you may prefer to simply run
+the stylesheets directly with Java.</para>
+
+<para>Irrespective of which method you choose, running the stylesheets
+is simply a matter of processing your input document
+<quote><replaceable>myfile.xml</replaceable></quote> with
+<quote><filename>xslt/docbook.xsl</filename></quote>. For example:
+</para>
+
+<screen role="monochrome border"
+>$ <userinput>saxon myfile.xml -xsl:xslt/docbook.xsl -o:myfile.html</userinput>
+</screen>
+
+<para>The exact path to <filename>docbook.xsl</filename> will vary, of course,
+but it’s in the <filename class="directory">xslt</filename> directory of the
+distribution.</para>
+
+<note>
+<para>The resulting HTML document contains references to CSS stylesheets
+and possibly JavaScript libraries. The output won’t look as nice in your browser
+if those resources aren’t available. They’re in the <filename class="directory">resources</filename> directory of the distribution. A quick and easy way to see the
+results is simply to send the output to the <filename class="directory">samples</filename>
+directory from the distribution. The resources have already been copied into
+that directory. In the longer run, you’ll want to make sure that they get
+copied into the output directory for each of your projects.</para>
+<para>Alternatively, you can copy them to a web location of your choosing and
+point to them there. You can even point to them in
+<link xlink:href="https://cdn.docbook.org/release/xsltng/current/resources">the
+DocBook CDN</link>, but beware that those are not immutable. The “current”
+version will change with every release and versioned releases will not persist
+indefinitely.</para>
+<para>Change the <parameter>resource-base-uri</parameter> to adjust the paths
+used in the output document.</para>
+</note>
+
+<para>Many aspects of the transformation can be controlled simply by
+setting parameters. It’s also possible
+to change the transformation by writing your own customization layer.</para>
+
+<section xml:id="java-main">
+<title>Using the Jar</title>
+
+<para>The ZIP distribution includes a
+JAR file that you can run directly. That
+JAR file is
+<filename><replaceable>$ROOT</replaceable
+>/libs/docbook-xslTNG-<replaceable>version</replaceable>.jar</filename>
+where “<code><replaceable>$ROOT</replaceable></code>” is whatever directory you chose
+to unzip the distribution into and <replaceable>version</replaceable> is the
+stylesheet version.</para>
+
+<para>Assuming you unzipped the version <?DocBook-xslTNG-version?> distribution into
+<filename class="directory">/home/ndw/xsltng</filename>, you can run
+the JAR like this:</para>
+
+<para><code>java -jar /home/ndw/xsltng/libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar</code></para>
+
+<para>Let’s try it out. Open a shell window and change to the samples directory,
+<filename class="directory">/home/ndw/xsltng/samples</filename> assuming you unzipped
+it as described above. Now run the java command:</para>
+
+<screen role="monochrome border"
+>$ <userinput>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml</userinput>
+<computeroutput><![CDATA[<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
+…more HTML here...
+<nav class="bottom"></nav></body></html>]]></computeroutput></screen>
+
+<para>That big splash of HTML was your first DocBook document
+formatted by the stylesheets! Slightly more usefully, you can save
+that HTML in a file:
+</para>
+
+<screen role="monochrome border">$ <userinput
+>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml \
+        -o:article.html</userinput
+></screen>
+
+<para>If you now open <filename>article.html</filename> in your
+favorite web browser, you’ll see the transformed sample document
+which should look like …
+</para>
+
+<para xml:id="caveats">The JAR file, run this way, accepts the same
+<link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with a few caveats:</para>
+
+<variablelist>
+<varlistentry><term>No <code>-x</code>, <code>-y</code>, or <code>-r</code> options</term>
+<listitem>
+<para>The executable in the JAR file automatically configures Saxon to
+use a catalog-based resolver and points the resolver at a catalog that
+includes the files in the distribution.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>No <code>-init</code> option</term>
+<listitem>
+<para>The <citetitle>DocBook xslTNG</citetitle>
+extension functions will be registered
+automatically.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>Multiple <code>-catalog</code> options</term>
+<listitem>
+<para>You can repeat the <code>-catalog</code> option. All of the catalogs
+you specify will be searched before the default catalog.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>Default stylesheet</term>
+<listitem>
+<para>If you do not specify a stylesheet with the <code>-xsl</code> option,
+the <filename>xslt/docbook.xsl</filename> stylesheet will be used automatically.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+
+<section xml:id="python-script">
+<title>Using the Python script</title>
+
+<para>The ZIP distribution includes a
+Python script in the <filename class="directory">bin</filename> directory.
+This helper script is a convenience wrapper around Saxon. It sets up
+the Java classpath and automatically configures a catalog resolver and
+the DocBook extension functions.</para>
+
+<important>
+<para>The script requires the <application>click</application> and
+<application>pygments</application> packages,
+which you must install with <application>pip</application> before
+running the script. For example:</para>
+<programlisting linenumbering="unnumbered">python3 -m pip install pygments=2.6.1 click</programlisting>
+</important>
+
+<para>This script behaves much like the JAR file described in …. In particular,
+it accepts the same
+<link xlink:href="https://www.saxonica.com/html/documentation/using-xsl/commandline/">command line options</link> as Saxon, with the same caveats.</para>
+
+<para>The significant feature of the Python script is that it will
+attempt to sort out the dependencies for you. It assumes that you’ve
+used Maven to install the package and its dependencies, so you’ll
+have to have <link xlink:href="http://maven.apache.org/">installed
+Maven</link>. How you do that varies by platform, but your package
+manager probably has it.</para>
+
+<para>The following command will assure that you’ve downloaded all of
+the necessary dependencies. You only have to do this once.</para>
+
+<screen role="monochrome border">$ <userinput
+>mvn org.apache.maven.plugins:maven-dependency-plugin:2.4:get \
+      -Dartifact=org.docbook:docbook-xslTNG:<?DocBook-xslTNG-version?></userinput
+></screen>
+
+<para>That might take a while.</para>
+
+<para>The script will work through the dependencies that you have
+installed, and the things that they depend on, and construct a Java
+class path that includes them all.</para>
+
+<para>The script stores its configuration in
+<code>.docbook-xsltng.json</code> in your home directory.</para>
+
+<para>Options passed to the script are processed as follows: the
+initial options, all introduced by two hyphens, are interpreted by
+this script; all the remaining options are passed directly to
+Saxon.</para>
+
+<para>The script options are:</para>
+
+<variablelist>
+<varlistentry>
+<term><option>--help</option></term>
+<listitem>
+<para>Prints a usage message.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--config:<replaceable>filename</replaceable></option></term>
+<listitem>
+<para>Use <replaceable>filename</replaceable> as the configuration
+file. The default configuration file is
+<filename>.docbook-xsltng.json</filename> in your home directory.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--resources<replaceable>:dir</replaceable></option></term>
+<listitem>
+<para>This option will copy the resources directory (the CSS and JavaScript files)
+from the distribution into the directory where your output files are going,
+<replaceable>dir</replaceable>. If
+<replaceable>dir</replaceable> is not specified, the script attempts to
+work out the directory from the <option>-o</option> option provided to Saxon.
+If no directory is specified and it can’t work out what the directory is, it does nothing.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--java:<replaceable>javaexec</replaceable></option></term>
+<listitem>
+<para>Use <replaceable>javaexec</replaceable> as the Java executable.
+The default java executable is the first one on your <envar>PATH</envar>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--home:<replaceable>dir</replaceable></option></term>
+<listitem>
+<para>Use <replaceable>dir</replaceable> as the <citetitle>DocBook
+xslTNG</citetitle> home directory. This should be the location where
+you unzipped the distribution. (You probably shouldn’t change this.)
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--verbose</option></term>
+<listitem>
+<para>Enables <emphasis>verbose</emphasis> mode; it prints more
+messages about what it finds.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--debug</option></term>
+<listitem>
+<para>Enables <emphasis>debug</emphasis> mode. Instead of running the
+transformation, it will print out the command that would have been run.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><option>--</option></term>
+<listitem>
+<para>Immediately stop interpreting options. Everything that follows this option
+will be passed to Saxon, even if it begins with two hyphens.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+
+<section xml:id="run-with-java">
+<title>Run with Java</title>
+
+<para>Assuming you’ve organized your class path so that all of the
+dependencies are available (you may find that using a tool like Gradle
+or Maven simplifies this process), simply run the Saxon class.</para>
+
+<para>For Saxon HE, the class is <classname>net.sf.saxon.Transform</classname>.
+For Saxon PE and EE, the class is <classname>com.saxonica.Transform</classname>.</para>
+
+</section>
+
+<section xml:id="top">
+<title>Run with Docker</title>
+
+<para>This is experimental.</para>
+
+<para>The <filename class="directory">docker</filename> directory
+contains an experimental Dockerfile. Using docker allows you to
+isolate the environment necessary to run the <citetitle>DocBook xslTNG
+Stylesheets</citetitle> from your local environment.</para>
+
+<para>Using Docker is a three step process. Step 0, you have to have
+installed Docker!</para>
+
+<orderedlist>
+<listitem>
+<para>Build the docker image. In the <filename
+class="directory">docker</filename> directory, run the docker build
+command:</para>
+
+<screen role="monochrome border">$ <userinput
+>docker build -t docbook-xsltng .</userinput
+></screen>
+
+<para>The “<option>-t</option>” option provides a tag for the image;
+you can make this anything you want. There’s a <code>VERSION</code>
+build argument if you want to build a particular release. For example,</para>
+
+<screen role="monochrome border">$ <userinput
+>docker build --build-arg VERSION=0.9.14 -t docbook-xsltng .</userinput
+></screen>
+
+<para>will build a Docker image for the 0.9.14 release of the
+stylesheets irrespective of the version in the Dockerfile.</para>
+</listitem>
+<listitem>
+<para>Run the image, for example:</para>
+
+<screen role="monochrome border">$ <userinput
+>docker run docbook-xsltng samples/article.xml</userinput
+></screen>
+
+<para>If you chose a different tag when you built the image, use that
+tag in place of <quote><code>docbook-xsltng</code></quote> in the <command>run</command>
+command. Everything after the container tag becomes options to the
+<command>docbook</command> Python script.
+</para>
+</listitem>
+</orderedlist>
+
+<note>
+<para>The context the script runs in is <emphasis>inside</emphasis>
+the container. It can’t for example, see your local filesystem. The
+example above works because the distribution is unpacked inside the
+container. So the <filename>article.xml</filename> document isn’t the
+one on your local filesystem.</para>
+</note>
+
+<para>You can use the Docker facilities for mounting directories to
+change what documents the script can access. For example:
+</para>
+
+<screen role="monochrome border">$ <userinput
+>docker run -v /tmp:/output -v /path/to/samples:/input \
+       docbook-xsltng /input/article.xml chunk=index.html \
+       chunk-output-base-uri=/output/</userinput
+></screen>
+
+<para>Assuming that the “samples” directory in the distribution is
+located at <filename class="directory">/path/to/samples</filename>, this will chunk the
+<filename>article.xml</filename> sample document that the script sees
+in <filename class="directory">/input</filename>
+(which is where you mounted samples) and it will write the
+output to <filename class="directory">/output</filename> (which is where you mounted
+<filename class="directory">/tmp</filename>).</para>
+
+<para>When the script finishes, the chunked output will be in
+<filename class="directory">/tmp</filename>.</para>
+
+<tip>
+<para>If you choose to use Docker, you don’t have to rebuild the container
+everytime a new stylesheet release occurs. You can simply mount the new
+<filename class="directory">xslt</filename> directory into the container
+like any other directory.</para>
+</tip>
+</section>
+
+<section xml:id="extensions">
+<title>Extension functions</title>
+
+<para>The stylesheets are distributed with several extension functions:</para>
+
+<variablelist>
+<varlistentry><term><function>ext:cwd</function></term>
+<listitem>
+<para>Returns the “current working directory” where the processor is running.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:image-properties</function></term>
+<listitem>
+<para>Returns basic properties of an image, width and height.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:image-metadata</function></term>
+<listitem>
+<para>Returns much more comprehensive image properties and understands
+far more image types than <function>ext:image-properties</function>.
+Requires the … libraries.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:pygmentize</function></term>
+<listitem>
+<para>Runs the external … processor on
+a verbatim listing to add syntax highlighting.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:pygmentize-available</function></term>
+<listitem>
+<para>Returns true if the external … processor
+is available on the current system.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:xinclude</function></term>
+<listitem>
+<para>Performs XInclude processing. This extension supports
+the basic XPointer schemes, RFC 5147 fragment identifiers,
+and …, a scheme that supports searching in text
+documents.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><function>ext:validate-with-relax-ng</function></term>
+<listitem>
+<para>Performs RELAX NG validation.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>At the time of this writing, all of these extension functions require
+Saxon 10.1 or later.
+Make sure that the <filename>docbook-xsltng-<replaceable>version</replaceable>.jar</filename>
+file is on your class path and use the Saxon <code>-init</code> option to
+load them:</para>
+
+<screen><?db verbatim-style="plain"
+?><userinput>-init:org.docbook.xsltng.extensions.Register</userinput></screen>
+
+<section xml:id="ext-debug">
+<title>Extension function debugging</title>
+
+<para>When an extension function fails, or produces result other than
+what you expect, it can be difficult sometimes to work out what
+happened. You can enable debugging messages by setting the the system
+property <property>org.docbook.xsltng.verbose</property>.</para>
+
+<para>Setting the property to the value “<code>true</code>” enables
+all of the debugging messages. For a more selective approach, set it
+to a comma separated list of keyword values.</para>
+
+<para>The following keywords are recognized:</para>
+
+<variablelist>
+<varlistentry><term><literal>registration</literal></term>
+<listitem>
+<para>Enables messages related to function registration.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>image-properties</literal></term>
+<listitem>
+<para>Enables messages related to image properties.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>image-errors</literal></term>
+<listitem>
+<para>Enables messages related to image properties, but only when the
+function was unable to find the properties or encountered some sort of error
+condition.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pygmentize-show-command</literal></term>
+<listitem>
+<para>Enables a message that will show the pygmentize command as it was run.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pygmentize-show-results</literal></term>
+<listitem>
+<para>Enables a message that will show the output of the pygmentize command,
+before it is processed by the function.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>pygmentize-errors</literal></term>
+<listitem>
+<para>Enables messages related to errors encountered attempting to highlight
+listings with pygmentize.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+
+</section>
+
+<section xml:id="chunking">
+<title>“Chunked” output</title>
+
+<para>Transforming <quote><filename>myfile.xml</filename></quote> with
+<filename>docbook.xsl</filename> usually produces a single HTML
+document. For large documents, books like this one for example, it’s
+sometimes desirable to break the input document into a collection of
+web pages. You can achieve this with the
+<citetitle>DocBook xslTNG Stylesheets</citetitle> by setting
+two parameters:
+</para>
+
+<variablelist>
+<varlistentry><term><parameter>chunk</parameter></term>
+<listitem>
+<para>This parameter should be set to the name that you want to use for the
+first, or top, page of the result. The name
+<quote><filename>index.html</filename></quote> is a common choice.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>chunk-output-base-uri</parameter></term>
+<listitem>
+<para>This parameter should be set to the absolute path where you want
+to use as the base URI for the result documents, for example
+<filename class="directory">/home/ndw/output/guide/</filename>.</para>
+<note>
+<para>The trailing slash is important, this is a URI. If you specify
+only <filename class="directory">/home/ndw/output/guide</filename>, the
+base URI will be taken to be <filename class="directory">/home/ndw/output/</filename>,
+and the documents won’t have the URIs you expect.</para>
+</note>
+<para>This output URI has nothing to do with where your documents are
+ultimately published and the documents themselves won’t contain any references
+to it. It simply establishes the root of output. If you’re running your
+XSLT processor from the command line, it’s likely that the documents will
+be written to that location. If you’re running an XProc pipeline, it simply
+controls the URIs that appear on the secondary result port.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Many aspects of chunking can be easily customized. A few of the most
+relevant parameters and templates are:
+</para>
+
+<variablelist>
+<varlistentry><term><parameter>chunk-include</parameter> and 
+<parameter>chunk-exclude</parameter></term>
+<listitem>
+<para>Taken together, these two parameters determine what elements in your
+source document will be considered “chunks” in the output.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>persistent-toc</parameter></term>
+<listitem>
+<para>If this parameter is true, then a JavaScript
+“fly-out” table of contents will be available on every page.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>chunk-nav</parameter></term>
+<listitem>
+<para>This parameter, discussed more thoroughly in speaker notes
+enables keyboard navigation between
+chunks.</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>t:top-nav and
+t:bottom-nav</term>
+<listitem>
+<para>These templates control how the top-of-page and bottom-of-page
+navigation aids are constructed.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<section xml:id="speaker-notes">
+<title>Keyboard navigation and speaker notes</title>
+
+<para>If the <parameter>chunk-nav</parameter> parameter is
+true, a reference to an additional JavaScript library will
+be included in the resulting pages. This library supports keyboard
+navigation between the pages. The navigation keys are described in the
+parameter reference page.
+</para>
+
+<para>There is an additional customization layer
+(<filename>xslt/speaker-notes.xsl</filename>) provided for adding
+speaker notes to the pages. This is provided both as an example of a
+customization layer and because the author finds it convenient.</para>
+
+<para>If you use the speaker notes customization layer, the any top-level
+element in a chunk with the role “<literal>speaker-notes</literal>” will
+be suppressed from the default presentation. If you press “<keycap>S</keycap>”
+on the page, then you’ll get a “speaker notes” view of the page.</para>
+
+<para>This can be combined with another extension, the use of browser
+local storage, to create a simple presentation system. Add this
+<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> tag to the
+<tag>info</tag> element of your document:</para>
+
+<screen role="monochrome border"
+><![CDATA[<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="keyname"/>]]></screen>
+
+<para>That will cause the pages to keep track of their location using the
+“<literal>keyname</literal>” property in local storage. This is important
+because it enables the following trick:</para>
+
+<orderedlist>
+<listitem><para>Configure keyboard navigation, speaker notes, and local storage
+in your document.</para>
+</listitem>
+<listitem><para>Arrange for your document to be served up from a web server.
+You can do this by running one locally or by putting the documents on a web
+server somewhere else.</para>
+</listitem>
+<listitem><para>Open up the main page of your document in a browser.
+</para></listitem>
+<listitem><para>Open up a second browser <emphasis>window</emphasis> pointing
+to the same page. Navigate back and forth between the pages. You should see
+that the two windows stay in sync.
+</para></listitem>
+<listitem><para>Now press “<keycap>S</keycap>” in one of the windows and
+navigate around. You should see that the two windows stay in sync and that your
+speaker notes are consistently presented in one of the windows.</para>
+</listitem>
+</orderedlist>
+
+<para>I often use this trick when I’m giving presentations. I can project the
+slides in one browser window and keep the other browser window on my laptop.
+This allows me to see my notes while easily projecting the “real” content.</para>
+
+</section>
+</section>
+
+<section xml:id="profiling">
+<title>Effectivity attributes and profiling</title>
+
+<para>When documenting computer hardware and software systems, it’s
+very common to have different documentation sets that overlap
+signficantly. Documentation for two different models of network
+router, for example, might differ only in a few specific details. Or a
+user guide aimed at experts might have a lot in common with the new user
+guide.</para>
+
+<section>
+<title>Effectivity</title>
+
+<para>There are many ways to address this problem, but one of the
+simplest is to identify the “effectivity” of different parts of a
+document. Effectivity in this context means identifying the parts
+of a document that are effective for different audiences.</para>
+
+<para>When a document is formatted, the stylesheets can selectively
+include or omit elements based on their configured effectivity. This
+“profiled” version of the document is the one that’s explicitly
+targeted to the audience specified.</para>
+
+<para>DocBook supports a wide variety of common attributes for this
+purpose:</para>
+
+<table>
+<title>Common DocBook effectivity attributes</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Attribute</entry>
+<entry>Nominal effectivity axis</entry>
+</row>
+</thead>
+<tbody>
+<row><entry>arch</entry>
+     <entry>The architecture, Intel or AMD</entry></row>
+<row><entry>audience</entry>    
+     <entry>The audience, operations or development</entry></row>
+<row><entry>condition</entry>   
+     <entry>Any condition (semantically neutral)</entry></row>
+<row><entry>conformance</entry> 
+     <entry>The conformance level</entry></row>
+<row><entry>os</entry>          
+     <entry>The operating system, Windows or Linux</entry></row>
+<row><entry>outputformat</entry>
+     <entry>The output format, print or online</entry></row>
+<row><entry>revision</entry>    
+     <entry>The revision, 3.4 or 4.0.</entry></row>
+<row><entry>security</entry>    
+     <entry>The security, secret or top-secret</entry></row>
+<row><entry>userlevel</entry>   
+     <entry>The user level, novice or expert</entry></row>
+<row><entry>vendor</entry>      
+     <entry>The vendor, Acme or Yoyodyne</entry></row>
+<row><entry>wordsize</entry>    
+     <entry>The word size, 32 or 64 bit</entry></row>
+</tbody>
+</tgroup>
+</table>
+
+<para>In addition, the stylesheets support profiling on several common attributes
+that are not explicitly for effectivity: <tag class="attribute">xml:lang</tag>, <tag class="attribute">revisionflag</tag>,
+and <tag class="attribute">role</tag>.</para>
+
+<note>
+<para>DocBook places no constraints on the values used for effectivity
+and the stylesheets don’t either. You’re free to use “cat” and “dog”
+as effectivity values in the <tag class="attribute">wordsize</tag> attribute, if you
+wish. The further you deviate from the nominal meaning, the more
+important it is to document your system!</para>
+</note>
+
+<para>Consider ….</para>
+
+<example xml:id="ex-profile-os">
+<title>A contrived effectivity example</title>
+<programlisting><?db verbatim-style="plain"
+?><![CDATA[<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+<phrase os="windows">/</phrase>
+<phrase os="mac;linux">-</phrase> character.</para>]]></programlisting>
+</example>
+
+<para>If this document is formatted with the <parameter>profile-os</parameter>
+parameter set to “windows”, it will produce:</para>
+
+<blockquote>
+<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+<phrase os="windows">/</phrase>
+ character.</para>
+</blockquote>
+
+<para>If “mac” or “linux” is specified, it will produce:</para>
+
+<blockquote>
+<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+
+<phrase os="mac;linux">-</phrase> character.</para>
+</blockquote>
+
+<important>
+<para>If the document is formatted without any profiling, <emphasis>all</emphasis>
+of the versions will be included:</para>
+<blockquote>
+<para>This is an utterly contrived example of
+some common text. Options are introduced with the
+<phrase>/</phrase>
+<phrase>-</phrase> character.</para>
+</blockquote>
+<para>That is unlikely to work well.</para>
+</important>
+
+</section>
+<section>
+<title>Profiling</title>
+
+<para>The profiling parameters are applied to every document:
+<parameter>profile-arch</parameter>,
+<parameter>profile-audience</parameter>,
+<parameter>profile-condition</parameter>,
+<parameter>profile-conformance</parameter>,
+<parameter>profile-lang</parameter>,
+<parameter>profile-os</parameter>,
+<parameter>profile-outputformat</parameter>,
+<parameter>profile-revision</parameter>,
+<parameter>profile-revisionflag</parameter>,
+<parameter>profile-role</parameter>,
+<parameter>profile-security</parameter>,
+<parameter>profile-userlevel</parameter>,
+<parameter>profile-vendor</parameter>, and
+<parameter>profile-wordsize</parameter>. Each of these values is treated
+as a string and broken into tokens at the
+<parameter>profile-separator</parameter>.</para>
+
+<para>For every element in the source document:</para>
+
+<itemizedlist>
+<listitem>
+<para>If it specifies a value for an effectivity attribute, the value
+is split into tokens at the
+<parameter>profile-separator</parameter>.</para>
+</listitem>
+<listitem>
+<para>If the corresponding profile parameter is not empty, then the
+element is discarded unless at least one of the tokens in the profile
+parameter list is also in the effectivity list.</para>
+</listitem>
+</itemizedlist>
+
+<para>In practice, elements that don’t specify effectivity are always included
+and profile parameters that are empty don’t exclude any elements.</para>
+
+</section>
+
+<section xml:id="dynprofiling">
+<title>Dynamic profiling</title>
+
+<para>Dynamic profiling is a feature that allows you to profile the output
+of the stylesheets according to the runtime values of stylesheet parameters.
+You can, for example, produce different output depending on whether or not
+chunking is enabled or JavaScript is being used for annotations.</para>
+
+<para>To enable dynamic profiling, set the <parameter>dynamic-profiles</parameter>
+parameter to “true”.</para>
+
+<para>In the interest of performance, security, and legibility,
+dynamic profiles don’t support arbitrary expressions.
+You can use a variable name by itself, <code>$flag</code>, which tests
+if that variable is true, or you can use a
+simple comparison, <code>$var=value</code> which tests if (the string value of)
+<code>$var</code> has the value <code>value</code>.
+(If <code>$var</code> is a list, it’s an existential
+test.) You also can’t use boolean operators or any other fancy expressions.
+</para>
+
+<para>If you really need to have a dynamic profile based on some
+arbitrary condition, you can do it by making a customization layer
+that stores that computation in a variable and then testing that
+variable in your dynamic profile.</para>
+
+<sidebar>
+<title>Backwards incompatibility</title>
+<para>This is slightly backwards
+incompatible in that profile values that begin with a dollar sign are
+now interpreted differently. This is only true if dynamic profiling is
+enabled.</para>
+</sidebar>
+
+<para>An element with dynamic profiling will be published if none of
+it’s profile expressions evaluate to false. This is slightly different
+from the ordinary profiling semantic which publishes the element if
+any of it’s values match.</para>
+</section>
+</section>
+
+<section xml:id="syntax-highlighting">
+<title>Syntax highlighting</title>
+
+<para>Program listings and other verbatim environments can be “syntax highlighted”,
+that is, the significant tokens in the listing can be colored differently (keywords in red,
+quoted strings in blue, that sort of thing).</para>
+
+<para>The default syntax highlighter is …, an external
+Python program. This has the advantage that the highlighted listing is available to
+the stylesheets. The stylesheets can then render line numbers, call outs, and other
+features.</para>
+
+<para>But running an external program for every verbatim environment requires
+<emphasis>having</emphasis> the external program and also, if there are many verbatim
+environments, may slow down the formatting process</para>
+
+<para>An alternative is to use a JavaScript highlighter in the browser such as
+highlight.js or Prism. This approach
+has no impact on formatting and doesn’t require an external process. However, it means the
+<citetitle>xslTNG Stylesheets</citetitle> have no control over the process. Most of the 
+verbatim options only apply when Pygments is used.</para>
+
+<para>The choice of syntax highlighter is determined by the
+<parameter>verbatim-syntax-highlighter</parameter> parameter.</para>
+</section>
+
+<section xml:id="persistent-toc">
+<title>Persistent ToC</title>
+
+<para>The persistent Table of Contents (ToC) provides a full ToC for
+an entire document accessible from each chunked
+page.</para>
+
+<para>The ToC is accessed by clicking on the “book” icon in the upper right
+corner of the page as shown in ….</para>
+
+<para>The icon and other aspects of the style can be changed by providing
+<parameter>persistent-toc-css</parameter>.</para>
+
+<para>Once open, the ToC is displayed. A long ToC will be scrolled to
+the location of the current page in the document as shown in
+….</para>
+
+<para>The persistent ToC popup is transient by default, meaning that
+it will disappear if you use it to navigate to a different page. If
+you open the popup by “shift-clicking” on it, the ToC will persist
+until you dismiss it. This can also be accomplished by selecting the
+check box in the ToC. The presense of the search bar is controlled by
+the <parameter>persistent-toc-search</parameter> parameter.</para>
+
+<para>The ToC can be stored in a separate file or stored in each chunk.
+This is controlled by the <parameter>persistent-toc-filename</parameter>.</para>
+
+<orderedlist>
+<listitem>
+<para>If chunking is enabled and the
+<parameter>persistent-toc-filename</parameter> parameter is non-empty,
+it’s used as a filename and a single copy of the ToC will be saved in
+that file.</para>
+<para>The benefit of this approach is that the HTML chunks are
+smaller. If the persistent ToC is written into every chunk, the size
+of each HTML chunk increases in proportion to the size of the ToC. For
+a large document with lots of small pages, this can be a significant
+percentage of the overall size.</para>
+<para>The disadvantage of this approach is that opening the ToC
+requires another document to be loaded into the browser. For a large
+ToC, this can introduce visible latency, although browser caching
+tends to reduce that after the document has been loaded once. More
+significantly, this will not work unless the documents are served with
+<code>http</code> (and in some environments, perhaps
+<code>https</code>). The browser will (quite reasonably) not allow
+JavaScript to load documents from the filesystem.</para>
+</listitem>
+<listitem>
+<para>If the 
+<parameter>persistent-toc-filename</parameter> parameter is the empty
+sequence, a copy of the ToC is stored in each chunk.</para>
+
+<note>
+<para>When stored in each chunk, the Table of Contents is secreted away in a
+<tag namespace="http://www.w3.org/1999/xhtml">script</tag> element so that
+it will be ignored by screen readers and other user agents that don’t
+support JavaScript or CSS.
+</para>
+</note>
+
+<para>The benefit of this approach is that it requires no additional
+document to be loaded and will work even if the documents are loaded
+with <code>file</code> URIs.</para>
+<para>The disadvantage of this approach is that it increases the size of
+each chunk. Whether that matters depends on the size of the ToC, the relative
+size of the chunks, bandwidth and other constraints.</para>
+</listitem>
+<listitem>
+<para>If chunking <emphasis>is not</emphasis> being used, there will
+only be one HTML result and the ToC will always be stored in that chunk.
+</para>
+</listitem>
+</orderedlist>
+</section>
+
+<section xml:id="print">
+<title>Print output (dead tree editions)</title>
+
+<para>Formatters, the tools that turn markup of any sort into
+aesthetically pleasing (or even passably acceptable) printed pages are
+fiendishly difficult to write.</para>
+
+<para>In the XML space, there have been a number of standards and
+vendor-specific solutions to this problem. The current standards are
+XSL FO and CSS.
+</para>
+
+<para>At present, the <citetitle>DocBook xslTNG Stylesheets</citetitle>
+are focused on CSS for print output. There’s a customization layer
+that produces “paged-media-ready” HTML that can be processed with
+a CSS formatter such as Antenna House or Prince.</para>
+
+<para>To get print output, format your documents with the
+<filename>print.xsl</filename> stylesheet instead of the
+<filename>docbook.xsl</filename> stylesheet. The additional cleanup provided
+by <filename>print.xsl</filename> assures that footnotes, annotations, and
+other elements will appear in the right place, and with reasonable
+presentation, in the printed version.</para>
+
+<para>The resulting HTML document can be formatted directly with a
+CSS paged-media formatter.</para>
+
+</section>
+
+<section xml:id="epub">
+<title>EPUB output</title>
+
+<para>The <citetitle>DocBook xslTNG Stylesheets</citetitle> will
+produce output designed for EPUB(3) if you use the
+<filename>epub.xsl</filename> stylesheet instead of
+<filename>docbook.xsl</filename>. This is new in version 1.11.0 and
+may be incomplete. The output conforms to
+<link xlink:href="https://www.w3.org/publishing/epubcheck/">EPUBCheck</link>
+version 3.2.</para>
+
+<para>Producing an EPUB file is a slightly complicated process. You
+must produce (X)HTML that conforms to strict requirements, you must
+produce a media type document containing a specific text string, you
+must produce a manifest that identifies all of the content including
+all the images, stylesheets, fonts, etc, and you must finally create a
+ZIP archive (with some special consideration as well).</para>
+
+<para>The stylesheets can only do part of this process. In some future
+release where we use, for example, an XProc 3.0 pipeline, it may be
+practical to do more.</para>
+
+<para>When you run the EPUB stylesheet, the principle result document is the
+media type document. This has two useful side effects: first, it establishes the
+output base URI from which all the relative documents can be created, and second, if
+you fail to process some element in the input, you’re likely to get extra text characters
+in the principle result document. That will cause tools to reject the EPUB and draw your
+attention to the error.</para>
+
+<para>The stylesheets also produce the META-INF files and the OPS
+directory containing the document parts and the manifest.</para>
+
+<para>There are two parameters specific to EPUB:</para>
+
+<variablelist>
+<varlistentry><term><literal>pub-id</literal></term>
+<listitem>
+<para>This is the unique identifier for your EPUB. If you don’t specify one, a random
+one will be generated for you.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>manifest-extra</literal></term>
+<listitem>
+<para>This is a URI. If it’s specified, then it must be an XML document and that will
+be added to the EPUB manifest. This is how you can add links to media and other resources
+that the stylesheets don’t know about.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<section xml:id="metadata">
+<title>Adding metadata</title>
+<para>You can add elements to the <tag>info</tag> element of the root element of your
+document to add metadata to your EPUB files. Elements in the Dublin Core namespace
+will be copied through. You can also add the elements
+<code>meta</code> and <code>link</code> in the special namespace
+<code>http://docbook.org/ns/docbook/epub</code>.</para>
+</section>
+
+<section xml:id="epub-in-ation">
+<title>EPUB in action</title>
+
+<para>The <link
+xlink:href="https://github.com/docbook/getting-started/">Getting
+Started</link> project has been updated to show how to create EPUB
+from a book. The project has support for dealing with external media,
+fonts, and constructing the final ZIP file.</para>
+</section>
+</section>
+</chapter>
