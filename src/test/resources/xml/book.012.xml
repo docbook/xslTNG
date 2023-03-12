@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+  <info>
+    <title>Unit Test: book.012</title>
+  </info>
+
+  <preface xml:id="pref">
+    <title>Preface</title>
+    <para>This is just a test.</para>
+  </preface>
+
+  <chapter xml:id="ch01">
+    <title>Chapter One</title>
+    <para>This is just a test.</para>
+  </chapter>
+
+  <part>
+    <title>Part One</title>
+
+    <chapter xml:id="ch02">
+      <title>Chapter Two</title>
+      <para>This is just a test.</para>
+    </chapter>
+    <chapter xml:id="ch03">
+      <title>Chapter Three</title>
+      <para>This is just a test.</para>
+    </chapter>
+  </part>
+
+  <chapter xml:id="ch04">
+    <title>Chapter Four</title>
+    <para>This is just a test.</para>
+  </chapter>
+</book>

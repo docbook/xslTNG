@@ -456,6 +456,21 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="db:chapter|db:appendix" mode="mp:label-number" as="xs:integer">
+  <xsl:choose>
+    <xsl:when test="ancestor::db:book and self::db:chapter">
+      <xsl:number from="db:book" count="db:chapter" level="any"/>
+    </xsl:when>
+    <xsl:when test="ancestor::db:book and self::db:appendix">
+      <xsl:number from="db:book" count="db:appendix" level="any"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="count(preceding::*
+                                  [node-name(.)=node-name(current())]) + 1"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="*" mode="mp:label-number" as="xs:integer">
   <xsl:sequence select="count(preceding-sibling::*
                               [node-name(.)=node-name(current())]) + 1"/>
