@@ -31,7 +31,8 @@
 
 <xsl:template match="h:db-footnote|h:db-annotation|h:head
                      |h:db-annotation-script|h:db-xlink-script
-                     |h:db-toc-script|h:db-mathml-script|h:db-script">
+                     |h:db-toc-script
+                     |h:db-mathml-script|h:db-script">
   <!-- discard -->
 </xsl:template>
 
@@ -90,6 +91,45 @@
   <xsl:variable name="rbu" select="fp:root-base-uri(.)"/>
   <xsl:variable name="cbu" select="fp:chunk-output-filename(.)"/>
 
+  <xsl:variable name="scripts" as="element(h:script)*">
+    <xsl:if test="exists(.//mml:*)"
+            xmlns:mml="http://www.w3.org/1998/Math/MathML">
+      <xsl:apply-templates select="/h:html/h:db-mathml-script/*">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
+    </xsl:if>
+
+    <!-- We save the annotation-style on the root div -->
+    <xsl:if test="exists($annotations) and $annotation-style = 'javascript'">
+      <xsl:apply-templates select="/h:html/h:db-annotation-script/*">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
+    </xsl:if>
+
+    <!-- We save the xlink-style on the root div -->
+    <xsl:if test="/h:html/h:div/@db-xlink/string() = 'javascript'">
+      <xsl:apply-templates select="/h:html/h:db-xlink-script/*">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
+    </xsl:if>
+
+    <xsl:if test="f:is-true($persistent-toc)">
+      <xsl:apply-templates select="/h:html/h:db-toc-script/*">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
+    </xsl:if>
+
+    <!-- Unconditionally add h:db-script children. -->
+    <xsl:apply-templates select="/h:html/h:db-script/*">
+      <xsl:with-param name="rootbaseuri" select="$rbu"/>
+      <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
   <!-- class=no-js is a hook for setting CSS styles when js isn't
        available; see the script element a few lines below. -->
   <html class="no-js" db-chunk="{fp:chunk-output-filename(.)}">
@@ -121,13 +161,6 @@
         <xsl:with-param name="chunkbaseuri" select="$cbu"/>
       </xsl:apply-templates>
 
-      <xsl:if test="exists(.//mml:*)"
-              xmlns:mml="http://www.w3.org/1998/Math/MathML">
-        <xsl:apply-templates select="/h:html/h:db-mathml-script/*">
-          <xsl:with-param name="rootbaseuri" select="$rbu"/>
-          <xsl:with-param name="chunkbaseuri" select="$cbu"/>
-        </xsl:apply-templates>
-      </xsl:if>
       <xsl:if test="$prev">
         <link rel="prev" href="{fp:relative-link(., $prev)}"/>
       </xsl:if>
@@ -140,6 +173,8 @@
       <xsl:if test="$top">
         <link rel="home" href="{fp:relative-link(., $top)}"/>
       </xsl:if>
+
+      <xsl:sequence select="$scripts[not(@type) or contains(@type,'javascript')]"/>
     </head>
     <body>
       <xsl:variable name="class-list" as="xs:string*">
@@ -216,34 +251,7 @@
         </xsl:if>
       </nav>
 
-      <!-- We save the annotation-style on the root div -->
-      <xsl:if test="exists($annotations) and $annotation-style = 'javascript'">
-        <xsl:apply-templates select="/h:html/h:db-annotation-script/*">
-          <xsl:with-param name="rootbaseuri" select="$rbu"/>
-          <xsl:with-param name="chunkbaseuri" select="$cbu"/>
-        </xsl:apply-templates>
-      </xsl:if>
-
-      <!-- We save the xlink-style on the root div -->
-      <xsl:if test="/h:html/h:div/@db-xlink/string() = 'javascript'">
-        <xsl:apply-templates select="/h:html/h:db-xlink-script/*">
-          <xsl:with-param name="rootbaseuri" select="$rbu"/>
-          <xsl:with-param name="chunkbaseuri" select="$cbu"/>
-        </xsl:apply-templates>
-      </xsl:if>
-
-      <xsl:if test="f:is-true($persistent-toc)">
-        <xsl:apply-templates select="/h:html/h:db-toc-script/*">
-          <xsl:with-param name="rootbaseuri" select="$rbu"/>
-          <xsl:with-param name="chunkbaseuri" select="$cbu"/>
-        </xsl:apply-templates>
-      </xsl:if>
-
-      <!-- Unconditionally add h:db-script children. -->
-      <xsl:apply-templates select="/h:html/h:db-script/*">
-        <xsl:with-param name="rootbaseuri" select="$rbu"/>
-        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
-      </xsl:apply-templates>
+      <xsl:sequence select="$scripts[@type and not(contains(@type,'javascript'))]"/>
 
       <xsl:apply-templates select="." mode="m:html-body-script">
         <xsl:with-param name="rootbaseuri" select="$rbu"/>
