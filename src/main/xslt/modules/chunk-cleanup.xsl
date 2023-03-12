@@ -210,30 +210,30 @@
             <xsl:with-param name="chunkbaseuri" select="$cbu" tunnel="yes"/>
           </xsl:apply-templates>
         </xsl:copy>
+
+        <xsl:if test="$footnotes or exists($annotations)">
+          <footer>
+            <xsl:if test="$footnotes">
+              <xsl:call-template name="t:chunk-footnotes">
+                <xsl:with-param name="footnotes" select="$footnotes"/>
+              </xsl:call-template>
+            </xsl:if>
+
+            <xsl:if test="exists($annotations)">
+              <xsl:variable name="style"
+                            select="key('hanno', $annotations[1])[1]/@style/string()"/>
+              <div class="annotations">
+                <div class="annotation-wrapper title"
+                     >Annotations</div>
+                <xsl:for-each select="$annotations">
+                  <xsl:apply-templates select="key('hanno', ., root($self))/node()"
+                                       mode="m:docbook"/>
+                </xsl:for-each>
+              </div>
+            </xsl:if>
+          </footer>
+        </xsl:if>
       </main>
-
-      <xsl:if test="$footnotes or exists($annotations)">
-        <footer>
-          <xsl:if test="$footnotes">
-            <xsl:call-template name="t:chunk-footnotes">
-              <xsl:with-param name="footnotes" select="$footnotes"/>
-            </xsl:call-template>
-          </xsl:if>
-
-          <xsl:if test="exists($annotations)">
-            <xsl:variable name="style"
-                          select="key('hanno', $annotations[1])[1]/@style/string()"/>
-            <div class="annotations">
-              <div class="annotation-wrapper title"
-                   >Annotations</div>
-              <xsl:for-each select="$annotations">
-                <xsl:apply-templates select="key('hanno', ., root($self))/node()"
-                                     mode="m:docbook"/>
-              </xsl:for-each>
-            </div>
-          </xsl:if>
-        </footer>
-      </xsl:if>
 
       <nav class="bottom">
         <xsl:if test="(empty(@db-navigation)
