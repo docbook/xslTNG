@@ -195,6 +195,9 @@
        alt="X"/>
 </xsl:variable>
 
+<xsl:variable name="vp:pagetoc-elements" as="xs:string*"
+              select="tokenize($pagetoc-elements, '\s+')"/>
+
 <xsl:variable name="vp:olinkdb" select="false()"/>
 
 <xsl:variable name="v:olink-databases" as="element(h:targetdb)*">

@@ -76,6 +76,11 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="db:refnamediv|db:refsynopsisdiv" mode="m:attributes" as="attribute()*">
+  <xsl:variable name="attr" select="fp:common-attributes(.)"/>
+  <xsl:sequence select="f:attributes(., $attr)"/>
+</xsl:template>
+
 <xsl:template match="db:topic"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" select="fp:common-attributes(.)"/>

@@ -883,7 +883,7 @@ verbatim options only apply when Pygments is used.</para>
 </section>
 
 <section xml:id="persistent-toc">
-<title>Persistent ToC</title>
+<title>Persistent table of contents</title>
 
 <para>The persistent Table of Contents (ToC) provides a full ToC for
 an entire document accessible from each <link linkend="chunking">chunked</link>
@@ -976,6 +976,82 @@ only be one HTML result and the ToC will always be stored in that chunk.
 </para>
 </listitem>
 </orderedlist>
+</section>
+
+<section xml:id="onpage-toc">
+<title>On-page table of contents</title>
+
+<para>Documents come in many shapes and sizes. Consequently, there are
+a variety of navigation mechanisms available. For long documents, such as books,
+a Table of Contents (ToC) is traditional (as are indexes). For web presentation,
+long documents may be broken into chunks, for example at the chapter level.
+In this case, header and footer navigation between chunks is almost always
+available. For large documents a “<link linkend="persistent-toc">persistent
+ToC</link>” can enable quick navigation from any chunk.</para>
+
+<para>You can also enable an on-page ToC. The on-page ToC provides a
+navigation mechanism for sections within a page. By default, it
+appears on the right of the page if the window is wide enough to
+comfortably display it next to the main body.</para>
+
+<para>The current implementation requires JavaScript. In fact it is not
+constructed from the DocBook markup, but instead from the HTML markup when
+the page is rendered. To be precise, the ToC is constructed from HTML
+<tag namespace="http://www.w3.org/1999/xhtml">section</tag> elements that
+begin with a <tag namespace="http://www.w3.org/1999/xhtml">header</tag> that
+contains an
+<tag namespace="http://www.w3.org/1999/xhtml"
+>h1</tag>…<tag namespace="http://www.w3.org/1999/xhtml">h6</tag>
+element. It is therefore either a bug or a feature, depending on your perspective,
+that a customization layer that changes how sections are marked up will change
+what appears in the ToC. If you simply wish to suppress a particular section
+from appearing in the ToC, add <literal>nopagetoc</literal> to its
+<tag class="attribute">class</tag> attribute.</para>
+
+<para>Several parameters control presentation and formatting of the on-page ToC.</para>
+
+<variablelist>
+<varlistentry><term><parameter>pagetoc-elements</parameter></term>
+<listitem>
+<para>A list of the names of the elements (technically, the classes of
+the sections) that should get an on-page ToC. It’s empty by default (meaning no
+such ToC is rendered). For the standard presentation of this guide,
+the list is set to <code>preface chapter appendix refentry</code>.
+(The sneaky among you may wonder if you could simply set it to “<code>component</code>”
+because that class is used for all those elements; “Yes. Yes, you could.”)
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>pagetoc-dynamic</parameter></term>
+<listitem>
+<para>Determines whether or not the ToC is “dynamic”. Inspired by
+Kevin Drum’s
+<link xlink:href="https://kld.dev/toc-animation/">table of contents progress
+animation</link>, the ToC keeps track of the reader’s location in the main
+view and highlights the corresponding sections in the ToC (albeit without the
+clever SVG animation of the original).</para>
+<para>Set this parameter to false if you find the animation distracting.
+(If the animation is enabled, a control is provided to let the reader turn it off,
+in case <emphasis>they</emphasis> find it distracting.)</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><parameter>pagetoc-js</parameter></term>
+<listitem>
+<para>This is the JavaScript taht implements the on-page ToC. Changing this
+parameter allows you to replace it with JavaScript of your own invention.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>CSS</term>
+<listitem>
+<para>There is no <literal>pagetoc-css</literal> parameter; the CSS is integrated
+into the standard CSS. You can find it in the <filename>pagetoc.scss</filename> file
+in the repository if you want to change the presentation. (Don’t change that file,
+simply add overriding rules later in the cascade.)
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 </section>
 
 <section xml:id="print">
