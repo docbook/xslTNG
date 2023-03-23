@@ -14,7 +14,7 @@
                 version="3.0">
 
 <xsl:template match="db:footnote">
-  <sup id="{f:id(.)}-fref" db-footnote="{fp:footnote-number(.)}"
+  <sup id="{f:id(.)}-fref" property="db-footnote" content="{fp:footnote-number(.)}"
        class="footnote-number{
               if (ancestor::db:table or ancestor::db:informaltable)
               then ' table-footnote'
@@ -47,7 +47,7 @@
       </sup>
     </xsl:when>
     <xsl:otherwise>
-      <sup id="{f:id(.)}-fref" db-footnote="{fp:footnote-number($target)}"
+      <sup id="{f:id(.)}-fref" property="db-footnote" content="{fp:footnote-number($target)}"
            class="footnote-number{
                   if ($target/ancestor::db:table or $target/ancestor::db:informaltable)
                   then ' table-footnote'
@@ -129,7 +129,7 @@
 <xsl:template match="db:footnote" mode="m:footnotes">
   <div class="footnote" id="{f:id(.)}-fnote">
     <div class="footnote-number">
-      <sup db-footnote="{fp:footnote-number(.)}"
+      <sup property="db-footnote" content="{fp:footnote-number(.)}"
            class="footnote-number{
                   if (ancestor::db:table or ancestor::db:informaltable)
                   then ' table-footnote'
