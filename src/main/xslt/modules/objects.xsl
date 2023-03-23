@@ -37,7 +37,7 @@
         <!-- do nothing -->
       </xsl:when>
       <xsl:when test="db:alt">
-        <xsl:attribute name="summary" select="normalize-space(db:alt)"/>
+        <xsl:attribute name="content" select="normalize-space(db:alt)"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="(db:textobject[db:phrase])[1]"
