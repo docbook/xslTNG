@@ -335,7 +335,7 @@
 
 <xsl:template name="t:video-fallback">
   <xsl:param name="datas" as="map(*)*"/>
-  <p>
+  <label><br/>
     <xsl:text>Video playback not supported. </xsl:text>
     <xsl:if test="exists($datas)">
       <xsl:text>Download </xsl:text>
@@ -357,7 +357,7 @@
       </xsl:for-each>
       <xsl:text>.</xsl:text>
     </xsl:if>
-  </p>
+  </label>
 </xsl:template>
 
 <xsl:template match="db:audioobject">
@@ -387,7 +387,7 @@
 
 <xsl:template name="t:audio-fallback">
   <xsl:param name="datas" as="map(*)*"/>
-  <p>
+  <label><br/>
     <xsl:text>Audio playback not supported. </xsl:text>
     <xsl:if test="exists($datas)">
       <xsl:text>Download </xsl:text>
@@ -409,7 +409,7 @@
       </xsl:for-each>
       <xsl:text>.</xsl:text>
     </xsl:if>
-  </p>
+  </label>
 </xsl:template>
 
 <xsl:template match="db:textobject">
