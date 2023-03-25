@@ -256,9 +256,10 @@
 <xsl:template match="db:set|db:book" mode="m:list-of-equations">
   <xsl:if test="f:is-true($lists-of-equations)">
     <xsl:call-template name="tp:list-of-titles">
-      <xsl:with-param name="elements"
-                      select=".//db:equation[not(ancestor::db:formalgroup)]
-                              |.//db:formalgroup[db:figure]"/>
+      <xsl:with-param
+          name="elements"
+          select=".//db:equation[db:info/db:title and not(ancestor::db:formalgroup)]
+                  |.//db:formalgroup[db:equation]"/>
       <xsl:with-param name="class" select="'list-of-equations'"/>
       <xsl:with-param name="group" select="'list-of-equations'"/>
     </xsl:call-template>
@@ -269,7 +270,7 @@
 <xsl:template match="db:set|db:book" mode="m:list-of-procedures">
   <xsl:if test="f:is-true($lists-of-procedures)">
     <xsl:call-template name="tp:list-of-titles">
-      <xsl:with-param name="elements" select=".//db:procedure"/>
+      <xsl:with-param name="elements" select=".//db:procedure[db:info/db:title]"/>
       <xsl:with-param name="class" select="'list-of-procedures'"/>
       <xsl:with-param name="group" select="'list-of-procedures'"/>
     </xsl:call-template>

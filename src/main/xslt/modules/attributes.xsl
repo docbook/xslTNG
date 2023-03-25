@@ -40,7 +40,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="db:book|db:part|db:reference"
+<xsl:template match="db:set|db:book|db:part|db:reference"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" select="fp:common-attributes(.)"/>
   <xsl:sequence
@@ -77,7 +77,7 @@
 </xsl:template>
 
 <xsl:template match="db:refnamediv|db:refsynopsisdiv" mode="m:attributes" as="attribute()*">
-  <xsl:variable name="attr" select="fp:common-attributes(.)"/>
+  <xsl:variable name="attr" select="fp:common-attributes(., true())"/>
   <xsl:sequence select="f:attributes(., $attr)"/>
 </xsl:template>
 
@@ -90,6 +90,15 @@
     <xsl:attribute name="db-label" select="@label"/>
   </xsl:if>
 </xsl:template>
+
+<xsl:template match="db:procedure" mode="m:attributes" as="attribute()*">
+  <xsl:variable name="attr" select="fp:common-attributes(., true())"/>
+  <xsl:variable name="type" as="xs:string"
+                select="if (db:info/db:title)
+                        then 'formalobject'
+                        else 'informalobject'"/>
+  <xsl:sequence select="f:attributes(., $attr, (local-name(.), $type), ())"/>
+</xsl:template>  
 
 <xsl:template match="db:orderedlist" mode="m:attributes" as="attribute()*">
   <xsl:param name="exclude-classes" as="xs:string*"/>

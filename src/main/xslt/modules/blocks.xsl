@@ -247,7 +247,9 @@
 
     <!-- This is a bit of a hack... -->
     <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="m:headline-label"/>
+      <xsl:apply-templates select="." mode="m:headline-label">
+        <xsl:with-param name="purpose" select="'title'"/>
+      </xsl:apply-templates>
     </xsl:variable>
 
     <div class="label">

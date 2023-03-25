@@ -91,7 +91,7 @@
   <xsl:variable name="title" as="node()*">
     <xsl:if test="$template/lt:content">
       <xsl:apply-templates select="." mode="m:crossref-title">
-        <xsl:with-param name="purpose" select="'xref'"/>
+        <xsl:with-param name="purpose" select="'crossref'"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:variable>
@@ -107,7 +107,7 @@
 
 <xsl:template match="*" mode="m:crossref-label" as="item()*">
   <xsl:apply-templates select="." mode="m:headline-label">
-    <xsl:with-param name="purpose" select="'xref'"/>
+    <xsl:with-param name="purpose" select="'crossref'"/>
   </xsl:apply-templates>
 </xsl:template>
 
