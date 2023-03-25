@@ -19,7 +19,7 @@
                 version="3.0">
 
 <xsl:template match="db:table[db:tgroup]">
-  <figure>
+  <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
     <xsl:if test="'details' = $table-accessibility">
@@ -31,11 +31,11 @@
         <xsl:with-param name="footnotes" select=".//db:footnote"/>
       </xsl:call-template>
     </xsl:if>
-  </figure>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:informaltable[db:tgroup]">
-  <figure>
+  <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:if test="'details' = $table-accessibility">
       <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
@@ -46,7 +46,7 @@
         <xsl:with-param name="footnotes" select=".//db:footnote"/>
       </xsl:call-template>
     </xsl:if>
-  </figure>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:tgroup">
