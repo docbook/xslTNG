@@ -46,7 +46,7 @@ class JavaClassRunner:
         self.config = {
             "maven-local": str(Path.home()) + "/.m2/repository",
             "maven-packages": [],
-            "pinned-packages": ["xml-apis:xml-apis:1.4.01"],
+            "pinned-packages": [],
             "excluded-packages": ["xml-resolver:xml-resolver:1.2",
                                   "org.jdom:jdom:*",
                                   "org.jdom:jdom2:*",
