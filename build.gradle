@@ -9,8 +9,8 @@ buildscript {
 
   configurations.all {
     resolutionStrategy {
-      force 'xml-apis:xml-apis:1.4.01',
-        "${saxonGroup}:${saxonEdition}:${saxonVersion}",
+      exclude group: 'xml-apis', module: 'xml-apis'
+      force "${saxonGroup}:${saxonEdition}:${saxonVersion}",
         "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
     }
   }
@@ -50,6 +50,7 @@ sourceSets {
 import com.nwalsh.gradle.saxon.SaxonXsltTask
 import com.nwalsh.gradle.relaxng.validate.RelaxNGValidateTask
 import com.nwalsh.gradle.relaxng.translate.RelaxNGTranslateTask
+
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.security.MessageDigest
@@ -68,8 +69,8 @@ apply from: 'properties.gradle'
 
 configurations.all {
   resolutionStrategy {
-    force 'xml-apis:xml-apis:1.4.01',
-      "${saxonGroup}:${saxonEdition}:${saxonVersion}",
+    exclude group: 'xml-apis', module: 'xml-apis'
+    force "${saxonGroup}:${saxonEdition}:${saxonVersion}",
       "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
   }
 }
@@ -151,6 +152,7 @@ if (System.getenv()["CIWORKFLOW"] == "yes"
 def testDrivers = ['docbook.xspec', 'main.xspec', '00_logstruct.xspec',
                    '20_db4to5.xspec', 'local_conventions.xspec',
                    'transclude.xspec']
+def genDrivers = []
 
 // I'm not sure I want to generate *all* the PDF files.
 // This is a kind of random list...
@@ -225,7 +227,7 @@ def gitRef() {
   }
 
   computedGitRef = ref
-  
+
   if (ref == null) {
     ref = "Unknown"
     println("This doesn't appear to be a git clone; using VERSION-ID: ${ref}")
@@ -481,9 +483,9 @@ task generateLocales() {
   // Just something to hang dependencies on
 }
 
-// Generate tasks to run each set of XSpec tests
-def elementTests = [:]
+// Hold information about configured XSpec tests
 def copiedXSpecTasks = []
+def elementTests = [:]
 fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
   // Work out the base filename of the test
   def base = xspec.toString()
@@ -506,7 +508,7 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
       input xspec
       stylesheet "${projectDir}/tools/copy-xspec.xsl"
       output "${buildDir}/xspec/${base}.xspec"
-      args docbookXsltArgs 
+      args docbookXsltArgs
     }
     copiedXSpecTasks << t
 
@@ -546,13 +548,6 @@ fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
     }
 
     elemList = elemList || line.startsWith("<!-- Tests:")
-  }
-}
-
-// Now the docbook.xspec task exists
-copiedXSpecTasks.each { task ->
-  testDrivers.each { driver ->
-    tasks.findByName(driver).dependsOn task
   }
 }
 
@@ -638,7 +633,7 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
     commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
                 "${buildDir}/xspec/${base}.xspec"
   }
-  
+
   t.dependsOn g
   testDrivers.each { driver ->
     tasks.findByName(driver).dependsOn g
@@ -649,10 +644,18 @@ task actualResults() {
   // Just somewhere to hang dependencies
 }
 
+task numberedFromResults() {
+  // Just somewhere to hang dependencies
+}
+
+task inheritedFromResults() {
+  // Just somewhere to hang dependencies
+}
+
 // Generate tasks to format each resource/xml document
 fileTree(dir: "${projectDir}/src/test/resources/xml",
          include: "*.xml",
-         exclude: "tran-caution.xml").each { xml ->
+         exclude: ["tran-caution.xml"]).each { xml ->
   // Work out the base filename of the test
   def base = xml.toString()
   def pos = base.indexOf("/resources/xml/")
@@ -746,7 +749,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   }
 
   t = task "${base}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-    inputs.files fileTree(dir: "${buildDir}/xslt")
+    inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
     inputs.files fileTree(dir: "${projectDir}/src/test/resources")
     inputs.file file("${buildDir}/xslt/docbook.xsl")
 
@@ -755,19 +758,733 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['dynamic-profiles'] = true
     stylesheetParams += extraParams
 
-    /*
-    if (base == "chapter.003") {
-      println("Task ${base}.html: ${stylesheetParams}")
-    }
-     */
-
     input xml
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/${base}.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters(stylesheetParams)
   }
   actualResults.dependsOn t
+
+  if (base == "chapters-numbered-from") {
+    ['root', 'set', 'book', 'division'].each { from ->
+      Task xspecd = task "xspec-chapters-number-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-chapters-number-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters([
+          'components-number-from': from
+        ])
+      }
+
+      Task xspect = task "xspec-chapters-number-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/chapters-number-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': base,
+          'class': 'chapter',
+          'from': from
+        ])
+      }
+
+      t = task "chapters-number-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/chapters-number-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/chapters-number-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/chapters-number-from-${from}-result.html")
+        outputs.file file("${buildDir}/chapters-number-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/chapters-number-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "chapters-number-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+      stylesheetParams['components-number-from'] = from
+      stylesheetParams += extraParams
+
+      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      numberedFromResults.dependsOn t
+
+      t = task "${base}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-chapters-number-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+
+    def ibase = base.replace("numbered-", "inherit-")
+    ['set', 'book', 'division',
+     'set-book', 'set-book-division', 'book-division', 'set-division'].each { from ->
+      stylesheetParams = [:]
+      stylesheetParams['sets-number-from'] = 'root'
+      stylesheetParams['components-inherit-from'] = from.replaceAll("-", " ")
+      stylesheetParams['lists-of'] = 'equations procedures'
+
+      Task xspecd = task "xspec-chapters-inherit-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-chapters-inherit-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters(stylesheetParams)
+      }
+
+      Task xspect = task "xspec-chapters-inherit-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/chapters-inherit-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': ibase,
+          'source': base,
+          'class': 'chapter',
+          'from': from,
+          'target': 'inherit'
+        ])
+      }
+
+      t = task "chapters-inherit-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/xspec-chapters-inherit-from-${from}-xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/chapters-inherit-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/chapters-inherit-from-${from}-result.html")
+        outputs.file file("${buildDir}/chapters-inherit-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/chapters-inherit-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "chapters-inherit-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+      stylesheetParams['sets-number-from'] = 'root'
+      stylesheetParams['components-inherit-from'] = from.replaceAll("-", " ")
+      stylesheetParams += extraParams
+
+      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      inheritedFromResults.dependsOn t
+
+      t = task "${ibase}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-chapters-inherit-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+  }
+
+  if (base == "parts-numbered-from") {
+    ['root', 'set', 'book'].each { from ->
+      Task xspecd = task "xspec-parts-number-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-parts-number-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters([
+          'divisions-number-from': from
+        ])
+      }
+
+      Task xspect = task "xspec-parts-number-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/parts-number-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': base,
+          'class': 'part',
+          'from': from
+        ])
+      }
+
+      t = task "parts-number-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/parts-number-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/parts-number-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/parts-number-from-${from}-result.html")
+        outputs.file file("${buildDir}/parts-number-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/parts-number-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "parts-number-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+      stylesheetParams['divisions-number-from'] = from
+
+      stylesheetParams += extraParams
+
+      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      numberedFromResults.dependsOn t
+
+      t = task "${base}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-parts-number-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+
+    def ibase = base.replace("numbered-", "inherit-")
+    ['set', 'book', 'set-book'].each { from ->
+      stylesheetParams = [:]
+      stylesheetParams['divisions-inherit-from'] = from.replaceAll("-", " ")
+      stylesheetParams['lists-of'] = 'equations procedures'
+
+      Task xspecd = task "xspec-parts-inherit-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-parts-inherit-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters(stylesheetParams)
+      }
+
+      Task xspect = task "xspec-parts-inherit-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/parts-inherit-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': ibase,
+          'source': base,
+          'class': 'part',
+          'from': from,
+          'target': 'inherit'
+        ])
+      }
+
+      t = task "parts-inherit-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/parts-inherit-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/parts-inherit-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/parts-inherit-from-${from}-result.html")
+        outputs.file file("${buildDir}/parts-inherit-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/parts-inherit-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "parts-inherit-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+      stylesheetParams['divisions-inherit-from'] = from.replaceAll("-", " ")
+      stylesheetParams += extraParams
+
+      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      inheritedFromResults.dependsOn t
+
+      t = task "${ibase}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-parts-inherit-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+  }
+
+  if (base == "sections-numbered-from") {
+    ['root', 'set', 'book', 'division', 'component'].each { from ->
+      Task xspecd = task "xspec-sections-number-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-sections-number-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters([
+          'sections-number-from': from
+        ])
+      }
+
+      Task xspect = task "xspec-sections-number-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/sections-number-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': base,
+          'class': 'section',
+          'from': from
+        ])
+      }
+
+      t = task "sections-number-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/sections-number-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/sections-number-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/sections-number-from-${from}-result.html")
+        outputs.file file("${buildDir}/sections-number-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/sections-number-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "sections-number-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+      stylesheetParams['sections-number-from'] = from
+      stylesheetParams += extraParams
+
+      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      numberedFromResults.dependsOn t
+
+      t = task "${base}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-sections-number-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+
+    def ibase = base.replace("numbered-", "inherit-")
+    ['set', 'book', 'division', 'component', 'section',
+     'division-component-section', 'book-division-component-section',
+     'set-book-division-component', 'set-book-division-component-section'].each { from ->
+      stylesheetParams = [:]
+      stylesheetParams['lists-of'] = 'equations procedures'
+      if (from.contains('division-')) {
+        stylesheetParams['components-inherit-from'] = 'division'
+        if (from.contains('-division-')) {
+          stylesheetParams['components-inherit-from'] = from.replace('-division-', '-')
+        }
+      }
+      stylesheetParams['sections-inherit-from'] = from.replaceAll("-", " ")
+
+      Task xspecd = task "xspec-sections-inherit-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-sections-inherit-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters(stylesheetParams)
+      }
+
+      Task xspect = task "xspec-sections-inherit-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/sections-inherit-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': ibase,
+          'source': base,
+          'class': 'section',
+          'from': from,
+          'target': 'inherit'
+        ])
+      }
+
+      t = task "sections-inherit-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/sections-inherit-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/sections-inherit-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/sections-inherit-from-${from}-result.html")
+        outputs.file file("${buildDir}/sections-inherit-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/sections-inherit-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "sections-inherit-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+
+      if (from == "division-component") {
+        stylesheetParams['components-inherit-from'] = 'division'
+      }
+
+      stylesheetParams['sections-inherit-from'] = from.replaceAll("-", " ")
+      stylesheetParams += extraParams
+
+      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      inheritedFromResults.dependsOn t
+
+      t = task "${ibase}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-sections-inherit-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+  }
+
+  if (base == "formal-objects-numbered-from") {
+    ['root', 'set', 'book', 'division', 'component', 'section'].each { from ->
+      Task xspecd = task "xspec-formal-objects-number-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-formal-objects-number-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters([
+          'formal-objects-number-from': from,
+          'lists-of': 'equations procedures'
+        ])
+      }
+
+      Task xspect = task "xspec-formal-objects-number-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/formal-objects-number-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': base,
+          'class': 'formal-object',
+          'from': from
+        ])
+      }
+
+      t = task "formal-objects-number-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/formal-objects-number-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/formal-objects-number-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/formal-objects-number-from-${from}-result.html")
+        outputs.file file("${buildDir}/formal-objects-number-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/formal-objects-number-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "formal-objects-number-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+      stylesheetParams['formal-objects-number-from'] = from
+      stylesheetParams += extraParams
+
+      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      numberedFromResults.dependsOn t
+
+      t = task "${base}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-formal-objects-number-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+
+    def ibase = base.replace("numbered-", "inherit-")
+    ['set', 'book', 'division', 'component', 'section', 'component-section',
+     'division-component', 'division-component-section',
+     'book-division-component-section', 'set-book-division-component',
+     'set-book-division-component-section'].each { from ->
+      stylesheetParams = [:]
+      stylesheetParams['lists-of'] = 'equations procedures'
+      if (from.contains('division-')) {
+        stylesheetParams['components-inherit-from'] = 'division'
+        if (from.contains('-division-')) {
+          stylesheetParams['formal-objects-inherit-from'] = from.replace('-division-', '-')
+        }
+      }
+      stylesheetParams['formal-objects-inherit-from'] = from.replaceAll("-", " ")
+
+      Task xspecd = task "xspec-formal-objects-inherit-from-${from}-driver"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt']
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
+        output "${buildDir}/xspec-xslt/xspec-formal-objects-inherit-from-${from}-driver.xsl"
+        args(['-it'])
+        parameters(stylesheetParams)
+      }
+
+      Task xspect = task "xspec-formal-objects-inherit-from-${from}-xspec"(
+        type: SaxonXsltTask,
+        dependsOn: ['makeXslt', xspecd]
+      ) {
+        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
+        output "${buildDir}/xspec/formal-objects-inherit-from-${from}.xspec"
+        args(['-it'])
+        parameters([
+          'basename': ibase,
+          'source': base,
+          'class': 'formal-object',
+          'from': from,
+          'target': 'inherit'
+        ])
+      }
+
+      t = task "formal-objects-inherit-from-${from}.xspec"(
+        type: Exec,
+        dependsOn: ['setupXSpec', 'makeXslt', xspect]
+      ) {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        inputs.files "${buildDir}/xspec/formal-objects-inherit-from-${from}.xspec"
+        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
+        outputs.file file("${buildDir}/formal-objects-inherit-from-${from}-compiled.xsl")
+        outputs.file file("${buildDir}/formal-objects-inherit-from-${from}-result.html")
+        outputs.file file("${buildDir}/formal-objects-inherit-from-${from}-result.xml")
+        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+          "${buildDir}/xspec/formal-objects-inherit-from-${from}.xspec"
+      }
+      copiedXSpecTasks << t
+      genDrivers << "formal-objects-inherit-from-${from}.xspec"
+
+      stylesheetParams = [:]
+
+      stylesheetParams['mediaobject-output-base-uri'] = "media/"
+      stylesheetParams['mediaobject-output-paths'] = "false"
+      stylesheetParams['lists-of-equations'] = 'true'
+      stylesheetParams['lists-of-procedures'] = 'true'
+      stylesheetParams['dynamic-profiles'] = 'true'
+
+      if (from == "division-component") {
+        stylesheetParams['formal-objects-inherit-from'] = 'division'
+      }
+
+      stylesheetParams['formal-objects-inherit-from'] = from.replaceAll("-", " ")
+      stylesheetParams += extraParams
+
+      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
+        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
+        output "${buildDir}/actual/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      actualResults.dependsOn t
+      inheritedFromResults.dependsOn t
+
+      t = task "${ibase}-${from}.expected"(
+        type: SaxonXsltTask,
+        dependsOn: [htmlDependsOn, xspecd])
+      {
+        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
+        input xml
+        stylesheet "${buildDir}/xspec-xslt/xspec-formal-objects-inherit-from-${from}-driver.xsl"
+        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
+        args docbookXsltArgs
+        parameters(stylesheetParams)
+      }
+      allExpectedDocuments.dependsOn t
+    }
+  }
 
   if (base.startsWith("colors.")) {
     // disable for expected results
@@ -777,14 +1494,14 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
   t = task "${base}.expected"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
     inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
     inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-    inputs.file file("${buildDir}/xslt/xspec-driver.xsl")
+    inputs.file file("${buildDir}/xspec-xslt/xspec-driver.xsl")
 
     stylesheetParams['dynamic-profiles'] = true
 
     input xml
-    stylesheet "${buildDir}/xslt/xspec-driver.xsl"
+    stylesheet "${buildDir}/xspec-xslt/xspec-driver.xsl"
     output "${projectDir}/src/test/resources/expected/${base}.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters(stylesheetParams)
   }
   allExpectedDocuments.dependsOn t
@@ -808,7 +1525,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     input xml
     stylesheet "${buildDir}/xslt/olinkdb.xsl"
     output "${buildDir}/actual/${base}.olinkdb"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters(stylesheetParams)
   }
 
@@ -845,7 +1562,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
 
     input xml
     stylesheet "${buildDir}/xslt/docbook.xsl"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters(stylesheetParams)
   }
 
@@ -871,7 +1588,7 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     input xml
     stylesheet "${buildDir}/xslt/print.xsl"
     output "${buildDir}/actual/${base}.pdf.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters(stylesheetParams)
   }
 
@@ -940,6 +1657,13 @@ fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { x
     t.dependsOn "fit.001.olinkdb"
     t.dependsOn "fit.002.olinkdb"
     t.dependsOn "guide.olinkdb"
+  }
+}
+
+// Now the compied tasks have all been computed
+copiedXSpecTasks.each { task ->
+  testDrivers.each { driver ->
+    tasks.findByName(driver).dependsOn task
   }
 }
 
@@ -1015,7 +1739,7 @@ testDrivers.each { driver ->
           input "${buildDir}/generated-xml/${basename}.xml"
           stylesheet "${buildDir}/xslt/docbook.xsl"
           output "${buildDir}/actual/${basename}.html"
-          args docbookXsltArgs 
+          args docbookXsltArgs
         }
         t.dependsOn g
         tasks.findByName("${source}.html").dependsOn t
@@ -1025,9 +1749,9 @@ testDrivers.each { driver ->
           dependsOn: ['makeXslt']
         ) {
           input "${buildDir}/generated-xml/${basename}.xml"
-          stylesheet "${buildDir}/xslt/xspec-driver.xsl"
+          stylesheet "${buildDir}/xspec-xslt/xspec-driver.xsl"
           output "${projectDir}/src/test/resources/expected/${basename}.html"
-          args docbookXsltArgs 
+          args docbookXsltArgs
           parameters(
             'xspec-expected': 1,
           )
@@ -1076,12 +1800,29 @@ task makeVersion(type: SaxonXsltTask) {
   )
 }
 
-task copyXslt(type: Copy,
-              dependsOn: ['copyResources', 'makeVersion',
+task copyXslt(dependsOn: ['copyResources', 'makeVersion',
                           'generateLocales', 'compileJava']) {
-  from "${projectDir}/src/main/xslt"
-  into "${buildDir}/xslt"
-  exclude "param.xsl"
+  inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+  outputs.files fileTree(dir: "${buildDir}/xslt")
+  outputs.files fileTree(dir: "${buildDir}/xspec-xslt")
+
+  doLast {
+    copy {
+      from "${projectDir}/src/main/xslt"
+      into "${buildDir}/xslt"
+      exclude "xspec-driver.xsl"
+      exclude "alt-*.xsl"
+    }
+  }    
+
+  doLast {
+    copy {
+      from "${projectDir}/src/main/xslt"
+      into "${buildDir}/xspec-xslt"
+      include "xspec-driver.xsl"
+      include "alt-*.xsl"
+    }
+  }    
 }
 
 task makeXslt(type: SaxonXsltTask, dependsOn: ["copyXslt"]) {
@@ -1094,7 +1835,7 @@ task makeUriList(
   dependsOn: ["makeXslt", "zipStageResources","zipStageDocker",
               "zipStageXslt", "zipStageBin"]
 ) {
-  inputs.files fileTree("${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   inputs.files fileTree("${buildDir}/stage/zip")
   outputs.file "${buildDir}/resources/main/org/docbook/xsltng/etc/uris.xml"
 
@@ -1108,7 +1849,7 @@ task makeUriList(
       writer.writeLine("<catalog>")
 
       def pos = "${buildDir}".length()
-      fileTree("${buildDir}/xslt").each { file ->
+      fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"]).each { file ->
         writer.writeLine("  <uri name='${prefix}${file.getAbsolutePath().substring(pos)}'/>")
       }
 
@@ -1141,7 +1882,7 @@ formattingTests.dependsOn testJarMain
 task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin", "copyDocker"]) {
     commandLine "${buildDir}/bin/docbook",
       "${projectDir}/src/test/resources/xml/article.001.xml",
-      "-xsl:build/xslt/docbook.xsl",
+      "-xsl:${buildDir}/xslt/docbook.xsl",
       "-o:/dev/null"
 }
 formattingTests.dependsOn testDocBookPy
@@ -1151,12 +1892,9 @@ task testConsoleSummary(type: SummarizeTestResults, dependsOn: testDrivers) {
 }
 
 task testSummary(type: SaxonXsltTask, dependsOn: testDrivers) {
-  input file("${buildDir}/docbook-result.xml")
   stylesheet file("${projectDir}/tools/test-results.xsl")
   output "${buildDir}/test-results.txt"
-  parameters (
-    "test-drivers": testDrivers.join(" ")
-  )
+  args(["-it"])
 }
 
 task requirePassingTests(
@@ -1181,6 +1919,7 @@ task coverageReport(type: SaxonXsltTask,
   parameters (
     "test-drivers": testDrivers.join(" ")
   )
+  println(testDrivers)
 }
 formattingTests.dependsOn reportResults
 formattingTests.dependsOn coverageReport
@@ -1201,11 +1940,11 @@ task report(type: Exec,
     "${buildDir}/docbook-result.xml",
     "-xsl:tools/report.xsl",
     "-o:${buildDir}/report/index.html",
-    "test-drivers=${testDrivers.join(' ')}"
+    "test-drivers=${testDrivers.join(' ')} ${genDrivers.join(' ')}"
 }
 
 // ============================================================
-// The mediaobject tests 
+// The mediaobject tests
 // Test 1 and 2 are "the same" except for the arrangement of
 // the source files.
 task all_mo_tests(
@@ -1253,7 +1992,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     /*
     parameters([
       "debug": "mediaobject-uris"
@@ -1321,7 +2060,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-output-base-uri": "media/",
       "mediaobject-output-paths": "false"
@@ -1375,7 +2114,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
@@ -1453,7 +2192,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
@@ -1518,7 +2257,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -1578,7 +2317,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/book/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
 
     doLast {
       exec {
@@ -1631,7 +2370,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/book/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-output-base-uri": "media/",
       "mediaobject-output-paths": "false"
@@ -1684,7 +2423,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/book/"
@@ -1758,7 +2497,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/book/"
@@ -1816,7 +2555,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -1872,7 +2611,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
     ])
@@ -1921,7 +2660,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-output-base-uri": "media/",
@@ -1974,7 +2713,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "chunk": "index.html",
@@ -2043,7 +2782,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-4
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "chunk": "index.html",
@@ -2094,7 +2833,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -2151,7 +2890,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-1/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-grouped-by-type": "true"
@@ -2201,7 +2940,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     output "${buildDir}/actual/mo-${mo}-2/index.html"
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-output-base-uri": "media/",
@@ -2255,7 +2994,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "chunk": "index.html",
@@ -2323,7 +3062,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${projectDir}/src/test/resources/mo_5_test_4.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "mediaobject-input-base-uri": "../media/",
       "mediaobject-grouped-by-type": "true",
@@ -2375,7 +3114,7 @@ task all_mo_tests(
     input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
     stylesheet "${buildDir}/xslt/docbook.xsl"
     // no output
-    args docbookXsltArgs 
+    args docbookXsltArgs
     parameters([
       "chunk": "index.html",
       "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
@@ -2639,13 +3378,13 @@ task dist(
 task explorer(type: SaxonXsltTask,
               dependsOn: ['makeXslt',
                           'setupXsltExplorer', 'explorerResources']) {
-  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   outputs.file("${buildDir}/docbook-xslTNG.xml")
 
   input "${buildDir}/xslt/docbook.xsl"
   stylesheet "${buildDir}/xsltexplorer-${xsltExplorerVersion}/xslt/explorer.xsl"
   output "${buildDir}/explorer/index.html"
-  args docbookXsltArgs 
+  args docbookXsltArgs
   arg '-l:on'
   parameters(
     'debug-analyze': "${buildDir}/docbook-xslTNG.xml"
@@ -2701,7 +3440,7 @@ task xincludeGuide(type: SaxonXsltTask,
   input "${buildDir}/tmp/guide/guide.xml"
   stylesheet "${projectDir}/tools/xinclude.xsl"
   output "${buildDir}/guide.xml"
-  args docbookXsltArgs 
+  args docbookXsltArgs
 }
 
 task copyGuide(type: SaxonXsltTask, dependsOn: ['xincludeGuide']) {
@@ -2720,7 +3459,7 @@ task guide(
   type: SaxonXsltTask,
   dependsOn: ['makeXslt', 'validateGuide', 'explorer']
 ) {
-  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   inputs.files fileTree(dir: "${projectDir}/src/guide/xml")
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
   inputs.file("${buildDir}/docbook-xslTNG.xml")
@@ -2729,7 +3468,7 @@ task guide(
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/guide.xsl"
   output "${buildDir}/guide/irrelevant-and-deleted-file.html"
-  args docbookXsltArgs 
+  args docbookXsltArgs
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -2761,14 +3500,14 @@ task "guide.pdf.html"(
   type: SaxonXsltTask,
   dependsOn: ['makeXslt', 'validateGuide', 'explorer', 'guide_fonts']
 ) {
-  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   inputs.file "${buildDir}/docbook-xslTNG.xml"
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
 
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/print.xsl"
   output "${buildDir}/guide/guide.pdf.html"
-  args docbookXsltArgs 
+  args docbookXsltArgs
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -2800,14 +3539,14 @@ if (pdftool == "prince") {
 }
 
 task "guide.olinkdb"(type: SaxonXsltTask, dependsOn: ['guide']) {
-  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
   inputs.file("${buildDir}/docbook-xslTNG.xml")
 
   input "${buildDir}/guide/guide.xml"
   stylesheet "${buildDir}/xslt/olinkdb.xsl"
   output "${buildDir}/actual/guide.olinkdb"
-  args docbookXsltArgs 
+  args docbookXsltArgs
   parameters(
     'explorer.xml': "${buildDir}/docbook-xslTNG.xml",
     'bookVersion': guideVersion,
@@ -2983,7 +3722,7 @@ task stageJar(
   inputs.files fileTree(dir: "${projectDir}/buildSrc/build/classes/java/main")
   inputs.files fileTree(dir: "${projectDir}/buildSrc/build/classes/java/groovy")
   inputs.files fileTree(dir: "${buildDir}/stage/zip/resources")
-  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   outputs.files fileTree(dir: "${buildDir}/resources/main")
 
   doLast {
@@ -3149,7 +3888,7 @@ task epubGuideMedia(
   inputs.files fileTree(dir: "${projectDir}/src/guide/resources/css")
   inputs.files fileTree(dir: "${projectDir}/src/guide/resources/media")
   inputs.files fileTree(dir: "${projectDir}/src/guide/resources/media")
-  outputs.files fileTree(dir: "${buildDir}/epub/OPS/css") 
+  outputs.files fileTree(dir: "${buildDir}/epub/OPS/css")
   outputs.files fileTree(dir: "${buildDir}/epub/OPS/media")
   outputs.file "${buildDir}/epub/manifest-extra.xml"
 
@@ -3206,7 +3945,7 @@ task epubGuideFormat(
   type: SaxonXsltTask,
   dependsOn: ['makeXslt', 'validateGuide', 'explorer', 'epubGuideMedia']
 ) {
-  inputs.files fileTree(dir: "${buildDir}/xslt")
+  inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
   inputs.files fileTree(dir: "${projectDir}/src/guide/xsl")
   inputs.file "${buildDir}/guide/guide.xml"
   outputs.files fileTree(dir: "${buildDir}/epub")
@@ -3214,7 +3953,7 @@ task epubGuideFormat(
   input "${buildDir}/guide/guide.xml"
   stylesheet "${projectDir}/src/guide/xsl/epub.xsl"
   output "${buildDir}/epub/mimetype"
-  args docbookXsltArgs 
+  args docbookXsltArgs
   parameters(
     'profile-outputformat': 'online',
     'chunk': 'titlepage.xhtml',
@@ -3297,7 +4036,7 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
 
   input "${dbsource}"
   stylesheet "${xslt}"
-  args docbookXsltArgs 
+  args docbookXsltArgs
 
   if (dboutput != '-') {
     output "${dboutput}"
