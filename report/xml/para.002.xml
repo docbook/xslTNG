@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: para.002</title>
+
+<para>Ordinary paragraph.</para>
+
+<para>This paragraph contains a table:
+<informaltable>
+<tgroup cols="3">
+<tbody>
+<row><entry>a1</entry><entry>a2</entry><entry>a3</entry></row>
+<row><entry>b1</entry><entry>b2</entry><entry>b3</entry></row>
+<row><entry>c1</entry><entry>c2</entry><entry>c3</entry></row>
+</tbody>
+</tgroup>
+</informaltable>
+and a figure:
+<figure>
+<title>Figure this!</title>
+<para>This is a paragraph in a figure.</para>
+</figure>
+And a block quote for good measure:
+<blockquote>
+<para>Hello, sailor.</para>
+</blockquote>More prose.
+</para>
+
+<para>
+<blockquote>
+<para>Hello, sailor.</para>
+</blockquote>
+</para>
+
+<para>Ordinary paragraph.</para>
+
+</article>

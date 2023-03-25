@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/parts-inherit-from-set.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-parts-inherit-from-set-driver.xsl"
+         date="2023-03-25T17:03:26.192681Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/parts-inherit-from-set.xspec">
+      <label>When converting parts-inherit-from-set...</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/parts-numbered-from.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>⎡1⎦ Outer set</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article id="book" class="division set">
+                        <header>
+                           <h1>
+                              <span class="label">⎡1⎦</span> Outer set</h1>
+                        </header>
+                        <div class="list-of-titles">
+                           <div class="lot toc">
+                              <div class="title">Table of Contents</div>
+                              <ul class="toc">
+                                 <li>
+                                    <a href="#book_set1">
+                                       <span class="label">⎡1⎦</span> First inner set</a>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set1_bo1">
+                                             <span class="label">(α)</span> First book</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                   <span class="sep">. </span>First part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo1_part1_ch1">
+                                                         <span class="label">1</span>
+                                                         <span class="sep">. </span>First chapter (first in first part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                             <li>
+                                                <a href="#book_set1_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                   <span class="sep">. </span>Second part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo1_part2_ch1">
+                                                         <span class="label">2</span>
+                                                         <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                       <li>
+                                          <a href="#book_set1_bo2">
+                                             <span class="label">(β)</span> Second book</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo2_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                   <span class="sep">. </span>First part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo2_part1_ch1">
+                                                         <span class="label">1</span>
+                                                         <span class="sep">. </span>First chapter (first in first part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                             <li>
+                                                <a href="#book_set1_bo2_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                   <span class="sep">. </span>Second part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo2_part2_ch1">
+                                                         <span class="label">2</span>
+                                                         <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </li>
+                                 <li>
+                                    <a href="#book_set2">
+                                       <span class="label">⎡2⎦</span> Second inner set</a>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set2_bo1">
+                                             <span class="label">(α)</span> First book</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set2_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                                   <span class="sep">. </span>First part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set2_bo1_part1_ch1">
+                                                         <span class="label">1</span>
+                                                         <span class="sep">. </span>First chapter (first in first part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                             <li>
+                                                <a href="#book_set2_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                                   <span class="sep">. </span>Second part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set2_bo1_part2_ch1">
+                                                         <span class="label">2</span>
+                                                         <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <article id="book_set1" class="division set">
+                           <header>
+                              <h1>
+                                 <span class="label">⎡1⎦</span> First inner set</h1>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#book_set1_bo1">
+                                          <span class="label">(α)</span> First book</a>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set1_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                <span class="sep">. </span>First part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo1_part1_ch1">
+                                                      <span class="label">1</span>
+                                                      <span class="sep">. </span>First chapter (first in first part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set1_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                <span class="sep">. </span>Second part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo1_part2_ch1">
+                                                      <span class="label">2</span>
+                                                      <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                    <li>
+                                       <a href="#book_set1_bo2">
+                                          <span class="label">(β)</span> Second book</a>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set1_bo2_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                <span class="sep">. </span>First part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo2_part1_ch1">
+                                                      <span class="label">1</span>
+                                                      <span class="sep">. </span>First chapter (first in first part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set1_bo2_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                <span class="sep">. </span>Second part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo2_part2_ch1">
+                                                      <span class="label">2</span>
+                                                      <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <article id="book_set1_bo1" class="book division">
+                              <header>
+                                 <h1>
+                                    <span class="label">(α)</span> First book</h1>
+                              </header>
+                              <div class="list-of-titles">
+                                 <div class="lot toc">
+                                    <div class="title">Table of Contents</div>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set1_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                             <span class="sep">. </span>First part</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo1_part1_ch1">
+                                                   <span class="label">1</span>
+                                                   <span class="sep">. </span>First chapter (first in first part)</a>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                       <li>
+                                          <a href="#book_set1_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                             <span class="sep">. </span>Second part</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo1_part2_ch1">
+                                                   <span class="label">2</span>
+                                                   <span class="sep">. </span>Second chapter (first in second part)</a>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <article id="book_set1_bo1_part1" class="division part">
+                                 <header>
+                                    <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                       <span class="sep">. </span>First part</h1>
+                                 </header>
+                                 <div id="book_set1_bo1_part1_ch1" class="chapter component">
+                                    <header>
+                                       <h1>Chapter <span class="label">1</span>
+                                          <span class="sep">. </span>First chapter (first in first part)</h1>
+                                    </header>
+                                    <p>…</p>
+                                 </div>
+                              </article>
+                              <article id="book_set1_bo1_part2" class="division part">
+                                 <header>
+                                    <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                       <span class="sep">. </span>Second part</h1>
+                                 </header>
+                                 <div id="book_set1_bo1_part2_ch1" class="chapter component">
+                                    <header>
+                                       <h1>Chapter <span class="label">2</span>
+                                          <span class="sep">. </span>Second chapter (first in second part)</h1>
+                                    </header>
+                                    <p>…</p>
+                                 </div>
+                              </article>
+                           </article>
+                           <article id="book_set1_bo2" class="book division">
+                              <header>
+                                 <h1>
+                                    <span class="label">(β)</span> Second book</h1>
+                              </header>
+                              <div class="list-of-titles">
+                                 <div class="lot toc">
+                                    <div class="title">Table of Contents</div>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set1_bo2_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                             <span class="sep">. </span>First part</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo2_part1_ch1">
+                                                   <span class="label">1</span>
+                                                   <span class="sep">. </span>First chapter (first in first part)</a>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                       <li>
+                                          <a href="#book_set1_bo2_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                             <span class="sep">. </span>Second part</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo2_part2_ch1">
+                                                   <span class="label">2</span>
+                                                   <span class="sep">. </span>Second chapter (first in second part)</a>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <article id="book_set1_bo2_part1" class="division part">
+                                 <header>
+                                    <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                       <span class="sep">. </span>First part</h1>
+                                 </header>
+                                 <div id="book_set1_bo2_part1_ch1" class="chapter component">
+                                    <header>
+                                       <h1>Chapter <span class="label">1</span>
+                                          <span class="sep">. </span>First chapter (first in first part)</h1>
+                                    </header>
+                                    <p>…</p>
+                                 </div>
+                              </article>
+                              <article id="book_set1_bo2_part2" class="division part">
+                                 <header>
+                                    <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                       <span class="sep">. </span>Second part</h1>
+                                 </header>
+                                 <div id="book_set1_bo2_part2_ch1" class="chapter component">
+                                    <header>
+                                       <h1>Chapter <span class="label">2</span>
+                                          <span class="sep">. </span>Second chapter (first in second part)</h1>
+                                    </header>
+                                    <p>…</p>
+                                 </div>
+                              </article>
+                           </article>
+                        </article>
+                        <article id="book_set2" class="division set">
+                           <header>
+                              <h1>
+                                 <span class="label">⎡2⎦</span> Second inner set</h1>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#book_set2_bo1">
+                                          <span class="label">(α)</span> First book</a>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set2_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                                <span class="sep">. </span>First part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set2_bo1_part1_ch1">
+                                                      <span class="label">1</span>
+                                                      <span class="sep">. </span>First chapter (first in first part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set2_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                                <span class="sep">. </span>Second part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set2_bo1_part2_ch1">
+                                                      <span class="label">2</span>
+                                                      <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <article id="book_set2_bo1" class="book division">
+                              <header>
+                                 <h1>
+                                    <span class="label">(α)</span> First book</h1>
+                              </header>
+                              <div class="list-of-titles">
+                                 <div class="lot toc">
+                                    <div class="title">Table of Contents</div>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set2_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                             <span class="sep">. </span>First part</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set2_bo1_part1_ch1">
+                                                   <span class="label">1</span>
+                                                   <span class="sep">. </span>First chapter (first in first part)</a>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                       <li>
+                                          <a href="#book_set2_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                             <span class="sep">. </span>Second part</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set2_bo1_part2_ch1">
+                                                   <span class="label">2</span>
+                                                   <span class="sep">. </span>Second chapter (first in second part)</a>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <article id="book_set2_bo1_part1" class="division part">
+                                 <header>
+                                    <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                       <span class="sep">. </span>First part</h1>
+                                 </header>
+                                 <div id="book_set2_bo1_part1_ch1" class="chapter component">
+                                    <header>
+                                       <h1>Chapter <span class="label">1</span>
+                                          <span class="sep">. </span>First chapter (first in first part)</h1>
+                                    </header>
+                                    <p>…</p>
+                                 </div>
+                              </article>
+                              <article id="book_set2_bo1_part2" class="division part">
+                                 <header>
+                                    <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                       <span class="sep">. </span>Second part</h1>
+                                 </header>
+                                 <div id="book_set2_bo1_part2_ch1" class="chapter component">
+                                    <header>
+                                       <h1>Chapter <span class="label">2</span>
+                                          <span class="sep">. </span>Second chapter (first in second part)</h1>
+                                    </header>
+                                    <p>…</p>
+                                 </div>
+                              </article>
+                           </article>
+                        </article>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect parts inherited from sets</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>⎡1⎦ Outer set</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article id="book" class="division set">
+                           <header>
+                              <h1>
+                                 <span class="label">⎡1⎦</span> Outer set</h1>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#book_set1">
+                                          <span class="label">⎡1⎦</span> First inner set</a>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set1_bo1">
+                                                <span class="label">(α)</span> First book</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                      <span class="sep">. </span>First part</a>
+                                                   <ul class="toc">
+                                                      <li>
+                                                         <a href="#book_set1_bo1_part1_ch1">
+                                                            <span class="label">1</span>
+                                                            <span class="sep">. </span>First chapter (first in first part)</a>
+                                                      </li>
+                                                   </ul>
+                                                </li>
+                                                <li>
+                                                   <a href="#book_set1_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                      <span class="sep">. </span>Second part</a>
+                                                   <ul class="toc">
+                                                      <li>
+                                                         <a href="#book_set1_bo1_part2_ch1">
+                                                            <span class="label">2</span>
+                                                            <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                      </li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set1_bo2">
+                                                <span class="label">(β)</span> Second book</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo2_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                      <span class="sep">. </span>First part</a>
+                                                   <ul class="toc">
+                                                      <li>
+                                                         <a href="#book_set1_bo2_part1_ch1">
+                                                            <span class="label">1</span>
+                                                            <span class="sep">. </span>First chapter (first in first part)</a>
+                                                      </li>
+                                                   </ul>
+                                                </li>
+                                                <li>
+                                                   <a href="#book_set1_bo2_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                      <span class="sep">. </span>Second part</a>
+                                                   <ul class="toc">
+                                                      <li>
+                                                         <a href="#book_set1_bo2_part2_ch1">
+                                                            <span class="label">2</span>
+                                                            <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                      </li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                    <li>
+                                       <a href="#book_set2">
+                                          <span class="label">⎡2⎦</span> Second inner set</a>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set2_bo1">
+                                                <span class="label">(α)</span> First book</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set2_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                                      <span class="sep">. </span>First part</a>
+                                                   <ul class="toc">
+                                                      <li>
+                                                         <a href="#book_set2_bo1_part1_ch1">
+                                                            <span class="label">1</span>
+                                                            <span class="sep">. </span>First chapter (first in first part)</a>
+                                                      </li>
+                                                   </ul>
+                                                </li>
+                                                <li>
+                                                   <a href="#book_set2_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                                      <span class="sep">. </span>Second part</a>
+                                                   <ul class="toc">
+                                                      <li>
+                                                         <a href="#book_set2_bo1_part2_ch1">
+                                                            <span class="label">2</span>
+                                                            <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                      </li>
+                                                   </ul>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <article id="book_set1" class="division set">
+                              <header>
+                                 <h1>
+                                    <span class="label">⎡1⎦</span> First inner set</h1>
+                              </header>
+                              <div class="list-of-titles">
+                                 <div class="lot toc">
+                                    <div class="title">Table of Contents</div>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set1_bo1">
+                                             <span class="label">(α)</span> First book</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                   <span class="sep">. </span>First part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo1_part1_ch1">
+                                                         <span class="label">1</span>
+                                                         <span class="sep">. </span>First chapter (first in first part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                             <li>
+                                                <a href="#book_set1_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                   <span class="sep">. </span>Second part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo1_part2_ch1">
+                                                         <span class="label">2</span>
+                                                         <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                       <li>
+                                          <a href="#book_set1_bo2">
+                                             <span class="label">(β)</span> Second book</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set1_bo2_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                   <span class="sep">. </span>First part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo2_part1_ch1">
+                                                         <span class="label">1</span>
+                                                         <span class="sep">. </span>First chapter (first in first part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                             <li>
+                                                <a href="#book_set1_bo2_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                   <span class="sep">. </span>Second part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set1_bo2_part2_ch1">
+                                                         <span class="label">2</span>
+                                                         <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <article id="book_set1_bo1" class="book division">
+                                 <header>
+                                    <h1>
+                                       <span class="label">(α)</span> First book</h1>
+                                 </header>
+                                 <div class="list-of-titles">
+                                    <div class="lot toc">
+                                       <div class="title">Table of Contents</div>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set1_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                <span class="sep">. </span>First part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo1_part1_ch1">
+                                                      <span class="label">1</span>
+                                                      <span class="sep">. </span>First chapter (first in first part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set1_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                <span class="sep">. </span>Second part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo1_part2_ch1">
+                                                      <span class="label">2</span>
+                                                      <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                                 <article id="book_set1_bo1_part1" class="division part">
+                                    <header>
+                                       <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                          <span class="sep">. </span>First part</h1>
+                                    </header>
+                                    <div id="book_set1_bo1_part1_ch1" class="chapter component">
+                                       <header>
+                                          <h1>Chapter <span class="label">1</span>
+                                             <span class="sep">. </span>First chapter (first in first part)</h1>
+                                       </header>
+                                       <p>…</p>
+                                    </div>
+                                 </article>
+                                 <article id="book_set1_bo1_part2" class="division part">
+                                    <header>
+                                       <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                          <span class="sep">. </span>Second part</h1>
+                                    </header>
+                                    <div id="book_set1_bo1_part2_ch1" class="chapter component">
+                                       <header>
+                                          <h1>Chapter <span class="label">2</span>
+                                             <span class="sep">. </span>Second chapter (first in second part)</h1>
+                                       </header>
+                                       <p>…</p>
+                                    </div>
+                                 </article>
+                              </article>
+                              <article id="book_set1_bo2" class="book division">
+                                 <header>
+                                    <h1>
+                                       <span class="label">(β)</span> Second book</h1>
+                                 </header>
+                                 <div class="list-of-titles">
+                                    <div class="lot toc">
+                                       <div class="title">Table of Contents</div>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set1_bo2_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                                <span class="sep">. </span>First part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo2_part1_ch1">
+                                                      <span class="label">1</span>
+                                                      <span class="sep">. </span>First chapter (first in first part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set1_bo2_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                                <span class="sep">. </span>Second part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set1_bo2_part2_ch1">
+                                                      <span class="label">2</span>
+                                                      <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                                 <article id="book_set1_bo2_part1" class="division part">
+                                    <header>
+                                       <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>I</span>
+                                          <span class="sep">. </span>First part</h1>
+                                    </header>
+                                    <div id="book_set1_bo2_part1_ch1" class="chapter component">
+                                       <header>
+                                          <h1>Chapter <span class="label">1</span>
+                                             <span class="sep">. </span>First chapter (first in first part)</h1>
+                                       </header>
+                                       <p>…</p>
+                                    </div>
+                                 </article>
+                                 <article id="book_set1_bo2_part2" class="division part">
+                                    <header>
+                                       <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>II</span>
+                                          <span class="sep">. </span>Second part</h1>
+                                    </header>
+                                    <div id="book_set1_bo2_part2_ch1" class="chapter component">
+                                       <header>
+                                          <h1>Chapter <span class="label">2</span>
+                                             <span class="sep">. </span>Second chapter (first in second part)</h1>
+                                       </header>
+                                       <p>…</p>
+                                    </div>
+                                 </article>
+                              </article>
+                           </article>
+                           <article id="book_set2" class="division set">
+                              <header>
+                                 <h1>
+                                    <span class="label">⎡2⎦</span> Second inner set</h1>
+                              </header>
+                              <div class="list-of-titles">
+                                 <div class="lot toc">
+                                    <div class="title">Table of Contents</div>
+                                    <ul class="toc">
+                                       <li>
+                                          <a href="#book_set2_bo1">
+                                             <span class="label">(α)</span> First book</a>
+                                          <ul class="toc">
+                                             <li>
+                                                <a href="#book_set2_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                                   <span class="sep">. </span>First part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set2_bo1_part1_ch1">
+                                                         <span class="label">1</span>
+                                                         <span class="sep">. </span>First chapter (first in first part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                             <li>
+                                                <a href="#book_set2_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                                   <span class="sep">. </span>Second part</a>
+                                                <ul class="toc">
+                                                   <li>
+                                                      <a href="#book_set2_bo1_part2_ch1">
+                                                         <span class="label">2</span>
+                                                         <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                   </li>
+                                                </ul>
+                                             </li>
+                                          </ul>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <article id="book_set2_bo1" class="book division">
+                                 <header>
+                                    <h1>
+                                       <span class="label">(α)</span> First book</h1>
+                                 </header>
+                                 <div class="list-of-titles">
+                                    <div class="lot toc">
+                                       <div class="title">Table of Contents</div>
+                                       <ul class="toc">
+                                          <li>
+                                             <a href="#book_set2_bo1_part1">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                                <span class="sep">. </span>First part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set2_bo1_part1_ch1">
+                                                      <span class="label">1</span>
+                                                      <span class="sep">. </span>First chapter (first in first part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                          <li>
+                                             <a href="#book_set2_bo1_part2">Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                                <span class="sep">. </span>Second part</a>
+                                             <ul class="toc">
+                                                <li>
+                                                   <a href="#book_set2_bo1_part2_ch1">
+                                                      <span class="label">2</span>
+                                                      <span class="sep">. </span>Second chapter (first in second part)</a>
+                                                </li>
+                                             </ul>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                                 <article id="book_set2_bo1_part1" class="division part">
+                                    <header>
+                                       <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>I</span>
+                                          <span class="sep">. </span>First part</h1>
+                                    </header>
+                                    <div id="book_set2_bo1_part1_ch1" class="chapter component">
+                                       <header>
+                                          <h1>Chapter <span class="label">1</span>
+                                             <span class="sep">. </span>First chapter (first in first part)</h1>
+                                       </header>
+                                       <p>…</p>
+                                    </div>
+                                 </article>
+                                 <article id="book_set2_bo1_part2" class="division part">
+                                    <header>
+                                       <h1>Part <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>II</span>
+                                          <span class="sep">. </span>Second part</h1>
+                                    </header>
+                                    <div id="book_set2_bo1_part2_ch1" class="chapter component">
+                                       <header>
+                                          <h1>Chapter <span class="label">2</span>
+                                             <span class="sep">. </span>Second chapter (first in second part)</h1>
+                                       </header>
+                                       <p>…</p>
+                                    </div>
+                                 </article>
+                              </article>
+                           </article>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>
