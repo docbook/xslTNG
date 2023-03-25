@@ -10,8 +10,11 @@
 <xsl:output method="html" encoding="utf-8" indent="no"
             omit-xml-declaration="yes"/>
 
-<xsl:variable name="test-reports"
-              select="collection('../build?match=.*-result.xml')"/>
+<xsl:variable name="test-reports">
+  <report xmlns="http://www.jenitennison.com/xslt/xspec">
+    <xsl:sequence select="collection('../build?match=.*-result.xml')/x:report"/>
+  </report>
+</xsl:variable>
 
 <xsl:variable name="Z" select="xs:dayTimeDuration('PT0H')"/>
 
