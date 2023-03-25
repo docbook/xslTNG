@@ -2,11 +2,34 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r213">
+<revnumber>2.0.13</revnumber>
+<date>2023-03-25</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r212">2.0.12</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Completely reworked how numbering of elements is performed. See
+<xref linkend="numeration"/>. It’s a bit more complicated now, but it’s also
+more flexible and better tested. The default numeration should be the same
+as before, although a few small changes may appear in places where (I think)
+the previous numeration was wrong.
+</para>
+</listitem>
+<listitem>
+<para>I tinkered a bit with the
+<link linkend="onpage-toc">on-page table of contents</link> feature.
+It’s a bit easier to configure and there’s a JavaScript API for it.
+</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
 <revision xml:id="r212">
 <revnumber>2.0.12</revnumber>
 <date>2023-03-12</date>
 <revdescription>
-<para>This is still a pre-release; see <link linkend="r208">2.0.10</link>.
+<para>This is still a pre-release; see <link linkend="r210">2.0.10</link>.
 (Note that version 2.0.11 was not adequately documented in the change log.)</para>
 <itemizedlist>
 <listitem>
@@ -56,7 +79,7 @@ jar file was not at a location where the XML Resolver would find it.</para>
 <revnumber>2.0.10</revnumber>
 <date>2023-02-21</date>
 <revdescription>
-<para>This is still a pre-release; see <link linkend="r208">2.0.9</link>.</para>
+<para>This is still a pre-release; see <link linkend="r209">2.0.9</link>.</para>
 <itemizedlist>
 <listitem>
 <para>Reworked ToC handling. Added <parameter>auto-toc</parameter> parameter.
@@ -104,7 +127,7 @@ extension function to version 5.0.0.</para>
 <revnumber>2.0.8</revnumber>
 <date>2023-02-11</date>
 <revdescription>
-<para>This is still a pre-release; see <link linkend="r206">2.0.7</link>.</para>
+<para>This is still a pre-release; see <link linkend="r206">2.0.6</link>.</para>
 <itemizedlist>
 <listitem>
 <para>Fixed a bug in localization support (a missing localization file accidentally

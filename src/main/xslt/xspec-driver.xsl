@@ -22,7 +22,7 @@
      element test is requested, only the body is returned.
  -->
 
-<xsl:import href="docbook.xsl"/>
+<xsl:import href="../xslt/docbook.xsl"/>
 
 <!-- Set some parameters to values that make testing easier/more consistent -->
 <xsl:param name="default-language" select="'en'"/>

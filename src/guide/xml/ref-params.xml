@@ -9,6 +9,10 @@
   <title>Parameter reference</title>
 </info>
 
+<!-- Note: the markup here is bogus. This is (supposed to be) an
+     authoring convenience. This markup gets transformed into a
+     proper set of refentries by the publishing toolchain. -->
+
 <refentry>
   <refmeta>
     <fieldsynopsis>
@@ -195,7 +199,7 @@ as necessary.</para>
     <fieldsynopsis>
       <type>xs:string</type>
       <varname>allow-eval</varname>
-      <initializer>'false'</initializer>
+      <initializer>'true'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -878,9 +882,7 @@ will be indented by this amount.</para>
 <para>If <parameter>component-numbers</parameter> <glossterm>is true</glossterm>,
 components (chapters, appendixes, etc.) that do not have
 an explicit label will be labeled with their component number.</para>
-<para>See also <parameter>division-numbers-inherit</parameter>
-and
-<varname>v:title-properties</varname>.</para>
+<para>See <xref linkend="numeration"/>.</para>
 </refsection>
 </refentry>
 
@@ -889,21 +891,16 @@ and
     <fieldsynopsis>
       <type>xs:string</type>
       <varname>component-numbers-inherit</varname>
-      <initializer>'false'</initializer>
+       <initializer>'false'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.13</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Include component labels in section labels?</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If true, section labels will be prefixed with the label of their
-containing component (<tag>chapter</tag>, <tag>appendix</tag>, etc.)
-In other words, the first section of chapter 2 will be labeled “2.1”
-if this is true and simply “1” if it’s false.</para>
-<para>See also <parameter>division-numbers-inherit</parameter>,
-<parameter>section-numbers-inherit</parameter>, and
-<varname>v:title-properties</varname>.</para>
+<para>This parameter is no longer used. See <xref linkend="numeration"/>.</para>
 </refsection>
 </refentry>
 
@@ -1199,6 +1196,15 @@ to links.
 </varlistentry>
 <varlistentry>
 <term>
+<enumvalue>numeration</enumvalue>
+</term>
+<listitem>
+<para>Display additional information about how elements are numbered (in titles, in cross references, etc.)
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
 <enumvalue>objects</enumvalue>
 </term>
 <listitem>
@@ -1449,19 +1455,14 @@ an explicit label will be labeled with their division number.</para>
       <varname>division-numbers-inherit</varname>
       <initializer>'false'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.13</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Include division labels in component labels?</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If true, component labels will be prefixed with the label of their
-containing division (<tag>part</tag>, <tag>reference</tag>, etc.)
-In other words, chapter 2 in part I will be labeled “I.2”
-if this is true and simply “2” if it’s false.</para>
-<para>See also <parameter>component-numbers-inherit</parameter>,
-<parameter>section-numbers-inherit</parameter>, and
-<varname>v:title-properties</varname>.</para>
+<para>This parameter is no longer used. See <xref linkend="numeration"/>.</para>
 </refsection>
 </refentry>
 
@@ -3287,8 +3288,8 @@ accessible. Suggestions welcome.</para>
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <varname>transclusion-id-fixup</varname>
       <type>xs:string</type>
+      <varname>transclusion-id-fixup</varname>
       <initializer>'none'</initializer>
     </fieldsynopsis>
   </refmeta>
@@ -3619,9 +3620,7 @@ case-by-case basis with the
 <para>If <parameter>section-numbers</parameter> <glossterm>is true</glossterm>,
 sections that do not have
 an explicit label will be labeled with their section number.</para>
-<para>See also <parameter>division-numbers-inherit</parameter>,
-<parameter>section-numbers-inherit</parameter>, and
-<varname>v:title-properties</varname>.</para>
+<para>See <xref linkend="numeration"/>.</para>
 </refsection>
 </refentry>
 
@@ -3631,19 +3630,14 @@ an explicit label will be labeled with their section number.</para>
       <varname>section-numbers-inherit</varname>
       <initializer>'true'</initializer>
     </fieldsynopsis>
+    <refmiscinfo class="other" otherclass="obsolete">2.0.13</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refpurpose>Include ancestor section labels?</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If true, section labels will be prefixed with the label of their
-ancestor sections.
-In other words, third subsection in the second section of a chapter
-be labeled “2.3” if this is true and simply “3” if it’s false.</para>
-<para>See also <parameter>component-numbers-inherit</parameter>,
-<parameter>division-numbers-inherit</parameter>, and
-<varname>v:title-properties</varname>.</para>
+<para>This parameter is no longer used. See <xref linkend="numeration"/>.</para>
 </refsection>
 </refentry>
 
@@ -4811,6 +4805,418 @@ parameters. See <xref linkend="preprocessing-pipeline"/>.</para>
 <title>Description</title>
 <para>If this parameter <glossterm>is true</glossterm>, then warning
 messages will be issued for missing localizations.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>sets-number-from</varname>
+      <initializer>'set'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies where set numeration begins</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Set numbers (if sets are numbered) begin from here.</para>
+<para>See <xref linkend="numeration"/>.</para>
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>root</enumvalue>
+</term>
+<listitem>
+<para>Sets are numbered from the beginning of the document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>set</enumvalue>
+</term>
+<listitem>
+<para>Sets are numbered from their parent set.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>books-number-from</varname>
+      <initializer>'set'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies where book numeration begins</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Book numbers (if books are numbered) begin from here.</para>
+<para>See <xref linkend="numeration"/>.</para>
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>root</enumvalue>
+</term>
+<listitem>
+<para>Books are numbered from the beginning of the document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>set</enumvalue>
+</term>
+<listitem>
+<para>Books are numbered from their parent set.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>divisions-number-from</varname>
+      <initializer>'book'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies where division numeration begins</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Divisions numbers (if divisions are numbered) begin from here.</para>
+<para>See <xref linkend="numeration"/>.</para>
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>root</enumvalue>
+</term>
+<listitem>
+<para>Divisions are numbered from the beginning of the document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>set</enumvalue>
+</term>
+<listitem>
+<para>Divisions are numbered from their nearest ancestor set.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>book</enumvalue>
+</term>
+<listitem>
+<para>Divisions are numbered from their parent book.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>components-number-from</varname>
+      <initializer>'book'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies where component numeration begins</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Component numbers (if components are numbered) begin from here.</para>
+<para>See <xref linkend="numeration"/>.</para>
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>root</enumvalue>
+</term>
+<listitem>
+<para>Components are numbered from the beginning of the document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>set</enumvalue>
+</term>
+<listitem>
+<para>Components are numbered from their nearest ancestor set.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>book</enumvalue>
+</term>
+<listitem>
+<para>Components are numbered from their nearest ancestor book.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>division</enumvalue>
+</term>
+<listitem>
+<para>Components are numbered from their parent division.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>sections-number-from</varname>
+      <initializer>'component'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies where (top-level) section numeration begins</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Top-level section numbers (if sections are numbered) begin from here.</para>
+<para>This parameter only applies to top-level sections. Nested sections are
+always numbered sequentially within their parent section.</para>
+<para>See <xref linkend="numeration"/>.</para>
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>root</enumvalue>
+</term>
+<listitem>
+<para>Top-level sections are numbered from the beginning of the document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>set</enumvalue>
+</term>
+<listitem>
+<para>Top-level sections are numbered from their nearest ancestor set.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>book</enumvalue>
+</term>
+<listitem>
+<para>Top-level sections are numbered from their nearest ancestor book.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>division</enumvalue>
+</term>
+<listitem>
+<para>Top-level sections are numbered from their nearest ancestor division.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>component</enumvalue>
+</term>
+<listitem>
+<para>Top-level sections are numbered from their parent component.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>formal-objects-number-from</varname>
+      <initializer>'component'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies where formal-object numeration begins</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Formal object numbers (if formal objects are numbered) begin from here.</para>
+<para>See <xref linkend="numeration"/>.</para>
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>root</enumvalue>
+</term>
+<listitem>
+<para>Formal objects are numbered from the beginning of the document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>set</enumvalue>
+</term>
+<listitem>
+<para>Formal objects are numbered from their nearest ancestor set.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>book</enumvalue>
+</term>
+<listitem>
+<para>Formal objects are numbered from their nearest ancestor book.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>division</enumvalue>
+</term>
+<listitem>
+<para>Formal objects are numbered from their nearest ancestor division.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>component</enumvalue>
+</term>
+<listitem>
+<para>Formal objects are numbered from their nearest ancestor component.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>section</enumvalue>
+</term>
+<listitem>
+<para>Formal objects are numbered from their parent section.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>sets-inherit-from</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies what inherited numeration applies to sets</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If set numbers inherit from their ancestors, these are the ancestors they
+inherit from.</para>
+<para>See <xref linkend="numeration"/>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>books-inherit-from</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies what inherited numeration applies to books</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If book numbers inherit from their ancestors, these are the ancestors they
+inherit from.</para>
+<para>See <xref linkend="numeration"/>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>divisions-inherit-from</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies what inherited numeration applies to divisions</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If division numbers inherit from their ancestors, these are the ancestors they
+inherit from.</para>
+<para>See <xref linkend="numeration"/>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>components-inherit-from</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies what inherited numeration applies to components</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If component numbers inherit from their ancestors, these are the ancestors they
+inherit from.</para>
+<para>See <xref linkend="numeration"/>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>sections-inherit-from</varname>
+      <initializer>'section'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies what inherited numeration applies to sections</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If section numbers inherit from their ancestors, these are the ancestors they
+inherit from.</para>
+<para>See <xref linkend="numeration"/>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>formal-objects-inherit-from</varname>
+      <initializer>'component'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Identifies what inherited numeration applies to formal-objects</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If formal object numbers inherit from their ancestors, these are the ancestors they
+inherit from.</para>
+<para>See <xref linkend="numeration"/>.</para>
 </refsection>
 </refentry>
 

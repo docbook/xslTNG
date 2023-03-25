@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="5.0" xml:id="book">
+  <title>Outer set</title>
+
+  <set>
+    <title>First inner set</title>
+
+    <book>
+      <title>First book</title>
+
+      <chapter><title>First chapter (before part)</title>
+        <section><title>S1B1C1 S1</title><para>…</para></section>
+        <section><title>S1B1C1 S2</title><para>…</para></section>
+      </chapter>
+
+      <chapter><title>Second chapter (before part)</title>
+        <section><title>S1B1C2 S1</title><para>…</para></section>
+        <section><title>S1B1C2 S2</title><para>…</para>
+          <section><title>S1B1C2 S2.1</title><para>…</para></section>
+        </section>
+      </chapter>
+
+
+      <part>
+        <title>First part</title>
+        <chapter><title>Third chapter (first in first part)</title>
+          <section><title>S1B1P1C3 S1</title><para>…</para></section>
+          <section><title>S1B1P1C3 S2</title><para>…</para></section>
+        </chapter>
+        <chapter><title>Fourth chapter (second in first part)</title>
+          <section><title>S1B1P1C4 S1</title><para>…</para>
+            <section><title>S1B1P1C4 S1.1</title><para>…</para></section>
+          </section>
+          <section><title>S1B1P1C4 S2</title><para>…</para></section>
+        </chapter>
+      </part>
+
+      <chapter><title>Fifth chapter (between parts)</title>
+        <section><title>S1B1C5 S1</title><para>…</para></section>
+        <section><title>S1B1C5 S2</title><para>…</para></section>
+      </chapter>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Six chapter (first in second part)</title>
+          <section><title>S1B1P2C6 S1</title><para>…</para></section>
+          <section><title>S1B1P2C6 S2</title><para>…</para></section>
+        </chapter>
+        <chapter><title>Seventh chapter (second in second part)</title>
+          <section><title>S1B1P2C7 S1</title><para>…</para></section>
+          <section><title>S1B1P2C7 S2</title><para>…</para></section>
+        </chapter>
+      </part>
+
+      <chapter><title>Eighth chapter (after part)</title>
+        <section><title>S1B1C8 S1</title><para>…</para></section>
+        <section><title>S1B1C8 S2</title><para>…</para></section>
+      </chapter>
+      <chapter><title>Ninth chapter (after part)</title>
+        <section><title>S1B1C9 S1</title><para>…</para></section>
+        <section><title>S1B1C9 S2</title><para>…</para></section>
+      </chapter>
+    </book>
+
+    <book>
+      <title>Second book</title>
+
+      <chapter><title>First chapter (before part)</title>
+        <section><title>S1B2C1 S1</title><para>…</para></section>
+        <section><title>S1B2C1 S2</title><para>…</para></section>
+      </chapter>
+
+      <chapter><title>Second chapter (before part)</title>
+        <section><title>S1B2C2 S1</title><para>…</para></section>
+        <section><title>S1B2C2 S2</title><para>…</para>
+          <section><title>S1B2C2 S2.1</title><para>…</para></section>
+        </section>
+      </chapter>
+
+
+      <part>
+        <title>First part</title>
+        <chapter><title>Third chapter (first in first part)</title>
+          <section><title>S1B2P1C3 S1</title><para>…</para></section>
+          <section><title>S1B2P1C3 S2</title><para>…</para></section>
+        </chapter>
+        <chapter><title>Fourth chapter (second in first part)</title>
+          <section><title>S1B2P1C4 S1</title><para>…</para>
+            <section><title>S1B2P1C4 S1.1</title><para>…</para></section>
+          </section>
+          <section><title>S1B2P1C4 S2</title><para>…</para></section>
+        </chapter>
+      </part>
+
+      <chapter><title>Fifth chapter (between parts)</title>
+        <section><title>S1B2C5 S1</title><para>…</para></section>
+        <section><title>S1B2C5 S2</title><para>…</para></section>
+      </chapter>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Six chapter (first in second part)</title>
+          <section><title>S1B2P2C6 S1</title><para>…</para></section>
+          <section><title>S1B2P2C6 S2</title><para>…</para></section>
+        </chapter>
+        <chapter><title>Seventh chapter (second in second part)</title>
+          <section><title>S1B2P2C7 S1</title><para>…</para></section>
+          <section><title>S1B2P2C7 S2</title><para>…</para></section>
+        </chapter>
+      </part>
+
+      <chapter><title>Eighth chapter (after part)</title>
+        <section><title>S1B2C8 S1</title><para>…</para></section>
+        <section><title>S1B2C8 S2</title><para>…</para></section>
+      </chapter>
+      <chapter><title>Ninth chapter (after part)</title>
+        <section><title>S1B2C9 S1</title><para>…</para></section>
+        <section><title>S1B2C9 S2</title><para>…</para></section>
+      </chapter>
+    </book>
+  </set>
+
+  <set>
+    <title>Second inner set</title>
+
+    <book>
+      <title>First book</title>
+
+      <chapter><title>First chapter (before part)</title>
+        <section><title>S2B1C1 S1</title><para>…</para></section>
+        <section><title>S2B1C1 S2</title><para>…</para></section>
+      </chapter>
+
+      <chapter><title>Second chapter (before part)</title>
+        <section><title>S2B1C2 S1</title><para>…</para></section>
+        <section><title>S2B1C2 S2</title><para>…</para>
+          <section><title>S2B1C2 S2.1</title><para>…</para></section>
+        </section>
+      </chapter>
+
+
+      <part>
+        <title>First part</title>
+        <chapter><title>Third chapter (first in first part)</title>
+          <section><title>S2B1P1C3 S1</title><para>…</para></section>
+          <section><title>S2B1P1C3 S2</title><para>…</para></section>
+        </chapter>
+        <chapter><title>Fourth chapter (second in first part)</title>
+          <section><title>S2B1P1C4 S1</title><para>…</para>
+            <section><title>S2B1P1C4 S1.1</title><para>…</para></section>
+          </section>
+          <section><title>S2B1P1C4 S2</title><para>…</para></section>
+        </chapter>
+      </part>
+
+      <chapter><title>Fifth chapter (between parts)</title>
+        <section><title>S2B1C5 S1</title><para>…</para></section>
+        <section><title>S2B1C5 S2</title><para>…</para></section>
+      </chapter>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Six chapter (first in second part)</title>
+          <section><title>S2B1P2C6 S1</title><para>…</para></section>
+          <section><title>S2B1P2C6 S2</title><para>…</para></section>
+        </chapter>
+        <chapter><title>Seventh chapter (second in second part)</title>
+          <section><title>S2B1P2C7 S1</title><para>…</para></section>
+          <section><title>S2B1P2C7 S2</title><para>…</para></section>
+        </chapter>
+      </part>
+
+      <chapter><title>Eighth chapter (after part)</title>
+        <section><title>S2B1C8 S1</title><para>…</para></section>
+        <section><title>S2B1C8 S2</title><para>…</para></section>
+      </chapter>
+      <chapter><title>Ninth chapter (after part)</title>
+        <section><title>S2B1C9 S1</title><para>…</para></section>
+        <section><title>S2B1C9 S2</title><para>…</para></section>
+      </chapter>
+    </book>
+  </set>
+</set>

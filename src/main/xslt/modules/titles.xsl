@@ -9,6 +9,7 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
+                xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -34,6 +35,8 @@
          group="{if (f:is-true($component-numbers))
                  then 'title-numbered'
                  else 'title-unnumbered'}"/>
+
+  <title xpath="self::db:set" group="title-unnumbered"/>
 
   <title xpath="self::db:book|self::db:part|self::db:reference"
          group="{if (f:is-true($division-numbers))
@@ -70,27 +73,47 @@
 
 <!-- ============================================================ -->
 
+<xsl:function name="fp:title-properties" as="element()?" cache="yes">
+  <xsl:param name="this" as="element()"/>
+
+  <xsl:iterate select="$v:title-groups">
+    <xsl:variable name="test" as="element()*">
+      <xsl:evaluate context-item="$this" xpath="@xpath"/>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="$test">
+        <xsl:sequence select="."/>
+        <xsl:break/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:next-iteration/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:iterate>
+</xsl:function>
+
+<xsl:template match="*" mode="mp:compute-headline-label" as="item()*">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+
+  <xsl:variable name="prop" select="fp:title-properties(.)"/>
+
+  <xsl:variable name="template"
+                select="if ($purpose = 'lot')
+                        then fp:localization-template(., 'list-of-titles')
+                        else fp:localization-template(., $prop/@group)"/>
+
+  <xsl:if test="$template/lt:label">
+    <xsl:apply-templates select="." mode="m:headline-label">
+      <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:apply-templates>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="*" mode="m:headline">
   <xsl:param name="purpose" as="xs:string" required="yes"/>
 
-  <xsl:variable name="this" select="."/>
-  <xsl:variable name="prop" as="element()?">
-    <xsl:iterate select="$v:title-groups">
-      <xsl:variable name="test" as="element()*">
-        <xsl:evaluate context-item="$this" xpath="@xpath"/>
-      </xsl:variable>
-
-      <xsl:choose>
-        <xsl:when test="$test">
-          <xsl:sequence select="."/>
-          <xsl:break/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:next-iteration/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:iterate>
-  </xsl:variable>
+  <xsl:variable name="prop" select="fp:title-properties(.)"/>
 
   <xsl:variable name="template"
                 select="if ($purpose = 'lot')
@@ -102,9 +125,9 @@
   -->
 
   <xsl:variable name="label" as="item()*">
-    <xsl:if test="$template/lt:label">
-      <xsl:apply-templates select="." mode="m:headline-label"/>
-    </xsl:if>
+    <xsl:apply-templates select="." mode="mp:compute-headline-label">
+      <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
   <xsl:if test="$vp:olinkdb">
@@ -126,28 +149,17 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<!-- This is a special case, you may need to override it for your locale -->
-<xsl:template match="db:formalgroup" mode="m:headline">
-  <xsl:param name="purpose" as="xs:string" required="yes"/>
-  <xsl:variable name="headline" as="item()*">
-    <xsl:next-match>
-      <xsl:with-param name="purpose" select="$purpose"/>
-    </xsl:next-match>
-  </xsl:variable>
-  <xsl:sequence select="f:l10n-token(., local-name(*[last()]))"/>
-  <xsl:text> </xsl:text>
-  <xsl:sequence select="$headline"/>
-</xsl:template>
-
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="m:headline-label">
-  <xsl:param name="purpose" as="xs:string" select="'title'"/>
-  <xsl:apply-templates select="." mode="m:headline-number"/>
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:apply-templates select="." mode="m:headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:appendix" mode="m:headline-label">
-  <xsl:param name="purpose" as="xs:string" select="'title'"/>
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
   <xsl:choose>
     <xsl:when test="not(f:is-true($number-single-appendix))
                     and empty(preceding-sibling::db:appendix)
@@ -163,14 +175,14 @@
 </xsl:template>
 
 <xsl:template match="db:qandaentry" mode="m:headline-label">
-  <xsl:param name="purpose" as="xs:string" select="'title'"/>
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
   <xsl:apply-templates select="db:question" mode="m:headline-label">
     <xsl:with-param name="purpose" select="$purpose"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="db:question" mode="m:headline-label">
-  <xsl:param name="purpose" as="xs:string" select="'title'"/>
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
 
   <xsl:variable name="label"
                 select="ancestor::db:qandaset[@defaultlabel][1]/@defaultlabel/string()"/>
@@ -200,7 +212,7 @@
 </xsl:template>
 
 <xsl:template match="db:answer" mode="m:headline-label">
-  <xsl:param name="purpose" as="xs:string" select="'title'"/>
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
 
   <xsl:variable name="label"
                 select="ancestor::db:qandaset[@defaultlabel][1]/@defaultlabel/string()"/>
@@ -225,113 +237,25 @@
   </xsl:choose>
 </xsl:template>
 
-
-<xsl:template match="db:formalgroup" mode="mp:label-number" as="xs:integer">
-  <xsl:variable name="ancestor" select="fp:nearest-relevant-ancestor(.)"/>
-  <xsl:variable name="prec" as="element()*">
-    <xsl:choose>
-      <xsl:when test="db:figure">
-        <xsl:sequence select="preceding::db:figure[not(parent::db:formalgroup)]
-                              |preceding::db:formalgroup[db:figure]"/>
-      </xsl:when>
-      <xsl:when test="db:table">
-        <xsl:sequence select="preceding::db:table[not(parent::db:formalgroup)]
-                              |preceding::db:formalgroup[db:table]"/>
-      </xsl:when>
-      <xsl:when test="db:example">
-        <xsl:sequence select="preceding::db:example[not(parent::db:formalgroup)]
-                              |preceding::db:formalgroup[db:example]"/>
-      </xsl:when>
-      <xsl:when test="db:equation">
-        <xsl:sequence select="preceding::db:equation[db:info/db:title
-                              and not(parent::db:formalgroup)]
-                              |preceding::db:formalgroup[db:equation]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="()"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="desc" as="element()*">
-    <xsl:choose>
-      <xsl:when test="empty($prec)">
-        <div/> <!-- it's irrelevant, it's just something != all the preceding -->
-      </xsl:when>
-      <xsl:when test="db:figure">
-        <xsl:sequence select="$ancestor/descendant::db:figure[not(parent::db:formalgroup)]
-                              |$ancestor/descendant::db:formalgroup[db:figure]"/>
-      </xsl:when>
-      <xsl:when test="db:table">
-        <xsl:sequence select="$ancestor/descendant::db:table[not(parent::db:formalgroup)]
-                              |$ancestor/descendant::db:formalgroup[db:table]"/>
-      </xsl:when>
-      <xsl:when test="db:example">
-        <xsl:sequence select="$ancestor/descendant::db:example[not(parent::db:formalgroup)]
-                              |$ancestor/descendant::db:formalgroup[db:example]"/>
-      </xsl:when>
-      <xsl:when test="db:equation">
-        <xsl:sequence select="$ancestor/descendant::db:equation
-                              [db:info/db:title and not(parent::db:formalgroup)]
-                              |$ancestor/descendant::db:formalgroup[db:equation]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="()"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:sequence select="if (empty($prec))
-                        then 1
-                        else count($prec = $desc)+1"/>
-</xsl:template>
-
 <!-- ============================================================ -->
 
-<xsl:template match="db:set|db:book|db:part|db:reference" as="item()*"
-              mode="mp:headline-number-prefix">
-  <xsl:if test="f:is-true($division-numbers-inherit)">
-    <xsl:apply-templates select="." mode="m:headline-number"/>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="db:preface|db:chapter|db:appendix|db:article|db:topic"
-              mode="mp:headline-number-prefix">
-  <xsl:param name="inherit" as="xs:boolean"
-             select="f:is-true($component-numbers-inherit)"/>
-  <xsl:if test="$inherit">
-    <xsl:apply-templates select="." mode="m:headline-number"/>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5
-                     |db:refsection|db:refsect1|db:refsect2|db:refsect3"
-              mode="mp:headline-number-prefix">
-  <xsl:if test="f:is-true($section-numbers-inherit)">
-    <xsl:apply-templates select="." mode="m:headline-number"/>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="db:formalgroup"
-              mode="mp:headline-number-prefix">
-  <xsl:apply-templates select="." mode="m:headline-number"/>
-</xsl:template>
-
-<xsl:template match="db:orderedlist"
-              mode="mp:headline-number-prefix">
-  <xsl:apply-templates select="ancestor::db:listitem[parent::db:orderedlist][1]"
-                       mode="m:headline-number"/>
-</xsl:template>
-
-<xsl:template match="*"
-              mode="mp:headline-number-prefix">
-  <xsl:sequence select="()"/>
+<xsl:template match="*" as="item()*" mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:message use-when="$v:debug = 'numeration'"
+               select="'No headline number for', local-name(.)"/>
+  <!-- just a default... -->
+  <xsl:number level="single"/>
 </xsl:template>
 
 <xsl:template match="db:orderedlist/db:listitem" as="item()*"
               mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+
   <xsl:variable name="prefix" as="item()*">
-    <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix"/>
+    <xsl:apply-templates select="parent::*/ancestor::db:listitem[parent::db:orderedlist][1]"
+                         mode="m:headline-number">
+      <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
   <xsl:variable name="number" as="xs:integer"
@@ -346,87 +270,59 @@
     </xsl:if>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="exists($prefix) and exists($formatted-number)">
+  <xsl:if test="exists($formatted-number)">
+    <xsl:if test="exists($prefix)">
       <xsl:sequence select="$prefix"/>
       <span class="sep">
         <xsl:apply-templates select="." mode="m:gentext">
           <xsl:with-param name="group" select="'number-separator'"/>
         </xsl:apply-templates>
       </span>
-      <xsl:sequence select="$formatted-number"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="($prefix, $formatted-number)[1]"/>
-    </xsl:otherwise>
-  </xsl:choose>
+    </xsl:if>
+    <xsl:sequence select="$formatted-number"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="db:step" as="item()*"
               mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+
   <xsl:variable name="prefix" as="item()*">
-    <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix"/>
-  </xsl:variable>
-
-  <xsl:variable name="number" as="xs:integer+"
-                select="f:step-number(.)"/>
-
-  <xsl:variable name="fnumber" as="xs:string+">
-    <xsl:iterate select="reverse($number)">
-      <xsl:param name="step" select="."/>
-      <xsl:number value="." format="{f:step-numeration($step)}"/>
-      <xsl:next-iteration>
-        <xsl:with-param name="step" select="$step/ancestor::db:step[1]"/>
-      </xsl:next-iteration>
-    </xsl:iterate>
-  </xsl:variable>
-
-  <xsl:variable name="sep">
-    <xsl:apply-templates select="." mode="m:gentext">
-      <xsl:with-param name="group" select="'number-separator'"/>
+    <xsl:apply-templates select="ancestor::db:step[1]"
+                         mode="m:headline-number">
+      <xsl:with-param name="purpose" select="$purpose"/>
     </xsl:apply-templates>
   </xsl:variable>
 
-  <xsl:variable name="formatted-number" as="xs:string">
-    <xsl:sequence select="string-join(reverse($fnumber), string($sep))"/>
+  <xsl:variable name="formatted-number" as="item()*">
+    <xsl:number value="fp:number(.)" format="{f:step-numeration(.)}"/>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="exists($prefix) and exists($formatted-number)">
+  <xsl:if test="exists($formatted-number)">
+    <xsl:if test="exists($prefix)">
       <xsl:sequence select="$prefix"/>
       <span class="sep">
         <xsl:apply-templates select="." mode="m:gentext">
           <xsl:with-param name="group" select="'number-separator'"/>
         </xsl:apply-templates>
       </span>
-      <xsl:sequence select="$formatted-number"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="($prefix, $formatted-number)[1]"/>
-    </xsl:otherwise>
-  </xsl:choose>
+    </xsl:if>
+    <xsl:sequence select="$formatted-number"/>
+  </xsl:if>
 </xsl:template>
 
-<xsl:template match="*" mode="m:headline-number" as="item()*">
+<xsl:template match="db:qandadiv" as="item()*"
+              mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+
   <xsl:variable name="prefix" as="item()*">
-    <xsl:choose>
-      <!-- hack to force formal objects to inherit component numeration -->
-      <xsl:when test="self::db:figure|self::db:example|self::db:table|self::db:equation
-                      and (ancestor::db:chapter or ancestor::db:appendix
-                           or ancestor::db:part or ancestor::db:reference)">
-        <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix">
-          <xsl:with-param name="inherit" select="true()"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="parent::*"
+                         mode="m:headline-number">
+      <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
-  <xsl:variable name="number" as="xs:integer">
-    <xsl:apply-templates select="." mode="mp:label-number"/>
-  </xsl:variable>
+  <xsl:variable name="number" select="fp:number(.)"/>
 
   <xsl:variable name="format">
     <xsl:apply-templates select="." mode="m:gentext">
@@ -434,67 +330,332 @@
     </xsl:apply-templates>
   </xsl:variable>
 
-  <xsl:variable name="formatted-number" as="xs:string?">
-    <xsl:if test="exists($format)">
-      <xsl:number value="$number" format="{$format}"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="exists($prefix) and exists($formatted-number)">
+  <xsl:if test="exists($number) and exists($format)">
+    <xsl:if test="exists($prefix)">
       <xsl:sequence select="$prefix"/>
       <span class="sep">
         <xsl:apply-templates select="." mode="m:gentext">
           <xsl:with-param name="group" select="'number-separator'"/>
         </xsl:apply-templates>
       </span>
-      <xsl:sequence select="$formatted-number"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="($prefix, $formatted-number)[1]"/>
-    </xsl:otherwise>
-  </xsl:choose>
+    </xsl:if>
+    <xsl:number value="$number" format="{$format}"/>
+  </xsl:if>
 </xsl:template>
 
-<xsl:template match="db:chapter|db:appendix" mode="mp:label-number" as="xs:integer">
-  <xsl:choose>
-    <xsl:when test="ancestor::db:book and self::db:chapter">
-      <xsl:number from="db:book" count="db:chapter" level="any"/>
-    </xsl:when>
-    <xsl:when test="ancestor::db:book and self::db:appendix">
-      <xsl:number from="db:book" count="db:appendix" level="any"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="count(preceding::*
-                                  [node-name(.)=node-name(current())]) + 1"/>
-    </xsl:otherwise>
-  </xsl:choose>
+<xsl:template match="db:figure[not(parent::db:formal-group)]
+                     |db:example[not(parent::db:formal-group)]
+                     |db:table[not(parent::db:formal-group)]
+                     |db:equation[not(parent::db:formal-group)]
+                     |db:procedure
+                     |db:qandaset
+                     |db:formalgroup"
+              as="item()*"
+              mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" select="tokenize($formal-objects-inherit-from, '\s+')"/>
+
+  <xsl:apply-templates select="."
+                       mode="mp:format-headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="inherit-from" select="$inherit-from"/>
+  </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="*" mode="mp:label-number" as="xs:integer">
-  <xsl:sequence select="count(preceding-sibling::*
-                              [node-name(.)=node-name(current())]) + 1"/>
+<xsl:template match="db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5"
+              as="item()*"
+              mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" select="tokenize($sections-inherit-from, '\s+')"/>
+
+  <xsl:apply-templates select="."
+                       mode="mp:format-headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="inherit-from" select="$inherit-from"/>
+  </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="db:figure|db:example|db:table"
-              mode="mp:label-number" as="xs:integer">
-  <xsl:variable name="count">
-    <xsl:number from="db:chapter|db:appendix
-                      |db:sect1|db:sect2|db:sect3
-                      |db:sect4|db:sect5|db:section"/>
+<xsl:template match="db:preface|db:chapter|db:appendix|db:partintro
+                     |db:dedication|db:colophon|db:acknowledgements
+                     |db:article
+                     |db:glossary|db:bibliography
+                     |db:index|db:setindex"
+              mode="m:headline-number"
+              as="item()*">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" select="tokenize($components-inherit-from, '\s+')"/>
+
+  <!--
+  <xsl:message select="local-name(.), $inherit-from,
+                       '============================================================'"/>
+  -->
+
+  <xsl:apply-templates select="."
+                       mode="mp:format-headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="inherit-from" select="$inherit-from"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="db:part|db:reference" as="item()*"
+              mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" select="tokenize($divisions-inherit-from, '\s+')"/>
+
+  <xsl:apply-templates select="."
+                       mode="mp:format-headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="inherit-from" select="$inherit-from"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="db:book" as="item()*"
+              mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" select="tokenize($books-inherit-from, '\s+')"/>
+  <xsl:apply-templates select="."
+                       mode="mp:format-headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="inherit-from" select="$inherit-from"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="db:set" as="item()*"
+              mode="m:headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" select="tokenize($sets-inherit-from, '\s+')"/>
+  <xsl:apply-templates select="."
+                       mode="mp:format-headline-number">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="inherit-from" select="$inherit-from"/>
+  </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="db:figure[parent::db:formalgroup]
+                     |db:table[parent::db:formalgroup]
+                     |db:example[parent::db:formalgroup]
+                     |db:equation[parent::db:formalgroup]"
+              mode="mp:format-headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" as="xs:string*"/>
+
+  <xsl:variable name="prefix" as="item()*">
+    <xsl:apply-templates select=".." mode="mp:format-headline-number">
+      <xsl:with-param name="purpose" select="$purpose"/>
+      <xsl:with-param name="inherit-from" select="$inherit-from"/>
+    </xsl:apply-templates>
   </xsl:variable>
-  <xsl:sequence select="xs:integer(($count, '1')[1])"/>
+
+  <xsl:variable name="number" as="item()*"
+                select="fp:number(.)"/>
+
+  <xsl:variable name="format">
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'number-format'"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
+  <xsl:if test="exists($number) and exists($format)">
+    <xsl:if test="exists($prefix)">
+      <xsl:sequence select="$prefix"/>
+      <span class="sep">
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'number-separator'"/>
+        </xsl:apply-templates>
+      </span>
+    </xsl:if>
+    <xsl:number value="$number" format="{$format}"/>
+  </xsl:if>
 </xsl:template>
 
-<xsl:template match="db:equation" mode="mp:label-number" as="xs:integer">
-  <xsl:variable name="ancestor" select="fp:nearest-relevant-ancestor(.)"/>
-  <xsl:variable name="eq"
-                select="if (preceding::db:equation[db:info/db:title])
-                        then preceding::db:equation[db:info/db:title]
-                             = $ancestor/descendant::db:equation[db:info/db:title]
-                        else ()"/>
-  <xsl:sequence select="count($eq)+1"/>
+<xsl:template match="*" mode="mp:format-headline-number">
+  <xsl:param name="purpose" as="xs:string" required="yes"/>
+  <xsl:param name="inherit-from" as="xs:string*"/>
+
+  <xsl:variable name="from" as="element()?">
+    <xsl:choose>
+      <xsl:when test="$inherit-from = 'section'
+                      and (ancestor::db:section|ancestor::db:sect1|ancestor::db:sect2
+                           |ancestor::db:sect3|ancestor::db:sect4|ancestor::db:sect5)">
+        <xsl:sequence
+            select="(ancestor::db:section|ancestor::db:sect1|ancestor::db:sect2
+                     |ancestor::db:sect3|ancestor::db:sect4|ancestor::db:sect5)[last()]"/>
+      </xsl:when>
+      <xsl:when test="$inherit-from = 'component'
+                      and (ancestor::db:preface|ancestor::db:chapter
+                           |ancestor::db:appendix|ancestor::db:partintro
+                           |ancestor::db:dedication|ancestor::db:colophon
+                           |ancestor::db:acknowledgements
+                           |ancestor::db:article|ancestor::db:refentry
+                           |ancestor::db:glossary|ancestor::db:bibliography
+                           |ancestor::db:index|ancestor::db:setindex)">
+        <xsl:sequence select="(ancestor::db:preface|ancestor::db:chapter
+                               |ancestor::db:appendix|ancestor::db:partintro
+                               |ancestor::db:dedication|ancestor::db:colophon
+                               |ancestor::db:acknowledgements
+                               |ancestor::db:article|ancestor::db:refentry
+                               |ancestor::db:glossary|ancestor::db:bibliography
+                               |ancestor::db:index|ancestor::db:setindex)[last()]"/>
+      </xsl:when>
+      <xsl:when test="$inherit-from = 'division'
+                      and (ancestor::db:part|ancestor::db:reference)">
+        <xsl:sequence select="(ancestor::db:part|ancestor::db:reference)[last()]"/>
+      </xsl:when>
+      <xsl:when test="$inherit-from = 'book' and ancestor::db:book">
+        <xsl:sequence select="ancestor::db:book[1]"/>
+      </xsl:when>
+      <xsl:when test="$inherit-from = 'set' and ancestor::db:set">
+        <xsl:sequence select="ancestor::db:set[1]"/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="label" as="item()*">
+    <xsl:apply-templates select="$from" mode="mp:compute-headline-label">
+      <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
+  <xsl:variable name="prefix" as="item()*">
+    <xsl:apply-templates select="$from" mode="mp:format-headline-number">
+      <xsl:with-param name="purpose" select="$purpose"/>
+      <xsl:with-param name="inherit-from" select="$inherit-from"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
+  <xsl:variable name="number" as="item()*"
+                select="fp:number(.)"/>
+
+  <!--
+  <xsl:message select="'FHN:', local-name(.), 'F:&quot;'||local-name($from)||'&quot;', 
+                       'L:&quot;'||string-join($label, ' ')|| '&quot;',
+                       'P:', $prefix, ' N:', $number, ':', $inherit-from"/>
+  -->
+
+  <xsl:variable name="format">
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'number-format'"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
+  <xsl:if test="exists($number) and exists($format)">
+    <xsl:if test="exists($label) and exists($prefix)">
+      <xsl:sequence select="$prefix"/>
+      <span class="sep">
+        <xsl:apply-templates select="." mode="m:gentext">
+          <xsl:with-param name="group" select="'number-separator'"/>
+        </xsl:apply-templates>
+      </span>
+    </xsl:if>
+    <xsl:number value="$number" format="{$format}"/>
+  </xsl:if>
 </xsl:template>
+
+<xsl:template name="tp:format-number" as="item()*">
+  <xsl:param name="prefix" as="item()*"/>
+
+  <xsl:variable name="number" select="fp:number(.)"/>
+
+  <xsl:variable name="format">
+    <xsl:apply-templates select="." mode="m:gentext">
+      <xsl:with-param name="group" select="'number-format'"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
+  <xsl:if test="exists($prefix) and exists($number)">
+    <xsl:sequence select="$prefix"/>
+    <span class="sep">
+      <xsl:apply-templates select="." mode="m:gentext">
+        <xsl:with-param name="group" select="'number-separator'"/>
+      </xsl:apply-templates>
+    </span>
+  </xsl:if>
+
+  <xsl:if test="exists($number) and exists($format)">
+    <xsl:number value="$number" format="{$format}"/>
+  </xsl:if>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:template match="*" as="item()*"
+              mode="mp:headline-number-prefix">
+  <xsl:param name="inherit-from" select="()"/>
+  <xsl:message>No headline number prefix for <xsl:value-of select="local-name(.)"/></xsl:message>
+  <xsl:sequence select="()"/>
+</xsl:template>
+
+<xsl:template match="db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5"
+              as="item()*" mode="mp:headline-number-prefix">
+  <xsl:param name="inherit-from" select="$sections-inherit-from"/>
+  <xsl:call-template name="tp:format-number">
+    <xsl:with-param name="prefix" as="item()*">
+      <xsl:if test="$inherit-from = ('section', 'component', 'division', 'book', 'set')">
+        <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix">
+          <xsl:with-param name="inherit-from" select="$inherit-from"/>
+        </xsl:apply-templates>
+      </xsl:if>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="db:preface|db:chapter|db:appendix|db:partintro
+                     |db:dedication|db:colophon|db:acknowledgements
+                     |db:article
+                     |db:glossary|db:bibliography
+                     |db:index|db:setindex"
+              mode="mp:headline-number-prefix"
+              as="item()*">
+  <xsl:param name="inherit-from" select="$components-inherit-from"/>
+  <xsl:if test="$inherit-from = ('component', 'division', 'book', 'set')">
+    <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix">
+      <xsl:with-param name="inherit-from" select="$inherit-from"/>
+    </xsl:apply-templates>
+    <xsl:value-of select="fp:number(.)"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="db:part|db:reference"
+              mode="mp:headline-number-prefix"
+              as="item()*">
+  <xsl:param name="inherit-from" select="$divisions-inherit-from"/>
+  <xsl:if test="$inherit-from = ('division', 'book', 'set')">
+    <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix">
+      <xsl:with-param name="inherit-from" select="$inherit-from"/>
+    </xsl:apply-templates>
+    <xsl:value-of select="fp:number(.)"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="db:book"
+              mode="mp:headline-number-prefix"
+              as="item()*">
+  <xsl:param name="inherit-from" select="$divisions-inherit-from"/>
+  <xsl:if test="$inherit-from = ('book', 'set')">
+    <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix">
+      <xsl:with-param name="inherit-from" select="$inherit-from"/>
+    </xsl:apply-templates>
+    <xsl:value-of select="fp:number(.)"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="db:set"
+              mode="mp:headline-number-prefix"
+              as="item()*">
+  <xsl:param name="inherit-from" select="$divisions-inherit-from"/>
+  <xsl:if test="$inherit-from = ('set')">
+    <xsl:apply-templates select="parent::*" mode="mp:headline-number-prefix">
+      <xsl:with-param name="inherit-from" select="$inherit-from"/>
+    </xsl:apply-templates>
+    <xsl:value-of select="fp:number(.)"/>
+  </xsl:if>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<!-- xxx -->
 
 <!-- Is there a clever XPath I'm overlooking? -->
 <xsl:function name="fp:nearest-relevant-ancestor" as="element()">

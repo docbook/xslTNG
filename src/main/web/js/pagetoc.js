@@ -13,20 +13,24 @@
 
   const html = document.querySelector("html");
   const main = document.querySelector("main");
-  const pagetoc = document.querySelector("nav.pagetoc div.tocwrapper");
+  const pagetoc = document.querySelector("nav.pagetoc");
+  const tocwrap = document.querySelector("nav.pagetoc div.tocwrapper");
 
   let dynamic = true;
   html.querySelectorAll("head script").forEach(script => {
     const data = script.getAttribute("data-dynamic-pagetoc");
     if (data) {
-      console.log("DATA:" + data);
       dynamic = (data == "true");
     }
   });
 
+  let sections = [];
   let tocstate = dynamic ? DECORATED : PLAIN;
   let tocclass = "active";
   let toclength = 0;
+  let cbcount = 0;
+  let hidden_section = false;
+  let nothing_to_reveal = HIDDEN;
 
   const findsections = function(parent) {
     const sections = [];
@@ -71,7 +75,7 @@
           case DECORATED:
             tocstate = PLAIN;
             btn.innerHTML = window.DocBook.pagetoc.plain;
-            pagetoc.querySelectorAll(".li.active").forEach(li => {
+            tocwrap.querySelectorAll(".li.active").forEach(li => {
               li.classList["remove"]('active');
               li.classList["add"]('plain');
             });
@@ -80,13 +84,13 @@
           case PLAIN:
             tocstate = HIDDEN;
             btn.innerHTML = window.DocBook.pagetoc.hidden;
-            pagetoc.style.display = "none";
+            tocwrap.style.display = "none";
             break;
           case HIDDEN:
             tocstate = DECORATED;
             btn.innerHTML = window.DocBook.pagetoc.decorated;
-            pagetoc.style.display = "block";
-            pagetoc.querySelectorAll(".li.plain").forEach(li => {
+            tocwrap.style.display = "block";
+            tocwrap.querySelectorAll(".li.plain").forEach(li => {
               li.classList["remove"]('plain');
               li.classList["add"]('active');
             });
@@ -94,18 +98,18 @@
             break;
           }
         });
-        pagetoc.parentNode.insertBefore(ctrl, pagetoc);
+        tocwrap.parentNode.insertBefore(ctrl, tocwrap);
       }
       const header = main.querySelector("header");
       const title = header && header.querySelector("h1,h2,h3,h4,h5,h6");
       if (title) {
         const div = document.createElement("div");
-        div.setAttribute("class", "li depth" + depth);
+        div.setAttribute("class", "li depth0 active");
         const anchor = document.createElement("a");
         anchor.setAttribute("href", "#");
         anchor.innerHTML = title.innerHTML;
         div.appendChild(anchor);
-        pagetoc.appendChild(div);
+        tocwrap.appendChild(div);
       }
     }
 
@@ -117,9 +121,28 @@
       anchor.setAttribute("href", "#" + section.id);
       anchor.innerHTML = section.title;
       div.appendChild(anchor);
-      pagetoc.appendChild(div);
+      tocwrap.appendChild(div);
       if (subsections) {
         maketoc(subsections, depth+1);
+      }
+    });
+  };
+
+  const nothingToReveal = function() {
+    if (nothing_to_reveal == HIDDEN) {
+      pagetoc.style.display = "none";
+      return;
+    }
+
+    let addRemove = nothing_to_reveal == PLAIN ? "remove" : "add";
+    sections.forEach((section) => {
+      const id = section.id;
+      if (id) {
+        // Get the link to this section's heading
+        const link = tocwrap.querySelector(`nav.pagetoc .li a[href="#${id}"]`);
+        if (link) {
+          link.parentNode.classList[addRemove](tocclass);
+        }
       }
     });
   };
@@ -141,7 +164,17 @@
       window.DocBook.pagetoc.hidden = "◄";
     }
 
-    const sections = findsections(main);
+    if (window.DocBook.pagetoc.nothing_to_reveal) {
+      if (window.DocBook.pagetoc.nothing_to_reveal === "hide") {
+        nothing_to_reveal = HIDDEN;
+      } else if (window.DocBook.pagetoc.nothing_to_reveal === "plain") {
+        nothing_to_reveal = PLAIN;
+      } else {
+        nothing_to_reveal = DECORATED;
+      }
+    }
+
+    sections = findsections(main);
     if (toclength > 1) {
       maketoc(sections, 0);
 
@@ -156,7 +189,7 @@
             }
 
             // Get the link to this section's heading
-            const link = pagetoc.querySelector(`nav.pagetoc .li a[href="#${id}"]`);
+            const link = tocwrap.querySelector(`nav.pagetoc .li a[href="#${id}"]`);
             if (!link) {
               return;
             }
@@ -165,6 +198,12 @@
             // section is visible
             const addRemove = section.intersectionRatio > 0 ? 'add' : 'remove';
             link.parentNode.classList[addRemove](tocclass);
+
+            hidden_section = hidden_section || (addRemove === "remove");
+            cbcount++;
+            if (cbcount == toclength && !hidden_section) {
+              nothingToReveal();
+            }
           });
         });
 
@@ -173,6 +212,8 @@
           observer.observe(section);
         });
       }
+    } else {
+      pagetoc.style.display = "none";
     }
   }
 })();

@@ -403,6 +403,7 @@
       <template match="self::db:article">%c</template>
       <template match="self::db:bibliography">%c</template>
       <template match="self::db:book">%c</template>
+      <template match="self::db:set">%c</template>
       <template match="self::db:colophon">%c</template>
       <template match="self::db:dedication">%c</template>
       <template match="self::db:formalgroup">%l%.%c</template>
@@ -460,8 +461,7 @@
       <template match="self::db:orderedlist">%c</template>
       <template match="self::db:partintro">%c</template>
       <template match="self::db:preface">%c</template>
-      <template match="self::db:procedure">%c</template>
-      <template match="self::db:procedure.formal">{Procedure} %l: %c</template>
+      <template match="self::db:procedure">{Procedure} %l%.%c</template>
       <template match="self::db:productionset">%c</template>
       <template match="self::db:productionset.formal">{ProductionSet} %l</template>
       <template match="self::db:qandadiv">%c</template>
@@ -557,8 +557,7 @@
       <template match="self::db:orderedlist">%c</template>
       <template match="self::db:partintro">%c</template>
       <template match="self::db:preface">%c</template>
-      <template match="self::db:procedure">%c</template>
-      <template match="self::db:procedure.formal">{Procedure} %l: %c</template>
+      <template match="self::db:procedure">{Procedure} %l%.%c</template>
       <template match="self::db:productionset">%c</template>
       <template match="self::db:productionset.formal">{ProductionSet} %l</template>
       <template match="self::db:qandadiv">%c</template>
@@ -585,6 +584,10 @@
       <template match="self::db:variablelist">%c</template>
       <template match="self::db:varlistentry"/>
       <template match="self::db:warning">%c</template>
+      <template match="self::db:formalgroup[db:equation]">{Equation} %l%.%c</template>
+      <template match="self::db:formalgroup[db:example]">{Example} %l%.%c</template>
+      <template match="self::db:formalgroup[db:figure]">{Figure} %l%.%c</template>
+      <template match="self::db:formalgroup[db:table]">{Table} %l%.%c</template>
       <template match="true()">%l%.%c</template>
    </group>
    <group name="subfigure-title">

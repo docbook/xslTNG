@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
-               stylesheet="../xslt/xspec-driver.xsl">
+               stylesheet="../xspec-xslt/xspec-driver.xsl">
 
 <!-- Tests:
      figure imagedata imageobject informalfigure mediaobject
@@ -25,6 +25,16 @@
 <x:scenario label="When transforming figure.004">
    <x:context href="../resources/xml/figure.004.xml"/>
    <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.004.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming figure.005">
+   <x:context href="../resources/xml/figure.005.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.005.html"/>
+</x:scenario>
+
+<x:scenario label="When transforming figure.006">
+   <x:context href="../resources/xml/figure.006.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/figure.006.html"/>
 </x:scenario>
 
 <x:scenario label="When transforming informalfigure.001">

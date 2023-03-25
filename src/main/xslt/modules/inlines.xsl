@@ -4,8 +4,10 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
@@ -798,9 +800,12 @@
 </xsl:template>
 
 <xsl:template match="processing-instruction('eval')" as="item()*">
-  <xsl:evaluate xpath="string(.)"
-                context-item="."
-                namespace-context="."/>
+  <xsl:if test="f:is-true($allow-eval)">
+    <xsl:evaluate xpath="string(.)"
+                  with-params="map:merge(($vp:static-parameters, $vp:dynamic-parameters))"
+                  context-item="."
+                  namespace-context="."/>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

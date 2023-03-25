@@ -28,6 +28,7 @@ html.js {
         top: 0;
         border-left: 1px solid #aaaaaa;
         padding-left: 0.25rem;
+        line-height: 1.5;
     }
 
     .pagetoc .ctrl {
@@ -40,54 +41,57 @@ html.js {
         text-align: right;
     }
 
-    .tocwrapper .li::before {
-        display: inline-block;
-        content: " ";
-        width: 0.75rem;
-    }
+    .tocwrapper {
+        .li::before {
+            display: inline-block;
+            content: " ";
+            width: 0.75rem;
+            text-indent: 0;
+        }
 
-    .tocwrapper .li.active::before {
-        content: "•";
-    }
+        .li.active::before {
+            content: "•";
+            text-indent: 0;
+        }
 
-    .tocwrapper .li {
-        /*border-left: 4px solid transparent;
-        padding-left: 2px;*/
-        color: var(--primary-variant-color);
-    }
+        .li {
+            color: var(--primary-variant-color);
+            margin-left: 1.5rem;
+            text-indent: -1.5rem;
+            margin-top: 0.25rem;
+        }
 
-    .tocwrapper .li.active {
-        /*border-left: 4px solid black;
-        background-color: var(--secondary-color);*/
-        color: var(--on-secondary-color);
-    }
+        .li.active {
+            color: var(--on-secondary-color);
+        }
 
-    .tocwrapper .depth1 {
-        padding-left: 1.5rem;
-    }
+        .depth1 {
+            padding-left: 1.5rem;
+        }
 
-    .tocwrapper .depth2 {
-        padding-left: 2.5rem;
-    }
+        .depth2 {
+            padding-left: 2.5rem;
+        }
+        
+        .depth3 {
+            padding-left: 3.5rem;
+            font-size: 80%;
+        }
 
-    .tocwrapper .depth3 {
-        padding-left: 3.5rem;
-        font-size: 80%;
-    }
+        .depth4 {
+            padding-left: 4.0rem;
+            font-size: 80%;
+        }
 
-    .tocwrapper .depth4 {
-        padding-left: 4.0rem;
-        font-size: 80%;
-    }
+        .depth5 {
+            padding-left: 4.5rem;
+            font-size: 80%;
+        }
 
-    .tocwrapper .depth5 {
-        padding-left: 4.5rem;
-        font-size: 80%;
-    }
-
-    .tocwrapper .depth6 {
-        padding-left: 5.0rem;
-        font-size: 80%;
+        .depth6 {
+            padding-left: 5.0rem;
+            font-size: 80%;
+        }
     }
 
     @media screen and (max-width: 80rem) {

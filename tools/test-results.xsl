@@ -8,9 +8,12 @@
 <xsl:output method="text" encoding="utf-8"/>
 <xsl:param name="test-drivers" as="xs:string*"/>
 
-<xsl:template match="/">
+<xsl:template name="xsl:initial-template">
+  <xsl:variable name="result-files"
+                select="collection('../build?match=.*-result.xml')"/>
+
   <xsl:variable name="totals" as="map(*)">
-    <xsl:iterate select="tokenize($test-drivers, '\s+')">
+    <xsl:iterate select="$result-files">
       <xsl:param name="totals" as="map(xs:string, xs:integer)"
                  select="map { 'total': 0,
                                'pending': 0,
@@ -20,10 +23,8 @@
         <xsl:sequence select="$totals"/>
       </xsl:on-completion>
 
-      <xsl:variable name="ruri"
-                    select="'../build/' || substring-before(., '.xspec') || '-result.xml'"/>
       <xsl:variable name="report"
-                    select="doc($ruri)/x:report"/>
+                    select="./x:report"/>
 
       <xsl:next-iteration>
         <xsl:with-param name="totals" as="map(xs:string, xs:integer)">

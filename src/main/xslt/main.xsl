@@ -24,6 +24,7 @@
 <xsl:import href="modules/errors.xsl"/>
 <xsl:import href="modules/head.xsl"/>
 <xsl:import href="modules/titles.xsl"/>
+<xsl:import href="modules/numbers.xsl"/>
 <xsl:import href="modules/units.xsl"/>
 <xsl:import href="modules/gentext.xsl"/>
 <xsl:import href="modules/l10n.xsl"/>

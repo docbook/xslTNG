@@ -5,13 +5,19 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://docbook.org/ns/docbook"
                 exclude-result-prefixes="db mg xs"
-                version="2.0">
+                version="3.0">
 
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 
-<xsl:template match="element()">
+<xsl:mode on-no-match="shallow-copy"/>
+
+<xsl:template match="db:reference">
   <xsl:copy>
-    <xsl:apply-templates select="@*,node()"/>
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates select="db:refentry[1]/preceding-sibling::node()"/>
+    <xsl:apply-templates select="db:refentry">
+      <xsl:sort select="db:refnamediv/db:refname[1]"/>
+    </xsl:apply-templates>
   </xsl:copy>
 </xsl:template>
 

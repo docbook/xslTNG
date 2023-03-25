@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
-               stylesheet="../xslt/xspec-driver.xsl">
+               stylesheet="../xspec-xslt/xspec-driver.xsl">
 
 <!-- Tests:
      procedure result step stepalternatives substeps xref
@@ -24,6 +24,11 @@
 <x:scenario label="When converting procedure.004">
   <x:context href="../resources/xml/procedure.004.xml"/>
   <x:expect label="expect appropriate procedure HTML markup" href="../resources/expected/procedure.004.html"/>
+</x:scenario>
+
+<x:scenario label="When converting procedure.005">
+  <x:context href="../resources/xml/procedure.005.xml"/>
+  <x:expect label="expect appropriate procedure HTML markup" href="../resources/expected/procedure.005.html"/>
 </x:scenario>
 
 </x:description>

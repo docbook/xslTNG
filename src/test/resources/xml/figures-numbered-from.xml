@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="5.0" xml:id="book">
+  <info>
+    <title>Figures numbered from <phrase><?eval $formal-objects-number-from?></phrase></title>
+    <abstract>
+      <para>Set to test sequential numbering of figures.</para>
+    </abstract>
+  </info>
+
+  <set>
+    <title>First inner set</title>
+
+    <book>
+      <title>First book in first set</title>
+      <preface xml:id="pref">
+        <title>Preface</title>
+        <para>This is just a test.</para>
+
+        <figure><title>First figure</title><para>…</para></figure>
+      </preface>
+
+      <chapter xml:id="ch01">
+        <title>First chapter</title>
+        <para>This is just a test.</para>
+
+        <figure><title>Second figure</title><para>…</para></figure>
+        <figure><title>Third figure</title><para>…</para></figure>
+      </chapter>
+
+      <part>
+        <title>First part</title>
+
+        <chapter xml:id="ch02">
+          <title>Second chapter</title>
+          <para>This is just a test.</para>
+          <formalgroup>
+            <title>Fourth figure</title>
+            <figure><title>subfigure</title><para>…</para></figure>
+          </formalgroup>
+        </chapter>
+        <chapter xml:id="ch03">
+          <title>Third chapter</title>
+          <para>This is just a test.</para>
+          <figure><title>Fifth figure</title><para>…</para></figure>
+        </chapter>
+        <appendix>
+          <title>First appendix</title>
+          <para>This is just a test.</para>
+          <figure><title>Sixth figure</title><para>…</para></figure>
+        </appendix>
+      </part>
+
+      <reference>
+        <title>First reference</title>
+        <refentry>
+          <refnamediv>
+            <refname>First_refentry</refname>
+            <refpurpose>An example refentry</refpurpose>
+          </refnamediv>
+          <refsection>
+            <title>First refsection</title>
+            <para>This is just a test.</para>
+            <figure><title>Seventh figure</title><para>…</para></figure>
+          </refsection>
+        </refentry>
+        <refentry>
+          <refnamediv>
+            <refname>Second_refentry</refname>
+            <refpurpose>A second example refentry</refpurpose>
+          </refnamediv>
+          <refsection>
+            <title>First refsection</title>
+            <para>This is just a test.</para>
+            <figure><title>Eighth figure</title><para>…</para></figure>
+          </refsection>
+          <refsection>
+            <title>Second refsection</title>
+            <para>This is just a test.</para>
+            <figure><title>Ninth figure</title><para>…</para></figure>
+          </refsection>
+        </refentry>
+      </reference>
+
+      <chapter>
+        <title>Fourth chapter</title>
+        <para>This is just a test.</para>
+        <figure><title>Tenth figure</title><para>…</para></figure>
+      </chapter>
+      <appendix>
+        <title>Second appendix</title>
+        <para>This is just a test.</para>
+        <figure><title>Eleventh figure</title><para>…</para></figure>
+        <section>
+          <title>First section</title>
+          <figure><title>Twelfth figure</title><para>…</para></figure>
+        </section>
+      </appendix>
+    </book>
+    <book>
+      <title>Second book in first set</title>
+      <preface>
+        <title>Preface</title>
+        <para>This is just a test.</para>
+
+        <figure><title>Thirteenth figure</title><para>…</para></figure>
+      </preface>
+    </book>
+  </set>
+  <set>
+    <title>Second inner set</title>
+    <book>
+      <title>First book in second set</title>
+      <preface>
+        <title>Preface</title>
+        <para>This is just a test.</para>
+
+        <figure><title>Fourteenth figure</title><para>…</para></figure>
+      </preface>
+    </book>
+  </set>
+</set>

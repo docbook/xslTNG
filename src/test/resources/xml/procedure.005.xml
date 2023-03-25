@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+<info>
+<title>Unit Test: titles.001.xml</title>
+<abstract xml:id="abstract">
+<title>An abstract</title>
+<para>…</para>
+</abstract>
+</info>
+
+<part xml:id="part">
+<title>The Main Part</title>
+<partintro xml:id="partintro">
+<title>The part intro</title>
+<para>…</para>
+</partintro>
+
+<chapter xml:id="ch1">
+<title>One<indexterm><primary>one</primary>
+</indexterm> <link xlink:href="https://nwalsh.com/">link</link></title>
+
+<equation xml:id="eq">
+<title>Equation</title>
+<mathphrase>x<superscript>n</superscript>
++ y<superscript>n</superscript>
+≠ z<superscript>n</superscript>
+∀ n ≠ 2</mathphrase>
+</equation>
+
+<procedure xml:id="procedure">
+<title>Procedure</title>
+<step><para>First</para></step>
+<step xml:id="step2">
+<para>Second</para>
+<substeps>
+<step>
+<para>Substep</para>
+<substeps>
+<step xml:id="subsubstep">
+<para>Sub-substep
+</para>
+</step>
+</substeps>
+</step>
+</substeps>
+</step>
+<step xml:id="step3">
+<title>Third step</title>
+<para>…</para>
+</step>
+</procedure>
+
+<para>The following procedure does not have a title.</para>
+
+<procedure xml:id="informal">
+<step><para>First</para></step>
+<step>
+<para>Second</para>
+<substeps>
+<step>
+<para>Substep</para>
+<substeps>
+<step>
+<para>Sub-substep
+</para>
+</step>
+</substeps>
+</step>
+</substeps>
+</step>
+<step>
+<title>Third step</title>
+<para>…</para>
+</step>
+</procedure>
+</chapter>
+</part>
+</book>
