@@ -10,15 +10,8 @@
 <xsl:output method="html" encoding="utf-8" indent="no"
             omit-xml-declaration="yes"/>
 
-<xsl:param name="test-drivers" as="xs:string"/>
-
-<xsl:variable name="test-reports">
-  <xsl:for-each select="tokenize($test-drivers, ' ')">
-    <xsl:variable name="report"
-                  select="'../build/' || substring-before(., '.xspec') || '-result.xml'"/>
-    <xsl:sequence select="doc($report)/*"/>
-  </xsl:for-each>
-</xsl:variable>
+<xsl:variable name="test-reports"
+              select="collection('../build?match=.*-result.xml')"/>
 
 <xsl:variable name="Z" select="xs:dayTimeDuration('PT0H')"/>
 
