@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="5.0" xml:id="book">
+  <title>Outer set</title>
+
+  <set>
+    <title>First inner set</title>
+
+    <book>
+      <title>First book</title>
+
+      <chapter><title>First chapter (before part)</title><para>…</para></chapter>
+      <chapter><title>Second chapter (before part)</title><para>…</para></chapter>
+
+      <part>
+        <title>First part</title>
+        <chapter><title>Third chapter (first in first part)</title><para>…</para></chapter>
+        <chapter><title>Fourth chapter (second in first part)</title><para>…</para></chapter>
+      </part>
+
+      <chapter><title>Fifth chapter (between parts)</title><para>…</para></chapter>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Six chapter (first in second part)</title><para>…</para></chapter>
+        <chapter><title>Seventh chapter (second in second part)</title><para>…</para></chapter>
+      </part>
+
+      <chapter><title>Eighth chapter (after part)</title><para>…</para></chapter>
+      <chapter><title>Ninth chapter (after part)</title><para>…</para></chapter>
+    </book>
+
+    <book>
+      <title>Second book</title>
+
+      <chapter><title>First chapter (before part)</title><para>…</para></chapter>
+      <chapter><title>Second chapter (before part)</title><para>…</para></chapter>
+
+      <part>
+        <title>First part</title>
+        <chapter><title>Third chapter (first in first part)</title><para>…</para></chapter>
+        <chapter><title>Fourth chapter (second in first part)</title><para>…</para></chapter>
+      </part>
+
+      <chapter><title>Fifth chapter (between parts)</title><para>…</para></chapter>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Six chapter (first in second part)</title><para>…</para></chapter>
+        <chapter><title>Seventh chapter (second in second part)</title><para>…</para></chapter>
+      </part>
+
+      <chapter><title>Eighth chapter (after part)</title><para>…</para></chapter>
+      <chapter><title>Ninth chapter (after part)</title><para>…</para></chapter>
+    </book>
+
+  </set>
+
+  <set>
+    <title>Second inner set</title>
+
+    <book>
+      <title>First book</title>
+
+      <chapter><title>First chapter (before part)</title><para>…</para></chapter>
+      <chapter><title>Second chapter (before part)</title><para>…</para></chapter>
+
+      <part>
+        <title>First part</title>
+        <chapter><title>Third chapter (first in first part)</title><para>…</para></chapter>
+        <chapter><title>Fourth chapter (second in first part)</title><para>…</para></chapter>
+      </part>
+
+      <chapter><title>Fifth chapter (between parts)</title><para>…</para></chapter>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Six chapter (first in second part)</title><para>…</para></chapter>
+        <chapter><title>Seventh chapter (second in second part)</title><para>…</para></chapter>
+      </part>
+
+      <chapter><title>Eighth chapter (after part)</title><para>…</para></chapter>
+      <chapter><title>Ninth chapter (after part)</title><para>…</para></chapter>
+    </book>
+  </set>
+</set>

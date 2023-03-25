@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:f="http://docbook.org/ns/docbook/functions"
                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-               stylesheet="../xslt/xspec-driver.xsl">
+               stylesheet="../xspec-xslt/xspec-driver.xsl">
 
 <x:scenario label="When computing the length 1.0in">
    <x:call function="f:parse-length">

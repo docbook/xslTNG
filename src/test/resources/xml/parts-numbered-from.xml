@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="5.0" xml:id="book">
+  <title>Outer set</title>
+
+  <set>
+    <title>First inner set</title>
+
+    <book>
+      <title>First book</title>
+
+      <part>
+        <title>First part</title>
+        <chapter><title>First chapter (first in first part)</title><para>…</para></chapter>
+      </part>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Second chapter (first in second part)</title><para>…</para></chapter>
+      </part>
+    </book>
+
+    <book>
+      <title>Second book</title>
+
+      <part>
+        <title>First part</title>
+        <chapter><title>First chapter (first in first part)</title><para>…</para></chapter>
+      </part>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Second chapter (first in second part)</title><para>…</para></chapter>
+      </part>
+    </book>
+  </set>
+
+  <set>
+    <title>Second inner set</title>
+
+    <book>
+      <title>First book</title>
+
+      <part>
+        <title>First part</title>
+        <chapter><title>First chapter (first in first part)</title><para>…</para></chapter>
+      </part>
+
+      <part>
+        <title>Second part</title>
+        <chapter><title>Second chapter (first in second part)</title><para>…</para></chapter>
+      </part>
+    </book>
+  </set>
+</set>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns="http://docbook.org/ns/docbook"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="5.0" xml:id="book">
+  <info>
+    <title>Outer set</title>
+  </info>
+
+  <set>
+    <title>First inner set</title>
+
+    <book>
+      <title>First book in first set</title>
+
+  <preface xml:id="pref">
+    <title>Preface</title>
+    <para>This is just a test.</para>
+
+    <figure><title>First figure</title><para>…</para></figure>
+    <table><title>First table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>First example</title><para>…</para></example>
+    <equation><title>First equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <equation>
+      <mathphrase>annoy-me = equation-without-a-title</mathphrase>
+    </equation>
+    <procedure>
+      <title>First procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+    <procedure>
+      <step><para>Also annoying, a procedure without a title</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </preface>
+
+  <chapter xml:id="ch01">
+    <title>First chapter</title>
+    <para>This is just a test.</para>
+
+    <figure><title>Second figure</title><para>…</para></figure>
+    <figure><title>Third figure</title><para>…</para></figure>
+    <table><title>Second table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>Second example</title><para>…</para></example>
+    <equation><title>Second equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Second procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </chapter>
+
+  <part>
+    <title>First part</title>
+
+    <chapter xml:id="ch02">
+      <title>Second chapter</title>
+      <para>This is just a test.</para>
+      <figure><title>Fourth figure</title><para>…</para></figure>
+      <table><title>Third table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Third example</title><para>…</para></example>
+      <equation><title>Third equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+    <procedure>
+      <title>Third procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+    </chapter>
+    <chapter xml:id="ch03">
+      <title>Third chapter</title>
+      <para>This is just a test.</para>
+      <figure><title>Fifth figure</title><para>…</para></figure>
+      <table><title>Fourth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Fourth example</title><para>…</para></example>
+      <equation><title>Fourth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+      <procedure>
+        <title>Fourth procedure</title>
+        <step><para>First step</para></step>
+        <step><para>Second step</para></step>
+      </procedure>
+    </chapter>
+    <appendix>
+      <title>First appendix</title>
+      <para>This is just a test.</para>
+      <figure><title>Sixth figure</title><para>…</para></figure>
+      <table><title>Fifth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Fifth example</title><para>…</para></example>
+      <equation><title>Fifth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+      <procedure>
+        <title>Fifth procedure</title>
+        <step><para>First step</para></step>
+        <step><para>Second step</para></step>
+      </procedure>
+    </appendix>
+  </part>
+
+  <reference>
+    <title>First reference</title>
+    <refentry>
+      <refnamediv>
+        <refname>First_refentry</refname>
+        <refpurpose>An example refentry</refpurpose>
+      </refnamediv>
+      <refsection>
+        <title>First refsection</title>
+        <para>This is just a test.</para>
+        <figure><title>Seventh figure</title><para>…</para></figure>
+        <table><title>Sixth table</title>
+        <tgroup cols="2">
+          <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+        </tgroup>
+        </table>
+        <example><title>Sixth example</title><para>…</para></example>
+        <equation><title>Sixth equation</title>
+        <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+        </equation>
+        <procedure>
+          <title>Sixth procedure</title>
+          <step><para>First step</para></step>
+          <step><para>Second step</para></step>
+        </procedure>
+      </refsection>
+    </refentry>
+    <refentry>
+      <refnamediv>
+        <refname>Second_refentry</refname>
+        <refpurpose>A second example refentry</refpurpose>
+      </refnamediv>
+      <refsection>
+        <title>First refsection</title>
+        <para>This is just a test.</para>
+        <figure><title>Eighth figure</title><para>…</para></figure>
+        <table><title>Seventh table</title>
+        <tgroup cols="2">
+          <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+        </tgroup>
+        </table>
+        <example><title>Seventh example</title><para>…</para></example>
+        <equation><title>Seventh equation</title>
+        <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+        </equation>
+        <procedure>
+          <title>Seventh procedure</title>
+          <step><para>First step</para></step>
+          <step><para>Second step</para></step>
+        </procedure>
+      </refsection>
+      <refsection>
+        <title>Second refsection</title>
+        <para>This is just a test.</para>
+        <figure><title>Ninth figure</title><para>…</para></figure>
+        <table><title>Eighth table</title>
+        <tgroup cols="2">
+          <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+        </tgroup>
+        </table>
+        <example><title>Eighth example</title><para>…</para></example>
+        <equation><title>Eighth equation</title>
+        <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+        </equation>
+        <procedure>
+          <title>Eighth procedure</title>
+          <step><para>First step</para></step>
+          <step><para>Second step</para></step>
+        </procedure>
+      </refsection>
+    </refentry>
+  </reference>
+
+  <chapter>
+    <title>Fourth chapter</title>
+    <para>This is just a test.</para>
+    <figure><title>Tenth figure</title><para>…</para></figure>
+    <table><title>Ninth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>Ninth example</title><para>…</para></example>
+    <equation><title>Ninth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Ninth procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </chapter>
+  <appendix>
+    <title>Second appendix</title>
+    <para>This is just a test.</para>
+    <figure><title>Eleventh figure</title><para>…</para></figure>
+    <table><title>Tenth table</title>
+    <tgroup cols="2">
+      <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+    </tgroup>
+    </table>
+    <example><title>Tenth example</title><para>…</para></example>
+    <equation><title>Tenth equation</title>
+    <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Tenth procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+    <section>
+      <title>First section</title>
+      <figure><title>Twelfth figure</title><para>…</para></figure>
+      <table><title>Eleventh table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Eleventh example</title><para>…</para></example>
+      <equation><title>Eleventh equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+      <procedure>
+        <title>Eleventh procedure</title>
+        <step><para>First step</para></step>
+        <step><para>Second step</para></step>
+      </procedure>
+    </section>
+  </appendix>
+</book>
+
+    <book>
+      <title>Second book in first set</title>
+
+  <preface>
+    <title>Preface</title>
+    <para>This is just a test.</para>
+
+    <figure><title>Thirteenth figure</title><para>…</para></figure>
+    <table><title>Twelfth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>Twelfth example</title><para>…</para></example>
+    <equation><title>Telfth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <equation>
+      <mathphrase>annoy-me = equation-without-a-title</mathphrase>
+    </equation>
+    <procedure>
+      <title>Twelfth procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </preface>
+    </book>
+</set>
+
+  <set>
+    <title>Second inner set</title>
+
+    <book>
+      <title>First book in second set</title>
+
+  <preface>
+    <title>Preface</title>
+    <para>This is just a test.</para>
+
+    <figure><title>Fourteenth figure</title><para>…</para></figure>
+    <table><title>Thirteenth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>Thirteenth example</title><para>…</para></example>
+    <equation><title>Thirteenth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Thirteenth procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </preface>
+    </book>
+  </set>
+</set>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+  <info>
+    <title>
+      <phrase condition="NNN">Unit Test: NNN book.001</phrase>
+      <phrase condition="NNI">Unit Test: NNI book.001</phrase>
+      <phrase condition="NIN">Unit Test: NIN book.001</phrase>
+      <phrase condition="NII">Unit Test: NII book.001</phrase>
+      <phrase condition="INN">Unit Test: INN book.001</phrase>
+      <phrase condition="INI">Unit Test: INI book.001</phrase>
+      <phrase condition="IIN">Unit Test: IIN book.001</phrase>
+      <phrase condition="III">Unit Test: III book.001</phrase>
+    </title>
+    <abstract>
+      <para condition="NNN">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, there
+      are no inherited components.</para>
+      <para condition="NNI">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, section
+      numbers are inherited.</para>
+      <para condition="NIN">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, component
+      numbers are inherited.</para>
+      <para condition="NII">Book to test sequential numbering of
+      parts, components, and formal objects. In this book component and
+      section numbers are inherited.</para>
+      <para condition="INN">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, division
+      numbers are inherited.</para>
+      <para condition="INI">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, division and
+      section numbers are inherited.</para>
+      <para condition="IIN">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, division and
+      component numbers are in herited.</para>
+      <para condition="III">Book to test sequential numbering of
+      parts, components, and formal objects. In this book, division,
+      component, and section numbers are inherited.</para>
+    </abstract>
+  </info>
+
+  <preface xml:id="pref">
+    <title>Preface</title>
+    <para>This is just a test.</para>
+
+    <figure><title>First figure</title><para>…</para></figure>
+    <table><title>First table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>First example</title><para>…</para></example>
+    <equation><title>First equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <equation>
+      <mathphrase>annoy-me = equation-without-a-title</mathphrase>
+    </equation>
+    <procedure>
+      <title>First procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </preface>
+
+  <chapter xml:id="ch01">
+    <title>First chapter</title>
+    <para>This is just a test.</para>
+
+    <figure><title>Second figure</title><para>…</para></figure>
+    <figure><title>Third figure</title><para>…</para></figure>
+    <table><title>Second table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>Second example</title><para>…</para></example>
+    <equation><title>Second equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Second procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </chapter>
+
+  <part>
+    <title>First part</title>
+
+    <chapter xml:id="ch02">
+      <title>Second chapter</title>
+      <para>This is just a test.</para>
+      <figure><title>Fourth figure</title><para>…</para></figure>
+      <table><title>Third table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Third example</title><para>…</para></example>
+      <equation><title>Third equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+    <procedure>
+      <title>Third procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+    </chapter>
+    <chapter xml:id="ch03">
+      <title>Third chapter</title>
+      <para>This is just a test.</para>
+      <figure><title>Fifth figure</title><para>…</para></figure>
+      <table><title>Fourth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Fourth example</title><para>…</para></example>
+      <equation><title>Fourth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+      <procedure>
+        <title>Fourth procedure</title>
+        <step><para>First step</para></step>
+        <step><para>Second step</para></step>
+      </procedure>
+    </chapter>
+    <appendix>
+      <title>First appendix</title>
+      <para>This is just a test.</para>
+      <figure><title>Sixth figure</title><para>…</para></figure>
+      <table><title>Fifth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Fifth example</title><para>…</para></example>
+      <equation><title>Fifth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+      <procedure>
+        <title>Fifth procedure</title>
+        <step><para>First step</para></step>
+        <step><para>Second step</para></step>
+      </procedure>
+
+    <section>
+      <title>First section in part</title>
+      <para>…</para>
+    </section>
+    <section>
+      <title>Second section in part</title>
+      <para>…</para>
+      <section>
+        <title>Second section, first subsection</title>
+        <para>…</para>
+      </section>
+      <section>
+        <title>Second section, second subsection</title>
+        <para>…</para>
+      </section>
+    </section>
+    </appendix>
+  </part>
+
+  <reference>
+    <title>First reference</title>
+    <refentry>
+      <refnamediv>
+        <refname>First_refentry</refname>
+        <refpurpose>An example refentry</refpurpose>
+      </refnamediv>
+      <refsection>
+        <title>First refsection</title>
+        <para>This is just a test.</para>
+        <figure><title>Seventh figure</title><para>…</para></figure>
+        <table><title>Sixth table</title>
+        <tgroup cols="2">
+          <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+        </tgroup>
+        </table>
+        <example><title>Sixth example</title><para>…</para></example>
+        <equation><title>Sixth equation</title>
+        <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+        </equation>
+        <procedure>
+          <title>Sixth procedure</title>
+          <step><para>First step</para></step>
+          <step><para>Second step</para></step>
+        </procedure>
+      </refsection>
+    </refentry>
+    <refentry>
+      <refnamediv>
+        <refname>Second_refentry</refname>
+        <refpurpose>A second example refentry</refpurpose>
+      </refnamediv>
+      <refsection>
+        <title>First refsection</title>
+        <para>This is just a test.</para>
+        <figure><title>Eighth figure</title><para>…</para></figure>
+        <table><title>Seventh table</title>
+        <tgroup cols="2">
+          <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+        </tgroup>
+        </table>
+        <example><title>Seventh example</title><para>…</para></example>
+        <equation><title>Seventh equation</title>
+        <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+        </equation>
+        <procedure>
+          <title>Seventh procedure</title>
+          <step><para>First step</para></step>
+          <step><para>Second step</para></step>
+        </procedure>
+      </refsection>
+      <refsection>
+        <title>Second refsection</title>
+        <para>This is just a test.</para>
+        <figure><title>Ninth figure</title><para>…</para></figure>
+        <table><title>Eighth table</title>
+        <tgroup cols="2">
+          <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+        </tgroup>
+        </table>
+        <example><title>Eighth example</title><para>…</para></example>
+        <equation><title>Eighth equation</title>
+        <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+        </equation>
+        <procedure>
+          <title>Eighth procedure</title>
+          <step><para>First step</para></step>
+          <step><para>Second step</para></step>
+        </procedure>
+      </refsection>
+    </refentry>
+  </reference>
+
+  <chapter>
+    <title>Fourth chapter</title>
+    <para>This is just a test.</para>
+    <figure><title>Tenth figure</title><para>…</para></figure>
+    <table><title>Ninth table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+    </table>
+    <example><title>Ninth example</title><para>…</para></example>
+    <equation><title>Ninth equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Ninth procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+  </chapter>
+  <appendix>
+    <title>Second appendix</title>
+    <para>This is just a test.</para>
+    <figure><title>Eleventh figure</title><para>…</para></figure>
+    <table><title>Tenth table</title>
+    <tgroup cols="2">
+      <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+    </tgroup>
+    </table>
+    <example><title>Tenth example</title><para>…</para></example>
+    <equation><title>Tenth equation</title>
+    <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+    </equation>
+    <procedure>
+      <title>Tenth procedure</title>
+      <step><para>First step</para></step>
+      <step><para>Second step</para></step>
+    </procedure>
+    <section>
+      <title>First section</title>
+      <figure><title>Twelfth figure</title><para>…</para></figure>
+      <table><title>Eleventh table</title>
+      <tgroup cols="2">
+        <tbody><row><entry>Some</entry><entry>Row</entry></row></tbody>
+      </tgroup>
+      </table>
+      <example><title>Eleventh example</title><para>…</para></example>
+      <equation><title>Eleventh equation</title>
+      <mathphrase>E=mc<superscript>2</superscript></mathphrase>
+      </equation>
+      <procedure>
+        <title>Eleventh procedure</title>
+        <step><para>First step</para></step>
+        <step><para>Second step</para></step>
+      </procedure>
+    </section>
+    <section>
+      <title>Second section</title>
+      <para>…</para>
+      <section>
+        <title>Second section, first subsection</title>
+        <para>…</para>
+      </section>
+      <section>
+        <title>Second section, second subsection</title>
+        <para>…</para>
+      </section>
+    </section>
+  </appendix>
+</book>

@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
-   <title>Article wrapper</title>
-   <para>Test list continuation. And cross-references;
-item “2”: <xref linkend="i2"/> and item “4”: <xref linkend="i4"/>.</para>
-   <orderedlist spacing="compact">
-      <listitem>
-         <simpara>First item</simpara>
-      </listitem>
-      <listitem xml:id="i2">
-         <simpara>Second item</simpara>
-      </listitem>
-      <listitem>
-         <simpara>Third item</simpara>
-      </listitem>
-   </orderedlist>
-   <para>And then a break occurs...a break in my sanity, apparently,
+<title>Unit test: orderedlist.003.html</title>
+
+<para>Test list continuation. And cross-references;
+item “2”: <xref linkend="i2"/>,
+item “4”: <xref linkend="i4"/>, and
+item “5.3”: <xref linkend="i5.3"/>.</para>
+
+<orderedlist spacing="compact">
+   <listitem>
+      <simpara>First item</simpara>
+   </listitem>
+   <listitem xml:id="i2">
+      <simpara>Second item</simpara>
+   </listitem>
+   <listitem>
+      <simpara>Third item</simpara>
+   </listitem>
+</orderedlist>
+
+<para>And then a break occurs...a break in my sanity, apparently,
 because changing the numeration style across a “continues” break seems
 really stupid. But this a unit test, after all. Stupid is
 allowed.</para>
-   <orderedlist numeration="upperalpha" continuation="continues" spacing="compact">
-      <listitem xml:id="i4">
-         <simpara>Fourth item</simpara>
-      </listitem>
-      <listitem>
-         <simpara>Fifth item</simpara>
-      </listitem>
-      <listitem>
-         <simpara>Sixth item</simpara>
-      </listitem>
-   </orderedlist>
+
+<orderedlist numeration="upperalpha" continuation="continues" spacing="compact">
+   <listitem xml:id="i4">
+      <simpara>Fourth item</simpara>
+   </listitem>
+   <listitem>
+      <simpara>Fifth item</simpara>
+      <orderedlist spacing="compact">
+        <listitem>
+          <simpara>Fifth/First item</simpara>
+        </listitem>
+        <listitem>
+          <simpara>Fifth/Second item</simpara>
+        </listitem>
+        <listitem xml:id="i5.3">
+          <simpara>Fifth/Third item</simpara>
+        </listitem>
+      </orderedlist>
+   </listitem>
+   <listitem>
+      <simpara>Sixth item</simpara>
+   </listitem>
+</orderedlist>
+
 </article>
