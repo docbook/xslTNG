@@ -5220,4 +5220,35 @@ inherit from.</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>unwrap-paragraphs</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.0.13</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Attempt to unwrap paragraphs that contain block elements?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>DocBook allows “block elements” (tables, figures, etc.) inside paragraphs
+or between paragraphs. The question of whether or not a table, figure, etc. is part
+of a paragraph is an editorial one. If you put the block element in the
+DocBook <tag>para</tag>, it will be in the resulting HTML
+<tag namespace="http://www.w3.org/1999/xhtml">p</tag> element.</para>
+<para>Except, that’s not valid HTML. HTML deprives you of the editorial choice.
+If <parameter>unwrap-paragraphs</parameter> <glossterm>is true</glossterm>, the
+stylesheets will attempt to unwrap block elements inside paragraphs, producing
+a sequence of paragraphs and blocks.</para>
+<para>Note that with this option, a
+<tag namespace="http://www.w3.org/1999/xhtml">p</tag> element identified
+with an ID attribute is not
+guaranteed to contain all of the content that the DocBook paragraph
+contained.</para>
+</refsection>
+</refentry>
+
 </reference>

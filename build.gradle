@@ -687,6 +687,10 @@ fileTree(dir: "${projectDir}/src/test/resources/xml",
     stylesheetParams['profile-outputformat'] = 'online'
   }
 
+  if (base == 'para.002') {
+    stylesheetParams['unwrap-paragraphs'] = true
+  }
+
   if (base.startsWith('remark.')) {
     stylesheetParams['show-remarks'] = true
   }
@@ -1919,7 +1923,6 @@ task coverageReport(type: SaxonXsltTask,
   parameters (
     "test-drivers": testDrivers.join(" ")
   )
-  println(testDrivers)
 }
 formattingTests.dependsOn reportResults
 formattingTests.dependsOn coverageReport

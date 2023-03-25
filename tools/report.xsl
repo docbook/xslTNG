@@ -102,6 +102,8 @@
           <xsl:for-each select="$test-reports//x:scenario/input-wrap/x:context[@href]">
             <xsl:sort select="substring(../../@id, 9)" data-type="number"/>
 
+            <xsl:message select="'Test report:', position()"/>
+
             <xsl:variable name="id" select="../../@id/string()"/>
             <xsl:variable name="doc"
                           select="ancestor::x:report[1]/@xspec/string()"/>
@@ -115,10 +117,18 @@
                                   then '/generated-xml/'
                                   else '/xml/'"/>
 
+            <xsl:message select="'D:', $doc, 'S:', $segment"/>
+
             <xsl:variable name="file"
                           select="substring-before(
                                      substring-after(@href, $segment), '.xml')"/>
+
+            <xsl:message select="'FILE:', $file"/>
+
             <xsl:variable name="key" select="../../@id || '-expect1'"/>
+            
+            <xsl:message select="'KEY:', $key, count($key), count($test-reports)"/>
+
             <xsl:variable name="test" select="key('test', $key, $test-reports)"/>
             <tr class="{if ($test/@successful = 'true')
                         then 'pass'

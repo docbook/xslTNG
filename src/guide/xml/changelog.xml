@@ -9,6 +9,10 @@
 <para>This is still a pre-release; see <link linkend="r212">2.0.12</link>.</para>
 <itemizedlist>
 <listitem>
+<para>Added a <parameter>unwrap-paragraphs</parameter> parameter.
+</para>
+</listitem>
+<listitem>
 <para>Completely reworked how numbering of elements is performed. See
 <xref linkend="numeration"/>. It’s a bit more complicated now, but it’s also
 more flexible and better tested. The default numeration should be the same
