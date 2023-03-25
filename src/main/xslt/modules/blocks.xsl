@@ -49,7 +49,73 @@
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="db:para|db:simpara">
+<xsl:template match="db:para">
+  <xsl:choose>
+    <xsl:when test="empty(*) or not(f:is-true($unwrap-paragraphs))">
+      <p>
+        <xsl:apply-templates select="." mode="m:attributes"/>
+        <xsl:apply-templates/>
+      </p>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:iterate select="node()">
+        <xsl:param name="p" as="element(h:p)"><p/></xsl:param>
+        <xsl:choose>
+          <xsl:when test="self::db:blockquote|self::db:calloutlist|self::db:caution
+                          |self::db:classsynopsis|self::db:cmdsynopsis
+                          |self::db:constructorsynopsis|self::db:danger
+                          |self::db:destructorsynopsis|self::db:epigraph
+                          |self::db:equation|self::db:example|self::db:fieldsynopsis
+                          |self::db:figure|self::db:funcsynopsis|self::db:glosslist
+                          |self::db:important|self::db:informalequation
+                          |self::db:informalexample|self::db:informalfigure
+                          |self::db:informaltable|self::db:itemizedlist
+                          |self::db:mediaobject|self::db:methodsynopsis
+                          |self::db:msgset|self::db:note|self::db:ooclass
+                          |self::db:ooexception|self::db:oointerface|self::db:orderedlist
+                          |self::db:procedure|self::db:productionset
+                          |self::db:programlistingco|self::db:qandaset|self::db:revhistory
+                          |self::db:screenco|self::db:screenshot|self::db:segmentedlist
+                          |self::db:sidebar|self::db:table|self::db:tip
+                          |self::db:variablelist|self::db:warning">
+            <xsl:if test="not(empty($p/node()))
+                          and not(normalize-space(string($p)) = '')">
+              <xsl:sequence select="$p"/>
+            </xsl:if>
+            <xsl:apply-templates select="."/>
+            <xsl:next-iteration>
+              <xsl:with-param name="p" as="element(h:p)"><p/></xsl:with-param>
+            </xsl:next-iteration>
+          </xsl:when>
+          <xsl:when test="not(following-sibling::node())">
+            <xsl:variable name="last-p" as="element(h:p)">
+              <p>
+                <xsl:sequence select="$p/node()"/>
+                <xsl:apply-templates select="."/>
+              </p>
+            </xsl:variable>
+            <xsl:if test="not(empty($p/node()))
+                          and not(normalize-space(string($p)) = '')">
+              <xsl:sequence select="$p"/>
+            </xsl:if>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:next-iteration>
+              <xsl:with-param name="p" as="element(h:p)">
+                <p>
+                  <xsl:sequence select="$p/node()"/>
+                  <xsl:apply-templates select="."/>
+                </p>
+              </xsl:with-param>
+            </xsl:next-iteration>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:iterate>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="db:simpara">
   <p>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates/>
