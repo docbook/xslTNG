@@ -1037,7 +1037,7 @@ in case <emphasis>they</emphasis> find it distracting.)</para>
 </varlistentry>
 <varlistentry><term><parameter>pagetoc-js</parameter></term>
 <listitem>
-<para>This is the JavaScript taht implements the on-page ToC. Changing this
+<para>This is the JavaScript that implements the on-page ToC. Changing this
 parameter allows you to replace it with JavaScript of your own invention.
 </para>
 </listitem>
@@ -1052,6 +1052,54 @@ simply add overriding rules later in the cascade.)
 </listitem>
 </varlistentry>
 </variablelist>
+
+<para>There is also a JavaScript API that you can use to control some features
+of the presentation. This is done by adding a <code>DocBook</code> property to
+the browser’s <code>window</code> object. The value of the <code>DocBook</code> property
+should be a map. To control the on-page ToC, add a <code>pagetoc</code> property
+to the <code>DocBook</code> map. The value of this property must also be a map.</para>
+
+<para>The properties of the <code>pagetoc</code> map can be used to change
+the display:</para>
+
+<variablelist>
+<varlistentry><term><code>decorated</code></term>
+<listitem>
+<para>This is the markup used for the user-control on the on-page ToC when
+the ToC is decorated. The default value is “<literal>☀</literal>”.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>plain</code></term>
+<listitem>
+<para>This is the markup used for the user-control on the on-page ToC when
+the ToC is plain (not decorated). The default value is “<literal>￮</literal>”.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>hidden</code></term>
+<listitem>
+<para>This is the markup used for the user-control on the on-page ToC when
+the ToC is hidden. The default value is “<literal>◄</literal>”.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><code>nothing_to_reveal</code></term>
+<listitem>
+<para>This property controls how the on-page ToC is rendered if there are 
+no additional sections to be revealed. It can have the value
+“<literal>hide</literal>”, to hide the ToC, “<literal>plain</literal>” to
+make its presentation plain in this case, or “<literal>decorated</literal>” to
+use the decorated style. The ToC will not appear if there are no sections.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>To use the JavaScript API, make sure your assignments to the
+<code>DocBook</code> object are performed <emphasis>before</emphasis> the
+on-page ToC JavaScript is executed.</para>
+
 </section>
 
 <section xml:id="print">

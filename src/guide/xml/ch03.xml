@@ -504,6 +504,174 @@ for example, run:</para>
 <para>to see the results of processing “mo-3” in scenario 2. The output
 will be in the <filename>build/actual</filename> directory. The build target
 <buildtarget>all_mo_tests</buildtarget> will run them all.</para>
+</section>
+
+<section xml:id="numeration">
+<title>Controlling numeration</title>
+
+<para>Numeration refers to the process(es) by which sets, books,
+divisions, components, sections, and formal objects are numbered.
+There are three separate aspects to numeration: what’s numbered, where
+does numbering begin, and does the number inherit from its ancestors.</para>
+
+<para>Consider this book:</para>
+
+<programlisting language="xml"><![CDATA[<book>
+  <title>Book title</title>
+  <part>
+    <title>Part title</title>
+    <chapter>
+      <title>Chapter title</title>
+      <para>…</para>
+    </chapter>
+  </part>
+  <part>
+    <title>Another part title</title>
+    <chapter>
+      <title>Another chapter title</title>
+      <para>…</para>
+    </chapter>
+    <chapter>
+      <title>Yet another chapter title</title>
+      <para>…</para>
+    </chapter>
+  </part>
+</book>]]></programlisting>
+
+<para>Let’s suppose that parts are numbered “I” and “II”. (The number
+format is controlled by the localization, see <link linkend="gentext"/>.) If chapter
+numbering begins at the book level, those chapters will be
+numbered “1”, “2”, and “3”. If chapter numbering begins at the division level
+(the <tag>part</tag>), those chapters will be numbered “1”, “1”, and “2”.
+If division numbers are inherited, those numbers will be “I.1”, “II.1”, “II.2”.
+</para>
+
+<para>In the 1.x versions of these stylesheets, all of the aspects of
+numeration were controlled by three now obsolete parameters:
+<code>$component-numbers-inherit</code>,
+<code>$division-numbers-inherit</code>, and
+<code>$section-numbers-inherit</code>. In the 2.x stylesheets, the
+various aspects can be controlled independently and the result is
+much more consistent, if a bit more complicated.</para>
+
+<para>The default numeration parameters are designed to cover the most
+common use cases and are specified with strings so that they’re easy to control
+with parameters. <emphasis>Any</emphasis> numeration scheme can be implemented
+with a customization layer, but hopefully that will be necessary only rarely and
+in uncommon cases.</para>
+
+<para>To simplify the problem, we divide the DocBook elements into six categories:</para>
+
+<variablelist>
+<varlistentry>
+<term>sets</term>
+<listitem>
+<para>The <tag>set</tag> is the only member of this category.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>books</term>
+<listitem>
+<para>The <tag>book</tag> is the only member of this category.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>divisions</term>
+<listitem>
+<para>The divisions elements are <tag>part</tag> and <tag>reference</tag>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>components</term>
+<listitem>
+<para>The component elements are
+<tag>acknowledgements</tag>,
+<tag>appendix</tag>,
+<tag>article</tag>,
+<tag>bibliography</tag>,
+<tag>chapter</tag>,
+<tag>colophon</tag>,
+<tag>dedication</tag>,
+<tag>glossary</tag>,
+<tag>index</tag>,
+<tag>partintro</tag>,
+<tag>preface</tag>,
+<tag>refentry</tag>, and
+<tag>setindex</tag>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>sections</term>
+<listitem>
+<para>The section elements are
+<tag>section</tag>,
+<tag>sect1</tag>,
+<tag>sect2</tag>,
+<tag>sect3</tag>,
+<tag>sect4</tag>,
+<tag>sect5</tag>,
+<tag>simplesect</tag>.
+The <tag>refentry</tag> section elements are not included because they are 
+not typically numbered.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>formal objects</term>
+<listitem>
+<para>The formal objects are
+<tag>figure</tag>,
+<tag>table</tag>,
+<tag>example</tag>,
+<tag>equation</tag>,
+<tag>formalgroup</tag>,
+<tag>procedure</tag>.
+</para>
+<para>There’s a bit of complexity here. A <tag>formalgroup</tag> that contains figures
+counts as a <tag>figure</tag>, a <tag>formalgroup</tag> that contains tables
+counts as a <tag>table</tag>, etc. An <tag>equation</tag> or <tag>procedure</tag>
+only counts as a formal object if it has a title.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Six parameters control where numbering starts (or restarts):
+<parameter>sets-number-from</parameter>,
+<parameter>books-number-from</parameter>,
+<parameter>divisions-number-from</parameter>,
+<parameter>components-number-from</parameter>,
+<parameter>sections-number-from</parameter>, and
+<parameter>formal-objects-number-from</parameter>. In each case, the value
+of the parameter must be the name of one of the categories. Sets and books
+can only number from sets, divisions can number from sets or books, 
+components can number from sets, books, or divisions, etc. It is also
+possible to specify the value <code>root</code> to indicate that elements in
+the relevant category are numbered sequentially through the whole document.</para>
+
+<para>To assure consistency, “numbering from” resets when the specified
+category or one of its ancestors is encountered. In other words, if
+you’re formatting a set of books and numbering components from
+divisions, the numbering resets when a new division, book, or set begins.</para>
+
+<para>Six parameters control how numbers are inherited:
+<parameter>sets-inherit-from</parameter>,
+<parameter>books-inherit-from</parameter>,
+<parameter>divisions-inherit-from</parameter>,
+<parameter>components-inherit-from</parameter>,
+<parameter>sections-inherit-from</parameter>, and
+<parameter>formal-objects-inherit-from</parameter>. Like the “number
+from” parameters, each parameter takes the value of the categories
+above it. In this case, however, you can specify more than one
+category.</para>
+
+<para>For example, the default value for formal objects is to
+inherit from “<code>component section</code>”. That means that the
+first figure in chapter 2 will be labeled “2.1” and the first figure
+in the first section in chapter 2 will be labeled “2.1.1”, etc.
+This most closely reproduces the numbering from the 1.x stylesheets.</para>
 
 </section>
 

@@ -159,6 +159,7 @@
     <xsl:when test="db:refclass = 'function' and $objects/self::a:function">
       <xsl:variable name="synopsis">
         <refsynopsisdiv xmlns="http://docbook.org/ns/docbook">
+          <xsl:attribute name="xml:id" select="'_refsynopsidiv'"/>
           <xsl:for-each select="$objects/self::a:function">
             <funcsynopsis>
               <funcprototype>
@@ -203,6 +204,7 @@
         <xsl:variable name="initializer"
                       select="empty(db:refclass[contains-token(@role, 'noinitializer')])"/>
         <refsynopsisdiv xmlns="http://docbook.org/ns/docbook">
+          <xsl:attribute name="xml:id" select="'_refsynopsidiv'"/>
           <xsl:for-each select="$objects/self::a:variable">
             <xsl:variable name="dname"
                           select="@display-name/string()"/>
@@ -259,6 +261,7 @@
     <xsl:when test="db:refclass = 'template' and $objects/self::a:template">
       <xsl:variable name="synopsis">
         <refsynopsisdiv xmlns="http://docbook.org/ns/docbook">
+          <xsl:attribute name="xml:id" select="'_refsynopsidiv'"/>
           <xsl:for-each select="$objects">
             <xsl:variable name="param" as="element()*">
               <xsl:for-each select="a:param[not(starts-with(@name, 'vp:'))]">
