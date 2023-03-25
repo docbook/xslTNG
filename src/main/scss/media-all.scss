@@ -515,7 +515,7 @@ header .authorgroup {
 
 /* ============================================================ */
 
-.toc {
+.lot {
     margin-top: 1em;
 }
 
@@ -1271,7 +1271,7 @@ blockquote p + .attribution {
 .example,
 .equation {
     page-break-inside: avoid;
-    padding: 1em;
+    padding-top: 1em;
 }
 
 .figure,

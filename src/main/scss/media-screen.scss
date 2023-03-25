@@ -67,6 +67,12 @@ main {
     }
 }
 
+@media screen and (min-width: 60rem) {
+    main {
+        min-width: 50rem;
+    }
+}
+
 main {
     padding-top: 3rem;
 }
