@@ -25,7 +25,8 @@
 
 <xsl:template match="/">
   <!-- don't run document template from the coverage report -->
-  <xsl:apply-templates select="$test-reports/x:report[1]"/>
+  <xsl:message select="'Starting report for', count($test-reports/*/x:report), 'files'"/>
+  <xsl:apply-templates select="$test-reports/*/x:report[1]"/>
 </xsl:template>
 
 <!-- The assumption is that the input file is the XSpec test results. -->
@@ -72,7 +73,11 @@
         <xsl:call-template name="t:details"/>
       </div>
 
+      <xsl:message select="'Compute coverage…'"/>
+
       <xsl:call-template name="t:coverage"/>
+
+      <xsl:message select="'Results…'"/>
 
       <div id="hideresults"/>
       <table>
@@ -102,7 +107,7 @@
           <xsl:for-each select="$test-reports//x:scenario/input-wrap/x:context[@href]">
             <xsl:sort select="substring(../../@id, 9)" data-type="number"/>
 
-            <xsl:message select="'Test report:', position()"/>
+            <!--<xsl:message select="'Test report:', position()"/>-->
 
             <xsl:variable name="id" select="../../@id/string()"/>
             <xsl:variable name="doc"
@@ -117,17 +122,17 @@
                                   then '/generated-xml/'
                                   else '/xml/'"/>
 
-            <xsl:message select="'D:', $doc, 'S:', $segment"/>
+            <!--<xsl:message select="'D:', $doc, 'S:', $segment"/>-->
 
             <xsl:variable name="file"
                           select="substring-before(
                                      substring-after(@href, $segment), '.xml')"/>
 
-            <xsl:message select="'FILE:', $file"/>
+            <!--<xsl:message select="'FILE:', $file"/>-->
 
             <xsl:variable name="key" select="../../@id || '-expect1'"/>
             
-            <xsl:message select="'KEY:', $key, count($key), count($test-reports)"/>
+            <!--<xsl:message select="'KEY:', $key, count($key), count($test-reports)"/>-->
 
             <xsl:variable name="test" select="key('test', $key, $test-reports)"/>
             <tr class="{if ($test/@successful = 'true')
@@ -197,8 +202,11 @@
                                            map { })"/>
   <details>
     <ul>
-      <xsl:for-each select="$test-reports/x:report">
-        <li>
+      <xsl:for-each select="$test-reports/*/x:report">
+        <xsl:sort select="@xspec"/>
+        <li class="{if (.//x:test[not(@successful = 'true')])
+                    then 'fail'
+                    else 'pass'}">
           <xsl:apply-templates select="." mode="m:results"/>
         </li>
       </xsl:for-each>

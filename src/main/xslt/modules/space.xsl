@@ -63,6 +63,7 @@ db:example
 db:fieldsynopsis
 db:figure
 db:footnote
+db:formalgroup
 db:formalpara
 db:funcprototype
 db:funcsynopsis

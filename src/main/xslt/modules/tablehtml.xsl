@@ -11,7 +11,7 @@
                 version="3.0">
 
 <xsl:template match="db:table[not(db:tgroup)]">
-  <figure class="formalobject {local-name(.)}">
+  <div class="formalobject {local-name(.)}">
     <xsl:choose>
       <xsl:when test="@xml:id">
         <xsl:attribute name="id" select="@xml:id"/>
@@ -33,7 +33,7 @@
         <xsl:with-param name="footnotes" select=".//db:footnote"/>
       </xsl:call-template>
     </xsl:if>
-  </figure>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:td/db:table[not(db:tgroup)]
@@ -58,7 +58,7 @@
 </xsl:template>
 
 <xsl:template match="db:informaltable[not(db:tgroup)]">
-  <figure class="informalobject {local-name(.)}">
+  <div class="informalobject {local-name(.)}">
     <xsl:if test="@xml:id">
       <xsl:attribute name="id" select="@xml:id"/>
     </xsl:if>
@@ -71,7 +71,7 @@
         <xsl:with-param name="footnotes" select=".//db:footnote"/>
       </xsl:call-template>
     </xsl:if>
-  </figure>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:td/db:informaltable[not(db:tgroup)]

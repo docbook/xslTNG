@@ -11,9 +11,9 @@
             omit-xml-declaration="yes"/>
 
 <xsl:variable name="test-reports">
-  <report xmlns="http://www.jenitennison.com/xslt/xspec">
+  <wrapper>
     <xsl:sequence select="collection('../build?match=.*-result.xml')/x:report"/>
-  </report>
+  </wrapper>
 </xsl:variable>
 
 <xsl:variable name="Z" select="xs:dayTimeDuration('PT0H')"/>

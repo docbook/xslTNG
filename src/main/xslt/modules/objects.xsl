@@ -28,6 +28,13 @@
                                   then 'div'
                                   else 'span'"/>
 
+  <xsl:variable name="pkind"
+                select="string((db:* except (db:info|db:alt))[1] ! local-name(.))"/>
+  <xsl:variable name="placement"
+                select="if (map:get($v:mediaobject-details-placement, $pkind))
+                        then map:get($v:mediaobject-details-placement, $pkind)
+                        else map:get($v:mediaobject-details-placement, '_default')"/>
+
   <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:copy-of select="$pi-properties/@style"/>
     <xsl:apply-templates select="." mode="m:attributes"/>
@@ -45,7 +52,8 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:if test="'details' = $mediaobject-accessibility
+    <xsl:if test="$placement = 'before'
+                  and 'details' = $mediaobject-accessibility
                   and (db:imageobject|db:imageobjectco
                        |db:audioobject|db:videoobject)">
       <xsl:apply-templates select="db:textobject[not(db:phrase)]"
@@ -213,6 +221,14 @@
     </xsl:element>
 
     <xsl:apply-templates select="db:caption"/>
+
+    <xsl:if test="not($placement = 'before')
+                  and 'details' = $mediaobject-accessibility
+                  and (db:imageobject|db:imageobjectco
+                       |db:audioobject|db:videoobject)">
+      <xsl:apply-templates select="db:textobject[not(db:phrase)]"
+                           mode="m:details"/>
+    </xsl:if>
 
     <xsl:if test="$object-info?node/ancestor::db:imageobjectco
                   and $object-info?node/ancestor::db:imageobjectco/db:calloutlist">

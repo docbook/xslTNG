@@ -26,4 +26,9 @@
    <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/formalgroup.004.html"/>
 </x:scenario>
 
+<x:scenario label="When transforming formalgroup.005">
+   <x:context href="../resources/xml/formalgroup.005.xml"/>
+   <x:expect label="expect the figure(s) to be rendered" href="../resources/expected/formalgroup.005.html"/>
+</x:scenario>
+
 </x:description>

@@ -8,6 +8,7 @@ targetCompatibility=1.8
 repositories {
   mavenLocal()
   mavenCentral()
+  gradlePluginPortal()
   maven { url "https://dev.saxonica.com/maven" }
 }
 
@@ -15,8 +16,8 @@ apply from: "${rootDir.parentFile}/properties.gradle"
 
 configurations.all {
   resolutionStrategy {
-    force 'xml-apis:xml-apis:1.4.01',
-      "${saxonGroup}:${saxonEdition}:${saxonVersion}",
+    exclude group: 'xml-apis', module: 'xml-apis'
+    force "${saxonGroup}:${saxonEdition}:${saxonVersion}",
       "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
   }
 }
@@ -30,7 +31,8 @@ dependencies {
     [group: 'org.relaxng', name: 'jing', version: jingVersion ],
     [group: 'com.nwalsh', name: 'sinclude', version: sincludeVersion ],
     [group: 'org.docbook', name: 'schemas-docbook', version: docbookVersion],
-    [group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion]
+    [group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion],
+    [group: 'com.nwalsh.gradle.saxon', name: 'saxon-gradle', version: '0.10.3']
   )
 }
 
