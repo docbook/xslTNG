@@ -475,6 +475,13 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="h:sup[@db-footnote]">
+  <xsl:copy>
+    <xsl:apply-templates select="@* except @db-footnote"/>
+    <xsl:apply-templates/>
+  </xsl:copy>
+</xsl:template>
+
 <!-- If we're renumbering footnotes and this is a text node in an h:a that's
      a child of an h:sup that identifies a footnote and there are no other
      nodes inside this h:a, then we'll try to renumber the footnote. -->
