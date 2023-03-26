@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: formalgroup.001</title>
+
+<chapter>
+<title>Testing formal group enumeration</title>
+
+<section>
+<title>With inherited numeration</title>
+
+<formalgroup pgwide="1">
+<title>Left and right, twice</title>
+<figure>
+<title>The Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-small.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+<figure>
+<title>The Other Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-right.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+<figure>
+<title>The Other Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-right.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+<figure>
+<title>The Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-small.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+</formalgroup>
+
+<para>The following group isn’t “page wide”.</para>
+
+<formalgroup>
+<title>Right and left</title>
+<figure>
+<title>The Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-small.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+<figure>
+<title>The Other Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-right.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+<figure>
+<title>The Other Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-right.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+<figure>
+<title>The Duck</title>
+<mediaobject>
+  <imageobject>
+    <imagedata format="PNG" fileref="../media/duck-small.png" align="center"/>
+  </imageobject>
+</mediaobject>
+</figure>
+</formalgroup>
+
+</section>
+</chapter>
+</book>

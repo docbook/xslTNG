@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-number-from-division.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-formal-objects-number-from-division-driver.xsl"
-         date="2023-03-25T17:02:33.710351Z">
+         date="2023-03-26T13:03:42.343896Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-number-from-division.xspec">
       <label>When converting formal-objects-numbered-from-division...</label>
@@ -1337,7 +1337,7 @@
                                           <span class="sep">. </span>First figure</div>
                                     </header>
                                  </div>
-                                 <figure id="pref_tab1" class="formalobject table">
+                                 <div id="pref_tab1" class="formalobject table">
                                     <header>
                                        <div class="title">Table <span class="label">1</span>
                                           <span class="sep">. </span>First table</div>
@@ -1350,7 +1350,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                 </figure>
+                                 </div>
                                  <div id="pref_ex1" class="example formalobject">
                                     <p>…</p>
                                     <header>
@@ -1414,7 +1414,7 @@
                                           <span class="sep">. </span>Third figure</div>
                                     </header>
                                  </div>
-                                 <figure id="ch01_tab1" class="formalobject table">
+                                 <div id="ch01_tab1" class="formalobject table">
                                     <header>
                                        <div class="title">Table <span class="label">1<span class="sep">.</span>2</span>
                                           <span class="sep">. </span>Second table</div>
@@ -1427,7 +1427,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                 </figure>
+                                 </div>
                                  <div id="ch01_ex1" class="example formalobject">
                                     <p>…</p>
                                     <header>
@@ -1498,7 +1498,7 @@
                                              <span class="sep">. </span>Fourth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="ch02_tab1" class="formalobject table">
+                                    <div id="ch02_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">2<span class="sep">.</span>1</span>
                                              <span class="sep">. </span>Third table</div>
@@ -1511,7 +1511,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="ch02_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -1555,7 +1555,7 @@
                                              <span class="sep">. </span>Fifth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="ch03_tab1" class="formalobject table">
+                                    <div id="ch03_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">3<span class="sep">.</span>2</span>
                                              <span class="sep">. </span>Fourth table</div>
@@ -1568,7 +1568,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="ch03_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -1612,7 +1612,7 @@
                                              <span class="sep">. </span>Sixth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="book_set1_bo1_part1_ap1_tab1" class="formalobject table">
+                                    <div id="book_set1_bo1_part1_ap1_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">A<span class="sep">.</span>3</span>
                                              <span class="sep">. </span>Fifth table</div>
@@ -1625,7 +1625,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="book_set1_bo1_part1_ap1_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -1726,7 +1726,7 @@
                                        </div>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
-                                       <figure id="book_set1_bo1_ref1_re1_refsection1_tab1" class="formalobject table">
+                                       <div id="book_set1_bo1_ref1_re1_refsection1_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">1</span>
                                                 <span class="sep">. </span>Sixth table</div>
@@ -1739,7 +1739,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re1_refsection1_ex1"
@@ -1816,7 +1816,7 @@
                                        </div>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
-                                       <figure id="book_set1_bo1_ref1_re2_refsection1_tab1" class="formalobject table">
+                                       <div id="book_set1_bo1_ref1_re2_refsection1_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">2</span>
                                                 <span class="sep">. </span>Seventh table</div>
@@ -1829,7 +1829,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection1_ex1"
@@ -1891,7 +1891,7 @@
                                        </div>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
-                                       <figure id="book_set1_bo1_ref1_re2_refsection2_tab1" class="formalobject table">
+                                       <div id="book_set1_bo1_ref1_re2_refsection2_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">3</span>
                                                 <span class="sep">. </span>Eighth table</div>
@@ -1904,7 +1904,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection2_ex1"
@@ -1961,7 +1961,7 @@
                                           <span class="sep">. </span>Tenth figure</div>
                                     </header>
                                  </div>
-                                 <figure id="book_set1_bo1_ch2_tab1" class="formalobject table">
+                                 <div id="book_set1_bo1_ch2_tab1" class="formalobject table">
                                     <header>
                                        <div class="title">Table <span class="label">4<span class="sep">.</span>3</span>
                                           <span class="sep">. </span>Ninth table</div>
@@ -1974,7 +1974,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                 </figure>
+                                 </div>
                                  <div id="book_set1_bo1_ch2_ex1" class="example formalobject">
                                     <p>…</p>
                                     <header>
@@ -2018,7 +2018,7 @@
                                           <span class="sep">. </span>Eleventh figure</div>
                                     </header>
                                  </div>
-                                 <figure id="book_set1_bo1_ap1_tab1" class="formalobject table">
+                                 <div id="book_set1_bo1_ap1_tab1" class="formalobject table">
                                     <header>
                                        <div class="title">Table <span class="label">B<span class="sep">.</span>4</span>
                                           <span class="sep">. </span>Tenth table</div>
@@ -2031,7 +2031,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                 </figure>
+                                 </div>
                                  <div id="book_set1_bo1_ap1_ex1" class="example formalobject">
                                     <p>…</p>
                                     <header>
@@ -2074,7 +2074,7 @@
                                              <span class="sep">. </span>Twelfth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="book_set1_bo1_ap1_s1_tab1" class="formalobject table">
+                                    <div id="book_set1_bo1_ap1_s1_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">B<span class="sep">.</span>5</span>
                                              <span class="sep">. </span>Eleventh table</div>
@@ -2087,7 +2087,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="book_set1_bo1_ap1_s1_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -2197,7 +2197,7 @@
                                           <span class="sep">. </span>Thirteenth figure</div>
                                     </header>
                                  </div>
-                                 <figure id="book_set1_bo2_p1_tab1" class="formalobject table">
+                                 <div id="book_set1_bo2_p1_tab1" class="formalobject table">
                                     <header>
                                        <div class="title">Table <span class="label">1</span>
                                           <span class="sep">. </span>Twelfth table</div>
@@ -2210,7 +2210,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                 </figure>
+                                 </div>
                                  <div id="book_set1_bo2_p1_ex1" class="example formalobject">
                                     <p>…</p>
                                     <header>
@@ -2394,7 +2394,7 @@
                                           <span class="sep">. </span>Fourteenth figure</div>
                                     </header>
                                  </div>
-                                 <figure id="book_set2_bo1_p1_tab1" class="formalobject table">
+                                 <div id="book_set2_bo1_p1_tab1" class="formalobject table">
                                     <header>
                                        <div class="title">Table <span class="label">1</span>
                                           <span class="sep">. </span>Thirteenth table</div>
@@ -2407,7 +2407,7 @@
                                           </tr>
                                        </tbody>
                                     </table>
-                                 </figure>
+                                 </div>
                                  <div id="book_set2_bo1_p1_ex1" class="example formalobject">
                                     <p>…</p>
                                     <header>
@@ -3776,7 +3776,7 @@
                                              <span class="sep">. </span>First figure</div>
                                        </header>
                                     </div>
-                                    <figure id="pref_tab1" class="formalobject table">
+                                    <div id="pref_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">1</span>
                                              <span class="sep">. </span>First table</div>
@@ -3789,7 +3789,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="pref_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -3853,7 +3853,7 @@
                                              <span class="sep">. </span>Third figure</div>
                                        </header>
                                     </div>
-                                    <figure id="ch01_tab1" class="formalobject table">
+                                    <div id="ch01_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">1<span class="sep">.</span>2</span>
                                              <span class="sep">. </span>Second table</div>
@@ -3866,7 +3866,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="ch01_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -3937,7 +3937,7 @@
                                                 <span class="sep">. </span>Fourth figure</div>
                                           </header>
                                        </div>
-                                       <figure id="ch02_tab1" class="formalobject table">
+                                       <div id="ch02_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">2<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>Third table</div>
@@ -3950,7 +3950,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <div id="ch02_ex1" class="example formalobject">
                                           <p>…</p>
                                           <header>
@@ -3994,7 +3994,7 @@
                                                 <span class="sep">. </span>Fifth figure</div>
                                           </header>
                                        </div>
-                                       <figure id="ch03_tab1" class="formalobject table">
+                                       <div id="ch03_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">3<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Fourth table</div>
@@ -4007,7 +4007,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <div id="ch03_ex1" class="example formalobject">
                                           <p>…</p>
                                           <header>
@@ -4051,7 +4051,7 @@
                                                 <span class="sep">. </span>Sixth figure</div>
                                           </header>
                                        </div>
-                                       <figure id="book_set1_bo1_part1_ap1_tab1" class="formalobject table">
+                                       <div id="book_set1_bo1_part1_ap1_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">A<span class="sep">.</span>3</span>
                                                 <span class="sep">. </span>Fifth table</div>
@@ -4064,7 +4064,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <div id="book_set1_bo1_part1_ap1_ex1" class="example formalobject">
                                           <p>…</p>
                                           <header>
@@ -4165,7 +4165,7 @@
                                           </div>
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
-                                          <figure id="book_set1_bo1_ref1_re1_refsection1_tab1" class="formalobject table">
+                                          <div id="book_set1_bo1_ref1_re1_refsection1_tab1" class="formalobject table">
                                              <header>
                                                 <div class="title">Table <span class="label">1</span>
                                                    <span class="sep">. </span>Sixth table</div>
@@ -4178,7 +4178,7 @@
                                                    </tr>
                                                 </tbody>
                                              </table>
-                                          </figure>
+                                          </div>
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re1_refsection1_ex1"
@@ -4255,7 +4255,7 @@
                                           </div>
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
-                                          <figure id="book_set1_bo1_ref1_re2_refsection1_tab1" class="formalobject table">
+                                          <div id="book_set1_bo1_ref1_re2_refsection1_tab1" class="formalobject table">
                                              <header>
                                                 <div class="title">Table <span class="label">2</span>
                                                    <span class="sep">. </span>Seventh table</div>
@@ -4268,7 +4268,7 @@
                                                    </tr>
                                                 </tbody>
                                              </table>
-                                          </figure>
+                                          </div>
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection1_ex1"
@@ -4330,7 +4330,7 @@
                                           </div>
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
-                                          <figure id="book_set1_bo1_ref1_re2_refsection2_tab1" class="formalobject table">
+                                          <div id="book_set1_bo1_ref1_re2_refsection2_tab1" class="formalobject table">
                                              <header>
                                                 <div class="title">Table <span class="label">3</span>
                                                    <span class="sep">. </span>Eighth table</div>
@@ -4343,7 +4343,7 @@
                                                    </tr>
                                                 </tbody>
                                              </table>
-                                          </figure>
+                                          </div>
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection2_ex1"
@@ -4400,7 +4400,7 @@
                                              <span class="sep">. </span>Tenth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="book_set1_bo1_ch2_tab1" class="formalobject table">
+                                    <div id="book_set1_bo1_ch2_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">4<span class="sep">.</span>3</span>
                                              <span class="sep">. </span>Ninth table</div>
@@ -4413,7 +4413,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="book_set1_bo1_ch2_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -4457,7 +4457,7 @@
                                              <span class="sep">. </span>Eleventh figure</div>
                                        </header>
                                     </div>
-                                    <figure id="book_set1_bo1_ap1_tab1" class="formalobject table">
+                                    <div id="book_set1_bo1_ap1_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">B<span class="sep">.</span>4</span>
                                              <span class="sep">. </span>Tenth table</div>
@@ -4470,7 +4470,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="book_set1_bo1_ap1_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -4513,7 +4513,7 @@
                                                 <span class="sep">. </span>Twelfth figure</div>
                                           </header>
                                        </div>
-                                       <figure id="book_set1_bo1_ap1_s1_tab1" class="formalobject table">
+                                       <div id="book_set1_bo1_ap1_s1_tab1" class="formalobject table">
                                           <header>
                                              <div class="title">Table <span class="label">B<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Eleventh table</div>
@@ -4526,7 +4526,7 @@
                                                 </tr>
                                              </tbody>
                                           </table>
-                                       </figure>
+                                       </div>
                                        <div id="book_set1_bo1_ap1_s1_ex1" class="example formalobject">
                                           <p>…</p>
                                           <header>
@@ -4636,7 +4636,7 @@
                                              <span class="sep">. </span>Thirteenth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="book_set1_bo2_p1_tab1" class="formalobject table">
+                                    <div id="book_set1_bo2_p1_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">1</span>
                                              <span class="sep">. </span>Twelfth table</div>
@@ -4649,7 +4649,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="book_set1_bo2_p1_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
@@ -4833,7 +4833,7 @@
                                              <span class="sep">. </span>Fourteenth figure</div>
                                        </header>
                                     </div>
-                                    <figure id="book_set2_bo1_p1_tab1" class="formalobject table">
+                                    <div id="book_set2_bo1_p1_tab1" class="formalobject table">
                                        <header>
                                           <div class="title">Table <span class="label">1</span>
                                              <span class="sep">. </span>Thirteenth table</div>
@@ -4846,7 +4846,7 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                    </figure>
+                                    </div>
                                     <div id="book_set2_bo1_p1_ex1" class="example formalobject">
                                        <p>…</p>
                                        <header>
