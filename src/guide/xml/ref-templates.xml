@@ -12,6 +12,7 @@
 <refmeta>
 <refentrytitle>t:audio-fallback</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}audio-fallback</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.13</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>t:audio-fallback</refname>
@@ -20,8 +21,7 @@
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This template is called to generate fallback for an 
-<tag namespace="http://www.w3.org/1999/xhtml">audio</tag> element.
+<para>Audio fallback is now supported with <parameter>fallback-js</parameter>.
 </para>
 </refsection>
 </refentry>
@@ -630,6 +630,7 @@ chunking is performed, this should provide links between pages.</para>
 <refmeta>
 <refentrytitle>t:video-fallback</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/templates}video-fallback</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.13</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>t:video-fallback</refname>
@@ -638,8 +639,7 @@ chunking is performed, this should provide links between pages.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>This template is called to generate fallback for an 
-<tag namespace="http://www.w3.org/1999/xhtml">video</tag> element.
+<para>Video fallback is now supported with <parameter>fallback-js</parameter>.
 </para>
 </refsection>
 </refentry>

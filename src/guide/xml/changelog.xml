@@ -9,6 +9,12 @@
 <para>This is still a pre-release; see <link linkend="r212">2.0.12</link>.</para>
 <itemizedlist>
 <listitem>
+<para>Reworked audio and video fallback. Placing an HTML prose description
+in the video tag is apparently not supported. Apparently, it has to be
+handled by JavaScript. There’s now a <parameter>fallback-js</parameter>
+parameter.</para>
+</listitem>
+<listitem>
 <para>Removed <code>db-footnote</code> attributes from HTML output.</para>
 </listitem>
 <listitem>

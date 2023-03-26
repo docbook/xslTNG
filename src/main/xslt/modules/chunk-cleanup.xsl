@@ -137,6 +137,10 @@
       </xsl:apply-templates>
     </xsl:if>
 
+    <xsl:if test="$fallback-js != '' and (.//h:video|.//h:audio)">
+      <script src="{$fallback-js}"/> <!-- not deferred! -->
+    </xsl:if>
+
     <!-- Unconditionally add h:db-script children. -->
     <xsl:apply-templates select="/h:html/h:db-script/*">
       <xsl:with-param name="rootbaseuri" select="$rbu"/>

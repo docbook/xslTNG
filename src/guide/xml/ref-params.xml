@@ -5299,4 +5299,30 @@ contained.</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>fallback-js</varname>
+      <initializer>'js/fallback.js'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Script to support audio/video fallback</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Apparently, there’s no declarative way to offer an HTML fallback
+message when all of the audio or video sources in a media object are
+unusable. Instead, it has to be done with JavaScript.</para>
+<para>This parameter identifies the JavaScript file to load for this support.
+It must define a global function named <code>docbook_object_fallback</code>
+that takes the source node as a paramter.</para>
+<para>To disable fallback, set this parameter to the empty sequence or the
+empty string.</para>
+<para>Place this script in the 
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> of the document
+and <emphasis>do not</emphasis> defer loading it.</para>
+</refsection>
+</refentry>
+
 </reference>

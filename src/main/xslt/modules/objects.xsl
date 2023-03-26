@@ -278,6 +278,7 @@
               <xsl:apply-templates select=".?node" mode="mp:imagedata">
                 <xsl:with-param name="viewport" select="$viewport"/>
                 <xsl:with-param name="info" select="."/>
+                <xsl:with-param name="last" select="true()"/>
               </xsl:apply-templates>
             </xsl:when>
             <xsl:otherwise>
@@ -339,41 +340,12 @@
           <xsl:apply-templates select=".?node" mode="mp:imagedata">
             <xsl:with-param name="viewport" select="$viewport"/>
             <xsl:with-param name="info" select="."/>
+            <xsl:with-param name="last" select="position() eq last()"/>
           </xsl:apply-templates>
         </xsl:for-each>
-        <xsl:call-template name="t:video-fallback">
-          <xsl:with-param name="datas" select="$datas"/>
-        </xsl:call-template>
       </video>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
-
-<xsl:template name="t:video-fallback">
-  <xsl:param name="datas" as="map(*)*"/>
-  <p>
-    <xsl:text>Video playback not supported. </xsl:text>
-    <xsl:if test="exists($datas)">
-      <xsl:text>Download </xsl:text>
-      <xsl:for-each select="$datas">
-        <xsl:choose>
-          <xsl:when test="position() gt 2 and position() = last()">
-            <xsl:text>, or </xsl:text>
-          </xsl:when>
-          <xsl:when test="position() = 2 and position() = last()">
-            <xsl:text> or </xsl:text>
-          </xsl:when>
-          <xsl:when test="position() gt 1">
-            <xsl:text>, </xsl:text>
-          </xsl:when>
-        </xsl:choose>
-        <a href="{.?href}">
-          <xsl:sequence select=".?content-type"/>
-        </a>
-      </xsl:for-each>
-      <xsl:text>.</xsl:text>
-    </xsl:if>
-  </p>
 </xsl:template>
 
 <xsl:template match="db:audioobject">
@@ -393,39 +365,10 @@
       <xsl:apply-templates select=".?node" mode="mp:imagedata">
         <xsl:with-param name="viewport" select="$viewport"/>
         <xsl:with-param name="info" select="."/>
+        <xsl:with-param name="last" select="position() eq last()"/>
       </xsl:apply-templates>
     </xsl:for-each>
-    <xsl:call-template name="t:audio-fallback">
-      <xsl:with-param name="datas" select="$datas"/>
-    </xsl:call-template>
   </audio>
-</xsl:template>
-
-<xsl:template name="t:audio-fallback">
-  <xsl:param name="datas" as="map(*)*"/>
-  <p>
-    <xsl:text>Audio playback not supported. </xsl:text>
-    <xsl:if test="exists($datas)">
-      <xsl:text>Download </xsl:text>
-      <xsl:for-each select="$datas">
-        <xsl:choose>
-          <xsl:when test="position() gt 2 and position() = last()">
-            <xsl:text>, or </xsl:text>
-          </xsl:when>
-          <xsl:when test="position() = 2 and position() = last()">
-            <xsl:text> or </xsl:text>
-          </xsl:when>
-          <xsl:when test="position() gt 1">
-            <xsl:text>, </xsl:text>
-          </xsl:when>
-        </xsl:choose>
-        <a href="{.?href}">
-          <xsl:sequence select=".?content-type"/>
-        </a>
-      </xsl:for-each>
-      <xsl:text>.</xsl:text>
-    </xsl:if>
-  </p>
 </xsl:template>
 
 <xsl:template match="db:textobject">
@@ -786,6 +729,7 @@
 <xsl:template match="*" mode="mp:imagedata">
   <xsl:param name="viewport" as="map(*)?"/>
   <xsl:param name="info" as="map(*)"/>
+  <xsl:param name="last" as="xs:boolean"/>
 
   <xsl:variable name="width"
                 select="if (exists($viewport?contentwidth))
@@ -808,6 +752,9 @@
       <source src="{$info?href}">
         <xsl:if test="$info?content-type">
           <xsl:attribute name="type" select="$info?content-type"/>
+        </xsl:if>
+        <xsl:if test="$last and normalize-space($fallback-js) != ''">
+          <xsl:attribute name="onerror" select="'docbook_object_fallback(parentNode)'"/>
         </xsl:if>
       </source>
     </xsl:when>
