@@ -2,7 +2,7 @@ buildscript {
   repositories {
     mavenLocal()
     mavenCentral()
-    maven { url "https://dev.saxonica.com/maven" }
+    maven { url 'https://dev.saxonica.com/maven' }
   }
 
   apply from: 'properties.gradle'
@@ -30,7 +30,7 @@ plugins {
   id "groovy"
   id "maven-publish"
   id "signing"
-  id 'com.nwalsh.gradle.saxon.saxon-gradle' version '0.10.1'
+  // The com.nwalsh.gradle.saxon.saxon-gradle plugin is loaded in buildSrc
   id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
   id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
   id "de.undercouch.download" version "4.0.4"
