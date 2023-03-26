@@ -1933,6 +1933,14 @@ nav.top div {
 }
 
 /* ============================================================ */
+/* Audio/video fallback. */
+.fallback {
+  border: solid 2px var(--error-color);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================================ */
 /* For progressive reveals in chunked content. */
 .reveal {
   display: none;
