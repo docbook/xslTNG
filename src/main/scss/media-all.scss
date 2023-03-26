@@ -575,22 +575,37 @@ ul.toc,
 
 /* ============================================================ */
 
-.formalgroup {
-    margin-top: 1em;
+.pgwide,
+.pgwide .fgbody {
+    width: 100%;
 }
 
-.formalgroup.pgwide div {
+.formalgroup {
+    margin-top: 1rem;
+}
+
+.fgbody > div {
     display: inline-block;
+}
+
+.pgwide .fgbody > div {
+    width: calc(50% - 0.5rem);
+}
+
+.fgbody > div:nth-child(even) {
+    margin-left: 0.5rem;
+}
+
+.fgbody > .figure,
+.fgbody > .example,
+.fgbody > .equation {
+    padding-top: inherit;
 }
 
 table {
     table-layout: fixed;
     border-spacing: 0;
     border-collapse: collapse;
-}
-
-figure.pgwide table {
-    width: 100%;
 }
 
 .inlinemediaobject,
@@ -1277,6 +1292,13 @@ blockquote p + .attribution {
 .figure,
 .example {
     border: 1px solid var(--border-color);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    details p {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 .figure .title {

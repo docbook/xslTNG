@@ -21,12 +21,39 @@
   </div>
 </xsl:template>
 
-<xsl:template match="db:formalgroup
-                     |db:figure|db:equation|db:example|db:screenshot">
+<xsl:template match="db:formalgroup">
   <xsl:variable name="placement"
                 select="if (map:get($v:formal-object-title-placement, local-name(.)))
                         then map:get($v:formal-object-title-placement, local-name(.))
                         else map:get($v:formal-object-title-placement, '_default')"/>
+  <div>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:choose>
+      <xsl:when test="$placement = 'before'">
+        <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+        <div class="fgbody">
+          <xsl:apply-templates/>
+        </div>
+      </xsl:when>
+      <xsl:otherwise>
+        <div class="fgbody">
+          <xsl:apply-templates/>
+        </div>
+        <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </div>
+</xsl:template>
+
+<xsl:template match="db:figure|db:equation|db:example|db:screenshot">
+  <xsl:variable name="tp"
+                select="if (parent::db:formalgroup)
+                        then $v:formalgroup-nested-object-title-placement
+                        else $v:formal-object-title-placement"/>
+  <xsl:variable name="placement"
+                select="if (map:get($tp, local-name(.)))
+                        then map:get($tp, local-name(.))
+                        else map:get($tp, '_default')"/>
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:choose>
@@ -66,7 +93,8 @@
                           |self::db:constructorsynopsis|self::db:danger
                           |self::db:destructorsynopsis|self::db:epigraph
                           |self::db:equation|self::db:example|self::db:fieldsynopsis
-                          |self::db:figure|self::db:funcsynopsis|self::db:glosslist
+                          |self::db:figure|self::db:formalgroup
+                          |self::db:funcsynopsis|self::db:glosslist
                           |self::db:important|self::db:informalequation
                           |self::db:informalexample|self::db:informalfigure
                           |self::db:informaltable|self::db:itemizedlist

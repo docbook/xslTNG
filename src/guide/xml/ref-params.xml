@@ -1630,7 +1630,7 @@ within each chunk (see <parameter>chunk-renumber-footnotes</parameter>).</para>
   <refmeta>
     <fieldsynopsis>
       <varname>formal-object-title-placement</varname>
-      <initializer>'after formalgroup:before'</initializer>
+      <initializer>'after table:before formalgroup:before'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -1650,6 +1650,54 @@ if the title precedes or follows the element itself.</para>
 <replaceable>position</replaceable>”.
 The named forms (e.g., <literal>figure:before</literal>) take precedence with
 the unnamed form serving as a default for any that don’t have named forms.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>mediaobject-details-placement</varname>
+      <initializer>'before'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.0.13</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Specify placement of details on media objects</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If a details element is generated for a media object, this parameter
+determines if it goes before or after the object.</para>
+<para>The parameter consists of a series of tokens, “<literal>before</literal>”,
+“<literal>after</literal>”, or
+“<replaceable>element</replaceable>
+<literal>:</literal>
+<replaceable>position</replaceable>”.
+The named forms (e.g., <literal>figure:before</literal>) take precedence with
+the unnamed form serving as a default for any that don’t have named forms.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>formalgroup-nested-object-title-placement</varname>
+      <initializer>'after'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.0.13</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Specify placement of title on formal elements inside <tag>formalgroup</tag></refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <parameter>formal-object-title-placement</parameter> parameter
+controls how formal object titles are displayed generally. The
+<parameter>formalgroup-nested-object-title-placement</parameter> parameter
+specifies how formal object titles are displayed when the
+formal object is inside a <tag>formalgroup</tag>. It has the same format
+as <parameter>formal-object-title-placement</parameter>.
+</para>
 </refsection>
 </refentry>
 

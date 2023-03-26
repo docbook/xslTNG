@@ -19,18 +19,43 @@
                 version="3.0">
 
 <xsl:template match="db:table[db:tgroup]">
+  <xsl:variable name="tp"
+                select="if (parent::db:formalgroup)
+                        then $v:formalgroup-nested-object-title-placement
+                        else $v:formal-object-title-placement"/>
+  <xsl:variable name="placement"
+                select="if (map:get($tp, local-name(.)))
+                        then map:get($tp, local-name(.))
+                        else map:get($tp, '_default')"/>
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates select="." mode="m:generate-titlepage"/>
-    <xsl:if test="'details' = $table-accessibility">
-      <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
-    </xsl:if>
-    <xsl:apply-templates select="db:tgroup"/>
-    <xsl:if test=".//db:footnote">
-      <xsl:call-template name="t:table-footnotes">
-        <xsl:with-param name="footnotes" select=".//db:footnote"/>
-      </xsl:call-template>
-    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="$placement = 'before'">
+        <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+        <xsl:if test="'details' = $table-accessibility">
+          <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
+        </xsl:if>
+        <xsl:apply-templates select="db:tgroup"/>
+        <xsl:if test=".//db:footnote">
+          <xsl:call-template name="t:table-footnotes">
+            <xsl:with-param name="footnotes" select=".//db:footnote"/>
+          </xsl:call-template>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="db:tgroup"/>
+        <xsl:if test=".//db:footnote">
+          <xsl:call-template name="t:table-footnotes">
+            <xsl:with-param name="footnotes" select=".//db:footnote"/>
+          </xsl:call-template>
+        </xsl:if>
+        <xsl:if test="'details' = $table-accessibility">
+          <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
+        </xsl:if>
+        <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </div>
 </xsl:template>
 

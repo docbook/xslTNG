@@ -115,6 +115,14 @@
               select="fp:parse-key-value-pairs(
                         tokenize($formal-object-title-placement, '\s+'))"/>
 
+<xsl:variable name="v:formalgroup-nested-object-title-placement" as="map(xs:string,xs:string)"
+              select="fp:parse-key-value-pairs(
+                        tokenize($formal-object-title-placement, '\s+'))"/>
+
+<xsl:variable name="v:mediaobject-details-placement" as="map(xs:string,xs:string)"
+              select="fp:parse-key-value-pairs(
+                        tokenize($mediaobject-details-placement, '\s+'))"/>
+
 <xsl:variable name="v:arg-choice-opt-open-str"><span class="cmdpunct">[</span></xsl:variable>
 <xsl:variable name="v:arg-choice-opt-close-str"><span class="cmdpunct">]</span></xsl:variable>
 <xsl:variable name="v:arg-choice-req-open-str"><span class="cmdpunct">{</span></xsl:variable>

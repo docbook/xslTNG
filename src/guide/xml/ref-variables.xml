@@ -763,6 +763,48 @@ element (local) names to placements. The placement is either
 </refsection>
 </refentry>
 
+<refentry xml:id="v_formalgroup-nested-object-title-placement">
+<?db filename="v_formalgroup-nested-object-title-placement"?>
+<refmeta>
+<refentrytitle>$v:formalgroup-nested-object-title-placement</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}formalgroup-nested-object-title-placement</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:formalgroup-nested-object-title-placement</refname>
+<refpurpose>Placement of formal object titles within a formalgroup</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable, usually derived from
+<parameter>formalgroup-nested-object-title-placement</parameter> is a map from
+element (local) names to placements. The placement is either
+“<literal>before</literal>” or “<literal>after</literal>”.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="v_mediaobject-details-placement">
+<?db filename="v_mediaobject-details-placement"?>
+<refmeta>
+<refentrytitle>$v:mediaobject-details-placement</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}mediaobject-details-placement</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:mediaobject-details-placement</refname>
+<refpurpose>Placement of formal object titles</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This variable, usually derived from
+<parameter>mediaobject-details-placement</parameter> is a map from
+element (local) names to placements. The placement is either
+“<literal>before</literal>” or “<literal>after</literal>”.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="v_highlight-js-head-elements">
 <?db filename="v_highlight-js-head-elements"?>
 <refmeta>

@@ -9,6 +9,16 @@
 <para>This is still a pre-release; see <link linkend="r212">2.0.12</link>.</para>
 <itemizedlist>
 <listitem>
+<para>Placement of table titles, before or after the table, can now be
+set with <parameter>formal-object-title-placement</parameter>. For backwards
+compatibility, it defaults to ‘before’ for tables. Within a
+<tag>formalgroup</tag>, title placement is controlled by
+<parameter>formalgroup-nested-object-title-placement</parameter>. Finally,
+the placement of media
+object details can be set with <parameter>mediaobject-details-placement</parameter>.
+</para>
+</listitem>
+<listitem>
 <para>Added a <parameter>unwrap-paragraphs</parameter> parameter.
 </para>
 </listitem>
