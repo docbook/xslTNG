@@ -9,6 +9,9 @@
 <para>This is still a pre-release; see <link linkend="r212">2.0.12</link>.</para>
 <itemizedlist>
 <listitem>
+<para>Removed <code>db-footnote</code> attributes from HTML output.</para>
+</listitem>
+<listitem>
 <para>Placement of table titles, before or after the table, can now be
 set with <parameter>formal-object-title-placement</parameter>. For backwards
 compatibility, it defaults to ‘before’ for tables. Within a
