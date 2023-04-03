@@ -3,42 +3,12 @@
                xmlns:h="http://www.w3.org/1999/xhtml"
                xmlns:m="http://docbook.org/ns/docbook/modes"
                xmlns:x="http://www.jenitennison.com/xslt/xspec"
-               stylesheet="../xspec-xslt/xspec-driver.xsl">
-<!-- Tests:
-     date
--->
-
-<!-- ============================================================ -->
-<!-- info-element tests -->
-
-<x:scenario label="When transforming a date of 'today'">
-  <x:context xmlns="http://docbook.org/ns/docbook" href="../resources/xml/dates.001.xml" mode="m:docbook" select="//db:para[@xml:id='today']/db:date"/>
-  <x:expect label="expect a verbatim copy" href="../resources/expected/dates.001.html" select="//h:p[@id='today']/h:span"/>
-</x:scenario>
-
-<x:scenario label="When transforming an ISO 8601 date">
-  <x:context xmlns="http://docbook.org/ns/docbook" href="../resources/xml/dates.001.xml" mode="m:docbook" select="//db:para[@xml:id='date']/db:date"/>
-  <x:expect label="expect a formatted date" href="../resources/expected/dates.001.html" select="//h:p[@id='date']/h:span"/>
-</x:scenario>
-
-<x:scenario label="When transforming an ISO 8601 date time in the morning">
-  <x:context xmlns="http://docbook.org/ns/docbook" href="../resources/xml/dates.001.xml" mode="m:docbook" select="//db:para[@xml:id='amtime']/db:date"/>
-  <x:expect label="expect formatted date time" href="../resources/expected/dates.001.html" select="//h:p[@id='amtime']/h:span"/>
-</x:scenario>
-
-<x:scenario label="When transforming an ISO 8601 date time in the afternoon">
-  <x:context xmlns="http://docbook.org/ns/docbook" href="../resources/xml/dates.001.xml" mode="m:docbook" select="//db:para[@xml:id='pmtime']/db:date"/>
-  <x:expect label="expect a formatted date time" href="../resources/expected/dates.001.html" select="//h:p[@id='pmtime']/h:span"/>
-</x:scenario>
-
-<x:scenario label="When transforming a date time with a custom format">
-  <x:context xmlns="http://docbook.org/ns/docbook" href="../resources/xml/dates.001.xml" mode="m:docbook" select="//db:para[@xml:id='dtformat']/db:date"/>
-  <x:expect label="expect the custom format to be used" href="../resources/expected/dates.001.html" select="//h:p[@id='dtformat']/h:span"/>
-</x:scenario>
-
+               stylesheet="../../../build/xspec-xslt/xspec-driver.xsl">
 
 <x:scenario label="When transforming a french date with a custom format">
-  <x:context xmlns="http://docbook.org/ns/docbook" href="../resources/xml/dates.001.xml" mode="m:docbook" select="//db:para[@xml:id='dtformat-fr']/db:date"/>
+  <x:context xmlns="http://docbook.org/ns/docbook"
+             href="../resources/xml/dates.001.xml" mode="m:docbook"
+             select="//db:para[@xml:id='dtformat-fr']/db:date"/>
   <x:expect label="expect the result to be in French (maybe)"
             test="(starts-with(system-property('xsl:product-version'), 'HE')
                    and string(.) = '4:49p.m. / Friday, May 8, 2020')

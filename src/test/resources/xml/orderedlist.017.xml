@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook">
+   <title>Unit Test: orderedlist.017</title>
+   <informalfigure>
+      <orderedlist>
+         <info/>
+         <listitem>
+            <para>One</para>
+         </listitem>
+         <listitem>
+            <para>Two</para>
+         </listitem>
+         <listitem>
+            <para>Three</para>
+         </listitem>
+      </orderedlist>
+      <para>Inter-list paragraph</para>
+      <orderedlist continuation="continues">
+         <info/>
+         <listitem>
+            <para>Four</para>
+         </listitem>
+         <listitem>
+            <para>Five</para>
+         </listitem>
+         <listitem>
+            <para>Six</para>
+         </listitem>
+      </orderedlist>
+   </informalfigure>
+</article>

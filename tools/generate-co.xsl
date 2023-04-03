@@ -14,7 +14,7 @@
 
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 
-<xsl:template match="db:programlistingco">
+<xsl:template match="db:programlistingco|db:screenco">
   <xsl:variable name="pseudo-attributes" as="xs:string*" expand-text="yes">
     <xsl:if test="$style">verbatim-style="{$style}"</xsl:if>
     <xsl:if test="$highlight">verbatim-highlight="{$highlight}"</xsl:if>

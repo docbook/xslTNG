@@ -69,6 +69,9 @@
              doc(resolve-uri('../actual/fit.001.olinkdb'))/*,
              doc(resolve-uri('../../src/website/resources/olinkdb/website.olinkdb'))/*)"/>
 
+<xsl:variable name="vp:random-prefix" as="xs:string"
+              select="'NOTRANDOMATALL'"/>
+
 <xsl:template match="*">
   <!-- Turn the inital element into a document. -->
   <xsl:variable name="document">

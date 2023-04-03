@@ -105,7 +105,7 @@
         </tfoot>
         <tbody>
           <xsl:for-each select="$test-reports//x:scenario/input-wrap/x:context[@href]">
-            <xsl:sort select="substring(../../@id, 9)" data-type="number"/>
+            <xsl:sort select="lower-case(tokenize(@href, '/')[last()])"/>
 
             <!--<xsl:message select="'Test report:', position()"/>-->
 
@@ -124,9 +124,8 @@
 
             <!--<xsl:message select="'D:', $doc, 'S:', $segment"/>-->
 
-            <xsl:variable name="file"
-                          select="substring-before(
-                                     substring-after(@href, $segment), '.xml')"/>
+            <xsl:variable name="file" select="tokenize(@href, '/')[last()]
+                                              => substring-before('.xml')"/>
 
             <!--<xsl:message select="'FILE:', $file"/>-->
 
@@ -178,10 +177,11 @@
 
 <xsl:template match="x:report" mode="m:results">
   <xsl:variable name="file"
-                select="(@xspec =&gt; substring-after('/build/xspec/')
-                                =&gt; substring-before('.xspec'))"/>
+                select="(tokenize(@xspec, '/')[last()]
+                         =&gt; substring-before('.xspec'))"/>
   <xsl:variable name="uri"
                 select="$file || '-result.html'"/>
+
   <xsl:variable name="pass" select="count(.//x:test[@successful = 'true'])"/>
   <xsl:variable name="pending" select="count(.//x:test[@pending])"/>
   <xsl:variable name="fail" select="(count(.//x:test) - $pending) - $pass"/>
@@ -196,7 +196,7 @@
 
 <xsl:template name="t:details">
   <xsl:variable name="gradle.properties"
-                select="unparsed-text('../gradle.properties')"/>
+                select="unparsed-text('../properties.gradle')"/>
   <xsl:variable name="properties"
                 select="f:parse-properties(tokenize($gradle.properties, '&#10;+'),
                                            map { })"/>
@@ -363,7 +363,7 @@
   <xsl:variable name="car" select="$lines[1]"/>
   <xsl:variable name="cdr" select="subsequence($lines, 2)"/>
 
-  <xsl:variable name="propregex" select="'^\s*(\c+)=(.*)$'"/>
+  <xsl:variable name="propregex" select="'^\s*(\c+)\s*=\s*[''&quot;](.*)[''&quot;]$'"/>
 
   <xsl:choose>
     <xsl:when test="empty($lines)">
