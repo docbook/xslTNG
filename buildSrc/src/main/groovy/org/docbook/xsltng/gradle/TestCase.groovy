@@ -222,7 +222,7 @@ class TestCase {
           outputs.file project.file("${project.buildDir}/actual/${testname}.pdf")
           dependsOn pdfhtml
 
-          commandLine "${antennahouse}",
+          commandLine pdfExec,
             "-d", "${project.buildDir}/actual/${testname}.pdf.html",
             "-o", "${project.buildDir}/actual/${testname}.pdf"
         }
@@ -234,7 +234,7 @@ class TestCase {
           outputs.file project.file("${project.projectDir}/src/test/resources/expectedpdf/${pdfTool}/${testname}.pdf")
           dependsOn pdfhtml
 
-          commandLine "${antennahouse}",
+          commandLine pdfExec,
             "-d", "${project.buildDir}/actual/${testname}.pdf.html",
             "-o", "${project.projectDir}/src/test/resources/expectedpdf/${pdfTool}/${testname}.pdf"
         }
