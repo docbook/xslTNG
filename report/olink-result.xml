@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/olink.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/olink.xsl"
+         date="2023-04-03T19:36:34.884973Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/olink.xspec">
+      <label>When transforming olink.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/olink.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit Test: olink.001.xml</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article id="article" class="article component">
+                        <header>
+                           <h1>Unit Test: olink.001.xml</h1>
+                        </header>
+                        <p>This test requires olink databases.</p>
+                        <p>Instructions for getting the stylesheets are available
+<a href="https://xsltng.docbook.org/#getting">on the website</a>.
+</p>
+                        <p>See also <a href="https://xsltng.docbook.org/guide/partich01s02.html#getting">
+                              <span class="label">2</span>
+                              <span class="sep">. </span>Getting the stylesheets</a>.
+</p>
+                        <p>This is expected to fail: <span class="error">olink: Guide/NoSuchPtr</span>.
+</p>
+                        <p>This is also expected to fail: <span class="error">olink: NoDoc/NoPtr</span>.
+</p>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect olink.001.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit Test: olink.001.xml</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article id="article" class="article component">
+                           <header>
+                              <h1>Unit Test: olink.001.xml</h1>
+                           </header>
+                           <p>This test requires olink databases.</p>
+                           <p>Instructions for getting the stylesheets are available
+<a href="https://xsltng.docbook.org/#getting">on the website</a>.
+</p>
+                           <p>See also <a href="https://xsltng.docbook.org/guide/partich01s02.html#getting">
+                                 <span class="label">2</span>
+                                 <span class="sep">. </span>Getting the stylesheets</a>.
+</p>
+                           <p>This is expected to fail: <span class="error">olink: Guide/NoSuchPtr</span>.
+</p>
+                           <p>This is also expected to fail: <span class="error">olink: NoDoc/NoPtr</span>.
+</p>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>

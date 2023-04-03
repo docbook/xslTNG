@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><article xmlns="http://docbook.org/ns/docbook" version="5.0">
    <title>Article wrapper</title>
-   <screenco>
+   <para>These options apply to the
+listing that follows:</para><informaltable><tgroup cols="2"><thead><row><entry>Option</entry><entry>Value</entry></row></thead><tbody><row><entry>verbatim-style</entry><entry>plain</entry></row><row><entry>verbatim-highlight</entry><entry>linecolumn,lines,lineranges-first</entry></row><row><entry>verbatim-numbered</entry><entry>true</entry></row><row><entry>verbatim-number-every-nth</entry><entry>5</entry></row><row><entry>verbatim-number-first-line</entry><entry>true</entry></row><row><entry>verbatim-number-minlines</entry><entry>5</entry></row></tbody></tgroup></informaltable><screenco><?db verbatim-style="plain" verbatim-highlight="linecolumn,lines,lineranges-first" verbatim-numbered="true" verbatim-number-every-nth="5" verbatim-number-first-line="true" verbatim-number-minlines="5"?>
       <areaspec>
          <area xml:id="first" coords="1">
            <alt>The first line</alt>

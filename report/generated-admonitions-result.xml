@@ -1,0 +1,2450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+         date="2023-04-03T19:35:19.10711Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_note.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="note" class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>This note has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="note" class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>This note has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario2"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_note.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.note" class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a note.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario2-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.note" class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a note.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario3"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_note.003</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.003.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.other.note" class="admonition note other">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a note with a role of ‘other’.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario3-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.other.note" class="admonition note other">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a note with a role of ‘other’.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario4"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_tip.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_tip.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="tip" class="admonition tip">
+                           <div>
+                              <div class="icon">☞</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Tip</div>
+                                 </header>
+                                 <div>
+                                    <p>This tip has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario4-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="tip" class="admonition tip">
+                              <div>
+                                 <div class="icon">☞</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Tip</div>
+                                    </header>
+                                    <div>
+                                       <p>This tip has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario5"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_tip.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_tip.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.tip" class="admonition tip">
+                           <div>
+                              <div class="icon">☞</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Tip Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a tip.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario5-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.tip" class="admonition tip">
+                              <div>
+                                 <div class="icon">☞</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Tip Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a tip.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario6"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_important.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_important.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="important" class="admonition important">
+                           <div>
+                              <div class="icon">☝</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Important</div>
+                                 </header>
+                                 <div>
+                                    <p>This important has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario6-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="important" class="admonition important">
+                              <div>
+                                 <div class="icon">☝</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Important</div>
+                                    </header>
+                                    <div>
+                                       <p>This important has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario7"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_important.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_important.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.important" class="admonition important">
+                           <div>
+                              <div class="icon">☝</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Important Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is an important.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario7-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.important" class="admonition important">
+                              <div>
+                                 <div class="icon">☝</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Important Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is an important.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario8"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_caution.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_caution.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="caution" class="admonition caution">
+                           <div>
+                              <div class="icon">⚠</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Caution</div>
+                                 </header>
+                                 <div>
+                                    <p>This caution has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario8-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="caution" class="admonition caution">
+                              <div>
+                                 <div class="icon">⚠</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Caution</div>
+                                    </header>
+                                    <div>
+                                       <p>This caution has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario9"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_caution.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_caution.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.caution" class="admonition caution">
+                           <div>
+                              <div class="icon">⚠</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Caution Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a caution.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario9-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.caution" class="admonition caution">
+                              <div>
+                                 <div class="icon">⚠</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Caution Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a caution.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario10"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_warning.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_warning.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="warning" class="admonition warning">
+                           <div>
+                              <div class="icon">🛑</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Warning</div>
+                                 </header>
+                                 <div>
+                                    <p>This warning has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario10-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="warning" class="admonition warning">
+                              <div>
+                                 <div class="icon">🛑</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Warning</div>
+                                    </header>
+                                    <div>
+                                       <p>This warning has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario11"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_warning.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_warning.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.warning" class="admonition warning">
+                           <div>
+                              <div class="icon">🛑</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Warning Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a warning.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario11-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.warning" class="admonition warning">
+                              <div>
+                                 <div class="icon">🛑</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Warning Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a warning.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario12"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_danger.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_danger.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="danger" class="admonition danger">
+                           <div>
+                              <div class="icon">⚡</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Danger</div>
+                                 </header>
+                                 <div>
+                                    <p>This danger has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario12-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="danger" class="admonition danger">
+                              <div>
+                                 <div class="icon">⚡</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Danger</div>
+                                    </header>
+                                    <div>
+                                       <p>This danger has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario13"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming en_danger.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_danger.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.danger" class="admonition danger">
+                           <div>
+                              <div class="icon">⚡</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Danger Title</div>
+                                 </header>
+                                 <div>
+                                    <p>Danger, Will Robinson!</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario13-expect1" successful="true">
+         <label>expect it to be rendered in English</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.danger" class="admonition danger">
+                              <div>
+                                 <div class="icon">⚡</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Danger Title</div>
+                                    </header>
+                                    <div>
+                                       <p>Danger, Will Robinson!</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario14"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_note.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="note" lang="fr" class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>This note has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario14-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="note" lang="fr" class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>This note has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario15"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_note.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.note" lang="fr" class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a note.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario15-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.note" lang="fr" class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a note.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario16"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_note.003</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.003.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.other.note" lang="fr" class="admonition note other">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a note with a role of ‘other’.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario16-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.other.note" lang="fr" class="admonition note other">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a note with a role of ‘other’.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario17"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_tip.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_tip.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="tip" lang="fr" class="admonition tip">
+                           <div>
+                              <div class="icon">☞</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Astuce</div>
+                                 </header>
+                                 <div>
+                                    <p>This tip has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario17-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="tip" lang="fr" class="admonition tip">
+                              <div>
+                                 <div class="icon">☞</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Astuce</div>
+                                    </header>
+                                    <div>
+                                       <p>This tip has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario18"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_tip.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_tip.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.tip" lang="fr" class="admonition tip">
+                           <div>
+                              <div class="icon">☞</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Tip Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a tip.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario18-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.tip" lang="fr" class="admonition tip">
+                              <div>
+                                 <div class="icon">☞</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Tip Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a tip.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario19"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_important.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_important.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="important" lang="fr" class="admonition important">
+                           <div>
+                              <div class="icon">☝</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Important</div>
+                                 </header>
+                                 <div>
+                                    <p>This important has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario19-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="important" lang="fr" class="admonition important">
+                              <div>
+                                 <div class="icon">☝</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Important</div>
+                                    </header>
+                                    <div>
+                                       <p>This important has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario20"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_important.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_important.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.important" lang="fr" class="admonition important">
+                           <div>
+                              <div class="icon">☝</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Important Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is an important.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario20-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.important" lang="fr" class="admonition important">
+                              <div>
+                                 <div class="icon">☝</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Important Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is an important.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario21"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_caution.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_caution.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="caution" lang="fr" class="admonition caution">
+                           <div>
+                              <div class="icon">⚠</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Attention</div>
+                                 </header>
+                                 <div>
+                                    <p>This caution has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario21-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="caution" lang="fr" class="admonition caution">
+                              <div>
+                                 <div class="icon">⚠</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Attention</div>
+                                    </header>
+                                    <div>
+                                       <p>This caution has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario22"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_caution.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_caution.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.caution" lang="fr" class="admonition caution">
+                           <div>
+                              <div class="icon">⚠</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Caution Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a caution.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario22-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.caution" lang="fr" class="admonition caution">
+                              <div>
+                                 <div class="icon">⚠</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Caution Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a caution.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario23"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_warning.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_warning.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="warning" lang="fr" class="admonition warning">
+                           <div>
+                              <div class="icon">🛑</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Avertissement</div>
+                                 </header>
+                                 <div>
+                                    <p>This warning has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario23-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="warning" lang="fr" class="admonition warning">
+                              <div>
+                                 <div class="icon">🛑</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Avertissement</div>
+                                    </header>
+                                    <div>
+                                       <p>This warning has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario24"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_warning.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_warning.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.warning" lang="fr" class="admonition warning">
+                           <div>
+                              <div class="icon">🛑</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Warning Title</div>
+                                 </header>
+                                 <div>
+                                    <p>This is a warning.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario24-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.warning" lang="fr" class="admonition warning">
+                              <div>
+                                 <div class="icon">🛑</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Warning Title</div>
+                                    </header>
+                                    <div>
+                                       <p>This is a warning.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario25"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_danger.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_danger.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="danger" lang="fr" class="admonition danger">
+                           <div>
+                              <div class="icon">⚡</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Danger</div>
+                                 </header>
+                                 <div>
+                                    <p>This danger has no title.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario25-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="danger" lang="fr" class="admonition danger">
+                              <div>
+                                 <div class="icon">⚡</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Danger</div>
+                                    </header>
+                                    <div>
+                                       <p>This danger has no title.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario26"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+      <label>When transforming fr_danger.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_danger.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div id="t.danger" lang="fr" class="admonition danger">
+                           <div>
+                              <div class="icon">⚡</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Danger Title</div>
+                                 </header>
+                                 <div>
+                                    <p>Danger, Will Robinson!</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario26-expect1" successful="true">
+         <label>expect it to be rendered in French</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div id="t.danger" lang="fr" class="admonition danger">
+                              <div>
+                                 <div class="icon">⚡</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Danger Title</div>
+                                    </header>
+                                    <div>
+                                       <p>Danger, Will Robinson!</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>

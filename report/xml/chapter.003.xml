@@ -85,18 +85,18 @@ where “<code><replaceable>$ROOT</replaceable></code>” is whatever directory 
 to unzip the distribution into and <replaceable>version</replaceable> is the
 stylesheet version.</para>
 
-<para>Assuming you unzipped the version <?DocBook-xslTNG-version?> distribution into
+<para>Assuming you unzipped the version XXX distribution into
 <filename class="directory">/home/ndw/xsltng</filename>, you can run
 the JAR like this:</para>
 
-<para><code>java -jar /home/ndw/xsltng/libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar</code></para>
+<para><code>java -jar /home/ndw/xsltng/libs/docbook-xslTNG-XXX.jar</code></para>
 
 <para>Let’s try it out. Open a shell window and change to the samples directory,
 <filename class="directory">/home/ndw/xsltng/samples</filename> assuming you unzipped
 it as described above. Now run the java command:</para>
 
 <screen role="monochrome border"
->$ <userinput>java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml</userinput>
+>$ <userinput>java -jar ../libs/docbook-xslTNG-XXX.jar article.xml</userinput>
 <computeroutput><![CDATA[<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
 …more HTML here...
 <nav class="bottom"></nav></body></html>]]></computeroutput></screen>
@@ -107,7 +107,7 @@ that HTML in a file:
 </para>
 
 <screen role="monochrome border">$ <userinput
->java -jar ../libs/docbook-xslTNG-<?DocBook-xslTNG-version?>.jar article.xml \
+>java -jar ../libs/docbook-xslTNG-XXX.jar article.xml \
         -o:article.html</userinput
 ></screen>
 
@@ -184,7 +184,7 @@ the necessary dependencies. You only have to do this once.</para>
 
 <screen role="monochrome border">$ <userinput
 >mvn org.apache.maven.plugins:maven-dependency-plugin:2.4:get \
-      -Dartifact=org.docbook:docbook-xslTNG:<?DocBook-xslTNG-version?></userinput
+      -Dartifact=org.docbook:docbook-xslTNG:XXX</userinput
 ></screen>
 
 <para>That might take a while.</para>

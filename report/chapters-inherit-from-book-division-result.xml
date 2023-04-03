@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/chapters-inherit-from-book-division.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-chapters-inherit-from-book-division-driver.xsl"
-         date="2023-03-26T15:48:49.139716Z">
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/chapters-inherit-from-book-division.xsl"
+         date="2023-04-03T19:28:05.515783Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/chapters-inherit-from-book-division.xspec">
-      <label>When converting chapters-inherit-from-book-division...</label>
+      <label>When transforming chapters-inherit-from-book-division</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/chapters-numbered-from.xml"/>
@@ -999,7 +999,7 @@
          </content-wrap>
       </result>
       <test id="scenario1-expect1" successful="true">
-         <label>expect chapters inherited from book-divisions</label>
+         <label>expect chapters-inherit-from-book-division.expected</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
                <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">

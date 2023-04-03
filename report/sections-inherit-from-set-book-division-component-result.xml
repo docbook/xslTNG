@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-set-book-division-component.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-sections-inherit-from-set-book-division-component-driver.xsl"
-         date="2023-03-26T15:54:27.96414Z">
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-inherit-from-set-book-division-component.xsl"
+         date="2023-04-03T19:38:39.184506Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-set-book-division-component.xspec">
-      <label>When converting sections-inherit-from-set-book-division-component...</label>
+      <label>When transforming sections-inherit-from-set-book-division-component</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/sections-numbered-from.xml"/>
@@ -45,7 +45,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo1_ch1">
-                                                   <span class="label">1</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                    <span class="sep">. </span>First chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -62,7 +62,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch2">
-                                                   <span class="label">2</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                    <span class="sep">. </span>Second chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -90,7 +90,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo1_part1_ch1">
-                                                         <span class="label">3</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                          <span class="sep">. </span>Third chapter (first in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -107,7 +107,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo1_part1_ch2">
-                                                         <span class="label">4</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                          <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -133,7 +133,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch3">
-                                                   <span class="label">5</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                    <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -154,7 +154,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo1_part2_ch1">
-                                                         <span class="label">6</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                          <span class="sep">. </span>Six chapter (first in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -171,7 +171,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo1_part2_ch2">
-                                                         <span class="label">7</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                          <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -190,7 +190,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch4">
-                                                   <span class="label">8</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                    <span class="sep">. </span>Eighth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -207,7 +207,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch5">
-                                                   <span class="label">9</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                    <span class="sep">. </span>Ninth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -230,7 +230,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo2_ch1">
-                                                   <span class="label">1</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                                    <span class="sep">. </span>First chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -247,7 +247,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch2">
-                                                   <span class="label">2</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                                    <span class="sep">. </span>Second chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -275,7 +275,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo2_part1_ch1">
-                                                         <span class="label">3</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                          <span class="sep">. </span>Third chapter (first in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -292,7 +292,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo2_part1_ch2">
-                                                         <span class="label">4</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                          <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -318,7 +318,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch3">
-                                                   <span class="label">5</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                                    <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -339,7 +339,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo2_part2_ch1">
-                                                         <span class="label">6</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                          <span class="sep">. </span>Six chapter (first in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -356,7 +356,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo2_part2_ch2">
-                                                         <span class="label">7</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                          <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -375,7 +375,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch4">
-                                                   <span class="label">8</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                                    <span class="sep">. </span>Eighth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -392,7 +392,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch5">
-                                                   <span class="label">9</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                                    <span class="sep">. </span>Ninth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -421,7 +421,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set2_bo1_ch1">
-                                                   <span class="label">1</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                    <span class="sep">. </span>First chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -438,7 +438,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch2">
-                                                   <span class="label">2</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                    <span class="sep">. </span>Second chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -466,7 +466,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set2_bo1_part1_ch1">
-                                                         <span class="label">3</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                          <span class="sep">. </span>Third chapter (first in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -483,7 +483,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set2_bo1_part1_ch2">
-                                                         <span class="label">4</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                          <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -509,7 +509,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch3">
-                                                   <span class="label">5</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                    <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -530,7 +530,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set2_bo1_part2_ch1">
-                                                         <span class="label">6</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                          <span class="sep">. </span>Six chapter (first in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -547,7 +547,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set2_bo1_part2_ch2">
-                                                         <span class="label">7</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                          <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -566,7 +566,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch4">
-                                                   <span class="label">8</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                    <span class="sep">. </span>Eighth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -583,7 +583,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch5">
-                                                   <span class="label">9</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                    <span class="sep">. </span>Ninth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -620,7 +620,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo1_ch1">
-                                                <span class="label">1</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>First chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -637,7 +637,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch2">
-                                                <span class="label">2</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Second chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -665,7 +665,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo1_part1_ch1">
-                                                      <span class="label">3</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                       <span class="sep">. </span>Third chapter (first in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -682,7 +682,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_part1_ch2">
-                                                      <span class="label">4</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                       <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -708,7 +708,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch3">
-                                                <span class="label">5</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Fifth chapter (between parts)</a>
                                              <ul class="toc">
                                                 <li>
@@ -729,7 +729,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo1_part2_ch1">
-                                                      <span class="label">6</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                       <span class="sep">. </span>Six chapter (first in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -746,7 +746,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_part2_ch2">
-                                                      <span class="label">7</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                       <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -765,7 +765,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch4">
-                                                <span class="label">8</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                 <span class="sep">. </span>Eighth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -782,7 +782,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch5">
-                                                <span class="label">9</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                 <span class="sep">. </span>Ninth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -805,7 +805,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo2_ch1">
-                                                <span class="label">1</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>First chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -822,7 +822,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch2">
-                                                <span class="label">2</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Second chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -850,7 +850,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo2_part1_ch1">
-                                                      <span class="label">3</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                       <span class="sep">. </span>Third chapter (first in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -867,7 +867,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_part1_ch2">
-                                                      <span class="label">4</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                       <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -893,7 +893,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch3">
-                                                <span class="label">5</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Fifth chapter (between parts)</a>
                                              <ul class="toc">
                                                 <li>
@@ -914,7 +914,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo2_part2_ch1">
-                                                      <span class="label">6</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                       <span class="sep">. </span>Six chapter (first in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -931,7 +931,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_part2_ch2">
-                                                      <span class="label">7</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                       <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -950,7 +950,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch4">
-                                                <span class="label">8</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                                 <span class="sep">. </span>Eighth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -967,7 +967,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch5">
-                                                <span class="label">9</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                                 <span class="sep">. </span>Ninth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -998,7 +998,7 @@
                                     <ul class="toc">
                                        <li>
                                           <a href="#book_set1_bo1_ch1">
-                                             <span class="label">1</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                              <span class="sep">. </span>First chapter (before part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1015,7 +1015,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo1_ch2">
-                                             <span class="label">2</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                              <span class="sep">. </span>Second chapter (before part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1043,7 +1043,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo1_part1_ch1">
-                                                   <span class="label">3</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                    <span class="sep">. </span>Third chapter (first in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1060,7 +1060,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_part1_ch2">
-                                                   <span class="label">4</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                    <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1086,7 +1086,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo1_ch3">
-                                             <span class="label">5</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                              <span class="sep">. </span>Fifth chapter (between parts)</a>
                                           <ul class="toc">
                                              <li>
@@ -1107,7 +1107,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo1_part2_ch1">
-                                                   <span class="label">6</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                    <span class="sep">. </span>Six chapter (first in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1124,7 +1124,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_part2_ch2">
-                                                   <span class="label">7</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                    <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1143,7 +1143,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo1_ch4">
-                                             <span class="label">8</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                              <span class="sep">. </span>Eighth chapter (after part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1160,7 +1160,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo1_ch5">
-                                             <span class="label">9</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                              <span class="sep">. </span>Ninth chapter (after part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1180,7 +1180,7 @@
                               </div>
                               <div id="book_set1_bo1_ch1" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">1</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                        <span class="sep">. </span>First chapter (before part)</h2>
                                  </header>
                                  <section id="book_set1_bo1_ch1_s1" class="section">
@@ -1202,7 +1202,7 @@
                               </div>
                               <div id="book_set1_bo1_ch2" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">2</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                        <span class="sep">. </span>Second chapter (before part)</h2>
                                  </header>
                                  <section id="book_set1_bo1_ch2_s1" class="section">
@@ -1241,7 +1241,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo1_part1_ch1">
-                                                <span class="label">3</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                 <span class="sep">. </span>Third chapter (first in first part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1258,7 +1258,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_part1_ch2">
-                                                <span class="label">4</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                 <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1285,7 +1285,7 @@
                                  </div>
                                  <div id="book_set1_bo1_part1_ch1" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">3</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                           <span class="sep">. </span>Third chapter (first in first part)</h1>
                                     </header>
                                     <section id="book_set1_bo1_part1_ch1_s1" class="section">
@@ -1307,7 +1307,7 @@
                                  </div>
                                  <div id="book_set1_bo1_part1_ch2" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">4</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                           <span class="sep">. </span>Fourth chapter (second in first part)</h1>
                                     </header>
                                     <section id="book_set1_bo1_part1_ch2_s1" class="section">
@@ -1338,7 +1338,7 @@
                               </article>
                               <div id="book_set1_bo1_ch3" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">5</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                        <span class="sep">. </span>Fifth chapter (between parts)</h2>
                                  </header>
                                  <section id="book_set1_bo1_ch3_s1" class="section">
@@ -1369,7 +1369,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo1_part2_ch1">
-                                                <span class="label">6</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                 <span class="sep">. </span>Six chapter (first in second part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1386,7 +1386,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_part2_ch2">
-                                                <span class="label">7</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                 <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1406,7 +1406,7 @@
                                  </div>
                                  <div id="book_set1_bo1_part2_ch1" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">6</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                           <span class="sep">. </span>Six chapter (first in second part)</h1>
                                     </header>
                                     <section id="book_set1_bo1_part2_ch1_s1" class="section">
@@ -1428,7 +1428,7 @@
                                  </div>
                                  <div id="book_set1_bo1_part2_ch2" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">7</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                           <span class="sep">. </span>Seventh chapter (second in second part)</h1>
                                     </header>
                                     <section id="book_set1_bo1_part2_ch2_s1" class="section">
@@ -1451,7 +1451,7 @@
                               </article>
                               <div id="book_set1_bo1_ch4" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">8</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                        <span class="sep">. </span>Eighth chapter (after part)</h2>
                                  </header>
                                  <section id="book_set1_bo1_ch4_s1" class="section">
@@ -1473,7 +1473,7 @@
                               </div>
                               <div id="book_set1_bo1_ch5" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">9</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                        <span class="sep">. </span>Ninth chapter (after part)</h2>
                                  </header>
                                  <section id="book_set1_bo1_ch5_s1" class="section">
@@ -1505,7 +1505,7 @@
                                     <ul class="toc">
                                        <li>
                                           <a href="#book_set1_bo2_ch1">
-                                             <span class="label">1</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                              <span class="sep">. </span>First chapter (before part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1522,7 +1522,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo2_ch2">
-                                             <span class="label">2</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                              <span class="sep">. </span>Second chapter (before part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1550,7 +1550,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo2_part1_ch1">
-                                                   <span class="label">3</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                    <span class="sep">. </span>Third chapter (first in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1567,7 +1567,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_part1_ch2">
-                                                   <span class="label">4</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                    <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1593,7 +1593,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo2_ch3">
-                                             <span class="label">5</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                              <span class="sep">. </span>Fifth chapter (between parts)</a>
                                           <ul class="toc">
                                              <li>
@@ -1614,7 +1614,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo2_part2_ch1">
-                                                   <span class="label">6</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                    <span class="sep">. </span>Six chapter (first in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1631,7 +1631,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_part2_ch2">
-                                                   <span class="label">7</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                    <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -1650,7 +1650,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo2_ch4">
-                                             <span class="label">8</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                              <span class="sep">. </span>Eighth chapter (after part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1667,7 +1667,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set1_bo2_ch5">
-                                             <span class="label">9</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                              <span class="sep">. </span>Ninth chapter (after part)</a>
                                           <ul class="toc">
                                              <li>
@@ -1687,7 +1687,7 @@
                               </div>
                               <div id="book_set1_bo2_ch1" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">1</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                        <span class="sep">. </span>First chapter (before part)</h2>
                                  </header>
                                  <section id="book_set1_bo2_ch1_s1" class="section">
@@ -1709,7 +1709,7 @@
                               </div>
                               <div id="book_set1_bo2_ch2" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">2</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                        <span class="sep">. </span>Second chapter (before part)</h2>
                                  </header>
                                  <section id="book_set1_bo2_ch2_s1" class="section">
@@ -1748,7 +1748,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo2_part1_ch1">
-                                                <span class="label">3</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                 <span class="sep">. </span>Third chapter (first in first part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1765,7 +1765,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_part1_ch2">
-                                                <span class="label">4</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                 <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1792,7 +1792,7 @@
                                  </div>
                                  <div id="book_set1_bo2_part1_ch1" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">3</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                           <span class="sep">. </span>Third chapter (first in first part)</h1>
                                     </header>
                                     <section id="book_set1_bo2_part1_ch1_s1" class="section">
@@ -1814,7 +1814,7 @@
                                  </div>
                                  <div id="book_set1_bo2_part1_ch2" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">4</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                           <span class="sep">. </span>Fourth chapter (second in first part)</h1>
                                     </header>
                                     <section id="book_set1_bo2_part1_ch2_s1" class="section">
@@ -1845,7 +1845,7 @@
                               </article>
                               <div id="book_set1_bo2_ch3" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">5</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                        <span class="sep">. </span>Fifth chapter (between parts)</h2>
                                  </header>
                                  <section id="book_set1_bo2_ch3_s1" class="section">
@@ -1876,7 +1876,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo2_part2_ch1">
-                                                <span class="label">6</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                 <span class="sep">. </span>Six chapter (first in second part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1893,7 +1893,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_part2_ch2">
-                                                <span class="label">7</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                 <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -1913,7 +1913,7 @@
                                  </div>
                                  <div id="book_set1_bo2_part2_ch1" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">6</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                           <span class="sep">. </span>Six chapter (first in second part)</h1>
                                     </header>
                                     <section id="book_set1_bo2_part2_ch1_s1" class="section">
@@ -1935,7 +1935,7 @@
                                  </div>
                                  <div id="book_set1_bo2_part2_ch2" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">7</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                           <span class="sep">. </span>Seventh chapter (second in second part)</h1>
                                     </header>
                                     <section id="book_set1_bo2_part2_ch2_s1" class="section">
@@ -1958,7 +1958,7 @@
                               </article>
                               <div id="book_set1_bo2_ch4" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">8</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                        <span class="sep">. </span>Eighth chapter (after part)</h2>
                                  </header>
                                  <section id="book_set1_bo2_ch4_s1" class="section">
@@ -1980,7 +1980,7 @@
                               </div>
                               <div id="book_set1_bo2_ch5" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">9</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                        <span class="sep">. </span>Ninth chapter (after part)</h2>
                                  </header>
                                  <section id="book_set1_bo2_ch5_s1" class="section">
@@ -2017,7 +2017,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set2_bo1_ch1">
-                                                <span class="label">1</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>First chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2034,7 +2034,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch2">
-                                                <span class="label">2</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Second chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2062,7 +2062,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set2_bo1_part1_ch1">
-                                                      <span class="label">3</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                       <span class="sep">. </span>Third chapter (first in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2079,7 +2079,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_part1_ch2">
-                                                      <span class="label">4</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                       <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2105,7 +2105,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch3">
-                                                <span class="label">5</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Fifth chapter (between parts)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2126,7 +2126,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set2_bo1_part2_ch1">
-                                                      <span class="label">6</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                       <span class="sep">. </span>Six chapter (first in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2143,7 +2143,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_part2_ch2">
-                                                      <span class="label">7</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                       <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2162,7 +2162,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch4">
-                                                <span class="label">8</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                 <span class="sep">. </span>Eighth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2179,7 +2179,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch5">
-                                                <span class="label">9</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                 <span class="sep">. </span>Ninth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2210,7 +2210,7 @@
                                     <ul class="toc">
                                        <li>
                                           <a href="#book_set2_bo1_ch1">
-                                             <span class="label">1</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                              <span class="sep">. </span>First chapter (before part)</a>
                                           <ul class="toc">
                                              <li>
@@ -2227,7 +2227,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set2_bo1_ch2">
-                                             <span class="label">2</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                              <span class="sep">. </span>Second chapter (before part)</a>
                                           <ul class="toc">
                                              <li>
@@ -2255,7 +2255,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set2_bo1_part1_ch1">
-                                                   <span class="label">3</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                    <span class="sep">. </span>Third chapter (first in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -2272,7 +2272,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_part1_ch2">
-                                                   <span class="label">4</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                    <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -2298,7 +2298,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set2_bo1_ch3">
-                                             <span class="label">5</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                              <span class="sep">. </span>Fifth chapter (between parts)</a>
                                           <ul class="toc">
                                              <li>
@@ -2319,7 +2319,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set2_bo1_part2_ch1">
-                                                   <span class="label">6</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                    <span class="sep">. </span>Six chapter (first in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -2336,7 +2336,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_part2_ch2">
-                                                   <span class="label">7</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                    <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -2355,7 +2355,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set2_bo1_ch4">
-                                             <span class="label">8</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                              <span class="sep">. </span>Eighth chapter (after part)</a>
                                           <ul class="toc">
                                              <li>
@@ -2372,7 +2372,7 @@
                                        </li>
                                        <li>
                                           <a href="#book_set2_bo1_ch5">
-                                             <span class="label">9</span>
+                                             <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                              <span class="sep">. </span>Ninth chapter (after part)</a>
                                           <ul class="toc">
                                              <li>
@@ -2392,7 +2392,7 @@
                               </div>
                               <div id="book_set2_bo1_ch1" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">1</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                        <span class="sep">. </span>First chapter (before part)</h2>
                                  </header>
                                  <section id="book_set2_bo1_ch1_s1" class="section">
@@ -2414,7 +2414,7 @@
                               </div>
                               <div id="book_set2_bo1_ch2" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">2</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                        <span class="sep">. </span>Second chapter (before part)</h2>
                                  </header>
                                  <section id="book_set2_bo1_ch2_s1" class="section">
@@ -2453,7 +2453,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set2_bo1_part1_ch1">
-                                                <span class="label">3</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                 <span class="sep">. </span>Third chapter (first in first part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2470,7 +2470,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_part1_ch2">
-                                                <span class="label">4</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                 <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2497,7 +2497,7 @@
                                  </div>
                                  <div id="book_set2_bo1_part1_ch1" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">3</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                           <span class="sep">. </span>Third chapter (first in first part)</h1>
                                     </header>
                                     <section id="book_set2_bo1_part1_ch1_s1" class="section">
@@ -2519,7 +2519,7 @@
                                  </div>
                                  <div id="book_set2_bo1_part1_ch2" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">4</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                           <span class="sep">. </span>Fourth chapter (second in first part)</h1>
                                     </header>
                                     <section id="book_set2_bo1_part1_ch2_s1" class="section">
@@ -2550,7 +2550,7 @@
                               </article>
                               <div id="book_set2_bo1_ch3" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">5</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                        <span class="sep">. </span>Fifth chapter (between parts)</h2>
                                  </header>
                                  <section id="book_set2_bo1_ch3_s1" class="section">
@@ -2581,7 +2581,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set2_bo1_part2_ch1">
-                                                <span class="label">6</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                 <span class="sep">. </span>Six chapter (first in second part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2598,7 +2598,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_part2_ch2">
-                                                <span class="label">7</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                 <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -2618,7 +2618,7 @@
                                  </div>
                                  <div id="book_set2_bo1_part2_ch1" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">6</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                           <span class="sep">. </span>Six chapter (first in second part)</h1>
                                     </header>
                                     <section id="book_set2_bo1_part2_ch1_s1" class="section">
@@ -2640,7 +2640,7 @@
                                  </div>
                                  <div id="book_set2_bo1_part2_ch2" class="chapter component">
                                     <header>
-                                       <h1>Chapter <span class="label">7</span>
+                                       <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                           <span class="sep">. </span>Seventh chapter (second in second part)</h1>
                                     </header>
                                     <section id="book_set2_bo1_part2_ch2_s1" class="section">
@@ -2663,7 +2663,7 @@
                               </article>
                               <div id="book_set2_bo1_ch4" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">8</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                        <span class="sep">. </span>Eighth chapter (after part)</h2>
                                  </header>
                                  <section id="book_set2_bo1_ch4_s1" class="section">
@@ -2685,7 +2685,7 @@
                               </div>
                               <div id="book_set2_bo1_ch5" class="chapter component">
                                  <header>
-                                    <h2>Chapter <span class="label">9</span>
+                                    <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                        <span class="sep">. </span>Ninth chapter (after part)</h2>
                                  </header>
                                  <section id="book_set2_bo1_ch5_s1" class="section">
@@ -2715,7 +2715,7 @@
          </content-wrap>
       </result>
       <test id="scenario1-expect1" successful="true">
-         <label>expect sections inherited from set-book-division-components</label>
+         <label>expect sections-inherit-from-set-book-division-component.expected</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
                <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
@@ -2751,7 +2751,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo1_ch1">
-                                                      <span class="label">1</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                       <span class="sep">. </span>First chapter (before part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2768,7 +2768,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_ch2">
-                                                      <span class="label">2</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                       <span class="sep">. </span>Second chapter (before part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2796,7 +2796,7 @@
                                                    <ul class="toc">
                                                       <li>
                                                          <a href="#book_set1_bo1_part1_ch1">
-                                                            <span class="label">3</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                             <span class="sep">. </span>Third chapter (first in first part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -2813,7 +2813,7 @@
                                                       </li>
                                                       <li>
                                                          <a href="#book_set1_bo1_part1_ch2">
-                                                            <span class="label">4</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                             <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -2839,7 +2839,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_ch3">
-                                                      <span class="label">5</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                       <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2860,7 +2860,7 @@
                                                    <ul class="toc">
                                                       <li>
                                                          <a href="#book_set1_bo1_part2_ch1">
-                                                            <span class="label">6</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                             <span class="sep">. </span>Six chapter (first in second part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -2877,7 +2877,7 @@
                                                       </li>
                                                       <li>
                                                          <a href="#book_set1_bo1_part2_ch2">
-                                                            <span class="label">7</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                             <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -2896,7 +2896,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_ch4">
-                                                      <span class="label">8</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                       <span class="sep">. </span>Eighth chapter (after part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2913,7 +2913,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_ch5">
-                                                      <span class="label">9</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                       <span class="sep">. </span>Ninth chapter (after part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2936,7 +2936,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo2_ch1">
-                                                      <span class="label">1</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                                       <span class="sep">. </span>First chapter (before part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2953,7 +2953,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_ch2">
-                                                      <span class="label">2</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                                       <span class="sep">. </span>Second chapter (before part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -2981,7 +2981,7 @@
                                                    <ul class="toc">
                                                       <li>
                                                          <a href="#book_set1_bo2_part1_ch1">
-                                                            <span class="label">3</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                             <span class="sep">. </span>Third chapter (first in first part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -2998,7 +2998,7 @@
                                                       </li>
                                                       <li>
                                                          <a href="#book_set1_bo2_part1_ch2">
-                                                            <span class="label">4</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                             <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3024,7 +3024,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_ch3">
-                                                      <span class="label">5</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                                       <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3045,7 +3045,7 @@
                                                    <ul class="toc">
                                                       <li>
                                                          <a href="#book_set1_bo2_part2_ch1">
-                                                            <span class="label">6</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                             <span class="sep">. </span>Six chapter (first in second part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3062,7 +3062,7 @@
                                                       </li>
                                                       <li>
                                                          <a href="#book_set1_bo2_part2_ch2">
-                                                            <span class="label">7</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                             <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3081,7 +3081,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_ch4">
-                                                      <span class="label">8</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                                       <span class="sep">. </span>Eighth chapter (after part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3098,7 +3098,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_ch5">
-                                                      <span class="label">9</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                                       <span class="sep">. </span>Ninth chapter (after part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3127,7 +3127,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set2_bo1_ch1">
-                                                      <span class="label">1</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                       <span class="sep">. </span>First chapter (before part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3144,7 +3144,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_ch2">
-                                                      <span class="label">2</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                       <span class="sep">. </span>Second chapter (before part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3172,7 +3172,7 @@
                                                    <ul class="toc">
                                                       <li>
                                                          <a href="#book_set2_bo1_part1_ch1">
-                                                            <span class="label">3</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                             <span class="sep">. </span>Third chapter (first in first part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3189,7 +3189,7 @@
                                                       </li>
                                                       <li>
                                                          <a href="#book_set2_bo1_part1_ch2">
-                                                            <span class="label">4</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                             <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3215,7 +3215,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_ch3">
-                                                      <span class="label">5</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                       <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3236,7 +3236,7 @@
                                                    <ul class="toc">
                                                       <li>
                                                          <a href="#book_set2_bo1_part2_ch1">
-                                                            <span class="label">6</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                             <span class="sep">. </span>Six chapter (first in second part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3253,7 +3253,7 @@
                                                       </li>
                                                       <li>
                                                          <a href="#book_set2_bo1_part2_ch2">
-                                                            <span class="label">7</span>
+                                                            <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                             <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                          <ul class="toc">
                                                             <li>
@@ -3272,7 +3272,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_ch4">
-                                                      <span class="label">8</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                       <span class="sep">. </span>Eighth chapter (after part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3289,7 +3289,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_ch5">
-                                                      <span class="label">9</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                       <span class="sep">. </span>Ninth chapter (after part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3326,7 +3326,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo1_ch1">
-                                                   <span class="label">1</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                    <span class="sep">. </span>First chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3343,7 +3343,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch2">
-                                                   <span class="label">2</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                    <span class="sep">. </span>Second chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3371,7 +3371,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo1_part1_ch1">
-                                                         <span class="label">3</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                          <span class="sep">. </span>Third chapter (first in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3388,7 +3388,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo1_part1_ch2">
-                                                         <span class="label">4</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                          <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3414,7 +3414,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch3">
-                                                   <span class="label">5</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                    <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3435,7 +3435,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo1_part2_ch1">
-                                                         <span class="label">6</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                          <span class="sep">. </span>Six chapter (first in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3452,7 +3452,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo1_part2_ch2">
-                                                         <span class="label">7</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                          <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3471,7 +3471,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch4">
-                                                   <span class="label">8</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                    <span class="sep">. </span>Eighth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3488,7 +3488,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_ch5">
-                                                   <span class="label">9</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                    <span class="sep">. </span>Ninth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3511,7 +3511,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo2_ch1">
-                                                   <span class="label">1</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                                    <span class="sep">. </span>First chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3528,7 +3528,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch2">
-                                                   <span class="label">2</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                                    <span class="sep">. </span>Second chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3556,7 +3556,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo2_part1_ch1">
-                                                         <span class="label">3</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                          <span class="sep">. </span>Third chapter (first in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3573,7 +3573,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo2_part1_ch2">
-                                                         <span class="label">4</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                          <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3599,7 +3599,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch3">
-                                                   <span class="label">5</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                                    <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3620,7 +3620,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set1_bo2_part2_ch1">
-                                                         <span class="label">6</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                          <span class="sep">. </span>Six chapter (first in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3637,7 +3637,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set1_bo2_part2_ch2">
-                                                         <span class="label">7</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                          <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -3656,7 +3656,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch4">
-                                                   <span class="label">8</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                                    <span class="sep">. </span>Eighth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3673,7 +3673,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_ch5">
-                                                   <span class="label">9</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                                    <span class="sep">. </span>Ninth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3704,7 +3704,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo1_ch1">
-                                                <span class="label">1</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>First chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -3721,7 +3721,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch2">
-                                                <span class="label">2</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Second chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -3749,7 +3749,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo1_part1_ch1">
-                                                      <span class="label">3</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                       <span class="sep">. </span>Third chapter (first in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3766,7 +3766,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_part1_ch2">
-                                                      <span class="label">4</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                       <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3792,7 +3792,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch3">
-                                                <span class="label">5</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Fifth chapter (between parts)</a>
                                              <ul class="toc">
                                                 <li>
@@ -3813,7 +3813,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo1_part2_ch1">
-                                                      <span class="label">6</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                       <span class="sep">. </span>Six chapter (first in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3830,7 +3830,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo1_part2_ch2">
-                                                      <span class="label">7</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                       <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -3849,7 +3849,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch4">
-                                                <span class="label">8</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                 <span class="sep">. </span>Eighth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -3866,7 +3866,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo1_ch5">
-                                                <span class="label">9</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                 <span class="sep">. </span>Ninth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -3886,7 +3886,7 @@
                                  </div>
                                  <div id="book_set1_bo1_ch1" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">1</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                           <span class="sep">. </span>First chapter (before part)</h2>
                                     </header>
                                     <section id="book_set1_bo1_ch1_s1" class="section">
@@ -3908,7 +3908,7 @@
                                  </div>
                                  <div id="book_set1_bo1_ch2" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">2</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                           <span class="sep">. </span>Second chapter (before part)</h2>
                                     </header>
                                     <section id="book_set1_bo1_ch2_s1" class="section">
@@ -3947,7 +3947,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo1_part1_ch1">
-                                                   <span class="label">3</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                    <span class="sep">. </span>Third chapter (first in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3964,7 +3964,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_part1_ch2">
-                                                   <span class="label">4</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                    <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -3991,7 +3991,7 @@
                                     </div>
                                     <div id="book_set1_bo1_part1_ch1" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">3</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                              <span class="sep">. </span>Third chapter (first in first part)</h1>
                                        </header>
                                        <section id="book_set1_bo1_part1_ch1_s1" class="section">
@@ -4013,7 +4013,7 @@
                                     </div>
                                     <div id="book_set1_bo1_part1_ch2" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">4</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                              <span class="sep">. </span>Fourth chapter (second in first part)</h1>
                                        </header>
                                        <section id="book_set1_bo1_part1_ch2_s1" class="section">
@@ -4044,7 +4044,7 @@
                                  </article>
                                  <div id="book_set1_bo1_ch3" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">5</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                           <span class="sep">. </span>Fifth chapter (between parts)</h2>
                                     </header>
                                     <section id="book_set1_bo1_ch3_s1" class="section">
@@ -4075,7 +4075,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo1_part2_ch1">
-                                                   <span class="label">6</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                    <span class="sep">. </span>Six chapter (first in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4092,7 +4092,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo1_part2_ch2">
-                                                   <span class="label">7</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                    <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4112,7 +4112,7 @@
                                     </div>
                                     <div id="book_set1_bo1_part2_ch1" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">6</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                              <span class="sep">. </span>Six chapter (first in second part)</h1>
                                        </header>
                                        <section id="book_set1_bo1_part2_ch1_s1" class="section">
@@ -4134,7 +4134,7 @@
                                     </div>
                                     <div id="book_set1_bo1_part2_ch2" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">7</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                              <span class="sep">. </span>Seventh chapter (second in second part)</h1>
                                        </header>
                                        <section id="book_set1_bo1_part2_ch2_s1" class="section">
@@ -4157,7 +4157,7 @@
                                  </article>
                                  <div id="book_set1_bo1_ch4" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">8</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                           <span class="sep">. </span>Eighth chapter (after part)</h2>
                                     </header>
                                     <section id="book_set1_bo1_ch4_s1" class="section">
@@ -4179,7 +4179,7 @@
                                  </div>
                                  <div id="book_set1_bo1_ch5" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">9</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                           <span class="sep">. </span>Ninth chapter (after part)</h2>
                                     </header>
                                     <section id="book_set1_bo1_ch5_s1" class="section">
@@ -4211,7 +4211,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set1_bo2_ch1">
-                                                <span class="label">1</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>First chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4228,7 +4228,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch2">
-                                                <span class="label">2</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Second chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4256,7 +4256,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo2_part1_ch1">
-                                                      <span class="label">3</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                       <span class="sep">. </span>Third chapter (first in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -4273,7 +4273,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_part1_ch2">
-                                                      <span class="label">4</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                       <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -4299,7 +4299,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch3">
-                                                <span class="label">5</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Fifth chapter (between parts)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4320,7 +4320,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set1_bo2_part2_ch1">
-                                                      <span class="label">6</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                       <span class="sep">. </span>Six chapter (first in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -4337,7 +4337,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set1_bo2_part2_ch2">
-                                                      <span class="label">7</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                       <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -4356,7 +4356,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch4">
-                                                <span class="label">8</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                                 <span class="sep">. </span>Eighth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4373,7 +4373,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set1_bo2_ch5">
-                                                <span class="label">9</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                                 <span class="sep">. </span>Ninth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4393,7 +4393,7 @@
                                  </div>
                                  <div id="book_set1_bo2_ch1" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">1</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>1</span>
                                           <span class="sep">. </span>First chapter (before part)</h2>
                                     </header>
                                     <section id="book_set1_bo2_ch1_s1" class="section">
@@ -4415,7 +4415,7 @@
                                  </div>
                                  <div id="book_set1_bo2_ch2" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">2</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>2</span>
                                           <span class="sep">. </span>Second chapter (before part)</h2>
                                     </header>
                                     <section id="book_set1_bo2_ch2_s1" class="section">
@@ -4454,7 +4454,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo2_part1_ch1">
-                                                   <span class="label">3</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                                    <span class="sep">. </span>Third chapter (first in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4471,7 +4471,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_part1_ch2">
-                                                   <span class="label">4</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                                    <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4498,7 +4498,7 @@
                                     </div>
                                     <div id="book_set1_bo2_part1_ch1" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">3</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>3</span>
                                              <span class="sep">. </span>Third chapter (first in first part)</h1>
                                        </header>
                                        <section id="book_set1_bo2_part1_ch1_s1" class="section">
@@ -4520,7 +4520,7 @@
                                     </div>
                                     <div id="book_set1_bo2_part1_ch2" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">4</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>4</span>
                                              <span class="sep">. </span>Fourth chapter (second in first part)</h1>
                                        </header>
                                        <section id="book_set1_bo2_part1_ch2_s1" class="section">
@@ -4551,7 +4551,7 @@
                                  </article>
                                  <div id="book_set1_bo2_ch3" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">5</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>5</span>
                                           <span class="sep">. </span>Fifth chapter (between parts)</h2>
                                     </header>
                                     <section id="book_set1_bo2_ch3_s1" class="section">
@@ -4582,7 +4582,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set1_bo2_part2_ch1">
-                                                   <span class="label">6</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                                    <span class="sep">. </span>Six chapter (first in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4599,7 +4599,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set1_bo2_part2_ch2">
-                                                   <span class="label">7</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                                    <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4619,7 +4619,7 @@
                                     </div>
                                     <div id="book_set1_bo2_part2_ch1" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">6</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>6</span>
                                              <span class="sep">. </span>Six chapter (first in second part)</h1>
                                        </header>
                                        <section id="book_set1_bo2_part2_ch1_s1" class="section">
@@ -4641,7 +4641,7 @@
                                     </div>
                                     <div id="book_set1_bo2_part2_ch2" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">7</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>7</span>
                                              <span class="sep">. </span>Seventh chapter (second in second part)</h1>
                                        </header>
                                        <section id="book_set1_bo2_part2_ch2_s1" class="section">
@@ -4664,7 +4664,7 @@
                                  </article>
                                  <div id="book_set1_bo2_ch4" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">8</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>8</span>
                                           <span class="sep">. </span>Eighth chapter (after part)</h2>
                                     </header>
                                     <section id="book_set1_bo2_ch4_s1" class="section">
@@ -4686,7 +4686,7 @@
                                  </div>
                                  <div id="book_set1_bo2_ch5" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">9</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(β)<span class="sep">.</span>9</span>
                                           <span class="sep">. </span>Ninth chapter (after part)</h2>
                                     </header>
                                     <section id="book_set1_bo2_ch5_s1" class="section">
@@ -4723,7 +4723,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set2_bo1_ch1">
-                                                   <span class="label">1</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                    <span class="sep">. </span>First chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4740,7 +4740,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch2">
-                                                   <span class="label">2</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                    <span class="sep">. </span>Second chapter (before part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4768,7 +4768,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set2_bo1_part1_ch1">
-                                                         <span class="label">3</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                          <span class="sep">. </span>Third chapter (first in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -4785,7 +4785,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set2_bo1_part1_ch2">
-                                                         <span class="label">4</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                          <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -4811,7 +4811,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch3">
-                                                   <span class="label">5</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                    <span class="sep">. </span>Fifth chapter (between parts)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4832,7 +4832,7 @@
                                                 <ul class="toc">
                                                    <li>
                                                       <a href="#book_set2_bo1_part2_ch1">
-                                                         <span class="label">6</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                          <span class="sep">. </span>Six chapter (first in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -4849,7 +4849,7 @@
                                                    </li>
                                                    <li>
                                                       <a href="#book_set2_bo1_part2_ch2">
-                                                         <span class="label">7</span>
+                                                         <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                          <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                       <ul class="toc">
                                                          <li>
@@ -4868,7 +4868,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch4">
-                                                   <span class="label">8</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                    <span class="sep">. </span>Eighth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4885,7 +4885,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_ch5">
-                                                   <span class="label">9</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                    <span class="sep">. </span>Ninth chapter (after part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -4916,7 +4916,7 @@
                                        <ul class="toc">
                                           <li>
                                              <a href="#book_set2_bo1_ch1">
-                                                <span class="label">1</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                                 <span class="sep">. </span>First chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4933,7 +4933,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch2">
-                                                <span class="label">2</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                                 <span class="sep">. </span>Second chapter (before part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -4961,7 +4961,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set2_bo1_part1_ch1">
-                                                      <span class="label">3</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                       <span class="sep">. </span>Third chapter (first in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -4978,7 +4978,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_part1_ch2">
-                                                      <span class="label">4</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                       <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -5004,7 +5004,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch3">
-                                                <span class="label">5</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                                 <span class="sep">. </span>Fifth chapter (between parts)</a>
                                              <ul class="toc">
                                                 <li>
@@ -5025,7 +5025,7 @@
                                              <ul class="toc">
                                                 <li>
                                                    <a href="#book_set2_bo1_part2_ch1">
-                                                      <span class="label">6</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                       <span class="sep">. </span>Six chapter (first in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -5042,7 +5042,7 @@
                                                 </li>
                                                 <li>
                                                    <a href="#book_set2_bo1_part2_ch2">
-                                                      <span class="label">7</span>
+                                                      <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                       <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                    <ul class="toc">
                                                       <li>
@@ -5061,7 +5061,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch4">
-                                                <span class="label">8</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                                 <span class="sep">. </span>Eighth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -5078,7 +5078,7 @@
                                           </li>
                                           <li>
                                              <a href="#book_set2_bo1_ch5">
-                                                <span class="label">9</span>
+                                                <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                                 <span class="sep">. </span>Ninth chapter (after part)</a>
                                              <ul class="toc">
                                                 <li>
@@ -5098,7 +5098,7 @@
                                  </div>
                                  <div id="book_set2_bo1_ch1" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">1</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>1</span>
                                           <span class="sep">. </span>First chapter (before part)</h2>
                                     </header>
                                     <section id="book_set2_bo1_ch1_s1" class="section">
@@ -5120,7 +5120,7 @@
                                  </div>
                                  <div id="book_set2_bo1_ch2" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">2</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>2</span>
                                           <span class="sep">. </span>Second chapter (before part)</h2>
                                     </header>
                                     <section id="book_set2_bo1_ch2_s1" class="section">
@@ -5159,7 +5159,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set2_bo1_part1_ch1">
-                                                   <span class="label">3</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                                    <span class="sep">. </span>Third chapter (first in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -5176,7 +5176,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_part1_ch2">
-                                                   <span class="label">4</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                                    <span class="sep">. </span>Fourth chapter (second in first part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -5203,7 +5203,7 @@
                                     </div>
                                     <div id="book_set2_bo1_part1_ch1" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">3</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>3</span>
                                              <span class="sep">. </span>Third chapter (first in first part)</h1>
                                        </header>
                                        <section id="book_set2_bo1_part1_ch1_s1" class="section">
@@ -5225,7 +5225,7 @@
                                     </div>
                                     <div id="book_set2_bo1_part1_ch2" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">4</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>4</span>
                                              <span class="sep">. </span>Fourth chapter (second in first part)</h1>
                                        </header>
                                        <section id="book_set2_bo1_part1_ch2_s1" class="section">
@@ -5256,7 +5256,7 @@
                                  </article>
                                  <div id="book_set2_bo1_ch3" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">5</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>5</span>
                                           <span class="sep">. </span>Fifth chapter (between parts)</h2>
                                     </header>
                                     <section id="book_set2_bo1_ch3_s1" class="section">
@@ -5287,7 +5287,7 @@
                                           <ul class="toc">
                                              <li>
                                                 <a href="#book_set2_bo1_part2_ch1">
-                                                   <span class="label">6</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                                    <span class="sep">. </span>Six chapter (first in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -5304,7 +5304,7 @@
                                              </li>
                                              <li>
                                                 <a href="#book_set2_bo1_part2_ch2">
-                                                   <span class="label">7</span>
+                                                   <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                                    <span class="sep">. </span>Seventh chapter (second in second part)</a>
                                                 <ul class="toc">
                                                    <li>
@@ -5324,7 +5324,7 @@
                                     </div>
                                     <div id="book_set2_bo1_part2_ch1" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">6</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>6</span>
                                              <span class="sep">. </span>Six chapter (first in second part)</h1>
                                        </header>
                                        <section id="book_set2_bo1_part2_ch1_s1" class="section">
@@ -5346,7 +5346,7 @@
                                     </div>
                                     <div id="book_set2_bo1_part2_ch2" class="chapter component">
                                        <header>
-                                          <h1>Chapter <span class="label">7</span>
+                                          <h1>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>7</span>
                                              <span class="sep">. </span>Seventh chapter (second in second part)</h1>
                                        </header>
                                        <section id="book_set2_bo1_part2_ch2_s1" class="section">
@@ -5369,7 +5369,7 @@
                                  </article>
                                  <div id="book_set2_bo1_ch4" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">8</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>8</span>
                                           <span class="sep">. </span>Eighth chapter (after part)</h2>
                                     </header>
                                     <section id="book_set2_bo1_ch4_s1" class="section">
@@ -5391,7 +5391,7 @@
                                  </div>
                                  <div id="book_set2_bo1_ch5" class="chapter component">
                                     <header>
-                                       <h2>Chapter <span class="label">9</span>
+                                       <h2>Chapter <span class="label">⎡1⎦<span class="sep">.</span>⎡2⎦<span class="sep">.</span>(α)<span class="sep">.</span>9</span>
                                           <span class="sep">. </span>Ninth chapter (after part)</h2>
                                     </header>
                                     <section id="book_set2_bo1_ch5_s1" class="section">

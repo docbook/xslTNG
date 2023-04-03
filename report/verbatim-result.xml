@@ -1,0 +1,2291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+         date="2023-04-03T19:39:56.010201Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting an address in the raw style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'raw'"/>
+            <address>Line one
+Line two
+Line three
+Line four
+Line five</address>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario2"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a literallayout in the raw style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'raw'"/>
+            <literallayout>Line one
+Line two
+Line three
+Line four
+Line five</literallayout>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario2-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario3"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a programlisting in the raw style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'raw'"/>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario3-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario4"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a screen in the raw style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'raw'"/>
+            <screen>Line one
+Line two
+Line three
+Line four
+Line five</screen>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="screen verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario4-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="screen verbatim">
+                     <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario5"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a synopsis in the raw style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'raw'"/>
+            <synopsis>Line one
+Line two
+Line three
+Line four
+Line five</synopsis>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="synopsis verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario5-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="synopsis verbatim">
+                     <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario6"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a verbatim with inline markup in the raw style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'raw'"/>
+            <programlisting>Line one
+Line <emphasis>two</emphasis>
+Line <emphasis>end of three
+start of four</emphasis>
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line <em>two</em>
+Line <em>end of three
+start of four</em>
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario6-expect1" successful="true">
+         <label>the inline markup should be transformed.</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>Line one
+Line <em>two</em>
+Line <em>end of three
+start of four</em>
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario7"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting an address in the plain style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <address>Line one
+Line two
+Line three
+Line four
+Line five</address>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario7-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="address verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario8"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a literallayout in the plain style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <literallayout>Line one
+Line two
+Line three
+Line four
+Line five</literallayout>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario8-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="literallayout verbatim">Line one
+Line two
+Line three
+Line four
+Line five</pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario9"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a programlisting in the plain style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario9-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario10"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a screen in the plain style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <screen>Line one
+Line two
+Line three
+Line four
+Line five</screen>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="screen verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario10-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="screen verbatim">
+                     <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario11"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a synopsis in the plain style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <synopsis>Line one
+Line two
+Line three
+Line four
+Line five</synopsis>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="synopsis verbatim">
+                  <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario11-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="synopsis verbatim">
+                     <code>Line one
+Line two
+Line three
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario12"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a verbatim with inline markup in the plain style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     select="/*/*"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <div xml:space="preserve"><programlisting>Line one
+Line <emphasis>two</emphasis>
+Line <emphasis>end of three
+start of four</emphasis>
+Line five</programlisting></div>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>Line one
+Line <em>two</em>
+Line <em>end of three</em>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <em>start of four</em>
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario12-expect1" successful="true">
+         <label>the inline markup should be transformed.</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>Line one
+Line <em>two</em>
+Line <em>end of three</em>
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                        <em>start of four</em>
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario13"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting an address in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <address>Line one
+Line two
+Line three
+Line four
+Line five</address>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="address verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line one</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line two</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line three</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line four</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line five</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario13-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+                  <pre class="address verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line one</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line two</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line three</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line four</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line five</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario14"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a literallayout in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <literallayout>Line one
+Line two
+Line three
+Line four
+Line five</literallayout>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="literallayout verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line one</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line two</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line three</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line four</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">Line five</span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario14-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+                  <pre class="literallayout verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line one</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line two</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line three</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line four</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">Line five</span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario15"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a programlisting in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                  class="pre-wrap"
+                  db-startinglinenumber="1"
+                  db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line two</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario15-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     class="pre-wrap"
+                     db-startinglinenumber="1"
+                     db-numberoflines="5">
+                  <pre class="language-none long numbered programlisting verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line two</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line three</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario16"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a screen in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <screen>Line one
+Line two
+Line three
+Line four
+Line five</screen>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="screen verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line two</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario16-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+                  <pre class="screen verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line two</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line three</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario17"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a synopsis in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <synopsis>Line one
+Line two
+Line three
+Line four
+Line five</synopsis>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="synopsis verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line two</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario17-expect1" successful="true">
+         <label>you should get all the lines</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+                  <pre class="synopsis verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line two</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line three</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario18"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a verbatim with inline markup in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <programlisting>Line one
+Line <emphasis>two</emphasis>
+Line <emphasis>end of three
+Start of line</emphasis> four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                  class="pre-wrap"
+                  db-startinglinenumber="1"
+                  db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line <em>two</em>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line <em>end of three</em>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <em>Start of line</em> four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario18-expect1" successful="true">
+         <label>the inline markup should not cross line boundaries.</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     class="pre-wrap"
+                     db-startinglinenumber="1"
+                     db-numberoflines="5">
+                  <pre class="language-none long numbered programlisting verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line <em>two</em>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line <em>end of three</em>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <em>Start of line</em> four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario19"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When converting a verbatim with inline markup in the lines style</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <programlisting>Line one
+Line <emphasis xml:id="two">two</emphasis>
+Line <emphasis xml:id="three">end of three
+Start of line</emphasis> four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                  class="pre-wrap"
+                  db-startinglinenumber="1"
+                  db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line <em id="two">two</em>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line <em id="three">end of three</em>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <em>Start of line</em> four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario19-expect1" successful="true">
+         <label>ID attributes should not be repeated.</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     class="pre-wrap"
+                     db-startinglinenumber="1"
+                     db-numberoflines="5">
+                  <pre class="language-none long numbered programlisting verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line <em id="two">two</em>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line <em id="three">end of three</em>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <em>Start of line</em> four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario20"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When callouts are added to a verbatim element</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <x:param name="inject" as="element()">
+               <areaspec>
+                  <area coords="1 1">①</area>
+                  <area coords="2 5">②</area>
+                  <area coords="3 20">③</area>
+               </areaspec>
+            </x:param>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                  class="pre-wrap"
+                  db-startinglinenumber="1"
+                  db-numberoflines="5">
+               <pre class="language-none long numbered programlisting verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <a id="R_area1"
+                               class="callout-bug linecolumn"
+                               db-line="1"
+                               db-column="1">①</a>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line<a id="R_area2"
+                               class="callout-bug linecolumn"
+                               db-line="2"
+                               db-column="5">②</a> two</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line three         <a id="R_area3"
+                               class="callout-bug linecolumn"
+                               db-line="3"
+                               db-column="20">③</a>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario20-expect1" successful="true">
+         <label>they should appear in the output</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     class="pre-wrap"
+                     db-startinglinenumber="1"
+                     db-numberoflines="5">
+                  <pre class="language-none long numbered programlisting verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <a id="R_area1"
+                                  class="callout-bug linecolumn"
+                                  db-line="1"
+                                  db-column="1">①</a>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line<a id="R_area2"
+                                  class="callout-bug linecolumn"
+                                  db-line="2"
+                                  db-column="5">②</a> two</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line three         <a id="R_area3"
+                                  class="callout-bug linecolumn"
+                                  db-line="3"
+                                  db-column="20">③</a>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario21"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When callouts are added to a verbatim element</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'lines'"/>
+            <x:param name="inject" as="element()">
+               <areaspec>
+                  <area coords="1 1">①</area>
+                  <area coords="2 5">②</area>
+                  <area coords="8 8">③</area>
+               </areaspec>
+            </x:param>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                  class="pre-wrap"
+                  db-startinglinenumber="1"
+                  db-numberoflines="8">
+               <pre class="language-none long numbered programlisting verbatim verblines">
+                  <span class="line" db-line="1">
+                     <span class="ln">1 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <a id="R_area1"
+                               class="callout-bug linecolumn"
+                               db-line="1"
+                               db-column="1">①</a>Line one</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="2">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line<a id="R_area2"
+                               class="callout-bug linecolumn"
+                               db-line="2"
+                               db-column="5">②</a> two</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="3">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line three</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="4">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line four</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="5">
+                     <span class="ln">5 <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>Line five</code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="6">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="7">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  <span class="line" db-line="8">
+                     <span class="ln">
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                        <span class="nsep">|</span>
+                     </span>
+                     <span class="ld">
+                        <code>
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">       </ws>
+                           <a id="R_area3"
+                               class="callout-bug linecolumn"
+                               db-line="8"
+                               db-column="8">③</a>
+                        </code>
+                     </span>
+                  </span>
+                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario21-expect1" successful="true">
+         <label>they can extend the listing</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     class="pre-wrap"
+                     db-startinglinenumber="1"
+                     db-numberoflines="8">
+                  <pre class="language-none long numbered programlisting verbatim verblines">
+                     <span class="line" db-line="1">
+                        <span class="ln">1 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <a id="R_area1"
+                                  class="callout-bug linecolumn"
+                                  db-line="1"
+                                  db-column="1">①</a>Line one</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="2">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line<a id="R_area2"
+                                  class="callout-bug linecolumn"
+                                  db-line="2"
+                                  db-column="5">②</a> two</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="3">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line three</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="4">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line four</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="5">
+                        <span class="ln">5 <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>Line five</code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="6">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="7">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <span class="line" db-line="8">
+                        <span class="ln">
+                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                           <span class="nsep">|</span>
+                        </span>
+                        <span class="ld">
+                           <code>
+                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">       </ws>
+                              <a id="R_area3"
+                                  class="callout-bug linecolumn"
+                                  db-line="8"
+                                  db-column="8">③</a>
+                           </code>
+                        </span>
+                     </span>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario22"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When callouts are added to a verbatim element</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <x:param name="inject" as="element()">
+               <areaspec>
+                  <area coords="1 1">①</area>
+                  <area coords="2 5">②</area>
+                  <area coords="3 20">③</area>
+               </areaspec>
+            </x:param>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>
+                     <a id="R_area1"
+                         class="callout-bug linecolumn"
+                         db-line="1"
+                         db-column="1">①</a>Line one
+Line<a id="R_area2"
+                         class="callout-bug linecolumn"
+                         db-line="2"
+                         db-column="5">②</a> two
+Line three         <a id="R_area3"
+                         class="callout-bug linecolumn"
+                         db-line="3"
+                         db-column="20">③</a>
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario22-expect1" successful="true">
+         <label>plain mode also works</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>
+                        <a id="R_area1"
+                            class="callout-bug linecolumn"
+                            db-line="1"
+                            db-column="1">①</a>Line one
+Line<a id="R_area2"
+                            class="callout-bug linecolumn"
+                            db-line="2"
+                            db-column="5">②</a> two
+Line three         <a id="R_area3"
+                            class="callout-bug linecolumn"
+                            db-line="3"
+                            db-column="20">③</a>
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario23"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When callouts are added to a verbatim element</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <x:param name="inject" as="element()">
+               <areaspec>
+                  <area coords="1 1">
+                     <a xmlns="http://www.w3.org/1999/xhtml" name="one">①</a>
+                  </area>
+                  <area coords="2 5">
+                     <span xmlns="http://www.w3.org/1999/xhtml" id="two">②</span>
+                  </area>
+                  <area coords="3 20">
+                     <span xmlns="http://www.w3.org/1999/xhtml" id="three" class="callout">③</span>
+                  </area>
+               </areaspec>
+            </x:param>
+            <programlisting>Line one
+Line two
+Line three
+Line four
+Line five</programlisting>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>
+                     <a id="R_area1"
+                         class="callout-bug linecolumn"
+                         db-line="1"
+                         db-column="1">①</a>Line one
+Line<a id="R_area2"
+                         class="callout-bug linecolumn"
+                         db-line="2"
+                         db-column="5">②</a> two
+Line three         <a id="R_area3"
+                         class="callout-bug linecolumn"
+                         db-line="3"
+                         db-column="20">③</a>
+Line four
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario23-expect1" successful="true">
+         <label>markup can also be inserted</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>
+                        <a id="R_area1"
+                            class="callout-bug linecolumn"
+                            db-line="1"
+                            db-column="1">①</a>Line one
+Line<a id="R_area2"
+                            class="callout-bug linecolumn"
+                            db-line="2"
+                            db-column="5">②</a> two
+Line three         <a id="R_area3"
+                            class="callout-bug linecolumn"
+                            db-line="3"
+                            db-column="20">③</a>
+Line four
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario24"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+      <label>When callouts are inserted into markup</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     select="/*/*"
+                     mode="m:docbook">
+            <x:param name="style" select="'plain'"/>
+            <x:param name="inject" as="element()">
+               <areaspec>
+                  <area coords="1 1">①</area>
+                  <area coords="2 5">②</area>
+                  <area coords="3 20">③</area>
+               </areaspec>
+            </x:param>
+            <div xml:space="preserve"><programlisting><emphasis>Line one</emphasis>
+<emphasis>Line two
+Line three
+Line four</emphasis>
+Line five</programlisting></div>
+         </x:context>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <pre class="language-none numbered programlisting verbatim">
+                  <code>
+                     <a id="R_area1"
+                         class="callout-bug linecolumn"
+                         db-line="1"
+                         db-column="1">①</a>
+                     <em>Line one</em>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <em>Line</em>
+                     <a id="R_area2"
+                         class="callout-bug linecolumn"
+                         db-line="2"
+                         db-column="5">②</a>
+                     <em> two</em>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <em>Line three</em>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">         </ws>
+                     <a id="R_area3"
+                         class="callout-bug linecolumn"
+                         db-line="3"
+                         db-column="20">③</a>
+                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                     <em>Line four</em>
+Line five</code>
+               </pre>
+            </div>
+         </content-wrap>
+      </result>
+      <test id="scenario24-expect1" successful="true">
+         <label>they interrupt that markup</label>
+         <expect select="/element()">
+            <content-wrap xmlns="">
+               <div xmlns="http://www.w3.org/1999/xhtml"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     class="pre-wrap">
+                  <pre class="language-none numbered programlisting verbatim">
+                     <code>
+                        <a id="R_area1"
+                            class="callout-bug linecolumn"
+                            db-line="1"
+                            db-column="1">①</a>
+                        <em>Line one</em>
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                        <em>Line</em>
+                        <a id="R_area2"
+                            class="callout-bug linecolumn"
+                            db-line="2"
+                            db-column="5">②</a>
+                        <em> two</em>
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                        <em>Line three</em>
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">         </ws>
+                        <a id="R_area3"
+                            class="callout-bug linecolumn"
+                            db-line="3"
+                            db-column="20">③</a>
+                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                        <em>Line four</em>
+Line five</code>
+                  </pre>
+               </div>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>

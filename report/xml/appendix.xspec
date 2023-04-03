@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                stylesheet="../xspec-xslt/xspec-driver.xsl">
+
+<!-- Tests:
+     appendix
+-->
+   <x:scenario label="When converting appendix.001">
+      <x:context href="../resources/xml/appendix.001.xml"/>
+      <x:expect label="expect the result to match appendix.001.expected"
+                 href="../resources/expected/appendix.001.html"/>
+   </x:scenario>
+   <x:scenario label="When converting appendix.002">
+      <x:context href="../resources/xml/appendix.002.xml"/>
+      <x:expect label="expect the result to match appendix.002.expected"
+                 href="../resources/expected/appendix.002.html"/>
+   </x:scenario>
+   <x:scenario label="When converting appendix.003">
+      <x:context href="../resources/xml/appendix.003.xml"/>
+      <x:expect label="expect the result to match appendix.003.expected"
+                 href="../resources/expected/appendix.003.html"/>
+   </x:scenario>
+</x:description>

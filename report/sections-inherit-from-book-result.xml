@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-book.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-sections-inherit-from-book-driver.xsl"
-         date="2023-03-26T15:53:37.427431Z">
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-inherit-from-book.xsl"
+         date="2023-04-03T19:37:48.135112Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-book.xspec">
-      <label>When converting sections-inherit-from-book...</label>
+      <label>When transforming sections-inherit-from-book</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
                      href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/sections-numbered-from.xml"/>
@@ -2715,7 +2715,7 @@
          </content-wrap>
       </result>
       <test id="scenario1-expect1" successful="true">
-         <label>expect sections inherited from books</label>
+         <label>expect sections-inherit-from-book.expected</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
                <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">

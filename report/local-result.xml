@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/local.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/local.xsl"
+         date="2023-04-03T19:36:26.290914Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/local.xspec">
+      <label>When transforming local.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/local.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit Test: local.001.xml</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article id="article" class="article component">
+                        <header>
+                           <h1>Unit Test: local.001.xml</h1>
+                        </header>
+                        <p>This document tests <code class="tag tag-element">element</code> and <code class="tag tag-attribute">attribute</code>
+markup, including the local convention of using <code class="tag tag-element">att</code> for attributes.
+</p>
+                        <p>The other local convention is the use of <code class="tag tag-element">mode</code> as a short cut:
+this is the <code class="mode">main</code> mode; this is an
+<code class="alt mode">alternate</code> mode.</p>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect local.001.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit Test: local.001.xml</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article id="article" class="article component">
+                           <header>
+                              <h1>Unit Test: local.001.xml</h1>
+                           </header>
+                           <p>This document tests <code class="tag tag-element">element</code> and <code class="tag tag-attribute">attribute</code>
+markup, including the local convention of using <code class="tag tag-element">att</code> for attributes.
+</p>
+                           <p>The other local convention is the use of <code class="tag tag-element">mode</code> as a short cut:
+this is the <code class="mode">main</code> mode; this is an
+<code class="alt mode">alternate</code> mode.</p>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>

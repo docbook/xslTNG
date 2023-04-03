@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/dates.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+         date="2023-04-03T19:29:42.618658Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/dates.xspec">
+      <label>When transforming a french date with a custom format</label>
+      <input-wrap xmlns="">
+         <x:context xmlns="http://docbook.org/ns/docbook"
+                     xmlns:db="http://docbook.org/ns/docbook"
+                     xmlns:h="http://www.w3.org/1999/xhtml"
+                     xmlns:m="http://docbook.org/ns/docbook/modes"
+                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/dates.001.xml"
+                     mode="m:docbook"
+                     select="//db:para[@xml:id='dtformat-fr']/db:date"/>
+      </input-wrap>
+      <result select="/element()">
+         <content-wrap xmlns="">
+            <span xmlns="http://www.w3.org/1999/xhtml"
+                   lang="fr"
+                   class="date"
+                   time="2020-05-08T16:49:00Z">4:49p.m. / Friday, May 8, 2020</span>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect the result to be in French (maybe)</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                       xmlns:h="http://www.w3.org/1999/xhtml"
+                       xmlns:m="http://docbook.org/ns/docbook/modes"
+                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                       test="(starts-with(system-property('xsl:product-version'), 'HE')                    and string(.) = '4:49p.m. / Friday, May 8, 2020')                   or (string(.) = '4:49p.m. / Vendredi, Mai 8, 2020') "/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+</report>

@@ -3,11 +3,11 @@
                  exclude-result-prefixes="#all"
                  version="3.0">
    <!-- the tested stylesheet -->
-   <xsl:import href="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-formal-objects-inherit-from-set-book-division-component-driver.xsl"/>
+   <xsl:import href="file:/home/runner/work/xslTNG/xslTNG/build/env/formal-objects-inherit-from-set-book-division-component.xsl"/>
    <!-- XSpec library modules providing tools -->
    <xsl:include href="file:/home/runner/work/xslTNG/xslTNG/build/xspec-2.2.4/src/common/runtime-utils.xsl"/>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}stylesheet-uri"
-                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-formal-objects-inherit-from-set-book-division-component-driver.xsl</xsl:variable>
+                  as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/env/formal-objects-inherit-from-set-book-division-component.xsl</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}xspec-uri"
                   as="Q{http://www.w3.org/2001/XMLSchema}anyURI">file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-inherit-from-set-book-division-component.xspec</xsl:variable>
    <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}is-external"
@@ -41,13 +41,16 @@
       <xsl:result-document format="Q{{http://www.jenitennison.com/xslt/xspec}}xml-report-serialization-parameters">
          <xsl:element name="report" namespace="http://www.jenitennison.com/xslt/xspec">
             <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-inherit-from-set-book-division-component.xspec</xsl:attribute>
-            <xsl:attribute name="stylesheet" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-formal-objects-inherit-from-set-book-division-component-driver.xsl</xsl:attribute>
+            <xsl:attribute name="stylesheet" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/env/formal-objects-inherit-from-set-book-division-component.xsl</xsl:attribute>
             <xsl:attribute name="date" namespace="" select="current-dateTime()"/>
             <!-- invoke each compiled top-level x:scenario -->
-            <xsl:for-each select="1 to 1">
+            <xsl:for-each select="1 to 2">
                <xsl:choose>
                   <xsl:when test=". eq 1">
                      <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario1"/>
+                  </xsl:when>
+                  <xsl:when test=". eq 2">
+                     <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario2"/>
                   </xsl:when>
                   <xsl:otherwise>
                      <xsl:message terminate="yes">ERROR: Unhandled scenario invocation</xsl:message>
@@ -60,28 +63,28 @@
    <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario1"
                   as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
       <xsl:context-item use="absent"/>
-      <xsl:message>When converting formal-objects-inherit-from-set-book-division-component...</xsl:message>
+      <xsl:message>When transforming figures-inherit-from-set-book-division-component</xsl:message>
       <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
          <xsl:attribute name="id" namespace="">scenario1</xsl:attribute>
          <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-inherit-from-set-book-division-component.xspec</xsl:attribute>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>When converting formal-objects-inherit-from-set-book-division-component...</xsl:text>
+            <xsl:text>When transforming figures-inherit-from-set-book-division-component</xsl:text>
          </xsl:element>
          <xsl:element name="input-wrap" namespace="">
             <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
-               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/formal-objects-numbered-from.xml</xsl:attribute>
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/figures-numbered-from.xml</xsl:attribute>
             </xsl:element>
          </xsl:element>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d54e0-doc"
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d55e0-doc"
                         as="document-node()"
-                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/formal-objects-numbered-from.xml')"/>
-         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d54e0"
-                        select="$Q{urn:x-xspec:compile:impl}context-d54e0-doc ! ( . )"/>
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/figures-numbered-from.xml')"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d55e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d55e0-doc ! ( . )"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
                         as="item()*"
-                        select="$Q{urn:x-xspec:compile:impl}context-d54e0"/>
+                        select="$Q{urn:x-xspec:compile:impl}context-d55e0"/>
          <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
-            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d54e0"/>
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d55e0"/>
          </xsl:variable>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
             <xsl:with-param name="sequence"
@@ -106,15 +109,15 @@
       <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
                   as="item()*"
                   required="yes"/>
-      <xsl:message>expect formal-objects inherited from set-book-division-components</xsl:message>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d52e4-doc"
+      <xsl:message>expect figures-inherit-from-set-book-division-component.expected</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d53e4-doc"
                      as="document-node()"
-                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/formal-objects-inherit-from-set-book-division-component.html')"/>
-      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d52e4"
-                     select="$Q{urn:x-xspec:compile:impl}expect-d52e4-doc ! ( . )"><!--expected result--></xsl:variable>
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/figures-inherit-from-set-book-division-component.html')"/>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d53e4"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d53e4-doc ! ( . )"><!--expected result--></xsl:variable>
       <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
                      as="Q{http://www.w3.org/2001/XMLSchema}boolean"
-                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d52e4, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d53e4, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
       <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
          <xsl:message>      FAILED</xsl:message>
       </xsl:if>
@@ -124,10 +127,85 @@
                          namespace=""
                          select="$Q{urn:x-xspec:compile:impl}successful"/>
          <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
-            <xsl:text>expect formal-objects inherited from set-book-division-components</xsl:text>
+            <xsl:text>expect figures-inherit-from-set-book-division-component.expected</xsl:text>
          </xsl:element>
          <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
-            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d52e4"/>
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d53e4"/>
+            <xsl:with-param name="report-name" select="'expect'"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario2"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}scenario)">
+      <xsl:context-item use="absent"/>
+      <xsl:message>When transforming formal-objects-inherit-from-set-book-division-component</xsl:message>
+      <xsl:element name="scenario" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario2</xsl:attribute>
+         <xsl:attribute name="xspec" namespace="">file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-inherit-from-set-book-division-component.xspec</xsl:attribute>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>When transforming formal-objects-inherit-from-set-book-division-component</xsl:text>
+         </xsl:element>
+         <xsl:element name="input-wrap" namespace="">
+            <xsl:element name="x:context" namespace="http://www.jenitennison.com/xslt/xspec">
+               <xsl:attribute name="href" namespace="">file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/formal-objects-numbered-from.xml</xsl:attribute>
+            </xsl:element>
+         </xsl:element>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d63e0-doc"
+                        as="document-node()"
+                        select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/formal-objects-numbered-from.xml')"/>
+         <xsl:variable name="Q{urn:x-xspec:compile:impl}context-d63e0"
+                        select="$Q{urn:x-xspec:compile:impl}context-d63e0-doc ! ( . )"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                        as="item()*"
+                        select="$Q{urn:x-xspec:compile:impl}context-d63e0"/>
+         <xsl:variable name="Q{http://www.jenitennison.com/xslt/xspec}result" as="item()*">
+            <xsl:apply-templates select="$Q{urn:x-xspec:compile:impl}context-d63e0"/>
+         </xsl:variable>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+            <xsl:with-param name="report-name" select="'result'"/>
+         </xsl:call-template>
+         <!-- invoke each compiled x:expect -->
+         <xsl:call-template name="Q{http://www.jenitennison.com/xslt/xspec}scenario2-expect1">
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}context"/>
+            <xsl:with-param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                             select="$Q{http://www.jenitennison.com/xslt/xspec}result"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template name="Q{http://www.jenitennison.com/xslt/xspec}scenario2-expect1"
+                  as="element(Q{http://www.jenitennison.com/xslt/xspec}test)">
+      <xsl:context-item use="absent"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}context"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:param name="Q{http://www.jenitennison.com/xslt/xspec}result"
+                  as="item()*"
+                  required="yes"/>
+      <xsl:message>expect formal-objects-inherit-from-set-book-division-component.expected</xsl:message>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d53e7-doc"
+                     as="document-node()"
+                     select="doc('file:/home/runner/work/xslTNG/xslTNG/src/test/resources/expected/formal-objects-inherit-from-set-book-division-component.html')"/>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}expect-d53e7"
+                     select="$Q{urn:x-xspec:compile:impl}expect-d53e7-doc ! ( . )"><!--expected result--></xsl:variable>
+      <xsl:variable name="Q{urn:x-xspec:compile:impl}successful"
+                     as="Q{http://www.w3.org/2001/XMLSchema}boolean"
+                     select="Q{urn:x-xspec:common:deep-equal}deep-equal($Q{urn:x-xspec:compile:impl}expect-d53e7, $Q{http://www.jenitennison.com/xslt/xspec}result, '')"/>
+      <xsl:if test="not($Q{urn:x-xspec:compile:impl}successful)">
+         <xsl:message>      FAILED</xsl:message>
+      </xsl:if>
+      <xsl:element name="test" namespace="http://www.jenitennison.com/xslt/xspec">
+         <xsl:attribute name="id" namespace="">scenario2-expect1</xsl:attribute>
+         <xsl:attribute name="successful"
+                         namespace=""
+                         select="$Q{urn:x-xspec:compile:impl}successful"/>
+         <xsl:element name="label" namespace="http://www.jenitennison.com/xslt/xspec">
+            <xsl:text>expect formal-objects-inherit-from-set-book-division-component.expected</xsl:text>
+         </xsl:element>
+         <xsl:call-template name="Q{urn:x-xspec:common:report-sequence}report-sequence">
+            <xsl:with-param name="sequence" select="$Q{urn:x-xspec:compile:impl}expect-d53e7"/>
             <xsl:with-param name="report-name" select="'expect'"/>
          </xsl:call-template>
       </xsl:element>
