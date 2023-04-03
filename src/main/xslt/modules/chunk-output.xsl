@@ -232,7 +232,7 @@
 <xsl:template match="h:a[@href]" mode="mp:copy-patch-toc">
   <xsl:variable name="href" as="xs:string">
     <xsl:choose>
-      <xsl:when test="starts-with(@href, '#')">
+      <xsl:when test="starts-with(@href, '#') and $v:chunk">
         <xsl:variable name="id" select="substring-after(@href, '#')"/>
         <xsl:variable name="target" select="key('hid', $id, root(.))"/>
         <xsl:variable name="chunk"
