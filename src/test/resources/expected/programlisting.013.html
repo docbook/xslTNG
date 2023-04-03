@@ -43,10 +43,10 @@
 <span class="line"><span class="ln">5 <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
-</pre></td><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><span class="nt">&lt;xsl:function</span> <span class="na">name=</span><span class="s">"f:verbatim-trim-trailing"</span> <span class="na">as=</span><span class="s">"xs:boolean"</span><span class="nt">&gt;</span></span></span>
-<span class="line"><span class="ld">  <span class="nt">&lt;xsl:param</span> <span class="na">name=</span><span class="s">"context"</span> <span class="na">as=</span><span class="s">"element()"</span><span class="nt">/&gt;</span></span></span>
-<span class="line"><span class="ld">  <span class="nt">&lt;xsl:variable</span> <span class="na">name=</span><span class="s">"pi"</span> <span class="na">select=</span><span class="s">"f:pi($context, 'verbatim-trim-trailing')"</span><span class="nt">/&gt;</span></span></span>
-<span class="line"><span class="ld">  <span class="nt">&lt;xsl:sequence</span> <span class="na">select=</span><span class="s">"if ($pi)</span></span></span>
+</pre></td><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><span class="nt">&lt;xsl:function</span><span class="w"> </span><span class="na">name=</span><span class="s">"f:verbatim-trim-trailing"</span><span class="w"> </span><span class="na">as=</span><span class="s">"xs:boolean"</span><span class="nt">&gt;</span></span></span>
+<span class="line"><span class="ld"><span class="w">  </span><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"context"</span><span class="w"> </span><span class="na">as=</span><span class="s">"element()"</span><span class="nt">/&gt;</span></span></span>
+<span class="line"><span class="ld"><span class="w">  </span><span class="nt">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"pi"</span><span class="w"> </span><span class="na">select=</span><span class="s">"f:pi($context, 'verbatim-trim-trailing')"</span><span class="nt">/&gt;</span></span></span>
+<span class="line"><span class="ld"><span class="w">  </span><span class="nt">&lt;xsl:sequence</span><span class="w"> </span><span class="na">select=</span><span class="s">"if ($pi)</span></span></span>
 <span class="line"><span class="ld"><span class="s">                        then f:is-true($pi)</span></span></span>
 <span class="line"><span class="ld"><span class="s">                        else f:is-true($verbatim-trim-trailing-blank-lines)"</span><span class="nt">/&gt;</span></span></span>
 <span class="line"><span class="ld"><span class="nt">&lt;/xsl:function&gt;</span></span></span>

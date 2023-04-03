@@ -5325,4 +5325,34 @@ and <emphasis>do not</emphasis> defer loading it.</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:integer</type>
+      <varname>message-level</varname>
+      <initializer>1</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>How chatty should status messages be?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Broadly speaking, there are three kinds of messages that the
+stylesheets produce: debugging messages, status messages, and errors.
+Debugging messages are controled by the <parameter>debug</parameter>
+parameter. Error messages cause stylesheet processing to abort. Status
+messages fall somewhere in between. They alert you to facts about your
+document that you might want to fix, for example, broken cross references.
+If you ignore them, the stylesheets will produce some output.</para>
+<para>Previously, status messages were always printed. This parameter
+has been introduced to provide more control. If
+<parameter>message-level</parameter> is 0, most status messages will
+be suppressed. A value greater than 0 will cause some or all status
+messages to be printed. (At the time of this writing, all messages are
+at level 1, but it’s possible that more detailed messaging will be
+introduced in the future.)</para>
+</refsection>
+</refentry>
+
 </reference>

@@ -2,7 +2,7 @@ buildscript {
   repositories {
     mavenLocal()
     mavenCentral()
-    maven { url 'https://dev.saxonica.com/maven' }
+    maven { url "https://dev.saxonica.com/maven" }
   }
 
   apply from: 'properties.gradle'
@@ -31,8 +31,8 @@ plugins {
   id "maven-publish"
   id "signing"
   // The com.nwalsh.gradle.saxon.saxon-gradle plugin is loaded in buildSrc
-  id 'com.nwalsh.gradle.relaxng.validate' version '0.0.6'
-  id 'com.nwalsh.gradle.relaxng.translate' version '0.0.6'
+  // The com.nwalsh.gradle.relaxng.validate plugin is loaded in buildSrc
+  // The com.nwalsh.gradle.relaxng.translate plugin is loaded in buildSrc
   id "de.undercouch.download" version "4.0.4"
 }
 
@@ -58,6 +58,8 @@ import java.time.Instant
 import java.time.format.DateTimeFormatter
 
 import de.undercouch.gradle.tasks.download.Download
+
+import org.docbook.xsltng.gradle.TestGenerator
 
 repositories {
   mavenLocal()
@@ -126,7 +128,7 @@ dependencies {
     files(saxonLicenseDir)
   )
   testImplementation (
-    [group: 'junit', name: 'junit', version: '4.13'],
+    //[group: 'junit', name: 'junit', version: '4.13'],
     [group: 'org.docbook', name: 'schemas-docbook', version: docbookVersion],
     [group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion]
   )
@@ -136,9 +138,11 @@ defaultTasks 'report'
 
 def docbookXsltArgs = ['-init:org.docbook.xsltng.extensions.Register']
 
+/*
 relaxng_validate.configure {
   classpath configurations.validateRuntime
 }
+*/
 
 // If this is running on the CI infrastructure and it's not
 // a tagged build, add -SNAPSHOT to the version.
@@ -147,12 +151,6 @@ if (System.getenv()["CIWORKFLOW"] == "yes"
     && !xslTNGversion.contains('SNAPSHOT')) {
   xslTNGversion = xslTNGversion + "-SNAPSHOT"
 }
-
-// These are the top-level XSpec test drivers
-def testDrivers = ['docbook.xspec', 'main.xspec', '00_logstruct.xspec',
-                   '20_db4to5.xspec', 'local_conventions.xspec',
-                   'transclude.xspec']
-def genDrivers = []
 
 // I'm not sure I want to generate *all* the PDF files.
 // This is a kind of random list...
@@ -276,7 +274,7 @@ def findPygmentize() {
 
 // This is all a complete hack that I worked out by trial and error
 def EXCP="${projectDir}/build/classes/java/main"
-configurations.compileClasspath.each { it ->
+configurations.validateRuntime.each { it ->
   EXCP += ":" + it
 }
 
@@ -368,6 +366,7 @@ task copyBin(type: Copy) {
 
   from "${projectDir}/src/bin"
   into "${buildDir}/bin"
+  exclude '.mypy_cache/**'
   rename("docbook.py", "docbook")
   filter { String line ->
     if (line.indexOf("@@") >= 0) {
@@ -398,57 +397,32 @@ task copyDocker(type: Copy) {
   }
 }
 
-task copyReportResources(type: Copy,
-                         dependsOn: ['copyReportSources',
-                                     'copyExpectedResources',
-                                     'copyReportImages',
-                                     'copyExpectedGeneratedResources']) {
-  from "${projectDir}/src/test/resources"
-  include "css/**"
-  include "js/**"
-  into "${buildDir}/report"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
+task copyReportResources(
+  dependsOn: ['copyExpectedMedia', 'zipStageResources', 'zipStageMisc']
+) {
+  doLast {
+    copy {
+      from "${projectDir}/src/test/resources"
+      include "css/**"
+      include "js/**"
+      into "${buildDir}/report"
+      filter { String line ->
+        if (line.indexOf("@@") >= 0) {
+          line = line
+            .replace("@@TITLE@@", xslTNGtitle)
+            .replace("@@VERSION@@", xslTNGversion)
+        }
+        line
+      }
     }
-    line
   }
-}
-
-task copyReportImages(type: Copy) {
-  from "${projectDir}/src/website/resources"
-  include "img/**"
-  include "media/**"
-  exclude "olinkdb/**"
-  into "${buildDir}/report"
-}
-
-task copyReportSources(type: Copy) {
-  from "${projectDir}/src/test/resources"
-  include "xml/**"
-  include "expected/**"
-  filter { String line ->
-    if (line.indexOf("@@") >= 0) {
-      line = line
-        .replace("@@TITLE@@", xslTNGtitle)
-        .replace("@@VERSION@@", xslTNGversion)
+  
+  doLast {
+    copy {
+      from "${buildDir}/stage/zip/resources"
+      into "${buildDir}/report/expected"
     }
-    line
   }
-  into "${buildDir}/report"
-}
-
-task copyExpectedResources(type: Copy, dependsOn: ['copyExpectedMedia', 'zipStageResources',
-                                                   'zipStageMisc']) {
-  from "${buildDir}/stage/zip/resources"
-  into "${buildDir}/report/expected"
-}
-
-task copyExpectedGeneratedResources(type: Copy, dependsOn: ['generateXSpecSources']) {
-  from "${buildDir}/generated-xml"
-  into "${buildDir}/report/xml"
 }
 
 task copyTestMedia(type: Copy) {
@@ -483,1294 +457,15 @@ task generateLocales() {
   // Just something to hang dependencies on
 }
 
-// Hold information about configured XSpec tests
-def copiedXSpecTasks = []
-def elementTests = [:]
-fileTree(dir: "${projectDir}/src/test/xspec").each { xspec ->
-  // Work out the base filename of the test
-  def base = xspec.toString()
-  def pos = base.indexOf("/test/xspec/")
-  if (pos > 0) {
-    base = base.substring(pos+12)
-    base = base.replace(".xspec", "")
-  }
-
-  def taskname = null;
-
-  if (base.startsWith("generated-")) {
-    // Ignore these; they're dealt with separately
-  } else {
-    def copytaskname = "copy_" + base.replace("-", "_") + ".xspec"
-    Task t = task "${copytaskname}"(
-      type: SaxonXsltTask,
-      dependsOn: ['makeXslt']
-    ) {
-      input xspec
-      stylesheet "${projectDir}/tools/copy-xspec.xsl"
-      output "${buildDir}/xspec/${base}.xspec"
-      args docbookXsltArgs
-    }
-    copiedXSpecTasks << t
-
-    taskname = base.replace("-", "_") + ".xspec"
-    t = task "${taskname}"(
-      type: Exec,
-      dependsOn: ['setupXSpec', 'makeXslt', copytaskname]
-    ) {
-      inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-      inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-      inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-      inputs.files "${buildDir}/xspec/${base}.xspec"
-      outputs.file file("${buildDir}/${base}-compiled.xsl")
-      outputs.file file("${buildDir}/${base}-result.html")
-      outputs.file file("${buildDir}/${base}-result.xml")
-      commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-                  "${buildDir}/xspec/${base}.xspec"
-    }
-  }
-
-  // If the XSpec file enumerates the elements it tests,
-  // construct tests for those elements
-  def xspecTaskName = taskname
-  def xspecFilename = xspec.toString().substring(projectDir.toString().length() + 1)
-  def elemList = false
-  xspec.eachLine { line ->
-    elemList = elemList && !line.contains("-->")
-    if (elemList) {
-      line.trim().split("\\s+").each { tag ->
-        if (elementTests.get(tag)) {
-          elementTests[tag].push(xspecFilename)
-        } else {
-          def speclist = [xspecFilename]
-          elementTests[tag] = speclist
-        }
-      }
-    }
-
-    elemList = elemList || line.startsWith("<!-- Tests:")
-  }
-}
-
-def xspecTestDir = new File(buildDir, "elemtest")
-if (!xspecTestDir.exists()) {
-  if (!buildDir.exists()) {
-    buildDir.mkdir()
-  }
-  xspecTestDir.mkdir()
-}
-elementTests.keySet().each { tag ->
-  File xspec = new File(xspecTestDir, tag + ".xspec")
-    .withWriter("utf-8") { writer ->
-      writer.writeLine('<?xml version="1.0" encoding="UTF-8"?>')
-      writer.writeLine('<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"')
-      writer.writeLine('               stylesheet="../xslt/docbook.xsl">')
-      writer.writeLine('')
-      elementTests[tag].each { test ->
-        writer.writeLine("<x:import href='../../" + test + "'/>")
-      }
-      writer.writeLine("</x:description>")
-    }
-
-  def xspecTask = task "${tag}Test"(type: Exec, dependsOn:
-                                    ['setupXSpec', 'copyResources']) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-    outputs.files(fileTree(buildDir) {
-      include tag + "Test-result.xml"
-    })
-    commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-                "${buildDir}/elemtest/${tag}.xspec"
-    }
-}
-
-// Generate tasks to construct the generated tests
-fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
-  def xspec = xsl.toString()
-                 .replace("/generators/", "/xspec/generated-")
-                 .replace(".xsl", ".xspec")
-  def name  = xspec.replace(".xspec", "")
-                 .replace("/", "_")
-                 .replace(".", "_")
-                 .replace("-", "_")
-
-  // Shorten the name a little if possible
-  def pos = name.indexOf("generated_")
-  if (pos > 0) {
-    name = name.substring(pos)
-  }
-
-  // Work out the base filename of the test
-  def base = xspec
-  pos = base.indexOf("/test/xspec/")
-  if (pos > 0) {
-    base = base.substring(pos+12)
-    base = base.replace(".xspec", "")
-  }
-
-  def generator = name + "_gen"
-  def taskname = name + "XSpec"
-
-  Task g = task "${generator}"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt']
-  ) {
-    input xsl
-    stylesheet xsl
-    output "${buildDir}/xspec/${base}.xspec"
-  }
-
-  Task t = task "${taskname}"(
-    type: Exec,
-    dependsOn: ['setupXSpec', 'makeXslt']
-  ) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-    outputs.files(fileTree(buildDir) {
-      include base + "-result.xml"
-    })
-    commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-                "${buildDir}/xspec/${base}.xspec"
-  }
-
-  t.dependsOn g
-  testDrivers.each { driver ->
-    tasks.findByName(driver).dependsOn g
-  }
-}
-
 task actualResults() {
   // Just somewhere to hang dependencies
-}
-
-task numberedFromResults() {
-  // Just somewhere to hang dependencies
-}
-
-task inheritedFromResults() {
-  // Just somewhere to hang dependencies
-}
-
-// Generate tasks to format each resource/xml document
-fileTree(dir: "${projectDir}/src/test/resources/xml",
-         include: "*.xml",
-         exclude: ["tran-caution.xml"]).each { xml ->
-  // Work out the base filename of the test
-  def base = xml.toString()
-  def pos = base.indexOf("/resources/xml/")
-  if (pos > 0) {
-    base = base.substring(pos+15)
-      .replace("/", "_")
-      .replace(".xml", "")
-  }
-
-  def stylesheetParams = [:]
-
-  if (base == 'bibliography.003') {
-    stylesheetParams['bibliography-collection'] = "${projectDir}/src/test/resources/bibcollection.xml"
-  }
-
-  if (base == 'glossary.002') {
-    stylesheetParams['glossary-collection'] = "${projectDir}/src/test/resources/glosscollection.xml"
-  }
-
-  if (base == 'annotations.004') {
-    stylesheetParams['annotation-collection'] = "${projectDir}/src/test/resources/anncollection.xml"
-  }
-
-  if (base == 'profiling.001') {
-    stylesheetParams['profile-os'] = 'win;linux'
-  }
-
-  if (base == "fit.001" || base == "fit.002") {
-    stylesheetParams['profile-outputformat'] = 'online'
-  }
-
-  if (base == 'para.002') {
-    stylesheetParams['unwrap-paragraphs'] = true
-  }
-
-  if (base.startsWith('remark.')) {
-    stylesheetParams['show-remarks'] = true
-  }
-
-  if (base.startsWith('colors.')) {
-    stylesheetParams['show-remarks'] = true
-    stylesheetParams['theme-picker'] = true
-    stylesheetParams['persistent-toc'] = true
-  }
-
-  if (base.startsWith('ptoc.')) {
-    stylesheetParams['persistent-toc'] = true
-  }
-
-  if (base.startsWith('local.')) {
-    stylesheetParams['local-conventions'] = "${projectDir}/src/test/resources/local.xsl"
-    stylesheetParams['relax-ng-grammar'] = "${projectDir}/src/test/resources/docbook.rng"
-  }
-
-  if (base.startsWith("olink.")) {
-    def dirs = ["${buildDir}/actual/guide.olinkdb",
-                "${buildDir}/actual/fit.001.olinkdb",
-                "${buildDir}/actual/fit.002.olinkdb",
-                "${projectDir}/src/website/resources/olinkdb/website.olinkdb"]
-    stylesheetParams['olink-databases'] = dirs.join(",")
-  }
-
-  def schemaFn = "${projectDir}/src/test/resources/docbook.rng"
-  if (base.contains("xinclude") || base.contains('iso690')
-      || base == "fit.001" || base == "fit.002") {
-    schemaFn = "${projectDir}/src/test/resources/docbookxi.rng"
-  }
-
-  if (base.contains('transclusion')) {
-    schemaFn = "${projectDir}/src/test/resources/transclude.rng"
-    stylesheetParams['docbook-transclusion'] = 'true'
-  }
-
-  if (publishersDocuments.contains(base)) {
-    schemaFn = "${projectDir}/src/test/resources/publishers.rng"
-  }
-
-  Task t = null
-  def htmlDependsOn = ['makeXslt']
-  if (base.startsWith("local.")) {
-    t = task "validate_${base}"() {
-      doLast {
-        println("Not validating ${base}")
-      }
-    }
-  } else {
-    t = task "validate_${base}"(type: RelaxNGValidateTask) {
-      input xml
-      output "${buildDir}/validated/${base}"
-      schema schemaFn
-      idref !invalidIdrefDocuments.contains(base)
-    }
-    validateAll.dependsOn t
-    htmlDependsOn.push("validate_${base}")
-  }
-
-  t = task "${base}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-    inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-    inputs.file file("${buildDir}/xslt/docbook.xsl")
-
-    stylesheetParams['mediaobject-output-base-uri'] = "media/"
-    stylesheetParams['mediaobject-output-paths'] = "false"
-    stylesheetParams['dynamic-profiles'] = true
-    stylesheetParams += extraParams
-
-    input xml
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/${base}.html"
-    args docbookXsltArgs
-    parameters(stylesheetParams)
-  }
-  actualResults.dependsOn t
-
-  if (base == "chapters-numbered-from") {
-    ['root', 'set', 'book', 'division'].each { from ->
-      Task xspecd = task "xspec-chapters-number-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-chapters-number-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters([
-          'components-number-from': from
-        ])
-      }
-
-      Task xspect = task "xspec-chapters-number-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/chapters-number-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': base,
-          'class': 'chapter',
-          'from': from
-        ])
-      }
-
-      t = task "chapters-number-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/chapters-number-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/chapters-number-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/chapters-number-from-${from}-result.html")
-        outputs.file file("${buildDir}/chapters-number-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/chapters-number-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "chapters-number-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-      stylesheetParams['components-number-from'] = from
-      stylesheetParams += extraParams
-
-      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      numberedFromResults.dependsOn t
-
-      t = task "${base}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-chapters-number-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-
-    def ibase = base.replace("numbered-", "inherit-")
-    ['set', 'book', 'division',
-     'set-book', 'set-book-division', 'book-division', 'set-division'].each { from ->
-      stylesheetParams = [:]
-      stylesheetParams['sets-number-from'] = 'root'
-      stylesheetParams['components-inherit-from'] = from.replaceAll("-", " ")
-      stylesheetParams['lists-of'] = 'equations procedures'
-
-      Task xspecd = task "xspec-chapters-inherit-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-chapters-inherit-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters(stylesheetParams)
-      }
-
-      Task xspect = task "xspec-chapters-inherit-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/chapters-inherit-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': ibase,
-          'source': base,
-          'class': 'chapter',
-          'from': from,
-          'target': 'inherit'
-        ])
-      }
-
-      t = task "chapters-inherit-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/xspec-chapters-inherit-from-${from}-xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/chapters-inherit-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/chapters-inherit-from-${from}-result.html")
-        outputs.file file("${buildDir}/chapters-inherit-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/chapters-inherit-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "chapters-inherit-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-      stylesheetParams['sets-number-from'] = 'root'
-      stylesheetParams['components-inherit-from'] = from.replaceAll("-", " ")
-      stylesheetParams += extraParams
-
-      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      inheritedFromResults.dependsOn t
-
-      t = task "${ibase}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-chapters-inherit-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-  }
-
-  if (base == "parts-numbered-from") {
-    ['root', 'set', 'book'].each { from ->
-      Task xspecd = task "xspec-parts-number-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-parts-number-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters([
-          'divisions-number-from': from
-        ])
-      }
-
-      Task xspect = task "xspec-parts-number-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/parts-number-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': base,
-          'class': 'part',
-          'from': from
-        ])
-      }
-
-      t = task "parts-number-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/parts-number-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/parts-number-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/parts-number-from-${from}-result.html")
-        outputs.file file("${buildDir}/parts-number-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/parts-number-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "parts-number-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-      stylesheetParams['divisions-number-from'] = from
-
-      stylesheetParams += extraParams
-
-      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      numberedFromResults.dependsOn t
-
-      t = task "${base}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-parts-number-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-
-    def ibase = base.replace("numbered-", "inherit-")
-    ['set', 'book', 'set-book'].each { from ->
-      stylesheetParams = [:]
-      stylesheetParams['divisions-inherit-from'] = from.replaceAll("-", " ")
-      stylesheetParams['lists-of'] = 'equations procedures'
-
-      Task xspecd = task "xspec-parts-inherit-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-parts-inherit-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters(stylesheetParams)
-      }
-
-      Task xspect = task "xspec-parts-inherit-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/parts-inherit-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': ibase,
-          'source': base,
-          'class': 'part',
-          'from': from,
-          'target': 'inherit'
-        ])
-      }
-
-      t = task "parts-inherit-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/parts-inherit-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/parts-inherit-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/parts-inherit-from-${from}-result.html")
-        outputs.file file("${buildDir}/parts-inherit-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/parts-inherit-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "parts-inherit-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-      stylesheetParams['divisions-inherit-from'] = from.replaceAll("-", " ")
-      stylesheetParams += extraParams
-
-      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      inheritedFromResults.dependsOn t
-
-      t = task "${ibase}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-parts-inherit-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-  }
-
-  if (base == "sections-numbered-from") {
-    ['root', 'set', 'book', 'division', 'component'].each { from ->
-      Task xspecd = task "xspec-sections-number-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-sections-number-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters([
-          'sections-number-from': from
-        ])
-      }
-
-      Task xspect = task "xspec-sections-number-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/sections-number-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': base,
-          'class': 'section',
-          'from': from
-        ])
-      }
-
-      t = task "sections-number-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/sections-number-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/sections-number-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/sections-number-from-${from}-result.html")
-        outputs.file file("${buildDir}/sections-number-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/sections-number-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "sections-number-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-      stylesheetParams['sections-number-from'] = from
-      stylesheetParams += extraParams
-
-      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      numberedFromResults.dependsOn t
-
-      t = task "${base}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-sections-number-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-
-    def ibase = base.replace("numbered-", "inherit-")
-    ['set', 'book', 'division', 'component', 'section',
-     'division-component-section', 'book-division-component-section',
-     'set-book-division-component', 'set-book-division-component-section'].each { from ->
-      stylesheetParams = [:]
-      stylesheetParams['lists-of'] = 'equations procedures'
-      if (from.contains('division-')) {
-        stylesheetParams['components-inherit-from'] = 'division'
-        if (from.contains('-division-')) {
-          stylesheetParams['components-inherit-from'] = from.replace('-division-', '-')
-        }
-      }
-      stylesheetParams['sections-inherit-from'] = from.replaceAll("-", " ")
-
-      Task xspecd = task "xspec-sections-inherit-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-sections-inherit-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters(stylesheetParams)
-      }
-
-      Task xspect = task "xspec-sections-inherit-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/sections-inherit-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': ibase,
-          'source': base,
-          'class': 'section',
-          'from': from,
-          'target': 'inherit'
-        ])
-      }
-
-      t = task "sections-inherit-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/sections-inherit-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/sections-inherit-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/sections-inherit-from-${from}-result.html")
-        outputs.file file("${buildDir}/sections-inherit-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/sections-inherit-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "sections-inherit-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-
-      if (from == "division-component") {
-        stylesheetParams['components-inherit-from'] = 'division'
-      }
-
-      stylesheetParams['sections-inherit-from'] = from.replaceAll("-", " ")
-      stylesheetParams += extraParams
-
-      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      inheritedFromResults.dependsOn t
-
-      t = task "${ibase}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-sections-inherit-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-  }
-
-  if (base == "formal-objects-numbered-from") {
-    ['root', 'set', 'book', 'division', 'component', 'section'].each { from ->
-      Task xspecd = task "xspec-formal-objects-number-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-formal-objects-number-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters([
-          'formal-objects-number-from': from,
-          'lists-of': 'equations procedures'
-        ])
-      }
-
-      Task xspect = task "xspec-formal-objects-number-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/formal-objects-number-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': base,
-          'class': 'formal-object',
-          'from': from
-        ])
-      }
-
-      t = task "formal-objects-number-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/formal-objects-number-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/formal-objects-number-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/formal-objects-number-from-${from}-result.html")
-        outputs.file file("${buildDir}/formal-objects-number-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/formal-objects-number-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "formal-objects-number-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-      stylesheetParams['formal-objects-number-from'] = from
-      stylesheetParams += extraParams
-
-      t = task "${base}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      numberedFromResults.dependsOn t
-
-      t = task "${base}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-formal-objects-number-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${base}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-
-    def ibase = base.replace("numbered-", "inherit-")
-    ['set', 'book', 'division', 'component', 'section', 'component-section',
-     'division-component', 'division-component-section',
-     'book-division-component-section', 'set-book-division-component',
-     'set-book-division-component-section'].each { from ->
-      stylesheetParams = [:]
-      stylesheetParams['lists-of'] = 'equations procedures'
-      if (from.contains('division-')) {
-        stylesheetParams['components-inherit-from'] = 'division'
-        if (from.contains('-division-')) {
-          stylesheetParams['formal-objects-inherit-from'] = from.replace('-division-', '-')
-        }
-      }
-      stylesheetParams['formal-objects-inherit-from'] = from.replaceAll("-", " ")
-
-      Task xspecd = task "xspec-formal-objects-inherit-from-${from}-driver"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt']
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-driver.xsl"
-        output "${buildDir}/xspec-xslt/xspec-formal-objects-inherit-from-${from}-driver.xsl"
-        args(['-it'])
-        parameters(stylesheetParams)
-      }
-
-      Task xspect = task "xspec-formal-objects-inherit-from-${from}-xspec"(
-        type: SaxonXsltTask,
-        dependsOn: ['makeXslt', xspecd]
-      ) {
-        stylesheet "${projectDir}/tools/make-xspec-tests.xsl"
-        output "${buildDir}/xspec/formal-objects-inherit-from-${from}.xspec"
-        args(['-it'])
-        parameters([
-          'basename': ibase,
-          'source': base,
-          'class': 'formal-object',
-          'from': from,
-          'target': 'inherit'
-        ])
-      }
-
-      t = task "formal-objects-inherit-from-${from}.xspec"(
-        type: Exec,
-        dependsOn: ['setupXSpec', 'makeXslt', xspect]
-      ) {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        inputs.files "${buildDir}/xspec/formal-objects-inherit-from-${from}.xspec"
-        inputs.file "${projectDir}/tools/make-xspec-tests.xsl"
-        outputs.file file("${buildDir}/formal-objects-inherit-from-${from}-compiled.xsl")
-        outputs.file file("${buildDir}/formal-objects-inherit-from-${from}-result.html")
-        outputs.file file("${buildDir}/formal-objects-inherit-from-${from}-result.xml")
-        commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-          "${buildDir}/xspec/formal-objects-inherit-from-${from}.xspec"
-      }
-      copiedXSpecTasks << t
-      genDrivers << "formal-objects-inherit-from-${from}.xspec"
-
-      stylesheetParams = [:]
-
-      stylesheetParams['mediaobject-output-base-uri'] = "media/"
-      stylesheetParams['mediaobject-output-paths'] = "false"
-      stylesheetParams['lists-of-equations'] = 'true'
-      stylesheetParams['lists-of-procedures'] = 'true'
-      stylesheetParams['dynamic-profiles'] = 'true'
-
-      if (from == "division-component") {
-        stylesheetParams['formal-objects-inherit-from'] = 'division'
-      }
-
-      stylesheetParams['formal-objects-inherit-from'] = from.replaceAll("-", " ")
-      stylesheetParams += extraParams
-
-      t = task "${ibase}-${from}.html"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-        inputs.files fileTree(dir: "${buildDir}/xslt", excludes: ["xspec-*.xsl"])
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/alt-docbook.xsl"
-        output "${buildDir}/actual/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      actualResults.dependsOn t
-      inheritedFromResults.dependsOn t
-
-      t = task "${ibase}-${from}.expected"(
-        type: SaxonXsltTask,
-        dependsOn: [htmlDependsOn, xspecd])
-      {
-        inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-        inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-        input xml
-        stylesheet "${buildDir}/xspec-xslt/xspec-formal-objects-inherit-from-${from}-driver.xsl"
-        output "${projectDir}/src/test/resources/expected/${ibase}-${from}.html"
-        args docbookXsltArgs
-        parameters(stylesheetParams)
-      }
-      allExpectedDocuments.dependsOn t
-    }
-  }
-
-  if (base.startsWith("colors.")) {
-    // disable for expected results
-    stylesheetParams = [:]
-  }
-
-  t = task "${base}.expected"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: 'expected')
-    inputs.file file("${buildDir}/xspec-xslt/xspec-driver.xsl")
-
-    stylesheetParams['dynamic-profiles'] = true
-
-    input xml
-    stylesheet "${buildDir}/xspec-xslt/xspec-driver.xsl"
-    output "${projectDir}/src/test/resources/expected/${base}.html"
-    args docbookXsltArgs
-    parameters(stylesheetParams)
-  }
-  allExpectedDocuments.dependsOn t
-
-  if (base == "fit.001" || base == "fit.002") {
-    stylesheetParams = [:]
-    stylesheetParams['chunk'] = 'index.html'
-    stylesheetParams['chunk-output-base-uri'] = 'https://xsltng.docbook.org/samples/fit/'
-  }
-
-  t = task "${base}.olinkdb"(type: SaxonXsltTask, dependsOn: htmlDependsOn) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources", exclude: "expected")
-    inputs.file file("${buildDir}/xslt/olinkdb.xsl")
-
-    stylesheetParams['dynamic-profiles'] = true
-    stylesheetParams['olink-targetdoc'] = base
-
-    //println("Task ${base}.olinkdb: ${stylesheetParams}")
-
-    input xml
-    stylesheet "${buildDir}/xslt/olinkdb.xsl"
-    output "${buildDir}/actual/${base}.olinkdb"
-    args docbookXsltArgs
-    parameters(stylesheetParams)
-  }
-
-  stylesheetParams = [:]
-
-  if (base == "fit.001" || base == "fit.002") {
-    stylesheetParams['annotation-style'] = 'javascript'
-    stylesheetParams['profile-outputformat'] = 'online'
-    stylesheetParams['persistent-toc'] = true
-  }
-
-  if (base.startsWith("colors.")) {
-    stylesheetParams['show-remarks'] = true
-    stylesheetParams['theme-picker'] = true
-    stylesheetParams['persistent-toc'] = true
-  }
-
-  if (base.startsWith('ptoc.')) {
-    stylesheetParams['persistent-toc'] = true
-  }
-
-  t = task "${base}.chunk"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', "validate_${base}"]
-  ) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-    inputs.file file("${buildDir}/xslt/docbook.xsl")
-    outputs.files fileTree(dir: "${buildDir}/actual", include: "**/*.html")
-
-    stylesheetParams['chunk'] = 'index.html'
-    stylesheetParams['chunk-output-base-uri'] = "${buildDir}/actual/"
-    stylesheetParams['dynamic-profiles'] = true
-
-    input xml
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    args docbookXsltArgs
-    parameters(stylesheetParams)
-  }
-
-  stylesheetParams = [:]
-
-  stylesheetParams['profile-outputformat'] = 'print'
-
-  if (base.startsWith("book.")) {
-    stylesheetParams['page-style'] = 'book'
-  }
-
-  t = task "${base}.pdf.html"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', "validate_${base}"]
-  ) {
-    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
-    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
-    inputs.file "${buildDir}/xslt/print.xsl"
-
-    stylesheetParams['resource-base-uri'] = ''
-    stylesheetParams['dynamic-profiles'] = true
-
-    input xml
-    stylesheet "${buildDir}/xslt/print.xsl"
-    output "${buildDir}/actual/${base}.pdf.html"
-    args docbookXsltArgs
-    parameters(stylesheetParams)
-  }
-
-  if (pdftool == "prince") {
-    t = task "${base}.pdf"(type: Exec,
-                          dependsOn: ["${base}.pdf.html"]) {
-      inputs.files fileTree(dir: "${buildDir}/actual/css")
-      inputs.file("${buildDir}/actual/${base}.pdf.html")
-      outputs.file("${buildDir}/actual/${base}.pdf")
-      commandLine "${prince}",
-        "${buildDir}/actual/${base}.pdf.html",
-        "-o", "${buildDir}/actual/${base}.pdf"
-    }
-    t = task "${base}.pdf.expected"(type: Exec,
-                          dependsOn: ["${base}.pdf.html"]) {
-      inputs.files fileTree(dir: "${buildDir}/actual/css")
-      inputs.file("${buildDir}/actual/${base}.pdf.html")
-      outputs.file("${projectDir}/src/test/resources/expectedpdf/${pdftool}/${base}.pdf")
-      commandLine "${prince}",
-        "${buildDir}/actual/${base}.pdf.html",
-        "-o", "${projectDir}/src/test/resources/expectedpdf/${pdftool}/${base}.pdf"
-    }
-  } else {
-    t = task "${base}.pdf"(type: Exec,
-                          dependsOn: ["${base}.pdf.html"]) {
-      inputs.files fileTree(dir: "${buildDir}/actual/css")
-      inputs.file("${buildDir}/actual/${base}.pdf.html")
-      outputs.file("${buildDir}/actual/${base}.pdf")
-      commandLine "${antennahouse}",
-        "-d", "${buildDir}/actual/${base}.pdf.html",
-        "-o", "${buildDir}/actual/${base}.pdf"
-    }
-    t = task "${base}.pdf.expected"(type: Exec,
-                          dependsOn: ["${base}.pdf.html"]) {
-      inputs.files fileTree(dir: "${buildDir}/actual/css")
-      inputs.file("${buildDir}/actual/${base}.pdf.html")
-      outputs.file("${projectDir}/src/test/resources/expectedpdf/${pdftool}/${base}.pdf")
-      commandLine "${antennahouse}",
-        "-d", "${buildDir}/actual/${base}.pdf.html",
-        "-o", "${projectDir}/src/test/resources/expectedpdf/${pdftool}/${base}.pdf"
-    }
-  }
-}
-
-// Now that we have the html olink targets
-tasks.findByName("docbook.xspec").dependsOn "fit.001.olinkdb"
-tasks.findByName("docbook.xspec").dependsOn "fit.002.olinkdb"
-tasks.findByName("docbook.xspec").dependsOn "guide.olinkdb"
-
-fileTree(dir: "${projectDir}/src/test/resources/xml", include: "*.xml").each { xml ->
-  // Work out the base filename of the test
-  def base = xml.toString()
-  def pos = base.indexOf("/resources/xml/")
-  if (pos > 0) {
-    base = base.substring(pos+15)
-      .replace("/", "_")
-      .replace(".xml", "")
-  }
-  if (base.startsWith("olink.")) {
-    Task t = tasks.findByName("${base}.html")
-    t.dependsOn "fit.001.olinkdb"
-    t.dependsOn "fit.002.olinkdb"
-    t.dependsOn "guide.olinkdb"
-
-    t = tasks.findByName("${base}.expected")
-    t.dependsOn "fit.001.olinkdb"
-    t.dependsOn "fit.002.olinkdb"
-    t.dependsOn "guide.olinkdb"
-  }
-}
-
-// Now the compied tasks have all been computed
-copiedXSpecTasks.each { task ->
-  testDrivers.each { driver ->
-    tasks.findByName(driver).dependsOn task
-  }
-}
-
-// Now that we have the PDF tasks...
-pdfTests.each { basename ->
-  Task t = tasks.findByName("${basename}.pdf.expected")
-  allExpectedPdfDocuments.dependsOn t
-}
-
-// ============================================================
-
-task generateXSpecSources() {
-  // Just something to hang dependencies on
-}
-testDrivers.each { driver ->
-  tasks.findByName(driver).dependsOn generateXSpecSources
-  tasks.findByName(driver).dependsOn "makeXslt"
-}
-
-// Generate programlistingco/screeco results with all the possible stylings
-["programlistingco.001", "screenco.001"].each { source ->
-  ["raw", "plain", "lines"].each { style ->
-    ["true", "false"].each { numbered ->
-      ["linecolumn", "lines", "lineranges-all", "lineranges-first",
-       "linecolumn,lines",
-       "linecolumn,lineranges-all",
-       "linecolumn,lineranges-first",
-       "linecolumn,lines,lineranges-all",
-       "linecolumn,lines,lineranges-first",
-       "lines,lineranges-all",
-       "lines,lineranges-first"].each { highlight ->
-        def S = style.substring(0, 1).toLowerCase() + "_"
-        def N = numbered.substring(0, 1).toLowerCase() + "_"
-        def H = ""
-
-        if (highlight == "linecolumn")                             H = "lc"
-        else if (highlight == "lines")                             H = "l"
-        else if (highlight == "lineranges-all")                    H = "lra"
-        else if (highlight == "lineranges-first")                  H = "lrf"
-        else if (highlight == "linecolumn,lines")                  H = "lc-l"
-        else if (highlight == "linecolumn,lineranges-all")         H = "lc-lra"
-        else if (highlight == "linecolumn,lineranges-first")       H = "lc-lrf"
-        else if (highlight == "linecolumn,lines,lineranges-all")   H = "lc-l-lra"
-        else if (highlight == "linecolumn,lines,lineranges-first") H = "lc-l-lrf"
-        else if (highlight == "lines,lineranges-all")              H = "l-lra"
-        else if (highlight == "lines,lineranges-first")            H = "l-lrf"
-        else H = "X"
-
-        def basename = "${source}_${S}${N}${H}"
-
-        Task g = task "generate_${basename}.xml"(type: SaxonXsltTask) {
-          inputs.file("${projectDir}/src/test/resources/xml/${source}.xml")
-          inputs.file("${projectDir}/tools/generate-co.xsl")
-
-          input "${projectDir}/src/test/resources/xml/${source}.xml"
-          stylesheet "${projectDir}/tools/generate-co.xsl"
-          output "${buildDir}/generated-xml/${basename}.xml"
-
-          parameters (
-            "style": style,
-            "highlight": highlight,
-            "numbered": numbered,
-            "everyNth": 5,
-            "minlines": 5,
-            "first": true
-          )
-        }
-        generateXSpecSources.dependsOn g
-
-        Task t = task "${basename}.html"(
-          type: SaxonXsltTask, dependsOn: ['makeXslt']
-        ) {
-          input "${buildDir}/generated-xml/${basename}.xml"
-          stylesheet "${buildDir}/xslt/docbook.xsl"
-          output "${buildDir}/actual/${basename}.html"
-          args docbookXsltArgs
-        }
-        t.dependsOn g
-        tasks.findByName("${source}.html").dependsOn t
-
-        t = task "${basename}.expected"(
-          type: SaxonXsltTask,
-          dependsOn: ['makeXslt']
-        ) {
-          input "${buildDir}/generated-xml/${basename}.xml"
-          stylesheet "${buildDir}/xspec-xslt/xspec-driver.xsl"
-          output "${projectDir}/src/test/resources/expected/${basename}.html"
-          args docbookXsltArgs
-          parameters(
-            'xspec-expected': 1,
-          )
-        }
-        t.dependsOn g
-        tasks.findByName("${source}.expected").dependsOn t
-      }
-    }
-  }
 }
 
 // ============================================================
 
 // Generate tasks to generate the locale files
-fileTree(dir: "${projectDir}/src/main/locale", include: "*.xml").each { xml ->
+fileTree(dir: "${projectDir}/src/main/locale",
+         include: "*.xml").each { xml ->
   // Work out the base filename of the test
   def base = xml.toString()
   def pos = base.lastIndexOf("/")
@@ -1891,11 +586,10 @@ task testDocBookPy(type: Exec, dependsOn: ["jar", "copyBin", "copyDocker"]) {
 }
 formattingTests.dependsOn testDocBookPy
 
-task testConsoleSummary(type: SummarizeTestResults, dependsOn: testDrivers) {
-  resultFiles = testDrivers
-}
-
-task testSummary(type: SaxonXsltTask, dependsOn: testDrivers) {
+task testSummary(
+  type: SaxonXsltTask,
+  dependsOn: ['xspecTests']
+) {
   stylesheet file("${projectDir}/tools/test-results.xsl")
   output "${buildDir}/test-results.txt"
   args(["-it"])
@@ -1917,1224 +611,91 @@ task reportResults(type: Copy, dependsOn: ['testSummary']) {
 
 task coverageReport(type: SaxonXsltTask,
                     dependsOn: ['testSummary', 'copyReportResources']) {
-  input "${buildDir}/docbook-result.xml"
+  input "${buildDir}/default-result.xml"
   stylesheet "${projectDir}/tools/coverage-report.xsl"
   output "${buildDir}/report/coverage-report.html"
-  parameters (
-    "test-drivers": testDrivers.join(" ")
-  )
 }
 formattingTests.dependsOn reportResults
 formattingTests.dependsOn coverageReport
 
 // Use Exec so that it runs the same version of Saxon as the tests.
-task report(type: Exec,
-            dependsOn: ['copyReportResources',
-                        'reportExpectedHTML',
-                        'coverageReport', 'reportResults']) {
-  inputs.file("${buildDir}/docbook-result.xml")
+task report(dependsOn: ['xspecTests']) {
+  inputs.files fileTree(dir: buildDir, include: "*-result.xml")
   inputs.file("${projectDir}/tools/report.xsl")
   outputs.file("${buildDir}/report/index.html")
-  commandLine "java",
-    "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
-    "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
-    "-cp", EXCP, "net.sf.saxon.Transform",
-    "-init:org.docbook.xsltng.extensions.Register",
-    "${buildDir}/docbook-result.xml",
-    "-xsl:tools/report.xsl",
-    "-o:${buildDir}/report/index.html",
-    "test-drivers=${testDrivers.join(' ')} ${genDrivers.join(' ')}"
-}
 
-// ============================================================
-// The mediaobject tests
-// Test 1 and 2 are "the same" except for the arrangement of
-// the source files.
-task all_mo_tests(
-  group: "mediaobject-test",
-  description: "Run all the mo-/n/ mediaobject tests"
-) {
-  // Just somewhere to hang dependencies
-}
-
-["1", "2"].each { mo ->
-  Task t = task "mo_${mo}_test_1"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 1"
-  ) {
-    // Single output HTML file, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-1"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-1"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "**/*"
-        exclude "**/*.xml"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-1/index.html"
-    args docbookXsltArgs
-    /*
-    parameters([
-      "debug": "mediaobject-uris"
-    ])
-     */
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-1"
+  doLast {
+    copy {
+      from "${projectDir}/src/test/resources"
+      include "css/**"
+      include "js/**"
+      into "${buildDir}/report"
+      filter { String line ->
+        if (line.indexOf("@@") >= 0) {
+          line = line
+            .replace("@@TITLE@@", xslTNGtitle)
+            .replace("@@VERSION@@", xslTNGversion)
+        }
+        line
       }
     }
   }
-  all_mo_tests.dependsOn t
 
-  t = task "mo_${mo}_test_2"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 2"
-  ) {
-    // Single output HTML file, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-2"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-2"
-    }
-
-    doFirst {
-      // N.B. These copy commands are a bit redundant because they
-      // have to work for all of the input layouts
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
-        include "*.mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-2/index.html"
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "false"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-2"
-      }
+  doLast {
+    copy {
+      from "${projectDir}/src/website/resources"
+      include "img/**"
+      include "media/**"
+      exclude "olinkdb/**"
+      into "${buildDir}/report"
     }
   }
-  all_mo_tests.dependsOn t
 
-  t= task "mo_${mo}_test_3"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 3"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-3"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-3"
-    }
-
-    doFirst {
-      // N.B. These copy commands are a bit redundant because they
-      // have to work for all of the input layouts
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "**/*"
-        exclude "**/*.xml"
+  doLast {
+    copy {
+      from "${projectDir}/src/test/resources"
+      include "xml/**"
+      include "expected/**"
+      filter { String line ->
+        if (line.indexOf("@@") >= 0) {
+          line = line
+            .replace("@@TITLE@@", xslTNGtitle)
+            .replace("@@VERSION@@", xslTNGversion)
+        }
+        line
       }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-3"
-      }
+      into "${buildDir}/report"
     }
   }
-  all_mo_tests.dependsOn t
 
-  t = task "mo_${mo}_test_4"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 4"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-    // but segregated by type
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-    outputs.dir "${buildDir}/actual/mo-${mo}-4"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-4"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/body/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/media/video"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/front/video"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
-        include "*.mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/media/audio"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.mp3"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/media/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.png"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-    stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-4"
-      }
+  doLast {
+    copy {
+      from "${buildDir}/validated"
+      into "${buildDir}/report/xml"
     }
   }
-  all_mo_tests.dependsOn t
 
-  t = task "mo_${mo}_test_5"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 5"
-  ) {
-    // Chunked output HTML, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-5"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-5"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
-        include "*.mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "false"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-5"
-      }
+  doLast {
+    copy {
+      from "build"
+      include "*-result.*"
+      include "*-compiled.xsl"
+      into "${buildDir}/report"
     }
   }
-  all_mo_tests.dependsOn t
-}
 
-// Test 3 is different because, although the media are relative to the
-// source locations, they escape out above the "book" as might occur
-// if you had several books with some common media.
-["3"].each { mo ->
-  Task t = task "mo_${mo}_test_1"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 1"
-  ) {
-    // Single output HTML file, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-1"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-1/book"
-      mkdir "${buildDir}/actual/mo-${mo}-1/media"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "**/*"
-        exclude "**/*.xml"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1/book"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-1/book/index.html"
-    args docbookXsltArgs
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-1"
-      }
+  doLast {
+    exec {
+      commandLine "java",
+        "-Dorg.docbook.xsltng.extensions.verbose=${verbose}",
+        "-Dorg.docbook.extensions.pygmentize=${pygmentize}",
+        "-cp", EXCP, "net.sf.saxon.Transform",
+        "-init:org.docbook.xsltng.extensions.Register",
+        "${buildDir}/default-result.xml",
+        "-xsl:tools/report.xsl",
+        "-o:${buildDir}/report/index.html"
     }
   }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_2"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 2"
-  ) {
-    // Single output HTML file, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-2"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-2/book"
-    }
-
-    doFirst {
-      // N.B. These copy commands are a bit redundant because they
-      // have to work for all of the input layouts
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/book/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/book/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/book"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-2/book/index.html"
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "false"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-2"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t= task "mo_${mo}_test_3"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 3"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-3"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-3/book"
-      mkdir "${buildDir}/actual/mo-${mo}-3/media"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}"
-        include "**/*"
-        exclude "**/*.xml"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3/book"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/book/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-3"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_4"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 4"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-    // but segregated by type
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-    outputs.dir "${buildDir}/actual/mo-${mo}-4"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-4/book"
-      mkdir "${buildDir}/actual/mo-${mo}-4/media"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/book/body/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/media/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/media/audio"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.mp3"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/media/video"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/front/video"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
-        include "*.mp4"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/book"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/book/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-4"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_5"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 5"
-  ) {
-    // Chunked output HTML, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-5"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-5"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.png"
-        include "*.mp4"
-        include "*.mp3"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "false"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-5"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-}
-
-// Test 4 stores the media in a separate hierarchy
-["4"].each { mo ->
-  Task t = task "mo_${mo}_test_1"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 1"
-  ) {
-    // Single output HTML file, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-1"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-1"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "**/*"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-1/index.html"
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-1"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_2"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 2"
-  ) {
-    // Single output HTML file, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-2"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-2"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-2/index.html"
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "true"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-2"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t= task "mo_${mo}_test_3"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 3"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-3"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-3"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "**/*"
-        exclude "**/*.xml"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-3"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_4"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 4"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-    // but segregated by type
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-    outputs.dir "${buildDir}/actual/mo-${mo}-4"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-4"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/left/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media/left"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/right/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media/right"
-        include "*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/video"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/audio"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "*.mp3"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-4
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-4"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_5"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 5"
-  ) {
-    // Chunked output HTML, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-5"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-5"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
-      "mediaobject-input-base-uri": "../media/",
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "true"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-5"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-}
-
-// Test 5 stores the media grouped by type
-["5"].each { mo ->
-  Task t = task "mo_${mo}_test_1"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 1"
-  ) {
-    // Single output HTML file, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-1"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-1"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "**/*"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-1"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-1/index.html"
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "mediaobject-grouped-by-type": "true"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-1"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_2"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 2"
-  ) {
-    // Single output HTML file, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-2"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-2"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-2"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    output "${buildDir}/actual/mo-${mo}-2/index.html"
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "true",
-      "mediaobject-grouped-by-type": "true"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-2"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t= task "mo_${mo}_test_3"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 3"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-3"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-3"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-        include "**/*"
-        exclude "**/*.xml"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-3"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/",
-      "mediaobject-grouped-by-type": "true"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-3"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_4"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 4"
-  ) {
-    // Chunked output HTML, media all in the same relative locations
-    // but segregated by type
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-    outputs.dir "${buildDir}/actual/mo-${mo}-4"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-4"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/left/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media/left"
-        include "**/*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/right/image"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media/right"
-        include "**/*.png"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/video/mp4"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media/mp4"
-      }
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4/audio/mp3"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media/mp3"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-4"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${projectDir}/src/test/resources/mo_5_test_4.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "mediaobject-input-base-uri": "../media/",
-      "mediaobject-grouped-by-type": "true",
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-4"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
-
-  t = task "mo_${mo}_test_5"(
-    type: SaxonXsltTask,
-    dependsOn: ['makeXslt', 'copyResources'],
-    group: "mediaobject-test",
-    description: "Test source mo-${mo}, output version 5"
-  ) {
-    // Chunked output HTML, media all in a common directory
-
-    inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-    inputs.dir "${buildDir}/xslt"
-    outputs.dir "${buildDir}/actual/mo-${mo}-5"
-
-    doFirst {
-      mkdir "${buildDir}/actual/mo-${mo}-5"
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5/media"
-        from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
-      }
-    }
-
-    doFirst {
-      copy {
-        into "${buildDir}/actual/mo-${mo}-5"
-        from "${buildDir}/actual"
-        include "js/**"
-        include "css/**"
-      }
-    }
-
-    input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-    stylesheet "${buildDir}/xslt/docbook.xsl"
-    // no output
-    args docbookXsltArgs
-    parameters([
-      "chunk": "index.html",
-      "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
-      "mediaobject-input-base-uri": "../media/",
-      "mediaobject-output-base-uri": "media/",
-      "mediaobject-output-paths": "true",
-      "mediaobject-grouped-by-type": "true"
-    ])
-
-    doLast {
-      exec {
-        commandLine "python", "src/bin/linkcheck.py",
-          "${buildDir}/actual/mo-${mo}-5"
-      }
-    }
-  }
-  all_mo_tests.dependsOn t
 }
 
 // ============================================================
@@ -3613,7 +1174,8 @@ task webExplorer(type: Copy, dependsOn: ['explorer']) {
   into "${buildDir}/website/explorer"
 }
 
-task webReport(type: Copy, dependsOn: ['report']) {
+task webReport(type: Copy, dependsOn: ['report', 'copyReportResources', 'copyExpectedMedia',
+                                       'reportResults', 'coverageReport']) {
   from "${buildDir}/report"
   into "${buildDir}/website/report"
 }
@@ -4000,6 +1562,100 @@ task epubGuide(
       workingDir "${buildDir}/epub"
       commandLine "epubcheck", epub_file
     }
+  }
+}
+
+// ============================================================
+// Down here so that it comes after all the other tasks have
+// been registered/created
+
+task xspecTests() {
+  // Just somewhere to hang dependencies
+}
+
+TestGenerator testGenerator = new TestGenerator(project)
+//testGenerator.configure(new File("${projectDir}/src/test/resources/xml/para.002.xml"))
+fileTree(
+  dir: "${projectDir}/src/test/resources/xml",
+  include: '*.xml',
+  exclude: ['tran-caution.xml', 'epub.001.xml']
+).each { xml ->
+  testGenerator.configure(xml)
+}
+testGenerator.createTasks()
+
+// These are the xspec files authored by hand for whatever reason
+fileTree(dir: "${projectDir}/src/test/xspec", include: "*.xspec").each { xspec ->
+  String fn = xspec.toString().replace('\\', '/').split('/')[-1]
+  String base = fn.replaceFirst('\\.xspec$', '')
+  def task = tasks.register("${base}.xspec", Exec) {
+    inputs.files project.fileTree(dir: "${projectDir}/src/main/xslt")
+    inputs.files project.fileTree(dir: "${projectDir}/src/test/resources/xml")
+    inputs.file xspec
+    dependsOn tasks.named('copyXslt')
+
+    outputs.file project.file("${buildDir}/${base}-compiled.xsl")
+    outputs.file project.file("${buildDir}/${base}-result.html")
+    outputs.file project.file("${buildDir}/${base}-result.xml")
+    commandLine "${project.buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+      "${xspec}"
+  }
+  tasks.named("xspecTests").configure {
+    dependsOn task
+  }
+}
+
+// Generate tasks to construct the generated tests
+fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
+  def xspec = xsl.toString()
+                 .replace("/generators/", "/xspec/generated-")
+                 .replace(".xsl", ".xspec")
+  def name  = xspec.replace(".xspec", "")
+                 .replace("/", "_")
+                 .replace(".", "_")
+                 .replace("-", "_")
+
+  // Shorten the name a little if possible
+  def pos = name.indexOf("generated_")
+  if (pos > 0) {
+    name = name.substring(pos)
+  }
+
+  // Work out the base filename of the test
+  def base = xspec
+  pos = base.indexOf("/test/xspec/")
+  if (pos > 0) {
+    base = base.substring(pos+12)
+    base = base.replace(".xspec", "")
+  }
+
+  def generator = name + "_gen"
+  def taskname = name + ".xspec"
+
+  def g = project.tasks.register("${generator}", SaxonXsltTask) {
+    input xsl
+    stylesheet xsl
+    dependsOn tasks.named('makeXslt')
+    output "${buildDir}/xspec/${base}.xspec"
+  }
+
+  def t = project.tasks.register("${taskname}", Exec) {
+    inputs.files fileTree(dir: "${projectDir}/src/main/xslt")
+    inputs.files fileTree(dir: "${projectDir}/src/test/xspec")
+    inputs.files fileTree(dir: "${projectDir}/src/test/resources")
+    inputs.file "${buildDir}/xspec/${base}.xspec"
+    outputs.file project.file("${buildDir}/${base}-compiled.xsl")
+    outputs.file project.file("${buildDir}/${base}-result.html")
+    outputs.file project.file("${buildDir}/${base}-result.xml")
+    dependsOn g
+    dependsOn tasks.named('setupXSpec')
+    dependsOn tasks.named('makeXslt')
+
+    commandLine "${buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
+                "${buildDir}/xspec/${base}.xspec"
+  }
+  tasks.named("xspecTests").configure {
+    dependsOn t
   }
 }
 

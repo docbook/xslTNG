@@ -12,7 +12,7 @@
                  xmlns:m="http://docbook.org/ns/docbook/modes"
                  xmlns:x="http://www.jenitennison.com/xslt/xspec"
                  xmlns:h="http://www.w3.org/1999/xhtml"
-                 stylesheet="../xslt/docbook.xsl">
+                 stylesheet="../xspec-xslt/xspec-driver.xsl">
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> Tests:
      note tip important caution warning danger

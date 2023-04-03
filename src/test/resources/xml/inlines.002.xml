@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit Test: inlines.002</title>
+   <para>More tests of DocBook inlines.</para>
+
+<para>
+  <anchor xml:id="d1e32" role="a c b"/><emphasis role="bold">This is strongly emphasized</emphasis>
+</para>
+<para>
+  <code>This is a code element.</code>
+</para>
+<para>
+  <code xml:id="d15e0" role="b a b c">This is a code element.</code>
+</para>
+<para>
+  <quote>This is a quote element.</quote>
+</para>
+<para>
+  <quote xml:id="d80e0" role="b a b c">This is a quote element.</quote>
+</para>
+<para>
+  Test<subscript>This is a subscript element.</subscript>
+</para>
+<para>
+  Test<subscript xml:id="d85e0" role="b a b c">This is a subscript element.</subscript>
+</para>
+<para>
+  Test<superscript>This is a superscript element.</superscript>
+</para>
+<para>
+  Test<superscript xml:id="d86e0" role="b a b c">This is a superscript element.</superscript>
+</para>
+<para>
+  <tag>This is a tag element.</tag>
+</para>
+<para>
+  <tag xml:id="d84e0" role="b a b c">This is a tag element.</tag>
+</para>
+<para>
+  <personname>This is a personname element.</personname>
+</para>
+<para>
+  <personname xml:id="d71e0" role="b a b c">This is a personname element.</personname>
+</para>
+
+</article>

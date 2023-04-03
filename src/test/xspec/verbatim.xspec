@@ -3,10 +3,7 @@
                xmlns:m="http://docbook.org/ns/docbook/modes"
                xmlns:x="http://www.jenitennison.com/xslt/xspec"
                preserve-space="h:pre h:code"
-               stylesheet="../xspec-xslt/xspec-driver.xsl">
-
-<!-- ============================================================ -->
-<!-- verbatim tests -->
+               stylesheet="../../../build/xspec-xslt/xspec-driver.xsl">
 
 <!-- style=raw -->
 <x:scenario label="When converting an address in the raw style">

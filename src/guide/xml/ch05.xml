@@ -231,6 +231,87 @@ In an analogous way, “testset” is the root name of an XSpec test file in
 </para>
 </listitem>
 </varlistentry>
+<varlistentry><term><buildtarget>jar</buildtarget></term>
+<listitem>
+<para>Compiles the extension functions and creates the jar file in
+<dir>build/libs</dir>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>dist</buildtarget></term>
+<listitem>
+<para>Builds an archive in <dir>build/distributions</dir> suitable for distribution.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>guide</buildtarget></term>
+<listitem>
+<para>Builds the reference guide.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>website</buildtarget></term>
+<listitem>
+<para>Builds the website.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>explorer</buildtarget></term>
+<listitem>
+<para>Generates the <link xlink:href="https://xslt.xmlexplorer.com/">XSLT Explorer</link>
+report for the stylesheets in
+<filename class="directory">build/explorer</filename>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><buildtarget>helloWorld</buildtarget></term>
+<listitem>
+<para>A smoke test target. It just prints a message, but doing so will exercise
+a bunch of the build machinery in Gradle.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+
+<section xml:id="testingtasks">
+<title>Testing tasks</title>
+
+<para>The way tests are managed was completely refactored in version 2.0.13. The new
+system is largely automatic.</para>
+
+<orderedlist>
+<listitem>
+<para>Create a new test document in <filename>src/test/resources/xml</filename>. For this
+example, we’ll create <filename>para.003.xml</filename>, an example of a <tag>sidebar</tag>
+in a <tag>para</tag>.
+</para>
+</listitem>
+<listitem>
+<para>Use the build target <buildtarget>para.003.html</buildtarget> to format the document.
+This build target (and several others) exist automatically because the source file has
+been created.</para>
+</listitem>
+<listitem>
+<para>Inspect the results (in <filename>build/actual/para.003.html</filename>) and adjust
+the stylesheets until you are satisfied that the results are correct. Each time you make a
+stylesheet change, you can re-run the <buildtarget>para.003.html</buildtarget> target to
+rebuild the output.</para>
+</listitem>
+<listitem>
+<para>When you are satisified, run <buildtarget>param.003.expected</buildtarget> to
+update the expected results.</para>
+</listitem>
+<listitem>
+<para>Run the <buildtarget>report</buildtarget> target to make sure no other tests have broken
+as a result of your changes.</para>
+</listitem>
+</orderedlist>
+
+<para>More generally, the following targets exist for any source document in 
+<filename>src/test/resources/xml</filename>:</para>
+
+<variablelist>
 <varlistentry><term><buildtarget><replaceable>testdoc</replaceable>.html</buildtarget></term>
 <listitem>
 <para>Formats <replaceable>testdoc</replaceable> into HTML and stores the result
@@ -276,59 +357,9 @@ none of the automated tests create chunked output.
 </varlistentry>
 <varlistentry><term><buildtarget><replaceable>testset</replaceable>.xspec</buildtarget></term>
 <listitem>
-<para>Runs the <replaceable>testset</replaceable> set of XSpec tests. These don’t
-all work reliably because of different parameter settings. But it can be useful for quick
-testing of a particular set of features.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget>jar</buildtarget></term>
-<listitem>
-<para>Compiles the extension functions and creates the jar file in
-<dir>build/libs</dir>.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget>dist</buildtarget></term>
-<listitem>
-<para>Builds an archive in <dir>build/distributions</dir> suitable for distribution.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget>guide</buildtarget></term>
-<listitem>
-<para>Builds the reference guide.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget>website</buildtarget></term>
-<listitem>
-<para>Builds the website.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget>explorer</buildtarget></term>
-<listitem>
-<para>Generates the <link xlink:href="https://xslt.xmlexplorer.com/">XSLT Explorer</link>
-report for the stylesheets in
-<filename class="directory">build/explorer</filename>.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget><replaceable>tagname</replaceable>Test</buildtarget></term>
-<listitem>
-<para>The build file constructs tests for different tag types. For example,
-to run all the XSpec tests that involve “<tag>revhistory</tag>”, you can
-use the target <buildtarget>revhistoryTest</buildtarget>. In practice, this feature
-is little used and may not be wholly up-to-date with respect to the most
-recent tests.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><buildtarget>helloWorld</buildtarget></term>
-<listitem>
-<para>A smoke test target. It just prints a message, but doing so will exercise
-a bunch of the build machinery in Gradle.
+<para>Runs the <replaceable>testset</replaceable> set of XSpec tests.
+The test sets that are available are the sets constructed from build environments and
+the sets created by hand (in <filename>src/test/xspec</filename>).a
 </para>
 </listitem>
 </varlistentry>
