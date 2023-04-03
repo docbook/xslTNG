@@ -89,7 +89,9 @@
   <xsl:variable name="areaspec" as="element(db:areaspec)?">
     <xsl:choose>
       <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
-        <xsl:message select="'Processing', local-name(.), 'is only supported with Pygments'"/>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message select="'Processing', local-name(.), 'is only supported with Pygments'"/>
+        </xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <xsl:sequence select="db:areaspec"/>
@@ -131,9 +133,9 @@
   <xsl:message use-when="'verbatim' = $v:debug"
                select="'Verbatim: ' || node-name(.)
                        || (if (@xml:id) then '/'||@xml:id else '')
-                       || ' ' || $style
-                       || ' : ' || string-join($highlight,',')
-                       || ' : ' || $numbered"/>
+                       || ', style: ' || $style
+                       || ', highlight: ' || string-join($highlight,',')
+                       || ', numbered: ' || $numbered"/>
 
   <!--
   <xsl:message>STY:<xsl:value-of select="$style"/></xsl:message>
@@ -159,13 +161,28 @@
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
   <xsl:param name="inject" as="array(*)?" select="()"/>
 
+  <xsl:message use-when="'verbatim' = $v:debug"
+               select="'tp:verbatim: ' || node-name(.)
+                       || (if (@xml:id) then '/'||@xml:id else '')
+                       || ', style: ' || $style
+                       || ', highlight: ' || string-join($highlight,',')
+                       || ', numbered: ' || $numbered
+                       || ', trim: ' || $trim-trailing"/>
+  <xsl:for-each use-when="'verbatim' = $v:debug" select="array:flatten($inject)">
+    <xsl:message select="'  inject '||position()||':', .?line, .?column"/>
+  </xsl:for-each>
+
   <xsl:choose>
     <xsl:when test="$style = 'plain'">
       <xsl:if test="exists($highlight)">
-        <xsl:message>Verbatim plain processing doesn’t support highlighting</xsl:message>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message>Verbatim plain processing doesn’t support highlighting</xsl:message>
+        </xsl:if>
       </xsl:if>
       <xsl:if test="$numbered">
-        <xsl:message>Verbatim plain processing doesn’t support line numbering</xsl:message>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message>Verbatim plain processing doesn’t support line numbering</xsl:message>
+        </xsl:if>
       </xsl:if>
       <xsl:call-template name="tp:verbatim-plain">
         <xsl:with-param name="highlight" select="$highlight"/>
@@ -192,13 +209,19 @@
     </xsl:when>
     <xsl:when test="$style = 'raw'">
       <xsl:if test="exists($inject)">
-        <xsl:message>Verbatim raw processing doesn’t support injections</xsl:message>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message>Verbatim raw processing doesn’t support injections</xsl:message>
+        </xsl:if>
       </xsl:if>
       <xsl:if test="exists($highlight)">
-        <xsl:message>Verbatim raw processing doesn’t support highlighting</xsl:message>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message>Verbatim raw processing doesn’t support highlighting</xsl:message>
+        </xsl:if>
       </xsl:if>
       <xsl:if test="$numbered">
-        <xsl:message>Verbatim raw processing doesn’t support line numbering</xsl:message>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message>Verbatim raw processing doesn’t support line numbering</xsl:message>
+        </xsl:if>
       </xsl:if>
       <xsl:call-template name="tp:verbatim-raw">
         <xsl:with-param name="highlight" select="$highlight"/>
@@ -207,7 +230,9 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message expand-text="yes">Unrecognized verbatim-style: {$style}</xsl:message>
+      <xsl:if test="$message-level gt 0">
+        <xsl:message expand-text="yes">Unrecognized verbatim-style: {$style}</xsl:message>
+      </xsl:if>
       <xsl:call-template name="tp:verbatim-plain">
         <xsl:with-param name="highlight" select="$highlight"/>
         <xsl:with-param name="numbered" select="$numbered"/>
@@ -668,6 +693,10 @@
             <xsl:sequence select="."/>
           </xsl:when>
           <xsl:otherwise>
+            <xsl:if test="$message-level gt 0">
+              <xsl:message select="'Discarding callout #' || @id || ' for '
+                                   || $highlight || ' highlighting.'"/>
+            </xsl:if>
             <xsl:sequence select="()"/>
           </xsl:otherwise>
         </xsl:choose>
@@ -1385,24 +1414,32 @@
 
   <xsl:choose>
     <xsl:when test="empty($coid)">
-      <xsl:message>Cannot find callout ID on coref</xsl:message>
+      <xsl:if test="$message-level gt 0">
+        <xsl:message>Cannot find callout ID on coref</xsl:message>
+      </xsl:if>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="co" select="key('id', $coid)"/>
       <xsl:if test="count($co) gt 1">
-        <xsl:message>Callout ID on coref is not unique: <xsl:sequence select="$coid"/></xsl:message>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message>Callout ID on coref is not unique: <xsl:sequence select="$coid"/></xsl:message>
+        </xsl:if>
       </xsl:if>
       <xsl:variable name="co" select="$co[1]"/>
       <xsl:choose>
         <xsl:when test="empty($co)">
-          <xsl:message>Callout ID on coref does not exist: <xsl:sequence select="$coid"/></xsl:message>
+          <xsl:if test="$message-level gt 0">
+            <xsl:message>Callout ID on coref does not exist: <xsl:sequence select="$coid"/></xsl:message>
+          </xsl:if>
           <xsl:call-template name="t:inline"/>
         </xsl:when>
         <xsl:when test="not($co/self::db:co)">
-          <xsl:message>
-            <xsl:text>Callout ID on coref does not point to a co: </xsl:text>
-            <xsl:sequence select="$coid"/>
-          </xsl:message>
+          <xsl:if test="$message-level gt 0">
+            <xsl:message>
+              <xsl:text>Callout ID on coref does not point to a co: </xsl:text>
+              <xsl:sequence select="$coid"/>
+            </xsl:message>
+          </xsl:if>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="$co"/>
@@ -1435,7 +1472,9 @@
         <xsl:sequence select="1"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message select="'Unsupported starting-callout-number: ', $starting-pi"/>
+        <xsl:if test="$message-level gt 0">
+          <xsl:message select="'Unsupported starting-callout-number: ', $starting-pi"/>
+        </xsl:if>
         <xsl:sequence select="1"/>
       </xsl:otherwise>
     </xsl:choose>
