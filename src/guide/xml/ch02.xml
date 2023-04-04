@@ -927,8 +927,13 @@ until you dismiss it. This can also be accomplished by selecting the
 check box in the ToC. The presense of the search bar is controlled by
 the <parameter>persistent-toc-search</parameter> parameter.</para>
 
-<para>The ToC can be stored in a separate file or stored in each chunk.
-This is controlled by the <parameter>persistent-toc-filename</parameter>.</para>
+<!-- N.B. This ID is in the persistent-toc.js file; do not change it! -->
+<section xml:id="ptoc-data-file">
+<title>Persistent ToC data</title>
+
+<para>The data used by the persistent ToC can be stored in a separate
+file or stored in each chunk. This is controlled by the
+<parameter>persistent-toc-filename</parameter>.</para>
 
 <orderedlist>
 <listitem>
@@ -941,14 +946,23 @@ smaller. If the persistent ToC is written into every chunk, the size
 of each HTML chunk increases in proportion to the size of the ToC. For
 a large document with lots of small pages, this can be a significant
 percentage of the overall size.</para>
-<para>The disadvantage of this approach is that opening the ToC
-requires another document to be loaded into the browser. For a large
-ToC, this can introduce visible latency, although browser caching
-tends to reduce that after the document has been loaded once. More
-significantly, this will not work unless the documents are served with
-<code>http</code> (and in some environments, perhaps
-<code>https</code>). The browser will (quite reasonably) not allow
-JavaScript to load documents from the filesystem.</para>
+<para>There are two disadvantages:</para>
+<orderedlist>
+<listitem>
+<para>This will not work if the documents are accessed with
+<code>file:</code> URIs: you must use <code>http</code> (and in some
+environments, perhaps <code>https</code>) to load the documents. The
+browser will (quite reasonably) not allow JavaScript to load documents
+from the filesystem.</para>
+</listitem>
+<listitem>
+<para>Also, with this approach, opening the ToC requires another
+document to be loaded into the browser. For a large ToC, this can
+introduce visible latency, although browser caching tends to reduce
+that after the document has been loaded once.
+</para>
+</listitem>
+</orderedlist>
 </listitem>
 <listitem>
 <para>If the 
@@ -976,6 +990,7 @@ only be one HTML result and the ToC will always be stored in that chunk.
 </para>
 </listitem>
 </orderedlist>
+</section>
 </section>
 
 <section xml:id="onpage-toc">

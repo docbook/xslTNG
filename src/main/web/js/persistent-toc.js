@@ -14,6 +14,8 @@
   let borderLeftColor = "white";
   let curpress = null;
   let searchListener = false;
+  let VERSION = "@@VERSION@@";
+  let PTOCID = "ptoc-data-file";
 
   const showToC = function(event) {
     toc.style.width = "300px";
@@ -45,17 +47,30 @@
                 processToC(event);
               })
               .catch(err => {
-                div.innerHTML = "ERROR";
-                processToC(event);
+                // I don't think this error can actually occur with the string parser
+                // using the text/html mimeType. But just in case...
+                let href = `https://xsltng.docbook.org/guide/${VERSION}/ch-using.html#${PTOCID}`;
+                let resp = `Error: <a class="showlink" href='${href}'>persistent ToC</a>`;
+                div.innerHTML = `${resp} data could not be parsed.`;
               });
           } else {
-            div.innerHTML = response.status + " " + response.statusText;
-            processToC(event);
+            let href = `https://xsltng.docbook.org/guide/${VERSION}/ch-using.html#${PTOCID}`;
+            let resp = `Error: <a class="showlink" href='${href}'>persistent ToC</a>`;
+            if (response.status == 404) {
+              div.innerHTML = `${resp} data file not found.`;
+            } else {
+              div.innerHTML = `${resp} could not read data file (status: ${response.status}).`;
+            }
           }
         })
         .catch(err => {
-          div.innerHTML = "ERROR";
-          processToC(event);
+          let href = `https://xsltng.docbook.org/guide/${VERSION}/ch-using.html#${PTOCID}`;
+          let resp = `Error: <a class="showlink" href='${href}'>persistent ToC</a>`;
+          if (uri.startsWith("file:")) {
+            div.innerHTML = `${resp} is not accessible when the page is loaded using a <code>file:</code> URI.`;
+          } else {
+            div.innerHTML = `${resp} is not accessible: ${err}`;
+          }
         });
     } else {
       processToC(event);
@@ -196,7 +211,6 @@
     }
 
     tocPersist = toc.querySelector("p.ptoc-search .persist");
-    console.log('1:', tocPersist);
   };
 
   const patchLink = function(event, anchor) {

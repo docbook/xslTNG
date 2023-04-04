@@ -2,6 +2,24 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r215">
+<revnumber>2.0.15</revnumber>
+<date>2023-04-04</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r214">2.0.14</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Improved error messages when the persistent ToC is unavailable. Updated documentation.</para>
+</listitem>
+<listitem>
+<para>Improved some dependencies in the build.</para>
+</listitem>
+</itemizedlist>
+<para>Hopefully, <emphasis>this</emphasis>
+is the <emphasis>last</emphasis> pre-release of the 2.x stylesheets.</para>
+</revdescription>
+</revision>
+
 <revision xml:id="r214">
 <revnumber>2.0.14</revnumber>
 <date>2023-04-03</date>
