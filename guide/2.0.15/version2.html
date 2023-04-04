@@ -1,0 +1,80 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Appendix A. Changes in version 2.0</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2023-04-04T09:09:32Z"/><meta name="dc.created" content="2023-04-04T09:09:32Z"/><meta name="generator" content="DocBook xslTNG version 2.0.15-SNAPSHOT / e09270e / SAXON HE 11.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-building.html"/><link rel="next" href="glossary.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-building.html" title="Chapter  6 .  Building the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Glossary" href="glossary.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><div id="version2" class="appendix component"><header><h1>Appendix <span class="label">A</span><span class="sep">. </span>Changes in version 2.0</h1></header><p>Version 2.x of the <i class="citetitle">DocBook xslTNG
+Stylesheets</i> include some substantial changes from version
+1.x. If you use the stylesheets “out of the box” without any
+customization, you should have no trouble updating from version 1.x to
+version 2.1.0 (or later), but there will be differences in the HTML
+produced. If you have customization layers for 1.x, you may need to
+change them in order to get the results you expect from 2.x.</p><p>The most significant rewrite, and the change that actually
+motivated the decision to adopt some backwards incompatible changes,
+is in the area of localization. Version 1.x of the
+<i class="citetitle">xslTNG</i> stylesheets attempted to simplify (from
+the preceding XSLT 2.0 stylesheets) how generated text was
+constructed. The model adopted simply didn’t work for some languages.
+Trying to adapt the model to support these languages was going to
+result in something <em>even more complicated</em> than
+what had worked before, so the model has largely been reverted to what
+it was before.</p><p>The format of the localization data and the way that it’s used
+are the subject of <a href="ch-localization.html" class="xref xref-chapter">Chapter <span class="label">4</span>, Localization</a>. In broad terms, the new
+system should produce “the same results” as the old system for an
+equivalent localization, but there may be small changes in the way
+lists of titles and cross references are formatted.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>This chapter is still being revised. This is (mostly) a placeholder.</p></div></div></div></div><ul class="itemizedlist"><li><p>Implemented an
+<a href="ch-using.html#onpage-toc" class="link">on-page table of contents</a> feature.
+</p></li><li><p>Switched to
+<code class="tag tag-element">section</code> elements for
+sections inside a <code class="tag tag-element">refentry</code> instead of
+<code class="tag tag-element">div</code> elements.
+This supports the new 
+<a href="ch-using.html#onpage-toc" class="link">on-page table of contents</a> feature and
+should have been done when the rest of the sectioning elements
+were converted.
+</p></li><li><p>Moved the 
+<code class="tag tag-element">footer</code> element from
+just after
+<code class="tag tag-element">main</code> to just inside it.
+This simplifies and improves CSS rendering and is arguably more correct.
+</p></li><li><p>Made including the <code class="filename">docbook-print.css</code> file conditional
+on producing print output. Modern browsers attempt to parse the file, even when
+the link specifies that it’s for print media, and produce a large number of
+spurious error messages.</p></li><li><p>Fixed a bug where the <code class="filename">catalog.xml</code> file in the
+jar file was not at a location where the XML Resolver would find it.</p></li><li><p>Reworked ToC handling. Added <a href="p_auto-toc.html"><code class="paramname">$auto-toc</code></a><span class="indexterm" id="version2_itemizedlist1_listitem6_para1_indexterm1"></span> parameter.
+The placement of generated lists-of-titles can now be controlled with an
+empty <code class="tag tag-element">toc</code> element (or <code class="tag tag-pi">db-toc</code> processing
+instruction).</p></li><li><p>Support creation of ToCs generated by hand. (Former handling for
+<code class="tag tag-element">tocdiv</code> and <code class="tag tag-element">tocentry</code> was just broken.)
+</p></li><li><p>Deprecated the <a href="m_html-body-script.html"><code class="mode">m:html-body-script</code></a> mode.
+Changed the way the standard scripts are included; instead of putting them
+at the end of the 
+<code class="tag tag-element">body</code> element, they’re
+placed in the 
+<code class="tag tag-element">head</code> but explicitly marked
+deferred.
+</p></li><li><p>Fixed incorrect URIs for SVG draft overlay in print CSS.</p></li><li><p>Completely refactored the way that media objects are located
+during the transformation and how the URIs for them are generated in
+the output. It is now possible to store the media objects in a location
+independent of the source files. Four separate source arrangements are represented
+in the test suite and each can be processed to produce several different outputs;
+see the <code>mediaobject-test</code> group of tasks. (Run
+<code class="command">./gradlew tasks</code> in the source repository.)</p></li><li><p>Fixed the bug where attributes on image, video, audio, and text objects
+in <code class="tag tag-element">mediaobject</code> and <code class="tag tag-element">inlinemediaobject</code> were not being preserved
+in the output. In particular, this meant that <code class="tag tag-attribute">role</code>
+attributes on those objects were not reflected in the HTML
+<code class="tag tag-attribute">class</code> attribute.</p></li><li><p>Changed <code>ext:cwd()</code> so that it always returns an absolute URI.
+This fixes a bug in chunk output base URI handling. Tidied up some code.</p></li><li><p>Removed <span class="keycap">↑</span> from <a href="p_chunk-nav.html"><code class="paramname">$chunk-nav</code></a><span class="indexterm" id="version2_itemizedlist1_listitem13_para1_indexterm1"></span>.</p></li><li><p>Support media objects that have no media (e.g., a media object that contains
+only inline text objects).</p></li><li><p>Process unexected elements in titlepage templates in the normal way; removed
+the warning message associated with them. Add it back by putting
+<code>templates</code> in <a href="p_debug.html"><code class="paramname">$debug</code></a><span class="indexterm" id="version2_itemizedlist1_listitem15_para1_indexterm1"></span>.</p></li><li><p>Improved presentation of multiple <code class="tag tag-element">keycap</code> elements in a 
+<code class="tag tag-element">keycombo</code>.</p></li><li><p>Added table-of-contents to the linear flow of EPUBs. This fixes an
+<span class="application">epubcheck</span> 3.3 error. Fixed the CSS for the ToC.</p></li><li><p>Reworked the way the <a href="ch-using.html#persistent-toc" class="link">persistent ToC</a>
+is generated.</p></li><li><p>Added support for ISO 690 bibliographies via a
+<a href="p_bibliography-style.html"><code class="paramname">$bibliography-style</code></a><span class="indexterm" id="version2_itemizedlist1_listitem19_para1_indexterm1"></span> parameter.
+</p></li><li><p>Fixed bug where <code class="tag tag-element">authorgroup</code> wasn’t being processed in
+<code class="tag tag-element">biblioentry</code>.
+</p></li><li><p>The parameters for the <a href="t_top-nav.html"><code class="template">t:top-nav</code></a> and
+<a href="t_bottom-nav.html"><code class="template">t:bottom-nav</code></a> templates have changed. They are now always
+called, even when chunking is not being performed. The new
+<code>$chunk</code> parameter indicates whether or not a chunk is being formatted.
+</p></li><li><p>Fixed a bug where <code class="tag tag-element">orderedlist</code> numeration was not handled
+correctly in cross-references to list items.</p></li><li><p>Labels for formal objects may be different, but I think the previous
+formatting was actually in error.
+</p></li><li><p>In some contexts, for example callouts, labels are now used for the
+links instead of titles.</p></li></ul></div></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Chapter  6 .  Building the stylesheets" href="ch-building.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Glossary" href="glossary.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Chapter  6 .  Building the stylesheets</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Glossary</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2023 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>

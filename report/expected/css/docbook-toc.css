@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.0.14-SNAPSHOT, https://xsltng.docbook.org */
+/* DocBook xslTNG version 2.0.15-SNAPSHOT, https://xsltng.docbook.org */
 /* This is used for persistent-tocs. */
 nav.tocopen {
   position: fixed;
@@ -78,6 +78,10 @@ nav.toc a,
 nav.toc a:visited {
   color: inherit;
   text-decoration: none;
+}
+
+nav.toc a.showlink {
+  text-decoration: underline;
 }
 
 nav.toc .refpurpose {
