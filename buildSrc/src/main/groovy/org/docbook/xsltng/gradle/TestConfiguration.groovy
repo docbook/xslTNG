@@ -169,6 +169,7 @@ class TestConfiguration {
     def xspecVersion = project.findProperty('xspecVersion')
     def xspecTask = project.tasks.register("${configname}.xspec", Exec) {
       inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
+      inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
       inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources/xml")
       inputs.file xfile
       testCases.each { tcase ->

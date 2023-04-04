@@ -89,6 +89,7 @@ class TestCase {
       //println("Register ${testname}.olinkdb")
       def task = project.tasks.register("${testname}.olinkdb", SaxonXsltTask) {
         inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
+        inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
         inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources", exclude: "expected")
 
         input _input
@@ -128,6 +129,7 @@ class TestCase {
     //println("Register ${testname}.html")
     def htmlTask = project.tasks.register("${testname}.html", SaxonXsltTask) {
       inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
+      inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
 
       /*
       doFirst {
@@ -148,6 +150,10 @@ class TestCase {
     //println("Register ${testname}.chunk")
     project.tasks.register("${testname}.chunk", SaxonXsltTask) {
       inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
+      inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
+      // This is a bit overzealous, but we don't know what all the chunks are...
+      outputs.files project.fileTree(dir: "${project.buildDir}/actual",
+                                     include: "*.html")
 
       input _input
       stylesheet dbxsl
@@ -172,6 +178,7 @@ class TestCase {
     //println("Register ${testname}.pdf.html")
     def pdfhtml = project.tasks.register("${testname}.pdf.html", SaxonXsltTask) {
       inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
+      inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
       inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources")
 
       input _input
