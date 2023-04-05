@@ -11,9 +11,9 @@
                 version="3.0">
 
 <xsl:template match="db:preface|db:chapter|db:appendix|db:article
-                     |db:topic">
+                     |db:topic|db:acknowledgements|db:dedication|db:colophon">
   <xsl:variable name="gi" select="if (parent::*)
-                                  then 'div'
+                                  then 'section'
                                   else 'article'"/>
   <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="." mode="m:attributes"/>
@@ -21,14 +21,6 @@
     <xsl:apply-templates select="." mode="m:toc"/>
     <xsl:apply-templates/>
   </xsl:element>
-</xsl:template>
-
-<xsl:template match="db:acknowledgements|db:dedication|db:colophon">
-  <div>
-    <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates select="." mode="m:generate-titlepage"/>
-    <xsl:apply-templates/>
-  </div>
 </xsl:template>
 
 </xsl:stylesheet>
