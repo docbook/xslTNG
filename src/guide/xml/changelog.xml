@@ -2,6 +2,24 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r216">
+<revnumber>2.0.16</revnumber>
+<date>2023-04-05</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r215">2.0.15</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Completely reworked the way the <link
+linkend="onpage-toc">on-page ToC</link> is implemented. The previous
+implementation used a CSS “sticky” property and flex to manage the
+ToC. That was nice and all, but it was impossible to scroll the ToC.
+There’s a lot more JavaScript in the new implementation, but since
+there was already JavaScript in the implementation, I think that’s justified.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r215">
 <revnumber>2.0.15</revnumber>
 <date>2023-04-04</date>
