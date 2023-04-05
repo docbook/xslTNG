@@ -14,7 +14,7 @@
 
 <xsl:template match="db:refentry">
   <xsl:variable name="gi" select="if (parent::*)
-                                  then 'div'
+                                  then 'section'
                                   else 'article'"/>
 
   <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">

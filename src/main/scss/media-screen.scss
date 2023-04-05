@@ -37,8 +37,6 @@ html {
 body {
     height: 100%;
     min-height: 100%;
-    padding-left: 0;
-    padding-right: 0;
     margin-left: 0;
     margin-right: 0;
     display: grid;
@@ -67,7 +65,7 @@ main {
     }
 }
 
-@media screen and (min-width: 60rem) {
+@media screen and (min-width: 70rem) {
     main {
         min-width: 50rem;
     }
