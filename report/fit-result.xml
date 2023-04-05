@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/fit.xsl"
-         date="2023-04-04T09:32:33.280839Z">
+         date="2023-04-05T19:09:09.524341Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
       <label>When transforming fit.001</label>
@@ -186,7 +186,7 @@
                               </ul>
                            </div>
                         </div>
-                        <div id="look" class="chapter component">
+                        <section id="look" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">1</span>
                                  <span class="sep">. </span>Clean Look and Feel</h2>
@@ -311,8 +311,8 @@ the header and footer, for example.
                                  </dd>
                               </dl>
                            </div>
-                        </div>
-                        <div id="toc" class="chapter component">
+                        </section>
+                        <section id="toc" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">2</span>
                                  <span class="sep">. </span>Persistent Table of Contents</h2>
@@ -354,8 +354,8 @@ as a popup on the right hand side of the page.</p>
                            <p>Links in the persistent ToC navigate to the pages they identify.
 For large documents with long ToCs, the window scrolls and attempts to
 place the current page at the top of the ToC view.</p>
-                        </div>
-                        <div id="callouts" class="chapter component">
+                        </section>
+                        <section id="callouts" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">3</span>
                                  <span class="sep">. </span>Callouts</h2>
@@ -1279,8 +1279,8 @@ numbers
                            </div>
                            <p>If you hover over the callout numbers in the listing,
 alt-text will be displayed.</p>
-                        </div>
-                        <div id="annotations" class="chapter component">
+                        </section>
+                        <section id="annotations" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">4</span>
                                  <span class="sep">. </span>Annotations</h2>
@@ -1315,8 +1315,8 @@ they’re presented at the bottom of the page, similar to footnotes, but
 styled somewhat differently. In paged media,
 annotations are rendered as footnotes and their titles are ignored.
 </p>
-                        </div>
-                        <div id="xlink" class="chapter component">
+                        </section>
+                        <section id="xlink" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">5</span>
                                  <span class="sep">. </span>Extended Links</h2>
@@ -1627,8 +1627,8 @@ the following link:
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
-                        </div>
-                        <div id="pdf" class="appendix component">
+                        </section>
+                        <section id="pdf" class="appendix component">
                            <header>
                               <h2>Appendix <span class="label">A</span>
                                  <span class="sep">. </span>Paged media support</h2>
@@ -1653,7 +1653,7 @@ is then processed by the formatter.</p>
                            <p>In as much as the different CSS formatters behave differently
 and have different extensions for features that are needed in print
 but not yet standardized, additional customization may be necessary.</p>
-                        </div>
+                        </section>
                         <div id="book_bi1" class="bibliography component">
                            <header>
                               <h2>References</h2>
@@ -1714,7 +1714,7 @@ Consortium. 2006.
 World Wide Web Consortium. 2010.
 </p>
                         </div>
-                        <div id="book_co1" class="colophon component">
+                        <section id="book_co1" class="colophon component">
                            <header>
                               <h2>Colophon</h2>
                            </header>
@@ -1722,7 +1722,7 @@ World Wide Web Consortium. 2010.
 with Emacs. It was formatted for presentation with the
 <i class="citetitle">DocBook xslTNG Stylesheets</i>.
 </p>
-                        </div>
+                        </section>
                      </article>
                      <footer>
                         <div class="annotations">
@@ -2246,7 +2246,7 @@ identify the link target and any other element identifies the source.</p>
                                  </ul>
                               </div>
                            </div>
-                           <div id="look" class="chapter component">
+                           <section id="look" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">1</span>
                                     <span class="sep">. </span>Clean Look and Feel</h2>
@@ -2371,8 +2371,8 @@ the header and footer, for example.
                                     </dd>
                                  </dl>
                               </div>
-                           </div>
-                           <div id="toc" class="chapter component">
+                           </section>
+                           <section id="toc" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">2</span>
                                     <span class="sep">. </span>Persistent Table of Contents</h2>
@@ -2414,8 +2414,8 @@ as a popup on the right hand side of the page.</p>
                               <p>Links in the persistent ToC navigate to the pages they identify.
 For large documents with long ToCs, the window scrolls and attempts to
 place the current page at the top of the ToC view.</p>
-                           </div>
-                           <div id="callouts" class="chapter component">
+                           </section>
+                           <section id="callouts" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">3</span>
                                     <span class="sep">. </span>Callouts</h2>
@@ -3339,8 +3339,8 @@ numbers
                               </div>
                               <p>If you hover over the callout numbers in the listing,
 alt-text will be displayed.</p>
-                           </div>
-                           <div id="annotations" class="chapter component">
+                           </section>
+                           <section id="annotations" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">4</span>
                                     <span class="sep">. </span>Annotations</h2>
@@ -3375,8 +3375,8 @@ they’re presented at the bottom of the page, similar to footnotes, but
 styled somewhat differently. In paged media,
 annotations are rendered as footnotes and their titles are ignored.
 </p>
-                           </div>
-                           <div id="xlink" class="chapter component">
+                           </section>
+                           <section id="xlink" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">5</span>
                                     <span class="sep">. </span>Extended Links</h2>
@@ -3687,8 +3687,8 @@ the following link:
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
-                           </div>
-                           <div id="pdf" class="appendix component">
+                           </section>
+                           <section id="pdf" class="appendix component">
                               <header>
                                  <h2>Appendix <span class="label">A</span>
                                     <span class="sep">. </span>Paged media support</h2>
@@ -3713,7 +3713,7 @@ is then processed by the formatter.</p>
                               <p>In as much as the different CSS formatters behave differently
 and have different extensions for features that are needed in print
 but not yet standardized, additional customization may be necessary.</p>
-                           </div>
+                           </section>
                            <div id="book_bi1" class="bibliography component">
                               <header>
                                  <h2>References</h2>
@@ -3774,7 +3774,7 @@ Consortium. 2006.
 World Wide Web Consortium. 2010.
 </p>
                            </div>
-                           <div id="book_co1" class="colophon component">
+                           <section id="book_co1" class="colophon component">
                               <header>
                                  <h2>Colophon</h2>
                               </header>
@@ -3782,7 +3782,7 @@ World Wide Web Consortium. 2010.
 with Emacs. It was formatted for presentation with the
 <i class="citetitle">DocBook xslTNG Stylesheets</i>.
 </p>
-                           </div>
+                           </section>
                         </article>
                         <footer>
                            <div class="annotations">
@@ -4327,7 +4327,7 @@ identify the link target and any other element identifies the source.</p>
                               </ul>
                            </div>
                         </div>
-                        <div id="look" class="chapter component">
+                        <section id="look" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">1</span>
                                  <span class="sep">. </span>Clean Look and Feel</h2>
@@ -4452,8 +4452,8 @@ the header and footer, for example.
                                  </dd>
                               </dl>
                            </div>
-                        </div>
-                        <div id="toc" class="chapter component">
+                        </section>
+                        <section id="toc" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">2</span>
                                  <span class="sep">. </span>Persistent Table of Contents</h2>
@@ -4495,8 +4495,8 @@ as a popup on the right hand side of the page.</p>
                            <p>Links in the persistent ToC navigate to the pages they identify.
 For large documents with long ToCs, the window scrolls and attempts to
 place the current page at the top of the ToC view.</p>
-                        </div>
-                        <div id="callouts" class="chapter component">
+                        </section>
+                        <section id="callouts" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">3</span>
                                  <span class="sep">. </span>Callouts</h2>
@@ -5420,8 +5420,8 @@ numbers
                            </div>
                            <p>If you hover over the callout numbers in the listing,
 alt-text will be displayed.</p>
-                        </div>
-                        <div id="annotations" class="chapter component">
+                        </section>
+                        <section id="annotations" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">4</span>
                                  <span class="sep">. </span>Annotations</h2>
@@ -5456,8 +5456,8 @@ they’re presented at the bottom of the page, similar to footnotes, but
 styled somewhat differently. In paged media,
 annotations are rendered as footnotes and their titles are ignored.
 </p>
-                        </div>
-                        <div id="xlink" class="chapter component">
+                        </section>
+                        <section id="xlink" class="chapter component">
                            <header>
                               <h2>Chapter <span class="label">5</span>
                                  <span class="sep">. </span>Extended Links</h2>
@@ -5768,8 +5768,8 @@ the following link:
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
-                        </div>
-                        <div id="pdf" class="appendix component">
+                        </section>
+                        <section id="pdf" class="appendix component">
                            <header>
                               <h2>Appendix <span class="label">A</span>
                                  <span class="sep">. </span>Paged media support</h2>
@@ -5794,7 +5794,7 @@ is then processed by the formatter.</p>
                            <p>In as much as the different CSS formatters behave differently
 and have different extensions for features that are needed in print
 but not yet standardized, additional customization may be necessary.</p>
-                        </div>
+                        </section>
                         <div id="book_bi1" class="bibliography component">
                            <header>
                               <h2>References</h2>
@@ -5855,7 +5855,7 @@ Consortium. 2006.
 World Wide Web Consortium. 2010.
 </p>
                         </div>
-                        <div id="book_co1" class="colophon component">
+                        <section id="book_co1" class="colophon component">
                            <header>
                               <h2>Colophon</h2>
                            </header>
@@ -5863,7 +5863,7 @@ World Wide Web Consortium. 2010.
 with Emacs. It was formatted for presentation with the
 <i class="citetitle">DocBook xslTNG Stylesheets</i>.
 </p>
-                        </div>
+                        </section>
                      </article>
                      <footer>
                         <div class="annotations">
@@ -6401,7 +6401,7 @@ identify the link target and any other element identifies the source.</p>
                                  </ul>
                               </div>
                            </div>
-                           <div id="look" class="chapter component">
+                           <section id="look" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">1</span>
                                     <span class="sep">. </span>Clean Look and Feel</h2>
@@ -6526,8 +6526,8 @@ the header and footer, for example.
                                     </dd>
                                  </dl>
                               </div>
-                           </div>
-                           <div id="toc" class="chapter component">
+                           </section>
+                           <section id="toc" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">2</span>
                                     <span class="sep">. </span>Persistent Table of Contents</h2>
@@ -6569,8 +6569,8 @@ as a popup on the right hand side of the page.</p>
                               <p>Links in the persistent ToC navigate to the pages they identify.
 For large documents with long ToCs, the window scrolls and attempts to
 place the current page at the top of the ToC view.</p>
-                           </div>
-                           <div id="callouts" class="chapter component">
+                           </section>
+                           <section id="callouts" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">3</span>
                                     <span class="sep">. </span>Callouts</h2>
@@ -7494,8 +7494,8 @@ numbers
                               </div>
                               <p>If you hover over the callout numbers in the listing,
 alt-text will be displayed.</p>
-                           </div>
-                           <div id="annotations" class="chapter component">
+                           </section>
+                           <section id="annotations" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">4</span>
                                     <span class="sep">. </span>Annotations</h2>
@@ -7530,8 +7530,8 @@ they’re presented at the bottom of the page, similar to footnotes, but
 styled somewhat differently. In paged media,
 annotations are rendered as footnotes and their titles are ignored.
 </p>
-                           </div>
-                           <div id="xlink" class="chapter component">
+                           </section>
+                           <section id="xlink" class="chapter component">
                               <header>
                                  <h2>Chapter <span class="label">5</span>
                                     <span class="sep">. </span>Extended Links</h2>
@@ -7842,8 +7842,8 @@ the following link:
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
-                           </div>
-                           <div id="pdf" class="appendix component">
+                           </section>
+                           <section id="pdf" class="appendix component">
                               <header>
                                  <h2>Appendix <span class="label">A</span>
                                     <span class="sep">. </span>Paged media support</h2>
@@ -7868,7 +7868,7 @@ is then processed by the formatter.</p>
                               <p>In as much as the different CSS formatters behave differently
 and have different extensions for features that are needed in print
 but not yet standardized, additional customization may be necessary.</p>
-                           </div>
+                           </section>
                            <div id="book_bi1" class="bibliography component">
                               <header>
                                  <h2>References</h2>
@@ -7929,7 +7929,7 @@ Consortium. 2006.
 World Wide Web Consortium. 2010.
 </p>
                            </div>
-                           <div id="book_co1" class="colophon component">
+                           <section id="book_co1" class="colophon component">
                               <header>
                                  <h2>Colophon</h2>
                               </header>
@@ -7937,7 +7937,7 @@ World Wide Web Consortium. 2010.
 with Emacs. It was formatted for presentation with the
 <i class="citetitle">DocBook xslTNG Stylesheets</i>.
 </p>
-                           </div>
+                           </section>
                         </article>
                         <footer>
                            <div class="annotations">

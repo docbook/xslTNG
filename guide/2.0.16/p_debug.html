@@ -1,0 +1,94 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>$debug</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2023-04-05T19:08:44Z"/><meta name="dc.created" content="2023-04-05T19:08:44Z"/><meta name="generator" content="DocBook xslTNG version 2.0.16 / 91bf179 / SAXON HE 11.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="p_dc-metadata.html"/><link rel="next" href="p_default-float-style.html"/><link rel="up" href="params.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="p_dc-metadata.html" title="$dc-metadata"><i class="fas fa-arrow-left"></i></a> <a title="I .  Parameter reference" href="params.html"><i class="fas fa-arrow-up"></i></a> <a title="$default-float-style" href="p_default-float-style.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="p_debug" db-chunk="p_debug.html" db-id="d151e6615" class="component refentry"><span class="indexterm" id="p_debug_indexterm1"></span><div id="param-deb5602"></div><div id="p_debug_refnamediv1" class="refnamediv"><header><h2><span class="refentrytitle">$debug</span></h2></header><p><span class="refname">$debug</span><span class="refpurpose"><span class="refpurpose-sep"> — </span><span class="refpurpose-text">Debugging flags</span><span class="refpurpose-punc">.</span></span></p></div><div class="a-detail mode-detail"><div><div class="prop">Parameter:</div><div>{}debug</div></div><div><div class="prop">Defined in:</div><div><span>param.xsl</span></div></div><div><div class="prop">Used in:</div><div>param.xsl, modules/variable.xsl</div></div><div><div class="prop">Used by:</div><div><a href="v_debug.html#variable-deb0c7" class="variable">$v:debug</a></div></div><div><div class="prop">Static:</div><div>Yes</div></div></div><section id="p_debug_refsynopsisdiv1" class="refsynopsisdiv"><header><h2>Synopsis</h2></header><div class="pre-wrap"><pre class="synopsis verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$debug as xs:string := ''</code></span></span>
+</pre></div></section><section id="p_debug_refsection1" class="refsection"><header><h2>Description</h2></header>
+         
+         <p>The <a href="#p_debug"><code class="paramname">$debug</code></a><span class="indexterm" id="p_debug_refsection1_para1_indexterm1"></span> parameter contains a space
+separated list of flags. Depending on which flags are enabled, various additional
+debugging messages will be emitted during processing.</p>
+         <p>The following flags are supported:</p>
+         <dl class="enumeration long-terms variablelist"><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">callouts</span>
+               </span></dt><dd><p>Display additional information about callout processing.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">cals-align-char</span>
+               </span></dt><dd><p>Display additional information about the computation of character alignment
+processing in CALS tables.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">chunk-cleanup</span>
+               </span></dt><dd><p>Display additional information about chunk cleanup processing.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">chunks</span>
+               </span></dt><dd><p>Display additional information about chunk selection.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">db4to5</span>
+               </span></dt><dd><p>Display additional information about the DocBook 4.x to 5.x upgrade process.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">dynamic-profile</span>
+               </span></dt><dd><p>Display additional information about
+<a href="ch-using.html#dynprofiling" class="link">dynamic profiling</a>.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">dynamic-profile-suppress</span>
+               </span></dt><dd><p>Display additional information about what elements are suppressed by
+dynamic profiling.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">image-properties</span>
+               </span></dt><dd><p>Display additional information about the results of the extracting
+properties from images. This will display all of the properties available from
+each image.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">image-markup</span>
+               </span></dt><dd><p>Display the markup generated for media objects.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">intra-chunk-links</span>
+               </span></dt><dd><p>Display additional information about the resolution of intra-chunk references.
+to links.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">intra-chunk-refs</span>
+               </span></dt><dd><p>Display additional information about intra-chunk references.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">mediaobject-uris</span>
+               </span></dt><dd><p>Display additional information about how media object URIs are constructed.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">linkbase</span>
+               </span></dt><dd><p>Display additional information about how XLink linkbases are resolved.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">localization</span>
+               </span></dt><dd><p>Display additional information about localization data.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">numeration</span>
+               </span></dt><dd><p>Display additional information about how elements are numbered (in titles, in cross references, etc.)
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">objects</span>
+               </span></dt><dd><p>Display additional information about how media objects are selected.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">pipeline</span>
+               </span></dt><dd><p>Display additional information about the pipeline processing stages.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">profile</span>
+               </span></dt><dd><p>Display additional information about <a href="ch-using.html#profiling" class="link">profiling</a>.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">profile-suppress</span>
+               </span></dt><dd><p>Display additional information about what elements are suppressed by
+profiling.</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">properties</span>
+               </span></dt><dd><p>Display additional information about the properties associated
+with a verbatim environment.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">render-verbatim</span>
+               </span></dt><dd><p>Display additional information about how verbatim environments are rendered.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">tables</span>
+               </span></dt><dd><p>Display additional information about how tables are rendered.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">template-matches</span>
+               </span></dt><dd><p>Display additional information about how title page templates are selected.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">templates</span>
+               </span></dt><dd><p>Display additional information about title page templates.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">verbatim</span>
+               </span></dt><dd><p>Display additional information about how verbatim elements are processed.
+</p></dd><dt class="varlistentry"><span class="term">
+                  <span class="enumvalue">xlink</span>
+               </span></dt><dd><p>Display additional information about XLink resolution.
+</p></dd></dl>
+      </section></section></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="$dc-metadata" href="p_dc-metadata.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="$default-float-style" href="p_default-float-style.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">$dc-metadata</div><div class="navmiddle"><a title="I .  Parameter reference" href="params.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">$default-float-style</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2023 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>

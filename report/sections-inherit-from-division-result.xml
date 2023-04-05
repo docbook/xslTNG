@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-division.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-inherit-from-division.xsl"
-         date="2023-04-04T09:38:06.568716Z">
+         date="2023-04-05T19:14:46.653411Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-division.xspec">
       <label>When transforming sections-inherit-from-division</label>
@@ -1178,7 +1178,7 @@
                                     </ul>
                                  </div>
                               </div>
-                              <div id="book_set1_bo1_ch1" class="chapter component">
+                              <section id="book_set1_bo1_ch1" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">1</span>
                                        <span class="sep">. </span>First chapter (before part)</h2>
@@ -1199,8 +1199,8 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
-                              <div id="book_set1_bo1_ch2" class="chapter component">
+                              </section>
+                              <section id="book_set1_bo1_ch2" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">2</span>
                                        <span class="sep">. </span>Second chapter (before part)</h2>
@@ -1229,7 +1229,7 @@
                                        <p>…</p>
                                     </section>
                                  </section>
-                              </div>
+                              </section>
                               <article id="book_set1_bo1_part1" class="division part">
                                  <header>
                                     <h1>Part <span class="label">I</span>
@@ -1283,7 +1283,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set1_bo1_part1_ch1" class="chapter component">
+                                 <section id="book_set1_bo1_part1_ch1" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">3</span>
                                           <span class="sep">. </span>Third chapter (first in first part)</h1>
@@ -1304,8 +1304,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo1_part1_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo1_part1_ch2" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">4</span>
                                           <span class="sep">. </span>Fourth chapter (second in first part)</h1>
@@ -1334,9 +1334,9 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
-                              <div id="book_set1_bo1_ch3" class="chapter component">
+                              <section id="book_set1_bo1_ch3" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">5</span>
                                        <span class="sep">. </span>Fifth chapter (between parts)</h2>
@@ -1357,7 +1357,7 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
+                              </section>
                               <article id="book_set1_bo1_part2" class="division part">
                                  <header>
                                     <h1>Part <span class="label">II</span>
@@ -1404,7 +1404,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set1_bo1_part2_ch1" class="chapter component">
+                                 <section id="book_set1_bo1_part2_ch1" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">6</span>
                                           <span class="sep">. </span>Six chapter (first in second part)</h1>
@@ -1425,8 +1425,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo1_part2_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo1_part2_ch2" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">7</span>
                                           <span class="sep">. </span>Seventh chapter (second in second part)</h1>
@@ -1447,9 +1447,9 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
-                              <div id="book_set1_bo1_ch4" class="chapter component">
+                              <section id="book_set1_bo1_ch4" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">8</span>
                                        <span class="sep">. </span>Eighth chapter (after part)</h2>
@@ -1470,8 +1470,8 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
-                              <div id="book_set1_bo1_ch5" class="chapter component">
+                              </section>
+                              <section id="book_set1_bo1_ch5" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">9</span>
                                        <span class="sep">. </span>Ninth chapter (after part)</h2>
@@ -1492,7 +1492,7 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
+                              </section>
                            </article>
                            <article id="book_set1_bo2" class="book division">
                               <header>
@@ -1685,7 +1685,7 @@
                                     </ul>
                                  </div>
                               </div>
-                              <div id="book_set1_bo2_ch1" class="chapter component">
+                              <section id="book_set1_bo2_ch1" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">1</span>
                                        <span class="sep">. </span>First chapter (before part)</h2>
@@ -1706,8 +1706,8 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
-                              <div id="book_set1_bo2_ch2" class="chapter component">
+                              </section>
+                              <section id="book_set1_bo2_ch2" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">2</span>
                                        <span class="sep">. </span>Second chapter (before part)</h2>
@@ -1736,7 +1736,7 @@
                                        <p>…</p>
                                     </section>
                                  </section>
-                              </div>
+                              </section>
                               <article id="book_set1_bo2_part1" class="division part">
                                  <header>
                                     <h1>Part <span class="label">I</span>
@@ -1790,7 +1790,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set1_bo2_part1_ch1" class="chapter component">
+                                 <section id="book_set1_bo2_part1_ch1" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">3</span>
                                           <span class="sep">. </span>Third chapter (first in first part)</h1>
@@ -1811,8 +1811,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo2_part1_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo2_part1_ch2" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">4</span>
                                           <span class="sep">. </span>Fourth chapter (second in first part)</h1>
@@ -1841,9 +1841,9 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
-                              <div id="book_set1_bo2_ch3" class="chapter component">
+                              <section id="book_set1_bo2_ch3" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">5</span>
                                        <span class="sep">. </span>Fifth chapter (between parts)</h2>
@@ -1864,7 +1864,7 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
+                              </section>
                               <article id="book_set1_bo2_part2" class="division part">
                                  <header>
                                     <h1>Part <span class="label">II</span>
@@ -1911,7 +1911,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set1_bo2_part2_ch1" class="chapter component">
+                                 <section id="book_set1_bo2_part2_ch1" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">6</span>
                                           <span class="sep">. </span>Six chapter (first in second part)</h1>
@@ -1932,8 +1932,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo2_part2_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo2_part2_ch2" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">7</span>
                                           <span class="sep">. </span>Seventh chapter (second in second part)</h1>
@@ -1954,9 +1954,9 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
-                              <div id="book_set1_bo2_ch4" class="chapter component">
+                              <section id="book_set1_bo2_ch4" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">8</span>
                                        <span class="sep">. </span>Eighth chapter (after part)</h2>
@@ -1977,8 +1977,8 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
-                              <div id="book_set1_bo2_ch5" class="chapter component">
+                              </section>
+                              <section id="book_set1_bo2_ch5" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">9</span>
                                        <span class="sep">. </span>Ninth chapter (after part)</h2>
@@ -1999,7 +1999,7 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
+                              </section>
                            </article>
                         </article>
                         <article id="book_set2" class="division set">
@@ -2390,7 +2390,7 @@
                                     </ul>
                                  </div>
                               </div>
-                              <div id="book_set2_bo1_ch1" class="chapter component">
+                              <section id="book_set2_bo1_ch1" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">1</span>
                                        <span class="sep">. </span>First chapter (before part)</h2>
@@ -2411,8 +2411,8 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
-                              <div id="book_set2_bo1_ch2" class="chapter component">
+                              </section>
+                              <section id="book_set2_bo1_ch2" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">2</span>
                                        <span class="sep">. </span>Second chapter (before part)</h2>
@@ -2441,7 +2441,7 @@
                                        <p>…</p>
                                     </section>
                                  </section>
-                              </div>
+                              </section>
                               <article id="book_set2_bo1_part1" class="division part">
                                  <header>
                                     <h1>Part <span class="label">I</span>
@@ -2495,7 +2495,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set2_bo1_part1_ch1" class="chapter component">
+                                 <section id="book_set2_bo1_part1_ch1" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">3</span>
                                           <span class="sep">. </span>Third chapter (first in first part)</h1>
@@ -2516,8 +2516,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set2_bo1_part1_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set2_bo1_part1_ch2" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">4</span>
                                           <span class="sep">. </span>Fourth chapter (second in first part)</h1>
@@ -2546,9 +2546,9 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
-                              <div id="book_set2_bo1_ch3" class="chapter component">
+                              <section id="book_set2_bo1_ch3" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">5</span>
                                        <span class="sep">. </span>Fifth chapter (between parts)</h2>
@@ -2569,7 +2569,7 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
+                              </section>
                               <article id="book_set2_bo1_part2" class="division part">
                                  <header>
                                     <h1>Part <span class="label">II</span>
@@ -2616,7 +2616,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set2_bo1_part2_ch1" class="chapter component">
+                                 <section id="book_set2_bo1_part2_ch1" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">6</span>
                                           <span class="sep">. </span>Six chapter (first in second part)</h1>
@@ -2637,8 +2637,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set2_bo1_part2_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set2_bo1_part2_ch2" class="chapter component">
                                     <header>
                                        <h1>Chapter <span class="label">7</span>
                                           <span class="sep">. </span>Seventh chapter (second in second part)</h1>
@@ -2659,9 +2659,9 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
-                              <div id="book_set2_bo1_ch4" class="chapter component">
+                              <section id="book_set2_bo1_ch4" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">8</span>
                                        <span class="sep">. </span>Eighth chapter (after part)</h2>
@@ -2682,8 +2682,8 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
-                              <div id="book_set2_bo1_ch5" class="chapter component">
+                              </section>
+                              <section id="book_set2_bo1_ch5" class="chapter component">
                                  <header>
                                     <h2>Chapter <span class="label">9</span>
                                        <span class="sep">. </span>Ninth chapter (after part)</h2>
@@ -2704,7 +2704,7 @@
                                     </header>
                                     <p>…</p>
                                  </section>
-                              </div>
+                              </section>
                            </article>
                         </article>
                      </article>
@@ -3884,7 +3884,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set1_bo1_ch1" class="chapter component">
+                                 <section id="book_set1_bo1_ch1" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">1</span>
                                           <span class="sep">. </span>First chapter (before part)</h2>
@@ -3905,8 +3905,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo1_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo1_ch2" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">2</span>
                                           <span class="sep">. </span>Second chapter (before part)</h2>
@@ -3935,7 +3935,7 @@
                                           <p>…</p>
                                        </section>
                                     </section>
-                                 </div>
+                                 </section>
                                  <article id="book_set1_bo1_part1" class="division part">
                                     <header>
                                        <h1>Part <span class="label">I</span>
@@ -3989,7 +3989,7 @@
                                           </ul>
                                        </div>
                                     </div>
-                                    <div id="book_set1_bo1_part1_ch1" class="chapter component">
+                                    <section id="book_set1_bo1_part1_ch1" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">3</span>
                                              <span class="sep">. </span>Third chapter (first in first part)</h1>
@@ -4010,8 +4010,8 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
-                                    <div id="book_set1_bo1_part1_ch2" class="chapter component">
+                                    </section>
+                                    <section id="book_set1_bo1_part1_ch2" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">4</span>
                                              <span class="sep">. </span>Fourth chapter (second in first part)</h1>
@@ -4040,9 +4040,9 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
+                                    </section>
                                  </article>
-                                 <div id="book_set1_bo1_ch3" class="chapter component">
+                                 <section id="book_set1_bo1_ch3" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">5</span>
                                           <span class="sep">. </span>Fifth chapter (between parts)</h2>
@@ -4063,7 +4063,7 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                                  <article id="book_set1_bo1_part2" class="division part">
                                     <header>
                                        <h1>Part <span class="label">II</span>
@@ -4110,7 +4110,7 @@
                                           </ul>
                                        </div>
                                     </div>
-                                    <div id="book_set1_bo1_part2_ch1" class="chapter component">
+                                    <section id="book_set1_bo1_part2_ch1" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">6</span>
                                              <span class="sep">. </span>Six chapter (first in second part)</h1>
@@ -4131,8 +4131,8 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
-                                    <div id="book_set1_bo1_part2_ch2" class="chapter component">
+                                    </section>
+                                    <section id="book_set1_bo1_part2_ch2" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">7</span>
                                              <span class="sep">. </span>Seventh chapter (second in second part)</h1>
@@ -4153,9 +4153,9 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
+                                    </section>
                                  </article>
-                                 <div id="book_set1_bo1_ch4" class="chapter component">
+                                 <section id="book_set1_bo1_ch4" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">8</span>
                                           <span class="sep">. </span>Eighth chapter (after part)</h2>
@@ -4176,8 +4176,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo1_ch5" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo1_ch5" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">9</span>
                                           <span class="sep">. </span>Ninth chapter (after part)</h2>
@@ -4198,7 +4198,7 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
                               <article id="book_set1_bo2" class="book division">
                                  <header>
@@ -4391,7 +4391,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set1_bo2_ch1" class="chapter component">
+                                 <section id="book_set1_bo2_ch1" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">1</span>
                                           <span class="sep">. </span>First chapter (before part)</h2>
@@ -4412,8 +4412,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo2_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo2_ch2" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">2</span>
                                           <span class="sep">. </span>Second chapter (before part)</h2>
@@ -4442,7 +4442,7 @@
                                           <p>…</p>
                                        </section>
                                     </section>
-                                 </div>
+                                 </section>
                                  <article id="book_set1_bo2_part1" class="division part">
                                     <header>
                                        <h1>Part <span class="label">I</span>
@@ -4496,7 +4496,7 @@
                                           </ul>
                                        </div>
                                     </div>
-                                    <div id="book_set1_bo2_part1_ch1" class="chapter component">
+                                    <section id="book_set1_bo2_part1_ch1" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">3</span>
                                              <span class="sep">. </span>Third chapter (first in first part)</h1>
@@ -4517,8 +4517,8 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
-                                    <div id="book_set1_bo2_part1_ch2" class="chapter component">
+                                    </section>
+                                    <section id="book_set1_bo2_part1_ch2" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">4</span>
                                              <span class="sep">. </span>Fourth chapter (second in first part)</h1>
@@ -4547,9 +4547,9 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
+                                    </section>
                                  </article>
-                                 <div id="book_set1_bo2_ch3" class="chapter component">
+                                 <section id="book_set1_bo2_ch3" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">5</span>
                                           <span class="sep">. </span>Fifth chapter (between parts)</h2>
@@ -4570,7 +4570,7 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                                  <article id="book_set1_bo2_part2" class="division part">
                                     <header>
                                        <h1>Part <span class="label">II</span>
@@ -4617,7 +4617,7 @@
                                           </ul>
                                        </div>
                                     </div>
-                                    <div id="book_set1_bo2_part2_ch1" class="chapter component">
+                                    <section id="book_set1_bo2_part2_ch1" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">6</span>
                                              <span class="sep">. </span>Six chapter (first in second part)</h1>
@@ -4638,8 +4638,8 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
-                                    <div id="book_set1_bo2_part2_ch2" class="chapter component">
+                                    </section>
+                                    <section id="book_set1_bo2_part2_ch2" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">7</span>
                                              <span class="sep">. </span>Seventh chapter (second in second part)</h1>
@@ -4660,9 +4660,9 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
+                                    </section>
                                  </article>
-                                 <div id="book_set1_bo2_ch4" class="chapter component">
+                                 <section id="book_set1_bo2_ch4" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">8</span>
                                           <span class="sep">. </span>Eighth chapter (after part)</h2>
@@ -4683,8 +4683,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set1_bo2_ch5" class="chapter component">
+                                 </section>
+                                 <section id="book_set1_bo2_ch5" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">9</span>
                                           <span class="sep">. </span>Ninth chapter (after part)</h2>
@@ -4705,7 +4705,7 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
                            </article>
                            <article id="book_set2" class="division set">
@@ -5096,7 +5096,7 @@
                                        </ul>
                                     </div>
                                  </div>
-                                 <div id="book_set2_bo1_ch1" class="chapter component">
+                                 <section id="book_set2_bo1_ch1" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">1</span>
                                           <span class="sep">. </span>First chapter (before part)</h2>
@@ -5117,8 +5117,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set2_bo1_ch2" class="chapter component">
+                                 </section>
+                                 <section id="book_set2_bo1_ch2" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">2</span>
                                           <span class="sep">. </span>Second chapter (before part)</h2>
@@ -5147,7 +5147,7 @@
                                           <p>…</p>
                                        </section>
                                     </section>
-                                 </div>
+                                 </section>
                                  <article id="book_set2_bo1_part1" class="division part">
                                     <header>
                                        <h1>Part <span class="label">I</span>
@@ -5201,7 +5201,7 @@
                                           </ul>
                                        </div>
                                     </div>
-                                    <div id="book_set2_bo1_part1_ch1" class="chapter component">
+                                    <section id="book_set2_bo1_part1_ch1" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">3</span>
                                              <span class="sep">. </span>Third chapter (first in first part)</h1>
@@ -5222,8 +5222,8 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
-                                    <div id="book_set2_bo1_part1_ch2" class="chapter component">
+                                    </section>
+                                    <section id="book_set2_bo1_part1_ch2" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">4</span>
                                              <span class="sep">. </span>Fourth chapter (second in first part)</h1>
@@ -5252,9 +5252,9 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
+                                    </section>
                                  </article>
-                                 <div id="book_set2_bo1_ch3" class="chapter component">
+                                 <section id="book_set2_bo1_ch3" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">5</span>
                                           <span class="sep">. </span>Fifth chapter (between parts)</h2>
@@ -5275,7 +5275,7 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                                  <article id="book_set2_bo1_part2" class="division part">
                                     <header>
                                        <h1>Part <span class="label">II</span>
@@ -5322,7 +5322,7 @@
                                           </ul>
                                        </div>
                                     </div>
-                                    <div id="book_set2_bo1_part2_ch1" class="chapter component">
+                                    <section id="book_set2_bo1_part2_ch1" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">6</span>
                                              <span class="sep">. </span>Six chapter (first in second part)</h1>
@@ -5343,8 +5343,8 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
-                                    <div id="book_set2_bo1_part2_ch2" class="chapter component">
+                                    </section>
+                                    <section id="book_set2_bo1_part2_ch2" class="chapter component">
                                        <header>
                                           <h1>Chapter <span class="label">7</span>
                                              <span class="sep">. </span>Seventh chapter (second in second part)</h1>
@@ -5365,9 +5365,9 @@
                                           </header>
                                           <p>…</p>
                                        </section>
-                                    </div>
+                                    </section>
                                  </article>
-                                 <div id="book_set2_bo1_ch4" class="chapter component">
+                                 <section id="book_set2_bo1_ch4" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">8</span>
                                           <span class="sep">. </span>Eighth chapter (after part)</h2>
@@ -5388,8 +5388,8 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
-                                 <div id="book_set2_bo1_ch5" class="chapter component">
+                                 </section>
+                                 <section id="book_set2_bo1_ch5" class="chapter component">
                                     <header>
                                        <h2>Chapter <span class="label">9</span>
                                           <span class="sep">. </span>Ninth chapter (after part)</h2>
@@ -5410,7 +5410,7 @@
                                        </header>
                                        <p>…</p>
                                     </section>
-                                 </div>
+                                 </section>
                               </article>
                            </article>
                         </article>
