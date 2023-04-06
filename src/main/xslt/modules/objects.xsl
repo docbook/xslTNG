@@ -336,6 +336,17 @@
         <xsl:if test="empty($params)">
           <xsl:attribute name="controls" select="'controls'"/>
         </xsl:if>
+
+        <xsl:variable name="poster" as="map(*)?">
+          <xsl:apply-templates
+              select="(../db:imageobject/db:imagedata
+                         [@fileref and contains-token(@role, 'poster')])[1]"
+              mode="m:mediaobject-uris"/>
+        </xsl:variable>
+        <xsl:if test="exists($poster)">
+          <xsl:attribute name="poster" select="$poster?href"/>
+        </xsl:if>
+
         <xsl:for-each select="$datas">
           <xsl:apply-templates select=".?node" mode="mp:imagedata">
             <xsl:with-param name="viewport" select="$viewport"/>
