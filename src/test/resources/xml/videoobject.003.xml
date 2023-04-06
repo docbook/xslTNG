@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit test: videoobject.002</title>
+
+   <para>A test for the <tag>videoobject</tag> with image fallback.
+   If the video is selected, it will have a <tag class="attribute">poster</tag> attribute.</para>
+
+   <mediaobject>
+     <videoobject>
+       <videodata fileref="../media/spinning-top.webm"/>
+       <videodata fileref="../media/spinning-top.mp4"/>
+     </videoobject>
+     <imageobject>
+       <imagedata fileref="../media/spinning-top.png"/>
+       <imagedata fileref="../media/spinning-top-poster.png" role="poster"/>
+     </imageobject>
+   </mediaobject>
+</article>
