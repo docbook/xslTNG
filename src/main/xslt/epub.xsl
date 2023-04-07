@@ -24,8 +24,8 @@
 
 <xsl:param name="chunk" select="'titlepage.xhtml'"/>
 <xsl:param name="html-extension" select="'.xhtml'"/>
-<xsl:param name="table-accessibility" select="()"/>
-<xsl:param name="mediaobject-accessibility" select="()"/>
+<xsl:param name="table-accessibility" select="''"/>
+<xsl:param name="mediaobject-accessibility" select="''"/>
 <xsl:param name="annotate-toc" select="'false'"/>
 
 <xsl:output method="xhtml" html-version="5" encoding="utf-8" indent="no"

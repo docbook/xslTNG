@@ -107,6 +107,10 @@ class TestGenerator {
       .withParameters([
           'docbook-transclusion': 'true'])
 
+    testEnvironments.create('a11y')
+      .withParameters([
+          'mediaobject-accessibility': "summary details a11y-metadata"])
+
     testConfigurations.create('default')
       .withEnvironments(['default'])
 
@@ -126,6 +130,7 @@ class TestGenerator {
     testConfigurations.create('local').withEnvironments(['local'])
     testConfigurations.create('colors').withEnvironments(['colors'])
     testConfigurations.create('ptoc').withEnvironments(['ptoc'])
+    testConfigurations.create('a11y').withEnvironments(['a11y'])
 
     def regexList = []
     ['fit\\.': 'fit',
@@ -133,7 +138,8 @@ class TestGenerator {
      'transclusion\\.': 'transclude',
      'local\\.': 'local',
      'colors\\.': 'colors',
-     'ptoc\\.': 'ptoc'
+     'ptoc\\.': 'ptoc',
+     'mediaobject\\.005': 'a11y',
     ].each { entry ->
       Pattern pat = ~"^.*${entry.key}.*\$"
       regexList.add(new Tuple(pat, testConfigurations.find(entry.value)))

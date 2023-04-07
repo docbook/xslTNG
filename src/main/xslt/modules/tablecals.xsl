@@ -12,6 +12,7 @@
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
@@ -33,7 +34,7 @@
     <xsl:choose>
       <xsl:when test="$placement = 'before'">
         <xsl:apply-templates select="." mode="m:generate-titlepage"/>
-        <xsl:if test="'details' = $table-accessibility">
+        <xsl:if test="'details' = $vp:table-accessibility">
           <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
         </xsl:if>
         <xsl:apply-templates select="db:tgroup"/>
@@ -50,7 +51,7 @@
             <xsl:with-param name="footnotes" select=".//db:footnote"/>
           </xsl:call-template>
         </xsl:if>
-        <xsl:if test="'details' = $table-accessibility">
+        <xsl:if test="'details' = $vp:table-accessibility">
           <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
         </xsl:if>
         <xsl:apply-templates select="." mode="m:generate-titlepage"/>
@@ -62,7 +63,7 @@
 <xsl:template match="db:informaltable[db:tgroup]">
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:if test="'details' = $table-accessibility">
+    <xsl:if test="'details' = $vp:table-accessibility">
       <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
     </xsl:if>
     <xsl:apply-templates select="db:tgroup"/>
@@ -76,7 +77,7 @@
 
 <xsl:template match="db:tgroup">
   <table>
-    <xsl:if test="'summary' = $table-accessibility">
+    <xsl:if test="'summary' = $vp:table-accessibility">
       <xsl:apply-templates select="../db:textobject[db:phrase]" mode="m:details"/>
     </xsl:if>
     <xsl:if test="db:colspec[@colwidth]">

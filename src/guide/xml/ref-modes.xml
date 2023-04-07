@@ -524,6 +524,7 @@ description.</para>
 <refmeta>
 <refentrytitle>m:details-attribute</refentrytitle>
 <refmiscinfo>{http://docbook.org/ns/docbook/modes}details-attribute</refmiscinfo>
+<refmiscinfo class="other" otherclass="obsolete">2.0.17</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>m:details-attribute</refname>
@@ -1480,6 +1481,28 @@ list.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="m_mediaobject-end">
+<?db filename="m_mediaobject-end"?>
+<refmeta>
+<refentrytitle>m:mediaobject-end</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-end</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-end</refname>
+<refpurpose>Process the end of media objects</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Media objects (both the <tag>mediaobject</tag> and <tag>inlinemediaobject</tag>
+containers as well as the <tag>imageobject</tag>s etc. inside them) are processed
+in this mode after the primary content has been rendered.</para>
+<para>For <tag>mediaobject</tag>, this mode is responsible for outputting the 
+<tag>caption</tag>, but may also be used to output accessibility details, legal notices, etc.
+See also <xref linkend="m_mediaobject-start"/>.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_mediaobject-info">
 <?db filename="m_mediaobject-info"?>
 <refmeta>
@@ -1559,6 +1582,35 @@ in their own directories:</para>
 <code>path/to/somewhere.png</code>, this template will
 return <code>path/to/image/somewhere.png</code> and make
 similar adjustments to the audio and video paths.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="m_mediaobject-start">
+<?db filename="m_mediaobject-start"?>
+<refmeta>
+<refentrytitle>m:mediaobject-start</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}mediaobject-start</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:mediaobject-start</refname>
+<refpurpose>Process the start of media objects</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>Media objects (both the <tag>mediaobject</tag> and <tag>inlinemediaobject</tag>
+containers as well as the <tag>imageobject</tag>s etc. inside them) are processed
+in this mode immediately after the start tag. Templates in this mode can output
+attributes, such as <att>summary</att> or <att>alt</att>, as well as additional
+accessibility elements; it may also be used to output legal notices, etc. that should
+precede the primary content.</para>
+<para>If the <parameter>mediaobject-accessibility</parameter> parameter includes
+<literal>a11y-metadata</literal> then any short accessibility summary will be output
+in a <tag namespace="http://www.w3.org/1999/xhtml">meta</tag> element with the
+property value <code>a11y:accessibilitySummary</code>. In addition, any <tag>meta</tag>
+elements in the <tag>info</tag> will be processed in this mode as well (so they can also
+be output using accessibility meta properties.
+See also <xref linkend="m_mediaobject-end"/>.</para>
 </refsection>
 </refentry>
 

@@ -2342,9 +2342,9 @@ MathML rendering. <biblioref linkend="MathJax"/> is a popular choice.
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <type>xs:string*</type>
+      <type>xs:string</type>
       <varname>mediaobject-accessibility</varname>
-      <initializer>('summary', 'details')</initializer>
+      <initializer>'summary details'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -2355,7 +2355,7 @@ MathML rendering. <biblioref linkend="MathJax"/> is a popular choice.
 <para>The <varname>mediaobject-accessibility</varname> parameter
 determines how accessibility features are added to media objects
 (image, video, and audio elements).</para>
-<para>The value of this parameter is a list of strings. If the list
+<para>The value of this parameter is a space-separated list of strings. If the list
 contains:</para>
 <variablelist>
 <varlistentry>
@@ -2373,6 +2373,14 @@ contains:</para>
 that surrounds the image if there is
 a <tag>textobject</tag> containing anything other than a single
 <tag>phrase</tag> available.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>a11y-metadata</term>
+<listitem>
+<para>Metadata will be provided using the conventions described
+in <link xlink:href="https://www.w3.org/TR/epub-a11y/">EPUB Accessibility</link>.
+</para>
 </listitem>
 </varlistentry>
 </variablelist>
@@ -3876,9 +3884,9 @@ this collation is used.</para>
 <refentry>
   <refmeta>
     <fieldsynopsis>
-      <type>xs:string*</type>
+      <type>xs:string</type>
       <varname>table-accessibility</varname>
-      <initializer>('summary', 'details')</initializer>
+      <initializer>'summary details'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -3892,7 +3900,7 @@ tables<footnote>
 <para>This parameter does not apply to HTML tables because
 the HTML table model supports these features directly.</para>
 </footnote>.</para>
-<para>The value of this parameter is a list of strings. If the list
+<para>The value of this parameter is a space-separated list of strings. If the list
 contains:</para>
 <variablelist>
 <varlistentry>
