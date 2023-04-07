@@ -2,7 +2,7 @@
           version="5.0" xml:id="version2">
 <info>
   <?db filename="version2"?>
-  <title>Changes in version 2.0</title>
+  <title>Changes in version 2.1.0</title>
 </info>
 
 <para>Version 2.x of the <citetitle>DocBook xslTNG
@@ -30,11 +30,57 @@ system should produce “the same results” as the old system for an
 equivalent localization, but there may be small changes in the way
 lists of titles and cross references are formatted.</para>
 
-<note>
-<para>This chapter is still being revised. This is (mostly) a placeholder.</para>
-</note>
+<para>The major changes are:</para>
 
 <itemizedlist>
+<listitem>
+<para>Completely reworked how localization is handled. See
+<xref linkend="gentext"/>. The
+localization file format has changed. Localization files are no longer
+simply transformed from the XSLT 1.0 stylesheet format.</para>
+</listitem>
+<listitem>
+<para>Completely reworked how numbering of elements is performed. See
+<xref linkend="numeration"/>. It’s a bit more complicated now, but it’s also
+more flexible and better tested. The default numeration should be the same
+as before, although a few small changes may appear in places where (I think)
+the previous numeration was wrong.
+</para>
+</listitem>
+<listitem>
+<para>Completely refactored the way that media objects are located
+during the transformation and how the URIs for them are generated in
+the output. It is now possible to store the media objects in a location
+independent of the source files. Four separate source arrangements are represented
+in the test suite and each can be processed to produce several different outputs;
+see the <buildtarget>all_mo_tests</buildtarget> build target and its dependencies.</para>
+</listitem>
+<listitem>
+<para>Refactored the templates for processing media objects to improve support for
+accessibility metadata and formatting copyright statements, legal notices, etc.
+See <mode>m:mediaobject-start</mode> and <mode>m:mediaobject-end</mode>.
+</para>
+</listitem>
+<listitem>
+<para>Fixed the bug where attributes on image, video, audio, and text objects
+in <tag>mediaobject</tag> and <tag>inlinemediaobject</tag> were not being preserved
+in the output. In particular, this meant that <tag class="attribute">role</tag>
+attributes on those objects were not reflected in the HTML
+<tag class="attribute">class</tag> attribute.</para>
+</listitem>
+<listitem>
+<para>Reworked audio and video fallback. Placing an HTML prose description
+in the video tag is not the correct approach in modern browsers. That prose is only
+rendered by browsers that don’t understand the 
+<tag namespace="http://www.w3.org/1999/xhtml">video</tag> tag <emphasis>at all</emphasis>.
+Apparently, it has to be
+handled by JavaScript. There’s now a <parameter>fallback-js</parameter>
+parameter.</para>
+</listitem>
+<listitem>
+<para>Support media objects that have no media (e.g., a media object that contains
+only inline text objects).</para>
+</listitem>
 <listitem>
 <para>Implemented an
 <link linkend="onpage-toc">on-page table of contents</link> feature.
@@ -42,13 +88,50 @@ lists of titles and cross references are formatted.</para>
 </listitem>
 <listitem>
 <para>Switched to
-<tag namespace="http://www.w3.org/1999/xhtml">section</tag> elements for
-sections inside a <tag>refentry</tag> instead of
-<tag namespace="http://www.w3.org/1999/xhtml">div</tag> elements.
+<tag namespace="http://www.w3.org/1999/xhtml">section</tag> elements
+(instead of <tag namespace="http://www.w3.org/1999/xhtml">div</tag> elements)
+for sections inside of <tag>refentry</tag> and a number of other places.
 This supports the new 
 <link linkend="onpage-toc">on-page table of contents</link> feature and
 should have been done when the rest of the sectioning elements
 were converted.
+</para>
+</listitem>
+<listitem>
+<para>Reworked ToC handling. Added <parameter>auto-toc</parameter> parameter.
+The placement of generated lists-of-titles can now be controlled with an
+empty <tag>toc</tag> element (or <tag class="pi">db-toc</tag> processing
+instruction).</para>
+</listitem>
+<listitem>
+<para>Added support for creating ToCs by hand. (Former handling for
+<tag>tocdiv</tag> and <tag>tocentry</tag> was just broken.)
+</para>
+</listitem>
+<listitem>
+<para>Placement of table titles, before or after the table, is now
+set with <parameter>formal-object-title-placement</parameter>. For backwards
+compatibility, it defaults to ‘before’ for tables. Within a
+<tag>formalgroup</tag>, title placement is controlled by
+<parameter>formalgroup-nested-object-title-placement</parameter>. In a related way,
+the placement of media
+object details can be set with <parameter>mediaobject-details-placement</parameter>.
+</para>
+</listitem>
+<listitem>
+<para>Labels for formal objects may be different, but I think the previous
+formatting was actually in error.
+</para>
+</listitem>
+<listitem>
+<para>Changed <parameter>mediaobject-accessibility</parameter> and
+<parameter>table-accessibility</parameter> parameters into space-separated lists of strings.</para>
+</listitem>
+<listitem>
+<para>The parameters for the <template>t:top-nav</template> and
+<template>t:bottom-nav</template> templates have changed. They are now always
+called, even when chunking is not being performed. The new
+<code>$chunk</code> parameter indicates whether or not a chunk is being formatted.
 </para>
 </listitem>
 <listitem>
@@ -60,25 +143,16 @@ This simplifies and improves CSS rendering and is arguably more correct.
 </para>
 </listitem>
 <listitem>
+<para>Added an <parameter>unwrap-paragraphs</parameter> parameter. If this
+parameter <glossterm>is true</glossterm>, a single DocBook paragraph that contains
+block elements (for example, tables or figures) will be rendered as several HTML paragraphs
+with blocks between them. HTML doesn’t allow blocks inside paragraphs.</para>
+</listitem>
+<listitem>
 <para>Made including the <filename>docbook-print.css</filename> file conditional
 on producing print output. Modern browsers attempt to parse the file, even when
 the link specifies that it’s for print media, and produce a large number of
 spurious error messages.</para>
-</listitem>
-<listitem>
-<para>Fixed a bug where the <filename>catalog.xml</filename> file in the
-jar file was not at a location where the XML Resolver would find it.</para>
-</listitem>
-<listitem>
-<para>Reworked ToC handling. Added <parameter>auto-toc</parameter> parameter.
-The placement of generated lists-of-titles can now be controlled with an
-empty <tag>toc</tag> element (or <tag class="pi">db-toc</tag> processing
-instruction).</para>
-</listitem>
-<listitem>
-<para>Support creation of ToCs generated by hand. (Former handling for
-<tag>tocdiv</tag> and <tag>tocentry</tag> was just broken.)
-</para>
 </listitem>
 <listitem>
 <para>Deprecated the <mode>m:html-body-script</mode> mode.
@@ -91,34 +165,23 @@ deferred.
 </para>
 </listitem> 
 <listitem>
-<para>Fixed incorrect URIs for SVG draft overlay in print CSS.</para>
-</listitem> 
-<listitem>
-<para>Completely refactored the way that media objects are located
-during the transformation and how the URIs for them are generated in
-the output. It is now possible to store the media objects in a location
-independent of the source files. Four separate source arrangements are represented
-in the test suite and each can be processed to produce several different outputs;
-see the <code>mediaobject-test</code> group of tasks. (Run
-<command>./gradlew tasks</command> in the source repository.)</para>
+<para>In some contexts, for example callouts, labels are now used for the
+links instead of titles.</para>
 </listitem>
 <listitem>
-<para>Fixed the bug where attributes on image, video, audio, and text objects
-in <tag>mediaobject</tag> and <tag>inlinemediaobject</tag> were not being preserved
-in the output. In particular, this meant that <tag class="attribute">role</tag>
-attributes on those objects were not reflected in the HTML
-<tag class="attribute">class</tag> attribute.</para>
+<para>Removed up-arrow from the keys that <parameter>chunk-nav</parameter> responds
+to. The up-arrow key is used by browser to move up the page and chunk navigation was
+interfering with that behavior. The <keycap>U</keycap> key will still go “up” in
+chunk navigation.</para>
+</listitem>
+<listitem>
+<para>Reworked the <link linkend="persistent-toc">persistent
+ToC</link>. It can now store the ToC in a separate file. Improved the
+error messages when the persistent ToC is unavailable.</para>
 </listitem>
 <listitem>
 <para>Changed <code>ext:cwd()</code> so that it always returns an absolute URI.
 This fixes a bug in chunk output base URI handling. Tidied up some code.</para>
-</listitem>
-<listitem>
-<para>Removed <keycap>↑</keycap> from <parameter>chunk-nav</parameter>.</para>
-</listitem>
-<listitem>
-<para>Support media objects that have no media (e.g., a media object that contains
-only inline text objects).</para>
 </listitem>
 <listitem>
 <para>Process unexected elements in titlepage templates in the normal way; removed
@@ -134,13 +197,19 @@ the warning message associated with them. Add it back by putting
 <application>epubcheck</application> 3.3 error. Fixed the CSS for the ToC.</para>
 </listitem>
 <listitem>
-<para>Reworked the way the <link linkend="persistent-toc">persistent ToC</link>
-is generated.</para>
-</listitem>
-<listitem>
 <para>Added support for ISO 690 bibliographies via a
 <parameter>bibliography-style</parameter> parameter.
 </para>
+</listitem>
+<listitem>
+<para>Added a <parameter>message-level</parameter> parameter to support suppressing
+some informational messages.</para>
+</listitem>
+<listitem>
+<para>Removed <att>db-footnote</att> attributes from the output. Technically, attribute
+names that contain a hyphen are HTML5 extension attributes, but sometimes they make validation
+more difficult. Some extension attributes remain, because they’re used by JavaScript in
+the presentation for example, but <att>db-footnote</att> isn’t used that way.</para>
 </listitem>
 <listitem>
 <para>Fixed bug where <tag>authorgroup</tag> wasn’t being processed in
@@ -148,24 +217,24 @@ is generated.</para>
 </para>
 </listitem>
 <listitem>
-<para>The parameters for the <template>t:top-nav</template> and
-<template>t:bottom-nav</template> templates have changed. They are now always
-called, even when chunking is not being performed. The new
-<code>$chunk</code> parameter indicates whether or not a chunk is being formatted.
-</para>
-</listitem>
-<listitem>
 <para>Fixed a bug where <tag>orderedlist</tag> numeration was not handled
 correctly in cross-references to list items.</para>
 </listitem>
 <listitem>
-<para>Labels for formal objects may be different, but I think the previous
-formatting was actually in error.
-</para>
+<para>Fixed incorrect URIs for SVG draft overlay in print CSS.</para>
+</listitem> 
+<listitem>
+<para>Fixed a bug where the <filename>catalog.xml</filename> file in the
+jar file was not at a location where the XML Resolver would find it.</para>
 </listitem>
 <listitem>
-<para>In some contexts, for example callouts, labels are now used for the
-links instead of titles.</para>
+<para>Updated the build system to use Pygments version 2.14.0. This effects the markup
+produced in some syntax highlighted listings. (You’re free to use any version of Pygments
+that’s convenient; this is just about conformance with the expected test results.)</para>
+</listitem>
+<listitem>
+<para>The way unit tests are managed has been completely rewritten.
+See <xref linkend="testingtasks"/>.</para>
 </listitem>
 </itemizedlist>
 
