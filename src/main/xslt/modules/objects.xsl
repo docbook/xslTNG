@@ -13,6 +13,7 @@
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -28,37 +29,11 @@
                                   then 'div'
                                   else 'span'"/>
 
-  <xsl:variable name="pkind"
-                select="string((db:* except (db:info|db:alt))[1] ! local-name(.))"/>
-  <xsl:variable name="placement"
-                select="if (map:get($v:mediaobject-details-placement, $pkind))
-                        then map:get($v:mediaobject-details-placement, $pkind)
-                        else map:get($v:mediaobject-details-placement, '_default')"/>
-
   <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:copy-of select="$pi-properties/@style"/>
     <xsl:apply-templates select="." mode="m:attributes"/>
 
-    <xsl:choose>
-      <xsl:when test="not('summary' = $mediaobject-accessibility)">
-        <!-- do nothing -->
-      </xsl:when>
-      <xsl:when test="db:alt">
-        <xsl:attribute name="summary" select="normalize-space(db:alt)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="(db:textobject[db:phrase])[1]"
-                             mode="m:details"/>
-      </xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:if test="$placement = 'before'
-                  and 'details' = $mediaobject-accessibility
-                  and (db:imageobject|db:imageobjectco
-                       |db:audioobject|db:videoobject)">
-      <xsl:apply-templates select="db:textobject[not(db:phrase)]"
-                           mode="m:details"/>
-    </xsl:if>
+    <xsl:apply-templates select="." mode="m:mediaobject-start"/>
 
     <xsl:message use-when="'objects' = $v:debug"
                  select="'Processing mediaobject with fileref=' || (//*[@fileref]/@fileref)[1]"/>
@@ -220,15 +195,7 @@
       </xsl:choose>
     </xsl:element>
 
-    <xsl:apply-templates select="db:caption"/>
-
-    <xsl:if test="not($placement = 'before')
-                  and 'details' = $mediaobject-accessibility
-                  and (db:imageobject|db:imageobjectco
-                       |db:audioobject|db:videoobject)">
-      <xsl:apply-templates select="db:textobject[not(db:phrase)]"
-                           mode="m:details"/>
-    </xsl:if>
+    <xsl:apply-templates select="." mode="m:mediaobject-end"/>
 
     <xsl:if test="$object-info?node/ancestor::db:imageobjectco
                   and $object-info?node/ancestor::db:imageobjectco/db:calloutlist">
@@ -347,6 +314,8 @@
           <xsl:attribute name="poster" select="$poster?href"/>
         </xsl:if>
 
+        <xsl:apply-templates select="." mode="m:mediaobject-start"/>
+
         <xsl:for-each select="$datas">
           <xsl:apply-templates select=".?node" mode="mp:imagedata">
             <xsl:with-param name="viewport" select="$viewport"/>
@@ -354,6 +323,8 @@
             <xsl:with-param name="last" select="position() eq last()"/>
           </xsl:apply-templates>
         </xsl:for-each>
+
+        <xsl:apply-templates select="." mode="m:mediaobject-end"/>
       </video>
     </xsl:otherwise>
   </xsl:choose>
@@ -801,12 +772,15 @@
 
   <img src="{$filename}">
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates
-        select="ancestor::db:mediaobject
-                |ancestor::db:inlinemediaobject"
-        mode="m:details-attribute">
-      <xsl:with-param name="attribute" select="'alt'"/>
-    </xsl:apply-templates>
+    
+    <!-- Apply any alt text in the media object to the image tag. -->
+    <xsl:variable name="short"
+                  select="(ancestor::db:mediaobject|ancestor::db:inlinemediaobject)
+                          /(db:alt,db:textobject[db:phrase])[1]"/>
+    <xsl:if test="exists($short)">
+      <xsl:attribute name="alt" select="normalize-space($short)"/>
+    </xsl:if>
+
     <xsl:if test="exists($styles)">
       <xsl:attribute name="style" select="string-join($styles, ';')||';'"/>
     </xsl:if>
@@ -1012,44 +986,21 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="db:textobject[db:phrase]" mode="m:details-attribute">
-  <xsl:param name="attribute" select="'summary'"/>
-  <xsl:attribute name="{$attribute}" select="normalize-space(.)"/>
-</xsl:template>
-
-<xsl:template match="db:alt" mode="m:details-attribute">
-  <xsl:param name="attribute" select="'summary'"/>
-  <xsl:attribute name="{$attribute}" select="normalize-space(.)"/>
-</xsl:template>
-
-<xsl:template match="db:mediaobject|db:inlinemediaobject"
-              mode="m:details-attribute">
-  <xsl:param name="attribute" select="'summary'"/>
-  <xsl:apply-templates select="(db:alt,db:textobject[db:phrase])[1]"
-                       mode="m:details-attribute">
-    <xsl:with-param name="attribute" select="$attribute"/>
-  </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="*" mode="m:details-attribute"/>
-
-<!-- ============================================================ -->
-
-<xsl:template match="db:textobject[db:phrase]" mode="m:details">
-  <xsl:attribute name="summary" select="normalize-space(.)"/>
-</xsl:template>
-
-<xsl:template match="db:alt" mode="m:details">
-  <summary>
-    <xsl:apply-templates/>
-  </summary>
+<xsl:template match="db:alt|db:textobject[db:phrase]" mode="m:details">
+  <xsl:if test="'summary' = $vp:mediaobject-accessibility">
+    <xsl:attribute name="summary" select="normalize-space(.)"/>
+  </xsl:if>
+  <xsl:if test="'a11y-metadata' = $vp:mediaobject-accessibility">
+    <meta property="a11y:accessibilitySummary" content="{normalize-space(.)}"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="db:textobject[not(db:phrase)]" mode="m:details">
-  <details>
-    <xsl:apply-templates select="db:alt[1]" mode="m:details"/>
-    <xsl:apply-templates select="node() except db:alt"/>
-  </details>
+  <xsl:if test="'details' = $vp:mediaobject-accessibility">
+    <details>
+      <xsl:apply-templates/>
+    </details>
+  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -1261,5 +1212,67 @@
     <xsl:sequence select="tokenize($fn, '\.')[last()]"/>
   </xsl:if>
 </xsl:function>
+
+<!-- ============================================================ -->
+
+<xsl:template match="db:mediaobject" mode="m:mediaobject-start">
+  <xsl:variable name="pkind"
+                select="string((db:* except (db:info|db:alt))[1] ! local-name(.))"/>
+  <xsl:variable name="placement"
+                select="if (map:get($v:mediaobject-details-placement, $pkind))
+                        then map:get($v:mediaobject-details-placement, $pkind)
+                        else map:get($v:mediaobject-details-placement, '_default')"/>
+
+  <xsl:variable name="short" select="(db:alt|db:textobject[db:phrase])[1]"/>
+  <xsl:variable name="long" select="db:textobject[not(db:phrase)]"/>
+
+  <xsl:apply-templates select="$short" mode="m:details"/>
+  <xsl:apply-templates select="db:info/db:meta" mode="m:mediaobject-start"/>
+
+  <xsl:if test="$placement = 'before'
+                and 'details' = $vp:mediaobject-accessibility
+                and (db:imageobject|db:imageobjectco|db:audioobject|db:videoobject)">
+    <xsl:apply-templates select="$long" mode="m:details"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="db:inlinemediaobject" mode="m:mediaobject-start">
+  <xsl:variable name="short" select="(db:alt|db:textobject[db:phrase]/db:phrase)[1]"/>
+  <xsl:variable name="long" select="db:textobject[not(db:phrase)]"/>
+  <xsl:apply-templates select="$short" mode="m:details"/>
+  <xsl:apply-templates select="db:info/db:meta" mode="m:mediaobject-start"/>
+</xsl:template>
+
+<xsl:template match="db:meta" mode="m:mediaobject-start">
+  <meta property="{@name}" content="{(@content,normalize-space(.))[1]}"/>
+</xsl:template>
+
+<xsl:template match="*" mode="m:mediaobject-start">
+  <xsl:apply-templates select="db:info/db:meta" mode="m:mediaobject-start"/>
+</xsl:template>
+
+<xsl:template match="db:mediaobject" mode="m:mediaobject-end">
+  <xsl:variable name="pkind"
+                select="string((db:* except (db:info|db:alt))[1] ! local-name(.))"/>
+  <xsl:variable name="placement"
+                select="if (map:get($v:mediaobject-details-placement, $pkind))
+                        then map:get($v:mediaobject-details-placement, $pkind)
+                        else map:get($v:mediaobject-details-placement, '_default')"/>
+
+  <xsl:apply-templates select="db:caption"/>
+
+  <xsl:if test="not($placement = 'before')
+                and 'details' = $vp:mediaobject-accessibility
+                and (db:imageobject|db:imageobjectco|db:audioobject|db:videoobject)">
+    <xsl:apply-templates select="db:textobject[not(db:phrase)]"
+                         mode="m:details"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="db:inlinemediaobject" mode="m:mediaobject-end">
+</xsl:template>
+
+<xsl:template match="*" mode="m:mediaobject-end">
+</xsl:template>
 
 </xsl:stylesheet>

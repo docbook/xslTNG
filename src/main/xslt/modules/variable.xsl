@@ -108,6 +108,12 @@
 <xsl:variable name="v:mediaobject-exclude-extensions"
               select="tokenize($mediaobject-exclude-extensions, '\s+')"/>
 
+<xsl:variable name="vp:mediaobject-accessibility"
+              select="tokenize($mediaobject-accessibility, '\s+')"/>
+
+<xsl:variable name="vp:table-accessibility"
+              select="tokenize($table-accessibility, '\s+')"/>
+
 <xsl:variable name="v:personal-name-styles"
               select="('first-last', 'last-first', 'FAMILY-given')"/>
 

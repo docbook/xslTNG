@@ -40,7 +40,7 @@
 <xsl:param name="profile-os" select="'linux;win'"/>
 <xsl:param name="profile-outputformat" select="'online'"/>
 <xsl:param name="show-remarks" select="'true'"/>
-<xsl:param name="table-accessibility" select="('summary', 'details')"/>
+<xsl:param name="table-accessibility" select="'summary details'"/>
 <xsl:param name="bibliography-collection"
            select="resolve-uri('../../src/test/resources/bibcollection.xml')"/>
 <xsl:param name="glossary-collection"

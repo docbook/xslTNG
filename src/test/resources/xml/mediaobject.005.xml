@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.0">
+
+<title>Unit test: mediaobject.005</title>
+
+<para>This tests adding additional metadata to the media objects. (I’m no a11y expert,
+so don’t assume these examples represent good practice.)</para>
+
+<mediaobject>
+  <info>
+    <meta name="a11y:accessMode">visual</meta>
+<!--
+    <meta name="a11y:accessibilitySummary">This is an example of an accessibility summary.</meta>
+-->
+    <meta name="a11y:accessModeSufficient">auditory</meta>
+  </info>
+  <alt>A video of a spinning top.</alt>
+  <videoobject>
+    <info>
+      <meta name="a11y:accessMode">visual</meta>
+      <meta name="a11y:accessMode">auditory</meta>
+      <!-- I doubt this is true for this particular video -->
+      <meta name="a11y:accessModeSufficient">auditory</meta>
+      <copyright>
+        <year>2023</year>
+        <holder>Norman Walsh</holder>
+      </copyright>
+      <legalnotice>
+        <simpara>
+          <link xlink:href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Some license description.</link>
+          <inlinemediaobject>
+            <alt>Vignette de la licence CC-A-NC-SA</alt>
+            <imageobject>
+              <imagedata fileref="../media/cc-by-nc-sa.png" width="40"/>
+            </imageobject>
+          </inlinemediaobject>
+        </simpara>
+      </legalnotice>
+    </info>
+    <videodata fileref="../media/spinning-top.webm"/>
+    <videodata fileref="../media/spinning-top.mp4"/>
+  </videoobject>
+  <imageobject>
+    <info>
+      <meta name="a11y:accessMode">visual</meta>
+      <meta name="a11y:accessModeSufficient">visual</meta>
+      <copyright>
+        <year>2023</year>
+        <holder>Norman Walsh</holder>
+      </copyright>
+      <legalnotice>
+        <simpara>
+          <link xlink:href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Some license description.</link>
+          <inlinemediaobject>
+            <alt>Vignette de la licence CC-A-NC-SA</alt>
+            <imageobject>
+              <imagedata fileref="../media/cc-by-nc-sa.png" width="40"/>
+            </imageobject>
+          </inlinemediaobject>
+        </simpara>
+      </legalnotice>
+    </info>
+    <imagedata fileref="../media/spinning-top.png"/>
+    <imagedata fileref="../media/spinning-top-poster.png" role="poster"/>
+  </imageobject>
+  <textobject>
+    <para>This is a short video of a spinning top. The top has six faces, labeled
+    alternately “yes” and “no”. The final resting position of the top shows
+    one of the faces. Spoiler alert: it shows “no”.</para>
+  </textobject>
+  <caption><para>A spinning top to answer the question ‘yes’ or ‘no’.</para></caption>
+</mediaobject>
+
+</article>
+
+

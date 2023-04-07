@@ -2,6 +2,24 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r217">
+<revnumber>2.0.17</revnumber>
+<date>2023-04-07</date>
+<revdescription>
+<para>This is still a pre-release; see <link linkend="r216">2.0.16</link>.</para>
+<itemizedlist>
+<listitem>
+<para>Changed <parameter>mediaobject-accessibility</parameter> and
+<parameter>table-accessibility</parameter> parameters into space-separated lists of strings.</para>
+</listitem>
+<listitem>
+<para>Reworked how metadata is formatted for media objects so that more accessibility metadata
+can be added.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r216">
 <revnumber>2.0.16</revnumber>
 <date>2023-04-05</date>
