@@ -48,7 +48,7 @@
                     'self::*[ancestor::db:partintro]',
                     'self::db:section')"/>
 
-<xsl:param name="component-numbers-inherit" select="'true'"/>
+<xsl:param name="sections-inherit-from" select="'component section'"/>
 
 <xsl:param name="section-toc-depth" select="1"/>
 <xsl:param name="footnote-numeration" select="('*', '**', '†','‡', '§', '1')"/>
