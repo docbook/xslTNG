@@ -155,6 +155,7 @@ class TestGenerator {
     configureCalloutTests()
     configureNumberedFromTests()
     configureInheritedFromTests()
+    configureMediaObjectTests()
   }
 
   void configure(File xml) {
@@ -334,6 +335,1207 @@ class TestGenerator {
           File input = new File("${projectDir}/src/test/resources/xml/${fn}-numbered-from.xml")
           TestCase tcase = testCases.create("${fn}-inherit-from-${from}", input, config)
         }
+      }
+    }
+  }
+
+  void configureMediaObjectTests() {
+    def all_mo_tests = project.tasks.register("all_mo_tests") {
+      // Just somewhere to hang dependencies
+    }
+
+    ["1", "2"].each { mo ->
+      project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
+        // Single output HTML file, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 1"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-1"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "**/*"
+            exclude "**/*.xml"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-1/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-1"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_1")
+      }
+
+      project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
+        // Single output HTML file, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 2"
+        
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-2"
+        }
+
+        doFirst {
+          // N.B. These copy commands are a bit redundant because they
+          // have to work for all of the input layouts
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            include "*.mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-2/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "false"
+        ])
+        
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-2"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_2")
+      }
+
+      project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 3"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-3"
+        }
+
+        doFirst {
+          // N.B. These copy commands are a bit redundant because they
+          // have to work for all of the input layouts
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "**/*"
+            exclude "**/*.xml"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
+        ])
+        
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-3"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_3")
+      }
+
+      project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        // but segregated by type
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 4"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-4"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/body/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/media/video"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/front/video"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            include "*.mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/media/audio"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.mp3"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/media/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.png"
+          }
+        }
+        
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-4"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_4")
+      }
+      
+      project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
+        // Chunked output HTML, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 5"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            include "*.mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "false"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-5"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_5")
+      }
+    }
+
+    // Test 3 is different because, although the media are relative to the
+    // source locations, they escape out above the "book" as might occur
+    // if you had several books with some common media.
+    ["3"].each { mo ->
+      project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
+        // Single output HTML file, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 1"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-1/book"
+          project.mkdir "${buildDir}/actual/mo-${mo}-1/media"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "**/*"
+            exclude "**/*.xml"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1/book"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-1/book/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-1"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_1")
+      }
+
+      project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
+        // Single output HTML file, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 2"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-2/book"
+        }
+
+        doFirst {
+          // N.B. These copy commands are a bit redundant because they
+          // have to work for all of the input layouts
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/book/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/book/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/book"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-2/book/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "false"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-2"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_2")
+      }
+
+      project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 3"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-3/book"
+          project.mkdir "${buildDir}/actual/mo-${mo}-3/media"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            include "**/*"
+            exclude "**/*.xml"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3/book"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/book/"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-3"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_3")
+      }
+
+      project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        // but segregated by type
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 4"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-4/book"
+          project.mkdir "${buildDir}/actual/mo-${mo}-4/media"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/book/body/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/media/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/media/audio"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.mp3"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/media/video"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/front/video"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            include "*.mp4"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/book"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/book/"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-4"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_4")
+      }
+
+      project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
+        // Chunked output HTML, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 5"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.png"
+            include "*.mp4"
+            include "*.mp3"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "false"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-5"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_5")
+      }
+    }
+
+    // Test 4 stores the media in a separate hierarchy
+    ["4"].each { mo ->
+      project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
+        // Single output HTML file, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 1"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-1"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "**/*"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-1/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-1"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_1")
+      }
+
+      project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
+        // Single output HTML file, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 2"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-2"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-2/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "true"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-2"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_2")
+      }
+
+      project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 3"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-3"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "**/*"
+            exclude "**/*.xml"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-3"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_3")
+      }
+
+      project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        // but segregated by type
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 4"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-4"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/left/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/left"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/right/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/right"
+            include "*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/video"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/audio"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "*.mp3"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-4
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-4"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_4")
+      }
+
+      project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
+        // Chunked output HTML, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 5"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "mediaobject-input-base-uri": "../media/",
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "true"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-5"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_5")
+      }
+    }
+
+    // Test 5 stores the media grouped by type
+    ["5"].each { mo ->
+      project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
+        // Single output HTML file, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 1"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-1"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "**/*"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-1"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-1/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "mediaobject-grouped-by-type": "true"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-1"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_2")
+      }
+
+      project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
+        // Single output HTML file, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 2"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-2"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-2"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        output "${buildDir}/actual/mo-${mo}-2/index.html"
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "true",
+          "mediaobject-grouped-by-type": "true"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-2"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_2")
+      }
+
+      project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 3"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-3"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            include "**/*"
+            exclude "**/*.xml"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-3"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/",
+          "mediaobject-grouped-by-type": "true"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-3"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_3")
+      }
+
+      project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
+        // Chunked output HTML, media all in the same relative locations
+        // but segregated by type
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 4"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-4"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/left/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/left"
+            include "**/*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/right/image"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/right"
+            include "**/*.png"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/video/mp4"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/mp4"
+          }
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4/audio/mp3"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/mp3"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-4"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${projectDir}/src/test/resources/mo_5_test_4.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "mediaobject-input-base-uri": "../media/",
+          "mediaobject-grouped-by-type": "true",
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-4"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_4")
+      }
+
+      project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
+        // Chunked output HTML, media all in a common directory
+        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${buildDir}/xslt"
+        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        dependsOn project.tasks.named('makeXslt')
+        dependsOn project.tasks.named('copyResources')
+
+        group: "mediaobject-test"
+        description: "Test source mo-${mo}, output version 5"
+
+        doFirst {
+          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5/media"
+            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+          }
+        }
+
+        doFirst {
+          project.copy {
+            into "${buildDir}/actual/mo-${mo}-5"
+            from "${buildDir}/actual"
+            include "js/**"
+            include "css/**"
+          }
+        }
+
+        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${buildDir}/xslt/docbook.xsl"
+        // no output
+        args(['-init:org.docbook.xsltng.extensions.Register'])
+        parameters([
+          "chunk": "index.html",
+          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "mediaobject-input-base-uri": "../media/",
+          "mediaobject-output-base-uri": "media/",
+          "mediaobject-output-paths": "true",
+          "mediaobject-grouped-by-type": "true"
+        ])
+
+        doLast {
+          project.exec {
+            commandLine "python", "src/bin/linkcheck.py",
+              "${buildDir}/actual/mo-${mo}-5"
+          }
+        }
+      }
+      all_mo_tests.configure {
+        dependsOn project.tasks.named("mo_${mo}_test_5")
       }
     }
   }
