@@ -597,7 +597,8 @@ task testSummary(
 
 task requirePassingTests(
   type: CheckTextFile,
-  dependsOn: ['formattingTests', 'testSummary']) {
+  dependsOn: ['formattingTests', 'testSummary']
+) {
   checkFile = "${buildDir}/test-results.txt"
 }
 test.dependsOn requirePassingTests
@@ -623,6 +624,7 @@ task report(dependsOn: ['xspecTests']) {
   inputs.files fileTree(dir: buildDir, include: "*-result.xml")
   inputs.file("${projectDir}/tools/report.xsl")
   outputs.file("${buildDir}/report/index.html")
+  finalizedBy testSummary
 
   doLast {
     copy {
