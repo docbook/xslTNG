@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/unwrapped.xsl"
-         date="2023-04-06T09:12:40.452545Z">
+         date="2023-04-07T10:27:31.560021Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-para.002</label>
@@ -33,7 +33,9 @@
                         <p>Ordinary paragraph.</p>
                         <p>This paragraph contains a table:
 </p>
-                        <div id="R_para2_informaltable1" class="informalobject informaltable">
+                        <div xmlns:vp="http://docbook.org/ns/docbook/variables/private"
+                              id="R_para2_informaltable1"
+                              class="informalobject informaltable">
                            <table>
                               <tbody>
                                  <tr>

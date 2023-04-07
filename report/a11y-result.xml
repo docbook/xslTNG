@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/a11y.xspec"
+         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/a11y.xsl"
+         date="2023-04-07T10:14:59.851762Z">
+   <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/a11y.xspec">
+      <label>When transforming mediaobject.005</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/mediaobject.005.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit test: mediaobject.005</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  <script src="js/fallback.js"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Unit test: mediaobject.005</h1>
+                        </header>
+                        <p>This tests adding additional metadata to the media objects. (I’m no a11y expert,
+so don’t assume these examples represent good practice.)</p>
+                        <div class="mediaobject" summary="A video of a spinning top.">
+                           <meta property="a11y:accessibilitySummary"
+                                  content="A video of a spinning top."/>
+                           <meta property="a11y:accessMode" content="visual"/>
+                           <meta property="a11y:accessModeSufficient" content="auditory"/>
+                           <details>
+                              <p>This is a short video of a spinning top. The top has six faces, labeled
+    alternately “yes” and “no”. The final resting position of the top shows
+    one of the faces. Spoiler alert: it shows “no”.</p>
+                           </details>
+                           <div class="media video">
+                              <video class="videoobject"
+                                      controls="controls"
+                                      poster="../media/spinning-top-poster.png">
+                                 <meta property="a11y:accessMode" content="visual"/>
+                                 <meta property="a11y:accessMode" content="auditory"/>
+                                 <meta property="a11y:accessModeSufficient" content="auditory"/>
+                                 <source src="media/spinning-top.webm" type="video/webm"/>
+                                 <source src="media/spinning-top.mp4"
+                                          type="video/mp4"
+                                          onerror="docbook_object_fallback(parentNode)"/>
+                              </video>
+                           </div>
+                           <div class="caption">
+                              <p>A spinning top to answer the question ‘yes’ or ‘no’.</p>
+                           </div>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect mediaobject.005.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit test: mediaobject.005</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                     <script src="js/fallback.js"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Unit test: mediaobject.005</h1>
+                           </header>
+                           <p>This tests adding additional metadata to the media objects. (I’m no a11y expert,
+so don’t assume these examples represent good practice.)</p>
+                           <div class="mediaobject" summary="A video of a spinning top.">
+                              <meta property="a11y:accessibilitySummary"
+                                     content="A video of a spinning top."/>
+                              <meta property="a11y:accessMode" content="visual"/>
+                              <meta property="a11y:accessModeSufficient" content="auditory"/>
+                              <details>
+                                 <p>This is a short video of a spinning top. The top has six faces, labeled
+    alternately “yes” and “no”. The final resting position of the top shows
+    one of the faces. Spoiler alert: it shows “no”.</p>
+                              </details>
+                              <div class="media video">
+                                 <video class="videoobject"
+                                         controls="controls"
+                                         poster="../media/spinning-top-poster.png">
+                                    <meta property="a11y:accessMode" content="visual"/>
+                                    <meta property="a11y:accessMode" content="auditory"/>
+                                    <meta property="a11y:accessModeSufficient" content="auditory"/>
+                                    <source src="media/spinning-top.webm" type="video/webm"/>
+                                    <source src="media/spinning-top.mp4"
+                                             type="video/mp4"
+                                             onerror="docbook_object_fallback(parentNode)"/>
+                                 </video>
+                              </div>
+                              <div class="caption">
+                                 <p>A spinning top to answer the question ‘yes’ or ‘no’.</p>
+                              </div>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>

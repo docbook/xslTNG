@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
-         date="2023-04-06T09:02:12.428166Z">
+         date="2023-04-07T10:17:19.944851Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
       <label>When transforming colors.001</label>
@@ -66,7 +66,9 @@ if the theme picker is enabled.</p>
                               <sup class="num">1</sup>
                            </a>
                         </p>
-                        <div id="article_tab1" class="formalobject table">
+                        <div xmlns:vp="http://docbook.org/ns/docbook/variables/private"
+                              id="article_tab1"
+                              class="formalobject table">
                            <header>
                               <div class="title">Table <span class="label">1</span>
                                  <span class="sep">. </span>A Table</div>
