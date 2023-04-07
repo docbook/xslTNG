@@ -141,6 +141,10 @@
             <script src="{$resource-base-uri}{$control-js}" defer="defer"/>
           </xsl:if>
         </db-script>
+        <db-fallback-script>
+          <!-- NOT deferred! -->
+          <script src="{$resource-base-uri}{$fallback-js}"/>
+        </db-fallback-script>
       </xsl:if>
     </html>
   </xsl:document>

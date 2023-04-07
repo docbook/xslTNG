@@ -31,7 +31,7 @@
 
 <xsl:template match="h:db-footnote|h:db-annotation|h:head
                      |h:db-annotation-script|h:db-xlink-script
-                     |h:db-toc-script|h:db-pagetoc-script
+                     |h:db-toc-script|h:db-pagetoc-script|h:db-fallback-script
                      |h:db-mathml-script|h:db-script">
   <!-- discard -->
 </xsl:template>
@@ -137,8 +137,11 @@
       </xsl:apply-templates>
     </xsl:if>
 
-    <xsl:if test="$fallback-js != '' and (.//h:video|.//h:audio)">
-      <script src="{$fallback-js}"/> <!-- not deferred! -->
+    <xsl:if test=".//h:video|.//h:audio">
+      <xsl:apply-templates select="/h:html/h:db-fallback-script/*">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
     </xsl:if>
 
     <!-- Unconditionally add h:db-script children. -->

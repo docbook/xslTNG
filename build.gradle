@@ -1586,6 +1586,9 @@ fileTree(
 }
 testGenerator.createTasks()
 
+testSummary.dependsOn project.tasks.named("all_mo_tests")
+report.dependsOn project.tasks.named("all_mo_tests")
+
 // These are the xspec files authored by hand for whatever reason
 fileTree(dir: "${projectDir}/src/test/xspec", include: "*.xspec").each { xspec ->
   String fn = xspec.toString().replace('\\', '/').split('/')[-1]
