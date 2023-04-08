@@ -32,6 +32,7 @@
 <xsl:template match="h:db-footnote|h:db-annotation|h:head
                      |h:db-annotation-script|h:db-xlink-script
                      |h:db-toc-script|h:db-pagetoc-script|h:db-fallback-script
+                     |h:db-copy-verbatim-script
                      |h:db-mathml-script|h:db-script">
   <!-- discard -->
 </xsl:template>
@@ -139,6 +140,13 @@
 
     <xsl:if test=".//h:video|.//h:audio">
       <xsl:apply-templates select="/h:html/h:db-fallback-script/*">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
+    </xsl:if>
+
+    <xsl:if test=".//h:div[contains-token(@class, 'pre-wrap')]">
+      <xsl:apply-templates select="/h:html/h:db-copy-verbatim-script/*">
         <xsl:with-param name="rootbaseuri" select="$rbu"/>
         <xsl:with-param name="chunkbaseuri" select="$cbu"/>
       </xsl:apply-templates>

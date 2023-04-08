@@ -588,7 +588,7 @@ formattingTests.dependsOn testDocBookPy
 
 task testSummary(
   type: SaxonXsltTask,
-  dependsOn: ['xspecTests']
+  dependsOn: ['xspecTests', "makeXslt"]
 ) {
   stylesheet file("${projectDir}/tools/test-results.xsl")
   output "${buildDir}/test-results.txt"

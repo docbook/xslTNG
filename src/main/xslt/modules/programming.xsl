@@ -735,12 +735,14 @@
 
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <pre>
-      <xsl:apply-templates select="$package/preceding-sibling::*" mode="m:synopsis"/>
-      <xsl:text>package </xsl:text>
-      <xsl:apply-templates select="db:package"/>
-      <xsl:text>;&#10;</xsl:text>
-    </pre>
+    <div class="pre-wrap">
+      <pre>
+        <xsl:apply-templates select="$package/preceding-sibling::*" mode="m:synopsis"/>
+        <xsl:text>package </xsl:text>
+        <xsl:apply-templates select="db:package"/>
+        <xsl:text>;&#10;</xsl:text>
+      </pre>
+    </div>
     <xsl:apply-templates select="$package/following-sibling::*">
       <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
     </xsl:apply-templates>
@@ -752,27 +754,34 @@
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="db:classsynopsisinfo"/>
-    <pre>
-      <xsl:apply-templates select="db:ooclass/db:modifier" mode="m:synopsis"/>
-      <xsl:text>class </xsl:text>
-      <xsl:apply-templates select="db:ooclass/db:classname" mode="m:synopsis"/>
-      <xsl:text> {</xsl:text>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:apply-templates select="* except (db:ooclass|db:classsynopsisinfo)"
-                           mode="m:synopsis">
-        <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
-      </xsl:apply-templates>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:text>}</xsl:text>
-    </pre>
+    <div class="pre-wrap">
+      <pre>
+        <xsl:apply-templates select="db:ooclass/db:modifier" mode="m:synopsis"/>
+        <xsl:text>class </xsl:text>
+        <xsl:apply-templates select="db:ooclass/db:classname" mode="m:synopsis"/>
+        <xsl:text> {</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="* except (db:ooclass|db:classsynopsisinfo)"
+                             mode="m:synopsis">
+          <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
+        </xsl:apply-templates>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>}</xsl:text>
+      </pre>
+    </div>
   </div>
 </xsl:template>
 
 <xsl:template match="db:fieldsynopsis">
   <xsl:param name="indent" select="''"/>
-  <pre class="synopsis">
-    <xsl:apply-templates select="." mode="m:synopsis"/>
-  </pre>
+  <div>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <div class="pre-wrap">
+      <pre class="synopsis">
+        <xsl:apply-templates select="." mode="m:synopsis"/>
+      </pre>
+    </div>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:fieldsynopsis" mode="m:synopsis">
@@ -818,9 +827,14 @@
                      |db:constructorsynopsis
                      |db:destructorsynopsis">
   <xsl:param name="indent" select="''"/>
-  <pre class="synopsis">
-    <xsl:apply-templates select="." mode="m:synopsis"/>
-  </pre>
+  <div>
+    <xsl:apply-templates select="." mode="m:attributes"/>
+    <div class="pre-wrap">
+      <pre class="synopsis">
+        <xsl:apply-templates select="." mode="m:synopsis"/>
+      </pre>
+    </div>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:methodsynopsis
@@ -904,17 +918,19 @@
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="db:synopsisinfo"/>
-    <pre>
-      <xsl:apply-templates select="db:modifier" mode="m:synopsis"/>
-      <xsl:text>enum </xsl:text>
-      <xsl:apply-templates select="db:enumname" mode="m:synopsis"/>
-      <xsl:text> {</xsl:text>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:apply-templates select="db:enumitem" mode="m:synopsis">
-        <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
-      </xsl:apply-templates>
-      <xsl:text>}</xsl:text>
-    </pre>
+    <div class="pre-wrap">
+      <pre>
+        <xsl:apply-templates select="db:modifier" mode="m:synopsis"/>
+        <xsl:text>enum </xsl:text>
+        <xsl:apply-templates select="db:enumname" mode="m:synopsis"/>
+        <xsl:text> {</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:apply-templates select="db:enumitem" mode="m:synopsis">
+          <xsl:with-param name="indent" select="$indent || $classsynopsis-indent"/>
+        </xsl:apply-templates>
+        <xsl:text>}</xsl:text>
+      </pre>
+    </div>
   </div>
 </xsl:template>
 
