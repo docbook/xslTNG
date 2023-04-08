@@ -117,6 +117,7 @@ class TestCase {
 
     //println("Register ${testname}.expected")
     def expTask = project.tasks.register("${testname}.expected", SaxonXsltTask) {
+      outputs.upToDateWhen { false }
       input _input
       stylesheet "${config.xspecDriver}"
       output expected
