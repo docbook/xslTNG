@@ -2,6 +2,24 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r211">
+<revnumber>2.1.1</revnumber>
+<date>2023-04-08</date>
+<revdescription>
+<itemizedlist>
+<listitem>
+<para>Added a <parameter>copy-verbatim-js</parameter> parameter. This feature 
+creates a dynamic “copy” button on verbatim listings that will copy the
+text of the listing (without callouts, line annotations, etc.) to the clipboard.</para>
+</listitem>
+<listitem>
+<para>Fixed a minor issue where some spurious namespace declarations were being copied
+into the HTML output.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r210">
 <revnumber>2.1.0</revnumber>
 <date>2023-04-07</date>
