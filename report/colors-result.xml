@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
-         date="2023-04-07T15:13:45.688176Z">
+         date="2023-04-08T15:40:08.785927Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
       <label>When transforming colors.001</label>
@@ -27,6 +27,7 @@
                   <script src="./js/annotations.js" defer="defer"/>
                   <script src="./js/xlink.js" defer="defer"/>
                   <script src="./js/persistent-toc.js" defer="defer"/>
+                  <script src="./js/copy-verbatim.js" defer="defer"/>
                   <script src="./js/controls.js" defer="defer"/>
                </head>
                <body class="home">
@@ -66,9 +67,7 @@ if the theme picker is enabled.</p>
                               <sup class="num">1</sup>
                            </a>
                         </p>
-                        <div xmlns:vp="http://docbook.org/ns/docbook/variables/private"
-                              id="article_tab1"
-                              class="formalobject table">
+                        <div id="article_tab1" class="formalobject table">
                            <header>
                               <div class="title">Table <span class="label">1</span>
                                  <span class="sep">. </span>A Table</div>
@@ -1113,6 +1112,7 @@ parenthesis.</p>
                      <script src="./js/annotations.js" defer="defer"/>
                      <script src="./js/xlink.js" defer="defer"/>
                      <script src="./js/persistent-toc.js" defer="defer"/>
+                     <script src="./js/copy-verbatim.js" defer="defer"/>
                      <script src="./js/controls.js" defer="defer"/>
                   </head>
                   <body class="home">

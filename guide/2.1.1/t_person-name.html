@@ -1,0 +1,63 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>t:person-name</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2023-04-08T15:42:51Z"/><meta name="dc.created" content="2023-04-08T15:42:51Z"/><meta name="generator" content="DocBook xslTNG version 2.1.1-SNAPSHOT / 165d197 / SAXON HE 11.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="t_mediaobject-img.html"/><link rel="next" href="t_person-name-family-given.html"/><link rel="up" href="templates.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="t_mediaobject-img.html" title="t:mediaobject-img"><i class="fas fa-arrow-left"></i></a> <a title="IV .  Template reference" href="templates.html"><i class="fas fa-arrow-up"></i></a> <a title="t:person-name-family-given" href="t_person-name-family-given.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="t_person-name" db-chunk="t_person-name.html" db-id="d150e17905" class="component refentry"><span class="indexterm" id="t_person-name_indexterm1"></span><div id="template-perfb3e"></div><div id="t_person-name_refnamediv1" class="refnamediv"><header><h2><span class="refentrytitle">t:person-name</span></h2></header><p><span class="refname">t:person-name</span><span class="refpurpose"><span class="refpurpose-sep"> — </span><span class="refpurpose-text">Formats a personal name</span><span class="refpurpose-punc">.</span></span></p></div><div class="a-detail mode-detail"><div><div class="prop">Template:</div><div>{http://docbook.org/ns/docbook/templates}person-name</div></div><div><div class="prop">Defined in:</div><div><span>modules/info.xsl</span></div></div><div><div class="prop">Used in:</div><div>modules/info.xsl</div></div></div><section id="_refsynopsisdiv-d150e17914" class="refsynopsisdiv"><header><h2>Synopsis</h2></header><div class="pre-wrap"><pre class="synopsis verbatim"><code>&lt;xsl:template name="t:person-name"&gt;
+                  &lt;xsl:param name="style" as="xs:string"/&gt;
+                &lt;/xsl:template&gt;</code></pre></div></section><section id="t_person-name_refsection1" class="refsection"><header><h2>Description</h2></header>
+
+<p>This template formats a personal name according to the specified style.
+This template must only be called when the current context item is a
+<code class="tag tag-element">personname</code>. The <code class="tag tag-element">personname</code> element can be used
+in two different ways, it can just contain the name:</p>
+
+<div class="pre-wrap highlight"><pre class="language-xml programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;personname&gt;</span>Norman<span class="w"> </span>Walsh<span class="nt">&lt;/personname&gt;</span></code></span></span>
+</pre></div>
+
+<p>or it can contain the name with markup:</p>
+
+<div class="pre-wrap highlight"><pre class="language-xml programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;personname&gt;&lt;givenname&gt;</span>Norman<span class="nt">&lt;/givenname&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;surname&gt;</span>Walsh<span class="nt">&lt;/surname&gt;&lt;/personname&gt;</span></code></span></span>
+</pre></div>
+
+<p>How the name is formatted depends on which form of markup is used
+and which style is selected. Several styles are supported:</p>
+
+<ol class="orderedlist" type="1"><li><p>If the name contains no markup, it is simply formatted as is.
+</p></li><li><p>If the style is “<code class="literal">FAMILY-given</code>”, it is formatted
+with <a href="t_person-name-family-given.html"><code class="template">t:person-name-family-given</code></a> and generally produces
+the family name in upper case followed by the given name. For example: “WALSH Norman”.
+</p></li><li><p>If the style is “<code class="literal">last-first</code>”, it is formatted
+with <a href="t_person-name-last-first.html"><code class="template">t:person-name-last-first</code></a> and generally produces
+the family name followed by the given name separated by a comma.
+For example: “Walsh, Norman”.
+</p></li><li><p>If the style is “<code class="literal">first-last</code>”, it is formatted
+with <a href="t_person-name-first-last.html"><code class="template">t:person-name-first-last</code></a> and generally produces
+the given name followed by the family name. For example: “Norman Walsh”.
+</p></li><li><p>Any other value raises <a href="v_dbe_INVALID-NAME-STYLE.html"><code class="errorcode">dbe:INVALID-NAME-STYLE</code></a>.
+</p></li></ol>
+
+<div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Given names</div></header><div><p>Historically, DocBook used <code class="tag tag-element">firstname</code> for the given name of a person.
+In DocBook 5.1, the <code class="tag tag-element">givenname</code> element was introduced as an
+alternative. The stylesheets treat them identically.</p></div></div></div></div>
+
+<p>The stylesheets attempt to determine what style to use for each
+<code class="tag tag-element">personname</code>:</p>
+
+<ol class="orderedlist" type="1"><li><p>First, by looking at that the <code class="tag tag-attribute">role</code> attribute
+on that element. If any of styles from the
+<a href="v_personal-name-styles.html"><code class="varname">$v:personal-name-styles</code></a><span class="indexterm" id="t_person-name_refsection1_orderedlist2_listitem1_para1_indexterm1"></span> list appear in the role,
+that style will be selected. (If more than one style appears, the
+results are undefined.)</p></li><li><p>If the <code class="tag tag-element">personname</code> doesn’t identify a style, and if it’s a child of
+<code class="tag tag-element">author</code>, <code class="tag tag-element">editor</code>, or <code class="tag tag-element">othercredit</code>, the <code class="tag tag-attribute">role</code>
+attirbute of its parent is inspected.</p></li><li><p>If the <a href="p_personal-name-style.html"><code class="paramname">$personal-name-style</code></a><span class="indexterm" id="t_person-name_refsection1_orderedlist2_listitem3_para1_indexterm1"></span> is defined, it is
+is selected.</p></li><li><p>If a style still hasn’t been selected the style in the
+localization file is used.</p></li></ol>
+
+<p>Personal names are notoriously complicated (see
+<a href="references.html#falsehoods-about-names" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Names</span></span></a>). DocBook includes several tags
+for identifying parts of names:</p>
+
+<dl class="long-terms variablelist"><dt class="varlistentry"><span class="term"><code class="tag tag-element">firstname</code> or <code class="tag tag-element">givenname</code></span></dt><dd><p>for a given name,</p></dd><dt class="varlistentry"><span class="term"><code class="tag tag-element">surname</code></span></dt><dd><p>for a family name,</p></dd><dt class="varlistentry"><span class="term"><code class="tag tag-element">lineage</code></span></dt><dd><p>for lineage (such as “Jr” or “III”),</p></dd><dt class="varlistentry"><span class="term"><code class="tag tag-element">honorific</code></span></dt><dd><p>for an honorific title (such as “Dr” or “Ms”), and</p></dd><dt class="varlistentry"><span class="term"><code class="tag tag-element">othername</code></span></dt><dd><p>for everything else.</p></dd></dl>
+
+<p>In all likelihood, if your document contains a variety of personal names,
+you will need to use roles to disambiguate special cases and you will have to
+provide alternate or additional templates to format them.</p>
+
+</section></section></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="t:mediaobject-img" href="t_mediaobject-img.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="t:person-name-family-given" href="t_person-name-family-given.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">t:mediaobject-img</div><div class="navmiddle"><a title="IV .  Template reference" href="templates.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">t:person-name-family-given</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2023 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>
