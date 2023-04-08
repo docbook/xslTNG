@@ -16,7 +16,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="array db dbe f fcals fp m map mp t tp v xs"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:template match="db:table[db:tgroup]">

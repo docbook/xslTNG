@@ -70,10 +70,10 @@
 </xsl:template>
 
 <xsl:template match="math:*">
-  <xsl:copy>
+  <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1998/Math/MathML">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates select="node()"/>
-  </xsl:copy>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="db:para">
