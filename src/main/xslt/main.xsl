@@ -141,9 +141,16 @@
             <script src="{$resource-base-uri}{$control-js}" defer="defer"/>
           </xsl:if>
         </db-script>
+        <db-copy-verbatim-script>
+          <xsl:if test="normalize-space($copy-verbatim-js) != ''">
+            <script src="{$resource-base-uri}{$copy-verbatim-js}" defer="defer"/>
+          </xsl:if>
+        </db-copy-verbatim-script>
         <db-fallback-script>
           <!-- NOT deferred! -->
-          <script src="{$resource-base-uri}{$fallback-js}"/>
+          <xsl:if test="normalize-space($fallback-js) != ''">
+            <script src="{$resource-base-uri}{$fallback-js}"/>
+          </xsl:if>
         </db-fallback-script>
       </xsl:if>
     </html>

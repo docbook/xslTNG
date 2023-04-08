@@ -5363,4 +5363,21 @@ introduced in the future.)</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>copy-verbatim-js</varname>
+      <initializer>'js/copy-verbatim.js'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Script to support dynamic copy button on verbatim listings</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>This script creates a dynamic “copy-to-clipboard” button on verbatim listings.
+The copied text will not include any callouts or other decorations in the listing.</para>
+</refsection>
+</refentry>
+
 </reference>
