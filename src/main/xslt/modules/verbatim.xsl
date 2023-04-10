@@ -84,6 +84,7 @@
   <xsl:param name="style" as="xs:string" select="f:verbatim-style(.)"/>
   <xsl:param name="highlight" as="xs:string*" select="f:verbatim-highlight(.)"/>
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
+  <xsl:param name="trim-leading" as="xs:boolean" select="f:verbatim-trim-leading(.)"/>
   <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
 
   <xsl:variable name="areaspec" as="element(db:areaspec)?">
@@ -112,6 +113,7 @@
       <xsl:with-param name="highlight" select="$highlight"/>
       <xsl:with-param name="numbered" select="$numbered"/>
       <xsl:with-param name="inject" select="$areaspec"/>
+      <xsl:with-param name="trim-leading" select="$trim-leading"/>
       <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
     </xsl:apply-templates>
 
@@ -127,6 +129,7 @@
   <xsl:param name="style" as="xs:string" select="f:verbatim-style(.)"/>
   <xsl:param name="highlight" as="xs:string*" select="f:verbatim-highlight(.)"/>
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
+  <xsl:param name="trim-leading" as="xs:boolean" select="f:verbatim-trim-leading(.)"/>
   <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
   <xsl:param name="inject" as="item()?" select="()"/>
 
@@ -149,6 +152,7 @@
     <xsl:with-param name="style" select="$style"/>
     <xsl:with-param name="highlight" select="$highlight"/>
     <xsl:with-param name="numbered" select="$numbered"/>
+    <xsl:with-param name="trim-leading" select="$trim-leading"/>
     <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
     <xsl:with-param name="inject" select="$injectarr"/>
   </xsl:call-template>
@@ -158,6 +162,7 @@
   <xsl:param name="style" as="xs:string" required="yes"/>
   <xsl:param name="highlight" as="xs:string*" required="yes"/>
   <xsl:param name="numbered" as="xs:boolean" required="yes"/>
+  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
   <xsl:param name="inject" as="array(*)?" select="()"/>
 
@@ -167,7 +172,7 @@
                        || ', style: ' || $style
                        || ', highlight: ' || string-join($highlight,',')
                        || ', numbered: ' || $numbered
-                       || ', trim: ' || $trim-trailing"/>
+                       || ', trim: ' || $trim-leading || '/' || $trim-trailing"/>
   <xsl:for-each use-when="'verbatim' = $v:debug" select="array:flatten($inject)">
     <xsl:message select="'  inject '||position()||':', .?line, .?column"/>
   </xsl:for-each>
@@ -187,6 +192,7 @@
       <xsl:call-template name="tp:verbatim-plain">
         <xsl:with-param name="highlight" select="$highlight"/>
         <xsl:with-param name="numbered" select="$numbered"/>
+        <xsl:with-param name="trim-leading" select="$trim-leading"/>
         <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
         <xsl:with-param name="inject" select="$inject"/>
       </xsl:call-template>
@@ -195,6 +201,7 @@
       <xsl:call-template name="tp:verbatim-table">
         <xsl:with-param name="highlight" select="$highlight"/>
         <xsl:with-param name="numbered" select="$numbered"/>
+        <xsl:with-param name="trim-leading" select="$trim-leading"/>
         <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
         <xsl:with-param name="inject" select="$inject"/>
       </xsl:call-template>
@@ -203,6 +210,7 @@
       <xsl:call-template name="tp:verbatim-lines">
         <xsl:with-param name="highlight" select="$highlight"/>
         <xsl:with-param name="numbered" select="$numbered"/>
+        <xsl:with-param name="trim-leading" select="$trim-leading"/>
         <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
         <xsl:with-param name="inject" select="$inject"/>
       </xsl:call-template>
@@ -225,6 +233,7 @@
       </xsl:if>
       <xsl:call-template name="tp:verbatim-raw">
         <xsl:with-param name="highlight" select="$highlight"/>
+        <xsl:with-param name="trim-leading" select="$trim-leading"/>
         <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
         <xsl:with-param name="numbered" select="$numbered"/>
       </xsl:call-template>
@@ -236,6 +245,7 @@
       <xsl:call-template name="tp:verbatim-plain">
         <xsl:with-param name="highlight" select="$highlight"/>
         <xsl:with-param name="numbered" select="$numbered"/>
+        <xsl:with-param name="trim-leading" select="$trim-leading"/>
         <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
         <xsl:with-param name="inject" select="$inject"/>
       </xsl:call-template>
@@ -246,6 +256,7 @@
 <xsl:template name="tp:verbatim-plain" as="element()">
   <xsl:param name="highlight" as="xs:string*" required="yes"/>
   <xsl:param name="numbered" as="xs:boolean" required="yes"/>
+  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
   <xsl:param name="inject" as="array(*)?" select="()"/>
 
@@ -253,6 +264,7 @@
     <xsl:call-template name="tp:verbatim-array">
       <xsl:with-param name="highlight" select="$highlight"/>
       <xsl:with-param name="numbered" select="$numbered"/>
+      <xsl:with-param name="trim-leading" select="$trim-leading"/>
       <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
       <xsl:with-param name="inject" select="$inject"/>
     </xsl:call-template>
@@ -295,6 +307,7 @@
 <xsl:template name="tp:verbatim-raw" as="element()">
   <xsl:param name="highlight" as="xs:string*" required="yes"/>
   <xsl:param name="numbered" as="xs:boolean" required="yes"/>
+  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
 
   <xsl:variable name="body" as="item()*">
@@ -323,6 +336,7 @@
 <xsl:template name="tp:verbatim-table" as="element()">
   <xsl:param name="highlight" as="xs:string*" required="yes"/>
   <xsl:param name="numbered" as="xs:boolean" required="yes"/>
+  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
   <xsl:param name="inject" as="array(*)?" select="()"/>
 
@@ -330,6 +344,7 @@
     <xsl:call-template name="tp:verbatim-array">
       <xsl:with-param name="highlight" select="$highlight"/>
       <xsl:with-param name="numbered" select="$numbered"/>
+      <xsl:with-param name="trim-leading" select="$trim-leading"/>
       <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
       <xsl:with-param name="inject" select="$inject"/>
     </xsl:call-template>
@@ -488,6 +503,7 @@
 <xsl:template name="tp:verbatim-lines" as="element()">
   <xsl:param name="highlight" as="xs:string*" required="yes"/>
   <xsl:param name="numbered" as="xs:boolean" required="yes"/>
+  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
   <xsl:param name="inject" as="array(*)?" select="()"/>
 
@@ -495,6 +511,7 @@
     <xsl:call-template name="tp:verbatim-array">
       <xsl:with-param name="highlight" select="$highlight"/>
       <xsl:with-param name="numbered" select="$numbered"/>
+      <xsl:with-param name="trim-leading" select="$trim-leading"/>
       <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
       <xsl:with-param name="inject" select="$inject"/>
     </xsl:call-template>
@@ -711,6 +728,7 @@
 <xsl:template name="tp:verbatim-array" as="array(*)">
   <xsl:param name="highlight" as="xs:string*" required="yes"/>
   <xsl:param name="numbered" as="xs:boolean" required="yes"/>
+  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
   <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
   <xsl:param name="inject" as="array(*)?" select="()"/>
 
@@ -742,7 +760,7 @@
     <xsl:apply-templates select="$formatted" mode="mp:flatten-markup"/>
   </xsl:variable>
 
-  <xsl:variable name="lines" select="fp:make-lines($flattened/node(), $trim-trailing)"/>
+  <xsl:variable name="lines" select="fp:make-lines($flattened/node(), $trim-leading, $trim-trailing)"/>
   <xsl:variable name="lines" select="fp:balance-markup($lines)"/>
 
   <xsl:variable name="lines" select="if (exists($inject))
@@ -797,31 +815,55 @@
 
 <xsl:function name="fp:make-lines" as="array(*)">
   <xsl:param name="body" as="node()*"/>
+  <xsl:param name="trim-leading" as="xs:boolean"/>
   <xsl:param name="trim-trailing" as="xs:boolean"/>
 
-  <xsl:variable name="lines" select="fp:make-lines($body, (), [])"/>
-  <xsl:sequence select="if ($trim-trailing)
-                        then fp:trim-trailing-blank-lines($lines)
-                        else $lines"/>
-</xsl:function>
+  <xsl:variable name="lines" select="fp:make-lines-array($body, (), [])"/>
 
-<xsl:function name="fp:trim-trailing-blank-lines">
-  <xsl:param name="lines" as="array(*)"/>
-  <xsl:variable name="last" select="array:size($lines)"/>
   <xsl:choose>
-    <xsl:when test="$last gt 0
-                    and count(array:get($lines, $last)) = 1
-                    and normalize-space(array:get($lines, $last)) = ''">
-      <xsl:sequence select="fp:trim-trailing-blank-lines(
-                               array:remove($lines, $last))"/>
+    <xsl:when test="array:size($lines) = 0">
+      <xsl:sequence select="$lines"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="$lines"/>
+      <xsl:variable name="range" as="xs:integer+">
+        <xsl:iterate select="1 to array:size($lines)">
+          <xsl:param name="first" select="1"/>
+          <xsl:param name="last" select="1"/>
+          <xsl:on-completion select="($first, $last)"/>
+
+          <xsl:variable name="line" select="array:get($lines, .)"/>
+          <xsl:choose>
+            <xsl:when test="count($line) = 1 and normalize-space($line) = ''">
+              <xsl:next-iteration>
+                <xsl:with-param name="first"
+                                select="if ($trim-leading and $first eq .) then . + 1 else $first"/>
+                <xsl:with-param name="last"
+                                select="if ($trim-trailing) then $last else ."/>
+              </xsl:next-iteration>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:next-iteration>
+                <xsl:with-param name="first" select="$first"/>
+                <xsl:with-param name="last" select="."/>
+              </xsl:next-iteration>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:iterate>
+      </xsl:variable>
+
+      <xsl:choose>
+        <xsl:when test="$range[1] gt $range[2]">
+          <xsl:sequence select="array { }"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="array:subarray($lines, $range[1], $range[2] - $range[1] + 1)"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
 
-<xsl:function name="fp:make-lines" as="array(*)">
+<xsl:function name="fp:make-lines-array" as="array(*)">
   <xsl:param name="body" as="node()*"/>
   <xsl:param name="curline" as="item()*"/>
   <xsl:param name="linearray" as="array(*)"/>
@@ -850,15 +892,15 @@
                                 else subsequence($lines, 2, count($lines) - 2)"/>
           <xsl:variable name="arr" select="array:append($linearray, ($curline, $first))"/>
           <xsl:variable name="arr" select="fp:array-append($arr, $middle)"/>
-          <xsl:sequence select="fp:make-lines($cdr, $last, $arr)"/>
+          <xsl:sequence select="fp:make-lines-array($cdr, $last, $arr)"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:sequence select="fp:make-lines($cdr, ($curline, $car), $linearray)"/>
+          <xsl:sequence select="fp:make-lines-array($cdr, ($curline, $car), $linearray)"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="fp:make-lines($cdr, ($curline, $car), $linearray)"/>
+      <xsl:sequence select="fp:make-lines-array($cdr, ($curline, $car), $linearray)"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
@@ -1672,6 +1714,14 @@
   <xsl:sequence select="if ($pi)
                         then f:is-true($pi)
                         else f:is-true($verbatim-trim-trailing-blank-lines)"/>
+</xsl:function>
+
+<xsl:function name="f:verbatim-trim-leading" as="xs:boolean">
+  <xsl:param name="context" as="element()"/>
+  <xsl:variable name="pi" select="f:pi($context, 'verbatim-trim-leading')"/>
+  <xsl:sequence select="if ($pi)
+                        then f:is-true($pi)
+                        else f:is-true($verbatim-trim-leading-blank-lines)"/>
 </xsl:function>
 
 <xsl:function name="fp:line-number" as="xs:string">

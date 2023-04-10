@@ -1693,6 +1693,33 @@ element’s name is listed in
 </refsection>
 </refentry>
 
+<refentry xml:id="f_verbatim-trim-leading">
+<?db filename="f_verbatim-trim-leading"?>
+<refmeta>
+<refentrytitle>f:verbatim-trim-leading</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-trim-leading#1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-trim-leading</refname>
+<refpurpose>Return true if leading blank lines should be trimmed</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function examines a verbatim environment, the <literal>$context</literal>,
+and returns true if leading blank lines should be trimmed from it.
+A <tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-trim-leading</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-trim-leading pseudo-attribute</secondary>
+</indexterm> pseudo-attribute may be used to override the
+<parameter>verbatim-trim-leading-blank-lines</parameter> parameter on a
+case-by-case basis.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_verbatim-trim-trailing">
 <?db filename="f_verbatim-trim-trailing"?>
 <refmeta>
