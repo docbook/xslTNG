@@ -1,0 +1,49 @@
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.2">
+<title>Unit test: programlisting.014</title>
+
+<para>This tests the parameters for trimming leading and trailing blank lines
+from a verbatim environment.</para>
+
+<para>Defaults (trim trailing, not leading):</para>
+
+<programlisting>
+
+
+line four of four
+
+
+</programlisting>
+
+<para>Trim trailing, not leading, explicitly:</para>
+
+<programlisting><?db verbatim-trim-leading='false' verbatim-trim-trailing='true'?>
+
+
+line four of four
+
+
+</programlisting>
+
+<para>Trim leading, not trailing:</para>
+
+<programlisting><?db verbatim-trim-leading='true' verbatim-trim-trailing='false'?>
+
+
+line one of four
+
+
+</programlisting>
+
+<para>Trim both:</para>
+
+<programlisting><?db verbatim-trim-leading='true' verbatim-trim-trailing='true'?>
+
+
+line one of one
+
+
+</programlisting>
+
+</article>
