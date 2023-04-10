@@ -2,6 +2,22 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r212">
+<revnumber>2.1.2</revnumber>
+<date>2023-04-10</date>
+<revdescription>
+<itemizedlist>
+<listitem>
+<para>Added a <parameter>verbatim-trim-leading-blank-lines</parameter> parameter. This
+is analagous to the <parameter>verbatim-trim-trailing-blank-lines</parameter> parameter except
+for leading blank lines instead of trailing ones. It is false by default, for backwards
+compatibility, but note that some syntax highlighters may trim leading (and trailing)
+blank links anyway.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r211">
 <revnumber>2.1.1</revnumber>
 <date>2023-04-08</date>

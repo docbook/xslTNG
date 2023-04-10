@@ -4508,12 +4508,36 @@ style by default. For a discussion of verbatim elements and styles, see
 <refentry>
   <refmeta>
     <fieldsynopsis>
+      <varname>verbatim-trim-leading-blank-lines</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.1.2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Trim leading blank lines off of verbatim environments?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If a verbatim environment is processed with a syntax highlighter, the
+highlighter may remove leading blank lines. This option will produce that result
+for verbatim environments that are not syntax highlighted.</para>
+<para>If leading blank lines aren’t significant, setting
+<parameter>verbatim-trim-leading-blank-lines</parameter> will cause
+the stylesheets to trim blank (that is, entirely empty) lines from
+the beginning of verbatim environments.</para>
+<para>(This parameter is false by default for backwards compatibility.)</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
       <varname>verbatim-trim-trailing-blank-lines</varname>
       <initializer>'true'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
-    <refpurpose>Trim trailing blank lines off verbatim environments?</refpurpose>
+    <refpurpose>Trim trailing blank lines off of verbatim environments?</refpurpose>
   </refnamediv>
 <refsection>
 <title>Description</title>
