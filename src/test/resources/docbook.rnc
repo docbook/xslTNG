@@ -1,0 +1,10 @@
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace db = "http://docbook.org/ns/docbook"
+namespace rddl = "http://www.rddl.org/"
+namespace xlink = "http://www.w3.org/1999/xlink"
+
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "https://cdn.docbook.org/schema/5.2/rng/docbook.rnc" {
+}
