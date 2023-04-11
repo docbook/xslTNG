@@ -128,7 +128,7 @@ dependencies {
     files(saxonLicenseDir)
   )
   testImplementation (
-    //[group: 'junit', name: 'junit', version: '4.13'],
+    [group: 'junit', name: 'junit', version: '4.13'],
     [group: 'org.docbook', name: 'schemas-docbook', version: docbookVersion],
     [group: 'org.docbook', name: 'schemas-publishers', version: docbookVersion]
   )
@@ -1574,6 +1574,43 @@ task epubGuide(
 task xspecTests() {
   // Just somewhere to hang dependencies
 }
+
+// We begin with a couple of manual tests
+// We make xspecTests depend on these so that they run, but they
+// aren't really XSpec tests. Considerr refactoring the test
+// tasks someday.
+
+task testRngValidation(
+  type: SaxonXsltTask,
+  dependsOn: ["makeXslt"]
+) {
+  outputs.upToDateWhen { false }
+  input "${projectDir}/src/test/resources/xml/article.001.xml"
+  stylesheet "${buildDir}/xslt/docbook.xsl"
+  output "${buildDir}/tmp/rng-validation-test.html"
+  args docbookXsltArgs
+  parameters(
+    'relax-ng-grammar': "${projectDir}/src/test/resources/docbook.rng"
+  )
+}
+xspecTests.dependsOn testRngValidation
+
+task testRncValidation(
+  type: SaxonXsltTask,
+  dependsOn: ["makeXslt"]
+) {
+  outputs.upToDateWhen { false }
+  input "${projectDir}/src/test/resources/xml/article.001.xml"
+  stylesheet "${buildDir}/xslt/docbook.xsl"
+  output "${buildDir}/tmp/rng-validation-test.html"
+  args docbookXsltArgs
+  parameters(
+    'relax-ng-grammar': "${projectDir}/src/test/resources/docbook.rnc"
+  )
+}
+xspecTests.dependsOn testRncValidation
+
+// Then the generated ones
 
 TestGenerator testGenerator = new TestGenerator(project)
 //testGenerator.configure(new File("${projectDir}/src/test/resources/xml/para.002.xml"))

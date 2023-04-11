@@ -14,6 +14,7 @@ import com.thaiopensource.validate.SchemaReader;
 import com.thaiopensource.validate.ValidateProperty;
 import com.thaiopensource.validate.ValidationDriver;
 import com.thaiopensource.validate.prop.rng.RngProperty;
+import com.thaiopensource.validate.rng.CompactSchemaReader;
 import net.sf.saxon.expr.XPathContext;
 import net.sf.saxon.lib.ExtensionFunctionCall;
 import net.sf.saxon.lib.ExtensionFunctionDefinition;
@@ -92,6 +93,8 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
         String schemaFile = null;
         boolean assertValid = false;
         boolean dtdCompatibility = false;
+        Boolean compactSyntax = null;
+        String encoding = null;
 
         public Sequence call(XPathContext context, Sequence[] sequences) throws XPathException {
             source = (NodeInfo) sequences[0].head();
@@ -122,6 +125,12 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
 
             assertValid = getBooleanOption(options, "assert-valid", true);
             dtdCompatibility = getBooleanOption(options, "dtd-compatibility", false);
+            if (options.containsKey("compact-syntax")) {
+                compactSyntax = getBooleanOption(options, "compact-syntax", false);
+            }
+            if (compactSyntax != null && compactSyntax) {
+                encoding = options.getOrDefault("encoding", "UTF-8");
+            }
 
             XdmMap map = jingValid(context);
             return map.getUnderlyingValue();
@@ -142,24 +151,54 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
             JingResolver resolver = new JingResolver();
             properties.put(ValidateProperty.RESOLVER, resolver);
 
-            SchemaReader sr = null;
+            SchemaReader sr = (compactSyntax != null && compactSyntax) ? CompactSchemaReader.getInstance() : null;
             try {
-                ValidationDriver driver = new ValidationDriver(properties.toPropertyMap(),
-                        properties.toPropertyMap(), sr);
+                ValidationDriver driver = new ValidationDriver(properties.toPropertyMap(), properties.toPropertyMap(), sr);
                 InputSource insrc = null;
                 if (schema == null) {
                     insrc = ValidationDriver.uriOrFileInputSource(schemaFile);
+                    if (encoding != null) {
+                        insrc.setEncoding(encoding);
+                    }
                 } else {
                     insrc = nodeInfoToInputSource(context, schema);
                 }
-                boolean loaded = driver.loadSchema(insrc);
+
+                boolean triedRNC = false;
+                boolean loaded = false;
+                try {
+                    loaded = driver.loadSchema(insrc);
+                } catch (SAXException ex) {
+                    // If the user didn't specify compact-syntax and the schemaFile ends with ".rnc"
+                    // try loading the schema using the compact syntax.
+                    if (compactSyntax == null && schemaFile != null && schemaFile.endsWith(".rnc")) {
+                        triedRNC = true;
+
+                        // Replace the error handler so we don't get the SAXException on the RNC file
+                        handler = new RNGErrorHandler();
+                        properties.put(ValidateProperty.ERROR_HANDLER, handler);
+
+                        sr = CompactSchemaReader.getInstance();
+                        driver = new ValidationDriver(properties.toPropertyMap(), properties.toPropertyMap(), sr);
+                        insrc = ValidationDriver.uriOrFileInputSource(schemaFile);
+                        if (encoding != null) {
+                            insrc.setEncoding(encoding);
+                        }
+                        loaded = driver.loadSchema(insrc);
+                    }
+                }
+
                 if (loaded) {
                     insrc = nodeInfoToInputSource(context, source);
                     valid = driver.validate(insrc);
                 } else {
-                    throw new IllegalArgumentException("Failed to load schema");
+                    if (triedRNC) {
+                        throw new IllegalArgumentException("Failed to load schema (tried RNG and RNC): " + schemaFile);
+                    }
+                    throw new IllegalArgumentException("Failed to load schema: " + schemaFile);
                 }
             } catch (SAXException | IOException ioe) {
+                ioe.printStackTrace();
                 throw new IllegalArgumentException(ioe);
             }
 
@@ -176,62 +215,6 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
 
             return map;
         }
-
-        /*
-        private XdmMap msvValid(XPathContext context) {
-            boolean valid = false;
-            RNGErrorHandler handler = new RNGErrorHandler();
-
-            try {
-                VerifierFactory factory = VerifierFactory.newInstance("http://relaxng.org/ns/structure/1.0");
-                Processor processor = (Processor) context.getConfiguration().getProcessor();
-
-                Schema docSchema = null;
-                CharArrayWriter writer = null;
-                Serializer serializer = null;
-                ByteArrayInputStream istream = null;
-
-                if (schema == null) {
-                    // Cheap and cheerful.
-                    try {
-                        URL usource = new URL(schemaFile);
-                        docSchema = factory.compileSchema(usource.openStream());
-                    } catch (MalformedURLException mue) {
-                        docSchema = factory.compileSchema(new File(schemaFile));
-                    }
-                } else {
-                    // Hack!
-                    writer = new CharArrayWriter();
-                    serializer = processor.newSerializer();
-                    serializer.setOutputWriter(writer);
-                    serializer.serialize(schema);
-                    istream = new ByteArrayInputStream(writer.toString().getBytes(StandardCharsets.UTF_8));
-                    docSchema = factory.compileSchema(istream, schema.getBaseURI());
-                }
-
-                InputSource docSource = nodeInfoToInputSource(context, source);
-
-                Verifier verifier = docSchema.newVerifier();
-                verifier.setErrorHandler(handler);
-                valid = verifier.verify(docSource);
-            } catch (VerifierConfigurationException | SaxonApiException | IOException | SAXException vce) {
-                throw new RuntimeException(vce);
-            }
-
-            if (!valid && assertValid) {
-                throw new RuntimeException("Invalid document: " + handler.getError().getMessage());
-            }
-
-            XdmMap map = new XdmMap();
-            map = map.put(new XdmAtomicValue("valid"), new XdmAtomicValue(valid));
-            map = map.put(new XdmAtomicValue("document"), new XdmNode(source));
-            if (!valid) {
-                map = map.put(new XdmAtomicValue("errors"), handler.getErrors());
-            }
-
-            return map;
-        }
-    */
     }
 
     private InputSource nodeInfoToInputSource(XPathContext context, NodeInfo source) {
