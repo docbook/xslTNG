@@ -1715,17 +1715,15 @@ task dbtransform(type: SaxonXsltTask, dependsOn: ['makeXslt']) {
   }
 
   def ssparams = [:]
-  doFirst {
-    if (dbparams.trim() != "") {
-      dbparams.split(/\s+/).each { param ->
-        def pos = param.indexOf('=')
-        if (pos <= 0) {
-          throw new GradleException("Malformed parameter: ${param}")
-        } else {
-          def name = param.substring(0, pos).replace(/%20/, ' ')
-          def value = param.substring(pos+1).replace(/%20/, ' ')
-          ssparams[name] = value
-        }
+  if (dbparams.trim() != "") {
+    dbparams.split(/\s+/).each { param ->
+      def pos = param.indexOf('=')
+      if (pos <= 0) {
+        throw new GradleException("Malformed parameter: ${param}")
+      } else {
+        def name = param.substring(0, pos).replace(/%20/, ' ')
+        def value = param.substring(pos+1).replace(/%20/, ' ')
+        ssparams[name] = value
       }
     }
   }
