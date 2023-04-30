@@ -163,23 +163,65 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- Using oxy_delete to remove a CALS table entry produces a table with an invalid
+       number of columns. The CALS to HTML transformation is simply unprepared to deal
+       with this. This code inserts a note about removed cells without breaking the
+       table structure. See https://github.com/docbook/xslTNG/issues/312 -->
+
+  <xsl:template match="db:entry" priority="10">
+    <xsl:variable name="entry" as="element()">
+      <xsl:next-match/>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="preceding-sibling::processing-instruction(oxy_delete)
+                      and not(preceding-sibling::db:entry)
+                      and following-sibling::processing-instruction(oxy_delete)">
+        <entry>
+          <xsl:sequence select="$entry/@*"/>
+          <phrase role="oxy_delete">DELETED PRECEDING TABLE CELL NOT SHOWN</phrase>
+          <xsl:sequence select="$entry/node()"/>
+          <phrase role="oxy_delete">DELETED FOLLOWING TABLE CELL NOT SHOWN</phrase>
+        </entry>
+      </xsl:when>
+      <xsl:when test="preceding-sibling::processing-instruction(oxy_delete)
+                      and not(preceding-sibling::db:entry)">
+        <entry>
+          <xsl:sequence select="$entry/@*"/>
+          <phrase role="oxy_delete">DELETED PRECEDING TABLE CELL NOT SHOWN</phrase>
+          <xsl:sequence select="$entry/node()"/>
+        </entry>
+      </xsl:when>
+      <xsl:when test="following-sibling::processing-instruction(oxy_delete)">
+        <entry>
+          <xsl:sequence select="$entry/@*"/>
+          <xsl:sequence select="$entry/node()"/>
+          <phrase role="oxy_delete">DELETED FOLLOWING TABLE CELL NOT SHOWN</phrase>
+        </entry>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$entry"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match="processing-instruction(oxy_delete)">
-    <phrase role="oxy_delete">
-      <xsl:variable name="tmp" as="item()+">
-        <xsl:analyze-string select="." regex="\s*content=&quot;([^&quot;]*)&quot;">
-          <xsl:matching-substring>
-            <xsl:value-of select="regex-group(1)"/>
-          </xsl:matching-substring>
-          <xsl:non-matching-substring>
-            <xsl:attribute name="annotations" select="replace(., '&quot;', '''')"/>
-          </xsl:non-matching-substring>
-        </xsl:analyze-string>  
-      </xsl:variable>
-      <xsl:sequence select="$tmp/self::attribute(), $tmp/self::text()"/>
-    </phrase>
+    <xsl:if test="not(parent::db:row)">
+      <phrase role="oxy_delete">
+        <xsl:variable name="tmp" as="item()+">
+          <xsl:analyze-string select="." regex="\s*content=&quot;([^&quot;]*)&quot;">
+            <xsl:matching-substring>
+              <xsl:value-of select="regex-group(1)"/>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+              <xsl:attribute name="annotations" select="replace(., '&quot;', '''')"/>
+            </xsl:non-matching-substring>
+          </xsl:analyze-string>  
+        </xsl:variable>
+        <xsl:sequence select="$tmp/self::attribute(), $tmp/self::text()"/>
+      </phrase>
+    </xsl:if>
   </xsl:template>
   
   <!-- We’re not dealing with oxy_attributes yet -->
-  
-  
 </xsl:stylesheet>

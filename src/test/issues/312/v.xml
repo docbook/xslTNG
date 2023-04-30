@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><book xmlns="http://docbook.org/ns/docbook" xml:lang="de" status="draft" version="5.1">
+   <?oxy_attributes xml:base="&lt;change type=&quot;modified&quot; oldValue=&quot;chapter-01.xml&quot; author=&quot;deltaxml&quot; timestamp=&quot;20230427T053744+0200&quot;/&gt;"  ?><chapter xmlns:xml_1="http://www.deltaxml.com/ns/xml-namespaced-attribute" xml_1:base="file:/C:/kosit/tdd/de-tdd/src/chapter-01.xml" xml:lang="de" version="5.1" xml:id="Chap1">
+      <title role="Heading1">
+         <anchor role="start" xml:id="scroll-bookmark-6"/>Übersicht über das Gesamtsystem</title>
+      <info>
+         <wiki:number xmlns:wiki="https://ec.europa.eu/digital-building-blocks/wikis">1</wiki:number>
+         <wiki:original-title xmlns:wiki="https://ec.europa.eu/digital-building-blocks/wikis">Kapitel 1: Einführung - Hochrangige Architektur (Entwurf)</wiki:original-title>
+      </info>
+      <para>Dieses Kapitel gibt einen Überblick über die Architektur des Technischen Systems zur einmaligen Erfassung („once-only“ technical system; im Folgenden <abbrev>EU-OOTS</abbrev>) des einheitlichen digitalen Zugangstors (Single Digital Gateway, kurz: SDG) und dient als Einleitung zu allen technischen Entwurfsdokumenten. Das EU-OOTS wird gemäß Artikel 14 der SDG-Verordnung <citation>SDG VO</citation> von der europäischen Kommission errichtet. Manche Online Dienste (in der Rolle einer <glossterm baseform="Nachweise anfordernde Behörde">Nachweise anfordernden Behörde</glossterm>) und manche registerführenden Behörden (in der Rolle eines <glossterm baseform="Nachweislieferant">Nachweislieferanten</glossterm>) sind ab dem 12. Dezember 2023 zum Anschluss an das EU-OOTS verpflichtet. Parallel dazu wird in Deutschland ein nationales technisches System für die Registermodernisierung (Nationales <phrase xml:lang="en">Once-Only Technical System</phrase>, <abbrev>NOOTS</abbrev>) errichtet. <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Es"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>Mit dem Beschluss<?oxy_insert_end?> <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><citation>IT-PLR 2022/34</citation><?oxy_insert_end?> wurde <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>vom IT-Planungsrat <?oxy_insert_end?>entschieden, dass der Anschluss deutscher <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Nachweislieferanten"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>öffentlicher Stellen<?oxy_insert_end?> an die europäische Infrastruktur mittelbar über <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="das NOOTS erfolgen muss, welches wiederum über "?>eine <glossterm>Intermediäre Plattform</glossterm> <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="mit dem"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>des <?oxy_insert_end?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><glossterm>NOOTS</glossterm><?oxy_insert_end?> <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="EU-OOTS verbunden sein wird (siehe "?><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;xref linkend='Sec_5.3' xrefstyle='select:label' /&gt;"?><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content=")"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>erfolgen muss<?oxy_insert_end?>. Für die von der SDG-Verordnung betroffenen <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Nachweislieferanten"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>öffentlichen Stellen<?oxy_insert_end?> gilt insoweit eine <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Anschlussverpflichtung an das"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>Verpflichtung zum Anschluss an die in<?oxy_insert_end?> <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><xref linkend="Sec_5.3" xrefstyle="select:label"/><?oxy_insert_end?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?> beschriebene Intermediäre Plattform des <?oxy_insert_end?>NOOTS, um damit die europarechtlichen Vorgaben erfüllen zu können.<?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?> Dies ist in <?oxy_insert_end?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><xref linkend="Fig5.1.1"/><?oxy_insert_end?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?> dargestellt.<?oxy_insert_end?></para>
+      <note>
+         <title>Anschlussverpflichtung</title>
+         <para>Die nationale SDG Koordination im Bundesministeriums des Innern und für Heimat (<abbrev>BMI</abbrev>) legt die Online Dienste und Behörden fest, für die eine Anschlussverpflichtung gemäß der <citation>SDG VO</citation> gilt.</para>
+      </note>
+      <para>Der Überblick beginnt mit der Angabe der Anforderungen, die das technische System EU-OOTS erfüllt. Anschließend werden alle Architekturelemente vorgestellt und definiert. Zu diesen Elementen gehören Elemente, die bei Nachweis-Anforderern und Nachweis-Lieferanten angesiedelt sind, sowie einige gemeinsame Dienste, die sie unterstützen. Anschließend werden die Art und Weise des Austauschs von Nachweisen mittels eDelivery, die Verwendung von Identifizierung und Authentifizierung sowie die Rolle des Protokollsystems erläutert. Schließlich werden einige Beispielabläufe zur Veranschaulichung der Funktionalität des Systems gegeben.</para>
+      <para>Dieses Dokument und die anderen technischen Entwurfsdokumente sowie die darin beschriebenen Schnittstellenspezifikationen ergänzen die SDG Verordnung <citation>SDG VO</citation> sowie die SDG Durchführungsverordnung <citation>SDG DVO</citation> und liefern zusätzliche technische Details.</para>
+      <note>
+         <para>Darüber hinaus wird der nationale Anschluss an das EU-OOTS in der Ausbaustufe 2023 beschrieben.</para>
+         <para>Ergänzungen für die nationalen Anbindungen werden in deutscher Sprache in Hinweisboxen (analog zu dieser) dargestellt.</para>
+      </note>
+      <bridgehead>Zweck des Dokuments</bridgehead>
+      <para>Die folgende Tabelle fasst die Zielsetzungen, die Zielgruppen und den Gegenstand dieses Dokuments zusammen:</para>
+      <?oxy_attributes xml:base="&lt;change type=&quot;modified&quot; oldValue=&quot;chapter-01/section-01.01.xml&quot; author=&quot;deltaxml&quot; timestamp=&quot;20230427T053744+0200&quot;/&gt;"  ?><section xml_1:base="file:/C:/kosit/tdd/de-tdd/src/chapter-01/section-01.01.xml" xml:lang="de" version="5.1" xml:id="Sec4">
+         <title>
+            <phrase role="wiki-number">1</phrase>
+            <anchor role="start" xml:id="scroll-bookmark-14"/>Einleitung</title>
+         <info>
+            <wiki:number xmlns:wiki="https://ec.europa.eu/digital-building-blocks/wikis">1</wiki:number>
+            <wiki:original-title xmlns:wiki="https://ec.europa.eu/digital-building-blocks/wikis">1. einleitung</wiki:original-title>
+         </info>
+         <section xml:lang="de">
+            <title><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;phrase role='wiki-number'&gt;1.3&lt;/phrase&gt;"?> <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Eingabe"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>Quelldokumente <?oxy_insert_end?></title>
+            <para>Dieses Dokument basiert auf den folgenden Quelldokumenten:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>SDG Verordnung, insbesondere Artikel 14 <citation>SDG VO</citation>;</para>
+               </listitem>
+               <listitem>
+                  <para>SDG Durchführungsverordnung <citation>SDG DVO</citation>.</para>
+               </listitem>
+            </itemizedlist>
+            <para>Andere Quelldokumente umfassen:</para>
+            <itemizedlist>
+               <listitem>
+                  <para>Ergebnisse und andere Beiträge aus dem TOOP-Großpiloten <citation>REF34</citation>;</para>
+               </listitem>
+               <listitem>
+                  <para>Ergebnisse und Informationen aus dem DE4A-Großpiloten <citation>REF7</citation>;</para>
+               </listitem>
+               <listitem>
+                  <para>Der <quote>OOP</quote> Blueprint <citation><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="REF1"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?>RegRep Binding<?oxy_insert_end?></citation>, der im Rahmen der vorbereitenden Maßnahme <quote>"Once-only"</quote> erstellt wurde. Diese Aktion, die 2019 gestartet wurde, soll den Weg für die Schaffung eines speziellen OOP-Bausteins (Once-Only-Prinzip) und die Identifizierung potenzieller neuer Bausteine zur Unterstützung der grenzüberschreitenden Interoperabilität ebnen;</para>
+               </listitem>
+               <listitem>
+                  <para>Beiträge von Vertretern der Mitgliedstaaten in der SDG-Koordinierungsgruppe, die während der regelmäßigen SDG-Plenarsitzungen geliefert werden;</para>
+               </listitem>
+               <listitem>
+                  <para>Beiträge von Experten aus den Mitgliedstaaten, die in bilateralen Sitzungen mit den Vertretern der Mitgliedstaaten in der SDG-Koordinierungsgruppe geliefert werden, aber auch von einem breiteren Spektrum von Experten;</para>
+               </listitem>
+               <listitem>
+                  <para>Beiträge von Experten aus den Mitgliedstaaten, die an den Sitzungen und Diskussionspunkten von WP7, <quote>Technisches Design</quote>, WP2, <quote>Nutzerzentrierung</quote>, WP4, <quote>Semantik</quote>, und WP6, <quote>Funktionalität</quote>, teilnahmen;</para>
+               </listitem>
+               <listitem>
+                  <para>Beiträge von politischen und fachlichen Experten in der Kommission und aus anderen Maßnahmen der Kommission, insbesondere den Maßnahmen ISA² und Interoperable Europe sowie den Bausteinen bei DIGIT und den entsprechenden Referaten der GD GROW und der GD CNECT.</para>
+                  <note>
+                     <para>Für das NOOTS relevante Dokumente sind:</para>
+                     <informaltable>
+                        <tgroup cols="2"><colspec colnum="1" colname="col2" colwidth="1*"/><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;colspec colname='col2-dxA' colnum='2' /&gt;"?><colspec colnum="2" colname="col3" colwidth="5*"/>
+                           <tbody>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-1]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2019/03</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2019-03'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2019/03&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="28"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>28. Sitzung des IT-Planungsrats am 12.03.2019: Einrichtung des Koordinierungsprojekts Registermodernisierung unter FF Bund, HH &amp; BY</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 12.03.2019: Einrichtung des Koordinierungsprojekts Registermodernisierung unter FF Bund, HH &amp;amp; BY"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-2]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2019/23</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2019-23'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2019/23&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="29"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>29. Sitzung des IT-Planungsrats am 27.06.2019: IT-Planungsrat beauftragt das Koordinierungsprojekt mit verschiedenen Aufgaben</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 27.06.2019: IT-Planungsrat beauftragt das Koordinierungsprojekt mit verschiedenen Aufgaben"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-3]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2020/25</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2020-25'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2020/25&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="32"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>32. Sitzung des IT-Planungsrats am 24.06.2020: Kenntnisnahme der Eckpunkte der Registermodernisierung</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 24.06.2020: Kenntnisnahme der Eckpunkte der Registermodernisierung"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-4]&lt;/emphasis&gt;"?><?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><citation>IT-PLR 2021/05</citation><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2021-05'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2021/05&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="34"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>34. Sitzung des IT-Planungsrats am 17.03.2021: Beschluss des Zielbildes der Registermodernisierung sowie der Umsetzungsplanung</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 17.03.2021: Beschluss des Zielbildes der Registermodernisierung sowie der Umsetzungsplanung"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-5]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2021/25</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2021-25'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2021/25&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="35"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>35. Sitzung des IT-Planungsrats am 23.06.2021: Einrichtung des Projekts „Gesamtsteuerung Registermodernisierung“</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 23.06.2021: Einrichtung des Projekts „Gesamtsteuerung Registermodernisierung“ "?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-6]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2021/35</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2021-35'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2021/35&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="36"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>36. Sitzung des IT-Planungsrats am 29.10.2021: Umsetzungsplanung des Zielbilds der Registermodernisierung</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 29.10.2021: Umsetzungsplanung des Zielbilds der Registermodernisierung"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-7]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2022/06</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2022-06'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2022/06&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="37"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>37. Sitzung des IT-Planungsrats am 09.03.2022: Beschluss der Programmplanung inklusive der Meilensteine bis 2025</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 09.03.2022: Beschluss der Programmplanung inklusive der Meilensteine bis 2025"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-8]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2022/22</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2022-22'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2022/22&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="38"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>38. Sitzung des IT-Planungsrats am 22.06.2022: Insb. Beschluss verschiedener Beschlüsse des Lenkungskreises der Registermodernisierung zur technischen Architektur:</para><?oxy_insert_end?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><orderedlist>
+                                       <listitem>
+                                          <para>Einführung eines Reifegradmodells für Nachweisabrufe mit dem Ziel mindestens Reifegrad C zu erreichen, perspektivisch Reifegrad D.</para>
+                                       </listitem>
+                                       <listitem>
+                                          <para>Unterstützung asynchroner Prozesse in der Architektur der Registermodernisierung im Rahmen der Behörde-zu-Behörde-Kommunikation.</para>
+                                       </listitem>
+                                       <listitem>
+                                          <para>Entwicklung eines allgemeinen Standards für den Nachweisabruf für die nationale Registermodernisierung.</para>
+                                       </listitem>
+                                       <listitem>
+                                          <para>Aufbau eines nationalen Data Service Directory und Nutzung des europäischen Evidence Brokers.</para>
+                                       </listitem>
+                                       <listitem>
+                                          <para>Entscheidung zur Umsetzung der Komponente Registerdatennavigation.</para>
+                                       </listitem>
+                                    </orderedlist><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="des IT-Planungsrats am 22.06.2022: Insb. Beschluss verschiedener Beschlüsse des Lenkungskreises der Registermodernisierung zur technischen Architektur und Bericht zum aktuellen Umsetzungsstand"?></entry>
+                              </row>
+                              <row>
+                                 <entry colname="col2">
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;emphasis role='bold'&gt;[IT-PLR-B-9]&lt;/emphasis&gt;"?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>
+                                       <citation>IT-PLR 2022/34</citation>
+                                    </para><?oxy_insert_end?>
+                                 </entry>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="&lt;entry colname='col2-dxA'&gt; &lt;link xmlns:xlink='http://www.w3.org/1999/xlink' xlink:href='https://www.it-planungsrat.de/beschluss/beschluss-2022-34'&gt; &lt;emphasis role='bold'&gt;IT-PLR Beschluss 2022/34&lt;/emphasis&gt; &lt;/link&gt; &lt;/entry&gt;"?>
+                                 <entry colname="col3"><?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="39"?>
+                                    <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="."?>
+                                    <?oxy_insert_start author="deltaxml" timestamp="20230427T053744+0200"?><para>39. Sitzung des IT-Planungsrats am 10.11.2022: Bericht zum Umsetzungsstand und NOOTS-Registeranschluss</para><?oxy_insert_end?>
+                                 <?oxy_delete author="deltaxml" timestamp="20230427T053744+0200" content="Sitzung des IT-Planungsrats am 10.11.2022: Bericht zum Umsetzungsstand und NOOTS-Registeranschluss"?></entry>
+                              </row>
+                           </tbody>
+                        </tgroup>
+                     </informaltable>
+                  </note>
+               </listitem>
+            </itemizedlist>
+         </section>
+      </section>
+      <?oxy_options track_changes="on"?>
+   </chapter>
+   
+   
+   
+   
+   
+   
+   
+   
+</book>
+
