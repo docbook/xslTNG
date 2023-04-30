@@ -316,7 +316,8 @@ For Saxon PE and EE, the class is <classname>com.saxonica.Transform</classname>.
 <para>The <filename class="directory">docker</filename> directory
 contains an experimental Dockerfile. Using docker allows you to
 isolate the environment necessary to run the <citetitle>DocBook xslTNG
-Stylesheets</citetitle> from your local environment.</para>
+Stylesheets</citetitle> from your local environment. (If you’re using Linux, see
+<xref linkend="docker-on-linux"/>.)</para>
 
 <para>Using Docker is a three step process. Step 0, you have to have
 installed Docker!</para>
@@ -392,6 +393,70 @@ everytime a new stylesheet release occurs. You can simply mount the new
 <filename class="directory">xslt</filename> directory into the container
 like any other directory.</para>
 </tip>
+
+<section xml:id="docker-on-linux">
+<title>Docker on Linux</title>
+
+<para>When a Docker container running on Linux writes to the local
+filesystem, for example because you mounted it in a container, any
+files written by the container will be owned by “root”. This can be
+quite inconvenient.</para>
+
+<para>If there’s an elegant solution to this problem, I haven’t found it.</para>
+
+<para>The following approach will work, but it’s a bit more complicated.</para>
+
+<orderedlist>
+<listitem>
+<para>Create a volume, say <replaceable>docbook-output</replaceable>,
+with the <code>docker volume</code> command.</para>
+<screen>docker volume create <replaceable>docbook-output</replaceable></screen>
+</listitem>
+<listitem>
+<para>Instead of mounting a directory on the local filesystem in the container, mount
+the volume.</para>
+</listitem>
+<listitem>
+<para>Run the transformation.</para>
+</listitem>
+<listitem>
+<para>In order to copy the files off the volume, the volume has to be
+mounted on a running container. You can start one with <code>docker run</code>,
+for example:</para>
+<screen>docker run —mount source=<replaceable>docbook-output</replaceable>,target=/out \
+       --name copy-helper -d busyboxy sleep 3600</screen>
+</listitem>
+<listitem>
+<para>Copy the files out of the container. For a single file, <code>docker cp</code> will
+do the trick:</para>
+<screen>docker cp copy-helper:/out/<replaceable>filename.html</replaceable> .</screen>
+<para>If there are multiple output files, you can copy them individually, or you can use 
+<code>docker exec</code>:</para>
+<screen>docker exec copy-helper \
+       /bin/sh -c 'cd /out &amp;&amp; tar cf - .' &gt; out.tar</screen>
+<para>That’ll copy all the files into the <filename>out.tar</filename> archive which you can
+expand wherever you like.</para>
+</listitem>
+<listitem>
+<para>When you have the files, you can stop and remove the container with:</para>
+<screen>docker stop copy-helper
+docker rm copy-helper</screen>
+</listitem>
+<listitem>
+<para>You may want to remove the volume you created as well:</para>
+<screen>docker volume rm docbook-output</screen>
+<para>and recreate it for the next transformation. If you don’t, be
+aware that the content of the volume will persist. If you resuse the
+volume for other transformations, the output from the various
+transformations will be mingled together on the volume.</para>
+<para>And, perhaps obviously, if you remove the volume before you copy
+the files off of it, the files will be lost.</para>
+</listitem>
+</orderedlist>
+
+<para>In short: using a Docker container on Linux is somewhat less convenient.</para>
+
+</section>
 </section>
 
 <section xml:id="extensions">
