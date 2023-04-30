@@ -1,0 +1,111 @@
+/* @@TITLE@@ version @@VERSION@@
+ *
+ * This is guide-toc.css.
+ *
+ * See https://xsltng.docbook.org/
+ *
+ */
+
+nav.tocopen {
+    position: fixed;
+    width: 1.5em;
+    top: 6px;
+    right: 0;
+    color: inherit;
+    z-index: 1;
+    cursor: pointer;
+    color: #fffff8;
+    background-color: rgb(11, 0, 89);
+    font-size: 14pt;
+    display: none;
+}
+
+.home nav.tocopen {
+    color: rgb(11, 0, 89);
+    background-color: #fffff8;
+}
+
+nav.toc {
+    color: #fffffe;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    background-color: rgb(114,105,155);
+    padding: 0;
+    margin: 0;
+    font-size: 12pt;
+    opacity: 1;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+nav.toc.slide {
+    transition: 0.33s;
+}
+
+nav.toc > div {
+    flex: 1;
+}
+
+@media only screen {
+    nav.toc {
+        overflow-x: scroll;
+    }
+}
+
+nav.toc header {
+    height: 4rem;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 1.25em;
+}
+
+nav.toc header p.ptoc-search {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+}
+
+nav.toc header .close {
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+nav.toc ul.nav-title {
+    margin-top: 1em;
+    border-top: 1px solid var(--primary-variant-color);
+}
+
+nav.toc li.nav-title {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0.25em;
+    font-family: var(--title-family);
+    font-size: 1.25em;
+}
+
+@media only screen {
+    nav.toc div {
+        overflow: scroll;
+    }
+}
+
+nav.toc a,
+nav.toc a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav.toc .refpurpose {
+    display: none;
+}
+
+nav.toc li {
+    text-indent: -1em;
+    padding-left: 1em;
+}
