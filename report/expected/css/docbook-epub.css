@@ -1291,6 +1291,14 @@ blockquote p + .attribution {
   font-family: var(--mono-family);
 }
 
+.calloutlist {
+  margin-bottom: 1em;
+}
+
+.calloutlist dl {
+  margin-bottom: 0;
+}
+
 .calloutlist dl dt {
   clear: both;
   float: left;
@@ -1304,6 +1312,10 @@ blockquote p + .attribution {
 
 .calloutlist dd > p:first-child {
   margin-top: 0;
+}
+
+.calloutlist dd:last-child > p:last-child {
+  margin-bottom: 0;
 }
 
 a.callout-bug,
