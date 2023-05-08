@@ -1,5 +1,6 @@
-FROM ubuntu:18.04
-MAINTAINER Norman Tovey-Walsh <ndw@nwalsh.com>
+ARG UBUNTU_VERSION=18.04
+FROM ubuntu:${UBUNTU_VERSION}
+LABEL org.opencontainers.image.authors="Norman Tovey-Walsh <ndw@nwalsh.com>"
 
 RUN apt-get update
 RUN apt-get dist-upgrade -y
