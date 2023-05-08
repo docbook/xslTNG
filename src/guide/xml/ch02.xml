@@ -337,10 +337,10 @@ you can make this anything you want. There’s a <code>VERSION</code>
 build argument if you want to build a particular release. For example,</para>
 
 <screen role="monochrome border">$ <userinput
->docker build --build-arg VERSION=0.9.14 -t docbook-xsltng .</userinput
+>docker build --build-arg VERSION=<?DocBook-xslTNG-version?> -t docbook-xsltng .</userinput
 ></screen>
 
-<para>will build a Docker image for the 0.9.14 release of the
+<para>will build a Docker image for the <?DocBook-xslTNG-version?> release of the
 stylesheets irrespective of the version in the Dockerfile.</para>
 </listitem>
 <listitem>
@@ -402,9 +402,12 @@ filesystem, for example because you mounted it in a container, any
 files written by the container will be owned by “root”. This can be
 quite inconvenient.</para>
 
-<para>If there’s an elegant solution to this problem, I haven’t found it.</para>
+<para>If there’s an elegant solution to this problem, I haven’t found it.
+Some users have reported success using <link xlink:href="https://podman.io/">podman</link>,
+a Docker-compatible, open source alternative that apparently doesn’t exhibit this behavior.
+</para>
 
-<para>The following approach will work, but it’s a bit more complicated.</para>
+<para>The following approach will work with Docker, but it’s a bit more complicated.</para>
 
 <orderedlist>
 <listitem>
