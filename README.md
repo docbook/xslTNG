@@ -69,7 +69,7 @@ python3 -m pip install pygments==2.14.0 click
 You don’t have to have Pygments version 2.14.0 installed, but if you
 install a different version, you may find that some tests fail.
 
-### Additional Python dependencies
+### Additional Python packages
 
 Testing the build requires a few more dependencies. The build will run
 run without them, but you’ll get some failing tests.
@@ -79,4 +79,16 @@ python3 -m pip cython saxonche
 python3 -m pip install --no-binary lxml html5-parser
 ```
 
-(I have been unable to find a way to install `html5-parser` on Windows.)
+I have been unable to find a way to install `html5-parser` on Windows.
+
+## Windows builds
+
+Without the additional Python packages, some tests will always fail on
+Windows.
+
+To avoid having the whole build fail because of failing tests, run with
+the `requireTestSuccess` parameter set to false:
+
+```
+gradlew -PrequireTestSuccess=false …
+```
