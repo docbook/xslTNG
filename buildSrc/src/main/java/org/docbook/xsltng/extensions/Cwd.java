@@ -57,9 +57,14 @@ public class Cwd extends ExtensionFunctionDefinition {
 
     private class CwdCall extends ExtensionFunctionCall {
         public Sequence call(XPathContext xPathContext, Sequence[] sequences) throws XPathException {
-            String dir = System.getProperty("user.dir");
+            String dir = System.getProperty("user.dir").replace("\\", "/");
             if (!dir.endsWith("/")) {
                 dir += "/";
+            }
+
+            // If there's a Windows drive letter, lose it
+            if (dir.length() > 2 && dir.charAt(1) == ':') {
+                dir = dir.substring(2);
             }
 
             // 21 Jan 2023, make this a file: URI. Previously, this was left as just a path

@@ -16,8 +16,10 @@ class TestGenerator {
   private final TestEnvironments testEnvironments
   private final TestConfigurations testConfigurations
   private final TestCases testCases
-  private final String projectDir
-  private final String buildDir
+  private final String fProjectDir
+  private final String fBuildDir
+  private final String uProjectDir
+  private final String uBuildDir
 
   private final def configRegexList
   private final def generatedConfigurations
@@ -27,8 +29,10 @@ class TestGenerator {
     testEnvironments = new TestEnvironments(project)
     testConfigurations = new TestConfigurations(testEnvironments)
     testCases = new TestCases(project, new ValidationTasks(project))
-    projectDir = project.projectDir
-    buildDir = project.buildDir
+    fProjectDir = project.projectDir.toString()
+    fBuildDir = project.buildDir.toString()
+    uProjectDir = fixWindowsPath(fProjectDir)
+    uBuildDir = fixWindowsPath(fBuildDir)
 
     testEnvironments.create('default')
       .withParameters([
@@ -57,7 +61,7 @@ class TestGenerator {
     testEnvironments.create('chunk')
       .withParameters([
           'chunk': 'index.html',
-          'chunk-output-base-uri': "${buildDir}/actual/"])
+          'chunk-output-base-uri': "${uBuildDir}/actual/"])
 
     testEnvironments.create('chunkfit')
       .withParameters([
@@ -83,8 +87,8 @@ class TestGenerator {
 
     testEnvironments.create('local')
       .withParameters([
-          'local-conventions': "${projectDir}/src/test/resources/local.xsl",
-          'relax-ng-grammar': "${projectDir}/src/test/resources/docbook.rng"])
+          'local-conventions': "${uProjectDir}/src/test/resources/local.xsl",
+          'relax-ng-grammar': "${uProjectDir}/src/test/resources/docbook.rng"])
 
     testEnvironments.create('ptoc')
       .withParameters([
@@ -98,10 +102,10 @@ class TestGenerator {
           'annotation-style': 'javascript',
           'profile-outputformat': 'online',
           'olink-databases':
-             ["${buildDir}/actual/guide.olinkdb",
-              "${buildDir}/actual/fit.001.olinkdb",
-              "${buildDir}/actual/fit.002.olinkdb",
-              "${projectDir}/src/website/resources/olinkdb/website.olinkdb"].join(",")])
+             ["${uBuildDir}/actual/guide.olinkdb",
+              "${uBuildDir}/actual/fit.001.olinkdb",
+              "${uBuildDir}/actual/fit.002.olinkdb",
+              "${uProjectDir}/src/website/resources/olinkdb/website.olinkdb"].join(",")])
 
     testEnvironments.create('transclude')
       .withParameters([
@@ -210,9 +214,9 @@ class TestGenerator {
 
           TestConfiguration config = testConfigurations.find('callouts')
           ["programlistingco.001", "screenco.001"].each { source ->
-            File input = new File("${projectDir}/src/test/resources/xml/${source}.xml")
+            File input = new File("${fProjectDir}/src/test/resources/xml/${source}.xml")
             TestCase tcase = testCases.create("${source}_${S}${N}${H}", input, config)
-              .withPreprocessor("${projectDir}/tools/generate-co.xsl",
+              .withPreprocessor("${uProjectDir}/tools/generate-co.xsl",
                                 [ "style": style,
                                  "highlight": highlight,
                                  "numbered": numbered
@@ -259,11 +263,11 @@ class TestGenerator {
 
         TestConfiguration config = testConfigurations.create(cnf)
           .withEnvironments([cnf])
-          .withXSpecDriver("${buildDir}/xspec-xslt/alt-xspec-driver.xsl")
-          .withStylesheet("${buildDir}/xspec-xslt/alt-docbook.xsl")
+          .withXSpecDriver("${uBuildDir}/xspec-xslt/alt-xspec-driver.xsl")
+          .withStylesheet("${uBuildDir}/xspec-xslt/alt-docbook.xsl")
 
         sources.each { fn ->
-          File input = new File("${projectDir}/src/test/resources/xml/${fn}-numbered-from.xml")
+          File input = new File("${fProjectDir}/src/test/resources/xml/${fn}-numbered-from.xml")
           TestCase tcase = testCases.create("${fn}-numbered-from-${from}", input, config)
         }
       }
@@ -328,11 +332,11 @@ class TestGenerator {
 
         TestConfiguration config = testConfigurations.create(cnf)
           .withEnvironments([cnf])
-          .withXSpecDriver("${buildDir}/xspec-xslt/alt-xspec-driver.xsl")
-          .withStylesheet("${buildDir}/xspec-xslt/alt-docbook.xsl")
+          .withXSpecDriver("${uBuildDir}/xspec-xslt/alt-xspec-driver.xsl")
+          .withStylesheet("${uBuildDir}/xspec-xslt/alt-docbook.xsl")
 
         sources.each { fn ->
-          File input = new File("${projectDir}/src/test/resources/xml/${fn}-numbered-from.xml")
+          File input = new File("${fProjectDir}/src/test/resources/xml/${fn}-numbered-from.xml")
           TestCase tcase = testCases.create("${fn}-inherit-from-${from}", input, config)
         }
       }
@@ -347,9 +351,9 @@ class TestGenerator {
     ["1", "2"].each { mo ->
       project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
         // Single output HTML file, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-1"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -357,13 +361,13 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 1"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-1"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-1"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "**/*"
             exclude "**/*.xml"
           }
@@ -371,22 +375,22 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-1/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-1/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-1"
+              "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -396,9 +400,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
         // Single output HTML file, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-2"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -406,45 +410,45 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 2"
         
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-2"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-2"
         }
 
         doFirst {
           // N.B. These copy commands are a bit redundant because they
           // have to work for all of the input layouts
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-2/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
+            into "${fBuildDir}/actual/mo-${mo}-2/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/body"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            into "${fBuildDir}/actual/mo-${mo}-2/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/front"
             include "*.mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-2/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-2"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-2/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-2/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-output-base-uri": "media/",
@@ -454,7 +458,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-2"
+              "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -464,9 +468,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-3"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -474,15 +478,15 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 3"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-3"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-3"
         }
 
         doFirst {
           // N.B. These copy commands are a bit redundant because they
           // have to work for all of the input layouts
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "**/*"
             exclude "**/*.xml"
           }
@@ -490,26 +494,26 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-3/"
         ])
         
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-3"
+              "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -520,10 +524,10 @@ class TestGenerator {
       project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
         // but segregated by type
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        inputs.file "${fProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-4"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -531,64 +535,64 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 4"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-4"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-4"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-4/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/body/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
+            into "${fBuildDir}/actual/mo-${mo}-4/body/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/body"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/media/video"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/media/video"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/front/video"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            into "${fBuildDir}/actual/mo-${mo}-4/front/video"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/front"
             include "*.mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/media/audio"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/media/audio"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.mp3"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/media/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/media/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.png"
           }
         }
         
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-4"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-        stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${uProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-4/"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-4"
+              "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -598,9 +602,9 @@ class TestGenerator {
       
       project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
         // Chunked output HTML, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-5"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -608,47 +612,47 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 5"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-5"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/body"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/body"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/front"
             include "*.mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-5"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-5/",
           "mediaobject-output-base-uri": "media/",
           "mediaobject-output-paths": "false"
         ])
@@ -656,7 +660,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-5"
+              "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -671,9 +675,9 @@ class TestGenerator {
     ["3"].each { mo ->
       project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
         // Single output HTML file, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-1"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -681,14 +685,14 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 1"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-1/book"
-          project.mkdir "${buildDir}/actual/mo-${mo}-1/media"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-1/book"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-1/media"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "**/*"
             exclude "**/*.xml"
           }
@@ -696,22 +700,22 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1/book"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-1/book"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-1/book/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-1/book/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-1"
+              "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -721,9 +725,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
         // Single output HTML file, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-2"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -731,35 +735,35 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 2"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-2/book"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-2/book"
         }
 
         doFirst {
           // N.B. These copy commands are a bit redundant because they
           // have to work for all of the input layouts
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/book/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
+            into "${fBuildDir}/actual/mo-${mo}-2/book/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/book/body"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/book/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-2/book/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/book"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-2/book"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-2/book/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-2/book/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-output-base-uri": "media/",
@@ -769,7 +773,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-2"
+              "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -779,9 +783,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-3"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -789,14 +793,14 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 3"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-3/book"
-          project.mkdir "${buildDir}/actual/mo-${mo}-3/media"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-3/book"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-3/media"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}"
             include "**/*"
             exclude "**/*.xml"
           }
@@ -804,26 +808,26 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3/book"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-3/book"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/book/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-3/book/"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-3"
+              "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -834,10 +838,10 @@ class TestGenerator {
       project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
         // but segregated by type
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        inputs.file "${fProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-4"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -845,60 +849,60 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 4"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-4/book"
-          project.mkdir "${buildDir}/actual/mo-${mo}-4/media"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-4/book"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-4/media"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/book/body/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
+            into "${fBuildDir}/actual/mo-${mo}-4/book/body/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/book/body"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/media/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/media/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/media/audio"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/media/audio"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.mp3"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/media/video"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/media/video"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/front/video"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/front"
+            into "${fBuildDir}/actual/mo-${mo}-4/front/video"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/front"
             include "*.mp4"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/book"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-4/book"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/book/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-4/book/"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-4"
+              "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -908,9 +912,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
         // Chunked output HTML, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-5"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -918,18 +922,18 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 5"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-5"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/book/body"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/book/body"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.png"
             include "*.mp4"
             include "*.mp3"
@@ -938,20 +942,20 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-5"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-5/",
           "mediaobject-output-base-uri": "media/",
           "mediaobject-output-paths": "false"
         ])
@@ -959,7 +963,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-5"
+              "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -972,9 +976,9 @@ class TestGenerator {
     ["4"].each { mo ->
       project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
         // Single output HTML file, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-1"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -982,29 +986,29 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 1"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-1"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-1"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "**/*"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-1/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-1/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
@@ -1013,7 +1017,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-1"
+              "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -1023,9 +1027,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
         // Single output HTML file, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-2"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1033,28 +1037,28 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 2"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-2"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-2"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-2/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-2"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-2/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-2/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
@@ -1065,7 +1069,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-2"
+              "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -1075,9 +1079,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-3"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1085,13 +1089,13 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 3"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-3"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-3"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "**/*"
             exclude "**/*.xml"
           }
@@ -1099,27 +1103,27 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-3/"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-3"
+              "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -1130,10 +1134,10 @@ class TestGenerator {
       project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
         // but segregated by type
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        inputs.file "${fProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-4"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1141,55 +1145,55 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 4"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-4"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-4"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/left/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/left"
+            into "${fBuildDir}/actual/mo-${mo}-4/left/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media/left"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/right/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/right"
+            into "${fBuildDir}/actual/mo-${mo}-4/right/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media/right"
             include "*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/video"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/video"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/audio"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-4/audio"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "*.mp3"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-4"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-4
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-4
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-4/"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-4"
+              "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -1199,9 +1203,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
         // Chunked output HTML, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-5"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1209,32 +1213,32 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 5"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-5"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-5"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-5/",
           "mediaobject-input-base-uri": "../media/",
           "mediaobject-output-base-uri": "media/",
           "mediaobject-output-paths": "true"
@@ -1243,7 +1247,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-5"
+              "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -1256,9 +1260,9 @@ class TestGenerator {
     ["5"].each { mo ->
       project.tasks.register("mo_${mo}_test_1", SaxonXsltTask) {
         // Single output HTML file, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-1"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-1"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1266,29 +1270,29 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 1"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-1"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-1"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "**/*"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-1"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-1"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-1/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-1/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
@@ -1298,7 +1302,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-1"
+              "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -1308,9 +1312,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_2", SaxonXsltTask) {
         // Single output HTML file, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-2"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-2"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1318,28 +1322,28 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 2"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-2"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-2"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-2/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-2"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-2"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
-        output "${buildDir}/actual/mo-${mo}-2/index.html"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
+        output "${uBuildDir}/actual/mo-${mo}-2/index.html"
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
@@ -1351,7 +1355,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-2"
+              "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -1361,9 +1365,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_3", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-3"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-3"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1371,13 +1375,13 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 3"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-3"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-3"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
             include "**/*"
             exclude "**/*.xml"
           }
@@ -1385,28 +1389,28 @@ class TestGenerator {
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-3"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-3"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-3/",
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-3/",
           "mediaobject-grouped-by-type": "true"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-3"
+              "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -1417,10 +1421,10 @@ class TestGenerator {
       project.tasks.register("mo_${mo}_test_4", SaxonXsltTask) {
         // Chunked output HTML, media all in the same relative locations
         // but segregated by type
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        inputs.file "${projectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
-        outputs.dir "${buildDir}/actual/mo-${mo}-4"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        inputs.file "${fProjectDir}/src/test/resources/mo_1_test_4.xsl" // even for mo-2
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-4"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1428,54 +1432,54 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 4"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-4"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-4"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/left/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/left"
+            into "${fBuildDir}/actual/mo-${mo}-4/left/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media/left"
             include "**/*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/right/image"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/right"
+            into "${fBuildDir}/actual/mo-${mo}-4/right/image"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media/right"
             include "**/*.png"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/video/mp4"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/mp4"
+            into "${fBuildDir}/actual/mo-${mo}-4/video/mp4"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media/mp4"
           }
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4/audio/mp3"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media/mp3"
+            into "${fBuildDir}/actual/mo-${mo}-4/audio/mp3"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media/mp3"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-4"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-4"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${projectDir}/src/test/resources/mo_5_test_4.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uProjectDir}/src/test/resources/mo_5_test_4.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "mediaobject-input-base-uri": "../media/",
           "mediaobject-grouped-by-type": "true",
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-4/"
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-4/"
         ])
 
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-4"
+              "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -1485,9 +1489,9 @@ class TestGenerator {
 
       project.tasks.register("mo_${mo}_test_5", SaxonXsltTask) {
         // Chunked output HTML, media all in a common directory
-        inputs.dir "${projectDir}/src/test/resources/xml/mo-${mo}"
-        inputs.dir "${buildDir}/xslt"
-        outputs.dir "${buildDir}/actual/mo-${mo}-5"
+        inputs.dir "${fProjectDir}/src/test/resources/xml/mo-${mo}"
+        inputs.dir "${fBuildDir}/xslt"
+        outputs.dir "${fBuildDir}/actual/mo-${mo}-5"
         dependsOn project.tasks.named('makeXslt')
         dependsOn project.tasks.named('copyResources')
 
@@ -1495,32 +1499,32 @@ class TestGenerator {
         description: "Test source mo-${mo}, output version 5"
 
         doFirst {
-          project.mkdir "${buildDir}/actual/mo-${mo}-5"
+          project.mkdir "${fBuildDir}/actual/mo-${mo}-5"
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5/media"
-            from "${projectDir}/src/test/resources/xml/mo-${mo}/media"
+            into "${fBuildDir}/actual/mo-${mo}-5/media"
+            from "${fProjectDir}/src/test/resources/xml/mo-${mo}/media"
           }
         }
 
         doFirst {
           project.copy {
-            into "${buildDir}/actual/mo-${mo}-5"
-            from "${buildDir}/actual"
+            into "${fBuildDir}/actual/mo-${mo}-5"
+            from "${fBuildDir}/actual"
             include "js/**"
             include "css/**"
           }
         }
 
-        input "${projectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
-        stylesheet "${buildDir}/xslt/docbook.xsl"
+        input "${uProjectDir}/src/test/resources/xml/mo-${mo}/book/book.xml"
+        stylesheet "${uBuildDir}/xslt/docbook.xsl"
         // no output
         args(['-init:org.docbook.xsltng.extensions.Register'])
         parameters([
           "chunk": "index.html",
-          "chunk-output-base-uri": "${buildDir}/actual/mo-${mo}-5/",
+          "chunk-output-base-uri": "${uBuildDir}/actual/mo-${mo}-5/",
           "mediaobject-input-base-uri": "../media/",
           "mediaobject-output-base-uri": "media/",
           "mediaobject-output-paths": "true",
@@ -1530,7 +1534,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine "python", "src/bin/linkcheck.py",
-              "${buildDir}/actual/mo-${mo}-5"
+              "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -1543,5 +1547,13 @@ class TestGenerator {
   void createTasks() {
     testCases.createTasks()
     testConfigurations.createTasks()
+  }
+
+  String fixWindowsPath(String path) {
+    String fix = path.replace('\\', '/')
+    if (fix.length() > 2 && fix.charAt(1) == ':') {
+      fix = fix.substring(2)
+    }
+    return fix
   }
 }

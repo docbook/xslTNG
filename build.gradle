@@ -102,8 +102,8 @@ ext {
   extraParams = [:]
   fProjectDir = projectDir.toString()
   uProjectDir = fixWindowsPath(fProjectDir)
-  uBuildDir = buildDir.toString()
-  fBuildDir = fixWindowsPath(uBuildDir)
+  fBuildDir = buildDir.toString()
+  uBuildDir = fixWindowsPath(fBuildDir)
   XSPEC = OperatingSystem.current().isWindows() ? 'xspec.bat' : 'xspec.sh'
 }
 
@@ -192,7 +192,10 @@ class CheckTextFile extends DefaultTask {
       println(line)
     }
     if (!pass) {
-      throw new GradleException("Failing tests!")
+      if ((project.findProperty('requireTestSuccess') ?: "true") != "false") {
+        throw new GradleException("Failing tests!")
+      }
+      println("WARNING: Some tests failed")
     }
   }
 }
@@ -606,7 +609,7 @@ task testSummary(
   type: SaxonXsltTask,
   dependsOn: ['xspecTests', "makeXslt"]
 ) {
-  stylesheet file("${uProjectDir}/tools/test-results.xsl")
+  stylesheet "${uProjectDir}/tools/test-results.xsl"
   output "${uBuildDir}/test-results.txt"
   args(["-it"])
 }

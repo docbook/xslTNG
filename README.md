@@ -17,3 +17,66 @@ Building the project, if you clone the repository, is described in
 with `gradle makeXslt` and the jar file (for the extension functions) with `gradle jar`. You can build
 the whole distribution with `gradle zipStage` which will put all of the build artifacts in
 `build/stage/zip`.
+
+# Build Dependencies
+
+If you want to build the release artifact yourself, several additional
+dependencies are required. Operating systems and package dependencies
+change over time. The instructions here were successfull in May, 2023.
+If you have trouble, please open an issue.
+
+## OS tools
+
+Install `sass` and `epubcheck`
+
+### On Linux
+
+```
+sudo apt-get update
+sudo apt-get install epubcheck libxml2-dev libxslt-dev
+curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
+cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
+```
+
+The `libxml2-dev` and `libxslt-dev` packages support additional
+Python packages described below. 
+
+### On macOS
+
+```
+brew install epubcheck sass/sass/sass libxml2 libxslt 
+```
+
+The `libxml2` and `libxslt` packages support additional
+Python packages described below. 
+
+
+### On Windows
+
+```
+choco install sass epubcheck
+```
+
+## Python packages
+
+You must have `python3` installed and on your path. You must have the
+`pygments` and `click` modules installed:
+
+```
+python3 -m pip install pygments==2.14.0 click
+```
+
+You don’t have to have Pygments version 2.14.0 installed, but if you
+install a different version, you may find that some tests fail.
+
+### Additional Python dependencies
+
+Testing the build requires a few more dependencies. The build will run
+run without them, but you’ll get some failing tests.
+
+```
+python3 -m pip cython saxonche
+python3 -m pip install --no-binary lxml html5-parser
+```
+
+(I have been unable to find a way to install `html5-parser` on Windows.)
