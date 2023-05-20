@@ -912,16 +912,22 @@ task zipDist(type: Zip, dependsOn: ['zipStage']) {
 }
 
 task relnotes(
-  type: Exec,
-  description: "Checks for release notes"
+  description: "Checks for release notes",
 ) {
-  ignoreExitValue true
-  def stream = new ByteArrayOutputStream();
-  commandLine "grep", "revnumber.${xslTNGversion}", "${projectDir}/src/guide/xml/guide.xml"
-  standardOutput = stream
   doLast {
-    String notes = stream.toString('utf-8')
-    if (notes.trim() == "") {
+    BufferedReader guide = new BufferedReader(new FileReader("${projectDir}/src/guide/xml/changelog.xml"))
+    boolean found = false
+    String line = guide.readLine()
+    while (line != null) {
+      if (line.contains("<revnumber>${xslTNGversion}<")) {
+        found = true;
+        break;
+      }
+      line = guide.readLine()
+    }
+    guide.close();
+
+    if (!found) {
       println("************************************************************")
       println("There are no release notes for xslTNG version ${xslTNGversion}")
       println("************************************************************")
