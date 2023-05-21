@@ -3,6 +3,7 @@ package org.docbook.xsltng.gradle
 import org.gradle.api.Project
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.api.tasks.Exec
+import org.gradle.internal.os.OperatingSystem;
 
 class TestConfiguration {
   final Project project
@@ -38,7 +39,11 @@ class TestConfiguration {
 
   public String getXspecDriver() {
     if (_xspecDriver == null) {
-      _xspecDriver = "${project.buildDir}/xspec-xslt/xspec-driver.xsl"
+      _xspecDriver = "${project.buildDir}/xspec-xslt/xspec-driver.xsl".replace("\\", "/")
+      // If there's a Windows drive letter, lose it
+      if (_xspecDriver.length() > 2 && _xspecDriver.charAt(1) == ':') {
+        _xspecDriver = _xspecDriver.substring(2)
+      }
     }
     return _xspecDriver
   }
@@ -142,6 +147,11 @@ class TestConfiguration {
       }
       doLast {
         String expectedPath = "${project.projectDir}/src/test/resources/expected"
+          .replace('\\', '/')
+        if (expectedPath.length() > 2 && expectedPath.charAt(1) == ':') {
+          expectedPath = expectedPath.substring(2)
+        }
+
         PrintStream s = new PrintStream(new FileOutputStream(xfile))
         s.println("<x:description xmlns:x='http://www.jenitennison.com/xslt/xspec'")
         s.println("               stylesheet='../env/${configname}.xsl'>")
@@ -152,8 +162,14 @@ class TestConfiguration {
         for (int pos = 0; pos < testCases.size(); pos++) {
           // Avoid closure because scenarios goes out of scope
           TestCase tcase = testCases.get(pos)
+
+          String tcaseInput = tcase.input.toString().replace('\\', '/')
+          if (tcaseInput.length() > 2 && tcaseInput.charAt(1) == ':') {
+            tcaseInput = tcaseInput.substring(2)
+          }
+
           s.println("<x:scenario label='When transforming ${tcase.name}'>")
-          s.println("  <x:context href='${tcase.input}'/>")
+          s.println("  <x:context href='${tcaseInput}'/>")
           s.println("  <x:expect label='expect ${tcase.name}.expected'")
           s.println("            href='${expectedPath}/${tcase.name}.html'/>")
           s.println("</x:scenario>")
@@ -181,8 +197,13 @@ class TestConfiguration {
       outputs.file project.file("${project.buildDir}/${configname}-result.html")
       outputs.file project.file("${project.buildDir}/${configname}-result.xml")
 
-      commandLine "${project.buildDir}/xspec-${xspecVersion}/bin/xspec.sh",
-        "${xfile}"
+      String XSPEC = OperatingSystem.current().isWindows() ? 'xspec.bat' : 'xspec.sh'
+      String xxfile = xfile.toString().replace('\\', '/')
+      if (xxfile.length() > 2 && xxfile.charAt(1) == ':') {
+        xxfile = xxfile.substring(2)
+      }
+
+      commandLine "${project.buildDir}/xspec-${xspecVersion}/bin/${XSPEC}", xxfile
 
       dependsOn project.tasks.named('makeXslt')
       dependsOn project.tasks.named('setupXSpec')

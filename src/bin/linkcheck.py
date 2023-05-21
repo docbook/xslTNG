@@ -9,10 +9,14 @@ import os
 import sys
 import json
 import glob
-import html5_parser
-import lxml.etree
 import click
-from saxonche import PySaxonProcessor
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False
 
 def linkcheck(root, server_root, debug):
     if debug:
@@ -152,7 +156,10 @@ def linkcheck(root, server_root, debug):
 @click.argument("root", type=click.Path(exists=True))
 def main(debug, server_root, root):
     """ The main entry point."""
-    linkcheck(os.path.abspath(root), server_root, debug)
+    if not importOk:
+        print("Skipping linkcheck, imports unavailable")
+    else:
+        linkcheck(os.path.abspath(root), server_root, debug)
 
 if __name__ == "__main__":
     main()
