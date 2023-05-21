@@ -816,6 +816,7 @@ task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
     }
   }
 
+/*
   doLast {
     copy {
       from "${projectDir}/src/main/web"
@@ -823,13 +824,18 @@ task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
       into "${buildDir}/stage/zip/resources"
     }
   }
+*/
 
   doLast {
     copy {
       from "${projectDir}/src/main/web"
-      include "css/**"
-      include "js/**"
-      exclude "css/*.png"
+      include 'css/**'
+      include 'js/**'
+
+      if (pygmentize != "") {
+        exclude 'css/pygments.css'
+      }
+
       into "${buildDir}/stage/zip/resources"
       filter { String line ->
         if (line.indexOf("@@") >= 0) {
