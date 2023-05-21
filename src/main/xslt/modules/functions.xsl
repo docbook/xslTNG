@@ -750,8 +750,13 @@
       <xsl:sequence select="$path"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="base-parts" select="tokenize($base, '/')[position() lt last()]"/>
-      <xsl:variable name="path-parts" select="tokenize($path, '/')"/>
+      <!-- Strip away variant forms of file: (file:/, file://, file:///, ...) -->
+      <!-- In particular, file:/C:/path vs. file:///C:/path on Windows -->
+      <xsl:variable name="bpath" select="replace($base, '^file:/+', '')"/>
+      <xsl:variable name="ppath" select="replace($path, '^file:/+', '')"/>
+
+      <xsl:variable name="base-parts" select="tokenize($bpath, '/')[position() lt last()]"/>
+      <xsl:variable name="path-parts" select="tokenize($ppath, '/')"/>
 
       <!--
           <xsl:message select="'BP:', $base-parts"/>
