@@ -1586,7 +1586,7 @@ task epubGuide(
     def fileList = []
     def rootdir = "${buildDir}/epub"
     fileTree(rootdir).each { file ->
-      def filename = file.toString().substring(rootdir.length()+1)
+      def filename = file.toString().substring(rootdir.length()+1).replace('\\', '/')
       if (filename.startsWith('OPS/') || filename.startsWith('META-INF/')) {
         fileList.add(filename)
       }
