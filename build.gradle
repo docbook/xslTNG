@@ -816,7 +816,7 @@ task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
     }
   }
 
-/*
+  // Copy png files without filtering them
   doLast {
     copy {
       from "${projectDir}/src/main/web"
@@ -824,13 +824,14 @@ task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
       into "${buildDir}/stage/zip/resources"
     }
   }
-*/
 
+  // Copy and filter text resources
   doLast {
     copy {
       from "${projectDir}/src/main/web"
       include 'css/**'
       include 'js/**'
+      exclude 'css/*.png'
 
       if (pygmentize != "") {
         exclude 'css/pygments.css'
