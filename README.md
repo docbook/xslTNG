@@ -27,13 +27,13 @@ If you have trouble, please open an issue.
 
 ## OS tools
 
-Install `sass` and `epubcheck`
+Install `sass`.
 
 ### On Linux
 
 ```
 sudo apt-get update
-sudo apt-get install epubcheck libxml2-dev libxslt-dev
+sudo apt-get install libxml2-dev libxslt-dev
 curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
 cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
 ```
@@ -44,7 +44,7 @@ Python packages described below.
 ### On macOS
 
 ```
-brew install epubcheck sass/sass/sass libxml2 libxslt 
+brew install sass/sass/sass libxml2 libxslt 
 ```
 
 The `libxml2` and `libxslt` packages support additional
@@ -54,7 +54,7 @@ Python packages described below.
 ### On Windows
 
 ```
-choco install sass epubcheck
+choco install sass
 ```
 
 ## Python packages
@@ -72,7 +72,7 @@ install a different version, you may find that some tests fail.
 ### Additional Python packages
 
 Testing the build requires a few more dependencies. The build will run
-run without them, but you’ll get some failing tests.
+run without them, but you won’t get accurate test results.
 
 ```
 python3 -m pip cython saxonche
@@ -81,10 +81,11 @@ python3 -m pip install --no-binary lxml html5-parser
 
 I have been unable to find a way to install `html5-parser` on Windows.
 
-## Windows builds
+## Ignoring failed builds
 
-Without the additional Python packages, some tests will always fail on
-Windows.
+If you don’t install all of the dependencies, or if you install a
+different version of Pygments, you may get some failing tests that
+you’d like to ignore.
 
 To avoid having the whole build fail because of failing tests, run with
 the `requireTestSuccess` parameter set to false:
