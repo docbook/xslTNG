@@ -44,7 +44,7 @@ relative width plus ½ inch.</para>
 linkend="calstable"/> have no direct mapping to the units available in
 HTML and CSS. The stylesheets attempt to specify a mapping that’s
 close. Broadly, they take the nominal width of the table
-(<parameter>nominal-page-width</parameter>, subtract out the fixed
+(<parameter>nominal-page-width</parameter>), subtract out the fixed
 widths, divide up the remaining widths proportionally among the
 relative widths, and compute final widths. The final widths can be
 expressed either in absolute terms or as percentages.</para>
@@ -345,7 +345,7 @@ locations where they will be published.</para>
 the relative difference between the input and output base URIs to work out
 the correct relative URIs for media. That imposed restrictions on the
 authoring environment that weren’t always easy to work with.
-Starting in verison 2.0.6, the mechanisms for finding sources
+Starting in version 2.0.6, the mechanisms for finding sources
 and producing references in the output has changed. Three parameters
 are used:</para>
 
