@@ -71,21 +71,23 @@ rem ##
 
 :xslt
     java ^
+        -Dfile.encoding=UTF-8 ^
         -Dxspec.coverage.ignore="%TEST_DIR%" ^
         -Dxspec.coverage.xml="%COVERAGE_XML%" ^
         -Dxspec.home="%XSPEC_HOME%" ^
         -Dxspec.xspecfile="%XSPEC%" ^
         -Dorg.docbook.xsltng.extensions.pygmentize="%PYGMENTIZE%" ^
         -Dorg.docbook.xsltng.verbose="%VERBOSE%" ^
-        -cp "%CP%" net.sf.saxon.Transform "%CATALOG%" ^
+        -cp "%CP%" net.sf.saxon.Transform %CATALOG% ^
         -init:org.docbook.xsltng.extensions.Register %*
     goto :EOF
 
 :xquery
     java ^
+        -Dfile.encoding=UTF-8 ^
         -Dorg.docbook.xsltng.extensions.pygmentize="%PYGMENTIZE%" ^
         -Dorg.docbook.xsltng.verbose="%VERBOSE%" ^
-        -cp "%CP%" net.sf.saxon.Query "%CATALOG%" ^
+        -cp "%CP%" net.sf.saxon.Query %CATALOG% ^
         -init:org.docbook.xsltng.extensions.Register %*
     goto :EOF
 
