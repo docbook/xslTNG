@@ -1,4 +1,4 @@
-name: build-docbook
+name: Build DocBook xslTNG
 on: push
 
 jobs:
@@ -33,7 +33,8 @@ jobs:
           echo "tag=$tag" >> $GITHUB_OUTPUT
 
   build-and-deploy:
-    runs-on: ubuntu-latest
+    name: Build xslTNG on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     needs: check_branch
     env:
       HAVE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN != '' }}
@@ -46,58 +47,109 @@ jobs:
       CI_PROJECT_REPONAME: ${{ needs.check_branch.outputs.reponame }}
       CI_BRANCH: ${{ needs.check_branch.outputs.branch }}
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
-    steps:
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
 
-      # lxml needed by html5-parser needs libxml2-dev and libxslt-dev, apparently
-      - name: Setup python dependencies
+    strategy:
+      matrix:
+        os: [macos-11, ubuntu-20.04]
+
+    # Skipping Windows because it won’t pass in CI...[expletive!!!]
+    #    os: [macos-11, ubuntu-20.04, windows-2019]
+
+    steps:
+      - name: Install platform-independent Python modules
         run: |
           python3 -m pip install pygments==2.14.0 click cython
+
+      # Test the build on Mac
+
+      - name: Install dependencies on Mac
+        if: matrix.os == 'macos-11'
+        run: |
+          brew install rsync libxml2 libxslt sass/sass/sass
           python3 -m pip install saxonche
           python3 -m pip install --no-binary lxml html5-parser
 
-      - name: Download and install SASS
+      - name: Checkout the main branch on Mac
+        if: matrix.os == 'macos-11'
+        uses: actions/checkout@v3
+
+      - name: Build on Mac
+        if: matrix.os == 'macos-11'
         run: |
+          ./gradlew --stacktrace -PrequireCompileSuccess=true dist
+
+      # Test the build on Windows
+
+      - name: Install dependencies on Windows
+        if: matrix.os == 'windows-2019'
+        uses: crazy-max/ghaction-chocolatey@v2
+        with:
+          args: install sass
+
+      - name: Checkout the main branch on Windows
+        if: matrix.os == 'windows-2019'
+        uses: actions/checkout@v3
+
+      - name: Build on Windows
+        if: matrix.os == 'windows-2019'
+        env:
+          JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+        run: |
+          ./gradlew --stacktrace -PrequireCompileSuccess=true -PrequireTestSuccess=false dist
+
+      # Test the build on Linux
+
+      - name: Install dependencies on Linux
+        if: matrix.os == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
           curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
           cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
+          python3 -m pip install saxonche
+          python3 -m pip install --no-binary lxml html5-parser
 
-      - name: Checkout the gh-pages branch
+      - name: Checkout the gh-pages branch on Linux
+        if: matrix.os == 'ubuntu-20.04'
         uses: actions/checkout@v3
         with:
           ref: 'gh-pages'
 
       - name: Save EPUB and PDFs
+        if: matrix.os == 'ubuntu-20.04'
         run: tar cf - epub pdf | gzip > /tmp/save-epub-pdf.tar.gz
 
       - name: Save the current version(s) of the guide
+        if: matrix.os == 'ubuntu-20.04'
         run: |
           mkdir /tmp/guide
           rsync -var guide/ /tmp/guide/
           rm -f /tmp/guide/*.html /tmp/guide/validated.xml
           cp guide/index.html /tmp
 
-      - name: Checkout the main branch
+      - name: Checkout the main branch on Linux
+        if: matrix.os == 'ubuntu-20.04'
         uses: actions/checkout@v3
 
-      - name: Setup SaxonEE
-        if: ${{ env.HAVE_SAXON_EE == 'true' }}
+      - name: Setup SaxonEE on Linux
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_SAXON_EE == 'true' }}
         run: gpg --batch --yes --passphrase ${{ secrets.SAXON_PASSPHRASE }} -d tools/saxon.enc | tar zxf -
 
       - name: Build
+        if: matrix.os == 'ubuntu-20.04'
         run: |
-          ./gradlew -PrequireCompileSuccess=true dist
+          ./gradlew --stacktrace -PrequireCompileSuccess=true dist
 
       - name: Cleanup SaxonEE
-        if: ${{ env.HAVE_SAXON_EE == 'true' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_SAXON_EE == 'true' }}
         run: rm -rf lib
 
       - name: Restore EPUB and PDFs
+        if: matrix.os == 'ubuntu-20.04'
         run: cd build/website && tar zxf /tmp/save-epub-pdf.tar.gz
 
       - name: Restore previous version(s) of the guide
+        if: matrix.os == 'ubuntu-20.04'
         run: |
           rsync -var /tmp/guide/ build/website/guide/
           if [ ! -f build/website/guide/index.html ]; then \
@@ -105,7 +157,7 @@ jobs:
           fi
 
       - name: Deploy main to gh-pages
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build/website
@@ -114,7 +166,7 @@ jobs:
           target-folder: /
 
       - name: Deploy tagged release to CDN as ${{ env.CI_TAG }}
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build/release
@@ -124,7 +176,7 @@ jobs:
           target-folder: /release/xsltng/${{ env.CI_TAG }}
 
       - name: Deploy tagged release to CDN as current
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build/release
@@ -135,7 +187,7 @@ jobs:
 
       - name: Publish release
         uses: softprops/action-gh-release@v1
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           draft: false
           prerelease: false
@@ -144,7 +196,7 @@ jobs:
             build/distributions/docbook-xslTNG-${{ env.CI_TAG }}.zip
 
       - name: Publish to Sonatype
-        if: ${{ env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         run: |
           curl -s -o secret.gpg ${{ secrets.GPGKEYURI }}
           ./gradlew -PsonatypeUsername=${{ secrets.SONATYPEUSER }} \
@@ -157,7 +209,7 @@ jobs:
 
       - name: Checkout the CDN
         uses: actions/checkout@v3
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           repository: ${{ github.repository_owner}}/cdn
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -165,12 +217,12 @@ jobs:
           ref: 'master'
 
       - name: Rebuild the CDN indexes
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         run: bin/git-index-html
 
       - name: Deploy the indexes back to the CDN
         uses: JamesIves/github-pages-deploy-action@v4
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           folder: .
           token: ${{ secrets.ACCESS_TOKEN }}
