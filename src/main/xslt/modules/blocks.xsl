@@ -87,29 +87,33 @@
     <xsl:otherwise>
       <xsl:iterate select="node()">
         <xsl:param name="p" as="element(h:p)"><p/></xsl:param>
+        <xsl:message select="'NODE:', ."/>
         <xsl:choose>
-          <xsl:when test="self::db:blockquote|self::db:calloutlist|self::db:caution
-                          |self::db:classsynopsis|self::db:cmdsynopsis
+          <xsl:when test="self::db:address|self::db:bibliolist|self::db:blockquote
+                          |self::db:bridgehead|self::db:calloutlist|self::db:caution
+                          |self::db:classsynopsis|self::db:cmdsynopsis|self::db:constraintdef
                           |self::db:constructorsynopsis|self::db:danger
-                          |self::db:destructorsynopsis|self::db:epigraph
+                          |self::db:destructorsynopsis|self::db:enumsynopsis|self::db:epigraph
                           |self::db:equation|self::db:example|self::db:fieldsynopsis
-                          |self::db:figure|self::db:formalgroup
-                          |self::db:funcsynopsis|self::db:glosslist
-                          |self::db:important|self::db:informalequation
-                          |self::db:informalexample|self::db:informalfigure
-                          |self::db:informaltable|self::db:itemizedlist
-                          |self::db:mediaobject|self::db:methodsynopsis
-                          |self::db:msgset|self::db:note|self::db:ooclass
-                          |self::db:ooexception|self::db:oointerface|self::db:orderedlist
-                          |self::db:procedure|self::db:productionset
-                          |self::db:programlistingco|self::db:qandaset|self::db:revhistory
-                          |self::db:screenco|self::db:screenshot|self::db:segmentedlist
-                          |self::db:sidebar|self::db:table|self::db:tip
+                          |self::db:figure|self::db:formalgroup|self::db:funcsynopsis
+                          |self::db:glosslist|self::db:important|self::db:indexterm
+                          |self::db:informalequation|self::db:informalexample
+                          |self::db:informalfigure|self::db:informaltable|self::db:itemizedlist
+                          |self::db:literallayout|self::db:macrosynopsis|self::db:mediaobject
+                          |self::db:methodsynopsis|self::db:msgset|self::db:note
+                          |self::db:orderedlist|self::db:packagesynopsis|self::db:procedure
+                          |self::db:productionset|self::db:programlisting
+                          |self::db:programlistingco|self::db:qandaset|self::db:remark
+                          |self::db:revhistory|self::db:screen|self::db:screenco
+                          |self::db:screenshot|self::db:segmentedlist|self::db:sidebar
+                          |self::db:simplelist|self::db:synopsis|self::db:table|self::db:task
+                          |self::db:tip|self::db:typedefsynopsis|self::db:unionsynopsis
                           |self::db:variablelist|self::db:warning">
             <xsl:if test="not(empty($p/node()))
                           and not(normalize-space(string($p)) = '')">
               <xsl:sequence select="$p"/>
             </xsl:if>
+            <xsl:message select="."/>
             <xsl:apply-templates select="."/>
             <xsl:next-iteration>
               <xsl:with-param name="p" as="element(h:p)"><p/></xsl:with-param>
