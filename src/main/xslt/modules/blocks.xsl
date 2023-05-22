@@ -87,7 +87,6 @@
     <xsl:otherwise>
       <xsl:iterate select="node()">
         <xsl:param name="p" as="element(h:p)"><p/></xsl:param>
-        <xsl:message select="'NODE:', ."/>
         <xsl:choose>
           <xsl:when test="self::db:address|self::db:bibliolist|self::db:blockquote
                           |self::db:bridgehead|self::db:calloutlist|self::db:caution
@@ -113,7 +112,6 @@
                           and not(normalize-space(string($p)) = '')">
               <xsl:sequence select="$p"/>
             </xsl:if>
-            <xsl:message select="."/>
             <xsl:apply-templates select="."/>
             <xsl:next-iteration>
               <xsl:with-param name="p" as="element(h:p)"><p/></xsl:with-param>
