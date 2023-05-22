@@ -389,7 +389,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
@@ -457,7 +457,7 @@ class TestGenerator {
         
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
@@ -512,7 +512,7 @@ class TestGenerator {
         
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
@@ -591,7 +591,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
@@ -659,7 +659,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
@@ -714,7 +714,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
@@ -772,7 +772,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
@@ -826,7 +826,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
@@ -901,7 +901,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
@@ -962,7 +962,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
@@ -1016,7 +1016,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
@@ -1068,7 +1068,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
@@ -1122,7 +1122,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
@@ -1192,7 +1192,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
@@ -1246,7 +1246,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-5"
           }
         }
@@ -1301,7 +1301,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-1"
           }
         }
@@ -1354,7 +1354,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-2"
           }
         }
@@ -1409,7 +1409,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-3"
           }
         }
@@ -1478,7 +1478,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-4"
           }
         }
@@ -1533,7 +1533,7 @@ class TestGenerator {
 
         doLast {
           project.exec {
-            commandLine "python", "src/bin/linkcheck.py",
+            commandLine 'python3', 'src/bin/linkcheck.py',
               "${uBuildDir}/actual/mo-${mo}-5"
           }
         }

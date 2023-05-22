@@ -91,7 +91,7 @@ def linkcheck(root, server_root, debug):
     </xsl:choose>
   </xsl:variable>
 
-  <!--<xsl:message select="$href, '→', $res"/>-->
+  <!--<xsl:message select="$href, '=', $res"/>-->
   <xsl:sequence select="$res"/>
 </xsl:function>
 
