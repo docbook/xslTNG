@@ -131,11 +131,22 @@
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="h:sup[contains-token(@class, 'footnote-number')]"
+<xsl:template match="h:sup[contains-token(@class, 'footnote-number')
+                           and not(contains-token(@class, 'table-footnote'))]"
               mode="m:chunk-cleanup"/>
 
-<xsl:template match="h:div[contains-token(@class, 'footnote-number')]"
+<xsl:template match="h:div[contains-token(@class, 'footnote-number')
+                           and not(ancestor::h:div[contains-token(@class, 'table-footnotes')])]"
               mode="m:chunk-cleanup"/>
+
+<xsl:template match="h:div[contains-token(@class, 'footnote-number')
+                           and ancestor::h:div[contains-token(@class, 'table-footnotes')]]"
+              mode="m:chunk-cleanup">
+  <span>
+    <xsl:apply-templates mode="m:chunk-cleanup"/>
+    <xsl:text> </xsl:text>
+  </span>
+</xsl:template>
 
 <xsl:template match="h:div[contains-token(@class, 'footnote-body')]"
               mode="m:chunk-cleanup">
