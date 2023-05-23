@@ -2,6 +2,87 @@
             xmlns:xlink="http://www.w3.org/1999/xlink">
 <?db revhistory-style="list"?>
 
+<revision xml:id="r213">
+<revnumber>2.1.3</revnumber>
+<date>2023-05-23</date>
+<revdescription>
+<itemizedlist>
+<listitem>
+<para>Fixed a bug in the handling of the <parameter>unwrap-paragraphs</parameter> parameter.
+The list of “block” elements understood to be “unwrapped” was incomplete.
+</para>
+</listitem>
+<listitem>
+<para>Fixed the way <tag>title</tag> and <tag>citetitle</tag> are formatted in bibliographies.
+</para>
+</listitem>
+<listitem>
+<para>Added support for the <tag class="attribute">translate</tag>
+attribute in HTMLvia the
+<parameter>translate-suppress-elements</parameter> parameter and the
+<function>f:translate-attribute</function> function. Note that these
+attributes are in the HTML <emphasis>output</emphasis>, so they won’t
+directly help with translations of the source XML. Apparently, some
+production toolchains involve translating the published HTML.</para>
+</listitem>
+<listitem>
+<para>Attempt to address problems caused by Oxygen change markup in
+CALS tables. Deleted cells are now identified in the output (to keep
+the dimensions of the table valid) rather than removing them.
+</para>
+</listitem>
+<listitem>
+<para>Fixed the rendering of table footnotes in PDF.</para>
+</listitem>
+<listitem>
+<para>Added support for PDF bookmarks for H1 and H2 headings.</para>
+</listitem>
+<listitem>
+<para>Removed the <property>page-break-inside: avoid</property> property from program listings.
+The property was causing some program listings to be rendered beyond the bottom of the page
+in PDF.</para>
+</listitem>
+<listitem>
+<para>CSS has been adjusted in an attempt to avoid extra space below a <tag>calloutlist</tag>.</para>
+</listitem>
+<listitem>
+<para>Added <property>z-index</property> to avoid problems in fixed navigation headers.</para>
+</listitem>
+<listitem>
+<para>Extended the documentation about Docker and Docker alternatives;
+improved the Dockerfile, especially with respect to Linux.</para>
+</listitem>
+<listitem>
+<para>There are now two files in the GitHub distribution, the “normal”
+one and one labeled “nosaxon”. The “nosaxon” ZIP file is the same
+release, but without a copy of Saxon-HE. This release should be easier to integrate into environments,
+like <link xlink:href="https://www.oxygenxml.com/">&lt;oXygen/&gt;</link>, where a version of
+Saxon is already provided. (Having two <emphasis>different</emphasis> versions of Saxon can
+cause problems.)</para>
+</listitem>
+<listitem>
+<para>A fallback version of the “Pygments” CSS file is included in repository. This allows
+the correct formatting to be achieved even if
+<link xlink:href="https://pygments.org/">Pygments</link> (and especially 
+<command>pygmentize</command>) isn’t available locally.</para>
+</listitem>
+<listitem>
+<para>Lots (and lots) of build changes to support building the release on Windows.
+It’s now at the “works on my machine” stage, but not yet working generally. Specific
+suggestions welcome.
+</para>
+</listitem>
+<listitem>
+<para>A few other build improvements. A wholly unsuccessful attempt to
+use the matrix build in CI.</para>
+</listitem>
+<listitem>
+<para>A variety of typos have been fixed in the guide.</para>
+</listitem>
+</itemizedlist>
+</revdescription>
+</revision>
+
 <revision xml:id="r212">
 <revnumber>2.1.2</revnumber>
 <date>2023-04-10</date>
