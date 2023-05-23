@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/fit.xsl"
-         date="2023-05-23T08:57:47.148901Z">
+         date="2023-05-23T10:47:15.925074Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
       <label>When transforming fit.001</label>
@@ -52,7 +52,7 @@
                            </p>
                            <div class="abstract">
                               <p>This book highlights five interesting things about the
-    <i class="citetitle">DocBook xslTNG Stylesheets</i>.</p>
+    <cite class="citetitle">DocBook xslTNG Stylesheets</cite>.</p>
                            </div>
                            <div class="revhistory">
                               <header>
@@ -192,8 +192,8 @@
                               <h2>Chapter <span class="label">1</span>
                                  <span class="sep">. </span>Clean Look and Feel</h2>
                            </header>
-                           <p>The output from the <i class="citetitle">DocBook xslTNG
-Stylesheets</i> is designed to be clean, semantic
+                           <p>The output from the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> is designed to be clean, semantic
 <a href="#HTML" class="xref xref-bibliomixed">
                                  <span class="label">
                                     <span class="abbrev">HTML</span>
@@ -1602,7 +1602,7 @@ the following link:
                               </pre>
                            </div>
                            <p>With JavaScript enabled, this link to
-<i class="citetitle">
+<cite class="citetitle">
                                  <span class="xlink">
                                     <span class="source">DocBook</span>
                                     <span class="xlink-arc-list" db-arcs="xlink_para2_phrase1_citetitle1-arcs"/>
@@ -1619,7 +1619,7 @@ the following link:
                                        <span class="xlink-arc-delim after">] </span>
                                     </span>
                                  </span>
-                              </i> has a popup menu to select the link target. Rendered without JavaScript,
+                              </cite> has a popup menu to select the link target. Rendered without JavaScript,
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
@@ -1629,7 +1629,7 @@ parenthesis.</p>
                               <h2>Appendix <span class="label">A</span>
                                  <span class="sep">. </span>Paged media support</h2>
                            </header>
-                           <p>The <i class="citetitle">DocBook xslTNG Stylesheets</i> anticipate
+                           <p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> anticipate
 that “print” output, that is, paged media, will be provided with a CSS
 formatter such as <a href="#AntennaHouse" class="xref xref-bibliomixed">
                                  <span class="label">
@@ -1654,59 +1654,59 @@ but not yet standardized, additional customization may be necessary.</p>
                            <header>
                               <h2>References</h2>
                            </header>
-                           <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <i class="citetitle">
+                           <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <cite class="citetitle">
                                  <a href="https://www.antennahouse.com/">AH Formatter</a>
-                              </i>. Version 7.0.3.
+                              </cite>. Version 7.0.3.
 </p>
-                           <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <i class="citetitle">
+                           <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <cite class="citetitle">
                                  <a href="https://caniuse.com/">Can I use… Support tables for
 HTML5, CSS3, etc</a>
-                              </i>. 20 June 2020.</p>
-                           <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <i class="citetitle">
+                              </cite>. 20 June 2020.</p>
+                           <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <cite class="citetitle">
                                  <a href="https://click.palletsprojects.com/en/7.x/">Click</a>
-                              </i>.
+                              </cite>.
 Version 7.2.</p>
-                           <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <i class="citetitle">
+                           <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/Style/CSS/specs.en.html">CSS Specifications</a>
-                              </i>.
+                              </cite>.
 World Wide Web Consortium. 2020.</p>
-                           <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <i class="citetitle">
+                           <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <cite class="citetitle">
                                  <a href="https://html.spec.whatwg.org/">HTML: Living Standard</a>
-                              </i>.
+                              </cite>.
 18 June 2020.</p>
-                           <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <i class="citetitle">
+                           <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <cite class="citetitle">
                                  <a href="https://www.mathjax.org/">MathJax</a>
-                              </i>.
+                              </cite>.
 </p>
-                           <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <i class="citetitle">
+                           <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/TR/MathML3/">Mathematical Markup
 Language (MathML) Version 3.0</a>
-                              </i>. World Wide Web
+                              </cite>. World Wide Web
 Consortium. 2014.
 </p>
-                           <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <i class="citetitle">
+                           <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <cite class="citetitle">
                                  <a href="https://drewnoakes.com/code/exif/">metadata-extractor</a>
-                              </i>.
+                              </cite>.
 Version 2.14.0.</p>
-                           <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <i class="citetitle">
+                           <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <cite class="citetitle">
                                  <a href="https://www.princexml.com/">Prince</a>
-                              </i>.
+                              </cite>.
 Version 13.5.</p>
-                           <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <i class="citetitle">
+                           <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <cite class="citetitle">
                                  <a href="https://tools.ietf.org/html/rfc5147">URI Fragment Identifiers
 for the text/plain Media Type</a>
-                              </i>. E. Wilde and M. Duerst,
+                              </cite>. E. Wilde and M. Duerst,
 editors. Internet Engineering Task Force. 2008.
 </p>
-                           <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <i class="citetitle">
+                           <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/TR/xinclude/">XML Inclusions (XInclude)
 Version 1.0 (Second Edition)</a>
-                              </i>. World Wide Web
+                              </cite>. World Wide Web
 Consortium. 2006.
 </p>
-                           <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <i class="citetitle">
+                           <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/TR/xlink/">XML Linking Language (XLink) Version 1.1</a>
-                              </i>
+                              </cite>
 World Wide Web Consortium. 2010.
 </p>
                         </div>
@@ -1716,7 +1716,7 @@ World Wide Web Consortium. 2010.
                            </header>
                            <p>This book was authored in DocBook 5.1
 with Emacs. It was formatted for presentation with the
-<i class="citetitle">DocBook xslTNG Stylesheets</i>.
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite>.
 </p>
                         </section>
                      </article>
@@ -2108,7 +2108,7 @@ identify the link target and any other element identifies the source.</p>
                               </p>
                               <div class="abstract">
                                  <p>This book highlights five interesting things about the
-    <i class="citetitle">DocBook xslTNG Stylesheets</i>.</p>
+    <cite class="citetitle">DocBook xslTNG Stylesheets</cite>.</p>
                               </div>
                               <div class="revhistory">
                                  <header>
@@ -2248,8 +2248,8 @@ identify the link target and any other element identifies the source.</p>
                                  <h2>Chapter <span class="label">1</span>
                                     <span class="sep">. </span>Clean Look and Feel</h2>
                               </header>
-                              <p>The output from the <i class="citetitle">DocBook xslTNG
-Stylesheets</i> is designed to be clean, semantic
+                              <p>The output from the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> is designed to be clean, semantic
 <a href="#HTML" class="xref xref-bibliomixed">
                                     <span class="label">
                                        <span class="abbrev">HTML</span>
@@ -3658,7 +3658,7 @@ the following link:
                                  </pre>
                               </div>
                               <p>With JavaScript enabled, this link to
-<i class="citetitle">
+<cite class="citetitle">
                                     <span class="xlink">
                                        <span class="source">DocBook</span>
                                        <span class="xlink-arc-list" db-arcs="xlink_para2_phrase1_citetitle1-arcs"/>
@@ -3675,7 +3675,7 @@ the following link:
                                           <span class="xlink-arc-delim after">] </span>
                                        </span>
                                     </span>
-                                 </i> has a popup menu to select the link target. Rendered without JavaScript,
+                                 </cite> has a popup menu to select the link target. Rendered without JavaScript,
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
@@ -3685,7 +3685,7 @@ parenthesis.</p>
                                  <h2>Appendix <span class="label">A</span>
                                     <span class="sep">. </span>Paged media support</h2>
                               </header>
-                              <p>The <i class="citetitle">DocBook xslTNG Stylesheets</i> anticipate
+                              <p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> anticipate
 that “print” output, that is, paged media, will be provided with a CSS
 formatter such as <a href="#AntennaHouse" class="xref xref-bibliomixed">
                                     <span class="label">
@@ -3710,59 +3710,59 @@ but not yet standardized, additional customization may be necessary.</p>
                               <header>
                                  <h2>References</h2>
                               </header>
-                              <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <i class="citetitle">
+                              <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <cite class="citetitle">
                                     <a href="https://www.antennahouse.com/">AH Formatter</a>
-                                 </i>. Version 7.0.3.
+                                 </cite>. Version 7.0.3.
 </p>
-                              <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <i class="citetitle">
+                              <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <cite class="citetitle">
                                     <a href="https://caniuse.com/">Can I use… Support tables for
 HTML5, CSS3, etc</a>
-                                 </i>. 20 June 2020.</p>
-                              <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <i class="citetitle">
+                                 </cite>. 20 June 2020.</p>
+                              <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <cite class="citetitle">
                                     <a href="https://click.palletsprojects.com/en/7.x/">Click</a>
-                                 </i>.
+                                 </cite>.
 Version 7.2.</p>
-                              <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <i class="citetitle">
+                              <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/Style/CSS/specs.en.html">CSS Specifications</a>
-                                 </i>.
+                                 </cite>.
 World Wide Web Consortium. 2020.</p>
-                              <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <i class="citetitle">
+                              <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <cite class="citetitle">
                                     <a href="https://html.spec.whatwg.org/">HTML: Living Standard</a>
-                                 </i>.
+                                 </cite>.
 18 June 2020.</p>
-                              <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <i class="citetitle">
+                              <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <cite class="citetitle">
                                     <a href="https://www.mathjax.org/">MathJax</a>
-                                 </i>.
+                                 </cite>.
 </p>
-                              <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <i class="citetitle">
+                              <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/TR/MathML3/">Mathematical Markup
 Language (MathML) Version 3.0</a>
-                                 </i>. World Wide Web
+                                 </cite>. World Wide Web
 Consortium. 2014.
 </p>
-                              <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <i class="citetitle">
+                              <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <cite class="citetitle">
                                     <a href="https://drewnoakes.com/code/exif/">metadata-extractor</a>
-                                 </i>.
+                                 </cite>.
 Version 2.14.0.</p>
-                              <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <i class="citetitle">
+                              <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <cite class="citetitle">
                                     <a href="https://www.princexml.com/">Prince</a>
-                                 </i>.
+                                 </cite>.
 Version 13.5.</p>
-                              <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <i class="citetitle">
+                              <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <cite class="citetitle">
                                     <a href="https://tools.ietf.org/html/rfc5147">URI Fragment Identifiers
 for the text/plain Media Type</a>
-                                 </i>. E. Wilde and M. Duerst,
+                                 </cite>. E. Wilde and M. Duerst,
 editors. Internet Engineering Task Force. 2008.
 </p>
-                              <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <i class="citetitle">
+                              <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/TR/xinclude/">XML Inclusions (XInclude)
 Version 1.0 (Second Edition)</a>
-                                 </i>. World Wide Web
+                                 </cite>. World Wide Web
 Consortium. 2006.
 </p>
-                              <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <i class="citetitle">
+                              <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/TR/xlink/">XML Linking Language (XLink) Version 1.1</a>
-                                 </i>
+                                 </cite>
 World Wide Web Consortium. 2010.
 </p>
                            </div>
@@ -3772,7 +3772,7 @@ World Wide Web Consortium. 2010.
                               </header>
                               <p>This book was authored in DocBook 5.1
 with Emacs. It was formatted for presentation with the
-<i class="citetitle">DocBook xslTNG Stylesheets</i>.
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite>.
 </p>
                            </section>
                         </article>
@@ -4171,7 +4171,7 @@ identify the link target and any other element identifies the source.</p>
                            </p>
                            <div class="abstract">
                               <p>This book highlights five interesting things about the
-    <i class="citetitle">DocBook xslTNG Stylesheets</i>.</p>
+    <cite class="citetitle">DocBook xslTNG Stylesheets</cite>.</p>
                            </div>
                            <div class="revhistory">
                               <header>
@@ -4325,8 +4325,8 @@ identify the link target and any other element identifies the source.</p>
                               <h2>Chapter <span class="label">1</span>
                                  <span class="sep">. </span>Clean Look and Feel</h2>
                            </header>
-                           <p>The output from the <i class="citetitle">DocBook xslTNG
-Stylesheets</i> is designed to be clean, semantic
+                           <p>The output from the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> is designed to be clean, semantic
 <a href="#HTML" class="xref xref-bibliomixed">
                                  <span class="label">
                                     <span class="abbrev">HTML</span>
@@ -5735,7 +5735,7 @@ the following link:
                               </pre>
                            </div>
                            <p>With JavaScript enabled, this link to
-<i class="citetitle">
+<cite class="citetitle">
                                  <span class="xlink">
                                     <span class="source">DocBook</span>
                                     <span class="xlink-arc-list" db-arcs="xlink_para2_phrase1_citetitle1-arcs"/>
@@ -5752,7 +5752,7 @@ the following link:
                                        <span class="xlink-arc-delim after">] </span>
                                     </span>
                                  </span>
-                              </i> has a popup menu to select the link target. Rendered without JavaScript,
+                              </cite> has a popup menu to select the link target. Rendered without JavaScript,
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
@@ -5762,7 +5762,7 @@ parenthesis.</p>
                               <h2>Appendix <span class="label">A</span>
                                  <span class="sep">. </span>Paged media support</h2>
                            </header>
-                           <p>The <i class="citetitle">DocBook xslTNG Stylesheets</i> anticipate
+                           <p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> anticipate
 that “print” output, that is, paged media, will be provided with a CSS
 formatter such as <a href="#AntennaHouse" class="xref xref-bibliomixed">
                                  <span class="label">
@@ -5787,59 +5787,59 @@ but not yet standardized, additional customization may be necessary.</p>
                            <header>
                               <h2>References</h2>
                            </header>
-                           <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <i class="citetitle">
+                           <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <cite class="citetitle">
                                  <a href="https://www.antennahouse.com/">AH Formatter</a>
-                              </i>. Version 7.0.3.
+                              </cite>. Version 7.0.3.
 </p>
-                           <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <i class="citetitle">
+                           <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <cite class="citetitle">
                                  <a href="https://caniuse.com/">Can I use… Support tables for
 HTML5, CSS3, etc</a>
-                              </i>. 20 June 2020.</p>
-                           <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <i class="citetitle">
+                              </cite>. 20 June 2020.</p>
+                           <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <cite class="citetitle">
                                  <a href="https://click.palletsprojects.com/en/7.x/">Click</a>
-                              </i>.
+                              </cite>.
 Version 7.2.</p>
-                           <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <i class="citetitle">
+                           <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/Style/CSS/specs.en.html">CSS Specifications</a>
-                              </i>.
+                              </cite>.
 World Wide Web Consortium. 2020.</p>
-                           <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <i class="citetitle">
+                           <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <cite class="citetitle">
                                  <a href="https://html.spec.whatwg.org/">HTML: Living Standard</a>
-                              </i>.
+                              </cite>.
 18 June 2020.</p>
-                           <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <i class="citetitle">
+                           <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <cite class="citetitle">
                                  <a href="https://www.mathjax.org/">MathJax</a>
-                              </i>.
+                              </cite>.
 </p>
-                           <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <i class="citetitle">
+                           <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/TR/MathML3/">Mathematical Markup
 Language (MathML) Version 3.0</a>
-                              </i>. World Wide Web
+                              </cite>. World Wide Web
 Consortium. 2014.
 </p>
-                           <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <i class="citetitle">
+                           <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <cite class="citetitle">
                                  <a href="https://drewnoakes.com/code/exif/">metadata-extractor</a>
-                              </i>.
+                              </cite>.
 Version 2.14.0.</p>
-                           <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <i class="citetitle">
+                           <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <cite class="citetitle">
                                  <a href="https://www.princexml.com/">Prince</a>
-                              </i>.
+                              </cite>.
 Version 13.5.</p>
-                           <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <i class="citetitle">
+                           <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <cite class="citetitle">
                                  <a href="https://tools.ietf.org/html/rfc5147">URI Fragment Identifiers
 for the text/plain Media Type</a>
-                              </i>. E. Wilde and M. Duerst,
+                              </cite>. E. Wilde and M. Duerst,
 editors. Internet Engineering Task Force. 2008.
 </p>
-                           <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <i class="citetitle">
+                           <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/TR/xinclude/">XML Inclusions (XInclude)
 Version 1.0 (Second Edition)</a>
-                              </i>. World Wide Web
+                              </cite>. World Wide Web
 Consortium. 2006.
 </p>
-                           <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <i class="citetitle">
+                           <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <cite class="citetitle">
                                  <a href="https://www.w3.org/TR/xlink/">XML Linking Language (XLink) Version 1.1</a>
-                              </i>
+                              </cite>
 World Wide Web Consortium. 2010.
 </p>
                         </div>
@@ -5849,7 +5849,7 @@ World Wide Web Consortium. 2010.
                            </header>
                            <p>This book was authored in DocBook 5.1
 with Emacs. It was formatted for presentation with the
-<i class="citetitle">DocBook xslTNG Stylesheets</i>.
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite>.
 </p>
                         </section>
                      </article>
@@ -6241,7 +6241,7 @@ identify the link target and any other element identifies the source.</p>
                               </p>
                               <div class="abstract">
                                  <p>This book highlights five interesting things about the
-    <i class="citetitle">DocBook xslTNG Stylesheets</i>.</p>
+    <cite class="citetitle">DocBook xslTNG Stylesheets</cite>.</p>
                               </div>
                               <div class="revhistory">
                                  <header>
@@ -6395,8 +6395,8 @@ identify the link target and any other element identifies the source.</p>
                                  <h2>Chapter <span class="label">1</span>
                                     <span class="sep">. </span>Clean Look and Feel</h2>
                               </header>
-                              <p>The output from the <i class="citetitle">DocBook xslTNG
-Stylesheets</i> is designed to be clean, semantic
+                              <p>The output from the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> is designed to be clean, semantic
 <a href="#HTML" class="xref xref-bibliomixed">
                                     <span class="label">
                                        <span class="abbrev">HTML</span>
@@ -7805,7 +7805,7 @@ the following link:
                                  </pre>
                               </div>
                               <p>With JavaScript enabled, this link to
-<i class="citetitle">
+<cite class="citetitle">
                                     <span class="xlink">
                                        <span class="source">DocBook</span>
                                        <span class="xlink-arc-list" db-arcs="xlink_para2_phrase1_citetitle1-arcs"/>
@@ -7822,7 +7822,7 @@ the following link:
                                           <span class="xlink-arc-delim after">] </span>
                                        </span>
                                     </span>
-                                 </i> has a popup menu to select the link target. Rendered without JavaScript,
+                                 </cite> has a popup menu to select the link target. Rendered without JavaScript,
 the link choices are presented as alternatives after the link.
 In print media, the link URIs are also shown in
 parenthesis.</p>
@@ -7832,7 +7832,7 @@ parenthesis.</p>
                                  <h2>Appendix <span class="label">A</span>
                                     <span class="sep">. </span>Paged media support</h2>
                               </header>
-                              <p>The <i class="citetitle">DocBook xslTNG Stylesheets</i> anticipate
+                              <p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> anticipate
 that “print” output, that is, paged media, will be provided with a CSS
 formatter such as <a href="#AntennaHouse" class="xref xref-bibliomixed">
                                     <span class="label">
@@ -7857,59 +7857,59 @@ but not yet standardized, additional customization may be necessary.</p>
                               <header>
                                  <h2>References</h2>
                               </header>
-                              <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <i class="citetitle">
+                              <p id="AntennaHouse" class="bibliomixed">[<span class="abbrev">AntennaHouse</span>] <cite class="citetitle">
                                     <a href="https://www.antennahouse.com/">AH Formatter</a>
-                                 </i>. Version 7.0.3.
+                                 </cite>. Version 7.0.3.
 </p>
-                              <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <i class="citetitle">
+                              <p id="caniuse" class="bibliomixed">[<span class="abbrev">CanIUse</span>] <cite class="citetitle">
                                     <a href="https://caniuse.com/">Can I use… Support tables for
 HTML5, CSS3, etc</a>
-                                 </i>. 20 June 2020.</p>
-                              <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <i class="citetitle">
+                                 </cite>. 20 June 2020.</p>
+                              <p id="Click" class="bibliomixed">[<span class="abbrev">Click</span>] <cite class="citetitle">
                                     <a href="https://click.palletsprojects.com/en/7.x/">Click</a>
-                                 </i>.
+                                 </cite>.
 Version 7.2.</p>
-                              <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <i class="citetitle">
+                              <p id="CSS" class="bibliomixed">[<span class="abbrev">CSS</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/Style/CSS/specs.en.html">CSS Specifications</a>
-                                 </i>.
+                                 </cite>.
 World Wide Web Consortium. 2020.</p>
-                              <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <i class="citetitle">
+                              <p id="HTML" class="bibliomixed">[<span class="abbrev">HTML</span>] <cite class="citetitle">
                                     <a href="https://html.spec.whatwg.org/">HTML: Living Standard</a>
-                                 </i>.
+                                 </cite>.
 18 June 2020.</p>
-                              <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <i class="citetitle">
+                              <p id="MathJax" class="bibliomixed">[<span class="abbrev">MathJax</span>] <cite class="citetitle">
                                     <a href="https://www.mathjax.org/">MathJax</a>
-                                 </i>.
+                                 </cite>.
 </p>
-                              <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <i class="citetitle">
+                              <p id="MathML" class="bibliomixed">[<span class="abbrev">MathML</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/TR/MathML3/">Mathematical Markup
 Language (MathML) Version 3.0</a>
-                                 </i>. World Wide Web
+                                 </cite>. World Wide Web
 Consortium. 2014.
 </p>
-                              <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <i class="citetitle">
+                              <p id="metadata-extractor" class="bibliomixed">[<span class="abbrev">metadata-extractor</span>] <cite class="citetitle">
                                     <a href="https://drewnoakes.com/code/exif/">metadata-extractor</a>
-                                 </i>.
+                                 </cite>.
 Version 2.14.0.</p>
-                              <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <i class="citetitle">
+                              <p id="Prince" class="bibliomixed">[<span class="abbrev">Prince</span>] <cite class="citetitle">
                                     <a href="https://www.princexml.com/">Prince</a>
-                                 </i>.
+                                 </cite>.
 Version 13.5.</p>
-                              <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <i class="citetitle">
+                              <p id="RFC5147" class="bibliomixed">[<span class="abbrev">RFC 5147</span>] <cite class="citetitle">
                                     <a href="https://tools.ietf.org/html/rfc5147">URI Fragment Identifiers
 for the text/plain Media Type</a>
-                                 </i>. E. Wilde and M. Duerst,
+                                 </cite>. E. Wilde and M. Duerst,
 editors. Internet Engineering Task Force. 2008.
 </p>
-                              <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <i class="citetitle">
+                              <p id="XInclude" class="bibliomixed">[<span class="abbrev">XInclude</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/TR/xinclude/">XML Inclusions (XInclude)
 Version 1.0 (Second Edition)</a>
-                                 </i>. World Wide Web
+                                 </cite>. World Wide Web
 Consortium. 2006.
 </p>
-                              <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <i class="citetitle">
+                              <p id="XLink" class="bibliomixed">[<span class="abbrev">XLink</span>] <cite class="citetitle">
                                     <a href="https://www.w3.org/TR/xlink/">XML Linking Language (XLink) Version 1.1</a>
-                                 </i>
+                                 </cite>
 World Wide Web Consortium. 2010.
 </p>
                            </div>
@@ -7919,7 +7919,7 @@ World Wide Web Consortium. 2010.
                               </header>
                               <p>This book was authored in DocBook 5.1
 with Emacs. It was formatted for presentation with the
-<i class="citetitle">DocBook xslTNG Stylesheets</i>.
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite>.
 </p>
                            </section>
                         </article>

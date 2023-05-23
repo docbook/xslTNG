@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+  <title>Unit Test: bibliomixed.002</title>
+</info>
+
+<para>Test case for
+<link xlink:href="https://github.com/docbook/xslTNG/issues/327">issue 327</link>.</para>
+
+<bibliolist>
+  <title>Bibliography List</title>
+
+  <bibliomixed><biblioid>A</biblioid>, <title>This is a title</title>. More stuff here.</bibliomixed>
+  <bibliomixed><biblioid>B</biblioid>, <citetitle>This is a citetitle</citetitle>. More stuff here.</bibliomixed>
+  <bibliomixed><biblioid>C</biblioid>, <title>This is a title</title>.
+  <subtitle>This is a subtitle</subtitle>.</bibliomixed>
+
+</bibliolist>
+
+</article>

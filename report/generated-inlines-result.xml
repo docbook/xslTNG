@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-inlines.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-         date="2023-05-23T09:01:22.187654Z">
+         date="2023-05-23T10:51:32.649603Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-inlines.xspec">
       <label>When converting an abbrev element</label>
@@ -1018,18 +1018,18 @@
             <body xmlns="http://www.w3.org/1999/xhtml" class="home">
                <nav class="top"/>
                <main>
-                  <i class="citetitle">This is a citetitle element.</i>
+                  <cite class="citetitle">This is a citetitle element.</cite>
                </main>
                <nav class="bottom"/>
             </body>
          </content-wrap>
       </result>
       <test id="scenario17-expect1" successful="true">
-         <label>it should return a single i element</label>
+         <label>it should return a single cite element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
                        xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:body/h:main/*) = 1 and local-name(/h:body/h:main/*[1]) = 'i' and namespace-uri(/h:body/h:main/*[1]) = 'http://www.w3.org/1999/xhtml'"/>
+                       test="count(/h:body/h:main/*) = 1 and local-name(/h:body/h:main/*[1]) = 'cite' and namespace-uri(/h:body/h:main/*[1]) = 'http://www.w3.org/1999/xhtml'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -1076,18 +1076,18 @@
             <body xmlns="http://www.w3.org/1999/xhtml" class="home">
                <nav class="top"/>
                <main>
-                  <i id="d11e0" class="a b c citetitle">This is a citetitle element.</i>
+                  <cite id="d11e0" class="a b c citetitle">This is a citetitle element.</cite>
                </main>
                <nav class="bottom"/>
             </body>
          </content-wrap>
       </result>
       <test id="scenario18-expect1" successful="true">
-         <label>it should return a single i element</label>
+         <label>it should return a single cite element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
                        xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:body/h:main/*) = 1 and local-name(/h:body/h:main/*[1]) = 'i' and namespace-uri(/h:body/h:main/*[1]) = 'http://www.w3.org/1999/xhtml'"/>
+                       test="count(/h:body/h:main/*) = 1 and local-name(/h:body/h:main/*[1]) = 'cite' and namespace-uri(/h:body/h:main/*[1]) = 'http://www.w3.org/1999/xhtml'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
