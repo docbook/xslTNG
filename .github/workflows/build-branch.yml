@@ -142,6 +142,7 @@ jobs:
           fail_on_unmatched_files: true
           files: |
             build/distributions/docbook-xslTNG-${{ env.CI_TAG }}.zip
+            build/distributions/docbook-xslTNG-nosaxon-${{ env.CI_TAG }}.zip
 
       - name: Publish to Sonatype
         if: ${{ env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
