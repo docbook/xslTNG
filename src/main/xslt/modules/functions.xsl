@@ -19,6 +19,16 @@
 <xsl:key name="id" match="*" use="@xml:id"/>
 <xsl:key name="genid" match="*" use="generate-id(.)"/>
 
+<xsl:variable name="vp:translate-suppress-elements"
+              select="tokenize($translate-suppress-elements, '\s+')"/>
+
+<xsl:function name="f:translate-attribute" as="xs:boolean?">
+  <xsl:param name="node" as="element()"/>
+  <xsl:if test="local-name($node) = $vp:translate-suppress-elements">
+    <xsl:sequence select="false()"/>
+  </xsl:if>
+</xsl:function>
+
 <xsl:function name="f:attributes" as="attribute()*">
   <xsl:param name="node" as="element()"/>
   <xsl:param name="attributes" as="attribute()*"/>
@@ -81,6 +91,11 @@
     <xsl:if test="exists($classes)">
       <xsl:attribute name="class" select="string-join($classes, ' ')"/>
     </xsl:if>
+  </xsl:if>
+
+  <xsl:variable name="translate" select="f:translate-attribute($node)"/>
+  <xsl:if test="exists($translate)">
+    <xsl:attribute name="translate" select="if ($translate) then 'yes' else 'no'"/>
   </xsl:if>
 </xsl:function>
 
