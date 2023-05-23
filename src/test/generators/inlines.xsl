@@ -24,7 +24,7 @@
   'citation': 'span',
   'citebiblioid': 'span',
   'citerefentry': 'span',
-  'citetitle': 'i',
+  'citetitle': 'cite',
   'classname': 'code',
   'command': 'code',
   'computeroutput': 'code',

@@ -607,6 +607,8 @@ task testSummary(
   type: SaxonXsltTask,
   dependsOn: ['xspecTests', "makeXslt"]
 ) {
+  inputs.files fileTree(dir: buildDir, include: "*-result.xml")
+
   stylesheet "${uProjectDir}/tools/test-results.xsl"
   output "${uBuildDir}/test-results.txt"
   args(["-it"])

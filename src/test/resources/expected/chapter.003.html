@@ -10,7 +10,7 @@ require getting a Java environment configured appropriately. For many,
 one of the most significant challenges is getting all of the
 dependencies sorted out. Modern software development, for better or
 worse, often consists of one library relying on another which relies
-on another, etc.</p><p>The <i class="citetitle">DocBook xslTNG</i> stylesheets attempt to
+on another, etc.</p><p>The <cite class="citetitle">DocBook xslTNG</cite> stylesheets attempt to
 simplify this process, especially for the “out of the box” experience
 by providing two convenience methods for running the stylesheets: a
 jar file with a <code class="classname">Main</code> class, and a Python script
@@ -63,7 +63,7 @@ which should look like …
 <a href="https://www.saxonica.com/html/documentation/using-xsl/commandline/" class="link">command line options</a> as Saxon, with a few caveats:</p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term">No <code>-x</code>, <code>-y</code>, or <code>-r</code> options</span></dt><dd><p>The executable in the JAR file automatically configures Saxon to
 use a catalog-based resolver and points the resolver at a catalog that
 includes the files in the distribution.
-</p></dd><dt class="varlistentry"><span class="term">No <code>-init</code> option</span></dt><dd><p>The <i class="citetitle">DocBook xslTNG</i>
+</p></dd><dt class="varlistentry"><span class="term">No <code>-init</code> option</span></dt><dd><p>The <cite class="citetitle">DocBook xslTNG</cite>
 extension functions will be registered
 automatically.</p></dd><dt class="varlistentry"><span class="term">Multiple <code>-catalog</code> options</span></dt><dd><p>You can repeat the <code>-catalog</code> option. All of the catalogs
 you specify will be searched before the default catalog.</p></dd><dt class="varlistentry"><span class="term">Default stylesheet</span></dt><dd><p>If you do not specify a stylesheet with the <code>-xsl</code> option,
@@ -104,8 +104,8 @@ work out the directory from the <code class="option">-o</code> option provided t
 If no directory is specified and it can’t work out what the directory is, it does nothing.
 </p></dd><dt class="varlistentry"><span class="term"><code class="option">--java:<em class="replaceable">javaexec</em></code></span></dt><dd><p>Use <em class="replaceable">javaexec</em> as the Java executable.
 The default java executable is the first one on your <code class="envar">PATH</code>.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--home:<em class="replaceable">dir</em></code></span></dt><dd><p>Use <em class="replaceable">dir</em> as the <i class="citetitle">DocBook
-xslTNG</i> home directory. This should be the location where
+</p></dd><dt class="varlistentry"><span class="term"><code class="option">--home:<em class="replaceable">dir</em></code></span></dt><dd><p>Use <em class="replaceable">dir</em> as the <cite class="citetitle">DocBook
+xslTNG</cite> home directory. This should be the location where
 you unzipped the distribution. (You probably shouldn’t change this.)
 </p></dd><dt class="varlistentry"><span class="term"><code class="option">--verbose</code></span></dt><dd><p>Enables <em>verbose</em> mode; it prints more
 messages about what it finds.
@@ -118,8 +118,8 @@ dependencies are available (you may find that using a tool like Gradle
 or Maven simplifies this process), simply run the Saxon class.</p><p>For Saxon HE, the class is <code class="classname">net.sf.saxon.Transform</code>.
 For Saxon PE and EE, the class is <code class="classname">com.saxonica.Transform</code>.</p></section><section id="top" class="section"><header><h2><span class="label">4</span><span class="sep">. </span>Run with Docker</h2></header><p>This is experimental.</p><p>The <code class="directory filename">docker</code> directory
 contains an experimental Dockerfile. Using docker allows you to
-isolate the environment necessary to run the <i class="citetitle">DocBook xslTNG
-Stylesheets</i> from your local environment.</p><p>Using Docker is a three step process. Step 0, you have to have
+isolate the environment necessary to run the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> from your local environment.</p><p>Using Docker is a three step process. Step 0, you have to have
 installed Docker!</p><ol class="orderedlist" type="1"><li><p>Build the docker image. In the <code class="directory filename">docker</code> directory, run the docker build
 command:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">docker build -t docbook-xsltng .</code></code></span></span>
 </pre></div><p>The “<code class="option">-t</code>” option provides a tag for the image;
@@ -188,7 +188,7 @@ listings with pygmentize.
 document. For large documents, books like this one for example, it’s
 sometimes desirable to break the input document into a collection of
 web pages. You can achieve this with the
-<i class="citetitle">DocBook xslTNG Stylesheets</i> by setting
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite> by setting
 two parameters:
 </p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term"><code class="parameter">chunk</code></span></dt><dd><p>This parameter should be set to the name that you want to use for the
 first, or top, page of the result. The name
@@ -326,7 +326,7 @@ features.</p><p>But running an external program for every verbatim environment r
 environments, may slow down the formatting process</p><p>An alternative is to use a JavaScript highlighter in the browser such as
 highlight.js or Prism. This approach
 has no impact on formatting and doesn’t require an external process. However, it means the
-<i class="citetitle">xslTNG Stylesheets</i> have no control over the process. Most of the 
+<cite class="citetitle">xslTNG Stylesheets</cite> have no control over the process. Most of the 
 verbatim options only apply when Pygments is used.</p><p>The choice of syntax highlighter is determined by the
 <code class="parameter">verbatim-syntax-highlighter</code> parameter.</p></section><section id="persistent-toc" class="section"><header><h2><span class="label">9</span><span class="sep">. </span>Persistent ToC</h2></header><p>The persistent Table of Contents (ToC) provides a full ToC for
 an entire document accessible from each chunked
@@ -371,7 +371,7 @@ aesthetically pleasing (or even passably acceptable) printed pages are
 fiendishly difficult to write.</p><p>In the XML space, there have been a number of standards and
 vendor-specific solutions to this problem. The current standards are
 XSL FO and CSS.
-</p><p>At present, the <i class="citetitle">DocBook xslTNG Stylesheets</i>
+</p><p>At present, the <cite class="citetitle">DocBook xslTNG Stylesheets</cite>
 are focused on CSS for print output. There’s a customization layer
 that produces “paged-media-ready” HTML that can be processed with
 a CSS formatter such as Antenna House or Prince.</p><p>To get print output, format your documents with the
@@ -380,7 +380,7 @@ a CSS formatter such as Antenna House or Prince.</p><p>To get print output, form
 by <code class="filename">print.xsl</code> assures that footnotes, annotations, and
 other elements will appear in the right place, and with reasonable
 presentation, in the printed version.</p><p>The resulting HTML document can be formatted directly with a
-CSS paged-media formatter.</p></section><section id="epub" class="section"><header><h2><span class="label">11</span><span class="sep">. </span>EPUB output</h2></header><p>The <i class="citetitle">DocBook xslTNG Stylesheets</i> will
+CSS paged-media formatter.</p></section><section id="epub" class="section"><header><h2><span class="label">11</span><span class="sep">. </span>EPUB output</h2></header><p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> will
 produce output designed for EPUB(3) if you use the
 <code class="filename">epub.xsl</code> stylesheet instead of
 <code class="filename">docbook.xsl</code>. This is new in version 1.11.0 and

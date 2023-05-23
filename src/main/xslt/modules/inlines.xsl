@@ -126,7 +126,7 @@
 
 <xsl:template match="db:citetitle">
   <xsl:call-template name="t:inline">
-    <xsl:with-param name="namemap" select="'i'"/>
+    <xsl:with-param name="namemap" select="'cite'"/>
   </xsl:call-template>
 </xsl:template>
 
