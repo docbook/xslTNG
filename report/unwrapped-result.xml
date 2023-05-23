@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/unwrapped.xsl"
-         date="2023-05-22T09:40:02.559233Z">
+         date="2023-05-23T09:06:19.763032Z">
    <scenario id="scenario1"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-para.002</label>
@@ -224,6 +224,145 @@ And a block quote for good measure:
 </p>
                            <div class="sidebar">
                               <p>This is a sidebar.</p>
+                           </div>
+                           <p>Ordinary paragraph.</p>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario3"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
+      <label>When transforming unwrapped-para.004</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/para.004.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit test: para.004</title>
+                  <link href="./css/pygments.css" rel="stylesheet"/>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  <script src="./js/copy-verbatim.js" defer="defer"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Unit test: para.004</h1>
+                        </header>
+                        <p>Ordinary paragraph, followed by a paragraph with a program listing.</p>
+                        <p>This is some text followed by a programlisting: </p>
+                        <div class="pre-wrap highlight"
+                              db-startinglinenumber="1"
+                              db-numberoflines="2">
+                           <pre class="language-xml numbered programlisting verbatim verblines">
+                              <span class="line" db-line="1">
+                                 <span class="ln">
+                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                                    <span class="nsep">|</span>
+                                 </span>
+                                 <span class="ld">
+                                    <code>
+                                       <span class="cm">&lt;!-- stuff --&gt;</span>
+                                    </code>
+                                 </span>
+                              </span>
+                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                              <span class="line" db-line="2">
+                                 <span class="ln">
+                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                                    <span class="nsep">|</span>
+                                 </span>
+                                 <span class="ld">
+                                    <code>and<span class="w">
+                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                       </span>nonsense</code>
+                                 </span>
+                              </span>
+                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                           </pre>
+                        </div>
+                        <p>Ordinary paragraph.</p>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario3-expect1" successful="true">
+         <label>expect unwrapped-para.004.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit test: para.004</title>
+                     <link href="./css/pygments.css" rel="stylesheet"/>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                     <script src="./js/copy-verbatim.js" defer="defer"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Unit test: para.004</h1>
+                           </header>
+                           <p>Ordinary paragraph, followed by a paragraph with a program listing.</p>
+                           <p>This is some text followed by a programlisting: </p>
+                           <div class="pre-wrap highlight"
+                                 db-startinglinenumber="1"
+                                 db-numberoflines="2">
+                              <pre class="language-xml numbered programlisting verbatim verblines">
+                                 <span class="line" db-line="1">
+                                    <span class="ln">
+                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                                       <span class="nsep">|</span>
+                                    </span>
+                                    <span class="ld">
+                                       <code>
+                                          <span class="cm">&lt;!-- stuff --&gt;</span>
+                                       </code>
+                                    </span>
+                                 </span>
+                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                                 <span class="line" db-line="2">
+                                    <span class="ln">
+                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
+                                       <span class="nsep">|</span>
+                                    </span>
+                                    <span class="ld">
+                                       <code>and<span class="w">
+                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                          </span>nonsense</code>
+                                    </span>
+                                 </span>
+                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
+</ws>
+                              </pre>
                            </div>
                            <p>Ordinary paragraph.</p>
                         </article>

@@ -2392,6 +2392,16 @@ header {
   font-family: "Noto Serif", serif, "Arial Unicode";
 }
 
+.table-footnotes {
+  padding-top: 0.25rem;
+}
+
+.table-footnotes .footnote {
+  float: none;
+  text-indent: -0.75rem;
+  margin-left: 0.75rem;
+}
+
 .indexref::before {
   content: target-counter(attr(href url), page);
 }
