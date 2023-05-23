@@ -1,0 +1,96 @@
+<article xmlns="http://docbook.org/ns/docbook">
+<title>Unit test: table-cals.052.xml</title>
+
+<para>This tests table footnotes. In particular, for PDF, although automated testing
+doesn’t actually…test that.</para>
+
+<para>The data map originally came from the guide<footnote><para>This is a test
+of an ordinary footnote.</para></footnote>.</para>
+
+<table>
+<title>The data map</title>
+<tgroup cols="2">
+<thead>
+<row>
+<entry>Key</entry>
+<entry>Value</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry><code>align</code></entry>
+<entry>The alignment of the data (if specified)</entry>
+</row>
+<row>
+<entry><code>content-type</code></entry>
+<entry>The computed content type for the data</entry>
+</row>
+<row>
+<entry><code>contentheight</code></entry>
+<entry>The content height of the data (if specified<footnote xml:id="fn-depth"><para>DocBook
+uses “depth” instead of “height”, but we convert
+it to height for consistency with most other systems.</para></footnote>)</entry>
+</row>
+<row>
+<entry><code>contentwidth</code></entry>
+<entry>The content width of the data (if specified)</entry>
+</row>
+<row>
+<entry><code>extension</code></entry>
+<entry>The extension of the data file (if there is one)</entry>
+</row>
+<row>
+<entry><code>fileref</code></entry>
+<entry>The original <tag class="attribute">fileref</tag> attribute value</entry>
+</row>
+<row>
+<entry><code>height</code></entry>
+<entry>The height of the data (if specified<footnoteref linkend="fn-depth"/>)</entry>
+</row>
+<row>
+<entry><code>href</code></entry>
+<entry>The computed <tag class="attribute">href</tag> value for the HTML element;
+this takes account of the <parameter>mediaobject-input-base-uri</parameter> and
+<parameter>mediaobject-output-base-uri</parameter>).
+</entry>
+</row>
+<row>
+<entry><code>node</code></entry>
+<entry>The data element</entry>
+</row>
+<row>
+<entry><code>params</code></entry>
+<entry>Any <tag>multimediaparams</tag> associated with the data element</entry>
+</row>
+<row>
+<entry><code>properties</code></entry>
+<entry>The properties of the element (as returned by the extension funtions;
+this can include EXIF data and metadata)</entry>
+</row>
+<row>
+<entry><code>scale</code></entry>
+<entry>The scaling factor (if there is one) or 1.0</entry>
+</row>
+<row>
+<entry><code>scalefit</code></entry>
+<entry>True if the image should be scaled to fit (implicitly or explicitly)</entry>
+</row>
+<row>
+<entry><code>uri</code></entry>
+<entry>The computed absolute URI of the input data</entry>
+</row>
+<row>
+<entry><code>valign</code></entry>
+<entry>The vertical alignment of the data (if specified)</entry>
+</row>
+<row>
+<entry><code>width</code></entry>
+<entry>The width of the data (if specifieid)</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<para>This is the paragraph following the table.</para>
+
+</article>

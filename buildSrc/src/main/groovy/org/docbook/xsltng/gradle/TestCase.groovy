@@ -90,7 +90,8 @@ class TestCase {
       def task = project.tasks.register("${testname}.olinkdb", SaxonXsltTask) {
         inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
         inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
-        inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources", exclude: "expected")
+        inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources",
+                                      exclude: ['expected/**', 'expectedpdf/**'])
 
         input _input
         stylesheet "${project.buildDir}/xslt/olinkdb.xsl"
@@ -180,7 +181,8 @@ class TestCase {
     def pdfhtml = project.tasks.register("${testname}.pdf.html", SaxonXsltTask) {
       inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
       inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
-      inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources")
+      inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources",
+                                    exclude: ['expected/**', 'expectedpdf/**'])
 
       input _input
       stylesheet "${project.buildDir}/xslt/print.xsl"
