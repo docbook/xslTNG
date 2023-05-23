@@ -187,6 +187,7 @@ class TestConfiguration {
       inputs.files project.fileTree(dir: "${project.projectDir}/src/main/xslt")
       inputs.file "${project.projectDir}/src/guide/xml/ref-params.xml"
       inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources/xml")
+      inputs.files project.fileTree(dir: "${project.projectDir}/src/test/resources/expected")
       inputs.file xfile
       testCases.each { tcase ->
         inputs.file tcase.input
