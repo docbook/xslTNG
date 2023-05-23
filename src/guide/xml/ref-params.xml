@@ -5404,4 +5404,23 @@ The copied text will not include any callouts or other decorations in the listin
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>translate-suppress-elements</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.1.3</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Elements in which translation is suppressed</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>This parameter is a list of (local) element names. Any output for these elements
+will have the <tag class="attribute">translate</tag> attribute with the value
+“<code>no</code>”.</para>
+</refsection>
+</refentry>
+
 </reference>

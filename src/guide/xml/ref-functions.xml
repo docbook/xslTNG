@@ -1533,6 +1533,42 @@ is automatically escaped.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="f_translate-attribute">
+<?db filename="f_translate-attribute"?>
+<refmeta>
+<refentrytitle>f:translate-attribute</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}translate-attribute#1</refmiscinfo>
+<refmiscinfo class="version">2.1.3</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:translate-attribute</refname>
+<refpurpose>Controls the translate attribute</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When computing what attributes to put on elements in the output, this function
+is called to check whether a <tag class="attribute">translate</tag> attribute should be 
+output:</para>
+<itemizedlist>
+<listitem>
+<para>If it returns true, a <tag class="attribute">translate</tag> attribute with the
+value “<code>yes</code>” will be output.</para>
+</listitem>
+<listitem>
+<para>If it returns false, a <tag class="attribute">translate</tag> attribute with the
+value “<code>no</code>” will be output.</para>
+</listitem>
+<listitem>
+<para>If it returns the empty sequence, no <tag class="attribute">translate</tag> attribute
+will be output.</para>
+</listitem>
+</itemizedlist>
+<para>The default implementation of this function checks the (local) name of the
+element with the <parameter>translate-suppress-elements</parameter> list.</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="f_unique-id">
 <?db filename="f_unique-id"?>
 <refmeta>
