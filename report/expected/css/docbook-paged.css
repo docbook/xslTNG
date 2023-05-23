@@ -2369,20 +2369,6 @@ html.article-style .list-of-titles div .title {
   string-set: SectionTitle content();
 }
 
-h1 {
-  bookmark-level: 1;
-  bookmark-state: closed;
-}
-
-h2 {
-  bookmark-level: 2;
-  bookmark-state: closed;
-}
-
-.article > header > h2 {
-  bookmark-level: none;
-}
-
 header {
   page-break-inside: avoid;
 }
