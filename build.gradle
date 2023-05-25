@@ -10,6 +10,7 @@ buildscript {
   configurations.all {
     resolutionStrategy {
       exclude group: 'xml-apis', module: 'xml-apis'
+      exclude group: 'xerces', module: 'xercesImpl'
       force "${saxonGroup}:${saxonEdition}:${saxonVersion}",
         "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
     }
@@ -79,6 +80,7 @@ apply from: 'properties.gradle'
 configurations.all {
   resolutionStrategy {
     exclude group: 'xml-apis', module: 'xml-apis'
+    exclude group: 'xerces', module: 'xercesImpl'
     force "${saxonGroup}:${saxonEdition}:${saxonVersion}",
       "org.xmlresolver:xmlresolver:${xmlresolverVersion}"
   }
