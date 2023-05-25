@@ -18,11 +18,12 @@
 <xsl:variable name="release" as="map(*)">
   <xsl:variable name="releases" as="array(*)">
     <xsl:try>
+      <xsl:message select="'Attempt to read', resolve-uri('../build/releases.json', static-base-uri())"/>
       <xsl:sequence select="parse-json(unparsed-text('../build/releases.json'))"/>
-      <xsl:message>Read releases JSON from build</xsl:message>
-      <xsl:catch>
+      <xsl:catch xmlns:err="http://www.w3.org/2005/xqt-errors">
+        <xsl:message select="'Attempt failed, trying', $reluri"/>
+        <xsl:message select="$err:code, $err:description"/>
         <xsl:sequence select="parse-json(unparsed-text($reluri))"/>
-        <xsl:message>Read releases JSON from the GitHub API</xsl:message>
       </xsl:catch>
     </xsl:try>
   </xsl:variable>
