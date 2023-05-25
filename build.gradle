@@ -65,6 +65,7 @@ import java.util.zip.ZipEntry
 
 import de.undercouch.gradle.tasks.download.Download
 
+import org.docbook.xsltng.gradle.TestUtils
 import org.docbook.xsltng.gradle.TestGenerator
 
 repositories {
@@ -104,9 +105,9 @@ ext {
   computedGitRef = null
   extraParams = [:]
   fProjectDir = projectDir.toString()
-  uProjectDir = fixWindowsPath(fProjectDir)
+  uProjectDir = TestUtils.fixWindowsPath(fProjectDir)
   fBuildDir = buildDir.toString()
-  uBuildDir = fixWindowsPath(fBuildDir)
+  uBuildDir = TestUtils.fixWindowsPath(fBuildDir)
   XSPEC = OperatingSystem.current().isWindows() ? 'xspec.bat' : 'xspec.sh'
 }
 
@@ -243,14 +244,6 @@ def gitRef() {
   }
 
   return ref
-}
-
-public String fixWindowsPath(String path) {
-  String fix = path.replace('\\', '/')
-  if (fix.length() > 2 && fix.charAt(1) == ':') {
-    fix = fix.substring(2)
-  }
-  return fix
 }
 
 def pygmentize = findPygmentize()
@@ -484,7 +477,7 @@ task actualResults() {
 fileTree(dir: "${projectDir}/src/main/locale",
          include: "*.xml").each { xml ->
   // Work out the base filename of the test
-  def base = fixWindowsPath(xml.toString())
+  def base = TestUtils.fixWindowsPath(xml.toString())
   def pos = base.lastIndexOf("/")
   if (pos > 0) {
     base = base.substring(pos+1)
@@ -763,10 +756,10 @@ task compileSass() {
     exec {
       commandLine 'sass', '--style', 'expanded',
         '--no-source-map', '--no-charset',
-        "${uProjectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.css",
-        "${uProjectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.css",
-        "${uProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.css",
-        "${uProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css"
+        "${fProjectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.css",
+        "${fProjectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.css",
+        "${fProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.css",
+        "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css"
     }
   }
 
@@ -774,10 +767,10 @@ task compileSass() {
     exec {
       commandLine 'sass', '--style', 'compressed',
         '--no-source-map', '--no-charset',
-        "${uProjectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.min.css",
-        "${uProjectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.min.css",
-        "${uProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.min.css",
-        "${uProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css"
+        "${fProjectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.min.css",
+        "${fProjectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.min.css",
+        "${fProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.min.css",
+        "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css"
     }
   }
 
@@ -910,7 +903,7 @@ task zipStageCatalog(
   type: SaxonXsltTask,
   dependsOn: ['makeUriList', 'zipStageXslt', "stageJar", "processResources"]
 ) {
-  input fixWindowsPath(makeUriList.outputs.files.getSingleFile().toString())
+  input TestUtils.fixWindowsPath(makeUriList.outputs.files.getSingleFile().toString())
   stylesheet "${uProjectDir}/src/main/resources/org/docbook/xsltng/etc/make-catalog.xsl"
   output "${uBuildDir}/stage/zip/xslt/catalog.xml"
   parameters(
@@ -1520,7 +1513,7 @@ task epubGuideMedia(
     m.println("<manifest xmlns='http://www.idpf.org/2007/opf'>")
     fileTree(dir: "${buildDir}/epub/OPS",
              includes: ["media/**", "css/**"]).each { rsrc ->
-      String href = fixWindowsPath(rsrc.toString())
+      String href = TestUtils.fixWindowsPath(rsrc.toString())
       int pos = href.indexOf("/OPS/")
       href = href.substring(pos+5)
       String id = href.replaceAll("/", "_")
@@ -1717,7 +1710,7 @@ fileTree(dir: "${projectDir}/src/test/xspec", include: "*.xspec").each { xspec -
     outputs.file project.file("${buildDir}/${base}-result.html")
     outputs.file project.file("${buildDir}/${base}-result.xml")
     commandLine "${project.buildDir}/xspec-${xspecVersion}/bin/${XSPEC}",
-      fixWindowsPath(xspec.toString())
+      xspec.toString()
   }
   tasks.named("xspecTests").configure {
     dependsOn task
@@ -1726,7 +1719,7 @@ fileTree(dir: "${projectDir}/src/test/xspec", include: "*.xspec").each { xspec -
 
 // Generate tasks to construct the generated tests
 fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
-  def xspec = fixWindowsPath(xsl.toString())
+  def xspec = TestUtils.fixWindowsPath(xsl.toString())
                  .replace('/generators/', '/xspec/generated-')
                  .replace('.xsl', '.xspec')
   def name  = xspec.replace('.xspec', '')
@@ -1771,7 +1764,7 @@ fileTree(dir: "${projectDir}/src/test/generators").each { xsl ->
     dependsOn tasks.named('makeXslt')
 
     commandLine "${buildDir}/xspec-${xspecVersion}/bin/${XSPEC}",
-                "${uBuildDir}/xspec/${base}.xspec"
+                "${fBuildDir}/xspec/${base}.xspec"
   }
   tasks.named("xspecTests").configure {
     dependsOn t

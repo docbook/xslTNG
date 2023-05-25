@@ -13,6 +13,7 @@ class TestConfiguration {
   private boolean _olinkdb = false
   private String _stylesheet = null
   private String _xspecDriver = null
+  private String _xspecDriverUri = null
   private def testCases = []
   private def extraDepends = []
 
@@ -39,13 +40,16 @@ class TestConfiguration {
 
   public String getXspecDriver() {
     if (_xspecDriver == null) {
-      _xspecDriver = "${project.buildDir}/xspec-xslt/xspec-driver.xsl".replace("\\", "/")
-      // If there's a Windows drive letter, lose it
-      if (_xspecDriver.length() > 2 && _xspecDriver.charAt(1) == ':') {
-        _xspecDriver = _xspecDriver.substring(2)
-      }
+      _xspecDriver = "${project.buildDir}/xspec-xslt/xspec-driver.xsl"
     }
     return _xspecDriver
+  }
+
+  public String getXspecDriverUri() {
+    if (_xspecDriverUri == null) {
+      _xspecDriverUri = TestUtils.fixWindowsPath("${project.buildDir}/xspec-xslt/xspec-driver.xsl")
+    }
+    return _xspecDriverUri
   }
 
   public Collection<String> extraDependencies() {
@@ -91,6 +95,7 @@ class TestConfiguration {
       throw new IllegalArgumentException("TestConfiguration '${name}' XSpec driver already configured")
     }
     _xspecDriver = driver
+    _xspecDriverUri = TestUtils.fixWindowsPath(_xspecDriver)
     return this
   }
 
@@ -122,7 +127,7 @@ class TestConfiguration {
           new FileOutputStream("${project.buildDir}/env/${configname}.xsl"))
         s.println("<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform'")
         s.println("                version='3.0'>")
-        s.println("  <xsl:import href='${xspecDriver}'/>")
+        s.println("  <xsl:import href='${xspecDriverUri}'/>")
         
         parameters.each { entry ->
           if ((entry.value.toString()).isNumber()) {
@@ -146,11 +151,7 @@ class TestConfiguration {
         project.mkdir("${project.buildDir}/xspec")
       }
       doLast {
-        String expectedPath = "${project.projectDir}/src/test/resources/expected"
-          .replace('\\', '/')
-        if (expectedPath.length() > 2 && expectedPath.charAt(1) == ':') {
-          expectedPath = expectedPath.substring(2)
-        }
+        String expectedPath = TestUtils.fixWindowsPath("${project.projectDir}/src/test/resources/expected")
 
         PrintStream s = new PrintStream(new FileOutputStream(xfile))
         s.println("<x:description xmlns:x='http://www.jenitennison.com/xslt/xspec'")
@@ -163,10 +164,7 @@ class TestConfiguration {
           // Avoid closure because scenarios goes out of scope
           TestCase tcase = testCases.get(pos)
 
-          String tcaseInput = tcase.input.toString().replace('\\', '/')
-          if (tcaseInput.length() > 2 && tcaseInput.charAt(1) == ':') {
-            tcaseInput = tcaseInput.substring(2)
-          }
+          String tcaseInput = TestUtils.fixWindowsPath(tcase.input.toString())
 
           s.println("<x:scenario label='When transforming ${tcase.name}'>")
           s.println("  <x:context href='${tcaseInput}'/>")
@@ -199,12 +197,8 @@ class TestConfiguration {
       outputs.file project.file("${project.buildDir}/${configname}-result.xml")
 
       String XSPEC = OperatingSystem.current().isWindows() ? 'xspec.bat' : 'xspec.sh'
-      String xxfile = xfile.toString().replace('\\', '/')
-      if (xxfile.length() > 2 && xxfile.charAt(1) == ':') {
-        xxfile = xxfile.substring(2)
-      }
 
-      commandLine "${project.buildDir}/xspec-${xspecVersion}/bin/${XSPEC}", xxfile
+      commandLine "${project.buildDir}/xspec-${xspecVersion}/bin/${XSPEC}", xfile
 
       dependsOn project.tasks.named('makeXslt')
       dependsOn project.tasks.named('setupXSpec')

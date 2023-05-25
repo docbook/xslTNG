@@ -31,8 +31,8 @@ class TestGenerator {
     testCases = new TestCases(project, new ValidationTasks(project))
     fProjectDir = project.projectDir.toString()
     fBuildDir = project.buildDir.toString()
-    uProjectDir = fixWindowsPath(fProjectDir)
-    uBuildDir = fixWindowsPath(fBuildDir)
+    uProjectDir = TestUtils.fixWindowsPath(fProjectDir)
+    uBuildDir = TestUtils.fixWindowsPath(fBuildDir)
 
     testEnvironments.create('default')
       .withParameters([
@@ -391,7 +391,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-1"
+              "${fBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -459,7 +459,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-2"
+              "${fBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -514,7 +514,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-3"
+              "${fBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -593,7 +593,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-4"
+              "${fBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -661,7 +661,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-5"
+              "${fBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -716,7 +716,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-1"
+              "${fBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -774,7 +774,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-2"
+              "${fBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -828,7 +828,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-3"
+              "${fBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -903,7 +903,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-4"
+              "${fBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -964,7 +964,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-5"
+              "${fBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -1018,7 +1018,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-1"
+              "${fBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -1070,7 +1070,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-2"
+              "${fBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -1124,7 +1124,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-3"
+              "${fBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -1194,7 +1194,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-4"
+              "${fBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -1248,7 +1248,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-5"
+              "${fBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -1303,7 +1303,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-1"
+              "${fBuildDir}/actual/mo-${mo}-1"
           }
         }
       }
@@ -1356,7 +1356,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-2"
+              "${fBuildDir}/actual/mo-${mo}-2"
           }
         }
       }
@@ -1411,7 +1411,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-3"
+              "${fBuildDir}/actual/mo-${mo}-3"
           }
         }
       }
@@ -1480,7 +1480,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-4"
+              "${fBuildDir}/actual/mo-${mo}-4"
           }
         }
       }
@@ -1535,7 +1535,7 @@ class TestGenerator {
         doLast {
           project.exec {
             commandLine 'python3', 'src/bin/linkcheck.py',
-              "${uBuildDir}/actual/mo-${mo}-5"
+              "${fBuildDir}/actual/mo-${mo}-5"
           }
         }
       }
@@ -1548,13 +1548,5 @@ class TestGenerator {
   void createTasks() {
     testCases.createTasks()
     testConfigurations.createTasks()
-  }
-
-  String fixWindowsPath(String path) {
-    String fix = path.replace('\\', '/')
-    if (fix.length() > 2 && fix.charAt(1) == ':') {
-      fix = fix.substring(2)
-    }
-    return fix
   }
 }
