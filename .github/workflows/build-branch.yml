@@ -89,6 +89,7 @@ jobs:
       - name: Get the latest releases (authenticated request)
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
+          mkdir -p build
           curl --request GET \
           --url https://api.github.com/repos/${{ github.repository }}/releases \
           --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' \
