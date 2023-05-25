@@ -65,6 +65,7 @@ jobs:
         if: ${{ env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
           mkdir -p build
+          # Don’t attempt to use continuation lines here because Windows
           curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
 
       # Test the build on Mac
