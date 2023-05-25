@@ -86,6 +86,14 @@ jobs:
         if: ${{ env.HAVE_SAXON_EE == 'true' }}
         run: gpg --batch --yes --passphrase ${{ secrets.SAXON_PASSPHRASE }} -d tools/saxon.enc | tar zxf -
 
+      - name: Get the latest releases (authenticated request)
+        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' }}
+        run: |
+          curl --request GET \
+          --url https://api.github.com/repos/${{ github.repository }}/releases \
+          --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' \
+          -o build/releases.json
+
       - name: Build
         run: |
           ./gradlew -PrequireCompileSuccess=true dist
