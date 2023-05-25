@@ -16,7 +16,16 @@
               select="'https://api.github.com/repos/' || $org || '/' || $repo || '/releases'"/>
 
 <xsl:variable name="release" as="map(*)">
-  <xsl:variable name="releases" select="parse-json(unparsed-text($reluri))"/>
+  <xsl:variable name="releases" as="array(*)">
+    <xsl:try>
+      <xsl:sequence select="parse-json(unparsed-text('../build/releases.json'))"/>
+      <xsl:message>Read releases JSON from build</xsl:message>
+      <xsl:catch>
+        <xsl:sequence select="parse-json(unparsed-text($reluri))"/>
+        <xsl:message>Read releases JSON from the GitHub API</xsl:message>
+      </xsl:catch>
+    </xsl:try>
+  </xsl:variable>
   <xsl:sequence select="array:get($releases, 1)"/>
 </xsl:variable>
 
