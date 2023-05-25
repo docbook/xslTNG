@@ -1,4 +1,4 @@
-name: build-pr
+name: Build DocBook xslTNG PR
 on:
   pull_request_target:
     types: [assigned, opened, edited, synchronize, reopened]
@@ -37,7 +37,8 @@ jobs:
           echo "tag=$tag" >> $GITHUB_OUTPUT
 
   build-pr:
-    runs-on: ubuntu-latest
+    name: Build xslTNG on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     needs: check_branch
     env:
       HAVE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN != '' }}
@@ -48,45 +49,89 @@ jobs:
       CI_PROJECT_REPONAME: ${{ needs.check_branch.outputs.reponame }}
       CI_BRANCH: ${{ needs.check_branch.outputs.branch }}
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
-      CI_PULL: ${{ github.event.number }}
-    steps:
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
 
-      # lxml needed by html5-parser needs libxml2-dev and libxslt-dev, apparently
-      - name: Setup python dependencies
+    strategy:
+      matrix:
+        os: [macos-11, ubuntu-20.04, windows-2019]
+
+    steps:
+      - name: Install platform-independent Python modules
         run: |
           python3 -m pip install pygments==2.14.0 click cython
+
+      # Test the build on Mac
+
+      - name: Install dependencies on Mac
+        if: matrix.os == 'macos-11'
+        run: |
+          brew install rsync libxml2 libxslt sass/sass/sass
           python3 -m pip install saxonche
           python3 -m pip install --no-binary lxml html5-parser
 
-      - name: Download and install SASS
-        run: |
-          curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
-          cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
-
-      - name: Checkout the branch
+      - name: Checkout the main branch on Mac
+        if: matrix.os == 'macos-11'
         uses: actions/checkout@v3
 
-      - name: Setup SaxonEE
-        if: ${{ env.HAVE_SAXON_EE == 'true' }}
-        run: gpg --batch --yes --passphrase ${{ secrets.SAXON_PASSPHRASE }} -d tools/saxon.enc | tar zxf -
-
-      - name: Get the latest releases (authenticated request)
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' }}
+      - name: Get the latest releases (authenticated request on mac)
+        if: ${{ matrix.os == 'macos-11' && env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
           mkdir -p build
-          curl --request GET \
-          --url https://api.github.com/repos/${{ github.repository }}/releases \
-          --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' \
-          -o build/releases.json
+          # Don’t attempt to use continuation lines here because Windows
+          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
 
-      - name: Build
+      - name: Build on Mac
+        if: matrix.os == 'macos-11'
         run: |
           ./gradlew -PrequireCompileSuccess=true dist
 
-      - name: Cleanup SaxonEE
-        if: ${{ env.HAVE_SAXON_EE == 'true' }}
-        run: rm -rf lib
+      # Test the build on Windows
+
+      - name: Install dependencies on Windows
+        if: matrix.os == 'windows-2019'
+        uses: crazy-max/ghaction-chocolatey@v2
+        with:
+          args: install sass
+
+      - name: Checkout the main branch on Windows
+        if: matrix.os == 'windows-2019'
+        uses: actions/checkout@v3
+
+      - name: Get the latest releases (authenticated request on Windows)
+        if: ${{ matrix.os == 'windows-2019' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        run: |
+          mkdir -p build
+          # Don’t attempt to use continuation lines here because Windows
+          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
+
+      - name: Build on Windows
+        if: matrix.os == 'windows-2019'
+        run: |
+          ./gradlew -PrequireCompileSuccess=true -PrequireTestSuccess=false dist
+
+      # Test the build on Linux
+
+      - name: Install dependencies on Linux
+        if: matrix.os == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
+          curl -o /tmp/dart.tar.gz -L https://github.com/sass/dart-sass/releases/download/1.56.0/dart-sass-1.56.0-linux-x64.tar.gz
+          cd /tmp && tar zxf dart.tar.gz && sudo mv dart-sass/sass /usr/local/bin
+          python3 -m pip install saxonche
+          python3 -m pip install --no-binary lxml html5-parser
+
+      - name: Checkout the main branch on Linux
+        if: matrix.os == 'ubuntu-20.04'
+        uses: actions/checkout@v3
+
+      - name: Get the latest releases (authenticated request on Windows)
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        run: |
+          mkdir -p build
+          # Don’t attempt to use continuation lines here because Windows
+          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
+
+      - name: Build on Linux
+        if: matrix.os == 'ubuntu-20.04'
+        run: |
+          ./gradlew -PrequireCompileSuccess=true dist
