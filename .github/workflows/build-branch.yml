@@ -59,15 +59,6 @@ jobs:
         run: |
           python3 -m pip install pygments==2.14.0 click cython
 
-      - name: Get the latest releases (authenticated request)
-        if: ${{ env.HAVE_ACCESS_TOKEN == 'true' }}
-        run: |
-          mkdir -p build
-          # Don’t attempt to use continuation lines here because Windows
-          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
-          ls -l build/releases.json
-          cd build && pwd
-
       # Test the build on Mac
 
       - name: Install dependencies on Mac
@@ -81,9 +72,17 @@ jobs:
         if: matrix.os == 'macos-11'
         uses: actions/checkout@v3
 
+      - name: Get the latest releases (authenticated request on mac)
+        if: ${{ matrix.os == 'macos-11' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        run: |
+          mkdir -p build
+          # Don’t attempt to use continuation lines here because Windows
+          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
+
       - name: Build on Mac
         if: matrix.os == 'macos-11'
         run: |
+          ls build
           ./gradlew --stacktrace -PrequireCompileSuccess=true dist
 
       # Test the build on Windows
@@ -97,6 +96,13 @@ jobs:
       - name: Checkout the main branch on Windows
         if: matrix.os == 'windows-2019'
         uses: actions/checkout@v3
+
+      - name: Get the latest releases (authenticated request on Windows)
+        if: ${{ matrix.os == 'windows-2019' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        run: |
+          mkdir -p build
+          # Don’t attempt to use continuation lines here because Windows
+          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
 
       - name: Build on Windows
         if: matrix.os == 'windows-2019'
@@ -143,7 +149,14 @@ jobs:
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_SAXON_EE == 'true' }}
         run: gpg --batch --yes --passphrase ${{ secrets.SAXON_PASSPHRASE }} -d tools/saxon.enc | tar zxf -
 
-      - name: Build
+      - name: Get the latest releases (authenticated request on Windows)
+        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        run: |
+          mkdir -p build
+          # Don’t attempt to use continuation lines here because Windows
+          curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
+
+      - name: Build on Linux
         if: matrix.os == 'ubuntu-20.04'
         run: |
           ./gradlew --stacktrace -PrequireCompileSuccess=true dist
