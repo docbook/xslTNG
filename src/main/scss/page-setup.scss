@@ -3,7 +3,8 @@
     --margin-outer: 1in;
     --margin-above: 1in;
     --margin-below: 1in;
-    font-size: 12pt;
+    font-size: var(--default-font-size);
+    line-height: var(--default-line-height);
 }
 
 html.article-style.A4 {

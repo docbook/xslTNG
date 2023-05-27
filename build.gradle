@@ -359,6 +359,7 @@ task copyResources(type: Copy,
                                'zipStageMisc']) {
   from "${buildDir}/stage/zip/resources"
   into "${buildDir}/actual"
+  exclude "scss/**"
 }
 
 def pkglist = ["net.sf.saxon:Saxon-HE:${saxonVersion}",
@@ -433,6 +434,7 @@ task copyReportResources(
     copy {
       from "${buildDir}/stage/zip/resources"
       into "${buildDir}/report/expected"
+      exclude "scss/**"
     }
   }
 }
@@ -565,7 +567,7 @@ task makeUriList(
       }
 
       pos = "${buildDir}/stage/zip".length()
-      fileTree("${buildDir}/stage/zip/resources").each { file ->
+      fileTree(dir: "${buildDir}/stage/zip/resources", exclude: ['scss/**']).each { file ->
         writer.writeLine("  <uri name='${prefix}${file.getAbsolutePath().substring(pos)}'/>")
       }
       writer.writeLine("</catalog>")
@@ -813,6 +815,13 @@ task zipStageResources(dependsOn: ["zipStagePygments", "compileSass"]) {
     }
   }
 
+  doLast {
+    copy {
+      from "${projectDir}/src/main/scss"
+      into "${buildDir}/stage/zip/resources/scss"
+    }
+  }
+
   // Copy png files without filtering them
   doLast {
     copy {
@@ -852,6 +861,7 @@ task zipStageSamples(dependsOn: ["zipStageResources"]) {
     copy {
       from "${buildDir}/stage/zip/resources"
       into "${buildDir}/stage/zip/samples"
+      exclude "scss/**"
     }
   }
 
@@ -1336,6 +1346,8 @@ task stageJar(
     copy {
       into "${buildDir}/resources/main/org/docbook/xsltng/resources"
       from "${buildDir}/stage/zip/resources"
+      include "css"
+      include "js"
     }
     // Not ${buildDir}/classes/java/main because the jar task
     // picks those up automatically and we don't want duplicates
