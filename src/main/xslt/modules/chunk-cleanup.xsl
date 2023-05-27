@@ -78,12 +78,39 @@
 
   <xsl:variable name="head" select="/h:html/h:head"/>
 
+  <!-- If the chunk selected for previous or next navigation is an
+       annotation and annotations are being handled by JavaScript,
+       then disregard the chunk identified. -->
   <xsl:variable name="prev"
                 select="(ancestor::*[@db-chunk and fp:navigable(.)][1]
                          |preceding::*[@db-chunk and fp:navigable(.)][1])[last()]"/>
+  <xsl:variable name="prev" as="element()?">
+    <xsl:choose>
+      <xsl:when test="$annotation-style = 'javascript'
+                      and $prev/*[contains-token(@class, 'annotation-body')]">
+        <xsl:sequence select="()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$prev"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="next"
                 select="((.//*[@db-chunk and fp:navigable(.)])[1]
                           |following::*[@db-chunk and fp:navigable(.)][1])[1]"/>
+  <xsl:variable name="next" as="element()?">
+    <xsl:choose>
+      <xsl:when test="$annotation-style = 'javascript'
+                      and $next/*[contains-token(@class, 'annotation-body')]">
+        <xsl:sequence select="()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$next"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="up"
                 select="ancestor::*[@db-chunk and fp:navigable(.)][1]"/>
   <xsl:variable name="top"
