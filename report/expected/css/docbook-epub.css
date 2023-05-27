@@ -32,6 +32,8 @@
   --sidebar-color: var(--primary-color);
   --on-sidebar-color: var(--on-primary-color);
   --table-border-style: 1px solid var(--primary-color);
+  --default-font-size: 13.5pt;
+  --default-line-height: 1.75rem;
   --line-number-width: 4em;
   --numbered-separator-style: 1px solid var(--primary-color);
   --numbered-number-color: var(--on-surface-color);
@@ -430,7 +432,7 @@ cite.title {
   font-size: 1.5rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  line-height: 1;
+  line-height: 1rem;
 }
 
 header {
@@ -693,7 +695,7 @@ span > .viewport-table {
 
 .viewport-cell > span {
   display: block;
-  line-height: 1;
+  line-height: 1rem;
 }
 
 .viewport {
@@ -914,7 +916,7 @@ pre.monospaced {
 
 pre.programlisting,
 pre.screen {
-  line-height: 1.25em;
+  line-height: 1.25rem;
 }
 
 pre.verblines .nsep {
@@ -1606,8 +1608,8 @@ html {
   color: var(--on-background-color);
   background-color: var(--background-color);
   width: 100%;
-  line-height: 1.75rem;
-  font-size: 13.5pt;
+  line-height: var(--default-line-height);
+  font-size: var(--default-font-size);
   scroll-padding-top: 40px;
   height: 100%;
 }
