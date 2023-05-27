@@ -142,7 +142,7 @@
   <tmp:insert ref="titlepage-component"/>
 </db:partintro>
 
-<db:article context="empty(parent::*)">
+<db:article context="empty(parent::*) or parent::db:book">
   <header>
     <tmp:apply-templates select="db:title">
       <h1><tmp:content/></h1>
