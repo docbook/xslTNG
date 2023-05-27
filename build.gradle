@@ -958,7 +958,7 @@ task relnotes(
     boolean found = false
     String line = guide.readLine()
     while (line != null) {
-      if (line.contains("<revnumber>${xslTNGversion}<")) {
+      if (line.contains("<productnumber>${xslTNGversion}<")) {
         found = true;
         break;
       }
@@ -970,6 +970,9 @@ task relnotes(
       println("************************************************************")
       println("There are no release notes for xslTNG version ${xslTNGversion}")
       println("************************************************************")
+      if (requireCompileSuccess) {
+        throw new GradleException("No release notes for ${xslTNGversion}")
+      }
     }
   }
 }
