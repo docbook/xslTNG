@@ -28,6 +28,9 @@
 
     --table-border-style: 1px solid var(--primary-color);
 
+    --default-font-size: 13.5pt;
+    --default-line-height: 1.75rem;
+
     --line-number-width: 4em;
 
     --numbered-separator-style: 1px solid var(--primary-color);
@@ -453,7 +456,7 @@ cite.title {
     font-size: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    line-height: 1;
+    line-height: 1.0rem;
 }
 
 header {
@@ -729,7 +732,7 @@ span > .viewport-table {
 
 .viewport-cell > span {
   display: block;
-  line-height: 1;
+  line-height: 1.0rem;
 }
 
 .viewport {
@@ -975,7 +978,7 @@ pre.monospaced {
 
 pre.programlisting,
 pre.screen {
-    line-height: 1.25em;
+    line-height: 1.25rem;
 }
 
 pre.verblines .nsep {

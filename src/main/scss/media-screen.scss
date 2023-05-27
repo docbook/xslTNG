@@ -21,8 +21,8 @@ html {
     color: var(--on-background-color);
     background-color: var(--background-color);
     width: 100%;
-    line-height: 1.75rem;
-    font-size: 13.5pt;
+    line-height: var(--default-line-height);
+    font-size: var(--default-font-size);
     scroll-padding-top: 40px;
     height: 100%;
 }
