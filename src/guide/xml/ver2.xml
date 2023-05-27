@@ -1,9 +1,16 @@
 <appendix xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi='http://www.w3.org/2001/XInclude'
           version="5.0" xml:id="version2">
 <info>
   <?db filename="version2"?>
-  <title>Changes in version 2.1.0</title>
+  <title>Changes in version 2.x</title>
 </info>
+
+<xi:include href="changelog.xml"/>
+
+<section xml:id="intro-210">
+<title>Introduction to xslTNG 2.x</title>
 
 <para>Version 2.x of the <citetitle>DocBook xslTNG
 Stylesheets</citetitle> include some substantial changes from version
@@ -237,5 +244,6 @@ that’s convenient; this is just about conformance with the expected test resul
 See <xref linkend="testingtasks"/>.</para>
 </listitem>
 </itemizedlist>
+</section>
 
 </appendix>

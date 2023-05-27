@@ -6,8 +6,9 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="a db f m t v"
+                exclude-result-prefixes="#all"
                 version="3.0">
 
 <xsl:import href="common.xsl"/>
@@ -87,15 +88,27 @@
 </xsl:template>
 
 <xsl:template match="db:book" mode="m:docbook">
-  <xsl:next-match/>
-  <div db-chunk="copyright{$html-extension}" db-navigable='false'>
-    <header>
-      <h1>Copyright</h1>
-    </header>
-    <div>
-      <xsl:apply-templates select="db:info/db:legalnotice/*" mode="m:docbook"/>
-    </div>
-  </div>
+  <xsl:variable name="book" as="element(h:article)">
+    <xsl:next-match/>
+  </xsl:variable>
+
+  <article>
+    <xsl:copy-of select="$book/@*"/>
+    <xsl:sequence select="$book/node()"/>
+
+    <section>
+      <xsl:if test="not($output-media = 'print')">
+        <xsl:attribute name="db-chunk" select="'copyright' || $html-extension"/>
+        <xsl:attribute name="db-navigable" select="'false'"/>
+      </xsl:if>
+      <header>
+        <h3>Copyright</h3>
+      </header>
+      <div>
+        <xsl:apply-templates select="db:info/db:legalnotice/*" mode="m:docbook"/>
+      </div>
+    </section>
+  </article>
 </xsl:template>
 
 </xsl:stylesheet>

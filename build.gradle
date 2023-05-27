@@ -156,7 +156,7 @@ def docbookXsltArgs = ['-init:org.docbook.xsltng.extensions.Register']
 // If this is running on the CI infrastructure and it's not
 // a tagged build, add -SNAPSHOT to the version.
 if (System.getenv()["CIWORKFLOW"] == "yes"
-    && System.getenv()["CI_TAG"] == ""
+    && (System.getenv()["CI_TAG"] == null || System.getenv()["CI_TAG"] == "")
     && !xslTNGversion.contains('SNAPSHOT')) {
   xslTNGversion = xslTNGversion + "-SNAPSHOT"
 }
@@ -958,7 +958,7 @@ task relnotes(
     boolean found = false
     String line = guide.readLine()
     while (line != null) {
-      if (line.contains("<revnumber>${xslTNGversion}<")) {
+      if (line.contains("<productnumber>${xslTNGversion}<")) {
         found = true;
         break;
       }
@@ -970,6 +970,9 @@ task relnotes(
       println("************************************************************")
       println("There are no release notes for xslTNG version ${xslTNGversion}")
       println("************************************************************")
+      if (requireCompileSuccess && !xslTNGversion.contains('SNAPSHOT')) {
+        throw new GradleException("No release notes for ${xslTNGversion}")
+      }
     }
   }
 }
