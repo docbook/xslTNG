@@ -115,12 +115,6 @@
       </div>
     </div>
   </header>
-  <xsl:if test="$output-media = 'screen'">
-    <details>
-      <summary>Revision history</summary>
-      <xsl:apply-templates select="db:info/db:revhistory"/>
-    </details>
-  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->

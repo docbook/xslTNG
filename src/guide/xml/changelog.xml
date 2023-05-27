@@ -1,11 +1,22 @@
-<revhistory xmlns='http://docbook.org/ns/docbook'
-            xmlns:xlink="http://www.w3.org/1999/xlink">
-<?db revhistory-style="list"?>
+<section xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
+         version="5.0" xml:id="changelog">
+<title>Change Log</title>
 
-<revision xml:id="r213">
-<revnumber>2.1.3</revnumber>
-<date>2023-05-23</date>
-<revdescription>
+<para>This section documents the changes made in each release. This
+does not necessarily include every minor change, only those likely to
+be of interest to users of the stylesheets. See the commits and pull requests on
+<link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
+finer detail.</para>
+
+<section xml:id="r213">
+<info>
+  <title>Changes in version 2.1.3</title>
+  <productnumber>2.1.3</productnumber>
+  <date>2023-05-23</date>
+</info>
+
 <itemizedlist>
 <listitem>
 <para>Fixed a bug in the handling of the <parameter>unwrap-paragraphs</parameter> parameter.
@@ -80,13 +91,15 @@ use the matrix build in CI.</para>
 <para>A variety of typos have been fixed in the guide.</para>
 </listitem>
 </itemizedlist>
-</revdescription>
-</revision>
+</section>
 
-<revision xml:id="r212">
-<revnumber>2.1.2</revnumber>
-<date>2023-04-10</date>
-<revdescription>
+<section xml:id="r212">
+<info>
+  <title>Changes in version 2.1.2</title>
+  <productnumber>2.1.2</productnumber>
+  <date>2023-04-10</date>
+</info>
+
 <itemizedlist>
 <listitem>
 <para>Added a <parameter>verbatim-trim-leading-blank-lines</parameter> parameter. This
@@ -96,13 +109,15 @@ compatibility, but note that some syntax highlighters may trim leading (and trai
 blank links anyway.</para>
 </listitem>
 </itemizedlist>
-</revdescription>
-</revision>
+</section>
 
-<revision xml:id="r211">
-<revnumber>2.1.1</revnumber>
-<date>2023-04-08</date>
-<revdescription>
+<section xml:id="r211">
+<info>
+  <title>Changes in version 2.1.1</title>
+  <productnumber>2.1.1</productnumber>
+  <date>2023-04-08</date>
+</info>
+
 <itemizedlist>
 <listitem>
 <para>Added a <parameter>copy-verbatim-js</parameter> parameter. This feature 
@@ -114,13 +129,15 @@ text of the listing (without callouts, line annotations, etc.) to the clipboard.
 into the HTML output.</para>
 </listitem>
 </itemizedlist>
-</revdescription>
-</revision>
+</section>
 
-<revision xml:id="r210">
-<revnumber>2.1.0</revnumber>
-<date>2023-04-07</date>
-<revdescription>
+<section xml:id="r210">
+<info>
+  <title>Changes in version 2.1.0</title>
+  <productnumber>2.1.0</productnumber>
+  <date>2023-04-07</date>
+</info>
+
 <para>This is the first official release of the “2.x” versions of the
 stylesheets. Version 2.1.0 introduces a number of new features and
 corrects major issues with localization and media object rendering,
@@ -128,8 +145,6 @@ but is not entirely backwards compatible with the 1.x versions. The
 incompatibilities should mostly effect customization layers, not
 formatted documents, though the HTML output will be a little different
 in most cases. For a summary of the changes, see <xref
-linkend="version2"/>.</para>
-</revdescription>
-</revision>
-
-</revhistory>
+linkend="intro-210"/>.</para>
+</section>
+</section>

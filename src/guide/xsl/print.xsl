@@ -52,30 +52,4 @@
   <xsl:sequence select="f:attributes(., $attr)"/>
 </xsl:template>
 
-<!-- Find the header for the book cover page and move its embedded
-     revhistory out of the header. -->
-<xsl:template match="h:header[h:div[contains-token(@class, 'cover')]]"
-              mode="m:chunk-cleanup">
-  <xsl:variable name="header" as="element(h:header)">
-    <xsl:next-match/>
-  </xsl:variable>
-  <xsl:apply-templates select="$header" mode="mp:norevhistory"/>
-  <xsl:copy-of select="$header//h:div[contains-token(@class, 'revhistory')]"/>
-</xsl:template>
-
-<xsl:template match="*" mode="mp:norevhistory">
-  <xsl:copy>
-    <xsl:apply-templates select="@*,node()" mode="mp:norevhistory"/>
-  </xsl:copy>
-</xsl:template>
-
-<xsl:template match="h:div[contains-token(@class, 'revhistory')]"
-              mode="mp:norevhistory">
-</xsl:template>
-
-<xsl:template match="text()|comment()|processing-instruction()|attribute()"
-              mode="mp:norevhistory">
-  <xsl:copy/>
-</xsl:template>
-
 </xsl:stylesheet>
