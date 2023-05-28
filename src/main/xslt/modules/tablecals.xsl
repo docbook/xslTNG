@@ -117,7 +117,7 @@
     </xsl:for-each>
   </xsl:variable>
 
-  <xsl:message use-when="'tables' = $debug"
+  <xsl:message use-when="'tables' = $v:debug"
                select="'========================================'"/>
   <tr>
     <xsl:apply-templates select="." mode="m:attributes"/>
@@ -125,11 +125,11 @@
       <xsl:variable name="cell" select="fcals:cell($row, ., $overhang, $cells)"/>
       <xsl:choose>
         <xsl:when test="$cell?span">
-          <xsl:message use-when="'tables' = $debug"
+          <xsl:message use-when="'tables' = $v:debug"
                        select="., '--span--'"/>
         </xsl:when>
         <xsl:when test="empty($cell?node)">
-          <xsl:message use-when="'tables' = $debug"
+          <xsl:message use-when="'tables' = $v:debug"
                        select="., '--empty--'"/>
           <xsl:call-template name="tp:cell">
             <xsl:with-param name="properties" select="map {
@@ -144,7 +144,7 @@
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message use-when="'tables' = $debug"
+          <xsl:message use-when="'tables' = $v:debug"
                        select="., $cell?node/string()
                                   =&gt; normalize-space()
                                   =&gt; substring(1, 10)"/>

@@ -40,7 +40,7 @@
     <xsl:if test="$lto and $lto/@xlink:href=''">
       <xsl:variable name="fn"
                     select="resolve-uri($lfrom/@xlink:href, base-uri($lfrom))"/>
-      <xsl:message use-when="'linkbase' = $debug"
+      <xsl:message use-when="'linkbase' = $v:debug"
                    select="'Load linkbase:', $fn"/>
       <xsl:sequence
           select="doc(resolve-uri($lfrom/@xlink:href, base-uri($lfrom)))
