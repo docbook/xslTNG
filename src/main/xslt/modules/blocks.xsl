@@ -124,9 +124,9 @@
                 <xsl:apply-templates select="."/>
               </p>
             </xsl:variable>
-            <xsl:if test="not(empty($p/node()))
-                          and not(normalize-space(string($p)) = '')">
-              <xsl:sequence select="$p"/>
+            <xsl:if test="not(empty($last-p/node()))
+                          and not(normalize-space(string($last-p)) = '')">
+              <xsl:sequence select="$last-p"/>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>

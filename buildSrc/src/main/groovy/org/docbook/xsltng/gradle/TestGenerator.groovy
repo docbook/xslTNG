@@ -154,7 +154,8 @@ class TestGenerator {
     generatedConfigurations = [
       'para.002': ['unwrapped-para.002':'unwrapped'],
       'para.003': ['unwrapped-para.003':'unwrapped'],
-      'para.004': ['unwrapped-para.004':'unwrapped']
+      'para.004': ['unwrapped-para.004':'unwrapped'],
+      'footnote.005': ['unwrapped-footnote.005':'unwrapped']
     ]
 
     configureCalloutTests()
