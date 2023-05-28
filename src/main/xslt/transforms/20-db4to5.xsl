@@ -15,7 +15,7 @@
 <xsl:param name="version" as="xs:string" select="'1.0'"/>
 <xsl:param name="base-uri" as="xs:string?" select="()"/>
 
-<xsl:variable name="verbose" as="xs:boolean" select="'db4to5' = $debug"/>
+<xsl:variable name="verbose" as="xs:boolean" select="'db4to5' = $v:debug"/>
 
 <xsl:output method="xml" encoding="utf-8" indent="no"/>
 

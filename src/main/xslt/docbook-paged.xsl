@@ -64,7 +64,7 @@
 <xsl:template match="*[@db-chunk]" mode="m:chunk-cleanup" priority="10">
   <xsl:variable name="self" select="."/>
 
-  <xsl:message use-when="'chunk-cleanup' = $debug"
+  <xsl:message use-when="'chunk-cleanup' = $v:debug"
                select="'Chunk cleanup (print override):',
                        local-name(.), @db-chunk/string()"/>
 

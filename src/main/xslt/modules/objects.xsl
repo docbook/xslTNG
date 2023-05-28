@@ -975,7 +975,7 @@
     </xsl:message>
   </xsl:if>
 
-  <xsl:message use-when="$debug = 'image-properties'"
+  <xsl:message use-when="$v:debug = 'image-properties'"
                select="$uri, serialize($properties, $v:as-json)"/>
   <xsl:sequence select="$properties"/>
 </xsl:function>
