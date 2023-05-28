@@ -16,7 +16,22 @@
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
     <xsl:apply-templates select="." mode="m:toc"/>
     <xsl:apply-templates/>
+    <xsl:if test="self::db:set|self::db:book">
+      <xsl:apply-templates select="." mode="m:back-cover"/>
+    </xsl:if>
   </article>
+</xsl:template>
+
+<xsl:template match="*" mode="m:back-cover">
+  <!--
+  <section class="back-cover">
+    <xsl:if test="not($output-media = 'print')">
+      <xsl:attribute name="db-chunk" select="'back-cover' || $html-extension"/>
+      <xsl:attribute name="db-navigable" select="'true'"/>
+    </xsl:if>
+    <p>Contents of back cover goes here</p>
+  </section>
+  -->
 </xsl:template>
 
 </xsl:stylesheet>
