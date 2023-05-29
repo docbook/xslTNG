@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.1.4-SNAPSHOT
+/* DocBook xslTNG version 2.1.4
  *
  * This is report.js.
  *
