@@ -531,7 +531,9 @@
       <xsl:for-each select="distinct-values(a:template/@mode/string())">
         <xsl:variable name="mode" select="."/>
         <xsl:variable name="template" select="($stylesheet/a:template[@mode=$mode])[1]"/>
-        <a:mode name="{.}" display-name="{$template/@display-mode}"/>
+        <xsl:if test="not(starts-with(., '{http://docbook.org/ns/docbook/modes/private}'))">
+          <a:mode name="{.}" display-name="{$template/@display-mode}"/>
+        </xsl:if>
       </xsl:for-each>
     </xsl:variable>
 
@@ -539,14 +541,14 @@
       <section>
         <header>
           <h3><xsl:sequence select="@href/string()"/></h3>
-          <p>
-            <xsl:for-each select="($functions, $variables, $params, $templates, $modes)">
-              <xsl:sort select="substring-after(@name, '}')"/>
-              <xsl:if test="position() gt 1">, </xsl:if>
-              <xsl:apply-templates select="." mode="mg:reference"/>
-            </xsl:for-each>
-          </p>
         </header>
+        <p>
+          <xsl:for-each select="($functions, $variables, $params, $templates, $modes)">
+            <xsl:sort select="substring-after(@name, '}')"/>
+            <xsl:if test="position() gt 1">, </xsl:if>
+            <xsl:apply-templates select="." mode="mg:reference"/>
+          </xsl:for-each>
+        </p>
       </section>
     </xsl:if>
   </xsl:for-each>
