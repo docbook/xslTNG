@@ -2,8 +2,125 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
          xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec"
          stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/unwrapped.xsl"
-         date="2023-05-28T09:49:57.088766Z">
+         date="2023-05-29T12:20:27.873315Z">
    <scenario id="scenario1"
+              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
+      <label>When transforming unwrapped-footnote.005</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/footnote.005.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit test: footnote.005</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Unit test: footnote.005</h1>
+                        </header>
+                        <p>Papers
+typically start on an odd-numbered, right-hand page: this could just follow from
+right-hand pages being the ‘front’ of a leaf, or it could be a by-product of
+single-article reprints of papers needing to start on a right-hand page.<sup id="R_para1_footnote1-fref" class="footnote-number">
+                              <a href="#R_para1_footnote1-fnote">1</a>
+                           </sup> Graphics are typically floated to the top
+(and sometimes also to the bottom) of the page. In a two-column paper, graphics can be
+either one column wide or span both columns. Large graphics might instead be grouped at
+the back of the paper, after the references. The combination of a two-column layout plus
+floating figures generally takes fewer pages than if all text, headings, and figures
+span the width of the page.</p>
+                     </article>
+                     <footer>
+                        <div class="footnotes">
+                           <hr/>
+                           <div class="footnote" id="R_para1_footnote1-fnote">
+                              <div class="footnote-number">
+                                 <sup class="footnote-number">
+                                    <a href="#R_para1_footnote1-fref">1</a>
+                                 </sup>
+                              </div>
+                              <div class="footnote-body">
+                                 <p>Magazines and newspapers start articles as a two-page spread when it suits them, but in my limited experience, papers in journals and in conference proceedings do not start with a two-page spread.</p>
+                              </div>
+                           </div>
+                        </div>
+                     </footer>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect unwrapped-footnote.005.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit test: footnote.005</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Unit test: footnote.005</h1>
+                           </header>
+                           <p>Papers
+typically start on an odd-numbered, right-hand page: this could just follow from
+right-hand pages being the ‘front’ of a leaf, or it could be a by-product of
+single-article reprints of papers needing to start on a right-hand page.<sup id="R_para1_footnote1-fref" class="footnote-number">
+                                 <a href="#R_para1_footnote1-fnote">1</a>
+                              </sup> Graphics are typically floated to the top
+(and sometimes also to the bottom) of the page. In a two-column paper, graphics can be
+either one column wide or span both columns. Large graphics might instead be grouped at
+the back of the paper, after the references. The combination of a two-column layout plus
+floating figures generally takes fewer pages than if all text, headings, and figures
+span the width of the page.</p>
+                        </article>
+                        <footer>
+                           <div class="footnotes">
+                              <hr/>
+                              <div class="footnote" id="R_para1_footnote1-fnote">
+                                 <div class="footnote-number">
+                                    <sup class="footnote-number">
+                                       <a href="#R_para1_footnote1-fref">1</a>
+                                    </sup>
+                                 </div>
+                                 <div class="footnote-body">
+                                    <p>Magazines and newspapers start articles as a two-page spread when it suits them, but in my limited experience, papers in journals and in conference proceedings do not start with a two-page spread.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </footer>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario2"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-para.002</label>
       <input-wrap xmlns="">
@@ -70,6 +187,8 @@ And a block quote for good measure:
                         <blockquote class="blockquote">
                            <p>Hello, sailor.</p>
                         </blockquote>
+                        <p>More prose.
+</p>
                         <blockquote class="blockquote">
                            <p>Hello, sailor.</p>
                         </blockquote>
@@ -81,7 +200,7 @@ And a block quote for good measure:
             </html>
          </content-wrap>
       </result>
-      <test id="scenario1-expect1" successful="true">
+      <test id="scenario2-expect1" successful="true">
          <label>expect unwrapped-para.002.expected</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
@@ -143,6 +262,8 @@ And a block quote for good measure:
                            <blockquote class="blockquote">
                               <p>Hello, sailor.</p>
                            </blockquote>
+                           <p>More prose.
+</p>
                            <blockquote class="blockquote">
                               <p>Hello, sailor.</p>
                            </blockquote>
@@ -156,7 +277,7 @@ And a block quote for good measure:
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario2"
+   <scenario id="scenario3"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-para.003</label>
       <input-wrap xmlns="">
@@ -197,7 +318,7 @@ And a block quote for good measure:
             </html>
          </content-wrap>
       </result>
-      <test id="scenario2-expect1" successful="true">
+      <test id="scenario3-expect1" successful="true">
          <label>expect unwrapped-para.003.expected</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
@@ -235,7 +356,7 @@ And a block quote for good measure:
          </expect>
       </test>
    </scenario>
-   <scenario id="scenario3"
+   <scenario id="scenario4"
               xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-para.004</label>
       <input-wrap xmlns="">
@@ -306,7 +427,7 @@ And a block quote for good measure:
             </html>
          </content-wrap>
       </result>
-      <test id="scenario3-expect1" successful="true">
+      <test id="scenario4-expect1" successful="true">
          <label>expect unwrapped-para.004.expected</label>
          <expect select="/self::document-node()">
             <content-wrap xmlns="">
