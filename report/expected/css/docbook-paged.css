@@ -2348,22 +2348,29 @@ html.article-style .list-of-titles div .title {
   break-before: always;
 }
 
+:root {
+  --background-color: inherit;
+}
+
 .book > header {
   padding: 0;
   border: inherit;
 }
 
-.division > header > h1,
+.division > header > h1 {
+  string-set: DocumentTitle content(), DivisionTitle content(), ComponentTitle "", SectionTitle "";
+}
+
 .component > header > h1 {
-  string-set: DocumentTitle content(), DivisionTitle content(), ComponentTitle content();
+  string-set: DocumentTitle content(), DivisionTitle content(), ComponentTitle content(), SectionTitle "";
 }
 
 .division > header > h2 {
-  string-set: DivisionTitle content();
+  string-set: DivisionTitle content(), ComponentTitle "", SectionTitle "";
 }
 
 .component > header > h2 {
-  string-set: ComponentTitle content();
+  string-set: ComponentTitle content(), SectionTitle "";
 }
 
 .section > header > h1,
