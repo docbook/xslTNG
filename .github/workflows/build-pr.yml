@@ -68,11 +68,14 @@ jobs:
           python3 -m pip install saxonche
           python3 -m pip install --no-binary lxml html5-parser
 
-      - name: Checkout the main branch on Mac
+      - name: Checkout the pull request on Mac
         if: matrix.os == 'macos-11'
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
-      - name: Get the latest releases (authenticated request on mac)
+      - name: Get the latest releases (authenticated request on Mac)
         if: ${{ matrix.os == 'macos-11' && env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
           mkdir -p build
@@ -92,9 +95,12 @@ jobs:
         with:
           args: install sass
 
-      - name: Checkout the main branch on Windows
+      - name: Checkout the pull request on Windows
         if: matrix.os == 'windows-2019'
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
       - name: Get the latest releases (authenticated request on Windows)
         if: ${{ matrix.os == 'windows-2019' && env.HAVE_ACCESS_TOKEN == 'true' }}
@@ -120,11 +126,14 @@ jobs:
           python3 -m pip install saxonche
           python3 -m pip install --no-binary lxml html5-parser
 
-      - name: Checkout the main branch on Linux
+      - name: Checkout the pull request on Linux
         if: matrix.os == 'ubuntu-20.04'
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
 
-      - name: Get the latest releases (authenticated request on Windows)
+      - name: Get the latest releases (authenticated request on Linux)
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
           mkdir -p build
