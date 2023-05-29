@@ -89,8 +89,10 @@
             <xsl:apply-templates select="db:info/db:author"/>
           </div>
           <div class="version">
-            <xsl:text>Version </xsl:text>
-            <xsl:sequence select="$bookVersion"/>
+            <a href="#r{replace($bookVersion, '\.', '')}">
+              <xsl:text>Version </xsl:text>
+              <xsl:sequence select="$bookVersion"/>
+            </a>
           </div>
           <div class="date">
             <xsl:text>Updated: </xsl:text>

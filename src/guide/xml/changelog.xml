@@ -10,13 +10,84 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r214">
+<info>
+  <title>Changes in version 2.1.4</title>
+  <productnumber>2.1.4</productnumber>
+  <date>2023-05-29</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Fixed a bug where the <citetitle>Index by module</citetitle> index in the PDF
+guide ran off the bottom of the page.</para>
+</listitem>
+<listitem>
+<para>Improved the left and right page headers in PDF output.
+</para>
+</listitem>
+<listitem>
+<para>Fixed (another) bug in <parameter>unwrap-paragraphs</parameter> support.
+</para>
+</listitem>
+<listitem>
+<para>Fixed a bug where the link for the persistent ToC was not visible. (This started 
+in 2.1.3 when a z-index was added to the page header.)
+</para>
+</listitem>
+<listitem>
+<para>Added a <mode>m:back-cover</mode> mode for producing a back
+cover. By default, this mode produces no output, but it can be changed
+an a customization layer to produce a cover.
+</para>
+</listitem>
+<listitem>
+<para>Fixed a few places where the <parameter>debug</parameter> parameter was not being
+tested correctly. Documented the <literal>templates-matches</literal> debug flag.
+</para>
+</listitem>
+<listitem>
+<para>Reworked how the change log is produced; it’s now an appendix rather than attempting
+to put it between the front cover and the table of contents.
+</para>
+</listitem>
+<listitem>
+<para>Fixed some navigation issues associated with annotations when JavaScript is being used
+to display the annotations.
+</para>
+</listitem>
+<listitem>
+<para>For convenience, the SASS SCSS stylesheets are now in the distribution ZIP archive.
+These aren’t used at runtime, but if you have plans to make extensive
+changes to the CSS, deriving those changes from the SASS sources may
+prove easier than updating the derived CSS directly.
+</para>
+</listitem>
+<listitem>
+<para>Added CSS variables: <literal>default-font-size</literal> and
+<literal>default-line-height</literal> to simplify customization.
+</para>
+</listitem>
+<listitem>
+<para>Reworked the title page for articles in books. Previously, they
+only rendered the title. An article in a book now renders the “full”
+titlepage that’s consistent with stand-alone articles.
+</para>
+</listitem>
+<listitem>
+<para>A bunch of build fixes: matrix builds work again, attempting to get the release information
+uses an authenticated request if it can, an old Xerces implementation pulled in by a transitive
+dependency is explicitly excluded (it has problems with UTF-16 encoded files, for example on Windows).
+</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r213">
 <info>
   <title>Changes in version 2.1.3</title>
   <productnumber>2.1.3</productnumber>
   <date>2023-05-23</date>
 </info>
-
 <itemizedlist>
 <listitem>
 <para>Fixed a bug in the handling of the <parameter>unwrap-paragraphs</parameter> parameter.
