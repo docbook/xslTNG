@@ -571,7 +571,8 @@
   <xsl:param name="overhang" as="array(xs:integer)"/>
   <xsl:choose>
     <xsl:when test="$column gt array:size($overhang)">
-      <xsl:sequence select="error($dbe:INVALID-CALS, 'Columns exceed @cols')"/>
+      <xsl:sequence select="error($dbe:INVALID-CALS,
+                              'Columns exceed @cols (' || $column || ' gt ' || array:size($overhang) || ')')"/>
     </xsl:when>
     <xsl:when test="array:get($overhang, $column) eq 0">
       <xsl:sequence select="$column"/>
