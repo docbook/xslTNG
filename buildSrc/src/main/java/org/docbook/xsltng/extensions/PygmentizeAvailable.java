@@ -24,6 +24,10 @@ public class PygmentizeAvailable extends PygmentizeDefinition {
     private static final StructuredQName qName =
             new StructuredQName("", "http://docbook.org/extensions/xslt", "pygmentize-available");
 
+    public PygmentizeAvailable() {
+        computeExecutable();
+    }
+
     @Override
     public StructuredQName getFunctionQName() {
         return qName;

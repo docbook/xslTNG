@@ -2097,10 +2097,17 @@ the listing if you are trying to accurately count the lines.</para>
 </refsynopsisdiv>
 <refsection>
 <title>Description</title>
-<para>In order to run Pygments on listings,
-the <function>ext:pygmentize</function> extension function must be available
-<emphasis>and</emphasis> the <command>pygmentize</command> command must be available
-on the host system.</para>
+<para>In order to run Pygments on listings, the
+<function>ext:pygmentize</function> extension function must be
+available <emphasis>and</emphasis> the <command>pygmentize</command>
+(<command>pygmentize.exe</command> on Windows) command must be
+available on the host system.</para>
+
+<para>If it’s inconvenient to put <command>pygmentize</command> on the system path,
+you can specify an explicit location with the Java system property
+<literal>org.docbook.xsltng.extensions.pygmentize</literal>. The value of the property
+should be the fully qualified path name of the executable.</para>
+
 <para>This function returns true if it successfully finds the
 <command>pygmentize</command> command on the system path.</para>
 </refsection>
