@@ -34,10 +34,12 @@ import java.util.List;
  */
 
 public class Pygmentize extends PygmentizeDefinition {
-    private final String format = "html"; // no others are supported
-
     private static final StructuredQName qName =
             new StructuredQName("", "http://docbook.org/extensions/xslt", "pygmentize");
+
+    public Pygmentize() {
+        computeExecutable();
+    }
 
     @Override
     public StructuredQName getFunctionQName() {
@@ -116,7 +118,7 @@ public class Pygmentize extends PygmentizeDefinition {
             List<String> cmdline = new ArrayList<String>();
             cmdline.add(pygmentize);
             cmdline.add("-f");
-            cmdline.add(format);
+            cmdline.add("html"); // no others are supported
             if (language != null) {
                 cmdline.add("-l");
                 cmdline.add(language);

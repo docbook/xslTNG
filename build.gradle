@@ -252,9 +252,12 @@ def pygmentize = findPygmentize()
 def findPygmentize() {
   def path = System.getenv()["PATH"] == null ? System.getenv()["Path"] : System.getenv()["PATH"]
   def script = null
-  path.split(":+").each { segment ->
+  def pathsep = System.getProperty("path.separator")
+  def pygmentize = OperatingSystem.current().isWindows() ? 'pygmentize.exe' : 'pygmentize'
+
+  path.split(pathsep).each { segment ->
     if (script == null) {
-      def testfile = new File("${segment}/pygmentize")
+      def testfile = new File("${segment}/${pygmentize}")
       if (testfile.exists() && testfile.canExecute()) {
         script = testfile.toString()
       }
@@ -264,7 +267,7 @@ def findPygmentize() {
         def pyenv = new File("${segment.substring(0, segment.length() - 6)}/versions")
         def versions = []
         pyenv.traverse(type: DIRECTORIES, maxDepth: 0) { dir ->
-          testfile = new File("${dir}/bin/pygmentize")
+          testfile = new File("${dir}/bin/${pygmentize}")
           if (testfile.exists() && testfile.canExecute()) {
             script = testfile.toString()
           }
@@ -1095,7 +1098,7 @@ task guide(
   )
 
   doLast {
-    delete "${buildDir}/guide/irrelevant-and-deleted-file.html"
+    delete "${uBuildDir}/guide/irrelevant-and-deleted-file.html"
   }
 }
 

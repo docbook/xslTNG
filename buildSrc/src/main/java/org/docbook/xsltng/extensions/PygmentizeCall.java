@@ -11,8 +11,6 @@ abstract public class PygmentizeCall extends ExtensionFunctionCall {
     protected DebuggingLogger logger = null;
 
     public String findPygmentize(Configuration config, String executable, boolean noisy) {
-        // I'm trying to make this Windows-compatible, but I'm not testing it there...
-        String[] paths = System.getenv("PATH").split(File.pathSeparator);
         String pygmentize = null;
 
         if (System.getProperty(PYGMENTIZE) != null) {
@@ -23,11 +21,18 @@ abstract public class PygmentizeCall extends ExtensionFunctionCall {
                 return pygmentize;
             } else {
                 message("Cannot use pygmentize: " + System.getProperty(PYGMENTIZE), noisy);
-                pygmentize = null;
+                return null;
             }
         } else {
             message("Searching for pygmentize", noisy);
         }
+
+        // I'm trying to make this Windows-compatible, but I'm not (routinely) testing it there...
+        String pathEnv = System.getenv("PATH");
+        if (pathEnv == null) {
+            pathEnv = System.getenv("Path");
+        }
+        String[] paths = pathEnv == null ? new String[0] : pathEnv.split(File.pathSeparator);
 
         for (String path : paths) {
             if (pygmentize == null && !"".equals(path)) {
