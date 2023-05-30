@@ -1098,7 +1098,7 @@ task guide(
   )
 
   doLast {
-    delete "${buildDir}/guide/irrelevant-and-deleted-file.html"
+    delete "${uBuildDir}/guide/irrelevant-and-deleted-file.html"
   }
 }
 
