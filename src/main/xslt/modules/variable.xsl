@@ -178,7 +178,8 @@
 </xsl:variable>
 
 <!-- I tinkered a bit to find images that would display across
-     a variety of devices. YMMV. -->
+     a variety of devices. YMMV. Beware: Pygmentize on Windows
+     doesn't use UTF-8 by default, so bad can happen. -->
 <xsl:variable name="v:admonition-icons">
   <db:tip>☞</db:tip>
   <db:note>ⓘ</db:note>

@@ -73,6 +73,11 @@
 
 <!-- ============================================================ -->
 
+<xsl:variable name="v:verbatim-syntax-highlight-pygments-options"
+           select="map {'encoding': 'utf-8'}"/>
+
+<!-- ============================================================ -->
+
 <xsl:template match="db:book" mode="m:generate-titlepage">
   <header>
     <div class="cover">
