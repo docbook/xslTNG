@@ -1352,8 +1352,8 @@ task stageJar(
     copy {
       into "${buildDir}/resources/main/org/docbook/xsltng/resources"
       from "${buildDir}/stage/zip/resources"
-      include "css"
-      include "js"
+      include "css/**"
+      include "js/**"
     }
     // Not ${buildDir}/classes/java/main because the jar task
     // picks those up automatically and we don't want duplicates
