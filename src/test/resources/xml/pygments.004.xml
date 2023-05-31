@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: pygments.004</title>
+
+<para>This test checks to see if the extension function that runs
+Pygments syntax highlighting works.</para>
+
+<programlisting language="css"
+>.error * {
+  background-color: var(--error-color);
+  color: var(--on-error-color);
+  padding-left: 2px;
+  padding-right: 2px;
+}</programlisting>
+
+</article>
