@@ -983,8 +983,7 @@ task relnotes(
 // ============================================================
 
 task dist(
-  dependsOn: ['requirePassingTests', 'releaseArtifacts',
-              'zipDist', 'zipDistNoSaxon', 'website', 'relnotes']
+  dependsOn: ['guide']
 ) {
   doLast {
     println("Built dist for ${xslTNGtitle} version ${xslTNGversion}")
