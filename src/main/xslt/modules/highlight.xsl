@@ -86,12 +86,9 @@
   <xsl:variable name="string"
                 select="ext:pygmentize($source, $options, $pyoptions)"/>
 
-  <xsl:message>
-    <xsl:text>== </xsl:text>
-    <xsl:sequence select="$source"/>
-    <xsl:text>=================================</xsl:text>
-  </xsl:message>
-  <xsl:message select="$string"/>
+  <xsl:message select="'================================='"/>
+  <xsl:message select="serialize($options, map{'method':'json', 'indent':true()})"/>
+  <xsl:message select="serialize($pyoptions, map{'method':'json', 'indent':true()})"/>
 
   <xsl:variable name="html">
     <xsl:apply-templates select="parse-xml($string)/node()" mode="mp:fix-html"/>
