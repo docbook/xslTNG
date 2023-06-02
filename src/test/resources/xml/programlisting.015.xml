@@ -1,0 +1,71 @@
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:css="https://xsltng.docbook.org/ns/css"
+         xmlns:cssp="https://xsltng.docbook.org/ns/css#print"
+         version="5.2">
+<title>Unit test: programlisting.015</title>
+
+<para>This test checks the <literal>page-break-avoid</literal> role as a way of avoiding
+page breaks in PDF. It works on any element, but <tag>programlisting</tag> is an easy
+place to check.</para>
+
+<para>Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum Et harumd und
+lookum like Greek to me, dereud facilis est er expedit distinct. Nam
+liber te conscient to factor tum poen legum odioque civiuda. Et tam
+neque pecun modut est neque nonor et imper ned libidig met,
+consectetur adipiscing elit, sed ut labore et dolore magna aliquam
+makes one wonder who would ever read this stuff?
+</para>
+
+<programlisting role="page-break-avoid">Line 01
+Line 02
+Line 03
+Line 04
+Line 05
+Line 06
+Line 07
+Line 08
+Line 09
+Line 10
+Line 11
+Line 12
+</programlisting>
+
+<para>(In a paged media presentation, the entire program listing should be on page 2.)</para>
+
+<programlisting cssp:page-break-inside="avoid">Line 01
+Line 02
+Line 03
+Line 04
+Line 05
+Line 06
+Line 07
+Line 08
+Line 09
+Line 10
+Line 11
+Line 12
+Line 13
+Line 14
+Line 15
+Line 16
+Line 17
+Line 18
+Line 19
+Line 20
+Line 21
+Line 22
+Line 23
+Line 24
+Line 25
+</programlisting>
+
+<para>(In a paged media presentation, the entire second program listing should be on page 3.)</para>
+
+</article>
