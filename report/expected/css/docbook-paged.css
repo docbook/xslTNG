@@ -2346,6 +2346,7 @@ html.article-style .list-of-titles div .title {
 
 :root {
   --background-color: inherit;
+  hyphens: auto;
 }
 
 .book > header {
@@ -2391,6 +2392,10 @@ h2 {
 
 .article > header > h2 {
   bookmark-level: none;
+}
+
+.verbatim {
+  hyphens: none;
 }
 
 .example header {
