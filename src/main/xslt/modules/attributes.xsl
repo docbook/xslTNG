@@ -23,6 +23,7 @@
     <xsl:attribute name="id" select="f:generate-id($node)"/>
   </xsl:if>
   <xsl:sequence select="f:chunk($node)"/>
+  <xsl:sequence select="fp:css-properties($node)"/>
 </xsl:function>
 
 <xsl:template match="db:article" mode="m:attributes" as="attribute()*">

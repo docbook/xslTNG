@@ -293,6 +293,7 @@
     <xsl:otherwise>
       <video>
         <xsl:apply-templates select="." mode="m:attributes"/>
+        <xsl:sequence select="fp:css-properties(db:videodata[last()])"/>
         <xsl:if test="exists($last?width)">
           <xsl:attribute name="width" select="f:absolute-length($last?width)"/>
         </xsl:if>
@@ -339,6 +340,7 @@
 
   <audio>
     <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:sequence select="fp:css-properties(db:audiodata[last()])"/>
     <xsl:apply-templates select="$params"/>
     <xsl:if test="empty($params)">
       <xsl:attribute name="controls" select="'controls'"/>
@@ -782,7 +784,10 @@
     </xsl:if>
 
     <xsl:if test="exists($styles)">
-      <xsl:attribute name="style" select="string-join($styles, ';')||';'"/>
+      <xsl:variable name="css-properties" select="fp:css-properties(.)"/>
+      <xsl:attribute name="style"
+                     select="string-join($styles, ';')||';'
+                             ||(if (exists($css-properties)) then string($css-properties) else '')"/>
     </xsl:if>
 
     <xsl:if test="ancestor::db:imageobjectco">

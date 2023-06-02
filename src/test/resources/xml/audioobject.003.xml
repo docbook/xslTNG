@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit test: audiodata.003</title>
+
+<para>This tests that the style property is applied in the right place for images.
+A red background is a bit odd, but …
+</para>
+
+   <mediaobject>
+     <audioobject xmlns:css="https://xsltng.docbook.org/ns/css">
+       <audiodata fileref="../media/this_is_a_test.oga"
+                  css:background-color="red"/>
+     </audioobject>
+   </mediaobject>
+</article>
