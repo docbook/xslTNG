@@ -230,7 +230,6 @@ span.error.broken-link::after {
 }
 
 .remark {
-  page-break-inside: avoid;
   border: var(--remark-border-style);
   border-radius: 3px;
   padding-left: 4px;
@@ -437,7 +436,6 @@ cite.title {
 
 header {
   page-break-after: avoid;
-  page-break-inside: avoid;
 }
 
 header .authorgroup {
@@ -719,7 +717,6 @@ span > .viewport-table {
 }
 
 .admonition {
-  page-break-inside: avoid;
   border-radius: 0.5rem;
   min-height: 3rem;
   padding-top: 0;
@@ -1220,7 +1217,6 @@ blockquote p + .attribution {
 .figure,
 .example,
 .equation {
-  page-break-inside: avoid;
   padding-top: 1em;
 }
 

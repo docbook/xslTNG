@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Unit test: small-duck.007</title>
+
+<para>This tests that the style property is applied in the right place for images.
+</para>
+
+<mediaobject>
+  <imageobject xmlns:css="https://xsltng.docbook.org/ns/css">
+    <imagedata fileref="../media/duck-small.gif"
+               width="50%" css:image-resolution="from-image var(150dpi)"/>
+  </imageobject>
+</mediaobject>
+
+</article>
