@@ -1,5 +1,6 @@
 :root {
     --background-color: inherit;
+    hyphens: auto;
 }
 
 .book > header {
@@ -57,6 +58,10 @@ h2 {
 }
 
 header {
+}
+
+.verbatim {
+    hyphens: none;
 }
 
 .example header {
