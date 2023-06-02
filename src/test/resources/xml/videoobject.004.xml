@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit test: videoobject.004</title>
+
+<para>This tests that the style property is applied in the right place for images.
+</para>
+
+   <mediaobject>
+     <videoobject xmlns:css="https://xsltng.docbook.org/ns/css">
+       <videodata fileref="../media/spinning-top.webm"
+                  css:background-color="red"/>
+     </videoobject>
+   </mediaobject>
+</article>
