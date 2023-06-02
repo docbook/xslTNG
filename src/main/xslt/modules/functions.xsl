@@ -445,9 +445,48 @@
                         else $value"/>
 </xsl:function>
 
+<xsl:function name="fp:css-properties" as="attribute()?">
+  <xsl:param name="context" as="element()?"/>
+
+  <xsl:variable name="generic-attributes" as="map(*)">
+    <xsl:map>
+      <xsl:for-each select="$context/@css:*" xmlns:css="https://xsltng.docbook.org/ns/css">
+        <xsl:map-entry key="local-name(.)" select="string(.)"/>
+      </xsl:for-each>
+    </xsl:map>
+  </xsl:variable>
+
+  <xsl:variable name="media-attributes" as="map(*)">
+    <xsl:map>
+      <xsl:for-each select="$context/@*">
+        <xsl:if test="namespace-uri(.) = 'https://xsltng.docbook.org/ns/css#' || $output-media">
+          <xsl:map-entry key="local-name(.)" select="string(.)"/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:map>
+  </xsl:variable>
+
+  <xsl:variable name="attributes" as="map(*)"
+                select="map:merge(($generic-attributes, $media-attributes),
+                                  map { 'duplicates': 'use-last' })"/>
+
+  <xsl:if test="map:size($attributes) != 0">
+    <xsl:iterate select="map:keys($attributes)">
+      <xsl:param name="css" select="''"/>
+      <xsl:on-completion>
+        <xsl:attribute name="style" select="$css"/>
+      </xsl:on-completion>
+      <xsl:variable name="name" select="."/>
+      <xsl:variable name="value" select="map:get($attributes, .)"/>
+      <xsl:next-iteration>
+        <xsl:with-param name="css" select="$css || $name || ':' || $value || ';'"/>
+      </xsl:next-iteration>
+    </xsl:iterate>
+  </xsl:if>
+</xsl:function>
+
 <xsl:function name="f:pi-attributes" as="element()?">
   <xsl:param name="pis" as="processing-instruction()*"/>
-
   <xsl:variable name="attributes"
                 select="fp:pi-attributes($pis, map { })"/>
 

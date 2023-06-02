@@ -179,7 +179,7 @@
           rel="stylesheet" media="screen"/>
     <!-- This stylesheet was made conditional in 2.1.0 because modern
          browsers generate a lot of warnings for print-specific features. -->
-    <xsl:if test="$output-media != 'screen'">
+    <xsl:if test="$output-media = 'print'">
       <link href="{$resource-base-uri}{fp:minified-css('css/docbook-paged.css')}"
             rel="stylesheet" media="print"/>
     </xsl:if>
