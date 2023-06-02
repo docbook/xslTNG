@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <chapter xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi='http://www.w3.org/2001/XInclude'
 	 version="5.0" xml:id="using">
 <info>
   <?db filename="ch-using"?>
@@ -1186,7 +1187,7 @@ on-page ToC JavaScript is executed.</para>
 </section>
 
 <section xml:id="print">
-<title>Print output (dead tree editions)</title>
+<title>Paged-media (print output)</title>
 
 <para>Formatters, the tools that turn markup of any sort into
 aesthetically pleasing (or even passably acceptable) printed pages are
@@ -1285,6 +1286,82 @@ Started</link> project has been updated to show how to create EPUB
 from a book. The project has support for dealing with external media,
 fonts, and constructing the final ZIP file.</para>
 </section>
+</section>
+
+<section xml:id="ad-hoc-css-styling">
+<title>Ad hoc CSS styling</title>
+
+<para>Generally speaking, it’s considered good practice to separate
+content from presentation. On the web, this is most often accomplished
+with clean, structural HTML as the content and CSS styling providing
+the presentation. Indeed, that’s how the output from the
+<citetitle>DocBook xslTNG Stylesheets</citetitle> is
+structured.</para>
+
+<para>And yet, sometimes you need to tweak individual elements in
+small ways. For example, you may want to change the style of a single
+<tag>programlisting</tag> to avoid a page break inside it. Or perhaps
+you need to make some adjustment to a single image.</para>
+
+<para>In principle, this can be done in a completely “hands off”
+manner: add an ID to the element and add an ID selector to the
+external CSS file. In practice, that’s a bit tedious and there’s
+nothing in the source to suggest that the styling is required or even
+exists.</para>
+
+<para>HTML allows for inline styles with the <tag
+class="attribute">style</tag> attribute and starting in version 2.1.5,
+the xslTNG stylesheets provide a way to access this feature.</para>
+
+<para>DocBook allows namespace qualified attributes on any element.
+Adding attributes in the <code>https://xsltng.docbook.org/ns/css</code>
+namespace to an element will add those properties to the HTML <tag
+class="attribute">style</tag> attribute. For example:</para>
+
+<programlisting language="xml"><xi:include href="ch02.xml"
+  parse="text" fragid="search=#xmlns&#x3a;css=#,#a border#"/>
+</programlisting>
+
+<para>Will be rendered as you expect:</para>
+
+<para xmlns:css="https://xsltng.docbook.org/ns/css"
+      css:border="1px solid blue" css:border-radius="0.5em"
+      css:padding="0.5em">This
+is a paragraph with a border.</para>
+
+<para>The generated HTML wraps up the CSS properties in a style
+attribute:</para>
+
+<programlisting><![CDATA[<p style="padding:0.5em;border:1px solid blue;border-radius:0.5em;"
+>This is a pargraph with a border.</p>]]></programlisting>
+
+<para>To facilitate different properties based on the output medium, the stylesheets
+will also look for attributes in the
+“<code>https://xsltng.docbook.org/ns/css#<parameter>output-media</parameter></code>”
+namespace. For example, this paragraph:</para>
+
+<programlisting xmlns:p-css="https://xsltng.docbook.org/ns/css#print"
+                language="xml" p-css:page-break-inside="avoid"
+><xi:include href="ch02.xml"
+  parse="text" fragid="search=#e&#x78;mark1#;after,#/para#"/>
+</programlisting>
+
+<para>Will be rendered with a pinkish background online and with a grey
+background in print:</para>
+
+<!-- exmark1 -->
+<para xmlns:p-css="https://xsltng.docbook.org/ns/css#print"
+      xmlns:css="https://xsltng.docbook.org/ns/css"
+      css:background-color="#ffaaaa"
+      p-css:background-color="#bbbbbb">This paragraph
+has a background color.
+</para>
+
+<para>By default, the stylesheets set
+<parameter>output-media</parameter> to <literal>screen</literal> for
+“ordinary output”, <literal>epub</literal> for EPUB, and
+<literal>print</literal> for paged media.</para>
+
 </section>
 </chapter>
 
