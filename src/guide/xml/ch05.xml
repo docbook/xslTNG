@@ -44,13 +44,12 @@ without running the tests.
 </orderedlist>
 
 <important>
-<para>In principle, it should be possible to build the stylesheets on <trademark>Windows</trademark>.
-In practice, it doesn’t work. One would imagine that mapping path (“:”→“;”)
-and filename (“\”→“/”) separators and constructing URIs for paths
-(“<literal>C:\Users\…</literal>”→“<literal>file:///C:/Users/…</literal>”) would
-make it work. In the author’s experience, that is not the case. Pull requests are welcome.
-It may be more expedient to build in the Linux subsystem on Windows 10 or in a Docker
-container.
+<para>In principle, it should be possible to build the stylesheets on
+<trademark>Windows</trademark>. In practice, it isn’t entirely
+reliable. It has been much improved as of version 2.1.4, but still
+fails randomly on some Windows machines, but not others. It may be
+more expedient to build in the Linux subsystem on Windows 10 or in a
+Docker container.
 </para>
 </important>
 
@@ -85,17 +84,6 @@ required for syntax highlighting, though that’s not technically a build requir
 or have questions or suggestions about how best to manage them, please
 let us know.</para>
 
-<section xml:id="saxonee">
-<title>Saxon EE</title>
-<para>You don’t need a Saxon EE license to build or run the stylesheets.
-If you change any of the transforms in <code>src/main/xslt/transforms</code>,
-you will need a Saxon EE license to recompile them as exported SEF files.</para>
-<para>If you don’t have an EE license, the build process will simply
-omit the SEF versions and the “source” versions, including any
-modifications that you’ve made, will be used.</para>
-<para>That’s the theory, anyway. I’ve tested it, but if you have any trouble, please
-open an issue.</para>
-</section>
 </section>
 <section xml:id="repostruct">
 <title>Repository structure</title>
@@ -190,6 +178,101 @@ around this by pointing a local web server at the build directory.</para>
 
 <para>The built stylesheets are in <dir>build/xslt</dir>. You can run
 them directly from there.</para>
+</section>
+
+<section xml:id="buildconfig">
+<title>Build configuration</title>
+
+<para>Several build properties are defined in <filename>gradle.properties</filename>.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><property>verbose</property></term>
+<listitem>
+<para>If true, enables additional messages in the extension functions.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>requireCompileSuccess</property></term>
+<listitem>
+<para>If true, the build will fail if there are any errors building the stylesheets.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>requireTestSuccess</property></term>
+<listitem>
+<para>If true, the build will fail if any tests fail.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>xspecVersion</property></term>
+<listitem>
+<para>The version of XSpec.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>xsltExplorerVersion</property></term>
+<listitem>
+<para>The version of XSLT Explorer.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>pdftool</property></term>
+<listitem>
+<para>Select a tool for formatting PDFs. Expected values are <literal>antennahouse</literal>
+or <literal>prince</literal>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>antennahouse</property></term>
+<listitem>
+<para>The path to the Antenna House Formatter.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>prince</property></term>
+<listitem>
+<para>The path to the Prince formatter.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>There are four additional properties that are used by the
+<buildtarget>dbtransform</buildtarget> target. This target allows you to process arbitrary
+documents with the stylesheets. It takes care of loading all of the extension functions.</para>
+
+<variablelist>
+<varlistentry>
+<term><property>dbsource</property></term>
+<listitem>
+<para>The URI of the source document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>dboutput</property></term>
+<listitem>
+<para>The path for outputting the principle result document.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>dbstyle</property></term>
+<listitem>
+<para>The URI of the base stylesheet, defaults to the main DocBook xslTNG stylesheet.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><property>dbparams</property></term>
+<listitem>
+<para>Stylesheet parameters.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>You can change these variables in your local version of <filename>gradle.properties</filename>,
+or you can specify them on the command line. For example, to enable <property>verbose</property>
+processing, pass <code>-Pverbose=true</code> on the Gradle command line.</para>
+
 </section>
 
 <section xml:id="buildtasks">
