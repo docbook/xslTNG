@@ -10,10 +10,14 @@ import net.sf.saxon.lib.ExtensionFunctionCall;
 import net.sf.saxon.lib.ExtensionFunctionDefinition;
 import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.StructuredQName;
+import net.sf.saxon.s9api.XdmMap;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
@@ -65,6 +69,8 @@ public class ImageMetadata extends ExtensionFunctionDefinition {
         public Sequence call(XPathContext xpathContext, Sequence[] sequences) throws XPathException {
             context = xpathContext;
             logger = new DebuggingLogger(xpathContext.getConfiguration().getLogger());
+            map = new XdmMap();
+
             String imageUri = sequences[0].head().getStringValue();
             boolean isImage = true;
 

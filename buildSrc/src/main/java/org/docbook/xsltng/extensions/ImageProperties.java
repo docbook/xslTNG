@@ -6,6 +6,7 @@ import net.sf.saxon.lib.ExtensionFunctionDefinition;
 import net.sf.saxon.om.Sequence;
 import net.sf.saxon.om.StructuredQName;
 import net.sf.saxon.s9api.XdmAtomicValue;
+import net.sf.saxon.s9api.XdmMap;
 import net.sf.saxon.trans.XPathException;
 import net.sf.saxon.value.SequenceType;
 
@@ -81,6 +82,8 @@ public class ImageProperties extends ExtensionFunctionDefinition {
         public Sequence call(XPathContext xpathContext, Sequence[] sequences) throws XPathException {
             context = xpathContext;
             logger = new DebuggingLogger(xpathContext.getConfiguration().getLogger());
+            map = new XdmMap();
+
             String imageFn = sequences[0].head().getStringValue();
 
             imageLoaded = false;

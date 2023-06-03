@@ -115,9 +115,11 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
             item = sequences[1].head();
             if (item instanceof StringValue) {
                 schemaFile = item.getStringValue();
+                schema = null;
             } else {
                 if (item instanceof NodeInfo) {
                     schema = (NodeInfo) item;
+                    schemaFile = null;
                 } else {
                     throw new IllegalArgumentException("ext:validate-with-relax-ng invalid schema");
                 }
@@ -125,6 +127,12 @@ public class ValidateRNG extends ExtensionFunctionDefinition {
 
             assertValid = getBooleanOption(options, "assert-valid", true);
             dtdCompatibility = getBooleanOption(options, "dtd-compatibility", false);
+
+            // Take care to (re)initialize the object fields on each call so that we don't have
+            // to worry about copying local data.
+            compactSyntax = null;
+            encoding = null;
+
             if (options.containsKey("compact-syntax")) {
                 compactSyntax = getBooleanOption(options, "compact-syntax", false);
             }
