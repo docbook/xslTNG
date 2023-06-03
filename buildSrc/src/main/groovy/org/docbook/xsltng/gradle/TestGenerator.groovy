@@ -63,6 +63,11 @@ class TestGenerator {
           'chunk': 'index.html',
           'chunk-output-base-uri': "${uBuildDir}/actual/"])
 
+    testEnvironments.create('speakernotes')
+      .withParameters([
+          'chunk': 'index.html',
+          'chunk-output-base-uri': "${uBuildDir}/actual/"])
+
     testEnvironments.create('chunkfit')
       .withParameters([
           'annotation-style': 'javascript',
@@ -125,6 +130,10 @@ class TestGenerator {
       .withEnvironments(['online', 'chunkfit', 'olinkdb'])
       .withExtraDependencies(['guide.olinkdb'])
 
+    testConfigurations.create('speakernotes')
+      .withEnvironments(['online', 'speakernotes'])
+      .withStylesheet("${uBuildDir}/xslt/speaker-notes.xsl")
+
     testConfigurations.create('olink')
       .withEnvironments(['online', 'olinkdb', 'olink'])
       .withExtraDependencies(['guide.olinkdb'])
@@ -155,7 +164,8 @@ class TestGenerator {
       'para.002': ['unwrapped-para.002':'unwrapped'],
       'para.003': ['unwrapped-para.003':'unwrapped'],
       'para.004': ['unwrapped-para.004':'unwrapped'],
-      'footnote.005': ['unwrapped-footnote.005':'unwrapped']
+      'footnote.005': ['unwrapped-footnote.005':'unwrapped'],
+      'slides.004': ['speaker-notes.004':'speakernotes']
     ]
 
     configureCalloutTests()

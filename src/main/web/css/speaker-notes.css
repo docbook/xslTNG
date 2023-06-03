@@ -8,26 +8,76 @@
  *
  */
 
+:root {
+    --default-font-size: 28pt;
+    --default-line-height: 1.5;
+    --line-number-width: 2em;
+}
+
+main {
+    max-width: 90%;
+    min-width: 90%;
+}
+
+main .foil header h1 {
+    margin-top: 0;
+}
+
 main .speaker-notes {
     display: none;
 }
 
 main .speaker-notes .foil-wrapper {
     float: right;
-    width: 400px;
+    width: 600px;
 }
 
 main .speaker-notes .foil {
-    border: 1px solid #7f7f7f;
+    border: 4px solid #7f7f7f;
     border-radius: 4px;
     padding: 1em;
     width: 800px;
-    transform: scale(0.5);
+    transform: scale(0.60);
     transform-origin: 0 0;
 }
 
 main .speaker-notes .foil h1 {
     margin-top: 0;
-    font-size: 24pt;
-    text-align: center;
+}
+
+nav.bottom table {
+    display: none;
+}
+
+nav.top div {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 16pt;
+    line-height: 1.25;
+}
+
+nav.toc header {
+    height: 4em;
+}
+
+.slidenav-div a,
+.slidenav-div a:visited {
+    text-decoration: none;
+}
+
+.slidenav-div span {
+    color: #aaaaaa;
+    padding-right: 1rem;
+}
+
+.slidenav-div span.slidenav {
+    color: black;
+}
+
+.slidenav-div .bigger {
+    font-size: 180%;
+}
+
+.slidenav-div .big {
+    font-size: 150%;
 }

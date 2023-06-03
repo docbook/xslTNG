@@ -17,6 +17,13 @@ class TestCases {
       throw new IllegalArgumentException("TestCase '${name}' already defined")
     }
 
+/*
+    if (name.startsWith("slides.")) {
+      println(name)
+      println(config)
+    }
+*/
+
     TestCase tcase = new TestCase(this, name, input, config)
     config.addTestCase(tcase)
     cases[name] = tcase

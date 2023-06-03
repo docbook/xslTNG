@@ -1,0 +1,171 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      version="5.1">
+<info>
+<title>Unit test: slides.004</title>
+<author><personname>Norm Tovey-Walsh</personname></author>
+<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="windowLocation"/>
+<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="progressiveReveal.key" content="progressiveReveal"/>
+</info>
+
+<article role="foil">
+<title>The Speaker</title>
+<itemizedlist>
+<listitem><para>Did a thing
+</para></listitem>
+<listitem><para>Has a thing
+</para></listitem>
+<listitem><para>Also did another thing
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>You?</title>
+<para role="speaker-notes">These are speaker notes</para>
+<itemizedlist role="speaker-notes">
+<listitem><para>Norm
+</para></listitem>
+<listitem><para>Stuff
+</para></listitem>
+<listitem><para>Things
+</para></listitem>
+</itemizedlist>
+
+<itemizedlist>
+<listitem><para>What is your name?
+</para></listitem>
+<listitem><para>What do you do?
+</para></listitem>
+<listitem><para>What are you hoping to get out of this course?
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>What is this?</title>
+
+<para>Sometimes it’s useful to present training materials in “slide”
+form. That is one page at a time, in the browser, projected in a
+classroom or presented over the web.</para>
+
+<para>That’s a lot like paging through a book in the “chunked” view, so we’re
+going to abuse the heck out of that markup.</para>
+</article>
+
+<article role="foil">
+<title>A typical slide</title>
+<itemizedlist>
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Sequential presentation</title>
+<itemizedlist role="reveal">
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article role="foil">
+<title>Sequential presentation 2</title>
+<itemizedlist>
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+<itemizedlist role="reveal">
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article>
+<title>Program listing</title>
+<programlisting language="xml"><![CDATA[<article role="foil">
+<title>Sequential presentation 2</title>
+<itemizedlist>
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+<itemizedlist role="reveal">
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>Slides often wind up being just a list of bullet points
+</para></listitem>
+<listitem><para>This probably not the ideal presentation technique
+</para></listitem>
+<listitem><para>But it’s typical never-the-less.
+</para></listitem>
+<listitem><para>(This is DocBook, you can put anything you want on the slides,
+even pretty cat pictures if you want.)
+</para></listitem>
+</itemizedlist>
+</article>]]></programlisting>
+</article>
+
+<article>
+<title>Thank you</title>
+<para>Thank you!</para>
+</article>
+
+</book>
