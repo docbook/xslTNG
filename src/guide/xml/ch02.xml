@@ -653,7 +653,7 @@ source document will be considered “chunks” in the output.</para>
 <varlistentry><term><parameter>chunk-nav</parameter></term>
 <listitem>
 <para>This parameter, discussed more thoroughly in
-<link linkend="speaker-notes"/> enables keyboard navigation between
+<link linkend="chunk-navigation"/> enables keyboard navigation between
 chunks.</para>
 </listitem>
 </varlistentry>
@@ -666,8 +666,8 @@ navigation aids are constructed.</para>
 </varlistentry>
 </variablelist>
 
-<section xml:id="speaker-notes">
-<title>Keyboard navigation and speaker notes</title>
+<section xml:id="chunk-navigation">
+<title>Keyboard navigation</title>
 
 <para>If the <parameter>chunk-nav</parameter> parameter <glossterm>is
 true</glossterm>, a reference to an additional JavaScript library will
@@ -676,15 +676,35 @@ navigation between the pages. The navigation keys are described in the
 <link linkend="p_chunk-nav">parameter reference page</link>.
 </para>
 
-<para>There is an additional customization layer
-(<filename>xslt/speaker-notes.xsl</filename>) provided for adding
-speaker notes to the pages. This is provided both as an example of a
-customization layer and because the author finds it convenient.</para>
+</section>
+</section>
 
-<para>If you use the speaker notes customization layer, the any top-level
-element in a chunk with the role “<literal>speaker-notes</literal>” will
-be suppressed from the default presentation. If you press “<keycap>S</keycap>”
-on the page, then you’ll get a “speaker notes” view of the page.</para>
+<section xml:id="presentation-mode">
+<title>Presentation mode</title>
+
+<para>FIXME: Write this</para>
+
+<!-- undocumented...
+<row>
+<entry>
+<keycap>S</keycap>
+</entry>
+<entry>Toggle between normal and speaker view</entry>
+</row>
+
+<listitem><para>The <keycap>S</keycap> functionality is really only relevant to
+when <link linkend="chunk-navigation">chunk navigation</link> are enabled.</para>
+</listitem>
+
+<row>
+<entry>
+<keycap>A</keycap> and <keycap>R</keycap>
+</entry>
+<entry>Toggle all “progressive reveal” items on and off.
+</entry>
+</row>
+-->
+
 
 <para>This can be combined with another extension, the use of browser
 local storage, to create a simple presentation system. Add this
@@ -700,7 +720,7 @@ local storage, to create a simple presentation system. Add this
 because it enables the following trick:</para>
 
 <orderedlist>
-<listitem><para>Configure keyboard navigation, speaker notes, and local storage
+<listitem><para>Configure keyboard navigation and local storage
 in your document.</para>
 </listitem>
 <listitem><para>Arrange for your document to be served up from a web server.
@@ -723,7 +743,6 @@ speaker notes are consistently presented in one of the windows.</para>
 slides in one browser window and keep the other browser window on my laptop.
 This allows me to see my notes while easily projecting the “real” content.</para>
 
-</section>
 </section>
 
 <section xml:id="profiling">
