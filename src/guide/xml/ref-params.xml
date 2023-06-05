@@ -706,21 +706,6 @@ adding the <parameter>chunk-nav-js</parameter> script to the generated HTML.
 </entry>
 <entry>Home</entry>
 </row>
-<row>
-<entry>
-<keycap>S</keycap>
-</entry>
-<entry>Toggle between normal and speaker view</entry>
-</row>
-<!-- undocumented...
-<row>
-<entry>
-<keycap>A</keycap> and <keycap>R</keycap>
-</entry>
-<entry>Toggle all “progressive reveal” items on and off.
-</entry>
-</row>
--->
 </tbody>
 </tgroup>
 </table>
@@ -730,9 +715,6 @@ adding the <parameter>chunk-nav-js</parameter> script to the generated HTML.
 for “parent”, like <keycap>U</keycap>, but that breaks the ability to
 navigate up and down the page with the arrow keys. It was removed in
 version 2.0.3.</para>
-</listitem>
-<listitem><para>The <keycap>S</keycap> functionality is really only relevant to
-when <link linkend="speaker-notes">speaker notes</link> are enabled.</para>
 </listitem>
 </orderedlist>
 </refsection>
@@ -5429,6 +5411,78 @@ The copied text will not include any callouts or other decorations in the listin
 <para>This parameter is a list of (local) element names. Any output for these elements
 will have the <tag class="attribute">translate</tag> attribute with the value
 “<code>no</code>”.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>varlistentry-separate-terms</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.1.5</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Output separate terms for variable list entries?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, each <tag>term</tag> in a 
+<tag>varlistentry</tag> will be output in its own 
+<tag namespace="http://www.w3.org/1999/xhtml">dt</tag>.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>presentation-mode</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.1.5</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Format the output for use as a presentation?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, the
+presentation mode CSS and JavaScript links will be included.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>presentation-js</varname>
+      <initializer>'js/presentation.js'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Script to support presentation mode</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If presentation mode is enabled, a link to
+this script will be added to the document. This script must contain the JavaScript
+necessary to support the presentation mode features.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>presentation-css</varname>
+      <initializer>'css/presentation.css'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>CSS to support presentation mode</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If presentation mode is enabled, a link to this
+CSS file will be added to the document.</para>
 </refsection>
 </refentry>
 

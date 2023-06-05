@@ -316,25 +316,36 @@
 <xsl:template match="db:varlistentry">
   <xsl:param name="compact" as="xs:boolean" select="false()"/>
 
-  <dt>
+  <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates select="." mode="m:gentext-list">
-      <xsl:with-param name="list" as="element()*">
+    <xsl:choose>
+      <xsl:when test="f:is-true($varlistentry-separate-terms)">
         <xsl:apply-templates select="db:term"/>
-      </xsl:with-param>
-    </xsl:apply-templates>
-  </dt>
+      </xsl:when>
+      <xsl:otherwise>
+        <dt>
+          <xsl:apply-templates select="." mode="m:gentext-list">
+            <xsl:with-param name="list" as="element()*">
+              <xsl:apply-templates select="db:term"/>
+            </xsl:with-param>
+          </xsl:apply-templates>
+        </dt>
+      </xsl:otherwise>
+    </xsl:choose>
 
-  <xsl:apply-templates select="db:listitem">
-    <xsl:with-param name="compact" select="$compact"/>
-  </xsl:apply-templates>
+    <xsl:apply-templates select="db:listitem">
+      <xsl:with-param name="compact" select="$compact"/>
+    </xsl:apply-templates>
+  </div>
 </xsl:template>
 
 <xsl:template match="db:term">
-  <span>
+  <xsl:variable name="gi" select="if (f:is-true($varlistentry-separate-terms))
+                                  then 'dt' else 'span'"/>
+  <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates/>
-  </span>
+  </xsl:element>
 </xsl:template>
 
 <xsl:function name="fp:estimated-term-length">

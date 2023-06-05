@@ -60,15 +60,15 @@ that HTML in a file:
 favorite web browser, you’ll see the transformed sample document
 which should look like …
 </p><p id="caveats">The JAR file, run this way, accepts the same
-<a href="https://www.saxonica.com/html/documentation/using-xsl/commandline/" class="link">command line options</a> as Saxon, with a few caveats:</p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term">No <code>-x</code>, <code>-y</code>, or <code>-r</code> options</span></dt><dd><p>The executable in the JAR file automatically configures Saxon to
+<a href="https://www.saxonica.com/html/documentation/using-xsl/commandline/" class="link">command line options</a> as Saxon, with a few caveats:</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term">No <code>-x</code>, <code>-y</code>, or <code>-r</code> options</span></dt><dd><p>The executable in the JAR file automatically configures Saxon to
 use a catalog-based resolver and points the resolver at a catalog that
 includes the files in the distribution.
-</p></dd><dt class="varlistentry"><span class="term">No <code>-init</code> option</span></dt><dd><p>The <cite class="citetitle">DocBook xslTNG</cite>
+</p></dd></div><div class="varlistentry"><dt><span class="term">No <code>-init</code> option</span></dt><dd><p>The <cite class="citetitle">DocBook xslTNG</cite>
 extension functions will be registered
-automatically.</p></dd><dt class="varlistentry"><span class="term">Multiple <code>-catalog</code> options</span></dt><dd><p>You can repeat the <code>-catalog</code> option. All of the catalogs
-you specify will be searched before the default catalog.</p></dd><dt class="varlistentry"><span class="term">Default stylesheet</span></dt><dd><p>If you do not specify a stylesheet with the <code>-xsl</code> option,
+automatically.</p></dd></div><div class="varlistentry"><dt><span class="term">Multiple <code>-catalog</code> options</span></dt><dd><p>You can repeat the <code>-catalog</code> option. All of the catalogs
+you specify will be searched before the default catalog.</p></dd></div><div class="varlistentry"><dt><span class="term">Default stylesheet</span></dt><dd><p>If you do not specify a stylesheet with the <code>-xsl</code> option,
 the <code class="filename">xslt/docbook.xsl</code> stylesheet will be used automatically.
-</p></dd></dl></section><section id="python-script" class="section"><header><h2><span class="label">2</span><span class="sep">. </span>Using the Python script</h2></header><p>The ZIP distribution includes a
+</p></dd></div></dl></section><section id="python-script" class="section"><header><h2><span class="label">2</span><span class="sep">. </span>Using the Python script</h2></header><p>The ZIP distribution includes a
 Python script in the <code class="directory filename">bin</code> directory.
 This helper script is a convenience wrapper around Saxon. It sets up
 the Java classpath and automatically configures a catalog resolver and
@@ -92,28 +92,28 @@ class path that includes them all.</p><p>The script stores its configuration in
 <code>.docbook-xsltng.json</code> in your home directory.</p><p>Options passed to the script are processed as follows: the
 initial options, all introduced by two hyphens, are interpreted by
 this script; all the remaining options are passed directly to
-Saxon.</p><p>The script options are:</p><dl class="variablelist"><dt class="varlistentry"><span class="term"><code class="option">--help</code></span></dt><dd><p>Prints a usage message.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--config:<em class="replaceable">filename</em></code></span></dt><dd><p>Use <em class="replaceable">filename</em> as the configuration
+Saxon.</p><p>The script options are:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="option">--help</code></span></dt><dd><p>Prints a usage message.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--config:<em class="replaceable">filename</em></code></span></dt><dd><p>Use <em class="replaceable">filename</em> as the configuration
 file. The default configuration file is
 <code class="filename">.docbook-xsltng.json</code> in your home directory.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--resources<em class="replaceable">:dir</em></code></span></dt><dd><p>This option will copy the resources directory (the CSS and JavaScript files)
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--resources<em class="replaceable">:dir</em></code></span></dt><dd><p>This option will copy the resources directory (the CSS and JavaScript files)
 from the distribution into the directory where your output files are going,
 <em class="replaceable">dir</em>. If
 <em class="replaceable">dir</em> is not specified, the script attempts to
 work out the directory from the <code class="option">-o</code> option provided to Saxon.
 If no directory is specified and it can’t work out what the directory is, it does nothing.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--java:<em class="replaceable">javaexec</em></code></span></dt><dd><p>Use <em class="replaceable">javaexec</em> as the Java executable.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--java:<em class="replaceable">javaexec</em></code></span></dt><dd><p>Use <em class="replaceable">javaexec</em> as the Java executable.
 The default java executable is the first one on your <code class="envar">PATH</code>.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--home:<em class="replaceable">dir</em></code></span></dt><dd><p>Use <em class="replaceable">dir</em> as the <cite class="citetitle">DocBook
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--home:<em class="replaceable">dir</em></code></span></dt><dd><p>Use <em class="replaceable">dir</em> as the <cite class="citetitle">DocBook
 xslTNG</cite> home directory. This should be the location where
 you unzipped the distribution. (You probably shouldn’t change this.)
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--verbose</code></span></dt><dd><p>Enables <em>verbose</em> mode; it prints more
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--verbose</code></span></dt><dd><p>Enables <em>verbose</em> mode; it prints more
 messages about what it finds.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--debug</code></span></dt><dd><p>Enables <em>debug</em> mode. Instead of running the
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--debug</code></span></dt><dd><p>Enables <em>debug</em> mode. Instead of running the
 transformation, it will print out the command that would have been run.
-</p></dd><dt class="varlistentry"><span class="term"><code class="option">--</code></span></dt><dd><p>Immediately stop interpreting options. Everything that follows this option
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--</code></span></dt><dd><p>Immediately stop interpreting options. Everything that follows this option
 will be passed to Saxon, even if it begins with two hyphens.
-</p></dd></dl></section><section id="run-with-java" class="section"><header><h2><span class="label">3</span><span class="sep">. </span>Run with Java</h2></header><p>Assuming you’ve organized your class path so that all of the
+</p></dd></div></dl></section><section id="run-with-java" class="section"><header><h2><span class="label">3</span><span class="sep">. </span>Run with Java</h2></header><p>Assuming you’ve organized your class path so that all of the
 dependencies are available (you may find that using a tool like Gradle
 or Maven simplifies this process), simply run the Saxon class.</p><p>For Saxon HE, the class is <code class="classname">net.sf.saxon.Transform</code>.
 For Saxon PE and EE, the class is <code class="classname">com.saxonica.Transform</code>.</p></section><section id="top" class="section"><header><h2><span class="label">4</span><span class="sep">. </span>Run with Docker</h2></header><p>This is experimental.</p><p>The <code class="directory filename">docker</code> directory
@@ -150,21 +150,21 @@ output to <code class="directory filename">/output</code> (which is where you mo
 <code class="directory filename">/tmp</code>.</p><div class="admonition tip"><div><div class="icon">☞</div><div class="body"><header><div class="title">Tip</div></header><div><p>If you choose to use Docker, you don’t have to rebuild the container
 everytime a new stylesheet release occurs. You can simply mount the new
 <code class="directory filename">xslt</code> directory into the container
-like any other directory.</p></div></div></div></div></section><section id="extensions" class="section"><header><h2><span class="label">5</span><span class="sep">. </span>Extension functions</h2></header><p>The stylesheets are distributed with several extension functions:</p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term"><code class="function">ext:cwd</code></span></dt><dd><p>Returns the “current working directory” where the processor is running.
-</p></dd><dt class="varlistentry"><span class="term"><code class="function">ext:image-properties</code></span></dt><dd><p>Returns basic properties of an image, width and height.
-</p></dd><dt class="varlistentry"><span class="term"><code class="function">ext:image-metadata</code></span></dt><dd><p>Returns much more comprehensive image properties and understands
+like any other directory.</p></div></div></div></div></section><section id="extensions" class="section"><header><h2><span class="label">5</span><span class="sep">. </span>Extension functions</h2></header><p>The stylesheets are distributed with several extension functions:</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><code class="function">ext:cwd</code></span></dt><dd><p>Returns the “current working directory” where the processor is running.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="function">ext:image-properties</code></span></dt><dd><p>Returns basic properties of an image, width and height.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="function">ext:image-metadata</code></span></dt><dd><p>Returns much more comprehensive image properties and understands
 far more image types than <code class="function">ext:image-properties</code>.
 Requires the … libraries.
-</p></dd><dt class="varlistentry"><span class="term"><code class="function">ext:pygmentize</code></span></dt><dd><p>Runs the external … processor on
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="function">ext:pygmentize</code></span></dt><dd><p>Runs the external … processor on
 a verbatim listing to add syntax highlighting.
-</p></dd><dt class="varlistentry"><span class="term"><code class="function">ext:pygmentize-available</code></span></dt><dd><p>Returns true if the external … processor
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="function">ext:pygmentize-available</code></span></dt><dd><p>Returns true if the external … processor
 is available on the current system.
-</p></dd><dt class="varlistentry"><span class="term"><code class="function">ext:xinclude</code></span></dt><dd><p>Performs XInclude processing. This extension supports
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="function">ext:xinclude</code></span></dt><dd><p>Performs XInclude processing. This extension supports
 the basic XPointer schemes, RFC 5147 fragment identifiers,
 and …, a scheme that supports searching in text
 documents.
-</p></dd><dt class="varlistentry"><span class="term"><code class="function">ext:validate-with-relax-ng</code></span></dt><dd><p>Performs RELAX NG validation.
-</p></dd></dl><p>At the time of this writing, all of these extension functions require
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="function">ext:validate-with-relax-ng</code></span></dt><dd><p>Performs RELAX NG validation.
+</p></dd></div></dl><p>At the time of this writing, all of these extension functions require
 Saxon 10.1 or later.
 Make sure that the <code class="filename">docbook-xsltng-<em class="replaceable">version</em>.jar</code>
 file is on your class path and use the Saxon <code>-init</code> option to
@@ -173,27 +173,27 @@ what you expect, it can be difficult sometimes to work out what
 happened. You can enable debugging messages by setting the the system
 property <code class="property">org.docbook.xsltng.verbose</code>.</p><p>Setting the property to the value “<code>true</code>” enables
 all of the debugging messages. For a more selective approach, set it
-to a comma separated list of keyword values.</p><p>The following keywords are recognized:</p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term"><code class="literal">registration</code></span></dt><dd><p>Enables messages related to function registration.
-</p></dd><dt class="varlistentry"><span class="term"><code class="literal">image-properties</code></span></dt><dd><p>Enables messages related to image properties.
-</p></dd><dt class="varlistentry"><span class="term"><code class="literal">image-errors</code></span></dt><dd><p>Enables messages related to image properties, but only when the
+to a comma separated list of keyword values.</p><p>The following keywords are recognized:</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><code class="literal">registration</code></span></dt><dd><p>Enables messages related to function registration.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">image-properties</code></span></dt><dd><p>Enables messages related to image properties.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">image-errors</code></span></dt><dd><p>Enables messages related to image properties, but only when the
 function was unable to find the properties or encountered some sort of error
 condition.
-</p></dd><dt class="varlistentry"><span class="term"><code class="literal">pygmentize-show-command</code></span></dt><dd><p>Enables a message that will show the pygmentize command as it was run.
-</p></dd><dt class="varlistentry"><span class="term"><code class="literal">pygmentize-show-results</code></span></dt><dd><p>Enables a message that will show the output of the pygmentize command,
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">pygmentize-show-command</code></span></dt><dd><p>Enables a message that will show the pygmentize command as it was run.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">pygmentize-show-results</code></span></dt><dd><p>Enables a message that will show the output of the pygmentize command,
 before it is processed by the function.
-</p></dd><dt class="varlistentry"><span class="term"><code class="literal">pygmentize-errors</code></span></dt><dd><p>Enables messages related to errors encountered attempting to highlight
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">pygmentize-errors</code></span></dt><dd><p>Enables messages related to errors encountered attempting to highlight
 listings with pygmentize.
-</p></dd></dl></section></section><section id="chunking" class="section"><header><h2><span class="label">6</span><span class="sep">. </span>“Chunked” output</h2></header><p>Transforming <q><code class="filename">myfile.xml</code></q> with
+</p></dd></div></dl></section></section><section id="chunking" class="section"><header><h2><span class="label">6</span><span class="sep">. </span>“Chunked” output</h2></header><p>Transforming <q><code class="filename">myfile.xml</code></q> with
 <code class="filename">docbook.xsl</code> usually produces a single HTML
 document. For large documents, books like this one for example, it’s
 sometimes desirable to break the input document into a collection of
 web pages. You can achieve this with the
 <cite class="citetitle">DocBook xslTNG Stylesheets</cite> by setting
 two parameters:
-</p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term"><code class="parameter">chunk</code></span></dt><dd><p>This parameter should be set to the name that you want to use for the
+</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><code class="parameter">chunk</code></span></dt><dd><p>This parameter should be set to the name that you want to use for the
 first, or top, page of the result. The name
 <q><code class="filename">index.html</code></q> is a common choice.
-</p></dd><dt class="varlistentry"><span class="term"><code class="parameter">chunk-output-base-uri</code></span></dt><dd><p>This parameter should be set to the absolute path where you want
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="parameter">chunk-output-base-uri</code></span></dt><dd><p>This parameter should be set to the absolute path where you want
 to use as the base URI for the result documents, for example
 <code class="directory filename">/home/ndw/output/guide/</code>.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>The trailing slash is important, this is a URI. If you specify
 only <code class="directory filename">/home/ndw/output/guide</code>, the
@@ -204,16 +204,16 @@ to it. It simply establishes the root of output. If you’re running your
 XSLT processor from the command line, it’s likely that the documents will
 be written to that location. If you’re running an XProc pipeline, it simply
 controls the URIs that appear on the secondary result port.
-</p></dd></dl><p>Many aspects of chunking can be easily customized. A few of the most
+</p></dd></div></dl><p>Many aspects of chunking can be easily customized. A few of the most
 relevant parameters and templates are:
-</p><dl class="long-terms variablelist"><dt class="varlistentry"><span class="term"><code class="parameter">chunk-include</code> and 
+</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><code class="parameter">chunk-include</code> and 
 <code class="parameter">chunk-exclude</code></span></dt><dd><p>Taken together, these two parameters determine what elements in your
-source document will be considered “chunks” in the output.</p></dd><dt class="varlistentry"><span class="term"><code class="parameter">persistent-toc</code></span></dt><dd><p>If this parameter is true, then a JavaScript
-“fly-out” table of contents will be available on every page.</p></dd><dt class="varlistentry"><span class="term"><code class="parameter">chunk-nav</code></span></dt><dd><p>This parameter, discussed more thoroughly in speaker notes
+source document will be considered “chunks” in the output.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="parameter">persistent-toc</code></span></dt><dd><p>If this parameter is true, then a JavaScript
+“fly-out” table of contents will be available on every page.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="parameter">chunk-nav</code></span></dt><dd><p>This parameter, discussed more thoroughly in speaker notes
 enables keyboard navigation between
-chunks.</p></dd><dt class="varlistentry"><span class="term">t:top-nav and
+chunks.</p></dd></div><div class="varlistentry"><dt><span class="term">t:top-nav and
 t:bottom-nav</span></dt><dd><p>These templates control how the top-of-page and bottom-of-page
-navigation aids are constructed.</p></dd></dl><section id="speaker-notes" class="section"><header><h3><span class="label">6<span class="sep">.</span>1</span><span class="sep">. </span>Keyboard navigation and speaker notes</h3></header><p>If the <code class="parameter">chunk-nav</code> parameter is
+navigation aids are constructed.</p></dd></div></dl><section id="speaker-notes" class="section"><header><h3><span class="label">6<span class="sep">.</span>1</span><span class="sep">. </span>Keyboard navigation and speaker notes</h3></header><p>If the <code class="parameter">chunk-nav</code> parameter is
 true, a reference to an additional JavaScript library will
 be included in the resulting pages. This library supports keyboard
 navigation between the pages. The navigation keys are described in the
@@ -399,12 +399,12 @@ output base URI from which all the relative documents can be created, and second
 you fail to process some element in the input, you’re likely to get extra text characters
 in the principle result document. That will cause tools to reject the EPUB and draw your
 attention to the error.</p><p>The stylesheets also produce the META-INF files and the OPS
-directory containing the document parts and the manifest.</p><p>There are two parameters specific to EPUB:</p><dl class="variablelist"><dt class="varlistentry"><span class="term"><code class="literal">pub-id</code></span></dt><dd><p>This is the unique identifier for your EPUB. If you don’t specify one, a random
+directory containing the document parts and the manifest.</p><p>There are two parameters specific to EPUB:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="literal">pub-id</code></span></dt><dd><p>This is the unique identifier for your EPUB. If you don’t specify one, a random
 one will be generated for you.
-</p></dd><dt class="varlistentry"><span class="term"><code class="literal">manifest-extra</code></span></dt><dd><p>This is a URI. If it’s specified, then it must be an XML document and that will
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">manifest-extra</code></span></dt><dd><p>This is a URI. If it’s specified, then it must be an XML document and that will
 be added to the EPUB manifest. This is how you can add links to media and other resources
 that the stylesheets don’t know about.
-</p></dd></dl><section id="metadata" class="section"><header><h3><span class="label">11<span class="sep">.</span>1</span><span class="sep">. </span>Adding metadata</h3></header><p>You can add elements to the <code class="tag tag-element">info</code> element of the root element of your
+</p></dd></div></dl><section id="metadata" class="section"><header><h3><span class="label">11<span class="sep">.</span>1</span><span class="sep">. </span>Adding metadata</h3></header><p>You can add elements to the <code class="tag tag-element">info</code> element of the root element of your
 document to add metadata to your EPUB files. Elements in the Dublin Core namespace
 will be copied through. You can also add the elements
 <code>meta</code> and <code>link</code> in the special namespace
