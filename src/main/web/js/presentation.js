@@ -39,7 +39,7 @@
   const KEY_LEFT = 37;
 
   const KEY_U = 85;
-  const KEY_UP = 38;
+  const KEY_D = 68;
 
   const KEY_H = 72;
   const KEY_HOME = 36;
@@ -49,10 +49,11 @@
   const KEY_S = 83;
 
   const KEY_SPACE = 32;
-  const KEY_DOWN = 40;
 
   const KEY_SHIFT = 16;
   const KEY_QUESTION = 191;
+  const KEY_F1 = 112;
+  const KEY_ESC = 27;
 
   const body = document.querySelector("body");
   const main = body.querySelector("main");
@@ -65,6 +66,9 @@
 
   const nodemap = {};
 
+  let footnotes = null;
+  let footnoteids = [];
+  let helpdiv = null;
   let notesView = false;
 
   let homeicon = "⏹";  // "⌂";
@@ -425,6 +429,11 @@
     event = event || window.event;
     let keyCode = event.keyCode || event.which;
 
+    if (helpdiv && helpdiv.style.display == "block") {
+      helpdiv.style.display = "none";
+      return false;
+    }
+
     if (event.srcElement && event.srcElement.classList.contains("ptoc-search")) {
       // Don't navigate if the user is typing in the persistent toc search box
       return true;
@@ -446,13 +455,12 @@
       nav(event.shiftKey ? "preceding" : "prev");
       break;
     case KEY_U:
-    case KEY_UP:
       nav("up");
       break;
     case KEY_SPACE:
       reveal.next();
       break;
-    case KEY_DOWN:
+    case KEY_D:
       nav("down");
       break;
     case KEY_H:
@@ -473,7 +481,8 @@
       viewNotes(!notesView);
       break;
     case KEY_QUESTION:
-      debugInfo();
+    case KEY_F1:
+      help();
       break;
     default:
       break;
@@ -575,6 +584,37 @@
         notes.appendChild(child.parentNode.removeChild(child));
       });
 
+      // What about footnotes? Copy the relevant footnotes onto each page.
+      // Remove the bidirection links between footnote marks because they
+      // confuse the presentation mode navigation.
+      let pagefn = [];
+      content.querySelectorAll("a[href]").forEach(anchor => {
+        let href = anchor.getAttribute("href");
+        if (href.startsWith("#") && footnoteids.indexOf(href.substring(1)) >= 0) {
+          pagefn.push(href.substring(1));
+          anchor.removeAttribute("href");
+        }
+      });
+      if (pagefn.length > 0) {
+        let footer = document.createElement("footer");
+        let fndiv = document.createElement("div");
+        fndiv.classList.add("footnotes");
+        fndiv.appendChild(document.createElement("hr"));
+        footnotes.querySelectorAll("div.footnote[id]").forEach(fn => {
+          if (pagefn.indexOf(fn.id) >= 0) {
+            let newfn = fn.cloneNode(true);
+            newfn.querySelectorAll("a[href]").forEach(anchor => {
+              if (anchor.getAttribute("href").startsWith("#")) {
+                anchor.removeAttribute("href");
+              }
+            });
+            fndiv.appendChild(newfn);
+          }
+        });
+        footer.appendChild(fndiv);
+        content.appendChild(footer);
+      }
+
       div.appendChild(content);
       div.appendChild(notes);
     }
@@ -601,7 +641,10 @@
     let first = null;
     // Wrap up all the non-article, non-section children.
     root.querySelectorAll(":scope > *").forEach(child => {
-      if (child.tagName == "ARTICLE" || child.tagName == "SECTION") {
+      let ischunk = child.tagName == "ARTICLE" || child.tagName == "SECTION";
+      ischunk = ischunk && !(child.classList.contains("partintro"));
+
+      if (ischunk) {
         if (!first) {
           first = child;
         }
@@ -745,27 +788,116 @@
       let href = link.getAttribute("href");
       if (href.startsWith("#")) {
         const node = document.querySelector(href);
-        const leaf = node.querySelector(".leaf");
-        link.setAttribute("href", `#${leaf.getAttribute("tumble-id").substring(2)}`);
+        if (node) {
+          const leaf = node.querySelector(".leaf");
+          if (leaf) {
+            link.setAttribute("href", `#${leaf.getAttribute("tumble-id").substring(2)}`);
+          }
+        }
       }
     });
   };
 
   // ============================================================
 
-  const debugInfo = function() {
-    console.log(current);
+  const help = function() {
     let count = 0;
     current.node.querySelectorAll(".reveal").forEach(function(item) {
       count += 1;
     });
-    console.log(count, "items to be revealed on this page.");
+    console.log(count, "items to be revealed on this page:");
+    console.log(current);
+
+    if (!helpdiv) {
+      // Inlining this in JavaScript code is just such a hack...
+      helpdiv = document.createElement("div");
+      helpdiv.classList.add(`popup-annotation-wrapper`);
+
+      let innerdiv = document.createElement("div");
+      innerdiv.classList.add("popup-annotation-body");
+      innerdiv.style.width = "90%";
+      innerdiv.style.marginTop = "5%";
+      innerdiv.style.maxHeight = "80%";
+      innerdiv.style.height = "80%";
+
+      let headerdiv = document.createElement("div");
+      headerdiv.classList.add("popup-annotation-header");
+      let span = document.createElement("span");
+      span.innerHTML = "Help";
+      headerdiv.appendChild(span);
+      span = document.createElement("span");
+      span.innerHTML = "(Esc to close)";
+      span.style.float = "right";
+      headerdiv.appendChild(span);
+
+      let contentdiv = document.createElement("div");
+      contentdiv.classList.add("popup-annotation-content");
+      contentdiv.style.fontSize = "16pt";
+      contentdiv.innerHTML = "<div>"
+        + "<p>Presentation mode displays a document as a set of individual pages. "
+        + "Navigation is performed by following links, "
+        + "clicking the icons in the lower-right corner of the "
+        + "page, or with the keyboard.</p>"
+        + ""
+        + "<table>"
+        + "<thead>"
+        + "<tr><th>Key</th><th>Navigation</th></tr>"
+        + "</thead>"
+        + "<tbody>"
+        + "<tr><td>Space</td><td>Reveal next item</td></tr>"
+        + "<tr><td>N or →</td><td>Reveal next item, or next sequential page</td></tr>"
+        + "<tr><td>Shift+N or Shift + →</td><td>Next sibling page</td></tr>"
+        + "<tr><td>P or ←</td><td>Previous sequential page</td></tr>"
+        + "<tr><td>Shift+P or Shift + ←</td><td>Previous sibling page</td></tr>"
+        + "<tr><td>U</td><td>Nearest ancestor page</td></tr>"
+        + "<tr><td>D</td><td>First descendant page</td></tr>"
+        + "<tr><td>H or Home</td><td>Return to title page</td></tr>"
+        + "<tr><td>A</td><td>Reveal all hidden items</td></tr>"
+        + "<tr><td>R</td><td>Toggle hidden items on the current page</td></tr>"
+        + "<tr><td>Shift+R</td><td>Reset all hidden items in the document</td></tr>"
+        + "<tr><td>S</td><td>Toggle notes view</td></tr>"
+        + "<tr><td>? or F1</td><td>Display this help screen</td></tr>"
+        + "</tbody>"
+        + "</table>";
+
+      if (window.location.href.startsWith("http://localhost/")
+          || window.location.href.startsWith("http://localhost:")
+          || window.location.href.startsWith("http://127.0.0.1/")
+          || window.location.href.startsWith("http://127.0.0.1:")
+          || window.location.href.startsWith("https:")) {
+        contentdiv.innerHTML += ""
+          + "<p>Presentation mode can use the local "
+          + "storage API to keep several browser windows in sync, for example to display "
+          + "notes in one window while projecting another.</p>";
+      } else {
+        contentdiv.innerHTML += ""
+          + "<p>If loaded from localhost or via https:, presentation mode can use the local "
+          + "storage API to keep several browser windows in sync.</p>";
+      }
+      contentdiv.innerHTML += "</div>";
+
+      innerdiv.appendChild(headerdiv);
+      innerdiv.appendChild(contentdiv);
+      helpdiv.appendChild(innerdiv);
+      body.appendChild(helpdiv);
+    }
+
+    helpdiv.style.display = "block";
   };
 
   // ============================================================
 
   navdiv.innerHTML = "";
   navbot.appendChild(navdiv);
+
+  footnotes = document.querySelector("footer div.footnotes");
+  if (footnotes) {
+    // Excise them from the document
+    footnotes = footnotes.parentNode.removeChild(footnotes);
+    footnotes.querySelectorAll("div.footnote[id]").forEach(fn => {
+      footnoteids.push(fn.id);
+    });
+  }
 
   tidyMarkup(book);
   foil = buildNavigation(book);
