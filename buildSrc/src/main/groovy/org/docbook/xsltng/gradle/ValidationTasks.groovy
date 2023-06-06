@@ -34,6 +34,7 @@ class ValidationTasks {
       schema = "${project.projectDir}/src/test/resources/publishers.rng"
     } else if (base == 'olink.001' || base.startsWith('fit.')
                || base.startsWith('xinclude.')
+               || base.startsWith('presentation.')
                || base.startsWith('iso690.')) {
       schema = "${project.projectDir}/src/test/resources/docbookxi.rng"
     } else if (base.startsWith('transclusion.')) {
