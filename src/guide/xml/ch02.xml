@@ -653,7 +653,7 @@ source document will be considered “chunks” in the output.</para>
 <varlistentry><term><parameter>chunk-nav</parameter></term>
 <listitem>
 <para>This parameter, discussed more thoroughly in
-<link linkend="speaker-notes"/> enables keyboard navigation between
+<link linkend="chunk-navigation"/> enables keyboard navigation between
 chunks.</para>
 </listitem>
 </varlistentry>
@@ -666,8 +666,8 @@ navigation aids are constructed.</para>
 </varlistentry>
 </variablelist>
 
-<section xml:id="speaker-notes">
-<title>Keyboard navigation and speaker notes</title>
+<section xml:id="chunk-navigation">
+<title>Keyboard navigation</title>
 
 <para>If the <parameter>chunk-nav</parameter> parameter <glossterm>is
 true</glossterm>, a reference to an additional JavaScript library will
@@ -676,54 +676,117 @@ navigation between the pages. The navigation keys are described in the
 <link linkend="p_chunk-nav">parameter reference page</link>.
 </para>
 
-<para>There is an additional customization layer
-(<filename>xslt/speaker-notes.xsl</filename>) provided for adding
-speaker notes to the pages. This is provided both as an example of a
-customization layer and because the author finds it convenient.</para>
-
-<para>If you use the speaker notes customization layer, the any top-level
-element in a chunk with the role “<literal>speaker-notes</literal>” will
-be suppressed from the default presentation. If you press “<keycap>S</keycap>”
-on the page, then you’ll get a “speaker notes” view of the page.</para>
-
-<para>This can be combined with another extension, the use of browser
-local storage, to create a simple presentation system. Add this
-<tag namespace="http://www.w3.org/1999/xhtml">meta</tag> tag to the
-<tag>info</tag> element of your document:</para>
-
-<screen role="monochrome border"
-><![CDATA[<meta xmlns="http://www.w3.org/1999/xhtml"
-      name="localStorage.key" content="keyname"/>]]></screen>
-
-<para>That will cause the pages to keep track of their location using the
-“<literal>keyname</literal>” property in local storage. This is important
-because it enables the following trick:</para>
-
-<orderedlist>
-<listitem><para>Configure keyboard navigation, speaker notes, and local storage
-in your document.</para>
-</listitem>
-<listitem><para>Arrange for your document to be served up from a web server.
-You can do this by running one locally or by putting the documents on a web
-server somewhere else.</para>
-</listitem>
-<listitem><para>Open up the main page of your document in a browser.
-</para></listitem>
-<listitem><para>Open up a second browser <emphasis>window</emphasis> pointing
-to the same page. Navigate back and forth between the pages. You should see
-that the two windows stay in sync.
-</para></listitem>
-<listitem><para>Now press “<keycap>S</keycap>” in one of the windows and
-navigate around. You should see that the two windows stay in sync and that your
-speaker notes are consistently presented in one of the windows.</para>
-</listitem>
-</orderedlist>
-
-<para>I often use this trick when I’m giving presentations. I can project the
-slides in one browser window and keep the other browser window on my laptop.
-This allows me to see my notes while easily projecting the “real” content.</para>
-
 </section>
+</section>
+
+<section xml:id="presentation-mode">
+<title>Presentation mode</title>
+
+<para>Presentation mode implements paged navigation through a document.
+For presentation mode, a single document is used (rather than chunking) with 
+some JavaScript code providing the user interface.</para>
+
+<para>As the name implies, it’s designed for use in presentations:</para>
+
+<itemizedlist>
+<listitem><para>It uses generally
+larger fonts by default and works best for many small pages</para>
+</listitem>
+<listitem><para>Each unit of a
+document (part, chapter, article, section, etc.) becomes a page.</para>
+</listitem>
+<listitem>
+<para>Presentation mode replaces earlier “slides” and “speaker notes” implementations.</para>
+</listitem>
+</itemizedlist>
+
+<para>Beyond the paginated navigation, presentation mode has three key features:</para>
+
+<variablelist>
+<varlistentry>
+<term>Synchronization</term>
+<listitem>
+<para>When served with <systemitem class="protocol">https</systemitem>
+(or from <systemitem class="domainname">localhost</systemitem> with
+<systemitem class="protocol">http</systemitem>), presentation mode can use
+local storage to synchronize display in different browser windows.</para>
+
+<para>Add</para>
+<programlisting><![CDATA[<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="keyName"/>]]></programlisting>
+<para>to the <tag>info</tag> of your document.</para>
+
+<para>The key name is irrelevant, but is used to coordinate between windows.
+All documents with the same key name will be synchronized together.
+<footnote xml:id="f1"><para>In other words, if you have two different documents
+that use the same key name and you attempt to view them simultanously
+on synchronized windows, you’ll get a tangled mess.</para></footnote>
+</para>
+
+<para>Synchronized displays are useful for reading speaker notes in one view
+while presenting the “normal” view to your audience.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Speaker notes</term>
+<listitem>
+<para>Speaker notes can be placed on any page.
+They are not displayed as part of the normal presentation.
+They can be revealed by selecting notes view (pressing <keycap>S</keycap>).
+</para>
+
+<para>Use the <literal>speaker-notes</literal> role to add speaker notes.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Progressive reveal</term>
+<listitem>
+<para>Any elements marked with the role <literal>reveal</literal> will
+be hidden initially. Navigating forward or pressing <keycap>Space</keycap> will reveal them.</para>
+
+<para>When applied to lists, the behavior applies to
+all of the items except the first.</para>
+
+<para>If an item is marked both <literal>reveal</literal> and <literal>transitory</literal>,
+it will be revealed in turn and then concealed again when the next item is revealed.
+This allows one to create the illusion, for example, of bullet items being replaced.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>In sort, you get:</para>
+
+<itemizedlist>
+<listitem><para>Quick and easy presentations from DocBook documents.
+</para></listitem>
+<listitem><para>No special markup required.
+</para></listitem>
+<listitem><para>Easy navigation.
+</para></listitem>
+<listitem><para>Clean look and feel.
+</para></listitem>
+<listitem><para>Advanced features:
+</para>
+<itemizedlist>
+<listitem><para>Synchronized display
+</para></listitem>
+<listitem><para>Speaker notes
+</para></listitem>
+<listitem><para>Progressive and transitory reveals
+</para></listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+
+<para>Pressing <keycap>F1</keycap> in a presentation mode document will display
+a summary of the keyboard navigation shortcuts.</para>
+
+<para>There’s a small customization layer in the distribution,
+<filename>presentation.xsl</filename> that enables presentation mode
+and changes some of the generated text so that the labels “Part”, “Chapter”, and so forth aren’t
+in the output.</para>
+
 </section>
 
 <section xml:id="profiling">

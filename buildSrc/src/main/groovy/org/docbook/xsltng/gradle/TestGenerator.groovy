@@ -129,6 +129,10 @@ class TestGenerator {
       .withEnvironments(['online', 'olinkdb', 'olink'])
       .withExtraDependencies(['guide.olinkdb'])
 
+    testConfigurations.create('presentations')
+      .withEnvironments(['default'])
+      .withStylesheet("${uBuildDir}/xslt/presentation.xsl")
+
     testConfigurations.create('unwrapped').withEnvironments(['unwrap'])
     testConfigurations.create('transclude').withEnvironments(['transclude'])
     testConfigurations.create('local').withEnvironments(['local'])
@@ -144,6 +148,7 @@ class TestGenerator {
      'colors\\.': 'colors',
      'ptoc\\.': 'ptoc',
      'mediaobject\\.005': 'a11y',
+     'presentation\\.': 'presentations',
     ].each { entry ->
       Pattern pat = ~"^.*${entry.key}.*\$"
       regexList.add(new Tuple(pat, testConfigurations.find(entry.value)))

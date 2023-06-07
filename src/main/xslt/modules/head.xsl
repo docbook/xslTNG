@@ -153,6 +153,7 @@
     <link rel="stylesheet"
           href="{$resource-base-uri}{fp:minified-css($persistent-toc-css)}"/>
   </xsl:if>
+
   <xsl:choose>
     <xsl:when test="$verbatim-syntax-highlighter = ('', 'none')"/>
     <xsl:when test="$verbatim-syntax-highlighter = 'pygments'"/>
@@ -168,6 +169,10 @@
       <xsl:message select="'Unrecognized syntax highlighter:', $verbatim-syntax-highlighter"/>
     </xsl:otherwise>
   </xsl:choose>
+
+  <xsl:if test="f:is-true($presentation-mode)">
+    <script src="{$presentation-js}" defer="defer"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="*" mode="m:html-head-script">
@@ -183,6 +188,11 @@
       <link href="{$resource-base-uri}{fp:minified-css('css/docbook-paged.css')}"
             rel="stylesheet" media="print"/>
     </xsl:if>
+  </xsl:if>
+
+  <xsl:if test="f:is-true($presentation-mode)">
+    <link rel="stylesheet"
+          href="{$presentation-css}"/>
   </xsl:if>
 </xsl:template>
 

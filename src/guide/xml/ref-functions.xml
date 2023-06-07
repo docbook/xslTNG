@@ -370,7 +370,7 @@ generated from the names of the ancestors and preceding siblings of
 the element. This value will be consistent across different
 transformations as long as the ancestors and preceding siblings remain
 unchanged.</para>
-<para>If <code>use-xml-id</code> is true
+<para>If <code>use-xml-id</code> <glossterm>is true</glossterm>
 and there’s an element with a <att>xml:id</att> attribute among
 the ancestors, the unique identifier is rooted at that element, rather
 than traversing all the way to the root of the document.</para>
