@@ -1970,54 +1970,6 @@ nav.top div {
 }
 
 /* ============================================================ */
-/* For progressive reveals in chunked content. */
-.reveal {
-  display: none;
-}
-
-ul.reveal,
-ol.reveal {
-  display: block;
-}
-
-.reveal > li {
-  display: none;
-}
-
-.reveal > li:first-child {
-  display: list-item;
-}
-
-.noreveal {
-  display: inherit;
-}
-
-.speaker-notes .reveal {
-  display: inherit;
-  background-color: #ffeeee;
-}
-
-.speaker-notes ul.reveal,
-.speaker-notes ol.reveal {
-  display: block;
-  background-color: #ffeeee;
-}
-
-.speaker-notes .reveal > li {
-  display: list-item;
-  background-color: #ffeeee;
-}
-
-.speaker-notes li.reveal {
-  display: list-item;
-  background-color: #ffeeee;
-}
-
-.speaker-notes .transitory {
-  display: none;
-}
-
-/* ============================================================ */
 @media screen and (max-width: 1199px) {
   nav.top div {
     padding-left: 2rem;

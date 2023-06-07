@@ -1,0 +1,184 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      version="5.1">
+<info>
+<title>Unit test: presentation.001</title>
+<author><personname>Norm Tovey-Walsh</personname></author>
+<pubdate>2023-06-06</pubdate>
+<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="windowLocation"/>
+</info>
+
+<article>
+<title>Introduction</title>
+<para>Presentation mode implements paged navigation through a document.
+As the name implies, it’s designed for use in presentations:</para>
+<itemizedlist>
+<listitem><para>It uses generally
+larger fonts by default and works best for many small pages</para>
+</listitem>
+<listitem><para>Each unit of a
+document (part, chapter, article, section, etc.) becomes a page.</para>
+</listitem>
+<listitem>
+<para>Presentation mode replaces earlier “slides” and “speaker notes” implementations.</para>
+</listitem>
+<listitem>
+<para>Use keyboard shortcuts or click the icons in the lower-right corner to navigate
+(Press <keycap>F1</keycap> for navigation help).</para>
+</listitem>
+</itemizedlist>
+</article>
+
+<article>
+<title>Synchronization</title>
+<para>When served with <systemitem class="protocol">https</systemitem>
+(or from <systemitem class="domainname">localhost</systemitem> with
+<systemitem class="protocol">http</systemitem>), presentation mode can use
+local storage to synchronize display in different browser windows.</para>
+
+<itemizedlist>
+<listitem><para>Add
+<programlisting><![CDATA[<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="keyName"/>]]></programlisting>
+to the <tag>info</tag> of your document.</para>
+</listitem>
+<listitem>
+<para>The key name is irrelevant, but is used to coordinate between windows.
+All documents with the same key name will be synchronized together.
+<footnote xml:id="f1"><para>In other words, if you have two different documents
+that use the same key name and you attempt to view them simultanously
+on synchronized windows, you’ll get a tangled mess.</para></footnote>
+</para>
+</listitem>
+<listitem>
+<para>Synchronized displays are useful for reading speaker notes in one view
+while presenting the “normal” view to your audience.</para>
+</listitem>
+</itemizedlist>
+</article>
+
+<article>
+<title>Speaker notes</title>
+
+<itemizedlist>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal presentation.</para></listitem>
+<listitem><para>They can be revealed by selecting notes view.</para></listitem>
+</itemizedlist>
+
+<para>Use the <literal>speaker-notes</literal> role to add speaker notes:
+</para>
+<programlisting
+><xi:include href="presentation.001.xml" parse="text"
+             fragid="search=/When&#x20;you present/,#/para#"/></programlisting>
+<para role="speaker-notes">When you present this page
+observe that the speaker notes are normally hidden, but
+can be revealed by pressing <keycap>S</keycap>.</para>
+<para>(If you’re reading this in presentation mode, press <keycap>S</keycap> to select
+notes view.)</para>
+<para role="speaker-notes">Press <keycap>S</keycap> again to return to the
+normal view.</para>
+</article>
+
+<part>
+<title>Progressive reveal</title>
+
+<article>
+<title>Reveal elements</title>
+<para>Any elements marked with the role <literal>reveal</literal> will
+be hidden initially. Navigating forward or pressing <keycap>Space</keycap> will reveal them.</para>
+<para role="reveal">This paragraph is revealed!</para>
+</article>
+
+<article>
+<title>List reveals</title>
+<para>If a list is marked with <literal>reveal</literal>, the behavior applies to
+all of the items except the first.</para>
+<orderedlist role="reveal">
+<listitem>
+<para>This is the first item in the list, it’s always shown.</para>
+</listitem>
+<listitem>
+<para>This is the second item.</para>
+</listitem>
+<listitem>
+<para>This is the third and last item.</para>
+</listitem>
+</orderedlist>
+</article>
+
+<article>
+<title>Transitory reveals</title>
+
+<para>If an item is marked both <literal>reveal</literal> and <literal>transitory</literal>,
+it will be revealed in turn and then concealed again when the next item is revealed:
+</para>
+
+<orderedlist role="reveal">
+<listitem>
+<para>This is the first item in the list, it’s always shown.</para>
+</listitem>
+<listitem role="transitory">
+<para>This is the second item. It is marked transitory, so it will be replaced.</para>
+</listitem>
+<listitem>
+<para>This is a replacement second item.</para>
+</listitem>
+<listitem>
+<para>This is the third and last item.</para>
+</listitem>
+</orderedlist>
+
+</article>
+
+<article>
+<title>Overrides</title>
+<para>You can override the reveal behavior with <literal>noreveal</literal>. For
+example:</para>
+
+<itemizedlist role="reveal">
+<listitem>
+<para>This is the first item in the list, it’s always shown.</para>
+</listitem>
+<listitem role="noreveal">
+<para>This is the second item. In a “reveal” list, it would usually be hidden at first,
+but this one is marked “noreveal”.</para>
+</listitem>
+<listitem>
+<para>This is the third item.</para>
+</listitem>
+<listitem>
+<para>This is the fourth and last item.</para>
+</listitem>
+</itemizedlist>
+</article>
+</part>
+
+<article>
+<title>Summary</title>
+<itemizedlist>
+<listitem><para>Quick and easy presentations from DocBook documents.
+</para></listitem>
+<listitem><para>No special markup required.
+</para></listitem>
+<listitem><para>Easy navigation.
+</para></listitem>
+<listitem><para>Clean look and feel.
+</para></listitem>
+<listitem><para>Advanced features:
+</para>
+<itemizedlist>
+<listitem><para>Synchronized display
+</para></listitem>
+<listitem><para>Speaker notes
+</para></listitem>
+<listitem><para>Progressive and transitory reveals
+</para></listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</article>
+
+</book>

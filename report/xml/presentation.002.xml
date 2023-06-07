@@ -1,0 +1,102 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      version="5.1">
+<info>
+<title>Unit test: presentation.002</title>
+<author><personname>Norm Tovey-Walsh</personname></author>
+<pubdate>2023-06-06</pubdate>
+<meta xmlns="http://www.w3.org/1999/xhtml"
+      name="localStorage.key" content="windowLocation"/>
+<annotation xml:id="a1"><para>Annotations are interesting for the same reason.</para></annotation>
+<annotation xml:id="a2"><para>Press <keycap>S</keycap>.</para></annotation>
+</info>
+
+<article>
+<title>Footnotes and annotations</title>
+<para>Presentation mode<footnote xml:id="f1"><para>Better documented in the guide and
+in the presentation.001 unit test.</para></footnote> implements paged navigation through a document.
+As the name implies, it’s designed for use in presentations:</para>
+<itemizedlist>
+<listitem><para>Footnotes are <phrase annotations="a1">interesting</phrase> because they need to appear on each
+page.</para></listitem>
+<listitem><para>For the moment, the cross-linking between the inline
+reference and the bottom-of-the-page footnote is removed.<footnote>
+<para>On small pages, that shouldn’t be an issue.</para></footnote>
+</para>
+</listitem>
+</itemizedlist>
+</article>
+
+<article>
+<title>More footnotes and annotations</title>
+
+<itemizedlist>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal
+presentation.<footnoteref linkend="f1"/></para></listitem>
+<listitem><para>They can be revealed by selecting <phrase annotations="a2">notes view</phrase>.
+</para></listitem>
+</itemizedlist>
+</article>
+
+<article>
+<title>Variable list reveal</title>
+
+<para>This isn’t really related to footnotes and annotations,
+but it needs testing.</para>
+
+<variablelist role="reveal">
+<varlistentry>
+<term>First</term>
+<listitem><para>The first item.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Second</term>
+<listitem><para>The second item.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Third</term>
+<listitem><para>The third item.</para></listitem>
+</varlistentry>
+</variablelist>
+</article>
+
+<article>
+<title>Footnote position</title>
+
+<para role="speaker-notes">This long list with all the lazily repeated
+items is just to test that if the content runs off the bottom of the
+page (i.e., it is longer than “100%”), the footnote footer still looks
+reasonable.</para>
+
+<itemizedlist>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal
+presentation.<footnoteref linkend="f1"/></para></listitem>
+<listitem><para>They can be revealed by selecting <phrase annotations="a2">notes view</phrase>.
+</para></listitem>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal
+presentation.<footnoteref linkend="f1"/></para></listitem>
+<listitem><para>They can be revealed by selecting <phrase annotations="a2">notes view</phrase>.
+</para></listitem>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal
+presentation.<footnoteref linkend="f1"/></para></listitem>
+<listitem><para>They can be revealed by selecting <phrase annotations="a2">notes view</phrase>.
+</para></listitem>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal
+presentation.<footnoteref linkend="f1"/></para></listitem>
+<listitem><para>They can be revealed by selecting <phrase annotations="a2">notes view</phrase>.
+</para></listitem>
+<listitem><para>Speaker notes can be placed on any page.</para></listitem>
+<listitem><para>They are not displayed as part of the normal
+presentation.<footnoteref linkend="f1"/></para></listitem>
+<listitem><para>They can be revealed by selecting <phrase annotations="a2">notes view</phrase>.
+</para></listitem>
+</itemizedlist>
+</article>
+
+</book>
