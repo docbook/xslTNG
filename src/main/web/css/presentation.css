@@ -19,23 +19,25 @@ main {
     margin-right: 4rem;
 }
 
-article > header > h1,
-article > header > h2,
-article > header > h3,
-article > header > h4,
-article > header > h5,
-article > section > header > h1,
-article > section > header > h2,
-article > section > header > h3,
-article > section > header > h4,
-article > section > header > h5,
-.inset-content > header > h1,
-.inset-content > header > h2,
-.inset-content > header > h3,
-.inset-content > header > h4,
-.inset-content > header > h5 {
+.inset-body > header > h1,
+.inset-body > header > h2,
+.inset-body > header > h3,
+.inset-body > header > h4,
+.inset-body > header > h5 {
     margin-top: 0;
 }
+
+article {
+    height: 100%;
+}
+
+.inset-wrapper {
+    height: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 100%;
+}    
 
 /* ============================================================ */
 
@@ -51,10 +53,12 @@ header {
     display: none;
 }
 
+/*
 .list-of-titles a,
 .list-of-titles a:visited {
     text-decoration: none;
 }
+*/
 
 .toc .toc .toc {
     display: none;
@@ -67,15 +71,16 @@ header {
 }
 
 .toc .toc li:before {
+    content: "⮞ ";
 }
 
 /* ============================================================ */
 
-.leaf {
+article {
     display: none;
 }
 
-.leaf.show {
+.show {
     display: block;
 }
 
@@ -113,7 +118,7 @@ nav.bottom .foilnav {
     text-decoration: none;
 }
 
-.leaf .inset {
+article .inset {
     float: right;
     width: 800px;
     border: 4px solid #7f7f7f;

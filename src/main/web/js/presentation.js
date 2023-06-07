@@ -9,8 +9,12 @@
  *
  * There are a few things going on here.
  *
- * 2. If presentation.js is loaded, N/→, P/←, U, D, and H/Home
- *    navigate to the next, previous, "up", "down" and home pages.
+ * 1. The HTML is extensively modified. It is turned into a main
+ *    element containing a flat list of article elements, one per page.
+ *    All of the intervening article/div/section wrappers are discarded.
+ *    This simplifies CSS for each page.
+ * 2. N/→, P/←, U, D, and H/Home navigate to the next, previous, "up",
+ *    "down" and home pages.
  * 3. If the HTML page contains a meta element with the name
  *    "localStorage.key", the value of that element is used as a key
  *    in the browser's localStorage API to track the Window location
@@ -26,9 +30,9 @@
  *    until something after it is revealed), mark it
  *    role='transitory'.
  *
- *    You can avoid flicker if you configure CSS to hide the things
- *    that should be hidden by default. This JavaScript will handle
- *    that case, even when progressiveReveal is disabled.
+ * You can avoid flicker if you configure CSS to hide the things that
+ * should be hidden by default. This JavaScript will handle that case,
+ * even when progressiveReveal is disabled.
  */
 
 (function() {
@@ -57,7 +61,6 @@
 
   const body = document.querySelector("body");
   const main = body.querySelector("main");
-  const book = main.querySelector("article");
   const navtop = body.querySelector("nav.top");
   const navbot = body.querySelector("nav.bottom");
 
@@ -211,7 +214,6 @@
     };
 
     const configureDL = function(list) {
-      // N.B. We assume that tidyDL() has added div wrappers in the DL list
       const isprogressive = list.classList.contains("reveal");
       if (isprogressive) {
         list.classList.remove("reveal"); // children effectively inherit this
@@ -557,12 +559,13 @@
 
   const viewNotes = function(view) {
     let div = current.node;
-
-    if (!div.classList.contains("inset-wrapper")) {
-      div.classList.add("inset-wrapper");
-
+    let inset = div.querySelector(".inset-wrapper");
+    if (!inset) {
       let content = document.createElement("div");
-      content.classList.add("inset-content");
+      content.classList.add("inset-wrapper");
+
+      let cbody = document.createElement("div");
+      cbody.classList.add("inset-body");
 
       let notes = document.createElement("div");
       notes.classList.add("speaker-notes-wrapper");
@@ -572,11 +575,11 @@
         children.push(div.children[idx]);
       }
       children.forEach(child => {
-        content.appendChild(child.parentNode.removeChild(child));
+        cbody.appendChild(child.parentNode.removeChild(child));
       });
 
       children = [];
-      content.querySelectorAll(".speaker-notes").forEach(child => {
+      cbody.querySelectorAll(".speaker-notes").forEach(child => {
         children.push(child);
       });
 
@@ -588,7 +591,7 @@
       // Remove the bidirection links between footnote marks because they
       // confuse the presentation mode navigation.
       let pagefn = [];
-      content.querySelectorAll("a[href]").forEach(anchor => {
+      cbody.querySelectorAll("a[href]").forEach(anchor => {
         let href = anchor.getAttribute("href");
         if (href.startsWith("#") && footnoteids.indexOf(href.substring(1)) >= 0) {
           pagefn.push(href.substring(1));
@@ -616,10 +619,11 @@
       }
 
       div.appendChild(content);
+      content.prepend(cbody);
       div.appendChild(notes);
     }
 
-    let content = current.node.querySelector(".inset-content");
+    let content = current.node.querySelector(".inset-wrapper");
     let notes = current.node.querySelector(".speaker-notes-wrapper");
     if (view) {
       content.classList.add("inset");
@@ -635,19 +639,16 @@
   // ============================================================
 
   const tidyMarkup = function(root, depth=0) {
-    const div = document.createElement("div");
+    const page = document.createElement("article");
+    page.setAttribute("class", "leaf");
 
     const unwrapped = [];
-    let first = null;
     // Wrap up all the non-article, non-section children.
     root.querySelectorAll(":scope > *").forEach(child => {
       let ischunk = child.tagName == "ARTICLE" || child.tagName == "SECTION";
       ischunk = ischunk && !(child.classList.contains("partintro"));
 
       if (ischunk) {
-        if (!first) {
-          first = child;
-        }
         tidyMarkup(child, depth+1);
       } else {
         unwrapped.push(child);
@@ -656,73 +657,11 @@
 
     unwrapped.forEach(child => {
       child.parentNode.removeChild(child);
-      div.appendChild(child);
+      page.appendChild(child);
     });
 
-    div.setAttribute("class", "leaf");
-    div.classList.add("depth_" + depth);
-
-    tidyDL(div);
-
-    if (first) {
-      root.insertBefore(div, first);
-    } else {
-      root.appendChild(div);
-    }
-  };
-
-  const tidyDL = function(root) {
-    if (root.tagName == "DL") {
-      let last = null;
-      let items = [];
-      let children = [];
-
-      // Extract the children from the list...
-      while (root.children.length > 0) {
-        children.push(root.removeChild(root.children[0]));
-      }
-
-      children.forEach(child => {
-        if (child.tagName == "DIV") {
-          if (items.length > 0) {
-            let div = document.createElement("div");
-            root.appendChild(div);
-            items.forEach(item => {
-              div.appendChild(item);
-            });
-            tidyDL(div);
-            items = [];
-          }
-          root.appendChild(child);
-          tidyDL(child);
-        } else if (child.tagName == "DT" && last && last.tagName !== "DT") {
-          let div = document.createElement("div");
-          root.appendChild(div);
-          items.forEach(item => {
-            div.appendChild(item);
-          });
-          tidyDL(div);
-          items = [child];
-        } else {
-          items.push(child);
-        }
-
-        last = child;
-      });
-
-      if (items.length > 0) {
-        let div = document.createElement("div");
-        root.appendChild(div);
-        items.forEach(item => {
-          div.appendChild(item);
-        });
-        tidyDL(div);
-      }
-    } else {
-      for (let idx = 0; idx < root.children.length; idx++) {
-        tidyDL(root.children[idx]);
-      }
-    }
+    page.classList.add("depth_" + depth);
+    root.prepend(page);
   };
 
   const buildNavigation = function(root, depth=1, up=null, tumble="R") {
@@ -771,7 +710,7 @@
     return first;
   };
 
-  const sequentialNavigation = function() {
+  const sequentialNavigation = function(book) {
     let prev = null;
     book.querySelectorAll(".leaf").forEach(leaf => {
       const node = nodemap[leaf.getAttribute("tumble-id")];
@@ -783,7 +722,7 @@
     });
   };
 
-  const patchLinks = function() {
+  const patchLinks = function(book) {
     book.querySelectorAll("a[href]").forEach(link => {
       let href = link.getAttribute("href");
       if (href.startsWith("#")) {
@@ -796,6 +735,23 @@
         }
       }
     });
+  };
+
+  const stripWrappers = function(book) {
+    let page = foil;
+    let lastInsert = null;
+    while (page) {
+      const leaf = page.node.parentNode.removeChild(page.node);
+      leaf.classList.remove("leaf");
+      if (lastInsert) {
+        main.insertBefore(leaf, lastInsert.nextSibling);
+      } else {
+        main.prepend(leaf);
+      }
+      lastInsert = leaf;
+      page = page.next;
+    }
+    book.parentNode.removeChild(book);
   };
 
   // ============================================================
@@ -899,10 +855,12 @@
     });
   }
 
+  const book = main.querySelector("article");
   tidyMarkup(book);
   foil = buildNavigation(book);
-  sequentialNavigation();
-  patchLinks();
+  sequentialNavigation(book);
+  patchLinks(book);
+  stripWrappers(book);
 
   // The root title page is special, "down" == "next"
   foil.down = foil.next;
@@ -915,11 +873,10 @@
     }
   }
 
-  windowStorage.updateLocation();
-
   reveal.configure();
-
   navTo(current);
+
+  windowStorage.updateLocation();
 
   window.addEventListener("keyup", keyboard);
   window.addEventListener("hashchange", initialSlide);
