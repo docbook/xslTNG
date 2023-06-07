@@ -711,10 +711,10 @@ document (part, chapter, article, section, etc.) becomes a page.</para>
 <systemitem class="protocol">http</systemitem>), presentation mode can use
 local storage to synchronize display in different browser windows.</para>
 
-<para>Add
+<para>Add</para>
 <programlisting><![CDATA[<meta xmlns="http://www.w3.org/1999/xhtml"
       name="localStorage.key" content="keyName"/>]]></programlisting>
-to the <tag>info</tag> of your document.</para>
+<para>to the <tag>info</tag> of your document.</para>
 
 <para>The key name is irrelevant, but is used to coordinate between windows.
 All documents with the same key name will be synchronized together.
