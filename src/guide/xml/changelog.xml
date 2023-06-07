@@ -10,6 +10,50 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r215">
+<info>
+  <title>Changes in version 2.1.5</title>
+  <productnumber>2.1.5</productnumber>
+  <date>2023-06-07</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Introduced “<link linkend="presentation-mode">presentation mode</link>” as a replacement
+for earlier “slides” and “speaker notes” customizations. Simplified the normal “chunk navigation”
+processing.</para>
+</listitem>
+<listitem>
+<para>Improved copyright handling on title pages. Removed most
+CSS <property>page-break-inside</property>: <code>avoid</code> rules. (They cause
+overflow if the space isn’t big enough.)</para>
+</listitem>
+<listitem>
+<para>Added the ability to put
+<link linkend="ad-hoc-css-styling">arbitrary CSS properties</link> on
+elements with attributes in the <uri type="xmlnamespace">https://xsltng.docbook.org/ns/css</uri>
+namespace.</para>
+</listitem>
+<listitem>
+<para>Added <code>css</code> to the set of verbatim environment
+languages that are syntax highlighted by default.</para>
+</listitem>
+<listitem>
+<para>The <parameter>output-media</parameter> is now set to “<literal>epub</literal>” when
+formatting EPUBs.</para>
+</listitem>
+<listitem>
+<para>Paged media improvements: removed body margins (they’re provided by the page setup);
+enabled hyphenation.</para>
+</listitem>
+<listitem>
+<para>Add documentation for the properties in <filename>gradle.properties</filename>.</para>
+</listitem>
+<listitem>
+<para>Yet even more fussing with the building the distribution on Windows.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r214">
 <info>
   <title>Changes in version 2.1.4</title>
