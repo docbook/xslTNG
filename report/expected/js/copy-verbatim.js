@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.1.5-SNAPSHOT
+/* DocBook xslTNG version 2.1.5
  *
  * This is copy-verbatim.js providing support for a dynamic
  * copy-to-clipboard link on verbatim listings.
