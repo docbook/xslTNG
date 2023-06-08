@@ -334,6 +334,9 @@
    <group name="list-of-unknown">
       <template match="true()">{ListofUnknown}</template>
    </group>
+   <group name="list-of-titles-unnumbered">
+      <template match="true()">%c</template>
+   </group>
    <group name="list-of-titles">
       <template match="self::db:part[parent::db:book]">{Part} %l%.%c</template>
       <template match="self::db:reference[parent::db:book]">{Reference} %l%.%c</template>
