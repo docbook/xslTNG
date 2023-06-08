@@ -797,22 +797,34 @@
   <xsl:param name="up" as="element()?"/>
   <xsl:param name="top" as="element()?"/>
 
+  <!-- We don't have the actual DocBook sources here, so ... -->
+  <xsl:variable name="lang"
+                select="($node/ancestor-or-self::*/@lang/string(), $default-language)[1]"/>
+
   <xsl:if test="$chunk">
     <div>
       <xsl:if test="$top">
-        <a href="{fp:relative-link(., $top)}">Home</a>
+        <a href="{fp:relative-link(., $top)}">
+          <xsl:sequence select="fp:l10n-token($lang, 'nav-home')"/>
+        </a>
       </xsl:if>
       <xsl:text> </xsl:text>
       <xsl:if test="$up">
-        <a href="{fp:relative-link(., $up)}">Up</a>
+        <a href="{fp:relative-link(., $up)}">
+          <xsl:sequence select="fp:l10n-token($lang, 'nav-up')"/>
+        </a>
       </xsl:if>
       <xsl:text> </xsl:text>
       <xsl:if test="$next">
-        <a href="{fp:relative-link(., $next)}">Next</a>
+        <a href="{fp:relative-link(., $next)}">
+          <xsl:sequence select="fp:l10n-token($lang, 'nav-next')"/>
+        </a>
       </xsl:if>
       <xsl:text> </xsl:text>
       <xsl:if test="$prev">
-        <a href="{fp:relative-link(., $prev)}">Previous</a>
+        <a href="{fp:relative-link(., $prev)}">
+          <xsl:sequence select="fp:l10n-token($lang, 'nav-prev')"/>
+        </a>
       </xsl:if>
     </div>
   </xsl:if>
@@ -826,22 +838,32 @@
   <xsl:param name="up" as="element()?"/>
   <xsl:param name="top" as="element()?"/>
 
+  <!-- We don't have the actual DocBook sources here, so ... -->
+  <xsl:variable name="lang"
+                select="($node/ancestor-or-self::*/@lang/string(), $default-language)[1]"/>
+
   <xsl:if test="$chunk">
     <table>
       <tr>
         <td class="previous">
           <xsl:if test="$prev">
-            <a href="{fp:relative-link(., $prev)}">Previous</a>
+            <a href="{fp:relative-link(., $prev)}">
+              <xsl:sequence select="fp:l10n-token($lang, 'nav-prev')"/>
+            </a>
           </xsl:if>
         </td>
         <td class="up">
           <xsl:if test="$up">
-            <a href="{fp:relative-link(., $up)}">Up</a>
+            <a href="{fp:relative-link(., $up)}">
+              <xsl:sequence select="fp:l10n-token($lang, 'nav-up')"/>
+            </a>
           </xsl:if>
         </td>
         <td class="next">
           <xsl:if test="$next">
-            <a href="{fp:relative-link(., $next)}">Next</a>
+            <a href="{fp:relative-link(., $next)}">
+              <xsl:sequence select="fp:l10n-token($lang, 'nav-next')"/>
+            </a>
           </xsl:if>
         </td>
       </tr>
@@ -851,7 +873,9 @@
         </td>
         <td class="up">
           <xsl:if test="$top">
-            <a href="{fp:relative-link(., $top)}">Home</a>
+            <a href="{fp:relative-link(., $top)}">
+              <xsl:sequence select="fp:l10n-token($lang, 'nav-home')"/>
+            </a>
           </xsl:if>
         </td>
         <td class="next">
