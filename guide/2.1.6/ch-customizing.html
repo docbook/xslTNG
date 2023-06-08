@@ -1,0 +1,499 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Chapter 3. Customizing the stylesheets</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2023-06-08T16:30:32Z"/><meta name="dc.created" content="2023-06-08T16:30:32Z"/><meta name="generator" content="DocBook xslTNG version 2.1.6-SNAPSHOT / cf0b935 / SAXON HE 11.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-using.html"/><link rel="next" href="ch-localization.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-using.html" title="Chapter  2 .  Using the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Chapter  4 .  Localization" href="ch-localization.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="customization" db-chunk="ch-customizing.html" db-id="d149e1656" class="chapter component"><header><h1>Chapter <span class="label">3</span><span class="sep">. </span>Customizing the stylesheets</h1></header><p>In many circumstances, the stylesheets can be used “out of the
+box” without any customization. But sometimes you may need to change
+the formatting of certain elements. One common reason is to change the
+formatting of title pages or navigational features. In other cases, it
+may be to support local extensions to DocBook or simply to change the
+markup to support a particular use case.</p><p>Three approaches are possible, with increasing degrees of
+effort: changing stylesheet parameters, creating your own
+customization layer, or making broader changes to the stylesheet’s
+implementation.</p><p>The subject of broader implementation changes is the subject of
+<a href="ch-implementation.html" class="xref xref-chapter">Chapter <span class="label">5</span>, Implementation details</a>. In this chapter, we’ll look at the
+easier options.</p><section id="change-params" class="section"><header><h2><span class="label">3<span class="sep">.</span>1</span><span class="sep">. </span>Changing stylesheet parameters</h2></header><p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> define a
+lot of parameters. They are all described in <a href="params.html" class="xref xref-reference"><span class="label">I</span><span class="sep">. </span>Parameter reference</a>.
+If the change you want to make has already been parameterized, you may
+be able to achieve your goal simply by setting a parameter at runtime.</p><p>For example, if you want to change the formatting of dates and times
+in <code class="tag tag-element">date</code> elements, you can simply change the
+<a href="p_date-date-format.html" class="link">date and time formatting</a>
+parameters. Similarly, if you want to change the numeration style of
+ordered lists, you can simply change the <a href="p_orderedlist-item-numeration.html" class="link">ordered list item
+numeration</a> parameter.</p><p>These changes can be accomplished by simply passing the new
+values to the processor, on the command line or in a configuration
+file, for example. You do not have to write any XSLT to make these
+changes.</p><p>Parameter values apply to the entire document processed by the
+stylesheets. In some cases, you may wish to change the presentation of
+just one or small number of elements. This can often be accomplished
+with a <a href="pi_db.html" class="link">db processing instruction</a> in
+the source document itself. These customizations can also be
+accomplished without writing any XSLT.</p><p>If you want to make a change that isn’t supported by a
+parameter, or an ad hoc exception that doesn’t have a supporting
+processing instruction, you will have to write a customization layer.
+(You are invited to submit an issue with your use case if you think it
+would be of general interest.)
+</p><p>You may also find it convenient to write a customization layer
+if you want to change several parameters and you find it inconvenient
+to pass them all to the processor on every invocation.
+</p></section><section id="layer" class="section"><header><h2><span class="label">3<span class="sep">.</span>2</span><span class="sep">. </span>Creating a customization layer</h2></header><p>A customization layer is simply an XSLT stylesheet that you
+write which extends the DocBook stylesheets. The simplest<sup id="layer_para1_footnote1-fref" class="footnote-number"><a href="#layer_para1_footnote1-fnote">*</a></sup> customization
+layer is:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="14"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:stylesheet</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:xsl=</span><span class="s">"http://www.w3.org/1999/XSL/Transform"</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:db=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns=</span><span class="s">"http://www.w3.org/1999/xhtml"</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">exclude-result-prefixes=</span><span class="s">"db xs"</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">version=</span><span class="s">"3.0"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="cm">&lt;!-- This href has to point to your local copy</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="cm">     of the stylesheets. --&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:import</span><span class="w"> </span><span class="na">href=</span><span class="s">"docbook/xslt/docbook.xsl"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/xsl:stylesheet&gt;</span></code></span></span>
+</pre></div><p>This customization doesn’t do anything. But you can, for example, redefine
+parameters if you wish:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:stylesheet</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:xsl=</span><span class="s">"http://www.w3.org/1999/XSL/Transform"</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:db=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns=</span><span class="s">"http://www.w3.org/1999/xhtml"</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">exclude-result-prefixes=</span><span class="s">"db xs"</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">version=</span><span class="s">"3.0"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:import</span><span class="w"> </span><span class="na">href=</span><span class="s">"docbook/xslt/docbook.xsl"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"orderedlist-item-numeration"</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">           </span><span class="na">select=</span><span class="s">"'1'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"date-dateTime-format"</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">           </span><span class="na">select=</span><span class="s">"'[D01] [MNn,*-3] [Y0001]</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="s">                   at [H01]:[m01]'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/xsl:stylesheet&gt;</span></code></span></span>
+</pre></div><p>This will have the effect of running the DocBook stylesheets with those two
+parameters set as specified.</p><p>If you want to change the HTML output for an element, you can write a template
+for that element in your customization layer. Consider this DocBook document:
+</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="12"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;article</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">         </span><span class="na">version=</span><span class="s">"5.1"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;info&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>Sample<span class="w"> </span>Document<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;date&gt;</span>2020-07-05<span class="nt">&lt;/date&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/info&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para&gt;</span>This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>sample<span class="w"> </span><span class="nt">&lt;productname&gt;</span>DocBook<span class="nt">&lt;/productname&gt;</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code>document.<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/article&gt;</span></code></span></span>
+</pre></div><p>Suppose that you decided you wanted to have the
+<code class="tag tag-element">productname</code> element link automatically to the vendor
+webpage.</p><div class="admonition important"><div><div class="icon">☝</div><div class="body"><header><div class="title">Important</div></header><div><p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> process
+<em>all</em> DocBook elements in the
+<a href="m_docbook.html"><code class="mode">m:docbook</code></a> mode. This is different from previous XSLT stylesheets for DocBook
+which simply used the default mode.</p><p>You must either specify a default mode in your customization layer
+or remember to specify the mode on match templates and template applications.
+If you forget the mode, you’ll get unexpected results!</p></div></div></div></div><p>One way to do that would be to redefine the template that processes the
+<code class="tag tag-element">productname</code> element:</p><div class="programlistingco"><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="54"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:stylesheet</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:xsl=</span><span class="s">"http://www.w3.org/1999/XSL/Transform"</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:db=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:m=</span><span class="s">"http://docbook.org/ns/docbook/modes"</span>  <a id="ex.xmlns-m" class="callout-bug linecolumn" db-line="5" db-column="52">①</a></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">xmlns=</span><span class="s">"http://www.w3.org/1999/xhtml"</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">exclude-result-prefixes=</span><span class="s">"db m xs"</span>  <a id="ex.excl-m" class="callout-bug linecolumn" db-line="8" db-column="40">②</a></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="na">version=</span><span class="s">"3.0"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:import</span><span class="w"> </span><span class="na">href=</span><span class="s">"docbook/xslt/docbook.xsl"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"orderedlist-item-numeration"</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">           </span><span class="na">select=</span><span class="s">"'1'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"date-dateTime-format"</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">           </span><span class="na">select=</span><span class="s">"'[D01] [MNn,*-3] [Y0001]</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="s">                   at [H01]:[m01]'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:template</span><span class="w"> </span><span class="na">match=</span><span class="s">"db:productname"</span></code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">              </span><span class="na">mode=</span><span class="s">"m:docbook"</span><span class="nt">&gt;</span>  <a id="ex.m-docbook" class="callout-bug linecolumn" db-line="21" db-column="34">③</a></code></span></span>
+<span class="line" db-line="22"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"name"</span></code></span></span>
+<span class="line" db-line="23"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">select=</span><span class="s">"normalize-space(.)"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="24"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><a id="ex.cramped" class="callout-bug linecolumn" db-line="24" db-column="1">④</a></code></span></span>
+<span class="line" db-line="25"><span class="ln">25 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"url"</span><span class="w"> </span><span class="na">as=</span><span class="s">"xs:string?"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="26"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:choose&gt;</span></code></span></span>
+<span class="line" db-line="27"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;xsl:when</span><span class="w"> </span><span class="na">test=</span><span class="s">"$name='DocBook'"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="28"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="nt">&lt;xsl:sequence</span><span class="w"> </span><span class="na">select=</span><span class="s">"'https://docbook.org/'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="29"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;/xsl:when&gt;</span></code></span></span>
+<span class="line" db-line="30"><span class="ln">30 <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;xsl:when</span><span class="w"> </span><span class="na">test=</span><span class="s">"$name='DocBook xslTNG Stylesheets'"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="31"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="nt">&lt;xsl:sequence</span><span class="w"> </span><span class="na">select=</span><span class="s">"'https://xsltng.docbook.org/'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="32"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;/xsl:when&gt;</span></code></span></span>
+<span class="line" db-line="33"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;xsl:when</span><span class="w"> </span><span class="na">test=</span><span class="s">"$name='Wikipedia'"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="34"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="nt">&lt;xsl:sequence</span><span class="w"> </span><span class="na">select=</span><span class="s">"'https://wikipedia.org/'"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="35"><span class="ln">35 <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;/xsl:when&gt;</span></code></span></span>
+<span class="line" db-line="36"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;xsl:otherwise&gt;</span></code></span></span>
+<span class="line" db-line="37"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="cm">&lt;!-- Unrecognized --&gt;</span></code></span></span>
+<span class="line" db-line="38"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;/xsl:otherwise&gt;</span></code></span></span>
+<span class="line" db-line="39"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/xsl:choose&gt;</span></code></span></span>
+<span class="line" db-line="40"><span class="ln">40 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:variable&gt;</span></code></span></span>
+<span class="line" db-line="41"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                  </span></code></span></span>
+<span class="line" db-line="42"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:choose&gt;</span></code></span></span>
+<span class="line" db-line="43"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:when</span><span class="w"> </span><span class="na">test=</span><span class="s">"empty($url)"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="44"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;xsl:next-match/&gt;</span>  <a id="ex.next-match" class="callout-bug linecolumn" db-line="44" db-column="26">⑤</a></code></span></span>
+<span class="line" db-line="45"><span class="ln">45 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/xsl:when&gt;</span></code></span></span>
+<span class="line" db-line="46"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:otherwise&gt;</span></code></span></span>
+<span class="line" db-line="47"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;a</span><span class="w"> </span><span class="na">href=</span><span class="s">"{$url}"</span><span class="w"> </span><span class="na">title=</span><span class="s">"Home page"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="48"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="nt">&lt;xsl:next-match/&gt;</span>  <a id="ex.next-match-48" class="callout-bug linecolumn" db-line="48" db-column="28">⑤</a></code></span></span>
+<span class="line" db-line="49"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;/a&gt;</span></code></span></span>
+<span class="line" db-line="50"><span class="ln">50 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/xsl:otherwise&gt;</span></code></span></span>
+<span class="line" db-line="51"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:choose&gt;</span></code></span></span>
+<span class="line" db-line="52"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/xsl:template&gt;</span></code></span></span>
+<span class="line" db-line="53"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="54"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/xsl:stylesheet&gt;</span></code></span></span>
+</pre></div></div><div class="calloutlist"><dl><dt class="callout"><a class="callout-bug" href="#ex.xmlns-m">①</a></dt><dd><p>All of the DocBook elements are processed in the “<a href="m_docbook.html"><code class="mode">m:docbook</code></a>” mode.</p></dd><dt class="callout"><a class="callout-bug" href="#ex.excl-m">②</a></dt><dd><p>Remember to exclude all the namespaces you declare so that they don’t wind up
+scattered about in your HTML.</p></dd><dt class="callout"><a class="callout-bug" href="#ex.m-docbook">③</a></dt><dd><p>I repeat, all of the DocBook elements are processed in the
+“<a href="m_docbook.html"><code class="mode">m:docbook</code></a>” mode. I expect that failure to declare this mode is going to be a common
+error.</p></dd><dt class="callout"><a class="callout-bug" href="#ex.cramped">④</a></dt><dd><p>Yes, this whole listing is rather cramped.
+<span class="phrase">I’m trying to make it all narrow
+enough to fit in the display without making horizontal scrolling necessary.</span>
+</p></dd><dt class="callout"><a class="callout-bug" href="#ex.next-match">⑤</a></dt><dd><p>Calling <code class="literal">xsl:next-match</code> invokes the underlying
+processing. The effect of this template is to wrap an HTML
+“<code>a</code>” around the default processing for
+<code class="tag tag-element">productname</code>.</p></dd></dl></div><p>It’s worth pointing out that if the tag has an
+<code class="tag tag-attribute">xlink:href</code> attribute, that will generate an HTML
+<code>a</code> as well. A more robust stylesheet would check for that,
+but I’m trying to keep the example simple.</p></section><section id="managing-css" class="section"><header><h2><span class="label">3<span class="sep">.</span>3</span><span class="sep">. </span>Managing CSS stylesheets</h2></header><p>The HTML that the <cite class="citetitle">DocBook xslTNG</cite> stylesheets
+produce is intended to be clean, robust markup for styling with CSS.
+Exactly how you control which stylesheet links are produced has
+changed several times. The current scheme is this:</p><ol class="orderedlist" type="1"><li><p>If syntax highlighting is enabled, a link to the
+<a href="p_verbatim-syntax-highlight-css.html"><code class="paramname">$verbatim-syntax-highlight-css</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem1_para1_indexterm1"></span> stylesheet is
+included.
+</p></li><li><p>If <a href="p_persistent-toc.html"><code class="paramname">$persistent-toc</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem2_para1_indexterm1"></span> <span class="glossterm"><a href="glossary.html#glossary_ge5">is
+true</a></span> 
+a link to the <a href="p_persistent-toc-css.html"><code class="paramname">$persistent-toc-css</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem2_para1_indexterm2"></span> stylesheet
+is included.
+</p></li><li><p>If <a href="p_use-docbook-css.html"><code class="paramname">$use-docbook-css</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem3_para1_indexterm1"></span> <span class="glossterm"><a href="glossary.html#glossary_ge5">is true</a></span>,
+links to the standard DocBook stylesheets are included. Those stylesheets
+are <code class="filename">docbook.css</code> (for all media),
+<code class="filename">docbook-screen.css</code> (for screen media), and
+<code class="filename">docbook-page-setup.css</code> and
+<code class="filename">docbook-paged.css</code> (for print media).
+</p></li><li><p>The DocBook element that is the context element when the HTML
+<code class="tag tag-element">head</code> is being
+generated is processed in the <a href="m_html-head-links.html"><code class="mode">m:html-head-links</code></a> mode.
+By default, that template does nothing, but you can change that in
+a customization layer.</p></li><li><p>If any CSS stylesheets are defined in
+<a href="p_user-css-links.html"><code class="paramname">$user-css-links</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem5_para1_indexterm1"></span>, they are included.
+</p></li><li><p>The DocBook element that is the context element when the HTML
+<code class="tag tag-element">head</code> is being
+generated is processed in the <a href="m_html-head-last.html"><code class="mode">m:html-head-last</code></a> mode.
+By default, that template does nothing, but you can change that in
+a customization layer.</p></li></ol></section><section id="media" class="section"><header><h2><span class="label">3<span class="sep">.</span>4</span><span class="sep">. </span>Managing media</h2></header><p>References to external media through <code class="tag tag-element">imagedata</code>,
+<code class="tag tag-element">videodata</code>, <code class="tag tag-element">audiodata</code>, and even
+<code class="tag tag-element">textdata</code> can be tricky to manage. On the one hand, it’s
+most convenient if the URIs in the source documents point to the
+actual media files. This allows extensions, like the image properties
+<a href="ch-using.html#extensions" class="link">extension function</a>, to access the
+files. At the same time, the references generated in the HTML have to
+point to the locations where they will be published. It is often, but
+not always, the case that the authoring structures and the publishing
+structures are the same.</p><p>The stylesheets are regularly tested against five possible
+arrangements: three where the media are stored in locations relative
+to the XML files and two where the media are stored in a separate
+hierarchy. These are unimaginative named “mo-1”, “mo-2”, “mo-3”, “mo-4”,
+and “mo-5”.
+You can find them in the
+<code class="filename"><a href="https://github.com/docbook/xslTNG/tree/main/src/test/resources/xml">src/test/resources/xml</a></code> hierarchy in the repository.</p><dl class="variablelist"><div id="mo_mo-1" class="varlistentry"><dt><span class="term">mo-1</span></dt><dd><p>All of the XML files are in a single directory, the media are in the same
+hierarchy. Media references in the source use relative URIs to refer to the
+underlying media: <code class="filename">preface.xml</code> refers to the “this is a test”
+audio clip as <code class="uri">media/this-is-a-test.mp3</code>.
+</p></dd></div><div id="mo_mo-2" class="varlistentry"><dt><span class="term">mo-2</span></dt><dd><p>The XML files are in different directories (this changes the
+base URI of the media elements). The media are in the same hierarchy.
+Media references in the source use relative URIs to refer to the
+underlying media: <code class="filename">front/preface.xml</code> refers to the “this is a test”
+audio clip as <code class="uri">../media/spinning-top.mp4</code>.
+</p></dd></div><div id="mo_mo-3" class="varlistentry"><dt><span class="term">mo-3</span></dt><dd><p>The XML files are in different directories, but the structure is
+deeper. This scenario represents the case where there might be multiple books, each
+with their own media, but also a shared media folder “above” the book hierarchies.
+The media are in the same hierarchy, but some are “above” the book.
+Media references in the source use relative URIs to refer to the
+underlying media: <code class="filename">book/front/preface.xml</code> refers to the “this is a test”
+audio clip as <code class="uri">../../media/spinning-top.mp4</code>.
+</p></dd></div><div id="mo_mo-4" class="varlistentry"><dt><span class="term">mo-4</span></dt><dd><p>The XML files are still in different directories, but the significant change
+here is that the media are in their own hierarchy. 
+Media references in the source use URIs relative to the root of <em>that</em>
+hierarchy: <code class="filename">book/front/preface.xml</code> refers to the “this is a test”
+audio clip as <code class="uri">spinning-top.mp4</code>.
+</p></dd></div><div id="mo_mo-5" class="varlistentry"><dt><span class="term">mo-5</span></dt><dd><p>The XML files are in different directories and the media are in their own
+hierarchy. What’s different here is that the media hierarchy is <em>further</em>
+subdivided by media type.
+Media references in the source use URIs relative to the root of media
+hierarchy <em>without</em> the media type:
+<code class="filename">book/front/preface.xml</code> still refers to the “this is a test”
+audio clip as <code class="uri">spinning-top.mp4</code>, but this time it is found in
+<code class="filename">media/mp4/spinning-top.mp4</code> rather than directly in
+<code class="filename">media</code>.
+</p></dd></div></dl><p>For each arrangement, we look at five possible output structures:</p><ol class="orderedlist" type="1"><li id="mo_s-1"><p>A single HTML document with the media in the same relative locations
+as the sources.
+</p></li><li id="mo_s-2"><p>A single HTML document with the media in a single <code class="filename">media</code>
+subdirectory.
+</p></li><li id="mo_s-3"><p>“Chunked” HTML output with the media in the same relative locations
+as the sources.
+</p></li><li id="mo_s-4"><p>“Chunked” HTML output with the media in custom locations. (This is especially
+tricky for the “mo-5” case because there are two kinds of customization involved.)
+</p></li><li id="mo_s-5"><p>“Chunked” HTML output with the media in a single <code class="filename">media</code>
+subdirectory.
+</p></li></ol><p>The list below gives a brief summary of the parameters used to achieve
+the desired results for each combination of input and output arrangements.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>Remember that in each case, the questions are: can the
+stylesheets find the media files to query them and are the correct
+HTML references produced? Actually copying the media files from where
+they are in the source system to where they need to be in the HTML is
+“not our problem.”</p></div></div></div></div><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-1" class="link">mo-1</a>, <a href="#mo_mo-2" class="link">mo-2</a>, and <a href="#mo_mo-3" class="link">mo-3</a> /
+      <a href="#mo_s-1" class="link">scenario 1</a></span></dt><dd><p>No parameters are needed, this combination works correctly with the defaults.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-1" class="link">mo-1</a>, <a href="#mo_mo-2" class="link">mo-2</a>, and <a href="#mo_mo-3" class="link">mo-3</a> /
+      <a href="#mo_s-2" class="link">scenario 2</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-base-uri = "media/"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-paths = "false"</code></span></span>
+</pre></div><p>The output base URI is relative to the “root” of the HTML result.
+Setting the output paths to “false” removes intermediate hierarchy from the
+image references.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-1" class="link">mo-1</a>, <a href="#mo_mo-2" class="link">mo-2</a>, and <a href="#mo_mo-3" class="link">mo-3</a> /
+      <a href="#mo_s-3" class="link">scenario 3</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk = "index.html"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk-output-base-uri = "/path/to/output/location/"</code></span></span>
+</pre></div><p>These parameters aren’t related to media objects, they just tell
+the stylesheets how and where to “chunk” the output.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-1" class="link">mo-1</a>, <a href="#mo_mo-2" class="link">mo-2</a>, and <a href="#mo_mo-3" class="link">mo-3</a> /
+      <a href="#mo_s-4" class="link">scenario 4</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk = "index.html"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk-output-base-uri = "/path/to/output/location/"</code></span></span>
+</pre></div><p>This combination is really the same as the previous except that
+it uses a
+<a href="https://github.com/docbook/xslTNG/blob/main/src/test/resources/mo_1_test_4.xsl" class="link">custom stylesheet</a>
+with a template in the <a href="m_mediaobject-output-adjust.html"><code class="mode">m:mediaobject-output-adjust</code></a> mode
+to add an extra level of hierarchy to the output URIs. This is just an
+example of arbitrary, custom processing.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-1" class="link">mo-1</a>, <a href="#mo_mo-2" class="link">mo-2</a>, and <a href="#mo_mo-3" class="link">mo-3</a> /
+      <a href="#mo_s-5" class="link">scenario 5</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk = "index.html"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk-output-base-uri = "/path/to/output/location/"</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-base-uri = "media/"</code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-paths = "false"</code></span></span>
+</pre></div><p>The output base URI is relative to the “root” of the HTML result.
+Setting the output paths to “false” removes intermediate hierarchy from the
+image references.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-4" class="link">mo-4</a> /
+      <a href="#mo_s-1" class="link">scenario 1</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-input-base-uri = "../media/"</code></span></span>
+</pre></div><p>The input base URI will be made absolute relative to the base URI
+of the input document, so it’s often convenient to specify it as a relative
+URI. It’s equally possible to specify it as an absolute URI.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-4" class="link">mo-4</a> /
+      <a href="#mo_s-2" class="link">scenario 2</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-input-base-uri = "../media/"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-base-uri = "media/"</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-paths = "true"</code></span></span>
+</pre></div><p>This example has two images with the same name in different directories,
+so it’s necessary to preserve the output paths.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-4" class="link">mo-4</a> /
+      <a href="#mo_s-3" class="link">scenario 3</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk = "index.html"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk-output-base-uri = "/path/to/output/location/"</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-input-base-uri = "../media/"</code></span></span>
+</pre></div><p>This is the combination of chunking and a single media directory.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-4" class="link">mo-4</a> /
+      <a href="#mo_s-4" class="link">scenario 4</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk = "index.html"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk-output-base-uri = "/path/to/output/location/"</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-input-base-uri = "../media/"</code></span></span>
+</pre></div><p>This combination is really the same as the previous except that
+it uses a
+<a href="https://github.com/docbook/xslTNG/blob/main/src/test/resources/mo_1_test_4.xsl" class="link">custom stylesheet</a>
+with a template in the <a href="m_mediaobject-output-adjust.html"><code class="mode">m:mediaobject-output-adjust</code></a> mode
+to add an extra level of hierarchy to the output URIs. This is just an
+example of arbitrary, custom processing.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-4" class="link">mo-4</a> /
+      <a href="#mo_s-5" class="link">scenario 5</a></span></dt><dd><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk = "index.html"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>chunk-output-base-uri = "/path/to/output/location/"</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-input-base-uri = "../media/"</code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-base-uri = "media/"</code></span></span>
+<span class="line" db-line="5"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-output-paths = "true"</code></span></span>
+</pre></div><p>This is effectively scenario 2 with chunking.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-5" class="link">mo-5</a> / scenarios 1-5</span></dt><dd><p>The “mo-5” scenarios are all the same as the “mo-4” scenarios
+with the addition of one more parameter:</p><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-grouped-by-type = "true"</code></span></span>
+</pre></div><p>In each case, this adds the extra “media object type” level to the 
+URI path.
+</p></dd></div></dl><p>If you download the source repository, you can see these combinations
+in action with the build targets
+“<code class="literal">mo_<em class="replaceable">number</em>_test_<em class="replaceable">scenario</em></code>”,
+for example, run:</p><div class="pre-wrap"><pre class="screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>./gradlew mo_3_test_2</code></span></span>
+</pre></div><p>to see the results of processing “mo-3” in scenario 2. The output
+will be in the <code class="filename">build/actual</code> directory. The build target
+<code class="buildtarget">all_mo_tests</code> will run them all.</p></section><section id="numeration" class="section"><header><h2><span class="label">3<span class="sep">.</span>5</span><span class="sep">. </span>Controlling numeration</h2></header><p>Numeration refers to the process(es) by which sets, books,
+divisions, components, sections, and formal objects are numbered.
+There are three separate aspects to numeration: what’s numbered, where
+does numbering begin, and does the number inherit from its ancestors.</p><p>Consider this book:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="21"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;book&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;title&gt;</span>Book<span class="w"> </span>title<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;part&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;title&gt;</span>Part<span class="w"> </span>title<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;chapter&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;title&gt;</span>Chapter<span class="w"> </span>title<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;para&gt;</span>…<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/chapter&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/part&gt;</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;part&gt;</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;title&gt;</span>Another<span class="w"> </span>part<span class="w"> </span>title<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;chapter&gt;</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;title&gt;</span>Another<span class="w"> </span>chapter<span class="w"> </span>title<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;para&gt;</span>…<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/chapter&gt;</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;chapter&gt;</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;title&gt;</span>Yet<span class="w"> </span>another<span class="w"> </span>chapter<span class="w"> </span>title<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;para&gt;</span>…<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/chapter&gt;</span></code></span></span>
+<span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/part&gt;</span></code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/book&gt;</span></code></span></span>
+</pre></div><p>Let’s suppose that parts are numbered “I” and “II”. (The number
+format is controlled by the localization, see <a href="ch-localization.html" class="xref xref-chapter">Chapter <span class="label">4</span>, Localization</a>.) If chapter
+numbering begins at the book level, those chapters will be
+numbered “1”, “2”, and “3”. If chapter numbering begins at the division level
+(the <code class="tag tag-element">part</code>), those chapters will be numbered “1”, “1”, and “2”.
+If division numbers are inherited, those numbers will be “I.1”, “II.1”, “II.2”.
+</p><p>In the 1.x versions of these stylesheets, all of the aspects of
+numeration were controlled by three now obsolete parameters:
+<code>$component-numbers-inherit</code>,
+<code>$division-numbers-inherit</code>, and
+<code>$section-numbers-inherit</code>. In the 2.x stylesheets, the
+various aspects can be controlled independently and the result is
+much more consistent, if a bit more complicated.</p><p>The default numeration parameters are designed to cover the most
+common use cases and are specified with strings so that they’re easy to control
+with parameters. <em>Any</em> numeration scheme can be implemented
+with a customization layer, but hopefully that will be necessary only rarely and
+in uncommon cases.</p><p>To simplify the problem, we divide the DocBook elements into six categories:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term">sets</span></dt><dd><p>The <code class="tag tag-element">set</code> is the only member of this category.
+</p></dd></div><div class="varlistentry"><dt><span class="term">books</span></dt><dd><p>The <code class="tag tag-element">book</code> is the only member of this category.
+</p></dd></div><div class="varlistentry"><dt><span class="term">divisions</span></dt><dd><p>The divisions elements are <code class="tag tag-element">part</code> and <code class="tag tag-element">reference</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term">components</span></dt><dd><p>The component elements are
+<code class="tag tag-element">acknowledgements</code>,
+<code class="tag tag-element">appendix</code>,
+<code class="tag tag-element">article</code>,
+<code class="tag tag-element">bibliography</code>,
+<code class="tag tag-element">chapter</code>,
+<code class="tag tag-element">colophon</code>,
+<code class="tag tag-element">dedication</code>,
+<code class="tag tag-element">glossary</code>,
+<code class="tag tag-element">index</code>,
+<code class="tag tag-element">partintro</code>,
+<code class="tag tag-element">preface</code>,
+<code class="tag tag-element">refentry</code>, and
+<code class="tag tag-element">setindex</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term">sections</span></dt><dd><p>The section elements are
+<code class="tag tag-element">section</code>,
+<code class="tag tag-element">sect1</code>,
+<code class="tag tag-element">sect2</code>,
+<code class="tag tag-element">sect3</code>,
+<code class="tag tag-element">sect4</code>,
+<code class="tag tag-element">sect5</code>,
+<code class="tag tag-element">simplesect</code>.
+The <code class="tag tag-element">refentry</code> section elements are not included because they are 
+not typically numbered.</p></dd></div><div class="varlistentry"><dt><span class="term">formal objects</span></dt><dd><p>The formal objects are
+<code class="tag tag-element">figure</code>,
+<code class="tag tag-element">table</code>,
+<code class="tag tag-element">example</code>,
+<code class="tag tag-element">equation</code>,
+<code class="tag tag-element">formalgroup</code>,
+<code class="tag tag-element">procedure</code>.
+</p><p>There’s a bit of complexity here. A <code class="tag tag-element">formalgroup</code> that contains figures
+counts as a <code class="tag tag-element">figure</code>, a <code class="tag tag-element">formalgroup</code> that contains tables
+counts as a <code class="tag tag-element">table</code>, etc. An <code class="tag tag-element">equation</code> or <code class="tag tag-element">procedure</code>
+only counts as a formal object if it has a title.</p></dd></div></dl><p>Six parameters control where numbering starts (or restarts):
+<a href="p_sets-number-from.html"><code class="paramname">$sets-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm1"></span>,
+<a href="p_books-number-from.html"><code class="paramname">$books-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm2"></span>,
+<a href="p_divisions-number-from.html"><code class="paramname">$divisions-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm3"></span>,
+<a href="p_components-number-from.html"><code class="paramname">$components-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm4"></span>,
+<a href="p_sections-number-from.html"><code class="paramname">$sections-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm5"></span>, and
+<a href="p_formal-objects-number-from.html"><code class="paramname">$formal-objects-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm6"></span>. In each case, the value
+of the parameter must be the name of one of the categories. Sets and books
+can only number from sets, divisions can number from sets or books, 
+components can number from sets, books, or divisions, etc. It is also
+possible to specify the value <code>root</code> to indicate that elements in
+the relevant category are numbered sequentially through the whole document.</p><p>To assure consistency, “numbering from” resets when the specified
+category or one of its ancestors is encountered. In other words, if
+you’re formatting a set of books and numbering components from
+divisions, the numbering resets when a new division, book, or set begins.</p><p>Six parameters control how numbers are inherited:
+<a href="p_sets-inherit-from.html"><code class="paramname">$sets-inherit-from</code></a><span class="indexterm" id="numeration_para9_indexterm1"></span>,
+<a href="p_books-inherit-from.html"><code class="paramname">$books-inherit-from</code></a><span class="indexterm" id="numeration_para9_indexterm2"></span>,
+<a href="p_divisions-inherit-from.html"><code class="paramname">$divisions-inherit-from</code></a><span class="indexterm" id="numeration_para9_indexterm3"></span>,
+<a href="p_components-inherit-from.html"><code class="paramname">$components-inherit-from</code></a><span class="indexterm" id="numeration_para9_indexterm4"></span>,
+<a href="p_sections-inherit-from.html"><code class="paramname">$sections-inherit-from</code></a><span class="indexterm" id="numeration_para9_indexterm5"></span>, and
+<a href="p_formal-objects-inherit-from.html"><code class="paramname">$formal-objects-inherit-from</code></a><span class="indexterm" id="numeration_para9_indexterm6"></span>. Like the “number
+from” parameters, each parameter takes the value of the categories
+above it. In this case, however, you can specify more than one
+category.</p><p>For example, the default value for formal objects is to
+inherit from “<code>component section</code>”. That means that the
+first figure in chapter 2 will be labeled “2.1” and the first figure
+in the first section in chapter 2 will be labeled “2.1.1”, etc.
+This most closely reproduces the numbering from the 1.x stylesheets.</p></section><section id="different" class="section"><header><h2><span class="label">3<span class="sep">.</span>6</span><span class="sep">. </span>Creating something completely different</h2></header><p>Your input documents go through several pre-processing steps
+before they are rendered into HTML. If you want to produce completely
+different outputs, the place to start is with root template in the
+<a href="m_docbook.html"><code class="mode">m:docbook</code></a> mode.</p><p>Consider, <a href="https://github.com/docbook/xslTNG/issues/84" class="link">for example</a>,
+the task of creating a JSON version of the Table of Contents. In principle, you could
+write your own stylesheet to do this, but leveraging the
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite> means you can make use of functions like
+<a href="f_generate-id.html"><code class="funcname">f:generate-id()</code></a> to create links.</p><p>To produce completely different results, override the root template in the
+<a href="m_docbook.html"><code class="mode">m:docbook</code></a> mode:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:template</span><span class="w"> </span><span class="na">match=</span><span class="s">"/"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"m:docbook"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:document&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="cm">&lt;!-- your processing here --&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:document&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/xsl:template&gt;</span></code></span></span>
+</pre></div><p>This template <em>must</em> return a document node.</p><p>Note that you can mix-and-match your processing with default
+processing by processing DocBook elements in the
+<a href="m_docbook.html"><code class="mode">m:docbook</code></a> mode.</p><p>Here is a simple example of a stylesheet that produces a JSON version of the
+Table of Contents for a DocBook document:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="53"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;xsl:stylesheet</span><span class="w"> </span><span class="na">xmlns:xsl=</span><span class="s">"http://www.w3.org/1999/XSL/Transform"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">xmlns:db=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">xmlns:f=</span><span class="s">"http://docbook.org/ns/docbook/functions"</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">xmlns:m=</span><span class="s">"http://docbook.org/ns/docbook/modes"</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">xmlns:t=</span><span class="s">"http://docbook.org/ns/docbook/templates"</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">xmlns:xs=</span><span class="s">"http://www.w3.org/2001/XMLSchema"</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">xmlns=</span><span class="s">"http://www.w3.org/1999/xhtml"</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">exclude-result-prefixes=</span><span class="s">"db f m t xs"</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">version=</span><span class="s">"3.0"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="cm">&lt;!-- This href has to point to your local copy</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="cm">       of the stylesheets. --&gt;</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:import</span><span class="w"> </span><span class="na">href=</span><span class="s">"docbook/xslt/docbook.xsl"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:output</span><span class="w"> </span><span class="na">method=</span><span class="s">"text"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="cm">&lt;!-- Suppress xslTNG's default HTML output; note that this template</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="cm">       must return a document node.  --&gt;</span></code></span></span>
+<span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:template</span><span class="w"> </span><span class="na">match=</span><span class="s">"/"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"m:docbook"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:document&gt;</span></code></span></span>
+<span class="line" db-line="22"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;xsl:apply-templates</span><span class="w"> </span><span class="na">select=</span><span class="s">"."</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="23"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/xsl:document&gt;</span></code></span></span>
+<span class="line" db-line="24"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:template&gt;</span></code></span></span>
+<span class="line" db-line="25"><span class="ln">25 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="26"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="cm">&lt;!-- The templates below generate a simple JSON ToC. --&gt;</span></code></span></span>
+<span class="line" db-line="27"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="28"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:template</span><span class="w"> </span><span class="na">match=</span><span class="s">"/"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="29"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>{"toc":<span class="w"> </span>[</code></span></span>
+<span class="line" db-line="30"><span class="ln">30 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:apply-templates</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="31"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>]}</code></span></span>
+<span class="line" db-line="32"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:template&gt;</span></code></span></span>
+<span class="line" db-line="33"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="34"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:template</span><span class="w"> </span><span class="na">match=</span><span class="s">"db:part|db:article|db:section|db:chapter"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span></code></span></span>
+<span class="line" db-line="35"><span class="ln">35 <span class="nsep">|</span></span><span class="ld"><code><span class="w">                </span><span class="na">expand-text=</span><span class="s">"yes"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="36"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:if</span><span class="w"> </span><span class="na">test=</span><span class="s">"preceding-sibling::db:part</span></code></span></span>
+<span class="line" db-line="37"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="s">                  | preceding-sibling::db:article</span></code></span></span>
+<span class="line" db-line="38"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="s">                  | preceding-sibling::db:section</span></code></span></span>
+<span class="line" db-line="39"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="s">                  | preceding-sibling::db:chapter"</span><span class="nt">&gt;</span>,<span class="ni">&amp;#10;</span><span class="nt">&lt;/xsl:if&gt;</span></code></span></span>
+<span class="line" db-line="40"><span class="ln">40 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>{{</code></span></span>
+<span class="line" db-line="41"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>"ref":<span class="w"> </span>"{f:generate-id(.)}",</code></span></span>
+<span class="line" db-line="42"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>"title":<span class="w"> </span>"{normalize-space(db:info/db:title)}",</code></span></span>
+<span class="line" db-line="43"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>"subtitle":<span class="w"> </span>"{normalize-space(db:info/db:subtitle)}",</code></span></span>
+<span class="line" db-line="44"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>"items":<span class="w"> </span>[</code></span></span>
+<span class="line" db-line="45"><span class="ln">45 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:apply-templates</span><span class="w"> </span><span class="na">select=</span><span class="s">"db:part|db:article|db:section|db:chapter"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="46"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>]</code></span></span>
+<span class="line" db-line="47"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>}}</code></span></span>
+<span class="line" db-line="48"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:template&gt;</span></code></span></span>
+<span class="line" db-line="49"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="50"><span class="ln">50 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:template</span><span class="w"> </span><span class="na">match=</span><span class="s">"*"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="51"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;xsl:apply-templates</span><span class="w"> </span><span class="na">select=</span><span class="s">"*"</span><span class="w"> </span><span class="na">mode=</span><span class="s">"TOC"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="52"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/xsl:template&gt;</span></code></span></span>
+<span class="line" db-line="53"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/xsl:stylesheet&gt;</span></code></span></span>
+</pre></div><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>This example is meant as a starting point; it’s not robust as it only handles
+a few of the possible elements that might appear in a Table of Contents.</p></div></div></div></div><p>When processing documents this way, be aware that you are transforming the pre-processed,
+normalized versions of your input documents. For example, whether or not you put
+<code class="tag tag-element">info</code> wrappers around the titles of your sections, in the pre-processed input,
+<code class="tag tag-element">title</code>s <em>always</em> appear inside <code class="tag tag-element">info</code> wrappers.
+This normalization greatly simplifies processing in many places.</p></section></section><footer><div class="footnotes"><hr/><div class="footnote" id="layer_para1_footnote1-fnote"><div class="footnote-number"><sup class="footnote-number"><a href="#layer_para1_footnote1-fref">*</a></sup></div><div class="footnote-body"><p>Ok,
+technically, this stylesheet has a couple of namespace references that aren’t
+strictly necessary so it could be a teeny bit simpler, but you’ll need those
+declarations (and more!) if you want to do anything useful.</p></div></div></div></footer></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Chapter  2 .  Using the stylesheets" href="ch-using.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Chapter  4 .  Localization" href="ch-localization.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Chapter  2 .  Using the stylesheets</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Chapter  4 .  Localization</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2023 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>
