@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+  <info>
+    <title>Unit Test: book.013</title>
+    <abstract><para>This book mixes several languages. Well. Sortof.</para></abstract>
+  </info>
+
+  <preface xml:id="pref">
+    <title>Preface</title>
+    <para>This is just a test.</para>
+  </preface>
+
+  <chapter xml:id="ch01" xml:lang="en">
+    <title>Chapter One</title>
+    <para>This is just a test.</para>
+  </chapter>
+
+  <chapter xml:id="ch02" xml:lang="fr">
+    <title>Chapitre Deux</title>
+    <para>This is just a test.</para>
+  </chapter>
+  
+  <chapter xml:id="ch03" xml:lang="de">
+    <title>Kapitel Drei</title>
+    <para>This is just a test.</para>
+  </chapter>
+</book>
