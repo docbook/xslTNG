@@ -49,7 +49,7 @@
                 |self::db:example[parent::db:formalgroup]"
          group="subfigure-title"/>
 
-  <title xpath="self::db:figure|self::db:table|self::db:equation|self::db:example"
+  <title xpath="self::db:figure|self::db:table|self::db:equation|self::db:example|self::db:procedure"
          group="title-numbered"/>
 
   <title xpath="self::db:formalgroup"
@@ -110,15 +110,43 @@
   </xsl:if>
 </xsl:template>
 
+<!-- ============================================================ -->
+
 <xsl:template match="*" mode="m:headline">
   <xsl:param name="purpose" as="xs:string" required="yes"/>
 
   <xsl:variable name="prop" select="fp:title-properties(.)"/>
 
-  <xsl:variable name="template"
-                select="if ($purpose = 'lot')
-                        then fp:localization-template(., 'list-of-titles')
-                        else fp:localization-template(., $prop/@group)"/>
+  <!-- There's a little bit of a hack here. Turning off numbers
+       (e.g., $division-numbers, $component-numbers, or $section-numbers)
+       should (usually) effect the list-of-titles as well. But it
+       doesn't unless you also override the list-of-titles templates in
+       the localization, and that's more work. Surely the flags should
+       apply?
+
+       So to support that, if the property group contains 'unnumbered',
+       we look for list-of-titles-unnumbered, otherwise we look for
+       'list-of-titles'. It's a bit of a hack, but...those boolean
+       params are arguably the hack, so...
+   -->
+  <!--
+  <xsl:message select="local-name(.), $purpose, $prop/@group/string()"/>
+  <xsl:message select="$prop"/>
+  -->
+
+  <xsl:variable name="template" as="element(l:template)">
+    <xsl:choose>
+      <xsl:when test="$purpose = 'lot' and contains($prop/@group, 'unnumbered')">
+        <xsl:sequence select="fp:localization-template(., 'list-of-titles-unnumbered')"/>
+      </xsl:when>
+      <xsl:when test="$purpose = 'lot'">
+        <xsl:sequence select="fp:localization-template(., 'list-of-titles')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="fp:localization-template(., $prop/@group)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <!--
   <xsl:message select="local-name(.), $purpose, $template"/>
@@ -654,8 +682,6 @@
 </xsl:template>
 
 <!-- ============================================================ -->
-
-<!-- xxx -->
 
 <!-- Is there a clever XPath I'm overlooking? -->
 <xsl:function name="fp:nearest-relevant-ancestor" as="element()">
