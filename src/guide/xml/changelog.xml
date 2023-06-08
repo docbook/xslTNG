@@ -10,6 +10,27 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r216">
+<info>
+  <title>Changes in version 2.1.6</title>
+  <productnumber>2.1.6</productnumber>
+  <date>2023-06-08</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Fixed the bug where disabling division, component, or section
+numbers didn’t change their presentation in Tables of Contents. It’s
+not especially elegant, the stylesheets simply check if
+“<literal>unnumbered</literal>” occurs in the localization group name
+for the title. If it does, then the unnumbered table of contents
+template is also selected.</para>
+</listitem>
+<listitem>
+<para>Fixed the bug where chunk navigation wasn’t localized.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r215">
 <info>
   <title>Changes in version 2.1.5</title>
