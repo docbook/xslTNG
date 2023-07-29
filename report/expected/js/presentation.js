@@ -262,6 +262,7 @@
     const show = function(node) {
       if (node.classList.contains("reveal")) {
         node.classList.replace("reveal", "revealed");
+        node.scrollIntoView();
         if (currentlyRevealed.indexOf(node.id) < 0) {
           currentlyRevealed.push(node.id);
           windowStorage.storeRevealed(currentlyRevealed);
@@ -520,6 +521,8 @@
     current.node.classList.add("show");
     window.location.hash = navHash(current);
     windowStorage.storeLocation(window.location);
+
+    current.node.scrollIntoView();
 
     // Let's be lazy and do this with strings
     let inner;
