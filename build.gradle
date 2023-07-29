@@ -1145,7 +1145,7 @@ if (pdftool == "prince") {
       "${buildDir}/guide/guide.pdf.html",
       "-o", "${buildDir}/guide/guide.pdf"
   }
-} else {
+} else if (pdftool == "antennahouse") {
   task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html"]) {
     inputs.file("${buildDir}/guide/guide.pdf.html")
     inputs.files fileTree(dir: "${buildDir}/guide/css")
@@ -1154,6 +1154,18 @@ if (pdftool == "prince") {
       "-d", "${buildDir}/guide/guide.pdf.html",
       "-o", "${buildDir}/guide/guide.pdf"
   }
+} else if (pdftool == "vivliostyle") {
+  task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html"]) {
+    inputs.file("${buildDir}/guide/guide.pdf.html")
+    inputs.file("${buildDir}/vivliostyle.config.js")
+    inputs.files fileTree(dir: "${buildDir}/guide/css")
+    outputs.file("${buildDir}/guide/guide.pdf")
+    commandLine "${vivliostyle}",
+      "build", "${buildDir}/guide/guide.pdf.html",
+      "-o", "${buildDir}/guide/guide.pdf"
+  }
+} else {
+  throw new GradleException("Unknown pdftool: " + pdftool)
 }
 
 task "guide.olinkdb"(type: SaxonXsltTask, dependsOn: ['guide']) {
