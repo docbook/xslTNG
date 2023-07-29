@@ -249,6 +249,32 @@ class TestCase {
             "-o", "${project.projectDir}/src/test/resources/expectedpdf/${pdfTool}/${testname}.pdf"
         }
         break
+
+      case "vivliostyle":
+        //println("Register ${testname}.pdf (${pdfTool})")
+        project.tasks.register("${testname}.pdf", Exec) {
+          inputs.files project.fileTree(dir: "${project.buildDir}/actual/css")
+          inputs.file project.file("${project.buildDir}/actual/${testname}.pdf.html")
+          outputs.file project.file("${project.buildDir}/actual/${testname}.pdf")
+          dependsOn pdfhtml
+
+          commandLine pdfExec,
+            "build", "${project.buildDir}/actual/${testname}.pdf.html",
+            "-o", "${project.buildDir}/actual/${testname}.pdf"
+        }
+
+        //println("Register ${testname}.pdf.expected (${pdfTool})")
+        project.tasks.register("${testname}.pdf.expected", Exec) {
+          inputs.files project.fileTree(dir: "${project.buildDir}/actual/css")
+          inputs.file project.file("${project.buildDir}/actual/${testname}.pdf.html")
+          outputs.file project.file("${project.projectDir}/src/test/resources/expectedpdf/${pdfTool}/${testname}.pdf")
+          dependsOn pdfhtml
+
+          commandLine pdfExec,
+            "build", "${project.buildDir}/actual/${testname}.pdf.html",
+            "-o", "${project.projectDir}/src/test/resources/expectedpdf/${pdfTool}/${testname}.pdf"
+        }
+        break
       case null:
         println("No PDF tool configured, skipping PDF tests")
         break
