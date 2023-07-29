@@ -10,6 +10,31 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r217">
+<info>
+  <title>Changes in version 2.1.7</title>
+  <productnumber>2.1.7</productnumber>
+  <date>2023-07-29</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Tweaks to <filename>presentation.js</filename> to make sure
+revealed elements are in view.</para>
+</listitem>
+<listitem>
+<para>Tweaks to the bundled PrismJS to support (not especially well)
+syntax highlighting Invisible XML.</para>
+</listitem>
+<listitem>
+<para>CSS improvements for footnote rendering in paged media.</para>
+</listitem>
+<listitem>
+<para>First attempt to support <link xlink:href="https://vivliostyle.org/">Vivliostyle</link>
+for rendering paged media.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r216">
 <info>
   <title>Changes in version 2.1.6</title>
