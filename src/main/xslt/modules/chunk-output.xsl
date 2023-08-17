@@ -241,6 +241,11 @@
                       select="if ($chunk/h:body/h:main/h:div/@id = $id)
                               then ''
                               else @href/string()"/>
+
+        <xsl:if test="count($target/ancestor-or-self::h:html[@db-chunk][1]/@db-chunk) gt 1">
+          <xsl:message select="'Multiple chunks identified for ''' || $id || ''''"/>
+        </xsl:if>
+
         <xsl:sequence
             select="substring-after(
                       $target/ancestor-or-self::h:html[@db-chunk][1]/@db-chunk/string(),
