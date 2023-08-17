@@ -75,7 +75,7 @@ Testing the build requires a few more dependencies. The build will run
 run without them, but you won’t get accurate test results.
 
 ```
-python3 -m pip cython saxonche
+python3 -m pip install cython saxonche
 python3 -m pip install --no-binary lxml html5-parser
 ```
 
