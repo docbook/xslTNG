@@ -14,8 +14,9 @@
   <article>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+    <xsl:apply-templates select="db:partintro"/>
     <xsl:apply-templates select="." mode="m:toc"/>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="node() except db:partintro"/>
     <xsl:if test="self::db:set|self::db:book">
       <xsl:apply-templates select="." mode="m:back-cover"/>
     </xsl:if>
