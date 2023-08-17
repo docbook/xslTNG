@@ -203,6 +203,14 @@
                                   map { xs:QName('vp:starting-base-uri'): $starting-base-uri })"/>
   </xsl:variable>
 
+  <!--
+  <xsl:result-document href="/tmp/out.xml" method="xml" indent="yes">
+    <xsl:apply-templates select="$document" mode="m:docbook">
+      <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
+    </xsl:apply-templates>
+  </xsl:result-document>
+  -->
+
   <xsl:variable name="result" as="document-node()">
     <xsl:call-template name="t:chunk-cleanup">
       <xsl:with-param name="docbook" select="$document"/>

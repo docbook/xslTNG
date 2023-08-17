@@ -218,7 +218,7 @@
 <xsl:variable name="v:olink-databases" as="element(h:targetdb)*">
   <xsl:if test="normalize-space($olink-databases) != ''">
     <xsl:for-each select="tokenize($olink-databases, ',\s*') ! normalize-space(.)">
-      <xsl:variable name="db" select="."/>
+      <xsl:variable name="db" select="resolve-uri(., static-base-uri())"/>
       <xsl:try>
         <xsl:variable name="olinkdb" select="doc($db)/h:targetdb"/>
         <xsl:if test="empty($olinkdb)">

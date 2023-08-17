@@ -481,10 +481,9 @@
     <xsl:for-each select="tokenize(normalize-space(@arearefs), '\s+')">
       <xsl:variable name="id" select="."/>
       <xsl:variable name="area" select="key('id', $id, root($context))"/>
-      <xsl:variable name="area"
-                    select="if (empty($area))
-                            then root($context)//*[@xml:id = $id]
-                            else $area"/>
+      <xsl:if test="count($area) gt 1">
+        <xsl:message select="'Multiple areas with the same id: ' || $id"/>
+      </xsl:if>
 
       <xsl:choose>
         <xsl:when test="$area/parent::db:areaset

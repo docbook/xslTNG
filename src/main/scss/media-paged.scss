@@ -153,10 +153,6 @@ span.error.broken-link::after {
     display: inline;
 }
 
-.nhrefs .arc a::after {
-    content: " (" attr(href) ")";
-}
-
 .admonition {
     background-color: inherit;
 } 

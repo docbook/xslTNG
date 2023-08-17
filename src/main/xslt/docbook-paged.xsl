@@ -53,7 +53,7 @@
 
 <xsl:template match="*[@xlink:href]" mode="m:docbook">
   <xsl:next-match/>
-  <xsl:if test="exists(node()) and string(.) != @xlink:href">
+  <xsl:if test="f:is-true($inline-xlink-href) and exists(node()) and string(.) != @xlink:href">
     <xsl:text> (</xsl:text>
     <xsl:value-of select="@xlink:href"/>
     <xsl:text>)</xsl:text>

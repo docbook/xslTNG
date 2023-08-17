@@ -10,6 +10,57 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r218">
+<info>
+  <title>Changes in version 2.1.8</title>
+  <productnumber>2.1.8</productnumber>
+  <date>2023-08-17</date>
+</info>
+<itemizedlist>
+<listitem>
+  <para>Added <mode>m:head-additions</mode> mode for customizers. This allows a customization
+  layer to add information to the HTML <tag>head</tag>.</para>
+</listitem>
+<listitem>
+  <para>Added tunnel parameters to the list of titles templates. This allows a customization
+  to determine the parent element of the list of titles. (For example, to format the table of contents
+  for a <tag>set</tag> differently than for the contained <tag>book</tag>s.)
+  </para>
+</listitem>
+<listitem>
+  <para>When formatting a <tag>part</tag> with a <tag>partintro</tag> and a list of titles,
+  move the <tag>partintro</tag> before the list of titles. (This is technically backwards incompatible,
+  but it seems so obviously superior to the current behavior that I’m calling the current behavior
+  a bug.)
+  </para>
+</listitem>
+<listitem>
+  <para>Removed incorrect use of <code>v:</code> prefix in the documentation; fixed
+  <link xlink:href="https://github.com/docbook/xslTNG/issues/406">#406</link>.
+  </para>
+</listitem>
+<listitem>
+  <para>Added a <parameter>inline-xlink-href</parameter> parameter to control whether or not
+  XLink href attributes are printed after the link in the paged media stylesheets;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/404">#404</link>.
+  Previously, this was handled in two different ways: for simple
+  links, the links where always printed; for extended links, the text
+  were actually added by CSS. Now they’re both controlled by the
+  parameter and CSS is no longer involved.
+  </para>
+</listitem>
+<listitem>
+  <para>Hacked PrismJS a bit; added support for ABNF and my own attempt at an
+  Invisible XML highlighter.
+  </para>
+</listitem>
+<listitem>
+  <para>Added CSS for lists of titles in <tag>set</tag>s.
+  </para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r217">
 <info>
   <title>Changes in version 2.1.7</title>

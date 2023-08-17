@@ -78,6 +78,12 @@
 
   <xsl:variable name="head" select="/h:html/h:head"/>
 
+  <xsl:variable name="heads" as="element(h:head)+">
+    <xsl:for-each select="ancestor-or-self::*">
+      <xsl:sequence select="h:head"/>
+    </xsl:for-each>
+  </xsl:variable>
+
   <!-- If the chunk selected for previous or next navigation is an
        annotation and annotations are being handled by JavaScript,
        then disregard the chunk identified. -->
@@ -231,6 +237,7 @@
       </xsl:if>
 
       <xsl:sequence select="$scripts[not(@type) or contains(@type,'javascript')]"/>
+      <xsl:sequence select="$heads[position() gt 1]/node()"/>
     </head>
     <body>
       <xsl:variable name="class-list" as="xs:string*">
@@ -238,11 +245,13 @@
           <xsl:sequence select="'home'"/>
         </xsl:if>
         <xsl:sequence select="$docbook/*/@status/string()"/>
+        <xsl:sequence select="tokenize(@class, '\s+')"/>
       </xsl:variable>
       <xsl:if test="exists($class-list)">
         <xsl:attribute name="class"
-                       select="normalize-space(string-join($class-list, ' '))"/>
+                       select="normalize-space(string-join(distinct-values($class-list), ' '))"/>
       </xsl:if>
+
       <nav class="top">
         <xsl:if test="(empty(@db-navigation)
                        or f:is-true(@db-navigation))

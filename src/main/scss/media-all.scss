@@ -449,6 +449,7 @@ cite.title {
     font-family: inherit;
 }
 
+.set > .list-of-titles > .lot > .title,
 .book > .list-of-titles > .lot > .title,
 .part > .list-of-titles > .lot > .title {
     font-weight: 400;
@@ -483,6 +484,7 @@ header .authorgroup {
     border-radius: 0.5em;
 }
 
+.set > header,
 .book > header {
     margin-bottom: 2rem;
     margin-top: 1rem;
@@ -494,6 +496,7 @@ header .authorgroup {
     border-radius: 0.5em;
 }
 
+.set > header h1,
 .book > header h1 {
     margin-top: 0;
 }

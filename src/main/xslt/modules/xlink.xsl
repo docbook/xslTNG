@@ -307,6 +307,11 @@
                   </xsl:otherwise>
                 </xsl:choose>
               </a>
+              <xsl:if test="f:is-true($inline-xlink-href)">
+                <xsl:text> (</xsl:text>
+                <xsl:value-of select="@xlink:href"/>
+                <xsl:text>)</xsl:text>
+              </xsl:if>
             </span>
           </xsl:for-each>
           <span class="xlink-arc-delim after">

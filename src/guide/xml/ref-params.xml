@@ -5486,4 +5486,26 @@ CSS file will be added to the document.</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>inline-xlink-href</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Output href values after links?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter <glossterm>is true</glossterm>, when a linking element
+is rendered (one that uses an explicit <tag class="attribute">xlink:href</tag> attribute),
+the link will be printed after the reference. This setting is enabled
+by default in the paged media stylesheets. It currently has no effect
+in the online stylesheets (but might in the future).</para>
+</refsection>
+</refentry>
+
+
 </reference>

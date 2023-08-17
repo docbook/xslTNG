@@ -16,6 +16,11 @@
 
 <xsl:template match="db:info">
   <xsl:apply-templates select="db:indexterm"/>
+  <xsl:where-populated>
+    <head>
+      <xsl:apply-templates select=".." mode="m:head-additions"/>
+    </head>
+  </xsl:where-populated>
 </xsl:template>
 
 <xsl:template match="db:copyright">
