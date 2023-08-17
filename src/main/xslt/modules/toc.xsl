@@ -21,7 +21,10 @@
 <xsl:template match="*" mode="m:toc">
   <xsl:param name="placed-by-author" select="false()"/>
   <xsl:if test="$placed-by-author">
-    <xsl:call-template name="tp:toc"/>
+    <xsl:call-template name="tp:toc">
+      <xsl:with-param name="persistent" select="false()" tunnel="yes"/>
+      <xsl:with-param name="root-element" select="." tunnel="yes"/>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
@@ -31,7 +34,10 @@
   <xsl:if test="$placed-by-author
                 or (f:is-true($auto-toc)
                     and not(db:toc|processing-instruction('db-toc')))">
-    <xsl:call-template name="tp:toc"/>
+    <xsl:call-template name="tp:toc">
+      <xsl:with-param name="persistent" select="false()" tunnel="yes"/>
+      <xsl:with-param name="root-element" select="." tunnel="yes"/>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
@@ -41,12 +47,21 @@
 <xsl:template match="text()|processing-instruction()|comment()" mode="m:persistent-toc"/>
 <xsl:template match="/db:article|db:set|db:book|db:part|db:reference"
               mode="m:persistent-toc">
-  <xsl:call-template name="tp:toc"/>
+  <xsl:call-template name="tp:toc">
+    <xsl:with-param name="persistent" select="true()" tunnel="yes"/>
+    <xsl:with-param name="root-element" select="." tunnel="yes"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="tp:toc">
+  <xsl:param name="persistent" as="xs:boolean" tunnel="yes"/>
+  <xsl:param name="root-element" as="element()" tunnel="yes"/>
+
   <xsl:variable name="entries" as="element()*">
-    <xsl:apply-templates mode="m:toc-entry"/>
+    <xsl:apply-templates mode="m:toc-entry">
+      <xsl:with-param name="persistent" select="$persistent" tunnel="yes"/>
+      <xsl:with-param name="root-element" select="$root-element" tunnel="yes"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
   <xsl:variable name="lists-of-titles" as="element()*">
@@ -93,6 +108,8 @@
                      |db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5
                      |db:topic
                      ">
+  <xsl:param name="persistent" as="xs:boolean" tunnel="yes"/>
+  <xsl:param name="root-element" as="element()" tunnel="yes"/>
   <li>
     <a href="#{f:id(.)}">
       <xsl:apply-templates select="." mode="m:headline">
@@ -101,7 +118,10 @@
     </a>
     <xsl:where-populated>
       <ul class="toc">
-        <xsl:apply-templates mode="m:toc-nested"/>
+        <xsl:apply-templates mode="m:toc-nested">
+          <xsl:with-param name="persistent" select="$persistent" tunnel="yes"/>
+          <xsl:with-param name="root-element" select="$root-element" tunnel="yes"/>
+        </xsl:apply-templates>
       </ul>
     </xsl:where-populated>
   </li>
@@ -176,6 +196,9 @@
 <xsl:template match="db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5
                      |db:refsection|db:refsect1|db:refsect2|db:refsect3"
               mode="m:toc-nested">
+  <xsl:param name="persistent" as="xs:boolean" tunnel="yes"/>
+  <xsl:param name="root-element" as="element()" tunnel="yes"/>
+
   <xsl:variable name="depth" as="xs:integer">
     <xsl:choose>
       <xsl:when test="self::db:section">
