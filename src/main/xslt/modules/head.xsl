@@ -209,6 +209,9 @@
 <xsl:template match="*" mode="m:html-head-last">
 </xsl:template>
 
+<xsl:template match="*" mode="m:head-additions">
+</xsl:template>
+
 <xsl:template match="*" mode="m:html-body-script">
   <xsl:param name="rootbaseuri" as="xs:anyURI" required="yes"/>
   <xsl:param name="chunkbaseuri" as="xs:anyURI" required="yes"/>

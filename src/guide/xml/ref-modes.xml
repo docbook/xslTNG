@@ -799,6 +799,26 @@ For example, in the English localization, it would generate:</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="m_head-additions">
+<?db filename="m_head-additions"?>
+<refmeta>
+<refentrytitle>m:head-additions</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}head-additions</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:head-additions</refname>
+<refpurpose>Additional head items</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This mode can be used by a customization layer to add additional items to the
+HTML
+<tag namespace="http://www.w3.org/1999/xhtml">head</tag> element.
+</para>
+</refsection>
+</refentry>
+
 <refentry xml:id="m_headline">
 <?db filename="m_headline"?>
 <refmeta>
