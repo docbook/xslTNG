@@ -6,5 +6,6 @@
 <xsl:import href="docbook-paged.xsl"/>
 
 <xsl:param name="output-media" select="'print'"/>
+<xsl:param name="inline-xlink-href" select="'false'"/>
 
 </xsl:stylesheet>
