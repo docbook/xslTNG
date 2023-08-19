@@ -237,7 +237,10 @@
       </xsl:if>
 
       <xsl:sequence select="$scripts[not(@type) or contains(@type,'javascript')]"/>
-      <xsl:sequence select="$heads[position() gt 1]/node()"/>
+      <xsl:apply-templates select="$heads[position() gt 1]/node()">
+        <xsl:with-param name="rootbaseuri" select="$rbu"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+      </xsl:apply-templates>
     </head>
     <body>
       <xsl:variable name="class-list" as="xs:string*">
@@ -334,8 +337,15 @@
       </nav>
 
       <xsl:sequence select="$scripts[@type and not(contains(@type,'javascript'))]"/>
-      
-      <xsl:apply-templates select="." mode="m:html-body-script">
+
+      <xsl:variable name="more-scripts" as="element()*">
+        <xsl:apply-templates select="." mode="m:html-body-script">
+          <xsl:with-param name="rootbaseuri" select="$rbu"/>
+          <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+        </xsl:apply-templates>
+      </xsl:variable>
+
+      <xsl:apply-templates select="$more-scripts">
         <xsl:with-param name="rootbaseuri" select="$rbu"/>
         <xsl:with-param name="chunkbaseuri" select="$cbu"/>
       </xsl:apply-templates>

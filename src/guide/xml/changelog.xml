@@ -10,6 +10,21 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r219">
+<info>
+  <title>Changes in version 2.1.9</title>
+  <productnumber>2.1.9</productnumber>
+  <date>2023-08-19</date>
+</info>
+<itemizedlist>
+<listitem>
+  <para>Links added with <mode>m:head-additions</mode> were not being made relative
+  to the chunk base URI. Reworked <mode>m:html-body-script</mode> slightly so that
+  links there can also be made relative appropriately.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r218">
 <info>
   <title>Changes in version 2.1.8</title>
@@ -60,7 +75,6 @@ finer detail.</para>
 </listitem>
 </itemizedlist>
 </section>
-
 <section xml:id="r217">
 <info>
   <title>Changes in version 2.1.7</title>
