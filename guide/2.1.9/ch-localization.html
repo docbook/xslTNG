@@ -1,0 +1,302 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Chapter 4. Localization</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2023-08-19T10:50:27Z"/><meta name="dc.created" content="2023-08-19T10:50:27Z"/><meta name="generator" content="DocBook xslTNG version 2.1.9-SNAPSHOT / 4a661f6 / SAXON HE 11.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-customizing.html"/><link rel="next" href="ch-implementation.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="chapter component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-customizing.html" title="Chapter  3 .  Customizing the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Chapter  5 .  Implementation details" href="ch-implementation.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="gentext" db-chunk="ch-localization.html" db-id="d149e2407" class="chapter component"><header><h1>Chapter <span class="label">4</span><span class="sep">. </span>Localization</h1></header><p>The <cite class="citetitle">DocBook xslTNG</cite> stylesheets support
+localization in more than 70 languages. At the time of this writing:
+Afrikaans, Albanian, Amharic, Arabic, Assamese, Asturian, Azerbaijani,
+Bangla, Basque, Bosnian, Bulgarian, Catalan, Chinese, Chinese
+(Taiwan), Chinese Simplified, Croatian, Czech, Danish, Dutch, English,
+Esperanto, Estonian, Finnish, French, Galician, Georgian, German,
+Greek, Gujarati, Hebrew, Hindi, Hungarian, Icelandic, Indian Bangla,
+Indonesian, Irish, Italian, Japanese, Kannada, Kirghiz, Korean, Latin,
+Latvian, Lithuanian, Low German, Malayalam, Marathi, Mongolian,
+Northern Sami, Norwegian Bokmål, Norwegian Nynorsk, Oriya, Polish,
+Portuguese, Portuguese (Brazil), Punjabi, Romanian, Russian, Serbian
+in Cyrillic script, Serbian in Latin script, Slovak, Slovenian,
+Spanish, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Ukrainian,
+Urdu, Vietnamese, Welsh, and Xhosa.</p><section id="l10n-background" class="section"><header><h2><span class="label">4<span class="sep">.</span>1</span><span class="sep">. </span>Background</h2></header><p>Near the end of the previous millennium, I was working
+on the
+<a href="https://en.wikipedia.org/wiki/Document_Style_Semantics_and_Specification_Language" class="link">DSSSL</a>
+stylesheets for DocBook. They were popular enough that users of languages
+other than English wanted to use them.</p><p>I invented a mechanism for doing simple localization
+so that the word “Chapter” in “Chapter 5” would, for example,
+be spelled “Chapitre” if the
+book was in French, and “Розділ” if it was in Ukrainian.
+What started as a simple word substitution system grew a few
+macro facilities and became a little more sophisticated<sup id="l10n-background_para2_footnote1-fref" class="footnote-number"><a href="#l10n-background_para2_footnote1-fnote">*</a></sup>.</p><p>Over time, with the aid of dozens of volunteers around the world
+who contributed files for their languages, the DocBook stylesheets
+developed localization capabilities that were for the most part good
+enough.</p><p>Fast forward a few years and those language-specific
+localization files, and some of those mechanisms, were ported to the
+XSLT 1.0 stylesheets for DocBook.</p><p>Fast forward another decade and those XSLT 1.0 localization
+files and some of the mechanisms were ported to the XSLT 2.0 stylesheets
+for DocBook.</p><p>Fast forward the better part of <em>another</em>
+decade and those XSLT 2.0 localization files and some of the
+mechanisms were ported to the <cite class="citetitle">DocBook xslTNG</cite>
+stylesheets.</p><p>Well. Sort of. Initially, I tried to replace the complex system
+of templates with a model that took the text that had to be generated
+and decomposed it into logical parts. It worked fine for English and
+many other languages, but didn’t account for the complexity of 
+many others, such as Chinese.<sup id="l10n-background_para7_footnote1-fref" class="footnote-number"><a href="#l10n-background_para7_footnote1-fnote">**</a></sup></p><p>Starting in version 2.0.0, the xslTNG stylesheets have reverted
+back to a templating system. The localization files have been
+transformed a little bit to make some of the customization easier (I
+hope). They can’t stray too far from the original designs because I
+must reuse the localization data I have. I don’t want to devise a
+system that requires another army of volunteers to provide new
+localization data.</p><section id="l10n-consequences" class="section"><header><h3><span class="label">4<span class="sep">.</span>1<span class="sep">.</span>1</span><span class="sep">. </span>Consequences</h3></header><p>One unfortunate consequence of this history is that there’s some
+cruft in the localization files. There are mappings and possibly
+templates that aren’t actually used. Or, at least, they’re not used in
+the standard DocBook stylesheet. They might be used in customization
+layers.</p><p>I made a few attempts to trim out cruft, but found all of the
+results unsatisfying. So, at least for the moment, I’ve left it in
+place. Like everything on earth, it’s <a href="https://en.wikipedia.org/wiki/Mostly_Harmless" class="link">mostly
+harmless</a>.
+</p></section></section><section id="l10n-overview" class="section"><header><h2><span class="label">4<span class="sep">.</span>2</span><span class="sep">. </span>Overview</h2></header><p>In this context, localization mostly refers to “generated text”,
+words and symbols that appear in a published DocBook document that
+aren’t present in the original XML. Consider <a href="#fig.l10n.en.xml" class="xref xref-figure">Figure <span class="label">4<span class="sep">.</span>1</span>, “Sample book source”</a>.</p><div id="fig.l10n.en.xml" class="figure formalobject"><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;book</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">version=</span><span class="s">"5.0"</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"en"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;info&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;title&gt;</span>Localization<span class="w"> </span>Example<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/info&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;part&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>Part<span class="w"> </span>the<span class="w"> </span>first<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;chapter</span><span class="w"> </span><span class="na">xml:id=</span><span class="s">"chap"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>Chapter<span class="w"> </span>the<span class="w"> </span>first<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para&gt;</span>This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>tiny<span class="w"> </span>sample<span class="w"> </span>chapter.</code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>See<span class="w"> </span>also<span class="w"> </span><span class="nt">&lt;xref</span><span class="w"> </span><span class="na">linkend=</span><span class="s">"app"</span><span class="nt">/&gt;</span>.<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/chapter&gt;</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/part&gt;</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;appendix</span><span class="w"> </span><span class="na">xml:id=</span><span class="s">"app"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>An<span class="w"> </span>appendix<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para&gt;</span>This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>tiny<span class="w"> </span>sample<span class="w"> </span>appendix.</code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>See<span class="w"> </span>also<span class="w"> </span><span class="nt">&lt;xref</span><span class="w"> </span><span class="na">linkend=</span><span class="s">"chap"</span><span class="nt">/&gt;</span>.<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/appendix&gt;</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/book&gt;</span></code></span></span>
+</pre></div><header><div class="title">Figure <span class="label">4<span class="sep">.</span>1</span><span class="sep">. </span>Sample book source</div></header></div><p>It might be published as shown in <a href="#fig.l10n.en" class="xref xref-figure">Figure <span class="label">4<span class="sep">.</span>2</span>, “Sample book (annotated)”</a>.
+Here we can see examples of several different kinds of generated
+text.</p><div id="fig.l10n.en" class="figure formalobject"><div class="mediaobject" summary="Image of a stack of papers with the example book published on the uppermost page. The published book includes additional generated text highlighted."><div class="media image"><picture class="imageobject"><img src="media/l10n-en-ann.png" alt="Image of a stack of papers with the example book published on the uppermost page. The published book includes additional generated text highlighted."/></picture></div></div><header><div class="title">Figure <span class="label">4<span class="sep">.</span>2</span><span class="sep">. </span>Sample book (annotated)</div></header></div><p>The title “Table of Contents” is entirely generated; it appears
+nowhere in the XML. The chapter title appears in the text, but it’s
+labeled “1.” in the list of titles, “Chapter 1.” in the chapter itself,
+and “Chapter 1” (without the title) in the cross reference.</p><p>Now consider a French version of the document in
+<a href="#fig.l10n.fr.xml" class="xref xref-figure">Figure <span class="label">4<span class="sep">.</span>3</span>, “Sample book source (French)”</a>.</p><div id="fig.l10n.fr.xml" class="figure formalobject"><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;book</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">version=</span><span class="s">"5.0"</span><span class="w"> </span><span class="na">xml:lang=</span><span class="s">"fr"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;info&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;title&gt;</span>Exemple<span class="w"> </span>de<span class="w"> </span>Localisation<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/info&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;part&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>Première<span class="w"> </span>partie<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;chapter</span><span class="w"> </span><span class="na">xml:id=</span><span class="s">"chap"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>Chapitre<span class="w"> </span>un<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para&gt;</span>Ceci<span class="w"> </span>est<span class="w"> </span>un<span class="w"> </span>petit<span class="w"> </span>exemple<span class="w"> </span>de<span class="w"> </span>chapitre.</code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>Voir<span class="w"> </span>aussi<span class="w"> </span><span class="nt">&lt;xref</span><span class="w"> </span><span class="na">linkend=</span><span class="s">"app"</span><span class="nt">/&gt;</span>.<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/chapter&gt;</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/part&gt;</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;appendix</span><span class="w"> </span><span class="na">xml:id=</span><span class="s">"app"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title&gt;</span>Annexe<span class="nt">&lt;/title&gt;</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para&gt;</span>Ceci<span class="w"> </span>est<span class="w"> </span>un<span class="w"> </span>petit<span class="w"> </span>exemple<span class="w"> </span>d’annexe.</code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>Voir<span class="w"> </span>aussi<span class="w"> </span><span class="nt">&lt;xref</span><span class="w"> </span><span class="na">linkend=</span><span class="s">"chap"</span><span class="nt">/&gt;</span>.<span class="nt">&lt;/para&gt;</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/appendix&gt;</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/book&gt;</span></code></span></span>
+</pre></div><header><div class="title">Figure <span class="label">4<span class="sep">.</span>3</span><span class="sep">. </span>Sample book source (French)</div></header></div><p>In this case, the published version will have different
+localization, as
+shown in <a href="#fig.l10n.fr" class="xref xref-figure">Figure <span class="label">4<span class="sep">.</span>4</span>, “Sample book (French)”</a>.</p><div id="fig.l10n.fr" class="figure formalobject"><div class="mediaobject" summary="The published book again, this time with French generated text."><div class="media image"><picture class="imageobject"><img src="media/l10n-fr.png" alt="The published book again, this time with French generated text."/></picture></div></div><header><div class="title">Figure <span class="label">4<span class="sep">.</span>4</span><span class="sep">. </span>Sample book (French)</div></header></div><p>The question is, how is this accomplished? The answer, I’m
+afraid, is not simple.</p><p>It begins with a localization file.</p></section><section id="gentext_s3" class="section"><header><h2><span class="label">4<span class="sep">.</span>3</span><span class="sep">. </span>Localization files</h2></header><p>The localization files are in
+<code class="directory filename">src/main/locale</code> in the repository. The
+localization file is designed to be simple enough to edit by hand. The stylesheets
+use compiled versions created by processing the input locale with
+<code class="filename">src/main/xslt/modules/xform-locale.xsl</code> to produce
+the files in 
+<code class="directory filename">xslt/locale</code> in the distribution.</p><p>A locale begins by defining the language it supports and
+providing an English language name for it. The <code class="tag tag-attribute">language</code>
+attribute identifies the language (in the same terms as
+<code class="tag tag-attribute">xml:lang</code>) to which this localization applies.</p><p>That’s followed by metadata about the file (authors, etc.), then
+mappings, groups, lists, and letters as shown in
+<a href="#l10n.local.ex" class="xref xref-figure">Figure <span class="label">4<span class="sep">.</span>5</span>, “Example locale file (excerpted)”</a>. We’ll consider each
+section in detail below.</p><div id="l10n.local.ex" class="figure formalobject"><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="23"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;locale</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://docbook.org/ns/docbook/l10n/source"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="na">xmlns:db=</span><span class="s">"http://docbook.org/ns/docbook"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">        </span><span class="na">language=</span><span class="s">"en"</span><span class="w"> </span><span class="na">english-language-name=</span><span class="s">"English"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;info&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>…</code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/info&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;mappings&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;gentext</span><span class="w"> </span><span class="na">key=</span><span class="s">"above"</span><span class="nt">&gt;</span>above<span class="nt">&lt;/gentext&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>…</code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/mappings&gt;</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"title"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">match=</span><span class="s">"self::db:chapter"</span><span class="nt">&gt;</span>{chapter}<span class="w"> </span>%l%.%c<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>…</code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/group&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;list</span><span class="w"> </span><span class="na">name=</span><span class="s">"_default"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;items&gt;</span>%c<span class="nt">&lt;/items&gt;</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;items&gt;</span>%c<span class="w"> </span>{and}<span class="w"> </span>%c<span class="nt">&lt;/items&gt;</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;items&gt;</span>%c<span class="nt">&lt;repeat&gt;</span>,<span class="w"> </span>%c<span class="nt">&lt;/repeat&gt;</span>,<span class="w"> </span>{and}<span class="w"> </span>%c<span class="nt">&lt;/items&gt;</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/list&gt;</span></code></span></span>
+<span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;letters&gt;</span></code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>…</code></span></span>
+<span class="line" db-line="22"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/letters&gt;</span></code></span></span>
+<span class="line" db-line="23"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/locale&gt;</span></code></span></span>
+</pre></div><header><div class="title">Figure <span class="label">4<span class="sep">.</span>5</span><span class="sep">. </span>Example locale file (excerpted)</div></header></div><section id="gentext_s3_s1" class="section"><header><h3><span class="label">4<span class="sep">.</span>3<span class="sep">.</span>1</span><span class="sep">. </span>Mappings</h3></header><p>The mappings section is a simple list of key/value pairs.
+Each <code class="tag tag-element">gentext</code> element defines a key and its replacement.</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="6"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;mappings&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;gentext</span><span class="w"> </span><span class="na">key=</span><span class="s">"above"</span><span class="nt">&gt;</span>above<span class="nt">&lt;/gentext&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;gentext</span><span class="w"> </span><span class="na">key=</span><span class="s">"abstract"</span><span class="nt">&gt;</span>Abstract<span class="nt">&lt;/gentext&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span>…</code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;gentext</span><span class="w"> </span><span class="na">key=</span><span class="s">"xrefto"</span><span class="nt">&gt;</span>xref<span class="w"> </span>to<span class="nt">&lt;/gentext&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;/mappings&gt;</span></code></span></span>
+</pre></div><p>These mappings serve two purposes. For many languages, a lot of the
+work of defining a new localization is just updating these mappings.
+For a stylesheet customization layer, it provides a mechanism for remapping
+on an ad hoc basis.</p><p>In a localization template, any key entered in curly braces will
+be replaced by the mapping. In other words, for the example above,
+<code class="literal">{abstract}</code> will be replaced by the word “Abstract”.
+This mapping is done when the document is transformed, not when the
+localization file is compiled.</p></section><section id="gentext_s3_s2" class="section"><header><h3><span class="label">4<span class="sep">.</span>3<span class="sep">.</span>2</span><span class="sep">. </span>Group</h3></header><p>Groups are the primary templating system. In a context where
+generated text is required, a group is selected and within that group,
+a template is selected. The template is selected by evaluating the
+expression in the <code class="tag tag-attribute">match</code> attribute with the current node
+as the context item. A template with the match express <code>true()</code>
+will always succeed; it is used as a fallback.</p><p>The <code class="literal">title-numbered</code> group determines how
+titles are formatted if they are numbered, (there’s also
+<code class="literal">title-unnumbered</code> when titles aren’t being
+numbered):</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="8"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"title-numbered"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">match=</span><span class="s">"self::db:section[ancestor::db:preface]"</span><span class="nt">&gt;</span>%c<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span>…</code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">match=</span><span class="s">"self::db:appendix"</span><span class="nt">&gt;</span>{Appendix}<span class="w"> </span>%l%.%c<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span>…</code></span></span>
+<span class="line" db-line="6"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">match=</span><span class="s">"self::db:warning"</span><span class="nt">&gt;</span>%c<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">match=</span><span class="s">"true()"</span><span class="nt">&gt;</span>%l%.%c<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/group&gt;</span></code></span></span>
+</pre></div><p>(Note that not all titles <em>are</em> numbered,
+this is just the group that’s used if they could be. See
+<a href="p_division-numbers.html"><code class="paramname">$division-numbers</code></a><span class="indexterm" id="gentext_s3_s2_para3_indexterm1"></span>,
+<a href="p_component-numbers.html"><code class="paramname">$component-numbers</code></a><span class="indexterm" id="gentext_s3_s2_para3_indexterm2"></span>, and
+<a href="p_section-numbers.html"><code class="paramname">$section-numbers</code></a><span class="indexterm" id="gentext_s3_s2_para3_indexterm3"></span>.)</p><p>Within a template, two kinds of substitution are performed: names in
+curly braces are replaced by the corresponding mapping and %-letter values
+are substituted as follows:</p><div id="gentext_s3_s2_tab1" class="formalobject table"><header><div class="title">Table <span class="label">4<span class="sep">.</span>1</span><span class="sep">. </span>Template %-letter substitutions</div></header><table><thead><tr><th>%-letter</th><th>Substitution</th></tr></thead><tbody><tr><td><code>%c</code></td><td>The content (for example, the text of the title)</td></tr><tr><td><code>%l</code></td><td>The label (for example, “Chapter 1” or “see also”)</td></tr><tr><td><code>%p</code></td><td>The page number (not yet implemented)</td></tr><tr><td><code>%o</code></td><td>The olink title (not yet implemented)</td></tr><tr><td><code>%.</code></td><td>The separator (often, “. ”)</td></tr><tr><td><code>%%</code></td><td>A literal <code class="literal">%</code> character</td></tr></tbody></table></div><p>If the <code class="literal">title</code> group is being used to generate
+text for the chapter from <a href="#fig.l10n.en.xml" class="link">our example
+document</a>:</p><ul class="itemizedlist"><li><p>The <code class="literal">chapter</code> context is used to select
+the template (<code class="literal">{chapter} %l%.%c</code>).</p></li><li><p>The string <code class="literal">{chapter}</code> is replaced by the mapping for
+<code class="literal">chapter</code>, which is “Chapter” in English.</p></li><li><p>The label <code class="literal">%l</code> is “1” because this is the first
+chapter. (In fact, constructing the label uses templates from the
+localization file as well.)</p></li><li><p>The separator <code class="literal">%.</code> is “. ”. (Like the label, this is
+also constructed from a separate query to the localization file.)</p></li><li><p>And the content <code class="literal">%c</code> is “Chapter the first”. (There’s no markup
+in this title, but if there was, it would be retained. The content is a list of items,
+not a string.)</p></li><li><p>Literal text, such as the non-breakable space between “<code class="literal">{chapter}</code>”
+and “<code class="literal">%l</code>”, is retained verbatim.
+</p></li></ul></section><section id="gentext_s3_s3" class="section"><header><h3><span class="label">4<span class="sep">.</span>3<span class="sep">.</span>3</span><span class="sep">. </span>List</h3></header><p>List elements are used to format items that can be repeated (terms
+in a variable list, lists of authors, lists of “see also” terms, etc.).
+The list consists of a series of items. Within each item, one or more
+content replacements is specified with <code class="literal">%c</code>. The items
+must be arranged so that there’s a match for one, two, three, etc. items.</p><p>If an item contains a repeat, that repeat will be used for as many
+items as necessary to complete the list formatting. The default
+list format is:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;list</span><span class="w"> </span><span class="na">name=</span><span class="s">"_default"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;items&gt;</span>%c<span class="nt">&lt;/items&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;items&gt;</span>%c<span class="w"> </span>{and}<span class="w"> </span>%c<span class="nt">&lt;/items&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;items&gt;</span>%c<span class="nt">&lt;repeat&gt;</span>,<span class="w"> </span>%c<span class="nt">&lt;/repeat&gt;</span>,<span class="w"> </span>{and}<span class="w"> </span>%c<span class="nt">&lt;/items&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;/list&gt;</span></code></span></span>
+</pre></div><p>Consider how a list of four authors in an <code class="tag tag-element">authorgroup</code>
+would be formatted. Call them A, B, C, D, for simplicity (and assume
+there’s no list for “<code>authorgroup</code>”, so the
+“<code>_default</code>” will be used).</p><p>The first two items match one and two items, respectively. They
+aren’t appropriate for a list of four items. The third item contains
+three items and a repeat, so that can be used for a list of four (or
+more) items.</p><p>The first <code>%c</code> is “A”. The second <code>%c</code> is
+in a repeat, followed by another <code>%c</code>. There are three
+elements left in the list at this point, so two will be used in the
+repeat and the last one will follow it.</p><p>The result will be <code class="literal">A, B, C, and D</code> where the
+word “and” was found by looking for the <code class="literal">and</code> key in
+the mappings.</p></section><section id="gentext_s3_s4" class="section"><header><h3><span class="label">4<span class="sep">.</span>3<span class="sep">.</span>4</span><span class="sep">. </span>Letters</h3></header><p>The letters group is used to identify the lexical order and grouping
+of letters.</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="10"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;letters&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;l</span><span class="w"> </span><span class="na">i=</span><span class="s">"-1"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;l</span><span class="w"> </span><span class="na">i=</span><span class="s">"0"</span><span class="nt">&gt;</span>Symbols<span class="nt">&lt;/l&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;l</span><span class="w"> </span><span class="na">i=</span><span class="s">"10"</span><span class="nt">&gt;</span>A<span class="nt">&lt;/l&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;l</span><span class="w"> </span><span class="na">i=</span><span class="s">"10"</span><span class="nt">&gt;</span>a<span class="nt">&lt;/l&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span>…</code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;l</span><span class="w"> </span><span class="na">i=</span><span class="s">"20"</span><span class="nt">&gt;</span>B<span class="nt">&lt;/l&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;l</span><span class="w"> </span><span class="na">i=</span><span class="s">"20"</span><span class="nt">&gt;</span>b<span class="nt">&lt;/l&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span>…</code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="w">   </span><span class="nt">&lt;/letters&gt;</span></code></span></span>
+</pre></div><p>All of the symbols with the same “i” value will be grouped
+together.</p><p>This mechanism dates from the days before XSLT supported
+language-specific collations. It is used in generated indexes, but perhaps it should simply
+be phased out.</p></section></section><section id="l10n-customization" class="section"><header><h2><span class="label">4<span class="sep">.</span>4</span><span class="sep">. </span>Customizing a localization</h2></header><p>For many users, the localizations provided are entirely sufficient.
+But if you want to change them, you have a few options.</p><section id="l10n-customization_s1" class="section"><header><h3><span class="label">4<span class="sep">.</span>4<span class="sep">.</span>1</span><span class="sep">. </span>Replacing entire localization files</h3></header><p>If you want to replace an entire localization file (if, for example,
+you want to apply the same changes to a set of stylesheets), you can
+approach that as follows:</p><ol class="orderedlist" type="1"><li><p>Copy the localization source files.</p></li><li><p>Update the ones you wish to change.</p></li><li><p>Compile them all with
+<code class="filename">src/main/xslt/modules/xform-locale.xsl</code> saving
+the output in a new location.</p></li><li><p>In your stylesheet, change the
+<a href="v_localization-base-uri.html"><code class="varname">$v:localization-base-uri</code></a><span class="indexterm" id="l10n-customization_s1_orderedlist1_listitem4_para1_indexterm1"></span> to point to the directory
+where the new locales reside. Those locale files will be used.
+</p></li></ol></section><section id="l10n-customization_s2" class="section"><header><h3><span class="label">4<span class="sep">.</span>4<span class="sep">.</span>2</span><span class="sep">. </span>Overriding mappings, groups, etc.</h3></header><p>If you only want to override a small number of localization
+features, it may be simpler to do so directly in your stylesheet.
+The variable <a href="v_custom-localizations.html"><code class="varname">$v:custom-localizations</code></a><span class="indexterm" id="l10n-customization_s2_para1_indexterm1"></span> will be merged
+with the default localizations before transformation begins.</p><p>Suppose, for example, that you wanted:</p><ul class="itemizedlist"><li><p>The table of contents title to simply be “Contents”,
+</p></li><li><p>To omit the word “Appendix” from the appendix title, and
+</p></li><li><p>To change the form of the cross reference to
+appendixes to read “App. A” instead of “Appendix A”.
+</p></li></ul><p>The following customization would accomplish that:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="15"><pre class="language-xslt long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="k">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"v:custom-localizations"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;locale</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">"http://docbook.org/ns/docbook/l10n/source"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">          </span><span class="na">language=</span><span class="s">"en"</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">          </span><span class="na">english-language-name=</span><span class="s">"English"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;mappings&gt;</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;gentext</span><span class="w"> </span><span class="na">key=</span><span class="s">"TableofContents"</span><span class="nt">&gt;</span>Contents<span class="nt">&lt;/gentext&gt;</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/mappings&gt;</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"title-numbered"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">"appendix"</span><span class="nt">&gt;</span>%l%.%c<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/group&gt;</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;group</span><span class="w"> </span><span class="na">name=</span><span class="s">"xref-number"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">name=</span><span class="s">"appendix"</span><span class="nt">&gt;</span>App.<span class="w"> </span>%l<span class="nt">&lt;/template&gt;</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">    </span><span class="nt">&lt;/group&gt;</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;/locale&gt;</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code><span class="k">&lt;/xsl:variable&gt;</span></code></span></span>
+</pre></div><p>Note that it defines (a portion of) a locale source file for the
+language <code>en</code>. These changes only apply to that
+locale.</p><p>This fragment replaces the mapping for
+<code class="literal">TableofContents</code> and the templates for numbered
+titles and numbered cross references.</p><p>To update multiple languages, put additional <code>locale</code>
+elements in the variable as siblings.</p><p>Formatting our example document above now produces:</p><div id="fig.l10n.en-alt" class="figure formalobject"><div class="mediaobject" summary="The published book again, this time with different generated text."><div class="media image"><picture class="imageobject"><img src="media/l10n-en-alt.png" alt="The published book again, this time with different generated text."/></picture></div></div><header><div class="title">Figure <span class="label">4<span class="sep">.</span>6</span><span class="sep">. </span>Sample book (Alternate)</div></header></div></section><section id="l10n-customization_s3" class="section"><header><h3><span class="label">4<span class="sep">.</span>4<span class="sep">.</span>3</span><span class="sep">. </span>Changing the group</h3></header><p>Sometimes, rather than change a template, you want to change
+which group of templates is used. This is controlled by two variables:
+<a href="v_user-title-groups.html"><code class="varname">$v:user-title-groups</code></a><span class="indexterm" id="l10n-customization_s3_para1_indexterm1"></span> and
+<a href="v_user-xref-groups.html"><code class="varname">$v:user-xref-groups</code></a><span class="indexterm" id="l10n-customization_s3_para1_indexterm2"></span>.
+</p><section id="l10n-customization_s3_s1" class="section"><header><h4><span class="label">4<span class="sep">.</span>4<span class="sep">.</span>3<span class="sep">.</span>1</span><span class="sep">. </span>Changing the title group</h4></header><p>The <a href="v_user-title-groups.html"><code class="varname">$v:user-title-groups</code></a><span class="indexterm" id="l10n-customization_s3_s1_para1_indexterm1"></span> element consists of a
+list of <code>title</code> elements, each with an <code class="tag tag-attribute">xpath</code>
+attribute, a <code class="tag tag-attribute">group</code> attribute, and an optional <code class="tag tag-attribute">template</code>
+attribute.</p><p>Suppose the stylesheet is trying to generate a title for an
+element. It considers each <code class="tag tag-element">title</code> element in turn. The
+<code class="tag tag-attribute">xpath</code> expression is evaluated with the element as the
+context item. If the effective boolean value of the expression is
+<code>true()</code>, then that title is selected and templates from
+the corresponding <code class="tag tag-attribute">group</code> are used.</p><p>If a <code class="tag tag-attribute">template</code> attribute is present, a template with
+that name is used. Otherwise the local name of the element is used as
+the template name.</p><p>By default, sections in a preface are not numbered. That’s
+because the default title groups include:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="2"><pre class="language-xml numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title</span><span class="w"> </span><span class="na">xpath=</span><span class="s">"self::db:section[ancestor::db:preface]"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">       </span><span class="na">group=</span><span class="s">"title-unnumbered"</span><span class="nt">/&gt;</span></code></span></span>
+</pre></div><p>If you add a title that matches sections in a preface to
+<a href="v_user-title-groups.html"><code class="varname">$v:user-title-groups</code></a><span class="indexterm" id="l10n-customization_s3_s1_para5_indexterm1"></span>, it will take precedence.
+For example:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="2"><pre class="language-xml numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;title</span><span class="w"> </span><span class="na">xpath=</span><span class="s">"self::db:section"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">       </span><span class="na">group=</span><span class="s">"title-numbered"</span><span class="nt">/&gt;</span></code></span></span>
+</pre></div><p>Because all of the user groups are consulted first, it isn’t
+necessary to include the predicate that limits this title to sections
+in a preface (although it wouldn’t change the result if you did).</p></section><section id="l10n-customization_s3_s2" class="section"><header><h4><span class="label">4<span class="sep">.</span>4<span class="sep">.</span>3<span class="sep">.</span>2</span><span class="sep">. </span>Changing the cross reference group</h4></header><p>Cross references are processed just like titles, except that the
+<a href="v_user-xref-groups.html"><code class="varname">$v:user-xref-groups</code></a><span class="indexterm" id="l10n-customization_s3_s2_para1_indexterm1"></span> element consists of a
+list of <code>crossref</code> elements.</p><p>The default for cross references to chapters and appendixes is
+“<code>xref-number-and-title</code>”, so you get things like “Chapter
+1. The Chapter Title”. In order to get a different presentation in the
+localization example used in this chapter, the following localization
+is used:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="4"><pre class="language-xslt numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="k">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"v:user-xref-groups"</span><span class="w"> </span><span class="na">as=</span><span class="s">"element()*"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">  </span><span class="nt">&lt;crossref</span><span class="w"> </span><span class="na">xpath=</span><span class="s">"self::db:chapter|self::db:appendix"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">            </span><span class="na">context=</span><span class="s">"xref-number"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="k">&lt;/xsl:variable&gt;</span></code></span></span>
+</pre></div><p>That’s why the cross reference to the first chapter is just
+“Chapter 1”.
+</p></section></section></section><section id="l10n-caveats" class="section"><header><h2><span class="label">4<span class="sep">.</span>5</span><span class="sep">. </span>Caveats</h2></header><p>There’s currently little documentation to tell you which group
+or template to change. The names are supposed to be somewhat self
+explanatory (for speakers of English), but sometimes you just have to
+look in the stylesheet.</p><p>The <code class="tag tag-element">formalgroup</code> element is unique in DocBook in that
+its label depends on what it contains. A <code class="tag tag-element">formalgroup</code> of
+<code class="tag tag-element">figure</code> elements is itself a “Figure” where a
+<code class="tag tag-element">formalgroup</code> of <code class="tag tag-element">example</code> elements is an
+“Example”.
+If you need to change it, you may have to create your own
+template for the <code class="tag tag-element">formalgroup</code> element in the
+<a href="m_headline.html"><code class="mode">m:headline</code></a> mode. The default version is in
+<code class="filename">modules/titles.xsl</code>.</p></section></section><footer><div class="footnotes"><hr/><div class="footnote" id="l10n-background_para2_footnote1-fnote"><div class="footnote-number"><sup class="footnote-number"><a href="#l10n-background_para2_footnote1-fref">*</a></sup></div><div class="footnote-body"><p>I’m not sure you’d pick a twenty-something, monolingual Anglophone
+American to do this work if you were planning ahead, but that’s what
+happened.</p></div></div><div class="footnote" id="l10n-background_para7_footnote1-fnote"><div class="footnote-number"><sup class="footnote-number"><a href="#l10n-background_para7_footnote1-fref">**</a></sup></div><div class="footnote-body"><p>Turns out a fifty-something, monolingual Anglophone American isn’t
+much of an improvement, really.</p></div></div></div></footer></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Chapter  3 .  Customizing the stylesheets" href="ch-customizing.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Chapter  5 .  Implementation details" href="ch-implementation.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Chapter  3 .  Customizing the stylesheets</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Chapter  5 .  Implementation details</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2023 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>
