@@ -10,6 +10,7 @@ class ValidationTasks {
   private def publishersDocuments = ["JFK_Inaugural", "auld_lang_syne", "hen_v", "drama.001"]
   private def invalidIdrefDocuments = ["calloutlist.003", "transclusion.001", "transclusion.002",
                                        "transclusion.003", "transclusion.004", "xref.002"]
+  private def FourFiveDocuments = ["db45.001"]
 
   public ValidationTasks(Project project) {
     this.project = project
@@ -23,7 +24,7 @@ class ValidationTasks {
       return validators[base]
     }
 
-    if (base.startsWith("local.")) {
+    if (base.startsWith("local.") || base in FourFiveDocuments) {
       return null
     }
     

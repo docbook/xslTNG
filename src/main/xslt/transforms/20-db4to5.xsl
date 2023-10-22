@@ -4,9 +4,10 @@
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
+                xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                exclude-result-prefixes="db fp mp t tp xlink xs"
+                exclude-result-prefixes="db fp mp t tp v xlink xs"
                 version="3.0">
 
 <xsl:import href="../environment.xsl"/>
