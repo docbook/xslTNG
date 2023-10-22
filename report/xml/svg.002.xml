@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.1">
+  <info>
+    <title>Unit test: svg.002</title>
+    <!-- Contributed by frank-steimke; see issue #413 -->
+  </info>
+  <chapter>
+    <title>Test</title>
+    <para>Dimensions of this SVG Image are <emphasis>width="325.03125" height="382"</emphasis>. Scaled with 110% and <emphasis>scalefit='1'</emphasis> should result in widtg=357px, height=420px. </para>
+    <figure>
+      <title>Address Type</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../media/AddressType.svg" scalefit="1" scale="110"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+  </chapter>
+</book>
