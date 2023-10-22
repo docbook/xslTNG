@@ -121,18 +121,20 @@ abstract public class ImageCall extends ExtensionFunctionCall {
                 }
                 break;
             case "width":
-                // Only output this property if it's an integer
+                // This property must be returned as an integer; round if necessary
                 try {
-                    int width = Integer.parseInt(value);
+                    float fwidth = Float.parseFloat(value);
+                    int width = Math.round(fwidth);
                     map = map.put(new XdmAtomicValue("width"), new XdmAtomicValue(width));
                 } catch (NumberFormatException nfe) {
                     // nevermind
                 }
                 break;
             case "height":
-                // Only output this property if it's an integer
+                // This property must be returned as an integer; round if necessary
                 try {
-                    int height = Integer.parseInt(value);
+                    float fheight = Float.parseFloat(value);
+                    int height = Math.round(fheight);
                     map = map.put(new XdmAtomicValue("height"), new XdmAtomicValue(height));
                 } catch (NumberFormatException nfe) {
                     // nevermind
