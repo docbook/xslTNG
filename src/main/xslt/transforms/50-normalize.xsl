@@ -380,6 +380,9 @@
     <xsl:if test="not(db:title)">
       <xsl:copy-of select="preceding-sibling::db:title"/>
     </xsl:if>
+    <xsl:if test="not(db:subtitle)">
+      <xsl:copy-of select="preceding-sibling::db:subtitle"/>
+    </xsl:if>
     <xsl:call-template name="tp:normalize-dbinfo"/>
   </xsl:copy>
 </xsl:template>
