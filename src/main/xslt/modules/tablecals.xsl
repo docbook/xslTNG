@@ -427,7 +427,7 @@
     <xsl:otherwise>
       <colgroup>
         <xsl:for-each select="$widths">
-          <col style="width: {f:absolute-length(.)}"/>
+          <col style="width: {f:absolute-length(.)}px"/>
         </xsl:for-each>
       </colgroup>
     </xsl:otherwise>
