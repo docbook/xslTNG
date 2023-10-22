@@ -369,7 +369,7 @@ be made absolute against the base URI if the input document.</para>
 then URIs in the output are treated as parallel to the URIs in the input. If the
 reference <filename>../image.png</filename> works in the source document, it’s assumed
 that will also work in the output document.</para>
-<para>If the <parameter>mediaobject-input-base-uri</parameter> is not empty, it is
+<para>If the <parameter>mediaobject-output-base-uri</parameter> is not empty, it is
 the base URI used for media objects. If this is a relative URI, it is taken to be
 relative to the root of the output hierarchy.</para>
 <para>Suppose the output base URI is <uri>https://images.example.com/</uri>, then
