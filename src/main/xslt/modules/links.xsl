@@ -4,7 +4,10 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
+                xmlns:l="http://docbook.org/ns/docbook/l10n"
+                xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
@@ -12,7 +15,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f fp h m t tp v xlink xs"
+                exclude-result-prefixes="db f fp h l lt m mp t tp v xlink xs"
                 version="3.0">
 
 <xsl:template match="db:anchor">
@@ -202,6 +205,7 @@
   <xsl:choose>
     <xsl:when test="empty($target)">
       <xsl:message select="'Link to non-existent ID: ' || $linkend"/>
+      <span class='error'>???</span> 
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="content" as="item()*">
@@ -222,6 +226,33 @@
           <xsl:when test="$target/@xreflabel">
             <xsl:sequence select="$target/@xreflabel/string()"/>
           </xsl:when>
+          <xsl:when test="@xrefstyle">
+            
+            <xsl:variable name="template" as="element(l:template)">
+              <xsl:apply-templates select="." mode="m:crossref-xrefstyle"/>
+            </xsl:variable>
+            
+            <xsl:variable name="label" as="item()*">
+              <xsl:if test="$template/lt:label">
+                <xsl:apply-templates select="$target" mode="m:crossref-label"/>
+              </xsl:if>
+            </xsl:variable>
+            
+            <xsl:variable name="title" as="node()*">
+              <xsl:if test="$template/lt:content">
+                <xsl:apply-templates select="$target" mode="m:crossref-title">
+                  <xsl:with-param name="purpose" select="'crossref'"/>
+                </xsl:apply-templates>
+              </xsl:if>
+            </xsl:variable>
+         
+            <xsl:apply-templates select="$template" mode="mp:localization">
+              <xsl:with-param name="context" select="$target"/>
+              <xsl:with-param name="label" select="$label"/>
+              <xsl:with-param name="content" select="$title"/>
+            </xsl:apply-templates>
+            
+          </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates select="$target" mode="m:crossref"/>
           </xsl:otherwise>
@@ -237,6 +268,28 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+  
+<!-- Generate an l:template from xref/@xrefstyle 
+     Supports %c and %l from Table 4.1. Template %-letter substitutions in xslTNG Referenca Manual  -->  
+<xsl:template match="db:xref[@xrefstyle]" mode="m:crossref-xrefstyle" as="element(l:template)">
+  <xsl:variable name="xrefstyle" as="xs:string">
+    <xsl:sequence select="normalize-space(@xrefstyle)"/>
+  </xsl:variable>
+  
+  <l:template>
+    <xsl:analyze-string select="$xrefstyle" regex="%c|%l">
+      <xsl:matching-substring>
+        <xsl:choose>
+          <xsl:when test=". eq '%c'"><lt:content/></xsl:when>
+          <xsl:when test=". eq '%l'"><lt:label/></xsl:when>
+        </xsl:choose>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <lt:text><xsl:sequence select="."/></lt:text>
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </l:template>
+</xsl:template>  
 
 <xsl:template match="db:olink">
   <xsl:variable name="targetdoc" select="@targetdoc/string()"/>
