@@ -232,25 +232,11 @@
               <xsl:apply-templates select="." mode="m:crossref-xrefstyle"/>
             </xsl:variable>
             
-            <xsl:variable name="label" as="item()*">
-              <xsl:if test="$template/lt:label">
-                <xsl:apply-templates select="$target" mode="m:crossref-label"/>
-              </xsl:if>
-            </xsl:variable>
-            
-            <xsl:variable name="title" as="node()*">
-              <xsl:if test="$template/lt:content">
-                <xsl:apply-templates select="$target" mode="m:crossref-title">
-                  <xsl:with-param name="purpose" select="'crossref'"/>
-                </xsl:apply-templates>
-              </xsl:if>
-            </xsl:variable>
-         
-            <xsl:apply-templates select="$template" mode="mp:localization">
-              <xsl:with-param name="context" select="$target"/>
-              <xsl:with-param name="label" select="$label"/>
-              <xsl:with-param name="content" select="$title"/>
-            </xsl:apply-templates>
+            <!-- see xref.xsl -->
+            <xsl:call-template name="tp:apply-xref-template">
+              <xsl:with-param name="target" select="$target"/>
+              <xsl:with-param name="template" select="$template"/>
+            </xsl:call-template>
             
           </xsl:when>
           <xsl:otherwise>
