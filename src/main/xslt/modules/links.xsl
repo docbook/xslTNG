@@ -4,15 +4,18 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
+                xmlns:l="http://docbook.org/ns/docbook/l10n"
+                xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
+                xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
                 default-mode="m:docbook"
-                exclude-result-prefixes="db f fp h m t tp v xlink xs"
+                exclude-result-prefixes="db f fp h l lt m t tp v vp xlink xs"
                 version="3.0">
 
 <xsl:template match="db:anchor">
@@ -189,19 +192,20 @@
 
 <xsl:template match="db:xref" name="tp:xref">
   <xsl:param name="linkend"
-             select="(@linkend,
-                     if (starts-with(@xlink:href, '#'))
-                     then substring-after(@xlink:href, '#')
-                     else ())[1]"/>
-
+    select="(@linkend,
+    if (starts-with(@xlink:href, '#'))
+    then substring-after(@xlink:href, '#')
+    else ())[1]"/>
+  
   <xsl:variable name="target"
-                select="if ($linkend)
-                        then key('id', $linkend)[1]
-                        else ()"/>
-
+    select="if ($linkend)
+    then key('id', $linkend)[1]
+    else ()"/>
+  
   <xsl:choose>
     <xsl:when test="empty($target)">
       <xsl:message select="'Link to non-existent ID: ' || $linkend"/>
+      <span class='error'>???</span>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="content" as="item()*">
@@ -211,7 +215,7 @@
             <xsl:choose>
               <xsl:when test="empty($label)">
                 <xsl:message select="'Endterm to non-existent ID: '
-                                     || @endterm/string()"/>
+                  || @endterm/string()"/>
                 <xsl:apply-templates select="$target" mode="m:crossref"/>
               </xsl:when>
               <xsl:otherwise>
@@ -222,21 +226,83 @@
           <xsl:when test="$target/@xreflabel">
             <xsl:sequence select="$target/@xreflabel/string()"/>
           </xsl:when>
+          <xsl:when test="@xrefstyle">
+            <xsl:call-template name="tp:apply-localization-template">
+              <xsl:with-param name="target" select="$target"/>
+              <xsl:with-param name="localization-template" select="fp:localization-template-from-xrefstyle(., $target)"/>
+            </xsl:call-template>
+          </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates select="$target" mode="m:crossref"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-
-      <a href="#{f:id($target)}" class="xref xref-{local-name($target)}">
-        <xsl:if test="fp:pmuj-enabled(/)">
-          <xsl:attribute name="id" select="f:generate-id(.)"/>
-        </xsl:if>
-        <xsl:sequence select="$content"/>
-      </a>
+      <xsl:variable name="vp:pmuj" as="xs:boolean" select="fp:pmuj-enabled(/)"/>
+      <!-- page number needs its own html:a element -->
+      <xsl:for-each-group select="$content" group-adjacent=". instance of node() and local-name() = ('pagenum')">
+        <xsl:choose>
+          <xsl:when test="boolean(current-grouping-key())">
+            <a href="#{f:id($target)}" class="xref xref-{local-name($target)} xref-{local-name(.)}">#</a>
+          </xsl:when>
+          <xsl:otherwise>
+            <a href="#{f:id($target)}" class="xref xref-{local-name($target)}">
+              <xsl:if test="$vp:pmuj">
+                <xsl:attribute name="id" select="f:generate-id(.)"/>
+              </xsl:if>
+              <xsl:sequence select="current-group()"/>
+            </a>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each-group>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+  
+<xsl:function name="fp:localization-template-from-xrefstyle" as="element(l:template)">
+  <xsl:param name="xref" as="element(db:xref)"/>
+  <xsl:param name="target" as="element()"/>
+  <xsl:variable name="content" as="item()*">
+    <xsl:choose>
+      <xsl:when test="starts-with($xref/@xrefstyle, 'template:')">
+        <!-- Legacy XSLT 1.0 Stylesheets, see http://www.sagehill.net/docbookxsl/CustomXrefs.html#UsingTemplate -->
+        <xsl:analyze-string select="substring-after($xref/@xrefstyle, 'template:')" regex="%n|%t">
+          <xsl:matching-substring>
+            <xsl:choose>
+              <xsl:when test=". eq '%n'"><lt:label/></xsl:when>
+              <xsl:when test=". eq '%t'"><lt:content/></xsl:when>
+            </xsl:choose>
+          </xsl:matching-substring>
+          <xsl:non-matching-substring>
+            <lt:text><xsl:sequence select="."/></lt:text>
+          </xsl:non-matching-substring>
+        </xsl:analyze-string>
+      </xsl:when>
+      <xsl:when test="starts-with($xref/@xrefstyle, 'select:')">
+        <!-- Legacy XSLT 1.0 Stylesheets, see http://www.sagehill.net/docbookxsl/CustomXrefs.html#UsingSelect -->
+        <xsl:message select="'Warning: xref/@xrefstyle with select: Syntax is not supported'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- See xslTNG Reference Table 4.1. Template %-letter substitutions -->
+        <xsl:analyze-string select="$xref/@xrefstyle" regex="%label|%l|%c|%p">
+          <xsl:matching-substring>
+            <xsl:choose>
+              <xsl:when test=". eq '%label'"><xsl:sequence select="fp:localization-template($target,'xref-number')/*"/></xsl:when>
+              <xsl:when test=". eq '%l'"><lt:label/></xsl:when>
+              <xsl:when test=". eq '%c'"><lt:content/></xsl:when>
+              <xsl:when test=". eq '%p'"><lt:pagenum/></xsl:when>
+            </xsl:choose>
+          </xsl:matching-substring>
+          <xsl:non-matching-substring>
+            <lt:text><xsl:sequence select="."></xsl:sequence></lt:text>
+          </xsl:non-matching-substring>
+        </xsl:analyze-string>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <l:template>
+    <xsl:sequence select="$content"/>
+  </l:template>
+</xsl:function>
 
 <xsl:template match="db:olink">
   <xsl:variable name="targetdoc" select="@targetdoc/string()"/>

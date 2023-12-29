@@ -9,6 +9,7 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
+                xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -78,26 +79,34 @@
   <xsl:variable name="template"
                 select="fp:localization-template(., $context)"/>
 
-  <!--
-  <xsl:message select="local-name(.), $context, $template"/>
-  -->
+  
+  <!--<xsl:message select="local-name(.), $context, $template"/>-->
+  
 
+  <xsl:call-template name="tp:apply-localization-template">
+    <xsl:with-param name="localization-template" select="$template"/>
+  </xsl:call-template>
+</xsl:template>
+  
+<xsl:template name="tp:apply-localization-template">
+  <xsl:param name="localization-template"/>
+  <xsl:param name="target" as="element()" select="."/>
   <xsl:variable name="label" as="item()*">
-    <xsl:if test="$template/lt:label">
-      <xsl:apply-templates select="." mode="m:crossref-label"/>
+    <xsl:if test="$localization-template/lt:label">
+      <xsl:apply-templates select="$target" mode="m:crossref-label"/>
     </xsl:if>
   </xsl:variable>
 
   <xsl:variable name="title" as="node()*">
-    <xsl:if test="$template/lt:content">
-      <xsl:apply-templates select="." mode="m:crossref-title">
+    <xsl:if test="$localization-template/lt:content">
+      <xsl:apply-templates select="$target" mode="m:crossref-title">
         <xsl:with-param name="purpose" select="'crossref'"/>
       </xsl:apply-templates>
     </xsl:if>
   </xsl:variable>
 
-  <xsl:apply-templates select="$template" mode="mp:localization">
-    <xsl:with-param name="context" select="."/>
+  <xsl:apply-templates select="$localization-template" mode="mp:localization">
+    <xsl:with-param name="context" select="$target"/>
     <xsl:with-param name="label" select="$label"/>
     <xsl:with-param name="content" select="$title"/>
   </xsl:apply-templates>

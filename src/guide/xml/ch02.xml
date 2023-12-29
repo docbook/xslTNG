@@ -988,6 +988,113 @@ any of it’s values match.</para>
 </section>
 </section>
 
+<section xml:id="xrefstyle-support">
+<title>Customize Individual Cross References</title>
+<para>Single cross references can be customized with the <code>xrefstyle</code> Attribute.
+You can use the <code>%c</code>, <code>%l</code> and <code>%p</code> values from <xref
+linkend="table.template-letter-substitutions"/>. Beware the %p makes sense for PDF
+Output only, since there are no page numbers in HTML. There is also an additional
+<code>%label</code> value, which stands for <emphasis>the full Label</emphasis>,
+that is the Component`s name and Number for the targeted Element. The use of these
+percent-values is explained in the following table, where all cross references target
+the next Section called <xref linkend="syntax-highlighting" xrefstyle="%c"/>.</para>
+<informaltable border="1">
+
+
+<thead>
+<tr>
+<th><para>Value of <code>xref/@xrefstyle</code></para></th>
+<th><para>Result</para></th>
+<th><para>Remark</para></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(<code>@xrefstyle</code> is absent)</td>
+<td><xref linkend="syntax-highlighting"/></td>
+<td>Default</td>
+</tr>
+<tr>
+<td><code>%c</code></td>
+<td><xref linkend="syntax-highlighting" xrefstyle="%c"/></td>
+<td><para>Content, e. g. title of target</para></td>
+</tr>
+<tr>
+<td><code>%l</code></td>
+<td><xref linkend="syntax-highlighting" xrefstyle="%l"/></td>
+<td><para>Label, ususally the Number of target`s title</para></td>
+</tr>
+<tr>
+<td><code>%label</code></td>
+<td><xref linkend="syntax-highlighting" xrefstyle="%label"/></td>
+<td><para>The full Label, ususally the targets component name in its
+language, e. g. "Section" or "Abschnittt" and its
+Number</para></td>
+</tr>
+<tr>
+<td><code>%p</code></td>
+<td><xref linkend="syntax-highlighting" xrefstyle="%p"/></td>
+<td><para>Target`s Page Number in PDF is displayed as <code>#</code> in
+HTML</para></td>
+</tr>
+<tr>
+<td><code>see page %p</code></td>
+<td><xref linkend="syntax-highlighting" xrefstyle="see page %p"/></td>
+<td><para>You can mix text and percent-letters</para></td>
+</tr>
+<tr>
+<td><code>%label (%c)</code></td>
+<td><xref linkend="syntax-highlighting" xrefstyle="%label (%c)"/></td>
+<td><para>You can use different %-letters and combine with
+text</para></td>
+</tr>
+<tr>
+<td><code>%label (%c) at page %p</code></td>
+<td><xref linkend="syntax-highlighting"
+xrefstyle="%label (%c) at page %p"/></td>
+<td><para>Same as before, this time with Page number in
+PDF</para></td>
+</tr>
+</tbody>
+
+</informaltable>
+<bridgehead>Legacy values</bridgehead>
+<para>In order to support migration from XSLT 1.0 Stylesheets, xslTNG supports the
+<code>template:</code> Syntax which is explained in Bob Stytons Guide, Section
+"<link xmlns:xlink="http://www.w3.org/1999/xlink"
+xlink:href="http://www.sagehill.net/docbookxsl/CustomXrefs.html#usingtemplate"
+>Customizing with an xrefstyle attribute / Using template:</link>". This is
+explained with the following table.</para>
+<informaltable>
+<tgroup cols="3">
+<colspec colname="c1" colwidth="1*"/>
+<colspec colname="c2" colwidth="1*"/>
+<colspec colname="c3" colwidth="2*"/>
+<thead>
+<row>
+<entry><para>Value of <code>xref/@xrefstyle</code></para></entry>
+<entry><para>Result</para></entry>
+<entry><para>Remark</para></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry><code>template:the chapter numbered %n</code></entry>
+<entry><xref linkend="syntax-highlighting"
+xrefstyle="template:the chapter numbered %n"/></entry>
+<entry>XSLT 1.0 Legacy Syntax</entry>
+</row>
+<row>
+<entry><code>template:the chapter called %t</code></entry>
+<entry><xref linkend="syntax-highlighting"
+xrefstyle="template:the chapter called %t"/></entry>
+<entry>XSLT 1.0 Legacy Syntax</entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+
 <section xml:id="syntax-highlighting">
 <title>Syntax highlighting</title>
 
@@ -1427,4 +1534,3 @@ has a background color.
 
 </section>
 </chapter>
-
