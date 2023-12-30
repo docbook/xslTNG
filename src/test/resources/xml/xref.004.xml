@@ -3,7 +3,7 @@
    <info>
       <title>Unit Test: xref.004.xml</title>
       <titleabbrev>Unit 04</titleabbrev>
-      <releaseinfo role="CVS">$Id: xref.003.xml 4056 2004-11-23 13:28:50Z nwalsh $</releaseinfo>
+      
       <author>
          <personname>
             <firstname>Frank</firstname>
@@ -18,14 +18,14 @@
    </info>
    <section xml:id="xrefstyle-support">
       <title>Customize Individual Cross References</title>
-      <para>Single cross references can be customized with the <code>xrefstyle</code> Attribute.
-         You can use the <code>%c</code>, <code>%l</code> and <code>%p</code> values from Table 4.1 in the xslTNG Reference Guide. 
-         Beware the %p makes sense for PDF
-         output only, since there are no page numbers in HTML. There is also an additional
-         <code>%label</code> value, which stands for <emphasis>the full Label</emphasis>,
-         that is the Component`s name and Number for the targeted Element. The use of these
-         percent-values is explained in the following table, where all cross references target
-         the next Section called <xref linkend="syntax-highlighting" xrefstyle="%c"/>.</para>
+      <para>Individual cross references can be customized with the <code>xrefstyle</code> Attribute.
+      You can use the <code>%c</code>, <code>%l</code> and <code>%p</code> values from Table 4.1 in
+      the xslTNG Reference Guide. Beware the %p makes sense for PDF output only, since there are no
+      page numbers in HTML. There is also an additional <code>%label</code> value, which stands for
+        <emphasis>the full Label</emphasis>, that is the Component`s name and Number for the
+      targeted Element. The use of these percent-values is explained in the following table, where
+      all cross references target the next Section called <xref linkend="syntax-highlighting"
+        xrefstyle="%c"/>.</para>
       <informaltable border="1">
          
          
