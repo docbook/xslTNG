@@ -102,44 +102,28 @@
     </xsl:map-entry>
   </xsl:map>
 </xsl:variable>
-  
+
+<!-- converts the sequence of items in $locations to a sequence of maps with stylesheet-locations
+     used for the pipelines transform-original, transform-before and transform-after -->
 <xsl:template name="tp:stylesheet-locations" as="map(xs:string, xs:string)*">
   <xsl:param name="locations" as="item()*"/>
   <xsl:param name="purpose" as="xs:string"/>
-  <xsl:variable name="base-uri" as="xs:anyURI?">
-    <xsl:try>
-      <xsl:sequence select="base-uri(/)"/>
-      <xsl:catch/>
-    </xsl:try>
-  </xsl:variable>
-  <xsl:for-each select="$locations">
+    <xsl:for-each select="$locations">
       <xsl:choose>
-        <xsl:when test=". instance of map(xs:string, xs:string)">
+        <xsl:when
+          test=". instance of map(xs:string, xs:string) and map:contains(., 'stylesheet-location')">
           <xsl:sequence select="."/>
-        </xsl:when>
-        <xsl:when test="not(exists($base-uri))">
-          <xsl:message
-            select="'WARNING: cannot resolve URI ' || xs:string(.) || ' in $' || $purpose || ': context item is absent.'"
-          />
         </xsl:when>
         <xsl:when test=". castable as xs:string">
           <xsl:try>
-            <xsl:variable name="uri" as="xs:anyURI" select="resolve-uri(xs:string(.), $base-uri)"/>
-            <xsl:choose>
-              <xsl:when test="doc-available($uri)">
-                <xsl:sequence select="
-                    map {
-                      'stylesheet-location': xs:string($uri)
-                    }"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:message
-                  select="'WARNING: cannot find resolved URI ' || $uri || ' in $' || $purpose"/>
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:sequence select="
+                map {
+                  'stylesheet-location': resolve-uri(xs:string(.), base-uri(/))
+                }"/>
             <xsl:catch>
-              <xsl:message
-                select="'WARNING: cannot resolve URI ' || xs:string(.) || ' in $' || $purpose || ': ' || $err:description"
+              <xsl:sequence select="
+                  error($dbe:INVALID-TRANSFORM,
+                  xs:string(.) || ' in $' || $purpose || ' cannot be resolved as uri: ' || $err:description)"
               />
             </xsl:catch>
           </xsl:try>
@@ -147,23 +131,11 @@
         <xsl:otherwise>
           <xsl:sequence select="
               error($dbe:INVALID-TRANSFORM,
-              'Each $' || $purpose || ' must be a string or a map')"/>
+              'Each $' || $purpose || ' must be a relative uri castable as string or a map with key=stylesheet-location')"/>
         </xsl:otherwise>
       </xsl:choose>
-  </xsl:for-each>
+    </xsl:for-each>
 </xsl:template>  
-
-<xsl:variable name="vp:transforms" as="map(*)*">
-  <xsl:call-template name="tp:stylesheet-locations">
-    <xsl:with-param name="locations" select="$transform-original"/>
-    <xsl:with-param name="purpose" select="'transform-original'"/>
-  </xsl:call-template>
-  <xsl:sequence select="$v:standard-transforms"/>
-  <xsl:call-template name="tp:stylesheet-locations">
-    <xsl:with-param name="locations" select="$transform-before"/>
-    <xsl:with-param name="purpose" select="'transform-before'"/>
-  </xsl:call-template>
-</xsl:variable>
 
 <!-- If a document or element is being processed in the default
      mode (and not the m:docbook mode), assume we're starting 
@@ -223,6 +195,17 @@
   </xsl:variable>
 
   <xsl:variable name="document" as="document-node()">
+    <xsl:variable name="vp:transforms" as="map(*)*">
+      <xsl:call-template name="tp:stylesheet-locations">
+        <xsl:with-param name="locations" select="$transform-original"/>
+        <xsl:with-param name="purpose" select="'transform-original'"/>
+      </xsl:call-template>
+      <xsl:sequence select="$v:standard-transforms"/>
+      <xsl:call-template name="tp:stylesheet-locations">
+        <xsl:with-param name="locations" select="$transform-before"/>
+        <xsl:with-param name="purpose" select="'transform-before'"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:sequence
         select="fp:run-transforms($document, $vp:transforms,
                                   map { xs:QName('vp:starting-base-uri'): $starting-base-uri })"/>
