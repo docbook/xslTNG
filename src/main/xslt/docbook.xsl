@@ -108,22 +108,35 @@
 <xsl:template name="tp:stylesheet-locations" as="map(xs:string, xs:string)*">
   <xsl:param name="locations" as="item()*"/>
   <xsl:param name="purpose" as="xs:string"/>
+  <xsl:variable name="base-uri" as="xs:anyURI?">
+    <xsl:try>
+      <xsl:sequence select="base-uri(/)"/>
+      <xsl:catch/>
+    </xsl:try>
+  </xsl:variable>
     <xsl:for-each select="$locations">
       <xsl:choose>
         <xsl:when
           test=". instance of map(xs:string, xs:string) and map:contains(., 'stylesheet-location')">
           <xsl:sequence select="."/>
         </xsl:when>
-        <xsl:when test=". castable as xs:anyURI">
+        <xsl:when test=". castable as xs:anyURI and exists($base-uri)">
           <xsl:try>
-            <xsl:sequence select="
-                map {
-                  'stylesheet-location': resolve-uri(xs:string(.), base-uri(/))
-                }"/>
+            <xsl:variable name="uri" as="xs:anyURI" select="resolve-uri(xs:string(.), $base-uri)"/>
+            <xsl:choose>
+              <xsl:when test="doc-available($uri)">
+                <xsl:sequence select="
+                    map {
+                      'stylesheet-location': xs:string($uri)
+                    }"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:message select="'WARNING: File ' || xs:string(.) || ' (resolved as '|| $uri || ') in $' || $purpose || ' not found.'"
+                />
+              </xsl:otherwise>
+            </xsl:choose>
             <xsl:catch>
-              <xsl:sequence select="
-                  error($dbe:INVALID-TRANSFORM,
-                  xs:string(.) || ' in $' || $purpose || ' cannot be resolved as uri: ' || $err:description)"
+              <xsl:message select="'WARNING: File ' || xs:string(.) || ' in $' || $purpose || ' cannot be resolved as uri: ' || $err:description"
               />
             </xsl:catch>
           </xsl:try>
