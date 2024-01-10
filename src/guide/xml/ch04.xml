@@ -595,15 +595,15 @@ Oxygen change markup processing instructions.
 </listitem>
 </orderedlist>
 
-<para>A customization can introduce transformations to the original
-document: before the standard transformations by specifying them in
-<parameter>transform-original</parameter>; after the standard transformations
-but before the transformation to HTML by specifying them in
-<parameter>transform-before</parameter>; or after the HTML transformation
-by specifying them in <parameter>transform-after</parameter>. (If you need
-to insert a transformation in the middle of the standard transformations,
-you’ll have to update the <varname>v:standard-transforms</varname>
-variable.)</para>
+<para>A customization can introduce transformations to the original document: before the standard
+      transformations by specifying them in <parameter>transform-original</parameter>; after the
+      standard transformations but before the transformation to HTML by specifying them in
+        <parameter>transform-before</parameter>; or after the HTML transformation by specifying them
+      in <parameter>transform-after</parameter>. (If you need to insert a transformation in the
+      middle of the standard transformations, you’ll have to update the
+        <varname>v:standard-transforms</varname> variable.) If you want to see the normalized and
+      augmented DocBook content just before the conversion to HTML starts, you can use the
+        <parameter>intermediate-docbook-uri</parameter> parameter.</para>
 
 <note>
 <para>Transformations in <varname>transform-after</varname> will be processing

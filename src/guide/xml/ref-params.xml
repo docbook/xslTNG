@@ -2173,6 +2173,38 @@ of the entries for each section. This results in a more complete index while
 still preserving the ability to see in which sections the terms occur.</para>
 </refsection>
 </refentry>
+  
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>intermediate-docbook-uri</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>URI for intermediate DocBook content</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>If the parameter is not empty, a file with the content of the input document to which
+      the following transformations have been applied is written to the specified location: </para>
+    <orderedlist>
+      <listitem>
+        <para>transformations from <parameter>transform-original</parameter>, if any;</para>
+      </listitem>
+      <listitem>
+        <para>standard transformations (see <varname>v:standard-transforms</varname>);</para>
+      </listitem>
+      <listitem>
+        <para>transformations from <parameter>transform-before</parameter>, if any.</para>
+      </listitem>
+    </orderedlist>
+      <para>It is the normalized and augmented DocBook content immediatly before transformations
+        into HTML begins. If the URI is relative, it will be resolved against the base-input
+        documents <code>base-uri(/)</code>.</para>
+  </refsection>
+</refentry>  
 
 <refentry>
   <refmeta>

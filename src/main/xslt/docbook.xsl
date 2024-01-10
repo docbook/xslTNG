@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:dbe="http://docbook.org/ns/docbook/errors"
+                xmlns:err='http://www.w3.org/2005/xqt-errors'
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
@@ -203,13 +204,33 @@
                                   map { xs:QName('vp:starting-base-uri'): $starting-base-uri })"/>
   </xsl:variable>
 
-  <!--
-  <xsl:result-document href="/tmp/out.xml" method="xml" indent="yes">
-    <xsl:apply-templates select="$document" mode="m:docbook">
-      <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
-    </xsl:apply-templates>
-  </xsl:result-document>
-  -->
+  <xsl:if test="$intermediate-docbook-uri gt ''">
+    <xsl:try>
+      <xsl:variable name="intermediate-docbook-href" as="xs:anyURI">
+        <xsl:choose>
+          <xsl:when test="
+            (starts-with($intermediate-docbook-uri, 'file:') 
+            or starts-with($intermediate-docbook-uri, '/')
+            or matches($intermediate-docbook-uri,'[A-Z]:','i'))
+            and $intermediate-docbook-uri castable as xs:anyURI">
+            <xsl:sequence select="xs:anyURI($intermediate-docbook-uri)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence select="resolve-uri($intermediate-docbook-uri, base-uri(/))"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:result-document href="{$intermediate-docbook-href}" method="xml" indent="no" exclude-result-prefixes="#all">
+        <xsl:copy-of select="$document" copy-namespaces="no"/>
+      </xsl:result-document>
+      <xsl:message select="'Wrote intermediate DocBook content to file ' || $intermediate-docbook-href"/>
+      <xsl:catch>
+        <xsl:message
+          select="'Cannot write intermediate DocBook to ' || $intermediate-docbook-uri || ': ' || $err:description"
+        />
+      </xsl:catch>
+    </xsl:try>
+  </xsl:if>
 
   <xsl:variable name="result" as="document-node()">
     <xsl:call-template name="t:chunk-cleanup">
