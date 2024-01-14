@@ -549,9 +549,10 @@ in a preface (although it wouldn’t change the result if you did).</para>
 <title>Changing the cross reference group</title>
 
 <para>Cross references are processed just like titles, except that the
-  <varname>v:user-xref-groups</varname> element consists of a
-  list of <code>crossref</code> elements
-  (but have a look at <xref linkend="customize-individual-cross-references"/>).</para>
+<varname>v:user-xref-groups</varname> element consists of a
+list of <code>crossref</code> elements. (See also
+<xref linkend="customize-individual-cross-references"/>, for a discussion
+of how individual cross references can be customized.)</para>
 
 <para>The default for cross references to chapters and appendixes is
 “<code>xref-number-and-title</code>”, so you get things like “Chapter
