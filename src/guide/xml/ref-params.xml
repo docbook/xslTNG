@@ -1971,25 +1971,20 @@ entries in the document being transformed.</para>
 <para>To achieve this:</para>
 <orderedlist>
 <listitem>
-<para>Create a shared glossary and store it somewhere. Make sure that
-each entry in your shared glossary has a unique <att>xml:id</att> value.
-</para>
+<para>Create a shared glossary and store it somewhere.</para>
 </listitem>
+        <listitem>
+          <para>In the document you’re transforming, add an empty <code>glossary</code> with
+              <code>@role='auto'</code>.</para>
+        </listitem>
 <listitem>
 <para>Run your
 transformation with <parameter>glossary-collection</parameter> set
 to the URI of that document.
 </para>
 </listitem>
-<listitem>
-<para>In the document you’re transforming, refer to the shared entries
-with completely empty <tag>glossentry</tag>
-elements that have the same <att>xml:id</att> as an entry in the
-shared glossary.
-</para>
-</listitem>
 </orderedlist>
-<para>The stylesheets will copy those entries into your document before processing it.</para>
+<para>The stylesheets will copy referenced entries into your document before processing it.</para>
 </refsection>
 </refentry>
 
