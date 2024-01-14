@@ -192,16 +192,16 @@
 
 <xsl:template match="db:xref" name="tp:xref">
   <xsl:param name="linkend"
-    select="(@linkend,
-    if (starts-with(@xlink:href, '#'))
-    then substring-after(@xlink:href, '#')
-    else ())[1]"/>
-  
+             select="(@linkend,
+                     if (starts-with(@xlink:href, '#'))
+                     then substring-after(@xlink:href, '#')
+                     else ())[1]"/>
+
   <xsl:variable name="target"
-    select="if ($linkend)
-    then key('id', $linkend)[1]
-    else ()"/>
-  
+                select="if ($linkend)
+                        then key('id', $linkend)[1]
+                        else ()"/>
+
   <xsl:choose>
     <xsl:when test="empty($target)">
       <xsl:message select="'Link to non-existent ID: ' || $linkend"/>
@@ -215,7 +215,7 @@
             <xsl:choose>
               <xsl:when test="empty($label)">
                 <xsl:message select="'Endterm to non-existent ID: '
-                  || @endterm/string()"/>
+                                     || @endterm/string()"/>
                 <xsl:apply-templates select="$target" mode="m:crossref"/>
               </xsl:when>
               <xsl:otherwise>
@@ -229,7 +229,8 @@
           <xsl:when test="@xrefstyle">
             <xsl:call-template name="tp:apply-localization-template">
               <xsl:with-param name="target" select="$target"/>
-              <xsl:with-param name="localization-template" select="fp:localization-template-from-xrefstyle(., $target)"/>
+              <xsl:with-param name="localization-template"
+                              select="fp:localization-template-from-xrefstyle(., $target)"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
@@ -237,9 +238,12 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
+
       <xsl:variable name="vp:pmuj" as="xs:boolean" select="fp:pmuj-enabled(/)"/>
+
       <!-- page number needs its own html:a element -->
-      <xsl:for-each-group select="$content" group-adjacent=". instance of node() and local-name() = ('pagenum')">
+      <xsl:for-each-group select="$content"
+                          group-adjacent=". instance of node() and local-name() = ('pagenum')">
         <xsl:choose>
           <xsl:when test="boolean(current-grouping-key())">
             <a href="#{f:id($target)}" class="xref xref-{local-name($target)} xref-{local-name(.)}">#</a>
@@ -261,10 +265,12 @@
 <xsl:function name="fp:localization-template-from-xrefstyle" as="element(l:template)">
   <xsl:param name="xref" as="element(db:xref)"/>
   <xsl:param name="target" as="element()"/>
+
   <xsl:variable name="content" as="item()*">
     <xsl:choose>
       <xsl:when test="starts-with($xref/@xrefstyle, 'template:')">
-        <!-- Legacy XSLT 1.0 Stylesheets, see http://www.sagehill.net/docbookxsl/CustomXrefs.html#UsingTemplate -->
+        <!-- Legacy XSLT 1.0 Stylesheets,
+             see http://www.sagehill.net/docbookxsl/CustomXrefs.html#UsingTemplate -->
         <xsl:analyze-string select="substring-after($xref/@xrefstyle, 'template:')" regex="%n|%t">
           <xsl:matching-substring>
             <xsl:choose>
@@ -278,7 +284,8 @@
         </xsl:analyze-string>
       </xsl:when>
       <xsl:when test="starts-with($xref/@xrefstyle, 'select:')">
-        <!-- Legacy XSLT 1.0 Stylesheets, see http://www.sagehill.net/docbookxsl/CustomXrefs.html#UsingSelect -->
+        <!-- Legacy XSLT 1.0 Stylesheets,
+             see http://www.sagehill.net/docbookxsl/CustomXrefs.html#UsingSelect -->
         <xsl:message select="'Warning: xref/@xrefstyle with select: Syntax is not supported'"/>
       </xsl:when>
       <xsl:otherwise>
@@ -286,7 +293,9 @@
         <xsl:analyze-string select="$xref/@xrefstyle" regex="%label|%l|%c|%p">
           <xsl:matching-substring>
             <xsl:choose>
-              <xsl:when test=". eq '%label'"><xsl:sequence select="fp:localization-template($target,'xref-number')/*"/></xsl:when>
+              <xsl:when test=". eq '%label'">
+                <xsl:sequence select="fp:localization-template($target,'xref-number')/*"/>
+              </xsl:when>
               <xsl:when test=". eq '%l'"><lt:label/></xsl:when>
               <xsl:when test=". eq '%c'"><lt:content/></xsl:when>
               <xsl:when test=". eq '%p'"><lt:pagenum/></xsl:when>

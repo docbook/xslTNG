@@ -79,9 +79,9 @@
   <xsl:variable name="template"
                 select="fp:localization-template(., $context)"/>
 
-  
-  <!--<xsl:message select="local-name(.), $context, $template"/>-->
-  
+  <!--
+  <xsl:message select="local-name(.), $context, $template"/>
+  -->
 
   <xsl:call-template name="tp:apply-localization-template">
     <xsl:with-param name="localization-template" select="$template"/>
@@ -91,6 +91,7 @@
 <xsl:template name="tp:apply-localization-template">
   <xsl:param name="localization-template"/>
   <xsl:param name="target" as="element()" select="."/>
+
   <xsl:variable name="label" as="item()*">
     <xsl:if test="$localization-template/lt:label">
       <xsl:apply-templates select="$target" mode="m:crossref-label"/>
