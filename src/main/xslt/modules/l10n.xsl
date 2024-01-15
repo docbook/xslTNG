@@ -129,6 +129,11 @@
     <xsl:apply-templates mode="mp:localization"/>
   </xsl:element>
 </xsl:template>
+  
+<!-- page number is not content of html:a, but needs its own html:a element -->  
+<xsl:template match="lt:pagenum" mode="mp:localization">
+  <xsl:sequence select="."/>
+</xsl:template>
 
 <xsl:template match="lt:*" mode="mp:localization">
   <xsl:message terminate="yes"
