@@ -108,9 +108,9 @@
       <xsl:when test=". instance of map(*)">
         <xsl:sequence select="."/>
       </xsl:when>
-      <xsl:when test=". instance of xs:string">
+      <xsl:when test=". instance of xs:string or . instance of xs:untypedAtomic">
         <xsl:sequence select="map {
-            'stylesheet-location': resolve-uri(., base-uri(/))
+            'stylesheet-location': resolve-uri(., static-base-uri())
           }"/>
       </xsl:when>
       <xsl:otherwise>
@@ -127,9 +127,9 @@
       <xsl:when test=". instance of map(*)">
         <xsl:sequence select="."/>
       </xsl:when>
-      <xsl:when test=". instance of xs:string">
+      <xsl:when test=". instance of xs:string or . instance of xs:untypedAtomic">
         <xsl:sequence select="map {
-            'stylesheet-location': resolve-uri(., base-uri(/))
+            'stylesheet-location': resolve-uri(., static-base-uri())
           }"/>
       </xsl:when>
       <xsl:otherwise>
@@ -228,9 +228,9 @@
         <xsl:when test=". instance of map(*)">
           <xsl:sequence select="."/>
         </xsl:when>
-        <xsl:when test=". instance of xs:string">
+        <xsl:when test=". instance of xs:string or . instance of xs:untypedAtomic">
           <xsl:sequence select="map {
-                                  'stylesheet-location': resolve-uri(., base-uri(/))
+                                  'stylesheet-location': resolve-uri(., static-base-uri())
                                 }"/>
         </xsl:when>
         <xsl:otherwise>
