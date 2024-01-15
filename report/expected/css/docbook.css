@@ -340,6 +340,11 @@ a.pmuj {
   font-style: italic;
 }
 
+.xref-pagenum {
+  content: target-counter(attr(href), page);
+  font-style: normal;
+}
+
 .xref-area,
 .xref-areaset,
 .xref-co,
