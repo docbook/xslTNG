@@ -1132,6 +1132,17 @@ each image.
 </varlistentry>
 <varlistentry>
 <term>
+<enumvalue>intermediate-results</enumvalue>
+</term>
+<listitem>
+<para>Output the resolved names of intermediate result documents
+(<parameter>transformed-docbook-input</parameter>
+and <parameter>transformed-docbook-output</parameter>) if they are used.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
 <enumvalue>intra-chunk-links</enumvalue>
 </term>
 <listitem>
@@ -5507,5 +5518,85 @@ in the online stylesheets (but might in the future).</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>transformed-docbook-input</varname>
+      <initializer>()</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>URI for transformed DocBook input</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Broadly speaking, the DocBook transformation process has
+    three phases:</para>
+    <orderedlist>
+      <listitem>
+        <para>The DocBook input supplied by the user is run through a
+        series of transformations to produce a document that is ready
+        to be transformed to HTML. (See <xref linkend="preprocessing-pipeline"/>.)</para>
+      </listitem>
+      <listitem>
+        <para>That document is transformed into “HTML”. It’s not really HTML (yet)
+        because some aspects (footnotes, chunking, etc.) are not yet resolved.
+        (See <parameter>transformed-docbook-output</parameter>.)
+        </para>
+      </listitem>
+      <listitem>
+        <para>The “HTML” from the previous step is transformed to produce one
+        (or more) HTML results.
+        </para>
+      </listitem>
+    </orderedlist>
+    <para>If the <parameter>transformed-docbook-input</parameter> parameter is not the empty
+    sequence, it is assumed to be a URI. It will be made absolute against the base URI of the
+    input document.
+    The transformed DocBook that results from step 1 above will be
+    output to that location.</para>
+  </refsection>
+</refentry>  
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>transformed-docbook-output</varname>
+      <initializer>()</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>URI for transformed DocBook output</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Broadly speaking, the DocBook transformation process has
+    three phases:</para>
+    <orderedlist>
+      <listitem>
+        <para>The DocBook input supplied by the user is run through a
+        series of transformations to produce a document that is ready
+        to be transformed to HTML. (See <parameter>transformed-docbook-input</parameter>.)</para>
+      </listitem>
+      <listitem>
+        <para>That document is transformed into “HTML”. It’s not really HTML (yet)
+        because some aspects (footnotes, chunking, etc.) are not yet resolved.
+        </para>
+      </listitem>
+      <listitem>
+        <para>The “HTML” from the previous step is transformed to produce one
+        (or more) HTML results.
+        </para>
+      </listitem>
+    </orderedlist>
+    <para>If the <parameter>transformed-docbook-output</parameter>
+    parameter is not the empty sequence, it is assumed to be a URI. It
+    will be made absolute against the base URI of the input document.
+    The transformed “HTML” that results from step 2 above will be
+    output to that location.</para>
+  </refsection>
+</refentry>  
 
 </reference>

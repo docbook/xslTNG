@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:dbe="http://docbook.org/ns/docbook/errors"
+                xmlns:err='http://www.w3.org/2005/xqt-errors'
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
@@ -203,22 +204,52 @@
                                   map { xs:QName('vp:starting-base-uri'): $starting-base-uri })"/>
   </xsl:variable>
 
-  <!--
-  <xsl:result-document href="/tmp/out.xml" method="xml" indent="yes">
+  <xsl:if test="string($transformed-docbook-input) != ''">
+    <xsl:try>
+      <xsl:variable name="href" 
+                    select="resolve-uri($transformed-docbook-input, base-uri(/))"/>
+      <xsl:result-document href="{$href}" method="xml" indent="no"
+                           exclude-result-prefixes="#all">
+        <xsl:sequence select="$document"/>
+      </xsl:result-document>
+      <xsl:if test="$v:debug = 'intermediate-results'">
+        <xsl:message select="'Transformed DocBook input saved:', $href"/>
+      </xsl:if>
+      <xsl:catch>
+        <xsl:message select="'Failed to save transformed input:', $transformed-docbook-input"/>
+        <xsl:message select="$err:description"/>
+      </xsl:catch>
+    </xsl:try>
+  </xsl:if>
+
+  <xsl:variable name="transformed-html" as="document-node()">
     <xsl:apply-templates select="$document" mode="m:docbook">
       <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
     </xsl:apply-templates>
-  </xsl:result-document>
-  -->
+  </xsl:variable>
+
+  <xsl:if test="string($transformed-docbook-output) != ''">
+    <xsl:try>
+      <xsl:variable name="href" 
+                    select="resolve-uri($transformed-docbook-output, base-uri(/))"/>
+      <xsl:result-document href="{$href}" method="xml" indent="no"
+                           exclude-result-prefixes="#all">
+        <xsl:sequence select="$transformed-html"/>
+      </xsl:result-document>
+      <xsl:if test="$v:debug = 'intermediate-results'">
+        <xsl:message select="'Transformed DocBook output saved:', $href"/>
+      </xsl:if>
+      <xsl:catch>
+        <xsl:message select="'Failed to save transformed output:', $transformed-docbook-output"/>
+        <xsl:message select="$err:description"/>
+      </xsl:catch>
+    </xsl:try>
+  </xsl:if>
 
   <xsl:variable name="result" as="document-node()">
     <xsl:call-template name="t:chunk-cleanup">
       <xsl:with-param name="docbook" select="$document"/>
-      <xsl:with-param name="source">
-        <xsl:apply-templates select="$document" mode="m:docbook">
-          <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
-        </xsl:apply-templates>
-      </xsl:with-param>
+      <xsl:with-param name="source" select="$transformed-html"/>
     </xsl:call-template>
   </xsl:variable>
 
