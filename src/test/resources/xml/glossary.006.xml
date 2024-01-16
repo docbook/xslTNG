@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+    <info>
+        <title>Mixed Glossary with multiple entries</title>
+        <author>
+            <personname>
+                <firstname>Frank</firstname>
+                <surname>Steimke</surname>
+            </personname>
+        </author>
+    </info>
+
+<para>This test tests the <parameter>glossary-collection</parameter> machinery when the "internal"
+        glossary is not empty, and some glossterms have definitions in the internal and external
+        glossaries. The internal entry should cover / overwrite the definition from the external
+        glossary.</para>
+    <para>So we expect a glossary with three entries, mixed from the internal and the external
+        glossaries. The <code>glossdef</code> for Apple should be the internal one, although there
+        is also an entry in the external glossary.</para>
+<para>Referencing <firstterm>Apple</firstterm>, <glossterm>Pear</glossterm> and <glossterm>Bloodroot</glossterm>.</para>
+
+<glossary role="auto">
+        <glossentry>
+            <glossterm>Apple</glossterm>
+            <glossdef>
+                <para>In early autumn the apple orchards come alive with people and sounds. The
+                    farmers are picking, peeling, and processing apples into everything from apple
+                    pies to apple sauce. Families swarm the apple trees with their baskets looking
+                    for the best Honeycrisp and Macintosh. The sound of children playing is blended
+                    with the occasional barking dog, or the low rumble of the old Ferguson Orchard
+                    tractor pulling a wagon up and down the rows. </para>
+            </glossdef>
+        </glossentry>
+    <glossentry>
+        <glossterm>Bloodroot</glossterm>
+        <glossdef>
+                <para>Sanguinaria canadensis, bloodroot, is a perennial, herbaceous flowering plant
+                    native to eastern North America. It is the only species in the genus
+                    Sanguinaria, included in the poppy family Papaveraceae, and is most closely
+                    related to Eomecon of eastern Asia.</para>
+                <para>It is sometimes known as Canada puccoon, bloodwort, redroot, red puccoon, and
+                    black paste. Plants are variable in leaf and flower shape, and have been
+                    separated as a different subspecies due to these variable shapes, indicating a
+                    highly variable species. </para>
+            </glossdef>
+    </glossentry>
+</glossary>
+
+</article>
