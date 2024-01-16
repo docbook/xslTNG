@@ -9,19 +9,22 @@
          <surname>Random</surname>
       </personname>
    </editor>
-   <subtitle>Wikipedia fruits</subtitle>
+   <subtitle>Wikipedia fruits with pepper</subtitle>
    <releaseinfo>Just some test data</releaseinfo>
    <othercredit><orgname>Wikimedia Commons</orgname></othercredit>
 </info>
 
 <chapter>
-<title>Fruits</title>
+<title>Fruits and Peppers</title>
 <para>There's a <tag>firstterm</tag> here:
 <firstterm>Apple</firstterm>.</para>
 
 <para>And there's a couple of <tag>glossterm</tag>s here:
 <glossterm>Peach</glossterm>, <glossterm>Jackfruit</glossterm>,
 and <glossterm>Durian</glossterm> (not in the <xref linkend="glossary"/>).</para>
+  
+<para>We also have <glossterm>Pepper</glossterm> which has <emphasis>two</emphasis> entries in the
+      glossary. This is wrong, of course. The  application should complain. </para>  
 </chapter>
 
 <glossary xml:id="glossary">
@@ -121,6 +124,29 @@ and <glossterm>Durian</glossterm> (not in the <xref linkend="glossary"/>).</para
     <glossseealso otherterm="apple">Apples</glossseealso>
   </glossdef>
 </glossentry>
+  
+<glossentry>
+  <glossterm>Pepper</glossterm>
+  <glossdef>
+    <para>Black pepper (Piper nigrum) is a flowering vine in the family Piperaceae, cultivated for
+            its fruit (the peppercorn), which is usually dried and used as a spice and seasoning.
+            Peppercorns and the ground pepper derived from them may be described simply as pepper,
+            or more precisely as <emphasis>black pepper</emphasis> (cooked and dried unripe fruit),
+              <emphasis>green pepper</emphasis> (dried unripe fruit), or <emphasis>white pepper
+            </emphasis>(ripe fruit seeds).</para>
+  </glossdef>
+</glossentry>  
+  
+<glossentry>
+  <glossterm>Pepper</glossterm>
+  <glossdef>
+        <para>Long pepper (Piper longum), sometimes called Indian long pepper or pippali, is a
+          flowering vine in the family Piperaceae, cultivated for its fruit, which is usually
+          dried and used as a spice and seasoning. Long pepper has a taste similar to, but sweeter
+          and less pungent than, that of its close relative Piper nigrum – from which black, green
+          and white pepper are obtained. </para>
+  </glossdef>
+</glossentry>  
 </glossdiv>
 
 </glossary>
