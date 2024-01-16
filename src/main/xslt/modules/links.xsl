@@ -117,7 +117,7 @@
       </xsl:if>
       <xsl:call-template name="tp:link">
         <xsl:with-param name="primary-markup" select="false()"/>
-        <xsl:with-param name="href" select="f:href(., $target)"/>
+        <xsl:with-param name="href" select="f:href(., $target[1])"/>
         <xsl:with-param name="content" as="item()*">
           <xsl:apply-templates/>
         </xsl:with-param>
