@@ -21,9 +21,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 abstract public class ImageCall extends ExtensionFunctionCall {
+    public static final double SVG_DPI = 96.0;
     private final static String svgNamespace = "http://www.w3.org/2000/svg";
+    private final static Pattern dimension = Pattern.compile("^\\s*([-+]?[0-9]*(\\.[0-9]*))\\s*([a-zA-Z]+)\\s*$");
 
     protected DebuggingLogger logger = null;
     protected XPathContext context = null;
@@ -121,23 +125,15 @@ abstract public class ImageCall extends ExtensionFunctionCall {
                 }
                 break;
             case "width":
-                // This property must be returned as an integer; round if necessary
-                try {
-                    float fwidth = Float.parseFloat(value);
-                    int width = Math.round(fwidth);
+                Integer width = convertDimension(value);
+                if (width != null) {
                     map = map.put(new XdmAtomicValue("width"), new XdmAtomicValue(width));
-                } catch (NumberFormatException nfe) {
-                    // nevermind
                 }
                 break;
             case "height":
-                // This property must be returned as an integer; round if necessary
-                try {
-                    float fheight = Float.parseFloat(value);
-                    int height = Math.round(fheight);
+                Integer height = convertDimension(value);
+                if (height != null) {
                     map = map.put(new XdmAtomicValue("height"), new XdmAtomicValue(height));
-                } catch (NumberFormatException nfe) {
-                    // nevermind
                 }
                 break;
             default:
@@ -151,6 +147,53 @@ abstract public class ImageCall extends ExtensionFunctionCall {
         }
 
         return map;
+    }
+
+    private Integer convertDimension(String value) {
+        // This property must be returned as an integer; round if necessary
+        // What if we have units?
+        String unit = null;
+        double dwidth = 0.0;
+
+        try {
+            Matcher matches = dimension.matcher(value);
+            if (matches.find()) {
+                dwidth = Double.parseDouble(matches.group(1));
+                unit = matches.group(3).toLowerCase();
+            } else {
+                dwidth = Double.parseDouble(value);
+            }
+
+            if (unit != null) {
+                switch (unit) {
+                    case "in":
+                        dwidth = dwidth * SVG_DPI;
+                        break;
+                    case "cm":
+                        dwidth = dwidth * SVG_DPI / 2.54;
+                        break;
+                    case "mm":
+                        dwidth = dwidth * SVG_DPI / 25.4;
+                        break;
+                    case "pt":
+                        dwidth = dwidth * SVG_DPI / 72.0;
+                        break;
+                    case "pc":
+                        dwidth = dwidth * SVG_DPI / 6.0;
+                        break;
+                    case "px":
+                        break;
+                    default:
+                        System.err.printf("Unrecognized SVG unit '%s'. Assuming pixels.%n", unit);
+                }
+            }
+
+            return Math.round((float) dwidth);
+        } catch (NumberFormatException nfe) {
+            // nevermind
+        }
+
+        return null;
     }
 
     private XdmMap parseBox(XdmMap map, String line) {
