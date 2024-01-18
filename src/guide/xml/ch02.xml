@@ -168,6 +168,11 @@ the <filename>xslt/docbook.xsl</filename> stylesheet will be used automatically.
 </listitem>
 </varlistentry>
 </variablelist>
+    <note>
+      <title>Processing modular DocBook files</title>
+      <para>Please note that in the case of modular DocBook documents, you must explicitly enable
+        xi:include processing by using the <code>-xi:on</code> parameter.</para>
+    </note>
 </section>
 
 <section xml:id="python-script">
