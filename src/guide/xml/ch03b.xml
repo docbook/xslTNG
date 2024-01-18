@@ -442,13 +442,9 @@ where the new locales reside. Those locale files will be used.
 <para>If you only want to override a small number of localization
 features, it may be simpler to do so directly in your stylesheet.
 The variable <varname>v:custom-localizations</varname> will be merged
-with the default localizations before transformation begins.</para>
-  
-<note>
-  <title>You can`t create new groups this way</title>
-        <para>Please note that you can only override existing groups with the procedure described here. 
+with the default localizations before transformation begins.
+But you can only override existing groups with the procedure described here. 
 You cannot use <varname>v:custom-localizations</varname> to define new groups.</para>
-</note>  
 
 <para>Suppose, for example, that you wanted:</para>
 
