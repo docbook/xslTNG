@@ -460,8 +460,48 @@ the files off of it, the files will be lost.</para>
 
 <para>In short: using a Docker container on Linux is somewhat less convenient.</para>
 
+</section>  
+  
 </section>
-</section>
+  
+<section>
+  <title>Run in Oxygen</title>
+    <para>"<productname>Oxygen</productname>" stands for a family of tools for XML authoring and
+      development. The xslTNG Stylesheets are not yet shipped with Oxygen, so you have to integrate
+      them by yourself.</para>
+    <orderedlist>
+      <listitem>
+        <para>Download the <emphasis>nosaxon</emphasis> Release (
+              <code>docbook-xslTNG-nosaxon-<replaceable>version</replaceable>.zip</code>) and unzip
+          it somewhere in your filesystem.</para>
+      </listitem>
+      <listitem>
+        <para>Define a transformation scenario with <filename>xslt/docbook.xsl</filename> as XSLT
+          file.</para>
+      </listitem>
+      <listitem>
+        <para>In order to use the extension funktions defined in <xref linkend="extensions"
+            xrefstyle="%label"/>, you have to add the
+              <code>docbook-xslTNG-<replaceable>version</replaceable>-.jar</code> library as an
+            <emphasis>Extension</emphasis>. And you have to set
+            <code>org.docbook.xslt.extensions</code> as the <emphasis>"Initializer class"</emphasis>
+          in the <emphasis>"Advanced Saxon HE/PE/EE XQuery Transformation Options"</emphasis> for
+          the transformation scenario.</para>
+        <para>Without this step the basic transformation will work, but extensions like
+            <emphasis>image metadate extraction</emphasis> with <code>ext:image-metadata</code> are
+          not available.</para>
+      </listitem>
+      <listitem>
+        <para>Set the stylesheet parameters accordingly in the transformation scenario.</para>
+      </listitem>
+      <listitem>
+        <para>Run the transformation to generate HTML output. Maybe you have to copy the
+            <filename>resources/css</filename> and <filename>resources/js</filename> directories to
+          the output location.</para>
+      </listitem>
+    </orderedlist>
+  
+</section>  
 
 <section xml:id="extensions">
 <title>Extension functions</title>
@@ -1589,4 +1629,3 @@ has a background color.
 
 </section>
 </chapter>
-
