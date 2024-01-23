@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
+    <?db glossary-collection='../../../src/test/resources/glosscollection.xml 
+                              ../../../src/test/resources/glosscollection2.xml' ?>
     <info>
-        <title>Mixed Glossary with multiple entries</title>
+        <title>Mixed Glossary with multiple entries from two external glossaries</title>
         <author>
             <personname>
                 <firstname>Frank</firstname>
@@ -10,28 +12,35 @@
         </author>
     </info>
 
-    <para>This test checks the <parameter>glossary-collection</parameter> machinery when the
-        "internal" glossary is not empty, and some glossterms have definitions in the internal and
-        external glossaries. The externals glossary file path must be given by setting the
-            <parameter>$glossary-collection</parameter> transformation parameter.</para>
-    <para>The internal entry has priority and should therefore cover / overwrite the definition from
-        the external glossary.</para>
-    <para>We expect a glossary with four entries, mixed from the internal and the external
+    <para>This test is essentially the same as <literal>glossary.007</literal>. The difference is,
+        that we have two external glossaries, both referenced by the following processing
+        instruction:</para>
+    <programlisting>&lt;?db glossary-collection='../../../src/test/resources/glosscollection.xml 
+                          ../../../src/test/resources/glosscollection2.xml' ?>
+    </programlisting>
+    <para>It checks the <parameter>glossary-collection</parameter> machinery when the "internal"
+        glossary is not empty, and some glossterms have definitions in the internal and external
+        glossaries. The internal entry has priority and should therefore cover / overwrite the
+        definition from the external glossary.</para>
+    <para>We expect a glossary with three entries, mixed from the internal and the external
         glossaries. <orderedlist>
             <listitem>
                 <para><glossterm>Apple</glossterm> should reference the internal, poetic
                     definition.</para>
             </listitem>
             <listitem>
-                <para><glossterm>Pear</glossterm> references the external definition;</para>
+                <para><glossterm>Pear</glossterm> references the external definition from
+                        <filename>glosscollection</filename>;</para>
             </listitem>
             <listitem>
-                <para><glossterm>Quince</glossterm> references the internal definition.</para>
+                <para><glossterm>Cucumber</glossterm> references the external definition from
+                        <filename>glosscollection2</filename>.</para>
             </listitem>
-            <listitem>
-                <para><glossterm>Bloodroot</glossterm> references the internal definition.</para>
-            </listitem>
-        </orderedlist></para>
+        </orderedlist>We do <emphasis role="bold">not</emphasis> expect an entry for
+            <emphasis>Quince</emphasis> or <emphasis>Bloodroot</emphasis> in the results document
+        glossary, although there is an entry in the internal glossary of the input document, because
+        there is no <emphasis>glossterm</emphasis> or <emphasis>firstterm</emphasis> that references
+        it.</para>
 
     <glossary role="auto">
         <glossentry>

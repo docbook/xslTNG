@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
+    <?db glossary-collection='../../../src/test/resources/glosscollection.xml' ?>
     <info>
-        <title>Mixed Glossary with multiple entries</title>
+        <title>Mixed Glossary with multiple entries, some from an external glossary</title>
         <author>
             <personname>
                 <firstname>Frank</firstname>
@@ -10,13 +11,14 @@
         </author>
     </info>
 
-    <para>This test checks the <parameter>glossary-collection</parameter> machinery when the
-        "internal" glossary is not empty, and some glossterms have definitions in the internal and
-        external glossaries. The externals glossary file path must be given by setting the
-            <parameter>$glossary-collection</parameter> transformation parameter.</para>
-    <para>The internal entry has priority and should therefore cover / overwrite the definition from
-        the external glossary.</para>
-    <para>We expect a glossary with four entries, mixed from the internal and the external
+    <para>This test is essentially the same as <literal>glossary.006</literal>. The difference is,
+        that the external glossary is referenced by the following Processing Instruction:</para>
+    <programlisting>&lt;?db glossary-collection='../../../src/test/resources/glosscollection.xml' ?&gt;</programlisting>
+    <para>It checks the <parameter>glossary-collection</parameter> machinery when the "internal"
+        glossary is not empty, and some glossterms have definitions in the internal and external
+        glossaries. The internal entry has priority and should therefore cover / overwrite the
+        definition from the external glossary.</para>
+    <para>We expect a glossary with three entries, mixed from the internal and the external
         glossaries. <orderedlist>
             <listitem>
                 <para><glossterm>Apple</glossterm> should reference the internal, poetic
@@ -27,9 +29,6 @@
             </listitem>
             <listitem>
                 <para><glossterm>Quince</glossterm> references the internal definition.</para>
-            </listitem>
-            <listitem>
-                <para><glossterm>Bloodroot</glossterm> references the internal definition.</para>
             </listitem>
         </orderedlist></para>
 

@@ -5,13 +5,14 @@
                 xmlns:ghost="http://docbook.org/ns/docbook/ghost"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
+                xmlns:t="http://docbook.org/ns/docbook/templates"
                 xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 exclude-result-prefixes="#all"
                 version="3.0">
 
-<xsl:import href="../environment.xsl"/>
+<xsl:import href="../environment.xsl"/>  
 
 <!-- ============================================================ -->
 
@@ -38,24 +39,6 @@
 
 <!-- ============================================================ -->
 <!-- normalize content -->
-
-<xsl:variable name="vp:external-glossary">
-  <xsl:choose>
-    <xsl:when test="$glossary-collection = ''">
-      <xsl:sequence select="()"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:try select="document($glossary-collection)">
-        <xsl:catch>
-          <xsl:message>Failed to load $glossary-collection:</xsl:message>
-          <xsl:message select="'    ' || $glossary-collection"/>
-          <xsl:message select="'    ('||resolve-uri($glossary-collection)||')'"/>
-          <xsl:sequence select="()"/>
-        </xsl:catch>
-      </xsl:try>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:variable>
 
 <xsl:variable name="vp:external-bibliography">
   <xsl:choose>
@@ -175,7 +158,8 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="db:glossary">
+<xsl:template match="glossary" xpath-default-namespace="http://docbook.org/ns/docbook"
+  xmlns="http://docbook.org/ns/docbook">
   <xsl:variable name="glossary">
     <xsl:call-template name="tp:normalize-generated-title">
       <xsl:with-param name="title-key" select="local-name(.)"/>
@@ -183,62 +167,44 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$glossary/db:glossary[@role='auto']">
-      <xsl:if test="not($vp:external-glossary)">
-        <xsl:message>
-          <xsl:text>Warning: processing automatic glossary </xsl:text>
-          <xsl:text>without an external glossary.</xsl:text>
-        </xsl:message>
+    <xsl:when test="$glossary/glossary[@role = 'auto']">
+      <xsl:variable name="terms" as="element()*">
+        <xsl:for-each-group select="//glossterm[not(ancestor::glossary)] union //firstterm"
+          group-by="(@baseform, normalize-space())[1]">
+          <xsl:sequence select="current-group()[1]"/>
+        </xsl:for-each-group>
+      </xsl:variable>
+      <xsl:if test="exists($terms)">
+        <glossary>
+          <xsl:sequence select="$glossary/@*, $glossary/info"/>
+          <xsl:call-template name="t:glossary-content">
+            <xsl:with-param name="terms" select="$terms"/>
+          </xsl:call-template>
+        </glossary>
       </xsl:if>
-
-      <xsl:element name="glossary" namespace="{$vp:docbook-namespace}">
-        <xsl:for-each select="$glossary/db:glossary/@*">
-          <xsl:if test="name(.) != 'role'">
-            <xsl:copy-of select="."/>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:copy-of select="$glossary/db:glossary/db:info"/>
-
-        <xsl:variable name="seealsos" as="element()*">
-          <xsl:for-each select="$vp:external-glossary//db:glossseealso">
-            <xsl:copy-of select="if (key('id', @otherterm))
-                                  then key('id', @otherterm)[1]
-                                  else key('glossterm', string(.))"/>
-          </xsl:for-each>
-        </xsl:variable>
-
-        <xsl:variable name="divs"
-                      select="$glossary//db:glossary/db:glossdiv"/>
-
-        <xsl:choose>
-          <xsl:when test="$divs and $vp:external-glossary//db:glossdiv">
-            <xsl:apply-templates select="$vp:external-glossary//db:glossdiv"
-                                 mode="mp:copy-external-glossary">
-              <xsl:with-param name="terms"
-                              select="//db:glossterm[not(parent::db:glossdef)]
-                                      |//db:firstterm
-                                      |$seealsos"/>
-              <xsl:with-param name="divs" select="$divs"/>
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$vp:external-glossary//db:glossentry"
-                                 mode="mp:copy-external-glossary">
-              <xsl:with-param name="terms"
-                              select="//db:glossterm[not(parent::db:glossdef)]
-                                      |//db:firstterm
-                                      |$seealsos"/>
-              <xsl:with-param name="divs" select="$divs"/>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:element>
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy-of select="$glossary"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+  
+<xsl:template name="t:glossary-content" as="element()*">
+  <xsl:param name="terms" as="element()+"/>
+  <xsl:variable name="collection" as="xs:string?">
+    <xsl:choose>
+      <xsl:when test="normalize-space($glossary-collection) gt ''">
+        <xsl:sequence select="normalize-space($glossary-collection)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="f:pi(/*, 'glossary-collection')[1]"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:for-each select="$terms">
+    <xsl:sequence select="f:glossentries(.,$collection )[1]"/>
+  </xsl:for-each>
+</xsl:template>  
 
 <xsl:template match="db:index">
   <xsl:call-template name="tp:normalize-generated-title">

@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:array="http://www.w3.org/2005/xpath-functions/array"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:err="http://www.w3.org/2005/xqt-errors"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
@@ -15,6 +16,8 @@
                 default-mode="m:docbook"
                 exclude-result-prefixes="array db f fp l m map mp v vp xs"
                 version="3.0">
+
+<xsl:include href="standalone-functions.xsl"/>
 
 <xsl:key name="id" match="*" use="@xml:id"/>
 <xsl:key name="genid" match="*" use="generate-id(.)"/>
@@ -409,41 +412,11 @@
   <xsl:sequence select="f:generate-id($node, false())"/>
 </xsl:function>
 
-<xsl:function name="f:pi" as="xs:string?" visibility="public">
-  <xsl:param name="context" as="node()?"/>
-  <xsl:param name="property" as="xs:string"/>
-  <xsl:sequence select="f:pi($context, $property, ())"/>
-</xsl:function>
 
-<xsl:function name="f:pi" as="xs:string*" visibility="public">
-  <xsl:param name="context" as="node()?"/>
-  <xsl:param name="property" as="xs:string"/>
-  <xsl:param name="default" as="xs:string*"/>
 
-  <xsl:choose>
-    <xsl:when test="empty($context)">
-      <xsl:sequence select="$default"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="fp:pi-from-list(($context/processing-instruction('db'),
-                                             root($context)/processing-instruction('db')),
-                                            $property, $default)"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
 
-<xsl:function name="fp:pi-from-list" as="xs:string*">
-  <xsl:param name="pis" as="processing-instruction()*"/>
-  <xsl:param name="property" as="xs:string"/>
-  <xsl:param name="default" as="xs:string*"/>
 
-  <xsl:variable name="value"
-                select="f:pi-attributes($pis)/@*[local-name(.) = $property]/string()"/>
 
-  <xsl:sequence select="if (empty($value))
-                        then $default
-                        else $value"/>
-</xsl:function>
 
 <xsl:function name="fp:css-properties" as="attribute()?">
   <xsl:param name="context" as="element()?"/>
@@ -483,54 +456,6 @@
       </xsl:next-iteration>
     </xsl:iterate>
   </xsl:if>
-</xsl:function>
-
-<xsl:function name="f:pi-attributes" as="element()?">
-  <xsl:param name="pis" as="processing-instruction()*"/>
-  <xsl:variable name="attributes"
-                select="fp:pi-attributes($pis, map { })"/>
-
-  <xsl:element name="pis" namespace="">
-    <xsl:for-each select="map:keys($attributes)">
-      <xsl:attribute name="{.}" select="map:get($attributes, .)"/>
-    </xsl:for-each>
-  </xsl:element>
-</xsl:function>
-
-<xsl:function name="fp:pi-attributes" as="map(*)?">
-  <xsl:param name="pis" as="processing-instruction()*"/>
-  <xsl:param name="pimap" as="map(*)"/>
-
-  <xsl:choose>
-    <xsl:when test="empty($pis)">
-      <xsl:sequence select="$pimap"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="map" select="fp:pi-pi-attributes($pimap,
-                                          normalize-space($pis[1]))"/>
-      <xsl:sequence select="fp:pi-attributes(subsequence($pis, 2), $map)"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:variable name="vp:pi-match"
-              select="'^.*?(\c+)=[''&quot;](.*?)[''&quot;](.*)$'"/>
-<xsl:function name="fp:pi-pi-attributes" as="map(*)">
-  <xsl:param name="pimap" as="map(*)"/>
-  <xsl:param name="text" as="xs:string"/>
-
-  <xsl:choose>
-    <xsl:when test="matches($text, $vp:pi-match)">
-      <xsl:variable name="aname" select="replace($text, $vp:pi-match, '$1')"/>
-      <xsl:variable name="avalue" select="replace($text, $vp:pi-match, '$2')"/>
-      <xsl:variable name="rest" select="replace($text, $vp:pi-match, '$3')"/>
-      <xsl:sequence select="fp:pi-pi-attributes(map:put($pimap, $aname, $avalue),
-                                                $rest)"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="$pimap"/>
-    </xsl:otherwise>
-  </xsl:choose>
 </xsl:function>
 
 <xsl:function name="f:spaces" as="xs:string?">
@@ -855,6 +780,6 @@
       <xsl:sequence select="string-join($final-parts, '/')"/>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:function>
-
+</xsl:function>  
+  
 </xsl:stylesheet>
