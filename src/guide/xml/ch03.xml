@@ -674,6 +674,62 @@ in the first section in chapter 2 will be labeled “2.1.1”, etc.
 This most closely reproduces the numbering from the 1.x stylesheets.</para>
 
 </section>
+  <section>
+    <title>Using glossaries</title>
+    <para>xslTNG offers a wide range of options for dealing with glossaries. The easiest way is of
+      course to manage the glossary entries yourself. Then it is your responsibility to ensure that
+      the glossary entries match the terms that are marked as <code>glossterm</code> or
+        <code>firstterm</code> in your document. </para>
+    <para>Schematron rules can help you with this. The <function>f:glossentries</function> function
+      has been designed so that it can be integrated into Schematron independently of the xslTNG
+      stylesheets. You can use it to check whether a corresponding <code>glossentry</code> exists
+      for a <code>glossterm</code> or <code>firstterm</code> while you are still writing.
+      Corresponding Schematron schemas are not yet part of the xslTNG framework.</para>
+    <para>Alternatively, you can create an <emphasis>automatic glossary </emphasis>that only
+      contains entries that are referenced by <code>glossterm</code> or <code>firstterm</code>. This
+      works well in conjunction with external glossaries, but their use is not absolutely necessary. </para>
+    <para>The best way to explain automatic glossaries is to use an example. Let's assume that you
+      have marked the two terms <emphasis role="bold">Apple</emphasis> and <emphasis role="bold"
+        >Pear</emphasis> in your document, so that your automatic glossary should ultimately contain
+      exactly two entries for these two terms. In any case, create a <code>glossary</code> with
+        <code>@role='auto'</code> in your document. We call this the <emphasis>internal</emphasis>
+      glossary.</para>
+    <itemizedlist>
+      <listitem>
+        <para>If your internal glossary has three entries for <emphasis>Apple</emphasis>,
+            <emphasis>Jackfruit</emphasis> and <emphasis>Pear</emphasis>, you will end up with a
+          glossary in the generated document that has only the two entries for
+            <emphasis>Apple</emphasis> and <emphasis>Pear</emphasis>. There will be no entry for
+            <emphasis>Jackfruit</emphasis>, since there is no corresponding <code>glossterm</code>
+          or <code>firstterm</code> in the main part of your text.</para>
+      </listitem>
+      <listitem>
+        <para>You can also use external glossaries for this task, which can be referenced by the use
+          of the <parameter>glossary-collection</parameter> transformation parameter, or the
+            <code>db</code> processing instruction with a <code>glossary-collection</code> pseudo
+          attribute. You can leave the internal, automatic glossary completely empty. As long as
+          there are entries for <emphasis>Apple</emphasis> and <emphasis>Pear</emphasis> in one of
+          your external gloassries, you will end up with these two entries in the generated
+          glossary, no matter how much more entries the external glossaries may contain.</para>
+      </listitem>
+      <listitem>
+        <para>You can use the internal, automatic glossary in conjunction with external glossaries.
+          In this case, entries from the internal glossary take prcedence over entries for the same
+          term from external glossaries. Lets say you have entries for <emphasis>Apple</emphasis>
+          and <emphasis>Pear</emphasis> among others in your external glossary, and also an
+            <code>glossentry</code> for <emphasis>Apple</emphasis> in your internal glossary. In
+          this case you will end up with a glossary which contains two entries, one for
+            <emphasis>Apple</emphasis> with the specific definition taken from the internal
+          glossary, and one for <emphasis>Pear</emphasis> from the external glossary, which may be a
+          more general definition.</para>
+      </listitem>
+    </itemizedlist>
+    <bridgehead>Caveats</bridgehead>
+    <para>The use of <code>glossdev</code> is not supported for automatic glossaries. You can,
+      however, customize the <code>t:glossary-content</code> template, which generates the content
+      for automatic glossaries from <code>glossterm</code> or <code>firstterm</code> Elements. This
+      would allow the use of glossary divisions.</para>
+  </section>
 
 <section xml:id="different">
 <title>Creating something completely different</title>

@@ -205,6 +205,25 @@ it appears.
 </para>
 </refsection>
 </refentry>
+  
+<refentry xml:id="t_glossary-content">
+  <?db filename='t_glossary-content'?>
+  <refmeta>
+    <refentrytitle>t:glossary-content</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/templates}glossary-content</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+      <refname>t_glossary-content</refname>
+      <refpurpose>process terms to generate content for a glossary</refpurpose>
+    </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The template processes a sequence of <code>glossterm</code> or <code>firstterm</code>
+        terms and generates the content of a glossary for them. In the standard implementation it
+        just writes out the first glossentry that matches for every term. You can overwrite this
+        template if you need a sequence of <code>glossdiv</code> sections in your glossary.</para>
+  </refsection>
+</refentry>
 
 <refentry xml:id="t_index-zone-reference">
 <?db filename="t_index-zone-reference"?>
