@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.1">
+    <info>
+        <title>SVG Graphic Dimensions</title>
+        <author>
+            <personname><firstname>Frank</firstname><surname>Steimke</surname></personname>
+            <email>fsteimke.hb@gmail.com</email>
+        </author>
+    </info>
+    <para>Check scaling an svg image where Dimensions are given in SVG file in Inches: <code>&lt;sgv
+            width="24.09375in" height="9.40625in"></code>. The image is created by the
+            <productname>MagicDraw</productname> UML Software.</para>
+    <para><link xlink:href="https://github.com/docbook/xslTNG/issues/432">Issue 432</link> is that
+        the generated HTML creates an <code>img</code> with wrong size:
+            <code>style="width:144px;height:96px;"</code> (which is <code>1.5in x 1.0in</code>). </para>
+    <para>Function <code>f:object-properties</code>  in <filename>objects.xsl</filename> uses the
+        external function <code>ext:image-metadata</code>, which seems to fail when dimensions in an
+        SVG file are given as value with units.</para>
+    <informaltable colsep="1" rowsep="1" frame="all">
+        <tgroup cols="4">
+            <colspec colnum="1" colname="col1" colwidth="2*" align="left"/>
+            <colspec colnum="2" colname="col2" colwidth="1*" align="right"/>
+            <colspec colnum="3" colname="col3" colwidth="1*" align="right"/>
+            <colspec colnum="4" colname="col4" colwidth="1*" align="right"/>
+            <thead>
+                <row>
+                    <entry/>
+                    <entry namest="col2" nameend="col3" align="center">Original Size</entry>
+                    <entry>Scaled 25%</entry>
+                </row>
+                <row>
+                    <entry/>
+                    <entry>Inch</entry>
+                    <entry>px</entry>
+                    <entry>px</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>Height</entry>
+                    <entry>9,40625</entry>
+                    <entry>903</entry>
+                    <entry>226</entry>
+                </row>
+                <row>
+                    <entry>Width</entry>
+                    <entry>24,09375</entry>
+                    <entry>2313</entry>
+                    <entry>578</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    <figure>
+        <title>SVG Image scaled by 25%</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../media/EvidenceRequest.svg" scale="25"/>
+            </imageobject>
+            <caption>
+                <para>This is an SVG Image scaled by 25%. Expected Dimensions are 578px x 226
+                    px</para>
+            </caption>
+        </mediaobject>
+    </figure>
+<!--
+    <figure>
+        <title>SVG Image not scaled</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../media/duck-small.svg"/>
+            </imageobject>
+            <caption>
+                <para>This is an unscaled SVG Image. Neither <code>width</code> nor 
+                    <code>depth</code> Attributes are expected.</para>
+            </caption>
+        </mediaobject>
+    </figure>
+    <figure>
+        <title>SVG Image scaled by 110%</title>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../media/duck-small.svg" scale="110"/>
+            </imageobject>
+            <caption>
+                <para>This is the same SVG Image scaled by 110%, expected Dimensions are 440px x 430px </para>
+            </caption>
+        </mediaobject>
+    </figure>
+-->
+</article>
