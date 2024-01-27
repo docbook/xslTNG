@@ -131,7 +131,7 @@
           let $internal-glossaries := root($term)//glossary
           return
             fp:glossentries-in-glossaries($term, $internal-glossaries),
-          fp:glossentries-in-glossaries($term, fp:external-glossaries($collection))"/>
+          fp:glossentries-in-glossaries($term, fp:external-glossaries($collection, root($term)))"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message
@@ -144,15 +144,17 @@
 <!-- returns external glossaries referenced by URIs in the $collection string -->
 <xsl:function name="fp:external-glossaries" as="element(glossary)*" cache="yes">
   <xsl:param name="collection" as="xs:string?"/>
+  <xsl:param name="context" as="node()"></xsl:param>
   <xsl:if test="$collection gt ''">
     <xsl:variable name="glossaries" as="element(glossary)*">
       <xsl:for-each select="tokenize($collection, '\s+')">
+        <xsl:variable name="href" as="xs:anyURI" select="resolve-uri(., base-uri($context))"/>
         <xsl:try>
-          <xsl:sequence select="doc(resolve-uri(.))/glossary"/>
+          <xsl:sequence select="doc($href)/glossary"/>
           <xsl:catch>
             <xsl:message select="'Failed to load glossary (' || $err:description || ')'"/>
             <xsl:message select="'       ' || ."/>
-            <xsl:message select="'       ' || resolve-uri(.)"/>
+            <xsl:message select="'       ' || $href"/>
           </xsl:catch>
         </xsl:try>
       </xsl:for-each>
