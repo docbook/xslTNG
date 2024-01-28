@@ -463,6 +463,51 @@ the files off of it, the files will be lost.</para>
 </section>
 </section>
 
+<section>
+<title>Run in Oxygen</title>
+
+<para>“<productname xlink:href="https://oxygenxml.com/">Oxygen</productname>” is a family
+of tools for XML authoring and development. The <citetitle>DocBook
+xslTNG Stylesheets</citetitle> are not currently shipped with Oxygen. To
+take advantage of the xslTNG stylesheets, you must setup the transformation scenarios
+yourself.</para>
+
+<orderedlist>
+<listitem>
+  <para>Download the <emphasis>nosaxon</emphasis> xslTNG release that you want to use in Oxygen
+  (<code>docbook-xslTNG-nosaxon-<replaceable>version</replaceable>.zip</code>) and unzip
+  it somewhere in your filesystem.
+  (Oxygen includes Saxon EE; the integration will be cleaner if the release you
+  use does not include a different version of Saxon.)</para>
+</listitem>
+<listitem>
+  <para>Define a transformation scenario with
+  <filename><replaceable>path</replaceable>/xslt/docbook.xsl</filename> as the XSLT
+ file (where <replaceable>path</replaceable> is where you unzipped the release in the previous step.</para>
+</listitem>
+<listitem>
+  <para>In order to use the extension functions defined in
+  <xref linkend="extensions" xrefstyle="%label"/>, you have to add the
+  <code>docbook-xslTNG-<replaceable>version</replaceable>.jar</code> library as an
+  <emphasis>Extension</emphasis> and set
+  <code>org.docbook.xslt.extensions</code> as the <emphasis>Initializer class</emphasis>
+  in the <emphasis>Advanced Saxon HE/PE/EE XQuery Transformation Options</emphasis> for
+  the transformation scenario.</para>
+  <para>Without this step the basic transformation will work, but extensions like
+  <emphasis>image metadate extraction</emphasis> with <code>ext:image-metadata</code> will
+  not be available.</para>
+</listitem>
+<listitem>
+  <para>Set the stylesheet parameters accordingly in the transformation scenario.</para>
+</listitem>
+<listitem>
+  <para>Run the transformation to generate HTML output. You will have to copy the
+  <filename>resources/css</filename> and <filename>resources/js</filename> directories to
+  the output location in order to get the styling and interactive features.</para>
+</listitem>
+</orderedlist>
+</section>  
+
 <section xml:id="extensions">
 <title>Extension functions</title>
 
