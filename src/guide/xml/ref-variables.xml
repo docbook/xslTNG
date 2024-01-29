@@ -1733,5 +1733,33 @@ used for a cross-reference. See <xref linkend="gentext"/>.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_pi-db-attributes-are-uris">
+<?db filename="v_pi-db-attributes-are-uris"?>
+<refmeta>
+<refentrytitle>$v:pi-db-attributes-are-uris</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}pi-db-attributes-are-uris</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:pi-db-attributes-are-uris</refname>
+<refpurpose>Controls which “db” processing instruction pseudo-attributes are URIs</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>The <link linkend="pi_db">“db” processing instruction</link> can be used to provide 
+configuration values within a document. For example:</para>
+
+<programlisting><![CDATA[<?db xlink-style='inline' glossary-collection='../gcollection.xml'?>]]></programlisting>
+
+<para>In this example, <code>xlink-style</code> is just a string value, but
+<code>glossary-collection</code> is a URI.
+When the value in question is a URI, it must be made absolute against the base URI
+of the processing instruction on which it occurs. The <varname>v:pi-db-attributes-are-uris</varname>
+variable determines which pseudo-attributes are considered URIs. Their values are made absolute
+when the processing instruction is parsed.</para>
+
+</refsection>
+</refentry>
+
 </reference>
 
