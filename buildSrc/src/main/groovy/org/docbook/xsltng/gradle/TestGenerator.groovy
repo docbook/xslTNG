@@ -133,12 +133,17 @@ class TestGenerator {
       .withEnvironments(['default'])
       .withStylesheet("${uBuildDir}/xslt/presentation.xsl")
 
+    testEnvironments.create('glossary-collection')
+      .withParameters([
+          'glossary-collection': "${fProjectDir}/src/test/resources/glosscollection.xml"])
+
     testConfigurations.create('unwrapped').withEnvironments(['unwrap'])
     testConfigurations.create('transclude').withEnvironments(['transclude'])
     testConfigurations.create('local').withEnvironments(['local'])
     testConfigurations.create('colors').withEnvironments(['colors'])
     testConfigurations.create('ptoc').withEnvironments(['ptoc'])
     testConfigurations.create('a11y').withEnvironments(['a11y'])
+    testConfigurations.create('glossary-collection').withEnvironments(['glossary-collection'])
 
     def regexList = []
     ['fit\\.': 'fit',
@@ -149,6 +154,8 @@ class TestGenerator {
      'ptoc\\.': 'ptoc',
      'mediaobject\\.005': 'a11y',
      'presentation\\.': 'presentations',
+     'glossary\\.00[1,2,3,4,5,6]': 'glossary-collection', // Not 7, 8, or 9!
+     'glossary\\.01': 'glossary-collection',
     ].each { entry ->
       Pattern pat = ~"^.*${entry.key}.*\$"
       regexList.add(new Tuple(pat, testConfigurations.find(entry.value)))

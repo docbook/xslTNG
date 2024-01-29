@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
    <title>Article wrapper</title>
-   <para>This is a test. Xref to fifo: <xref linkend="fifo"/>.</para>
+
+<note>
+<para>The test harness is configured to run this test with the
+<parameter>glossary-collection</parameter> parameter pointing to
+<filename>src/test/resources/glosscollection.xml</filename>.</para>
+</note>
+
+   <para>This is a test. Xref to fifo: <xref linkend="fifo"/>. The glossary
+entries are sorted alphabetically by default.</para>
+
    <glossary>
       <glossentry>
          <glossterm>test1</glossterm>
