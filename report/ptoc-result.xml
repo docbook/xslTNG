@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/ptoc.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/ptoc.xsl"
-         date="2024-01-28T16:22:39.415734Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/ptoc.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/ptoc.xsl"
+        date="2024-01-29T11:14:39.006611Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/ptoc.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/ptoc.xspec">
       <label>When transforming ptoc.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/ptoc.001.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/ptoc.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1586,14 +1586,14 @@ persistent Table of Contents. I grabbed this from Wikipedia for fun.</p>
                      <!-- Hide ToC details from user agents that don’t support JS -->
                      <script type="text/html" class="tocopen">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                              alt="[toc]"/>
+                             alt="[toc]"/>
                      </script>
                      <script type="text/html" class="toc">
                         <header>
                            <span>Table of Contents</span>
                            <span class="close">
                               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                    alt="X"/>
+                                   alt="X"/>
                            </span>
                            <p class="ptoc-search">
                               <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
@@ -3792,14 +3792,14 @@ persistent Table of Contents. I grabbed this from Wikipedia for fun.</p>
                         <!-- Hide ToC details from user agents that don’t support JS -->
                         <script type="text/html" class="tocopen">
                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                 alt="[toc]"/>
+                                alt="[toc]"/>
                         </script>
                         <script type="text/html" class="toc">
                            <header>
                               <span>Table of Contents</span>
                               <span class="close">
                                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                       alt="X"/>
+                                      alt="X"/>
                               </span>
                               <p class="ptoc-search">
                                  <input class="ptoc-search" placeholder="Search" style="width: 80%"/>

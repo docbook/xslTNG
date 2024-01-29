@@ -16,6 +16,13 @@
 
 <chapter>
 <title>Fruits and Peppers</title>
+
+<note>
+<para>The test harness is configured to run this test with the
+<parameter>glossary-collection</parameter> parameter pointing to
+<filename>src/test/resources/glosscollection.xml</filename>.</para>
+</note>
+
 <para>There's a <tag>firstterm</tag> here:
 <firstterm>Apple</firstterm>.</para>
 
@@ -23,8 +30,11 @@
 <glossterm>Peach</glossterm>, <glossterm>Jackfruit</glossterm>,
 and <glossterm>Durian</glossterm> (not in the <xref linkend="glossary"/>).</para>
   
-<para>We also have <glossterm>Pepper</glossterm> which has <emphasis>two</emphasis> entries in the
-      glossary. This is wrong, of course. The  application should complain. </para>  
+<para>We also have <glossterm>Pepper</glossterm> which has
+<emphasis>two</emphasis> entries in the glossary. This is wrong, of
+course. The application should complain. (Note that when constructing a glossary
+automatically, repeated terms are avoided by only using the first. When the glossary
+is constructed by hand, removing duplicates is the author’s resposibility.)</para>
 </chapter>
 
 <glossary xml:id="glossary">

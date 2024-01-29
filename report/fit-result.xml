@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/fit.xsl"
-         date="2024-01-28T16:18:30.405333Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/fit.xsl"
+        date="2024-01-29T11:10:09.967215Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
       <label>When transforming fit.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fit.001.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fit.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -26,7 +26,7 @@
                   <link href="./css/docbook-toc.css" rel="stylesheet"/>
                   <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML"
-                           defer="defer"/>
+                          defer="defer"/>
                   <script src="./js/annotations.js" defer="defer"/>
                   <script src="./js/xlink.js" defer="defer"/>
                   <script src="./js/persistent-toc.js" defer="defer"/>
@@ -205,7 +205,7 @@ CSS and JavaScript APIs.</p>
                            <div id="look_fig1" class="figure formalobject pgwide">
                               <div class="screenshot">
                                  <div class="mediaobject"
-                                       summary="Screenshot of this chapter as rendered in Firefox on the Mac">
+                                      summary="Screenshot of this chapter as rendered in Firefox on the Mac">
                                     <details>
                                        <p>Screenshot of the new look and feel as rendered in Firefox.
 There’s a header across the top with Home, Up, Next, and Previous
@@ -217,40 +217,40 @@ and next pages are shown in the footer.</p>
                                     <div class="media image">
                                        <picture class="imageobject">
                                           <img src="media/fit-screenshot.png"
-                                                alt="Screenshot of this chapter as rendered in Firefox on the Mac"
-                                                usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
+                                               alt="Screenshot of this chapter as rendered in Firefox on the Mac"
+                                               usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
                                        </picture>
                                        <map name="imap_look_fig1_screenshot1_mediaobject1_imageobjectco1">
                                           <area shape="rect"
-                                                 id="lf.header"
-                                                 class="area"
-                                                 href="#lf.header.co"
-                                                 coords="28,113,176,196"/>
+                                                id="lf.header"
+                                                class="area"
+                                                href="#lf.header.co"
+                                                coords="28,113,176,196"/>
                                           <area shape="rect"
-                                                 id="lf.access"
-                                                 class="area"
-                                                 href="#lf.access.co"
-                                                 coords="92,201,200,258"/>
+                                                id="lf.access"
+                                                class="area"
+                                                href="#lf.access.co"
+                                                coords="92,201,200,258"/>
                                           <area shape="rect"
-                                                 id="lf.footer"
-                                                 class="area"
-                                                 href="#lf.footer.co"
-                                                 coords="40,304,176,412"/>
+                                                id="lf.footer"
+                                                class="area"
+                                                href="#lf.footer.co"
+                                                coords="40,304,176,412"/>
                                           <area shape="rect"
-                                                 id="lf.perstoc"
-                                                 class="area"
-                                                 href="#lf.perstoc.co"
-                                                 coords="584,82,728,144"/>
+                                                id="lf.perstoc"
+                                                class="area"
+                                                href="#lf.perstoc.co"
+                                                coords="584,82,728,144"/>
                                           <area shape="rect"
-                                                 id="lf.cleaner"
-                                                 class="area"
-                                                 href="#lf.cleaner.co"
-                                                 coords="584,160,744,224"/>
+                                                id="lf.cleaner"
+                                                class="area"
+                                                href="#lf.cleaner.co"
+                                                coords="584,160,744,224"/>
                                           <area shape="rect"
-                                                 id="lf.customize"
-                                                 class="area"
-                                                 href="#lf.customize.co"
-                                                 coords="572,263,768,402"/>
+                                                id="lf.customize"
+                                                class="area"
+                                                href="#lf.customize.co"
+                                                coords="572,263,768,402"/>
                                        </map>
                                     </div>
                                  </div>
@@ -324,7 +324,7 @@ Contents navigation hierarchy to every page. Clicking on the
                                  <span class="media image">
                                     <picture class="imageobject">
                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                             alt="[toc]"/>
+                                            alt="[toc]"/>
                                     </picture>
                                  </span>
                               </span>
@@ -334,7 +334,7 @@ from the right hand edge of the screen.
                            <div id="toc_fig1" class="figure formalobject pgwide">
                               <div class="screenshot">
                                  <div class="mediaobject"
-                                       summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
+                                      summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
                                     <details>
                                        <p>Screenshot showing the persistent table of contents rendered
 as a popup on the right hand side of the page.</p>
@@ -342,7 +342,7 @@ as a popup on the right hand side of the page.</p>
                                     <div class="media image">
                                        <picture class="imageobject">
                                           <img src="media/fit-ptoc.png"
-                                                alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
+                                               alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
                                        </picture>
                                     </div>
                                  </div>
@@ -375,8 +375,8 @@ be updated when the underlying resource is updated.</p>
 “<em>n</em>th” Fibonacci number.</p>
                            <div class="programlistingco">
                               <div class="pre-wrap highlight"
-                                    db-startinglinenumber="1"
-                                    db-numberoflines="9">
+                                   db-startinglinenumber="1"
+                                   db-numberoflines="9">
                                  <pre class="language-python long numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln">1 <span class="nsep">|</span>
@@ -468,11 +468,11 @@ be updated when the underlying resource is updated.</p>
                                              <span class="nn">click</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.importclick"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.importclick.co"
-                                                 db-line="7"
-                                                 db-column="15"
-                                                 title="Highlights the click library">①</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.importclick.co"
+                                                db-line="7"
+                                                db-column="15"
+                                                title="Highlights the click library">①</a>
                                           </code>
                                        </span>
                                     </span>
@@ -510,11 +510,11 @@ be updated when the underlying resource is updated.</p>
                                              <span class="p">)</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.sqrt5"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.sqrt5.co"
-                                                 db-line="9"
-                                                 db-column="23"
-                                                 title="Constant: √5">②</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.sqrt5.co"
+                                                db-line="9"
+                                                db-column="23"
+                                                title="Constant: √5">②</a>
                                           </code>
                                        </span>
                                     </span>
@@ -576,8 +576,8 @@ fragments for documentation. The listing above, and the one below,
 are lines from the same file.</p>
                            <div class="programlistingco">
                               <div class="pre-wrap highlight"
-                                    db-startinglinenumber="11"
-                                    db-numberoflines="26">
+                                   db-startinglinenumber="11"
+                                   db-numberoflines="26">
                                  <pre class="language-python long numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln">11 <span class="nsep">|</span>
@@ -625,11 +625,11 @@ are lines from the same file.</p>
                                           <code>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">               </ws>
                                              <a id="py.click"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.click.co"
-                                                 db-line="3"
-                                                 db-column="16"
-                                                 title="Click takes care of type checking the arguments">③</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.click.co"
+                                                db-line="3"
+                                                db-column="16"
+                                                title="Click takes care of type checking the arguments">③</a>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
                                              <span class="nb">type</span>
                                              <span class="o">=</span>
@@ -786,11 +786,11 @@ are lines from the same file.</p>
                                              <span class="n">SQRT5</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">      </ws>
                                              <a id="py.fib"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.fib.co"
-                                                 db-line="9"
-                                                 db-column="60"
-                                                 title="Closed-form calculation of n’th Fibonacci number">④</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.fib.co"
+                                                db-line="9"
+                                                db-column="60"
+                                                title="Closed-form calculation of n’th Fibonacci number">④</a>
                                           </code>
                                        </span>
                                     </span>
@@ -952,11 +952,11 @@ are lines from the same file.</p>
                                              <span class="c1"># https://stackoverflow.com/questions/9647202</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">          </ws>
                                              <a id="py.ordinal"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.ordinal.co"
-                                                 db-line="18"
-                                                 db-column="60"
-                                                 title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?">⑤</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.ordinal.co"
+                                                db-line="18"
+                                                db-column="60"
+                                                title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?">⑤</a>
                                           </code>
                                        </span>
                                     </span>
@@ -1131,11 +1131,11 @@ are lines from the same file.</p>
                                              <span class="p">()</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.main"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.main.co"
-                                                 db-line="26"
-                                                 db-column="18"
-                                                 title="If this is a main program, run it!">⑥</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.main.co"
+                                                db-line="26"
+                                                db-column="18"
+                                                title="If this is a main program, run it!">⑥</a>
                                           </code>
                                        </span>
                                     </span>
@@ -1159,10 +1159,10 @@ arguments is that you get type and range checking pretty much for free.</p>
                                        <p>This is the closed-form solution to finding the
 “<em>n</em>th” Fibonacci number:</p>
                                        <div id="py.fib.co_informalequation1"
-                                             class="informalequation informalobject">
+                                            class="informalequation informalobject">
                                           <math xmlns="http://www.w3.org/1998/Math/MathML"
-                                                 class="equation"
-                                                 display="block">
+                                                class="equation"
+                                                display="block">
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                                              <mfrac>
@@ -1333,8 +1333,8 @@ the following link:
                               </a>
                            </p>
                            <div class="pre-wrap highlight"
-                                 db-startinglinenumber="1"
-                                 db-numberoflines="14">
+                                db-startinglinenumber="1"
+                                db-numberoflines="14">
                               <pre class="language-xml long numbered programlisting verbatim verblines">
                                  <span class="line" db-line="1">
                                     <span class="ln"> 1 <span class="nsep">|</span>
@@ -1777,7 +1777,7 @@ the next chapter.)</p>
 </ws>
                                     <p>According to Merriam-Webster,
 <a href="https://www.merriam-webster.com/dictionary/annotation"
-                                           class="link">an
+                                          class="link">an
 annotation</a> is a note added by way of comment or explanation.
 They give as an example quotation:
 </p>
@@ -1992,14 +1992,14 @@ identify the link target and any other element identifies the source.</p>
                      <!-- Hide ToC details from user agents that don’t support JS -->
                      <script type="text/html" class="tocopen">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                              alt="[toc]"/>
+                             alt="[toc]"/>
                      </script>
                      <script type="text/html" class="toc">
                         <header>
                            <span>Table of Contents</span>
                            <span class="close">
                               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                    alt="X"/>
+                                   alt="X"/>
                            </span>
                            <p class="ptoc-search">
                               <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
@@ -2082,7 +2082,7 @@ identify the link target and any other element identifies the source.</p>
                      <link href="./css/docbook-toc.css" rel="stylesheet"/>
                      <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML"
-                              defer="defer"/>
+                             defer="defer"/>
                      <script src="./js/annotations.js" defer="defer"/>
                      <script src="./js/xlink.js" defer="defer"/>
                      <script src="./js/persistent-toc.js" defer="defer"/>
@@ -2261,7 +2261,7 @@ CSS and JavaScript APIs.</p>
                               <div id="look_fig1" class="figure formalobject pgwide">
                                  <div class="screenshot">
                                     <div class="mediaobject"
-                                          summary="Screenshot of this chapter as rendered in Firefox on the Mac">
+                                         summary="Screenshot of this chapter as rendered in Firefox on the Mac">
                                        <details>
                                           <p>Screenshot of the new look and feel as rendered in Firefox.
 There’s a header across the top with Home, Up, Next, and Previous
@@ -2273,40 +2273,40 @@ and next pages are shown in the footer.</p>
                                        <div class="media image">
                                           <picture class="imageobject">
                                              <img src="media/fit-screenshot.png"
-                                                   alt="Screenshot of this chapter as rendered in Firefox on the Mac"
-                                                   usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
+                                                  alt="Screenshot of this chapter as rendered in Firefox on the Mac"
+                                                  usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
                                           </picture>
                                           <map name="imap_look_fig1_screenshot1_mediaobject1_imageobjectco1">
                                              <area shape="rect"
-                                                    id="lf.header"
-                                                    class="area"
-                                                    href="#lf.header.co"
-                                                    coords="28,113,176,196"/>
+                                                   id="lf.header"
+                                                   class="area"
+                                                   href="#lf.header.co"
+                                                   coords="28,113,176,196"/>
                                              <area shape="rect"
-                                                    id="lf.access"
-                                                    class="area"
-                                                    href="#lf.access.co"
-                                                    coords="92,201,200,258"/>
+                                                   id="lf.access"
+                                                   class="area"
+                                                   href="#lf.access.co"
+                                                   coords="92,201,200,258"/>
                                              <area shape="rect"
-                                                    id="lf.footer"
-                                                    class="area"
-                                                    href="#lf.footer.co"
-                                                    coords="40,304,176,412"/>
+                                                   id="lf.footer"
+                                                   class="area"
+                                                   href="#lf.footer.co"
+                                                   coords="40,304,176,412"/>
                                              <area shape="rect"
-                                                    id="lf.perstoc"
-                                                    class="area"
-                                                    href="#lf.perstoc.co"
-                                                    coords="584,82,728,144"/>
+                                                   id="lf.perstoc"
+                                                   class="area"
+                                                   href="#lf.perstoc.co"
+                                                   coords="584,82,728,144"/>
                                              <area shape="rect"
-                                                    id="lf.cleaner"
-                                                    class="area"
-                                                    href="#lf.cleaner.co"
-                                                    coords="584,160,744,224"/>
+                                                   id="lf.cleaner"
+                                                   class="area"
+                                                   href="#lf.cleaner.co"
+                                                   coords="584,160,744,224"/>
                                              <area shape="rect"
-                                                    id="lf.customize"
-                                                    class="area"
-                                                    href="#lf.customize.co"
-                                                    coords="572,263,768,402"/>
+                                                   id="lf.customize"
+                                                   class="area"
+                                                   href="#lf.customize.co"
+                                                   coords="572,263,768,402"/>
                                           </map>
                                        </div>
                                     </div>
@@ -2380,7 +2380,7 @@ Contents navigation hierarchy to every page. Clicking on the
                                     <span class="media image">
                                        <picture class="imageobject">
                                           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                                alt="[toc]"/>
+                                               alt="[toc]"/>
                                        </picture>
                                     </span>
                                  </span>
@@ -2390,7 +2390,7 @@ from the right hand edge of the screen.
                               <div id="toc_fig1" class="figure formalobject pgwide">
                                  <div class="screenshot">
                                     <div class="mediaobject"
-                                          summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
+                                         summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
                                        <details>
                                           <p>Screenshot showing the persistent table of contents rendered
 as a popup on the right hand side of the page.</p>
@@ -2398,7 +2398,7 @@ as a popup on the right hand side of the page.</p>
                                        <div class="media image">
                                           <picture class="imageobject">
                                              <img src="media/fit-ptoc.png"
-                                                   alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
+                                                  alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
                                           </picture>
                                        </div>
                                     </div>
@@ -2431,8 +2431,8 @@ be updated when the underlying resource is updated.</p>
 “<em>n</em>th” Fibonacci number.</p>
                               <div class="programlistingco">
                                  <div class="pre-wrap highlight"
-                                       db-startinglinenumber="1"
-                                       db-numberoflines="9">
+                                      db-startinglinenumber="1"
+                                      db-numberoflines="9">
                                     <pre class="language-python long numbered programlisting verbatim verblines">
                                        <span class="line" db-line="1">
                                           <span class="ln">1 <span class="nsep">|</span>
@@ -2524,11 +2524,11 @@ be updated when the underlying resource is updated.</p>
                                                 <span class="nn">click</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.importclick"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.importclick.co"
-                                                    db-line="7"
-                                                    db-column="15"
-                                                    title="Highlights the click library">①</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.importclick.co"
+                                                   db-line="7"
+                                                   db-column="15"
+                                                   title="Highlights the click library">①</a>
                                              </code>
                                           </span>
                                        </span>
@@ -2566,11 +2566,11 @@ be updated when the underlying resource is updated.</p>
                                                 <span class="p">)</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.sqrt5"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.sqrt5.co"
-                                                    db-line="9"
-                                                    db-column="23"
-                                                    title="Constant: √5">②</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.sqrt5.co"
+                                                   db-line="9"
+                                                   db-column="23"
+                                                   title="Constant: √5">②</a>
                                              </code>
                                           </span>
                                        </span>
@@ -2632,8 +2632,8 @@ fragments for documentation. The listing above, and the one below,
 are lines from the same file.</p>
                               <div class="programlistingco">
                                  <div class="pre-wrap highlight"
-                                       db-startinglinenumber="11"
-                                       db-numberoflines="26">
+                                      db-startinglinenumber="11"
+                                      db-numberoflines="26">
                                     <pre class="language-python long numbered programlisting verbatim verblines">
                                        <span class="line" db-line="1">
                                           <span class="ln">11 <span class="nsep">|</span>
@@ -2681,11 +2681,11 @@ are lines from the same file.</p>
                                              <code>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">               </ws>
                                                 <a id="py.click"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.click.co"
-                                                    db-line="3"
-                                                    db-column="16"
-                                                    title="Click takes care of type checking the arguments">③</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.click.co"
+                                                   db-line="3"
+                                                   db-column="16"
+                                                   title="Click takes care of type checking the arguments">③</a>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
                                                 <span class="nb">type</span>
                                                 <span class="o">=</span>
@@ -2842,11 +2842,11 @@ are lines from the same file.</p>
                                                 <span class="n">SQRT5</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">      </ws>
                                                 <a id="py.fib"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.fib.co"
-                                                    db-line="9"
-                                                    db-column="60"
-                                                    title="Closed-form calculation of n’th Fibonacci number">④</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.fib.co"
+                                                   db-line="9"
+                                                   db-column="60"
+                                                   title="Closed-form calculation of n’th Fibonacci number">④</a>
                                              </code>
                                           </span>
                                        </span>
@@ -3008,11 +3008,11 @@ are lines from the same file.</p>
                                                 <span class="c1"># https://stackoverflow.com/questions/9647202</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">          </ws>
                                                 <a id="py.ordinal"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.ordinal.co"
-                                                    db-line="18"
-                                                    db-column="60"
-                                                    title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?">⑤</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.ordinal.co"
+                                                   db-line="18"
+                                                   db-column="60"
+                                                   title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?">⑤</a>
                                              </code>
                                           </span>
                                        </span>
@@ -3187,11 +3187,11 @@ are lines from the same file.</p>
                                                 <span class="p">()</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.main"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.main.co"
-                                                    db-line="26"
-                                                    db-column="18"
-                                                    title="If this is a main program, run it!">⑥</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.main.co"
+                                                   db-line="26"
+                                                   db-column="18"
+                                                   title="If this is a main program, run it!">⑥</a>
                                              </code>
                                           </span>
                                        </span>
@@ -3215,10 +3215,10 @@ arguments is that you get type and range checking pretty much for free.</p>
                                           <p>This is the closed-form solution to finding the
 “<em>n</em>th” Fibonacci number:</p>
                                           <div id="py.fib.co_informalequation1"
-                                                class="informalequation informalobject">
+                                               class="informalequation informalobject">
                                              <math xmlns="http://www.w3.org/1998/Math/MathML"
-                                                    class="equation"
-                                                    display="block">
+                                                   class="equation"
+                                                   display="block">
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                                                 <mfrac>
@@ -3389,8 +3389,8 @@ the following link:
                                  </a>
                               </p>
                               <div class="pre-wrap highlight"
-                                    db-startinglinenumber="1"
-                                    db-numberoflines="14">
+                                   db-startinglinenumber="1"
+                                   db-numberoflines="14">
                                  <pre class="language-xml long numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln"> 1 <span class="nsep">|</span>
@@ -3833,7 +3833,7 @@ the next chapter.)</p>
 </ws>
                                        <p>According to Merriam-Webster,
 <a href="https://www.merriam-webster.com/dictionary/annotation"
-                                              class="link">an
+                                             class="link">an
 annotation</a> is a note added by way of comment or explanation.
 They give as an example quotation:
 </p>
@@ -4048,14 +4048,14 @@ identify the link target and any other element identifies the source.</p>
                         <!-- Hide ToC details from user agents that don’t support JS -->
                         <script type="text/html" class="tocopen">
                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                 alt="[toc]"/>
+                                alt="[toc]"/>
                         </script>
                         <script type="text/html" class="toc">
                            <header>
                               <span>Table of Contents</span>
                               <span class="close">
                                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                       alt="X"/>
+                                      alt="X"/>
                               </span>
                               <p class="ptoc-search">
                                  <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
@@ -4123,11 +4123,11 @@ identify the link target and any other element identifies the source.</p>
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
       <label>When transforming fit.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fit.002.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fit.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -4145,7 +4145,7 @@ identify the link target and any other element identifies the source.</p>
                   <link href="./css/docbook-toc.css" rel="stylesheet"/>
                   <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML"
-                           defer="defer"/>
+                          defer="defer"/>
                   <script src="./js/annotations.js" defer="defer"/>
                   <script src="./js/xlink.js" defer="defer"/>
                   <script src="./js/persistent-toc.js" defer="defer"/>
@@ -4338,7 +4338,7 @@ CSS and JavaScript APIs.</p>
                            <div id="look_fig1" class="figure formalobject pgwide">
                               <div class="screenshot">
                                  <div class="mediaobject"
-                                       summary="Screenshot of this chapter as rendered in Firefox on the Mac">
+                                      summary="Screenshot of this chapter as rendered in Firefox on the Mac">
                                     <details>
                                        <p>Screenshot of the new look and feel as rendered in Firefox.
 There’s a header across the top with Home, Up, Next, and Previous
@@ -4350,40 +4350,40 @@ and next pages are shown in the footer.</p>
                                     <div class="media image">
                                        <picture class="imageobject">
                                           <img src="media/fit-screenshot.png"
-                                                alt="Screenshot of this chapter as rendered in Firefox on the Mac"
-                                                usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
+                                               alt="Screenshot of this chapter as rendered in Firefox on the Mac"
+                                               usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
                                        </picture>
                                        <map name="imap_look_fig1_screenshot1_mediaobject1_imageobjectco1">
                                           <area shape="rect"
-                                                 id="lf.header"
-                                                 class="area"
-                                                 href="#lf.header.co"
-                                                 coords="28,113,176,196"/>
+                                                id="lf.header"
+                                                class="area"
+                                                href="#lf.header.co"
+                                                coords="28,113,176,196"/>
                                           <area shape="rect"
-                                                 id="lf.access"
-                                                 class="area"
-                                                 href="#lf.access.co"
-                                                 coords="92,201,200,258"/>
+                                                id="lf.access"
+                                                class="area"
+                                                href="#lf.access.co"
+                                                coords="92,201,200,258"/>
                                           <area shape="rect"
-                                                 id="lf.footer"
-                                                 class="area"
-                                                 href="#lf.footer.co"
-                                                 coords="40,304,176,412"/>
+                                                id="lf.footer"
+                                                class="area"
+                                                href="#lf.footer.co"
+                                                coords="40,304,176,412"/>
                                           <area shape="rect"
-                                                 id="lf.perstoc"
-                                                 class="area"
-                                                 href="#lf.perstoc.co"
-                                                 coords="584,82,728,144"/>
+                                                id="lf.perstoc"
+                                                class="area"
+                                                href="#lf.perstoc.co"
+                                                coords="584,82,728,144"/>
                                           <area shape="rect"
-                                                 id="lf.cleaner"
-                                                 class="area"
-                                                 href="#lf.cleaner.co"
-                                                 coords="584,160,744,224"/>
+                                                id="lf.cleaner"
+                                                class="area"
+                                                href="#lf.cleaner.co"
+                                                coords="584,160,744,224"/>
                                           <area shape="rect"
-                                                 id="lf.customize"
-                                                 class="area"
-                                                 href="#lf.customize.co"
-                                                 coords="572,263,768,402"/>
+                                                id="lf.customize"
+                                                class="area"
+                                                href="#lf.customize.co"
+                                                coords="572,263,768,402"/>
                                        </map>
                                     </div>
                                  </div>
@@ -4457,7 +4457,7 @@ Contents navigation hierarchy to every page. Clicking on the
                                  <span class="media image">
                                     <picture class="imageobject">
                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                             alt="[toc]"/>
+                                            alt="[toc]"/>
                                     </picture>
                                  </span>
                               </span>
@@ -4467,7 +4467,7 @@ from the right hand edge of the screen.
                            <div id="toc_fig1" class="figure formalobject pgwide">
                               <div class="screenshot">
                                  <div class="mediaobject"
-                                       summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
+                                      summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
                                     <details>
                                        <p>Screenshot showing the persistent table of contents rendered
 as a popup on the right hand side of the page.</p>
@@ -4475,7 +4475,7 @@ as a popup on the right hand side of the page.</p>
                                     <div class="media image">
                                        <picture class="imageobject">
                                           <img src="media/fit-ptoc.png"
-                                                alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
+                                               alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
                                        </picture>
                                     </div>
                                  </div>
@@ -4508,8 +4508,8 @@ be updated when the underlying resource is updated.</p>
 “<em>n</em>th” Fibonacci number.</p>
                            <div class="programlistingco">
                               <div class="pre-wrap highlight"
-                                    db-startinglinenumber="1"
-                                    db-numberoflines="9">
+                                   db-startinglinenumber="1"
+                                   db-numberoflines="9">
                                  <pre class="language-python long numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln">1 <span class="nsep">|</span>
@@ -4601,11 +4601,11 @@ be updated when the underlying resource is updated.</p>
                                              <span class="nn">click</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.importclick"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.importclick.co"
-                                                 db-line="7"
-                                                 db-column="15"
-                                                 title="Highlights the click library">①</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.importclick.co"
+                                                db-line="7"
+                                                db-column="15"
+                                                title="Highlights the click library">①</a>
                                           </code>
                                        </span>
                                     </span>
@@ -4643,11 +4643,11 @@ be updated when the underlying resource is updated.</p>
                                              <span class="p">)</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.sqrt5"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.sqrt5.co"
-                                                 db-line="9"
-                                                 db-column="23"
-                                                 title="Constant: √5">②</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.sqrt5.co"
+                                                db-line="9"
+                                                db-column="23"
+                                                title="Constant: √5">②</a>
                                           </code>
                                        </span>
                                     </span>
@@ -4709,8 +4709,8 @@ fragments for documentation. The listing above, and the one below,
 are lines from the same file.</p>
                            <div class="programlistingco">
                               <div class="pre-wrap highlight"
-                                    db-startinglinenumber="11"
-                                    db-numberoflines="26">
+                                   db-startinglinenumber="11"
+                                   db-numberoflines="26">
                                  <pre class="language-python long numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln">11 <span class="nsep">|</span>
@@ -4758,11 +4758,11 @@ are lines from the same file.</p>
                                           <code>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">               </ws>
                                              <a id="py.click"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.click.co"
-                                                 db-line="3"
-                                                 db-column="16"
-                                                 title="Click takes care of type checking the arguments">③</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.click.co"
+                                                db-line="3"
+                                                db-column="16"
+                                                title="Click takes care of type checking the arguments">③</a>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
                                              <span class="nb">type</span>
                                              <span class="o">=</span>
@@ -4919,11 +4919,11 @@ are lines from the same file.</p>
                                              <span class="n">SQRT5</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">      </ws>
                                              <a id="py.fib"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.fib.co"
-                                                 db-line="9"
-                                                 db-column="60"
-                                                 title="Closed-form calculation of n’th Fibonacci number">④</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.fib.co"
+                                                db-line="9"
+                                                db-column="60"
+                                                title="Closed-form calculation of n’th Fibonacci number">④</a>
                                           </code>
                                        </span>
                                     </span>
@@ -5085,11 +5085,11 @@ are lines from the same file.</p>
                                              <span class="c1"># https://stackoverflow.com/questions/9647202</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">          </ws>
                                              <span id="py.ordinal"
-                                                    href="#py.ordinal.co"
-                                                    db-line="18"
-                                                    db-column="60"
-                                                    title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?"
-                                                    class="callout-bug linerange firstline">⑤</span>
+                                                   href="#py.ordinal.co"
+                                                   db-line="18"
+                                                   db-column="60"
+                                                   title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?"
+                                                   class="callout-bug linerange firstline">⑤</span>
                                           </code>
                                        </span>
                                     </span>
@@ -5264,11 +5264,11 @@ are lines from the same file.</p>
                                              <span class="p">()</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.main"
-                                                 class="callout-bug linecolumn"
-                                                 href="#py.main.co"
-                                                 db-line="26"
-                                                 db-column="18"
-                                                 title="If this is a main program, run it!">⑥</a>
+                                                class="callout-bug linecolumn"
+                                                href="#py.main.co"
+                                                db-line="26"
+                                                db-column="18"
+                                                title="If this is a main program, run it!">⑥</a>
                                           </code>
                                        </span>
                                     </span>
@@ -5292,10 +5292,10 @@ arguments is that you get type and range checking pretty much for free.</p>
                                        <p>This is the closed-form solution to finding the
 “<em>n</em>th” Fibonacci number:</p>
                                        <div id="py.fib.co_informalequation1"
-                                             class="informalequation informalobject">
+                                            class="informalequation informalobject">
                                           <math xmlns="http://www.w3.org/1998/Math/MathML"
-                                                 class="equation"
-                                                 display="block">
+                                                class="equation"
+                                                display="block">
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                                              <mfrac>
@@ -5466,8 +5466,8 @@ the following link:
                               </a>
                            </p>
                            <div class="pre-wrap highlight"
-                                 db-startinglinenumber="1"
-                                 db-numberoflines="14">
+                                db-startinglinenumber="1"
+                                db-numberoflines="14">
                               <pre class="language-xml long numbered programlisting verbatim verblines">
                                  <span class="line" db-line="1">
                                     <span class="ln"> 1 <span class="nsep">|</span>
@@ -5910,7 +5910,7 @@ the next chapter.)</p>
 </ws>
                                     <p>According to Merriam-Webster,
 <a href="https://www.merriam-webster.com/dictionary/annotation"
-                                           class="link">an
+                                          class="link">an
 annotation</a> is a note added by way of comment or explanation.
 They give as an example quotation:
 </p>
@@ -6125,14 +6125,14 @@ identify the link target and any other element identifies the source.</p>
                      <!-- Hide ToC details from user agents that don’t support JS -->
                      <script type="text/html" class="tocopen">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                              alt="[toc]"/>
+                             alt="[toc]"/>
                      </script>
                      <script type="text/html" class="toc">
                         <header>
                            <span>Table of Contents</span>
                            <span class="close">
                               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                    alt="X"/>
+                                   alt="X"/>
                            </span>
                            <p class="ptoc-search">
                               <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
@@ -6215,7 +6215,7 @@ identify the link target and any other element identifies the source.</p>
                      <link href="./css/docbook-toc.css" rel="stylesheet"/>
                      <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML"
-                              defer="defer"/>
+                             defer="defer"/>
                      <script src="./js/annotations.js" defer="defer"/>
                      <script src="./js/xlink.js" defer="defer"/>
                      <script src="./js/persistent-toc.js" defer="defer"/>
@@ -6408,7 +6408,7 @@ CSS and JavaScript APIs.</p>
                               <div id="look_fig1" class="figure formalobject pgwide">
                                  <div class="screenshot">
                                     <div class="mediaobject"
-                                          summary="Screenshot of this chapter as rendered in Firefox on the Mac">
+                                         summary="Screenshot of this chapter as rendered in Firefox on the Mac">
                                        <details>
                                           <p>Screenshot of the new look and feel as rendered in Firefox.
 There’s a header across the top with Home, Up, Next, and Previous
@@ -6420,40 +6420,40 @@ and next pages are shown in the footer.</p>
                                        <div class="media image">
                                           <picture class="imageobject">
                                              <img src="media/fit-screenshot.png"
-                                                   alt="Screenshot of this chapter as rendered in Firefox on the Mac"
-                                                   usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
+                                                  alt="Screenshot of this chapter as rendered in Firefox on the Mac"
+                                                  usemap="#imap_look_fig1_screenshot1_mediaobject1_imageobjectco1"/>
                                           </picture>
                                           <map name="imap_look_fig1_screenshot1_mediaobject1_imageobjectco1">
                                              <area shape="rect"
-                                                    id="lf.header"
-                                                    class="area"
-                                                    href="#lf.header.co"
-                                                    coords="28,113,176,196"/>
+                                                   id="lf.header"
+                                                   class="area"
+                                                   href="#lf.header.co"
+                                                   coords="28,113,176,196"/>
                                              <area shape="rect"
-                                                    id="lf.access"
-                                                    class="area"
-                                                    href="#lf.access.co"
-                                                    coords="92,201,200,258"/>
+                                                   id="lf.access"
+                                                   class="area"
+                                                   href="#lf.access.co"
+                                                   coords="92,201,200,258"/>
                                              <area shape="rect"
-                                                    id="lf.footer"
-                                                    class="area"
-                                                    href="#lf.footer.co"
-                                                    coords="40,304,176,412"/>
+                                                   id="lf.footer"
+                                                   class="area"
+                                                   href="#lf.footer.co"
+                                                   coords="40,304,176,412"/>
                                              <area shape="rect"
-                                                    id="lf.perstoc"
-                                                    class="area"
-                                                    href="#lf.perstoc.co"
-                                                    coords="584,82,728,144"/>
+                                                   id="lf.perstoc"
+                                                   class="area"
+                                                   href="#lf.perstoc.co"
+                                                   coords="584,82,728,144"/>
                                              <area shape="rect"
-                                                    id="lf.cleaner"
-                                                    class="area"
-                                                    href="#lf.cleaner.co"
-                                                    coords="584,160,744,224"/>
+                                                   id="lf.cleaner"
+                                                   class="area"
+                                                   href="#lf.cleaner.co"
+                                                   coords="584,160,744,224"/>
                                              <area shape="rect"
-                                                    id="lf.customize"
-                                                    class="area"
-                                                    href="#lf.customize.co"
-                                                    coords="572,263,768,402"/>
+                                                   id="lf.customize"
+                                                   class="area"
+                                                   href="#lf.customize.co"
+                                                   coords="572,263,768,402"/>
                                           </map>
                                        </div>
                                     </div>
@@ -6527,7 +6527,7 @@ Contents navigation hierarchy to every page. Clicking on the
                                     <span class="media image">
                                        <picture class="imageobject">
                                           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                                alt="[toc]"/>
+                                               alt="[toc]"/>
                                        </picture>
                                     </span>
                                  </span>
@@ -6537,7 +6537,7 @@ from the right hand edge of the screen.
                               <div id="toc_fig1" class="figure formalobject pgwide">
                                  <div class="screenshot">
                                     <div class="mediaobject"
-                                          summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
+                                         summary="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac">
                                        <details>
                                           <p>Screenshot showing the persistent table of contents rendered
 as a popup on the right hand side of the page.</p>
@@ -6545,7 +6545,7 @@ as a popup on the right hand side of the page.</p>
                                        <div class="media image">
                                           <picture class="imageobject">
                                              <img src="media/fit-ptoc.png"
-                                                   alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
+                                                  alt="Screenshot of this chapter with the persistent ToC as rendered in Firefox on the Mac"/>
                                           </picture>
                                        </div>
                                     </div>
@@ -6578,8 +6578,8 @@ be updated when the underlying resource is updated.</p>
 “<em>n</em>th” Fibonacci number.</p>
                               <div class="programlistingco">
                                  <div class="pre-wrap highlight"
-                                       db-startinglinenumber="1"
-                                       db-numberoflines="9">
+                                      db-startinglinenumber="1"
+                                      db-numberoflines="9">
                                     <pre class="language-python long numbered programlisting verbatim verblines">
                                        <span class="line" db-line="1">
                                           <span class="ln">1 <span class="nsep">|</span>
@@ -6671,11 +6671,11 @@ be updated when the underlying resource is updated.</p>
                                                 <span class="nn">click</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.importclick"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.importclick.co"
-                                                    db-line="7"
-                                                    db-column="15"
-                                                    title="Highlights the click library">①</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.importclick.co"
+                                                   db-line="7"
+                                                   db-column="15"
+                                                   title="Highlights the click library">①</a>
                                              </code>
                                           </span>
                                        </span>
@@ -6713,11 +6713,11 @@ be updated when the underlying resource is updated.</p>
                                                 <span class="p">)</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.sqrt5"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.sqrt5.co"
-                                                    db-line="9"
-                                                    db-column="23"
-                                                    title="Constant: √5">②</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.sqrt5.co"
+                                                   db-line="9"
+                                                   db-column="23"
+                                                   title="Constant: √5">②</a>
                                              </code>
                                           </span>
                                        </span>
@@ -6779,8 +6779,8 @@ fragments for documentation. The listing above, and the one below,
 are lines from the same file.</p>
                               <div class="programlistingco">
                                  <div class="pre-wrap highlight"
-                                       db-startinglinenumber="11"
-                                       db-numberoflines="26">
+                                      db-startinglinenumber="11"
+                                      db-numberoflines="26">
                                     <pre class="language-python long numbered programlisting verbatim verblines">
                                        <span class="line" db-line="1">
                                           <span class="ln">11 <span class="nsep">|</span>
@@ -6828,11 +6828,11 @@ are lines from the same file.</p>
                                              <code>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">               </ws>
                                                 <a id="py.click"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.click.co"
-                                                    db-line="3"
-                                                    db-column="16"
-                                                    title="Click takes care of type checking the arguments">③</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.click.co"
+                                                   db-line="3"
+                                                   db-column="16"
+                                                   title="Click takes care of type checking the arguments">③</a>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
                                                 <span class="nb">type</span>
                                                 <span class="o">=</span>
@@ -6989,11 +6989,11 @@ are lines from the same file.</p>
                                                 <span class="n">SQRT5</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">      </ws>
                                                 <a id="py.fib"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.fib.co"
-                                                    db-line="9"
-                                                    db-column="60"
-                                                    title="Closed-form calculation of n’th Fibonacci number">④</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.fib.co"
+                                                   db-line="9"
+                                                   db-column="60"
+                                                   title="Closed-form calculation of n’th Fibonacci number">④</a>
                                              </code>
                                           </span>
                                        </span>
@@ -7155,11 +7155,11 @@ are lines from the same file.</p>
                                                 <span class="c1"># https://stackoverflow.com/questions/9647202</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">          </ws>
                                                 <span id="py.ordinal"
-                                                       href="#py.ordinal.co"
-                                                       db-line="18"
-                                                       db-column="60"
-                                                       title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?"
-                                                       class="callout-bug linerange firstline">⑤</span>
+                                                      href="#py.ordinal.co"
+                                                      db-line="18"
+                                                      db-column="60"
+                                                      title="Stackoverflow answer to the question “how do I make an&#xA;    ordinal number in Python”?"
+                                                      class="callout-bug linerange firstline">⑤</span>
                                              </code>
                                           </span>
                                        </span>
@@ -7334,11 +7334,11 @@ are lines from the same file.</p>
                                                 <span class="p">()</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.main"
-                                                    class="callout-bug linecolumn"
-                                                    href="#py.main.co"
-                                                    db-line="26"
-                                                    db-column="18"
-                                                    title="If this is a main program, run it!">⑥</a>
+                                                   class="callout-bug linecolumn"
+                                                   href="#py.main.co"
+                                                   db-line="26"
+                                                   db-column="18"
+                                                   title="If this is a main program, run it!">⑥</a>
                                              </code>
                                           </span>
                                        </span>
@@ -7362,10 +7362,10 @@ arguments is that you get type and range checking pretty much for free.</p>
                                           <p>This is the closed-form solution to finding the
 “<em>n</em>th” Fibonacci number:</p>
                                           <div id="py.fib.co_informalequation1"
-                                                class="informalequation informalobject">
+                                               class="informalequation informalobject">
                                              <math xmlns="http://www.w3.org/1998/Math/MathML"
-                                                    class="equation"
-                                                    display="block">
+                                                   class="equation"
+                                                   display="block">
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                                                 <mfrac>
@@ -7536,8 +7536,8 @@ the following link:
                                  </a>
                               </p>
                               <div class="pre-wrap highlight"
-                                    db-startinglinenumber="1"
-                                    db-numberoflines="14">
+                                   db-startinglinenumber="1"
+                                   db-numberoflines="14">
                                  <pre class="language-xml long numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln"> 1 <span class="nsep">|</span>
@@ -7980,7 +7980,7 @@ the next chapter.)</p>
 </ws>
                                        <p>According to Merriam-Webster,
 <a href="https://www.merriam-webster.com/dictionary/annotation"
-                                              class="link">an
+                                             class="link">an
 annotation</a> is a note added by way of comment or explanation.
 They give as an example quotation:
 </p>
@@ -8195,14 +8195,14 @@ identify the link target and any other element identifies the source.</p>
                         <!-- Hide ToC details from user agents that don’t support JS -->
                         <script type="text/html" class="tocopen">
                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                 alt="[toc]"/>
+                                alt="[toc]"/>
                         </script>
                         <script type="text/html" class="toc">
                            <header>
                               <span>Table of Contents</span>
                               <span class="close">
                                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                       alt="X"/>
+                                      alt="X"/>
                               </span>
                               <p class="ptoc-search">
                                  <input class="ptoc-search" placeholder="Search" style="width: 80%"/>

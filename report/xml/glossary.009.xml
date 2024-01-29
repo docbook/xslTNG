@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+    <?db glossary-collection='../glosscollection.xml
+                              ../glosscollectionx.xml
+                              ../glosscollection2.xml' ?>
+    <info>
+        <title>Referencing a non-existing external glossary</title>
+        <author>
+            <personname>
+                <firstname>Frank</firstname>
+                <surname>Steimke</surname>
+            </personname>
+        </author>
+    </info>
+
+<note>
+<para>The test harness is configured to run this test <emphasis>without</emphasis>
+setting the <parameter>glossary-collection</parameter> parameter.</para>
+</note>
+
+    <para>This test is essentially the same as <literal>glossary.008</literal> The difference is,
+        that we use the following processing instruction, which references one none-existing file
+            <filename>glosscollectionx.xml</filename>:</para>
+    <programlisting>&lt;?db glossary-collection='../glosscollection.xml
+                          ../glosscollectionx.xml
+                          ../glosscollection2.xml' ?>
+    </programlisting>
+    <para>We expect a warning message about the non-existing file, and a glossary with three
+        entries, mixed from the internal and the external glossaries. <orderedlist>
+            <listitem>
+                <para><glossterm>Apple</glossterm> should reference the internal, poetic
+                    definition.</para>
+            </listitem>
+            <listitem>
+                <para><glossterm>Pear</glossterm> references the external definition from
+                        <filename>glosscollection</filename>;</para>
+            </listitem>
+            <listitem>
+                <para><glossterm>Cucumber</glossterm> references the external definition from
+                        <filename>glosscollection2</filename>.</para>
+            </listitem>
+        </orderedlist>We do <emphasis role="bold">not</emphasis> expect an entry for
+            <emphasis>Quince</emphasis> or <emphasis>Bloodroot</emphasis> in the results document
+        glossary, although there is an entry in the internal glossary of the input document, because
+        there is no <emphasis>glossterm</emphasis> or <emphasis>firstterm</emphasis> that references
+        it.</para>
+
+    <glossary role="auto">
+        <glossentry>
+            <glossterm>Quince</glossterm>
+            <glossdef>
+                <para>The quince (/ˈkwɪns/; Cydonia oblonga) is the sole member of the genus Cydonia
+                    in the Malinae subtribe (which also contains apples and pears, among other
+                    fruits) of the Rosaceae family. It is a deciduous tree that bears hard, aromatic
+                    bright golden-yellow pome fruit, similar in appearance to a pear. Ripe quince
+                    fruits are hard, tart, and astringent. They are eaten raw or processed into
+                    marmalade, jam, paste (known as quince cheese) or alcoholic beverages. </para>
+            </glossdef>
+        </glossentry>
+        <glossentry>
+            <glossterm>Apple</glossterm>
+            <glossdef>
+                <para>In early autumn the apple orchards come alive with people and sounds. The
+                    farmers are picking, peeling, and processing apples into everything from apple
+                    pies to apple sauce. Families swarm the apple trees with their baskets looking
+                    for the best Honeycrisp and Macintosh. The sound of children playing is blended
+                    with the occasional barking dog, or the low rumble of the old Ferguson Orchard
+                    tractor pulling a wagon up and down the rows. </para>
+            </glossdef>
+        </glossentry>
+        <glossentry>
+            <glossterm>Bloodroot</glossterm>
+            <glossdef>
+                <para>Sanguinaria canadensis, bloodroot, is a perennial, herbaceous flowering plant
+                    native to eastern North America. It is the only species in the genus
+                    Sanguinaria, included in the poppy family Papaveraceae, and is most closely
+                    related to Eomecon of eastern Asia.</para>
+                <para>It is sometimes known as Canada puccoon, bloodwort, redroot, red puccoon, and
+                    black paste. Plants are variable in leaf and flower shape, and have been
+                    separated as a different subspecies due to these variable shapes, indicating a
+                    highly variable species. </para>
+            </glossdef>
+        </glossentry>
+    </glossary>
+
+</article>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-numbered-from-component.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-numbered-from-component.xsl"
-         date="2024-01-28T16:23:57.682293Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-numbered-from-component.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-numbered-from-component.xsl"
+        date="2024-01-29T11:16:01.468714Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-numbered-from-component.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-numbered-from-component.xspec">
       <label>When transforming sections-numbered-from-component</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/sections-numbered-from.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/sections-numbered-from.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">

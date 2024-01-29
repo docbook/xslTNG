@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-         date="2024-01-28T16:24:41.812406Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+        date="2024-01-29T11:16:47.999175Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting an address in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'raw'"/>
             <address>Line one
 Line two
@@ -36,10 +36,10 @@ Line five</pre>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="address verbatim">Line one
 Line two
 Line three
@@ -51,14 +51,14 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a literallayout in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'raw'"/>
             <literallayout>Line one
 Line two
@@ -83,10 +83,10 @@ Line five</pre>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="literallayout verbatim">Line one
 Line two
 Line three
@@ -98,14 +98,14 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario3"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a programlisting in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'raw'"/>
             <programlisting>Line one
 Line two
@@ -132,10 +132,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line two
@@ -149,14 +149,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario4"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a screen in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'raw'"/>
             <screen>Line one
 Line two
@@ -183,10 +183,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="screen verbatim">
                      <code>Line one
 Line two
@@ -200,14 +200,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario5"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a synopsis in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'raw'"/>
             <synopsis>Line one
 Line two
@@ -234,10 +234,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="synopsis verbatim">
                      <code>Line one
 Line two
@@ -251,14 +251,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario6"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'raw'"/>
             <programlisting>Line one
 Line <emphasis>two</emphasis>
@@ -285,10 +285,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line <em>two</em>
@@ -302,14 +302,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario7"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting an address in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <address>Line one
 Line two
@@ -334,10 +334,10 @@ Line five</pre>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="address verbatim">Line one
 Line two
 Line three
@@ -349,14 +349,14 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario8"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a literallayout in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <literallayout>Line one
 Line two
@@ -381,10 +381,10 @@ Line five</pre>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="literallayout verbatim">Line one
 Line two
 Line three
@@ -396,14 +396,14 @@ Line five</pre>
       </test>
    </scenario>
    <scenario id="scenario9"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a programlisting in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <programlisting>Line one
 Line two
@@ -430,10 +430,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line two
@@ -447,14 +447,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario10"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a screen in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <screen>Line one
 Line two
@@ -481,10 +481,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="screen verbatim">
                      <code>Line one
 Line two
@@ -498,14 +498,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario11"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a synopsis in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <synopsis>Line one
 Line two
@@ -532,10 +532,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="synopsis verbatim">
                      <code>Line one
 Line two
@@ -549,15 +549,15 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario12"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="/*/*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="/*/*"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <div xml:space="preserve"><programlisting>Line one
 Line <emphasis>two</emphasis>
@@ -586,10 +586,10 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line <em>two</em>
@@ -605,14 +605,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario13"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting an address in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <address>Line one
 Line two
@@ -732,14 +732,14 @@ Line five</address>
       </test>
    </scenario>
    <scenario id="scenario14"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a literallayout in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <literallayout>Line one
 Line two
@@ -859,14 +859,14 @@ Line five</literallayout>
       </test>
    </scenario>
    <scenario id="scenario15"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a programlisting in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <programlisting>Line one
 Line two
@@ -878,9 +878,9 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                  class="pre-wrap"
-                  db-startinglinenumber="1"
-                  db-numberoflines="5">
+                 class="pre-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1 <span class="nsep">|</span>
@@ -942,9 +942,9 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     class="pre-wrap"
-                     db-startinglinenumber="1"
-                     db-numberoflines="5">
+                    class="pre-wrap"
+                    db-startinglinenumber="1"
+                    db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">1 <span class="nsep">|</span>
@@ -1004,14 +1004,14 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario16"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a screen in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <screen>Line one
 Line two
@@ -1151,14 +1151,14 @@ Line five</screen>
       </test>
    </scenario>
    <scenario id="scenario17"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a synopsis in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <synopsis>Line one
 Line two
@@ -1298,14 +1298,14 @@ Line five</synopsis>
       </test>
    </scenario>
    <scenario id="scenario18"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <programlisting>Line one
 Line <emphasis>two</emphasis>
@@ -1317,9 +1317,9 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                  class="pre-wrap"
-                  db-startinglinenumber="1"
-                  db-numberoflines="5">
+                 class="pre-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1 <span class="nsep">|</span>
@@ -1384,9 +1384,9 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     class="pre-wrap"
-                     db-startinglinenumber="1"
-                     db-numberoflines="5">
+                    class="pre-wrap"
+                    db-startinglinenumber="1"
+                    db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">1 <span class="nsep">|</span>
@@ -1449,14 +1449,14 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario19"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting a verbatim with inline markup in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <programlisting>Line one
 Line <emphasis xml:id="two">two</emphasis>
@@ -1468,9 +1468,9 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                  class="pre-wrap"
-                  db-startinglinenumber="1"
-                  db-numberoflines="5">
+                 class="pre-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1 <span class="nsep">|</span>
@@ -1535,9 +1535,9 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     class="pre-wrap"
-                     db-startinglinenumber="1"
-                     db-numberoflines="5">
+                    class="pre-wrap"
+                    db-startinglinenumber="1"
+                    db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">1 <span class="nsep">|</span>
@@ -1600,14 +1600,14 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario20"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <x:param name="inject" as="element()">
                <areaspec>
@@ -1626,9 +1626,9 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                  class="pre-wrap"
-                  db-startinglinenumber="1"
-                  db-numberoflines="5">
+                 class="pre-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1 <span class="nsep">|</span>
@@ -1636,9 +1636,9 @@ Line five</programlisting>
                      <span class="ld">
                         <code>
                            <a id="R_area1"
-                               class="callout-bug linecolumn"
-                               db-line="1"
-                               db-column="1">①</a>Line one</code>
+                              class="callout-bug linecolumn"
+                              db-line="1"
+                              db-column="1">①</a>Line one</code>
                      </span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1650,9 +1650,9 @@ Line five</programlisting>
                      </span>
                      <span class="ld">
                         <code>Line<a id="R_area2"
-                               class="callout-bug linecolumn"
-                               db-line="2"
-                               db-column="5">②</a> two</code>
+                              class="callout-bug linecolumn"
+                              db-line="2"
+                              db-column="5">②</a> two</code>
                      </span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1664,9 +1664,9 @@ Line five</programlisting>
                      </span>
                      <span class="ld">
                         <code>Line three         <a id="R_area3"
-                               class="callout-bug linecolumn"
-                               db-line="3"
-                               db-column="20">③</a>
+                              class="callout-bug linecolumn"
+                              db-line="3"
+                              db-column="20">③</a>
                         </code>
                      </span>
                   </span>
@@ -1701,9 +1701,9 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     class="pre-wrap"
-                     db-startinglinenumber="1"
-                     db-numberoflines="5">
+                    class="pre-wrap"
+                    db-startinglinenumber="1"
+                    db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">1 <span class="nsep">|</span>
@@ -1711,9 +1711,9 @@ Line five</programlisting>
                         <span class="ld">
                            <code>
                               <a id="R_area1"
-                                  class="callout-bug linecolumn"
-                                  db-line="1"
-                                  db-column="1">①</a>Line one</code>
+                                 class="callout-bug linecolumn"
+                                 db-line="1"
+                                 db-column="1">①</a>Line one</code>
                         </span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1725,9 +1725,9 @@ Line five</programlisting>
                         </span>
                         <span class="ld">
                            <code>Line<a id="R_area2"
-                                  class="callout-bug linecolumn"
-                                  db-line="2"
-                                  db-column="5">②</a> two</code>
+                                 class="callout-bug linecolumn"
+                                 db-line="2"
+                                 db-column="5">②</a> two</code>
                         </span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1739,9 +1739,9 @@ Line five</programlisting>
                         </span>
                         <span class="ld">
                            <code>Line three         <a id="R_area3"
-                                  class="callout-bug linecolumn"
-                                  db-line="3"
-                                  db-column="20">③</a>
+                                 class="callout-bug linecolumn"
+                                 db-line="3"
+                                 db-column="20">③</a>
                            </code>
                         </span>
                      </span>
@@ -1774,14 +1774,14 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario21"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'lines'"/>
             <x:param name="inject" as="element()">
                <areaspec>
@@ -1800,9 +1800,9 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                  class="pre-wrap"
-                  db-startinglinenumber="1"
-                  db-numberoflines="8">
+                 class="pre-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="8">
                <pre class="language-none long numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">1 <span class="nsep">|</span>
@@ -1810,9 +1810,9 @@ Line five</programlisting>
                      <span class="ld">
                         <code>
                            <a id="R_area1"
-                               class="callout-bug linecolumn"
-                               db-line="1"
-                               db-column="1">①</a>Line one</code>
+                              class="callout-bug linecolumn"
+                              db-line="1"
+                              db-column="1">①</a>Line one</code>
                      </span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1824,9 +1824,9 @@ Line five</programlisting>
                      </span>
                      <span class="ld">
                         <code>Line<a id="R_area2"
-                               class="callout-bug linecolumn"
-                               db-line="2"
-                               db-column="5">②</a> two</code>
+                              class="callout-bug linecolumn"
+                              db-line="2"
+                              db-column="5">②</a> two</code>
                      </span>
                   </span>
                   <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1897,9 +1897,9 @@ Line five</programlisting>
                         <code>
                            <ws xmlns="http://www.jenitennison.com/xslt/xspec">       </ws>
                            <a id="R_area3"
-                               class="callout-bug linecolumn"
-                               db-line="8"
-                               db-column="8">③</a>
+                              class="callout-bug linecolumn"
+                              db-line="8"
+                              db-column="8">③</a>
                         </code>
                      </span>
                   </span>
@@ -1914,9 +1914,9 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     class="pre-wrap"
-                     db-startinglinenumber="1"
-                     db-numberoflines="8">
+                    class="pre-wrap"
+                    db-startinglinenumber="1"
+                    db-numberoflines="8">
                   <pre class="language-none long numbered programlisting verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">1 <span class="nsep">|</span>
@@ -1924,9 +1924,9 @@ Line five</programlisting>
                         <span class="ld">
                            <code>
                               <a id="R_area1"
-                                  class="callout-bug linecolumn"
-                                  db-line="1"
-                                  db-column="1">①</a>Line one</code>
+                                 class="callout-bug linecolumn"
+                                 db-line="1"
+                                 db-column="1">①</a>Line one</code>
                         </span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1938,9 +1938,9 @@ Line five</programlisting>
                         </span>
                         <span class="ld">
                            <code>Line<a id="R_area2"
-                                  class="callout-bug linecolumn"
-                                  db-line="2"
-                                  db-column="5">②</a> two</code>
+                                 class="callout-bug linecolumn"
+                                 db-line="2"
+                                 db-column="5">②</a> two</code>
                         </span>
                      </span>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -2011,9 +2011,9 @@ Line five</programlisting>
                            <code>
                               <ws xmlns="http://www.jenitennison.com/xslt/xspec">       </ws>
                               <a id="R_area3"
-                                  class="callout-bug linecolumn"
-                                  db-line="8"
-                                  db-column="8">③</a>
+                                 class="callout-bug linecolumn"
+                                 db-line="8"
+                                 db-column="8">③</a>
                            </code>
                         </span>
                      </span>
@@ -2026,14 +2026,14 @@ Line five</programlisting>
       </test>
    </scenario>
    <scenario id="scenario22"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <x:param name="inject" as="element()">
                <areaspec>
@@ -2055,17 +2055,17 @@ Line five</programlisting>
                <pre class="language-none numbered programlisting verbatim">
                   <code>
                      <a id="R_area1"
-                         class="callout-bug linecolumn"
-                         db-line="1"
-                         db-column="1">①</a>Line one
+                        class="callout-bug linecolumn"
+                        db-line="1"
+                        db-column="1">①</a>Line one
 Line<a id="R_area2"
-                         class="callout-bug linecolumn"
-                         db-line="2"
-                         db-column="5">②</a> two
+                        class="callout-bug linecolumn"
+                        db-line="2"
+                        db-column="5">②</a> two
 Line three         <a id="R_area3"
-                         class="callout-bug linecolumn"
-                         db-line="3"
-                         db-column="20">③</a>
+                        class="callout-bug linecolumn"
+                        db-line="3"
+                        db-column="20">③</a>
 Line four
 Line five</code>
                </pre>
@@ -2077,24 +2077,24 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>
                         <a id="R_area1"
-                            class="callout-bug linecolumn"
-                            db-line="1"
-                            db-column="1">①</a>Line one
+                           class="callout-bug linecolumn"
+                           db-line="1"
+                           db-column="1">①</a>Line one
 Line<a id="R_area2"
-                            class="callout-bug linecolumn"
-                            db-line="2"
-                            db-column="5">②</a> two
+                           class="callout-bug linecolumn"
+                           db-line="2"
+                           db-column="5">②</a> two
 Line three         <a id="R_area3"
-                            class="callout-bug linecolumn"
-                            db-line="3"
-                            db-column="20">③</a>
+                           class="callout-bug linecolumn"
+                           db-line="3"
+                           db-column="20">③</a>
 Line four
 Line five</code>
                   </pre>
@@ -2104,14 +2104,14 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario23"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When callouts are added to a verbatim element</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <x:param name="inject" as="element()">
                <areaspec>
@@ -2139,17 +2139,17 @@ Line five</programlisting>
                <pre class="language-none numbered programlisting verbatim">
                   <code>
                      <a id="R_area1"
-                         class="callout-bug linecolumn"
-                         db-line="1"
-                         db-column="1">①</a>Line one
+                        class="callout-bug linecolumn"
+                        db-line="1"
+                        db-column="1">①</a>Line one
 Line<a id="R_area2"
-                         class="callout-bug linecolumn"
-                         db-line="2"
-                         db-column="5">②</a> two
+                        class="callout-bug linecolumn"
+                        db-line="2"
+                        db-column="5">②</a> two
 Line three         <a id="R_area3"
-                         class="callout-bug linecolumn"
-                         db-line="3"
-                         db-column="20">③</a>
+                        class="callout-bug linecolumn"
+                        db-line="3"
+                        db-column="20">③</a>
 Line four
 Line five</code>
                </pre>
@@ -2161,24 +2161,24 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>
                         <a id="R_area1"
-                            class="callout-bug linecolumn"
-                            db-line="1"
-                            db-column="1">①</a>Line one
+                           class="callout-bug linecolumn"
+                           db-line="1"
+                           db-column="1">①</a>Line one
 Line<a id="R_area2"
-                            class="callout-bug linecolumn"
-                            db-line="2"
-                            db-column="5">②</a> two
+                           class="callout-bug linecolumn"
+                           db-line="2"
+                           db-column="5">②</a> two
 Line three         <a id="R_area3"
-                            class="callout-bug linecolumn"
-                            db-line="3"
-                            db-column="20">③</a>
+                           class="callout-bug linecolumn"
+                           db-line="3"
+                           db-column="20">③</a>
 Line four
 Line five</code>
                   </pre>
@@ -2188,15 +2188,15 @@ Line five</code>
       </test>
    </scenario>
    <scenario id="scenario24"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When callouts are inserted into markup</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="/*/*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="/*/*"
+                    mode="m:docbook">
             <x:param name="style" select="'plain'"/>
             <x:param name="inject" as="element()">
                <areaspec>
@@ -2218,26 +2218,26 @@ Line five</programlisting></div>
                <pre class="language-none numbered programlisting verbatim">
                   <code>
                      <a id="R_area1"
-                         class="callout-bug linecolumn"
-                         db-line="1"
-                         db-column="1">①</a>
+                        class="callout-bug linecolumn"
+                        db-line="1"
+                        db-column="1">①</a>
                      <em>Line one</em>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <em>Line</em>
                      <a id="R_area2"
-                         class="callout-bug linecolumn"
-                         db-line="2"
-                         db-column="5">②</a>
+                        class="callout-bug linecolumn"
+                        db-line="2"
+                        db-column="5">②</a>
                      <em> two</em>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <em>Line three</em>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">         </ws>
                      <a id="R_area3"
-                         class="callout-bug linecolumn"
-                         db-line="3"
-                         db-column="20">③</a>
+                        class="callout-bug linecolumn"
+                        db-line="3"
+                        db-column="20">③</a>
                      <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                      <em>Line four</em>
@@ -2251,33 +2251,33 @@ Line five</code>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     class="pre-wrap">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    class="pre-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>
                         <a id="R_area1"
-                            class="callout-bug linecolumn"
-                            db-line="1"
-                            db-column="1">①</a>
+                           class="callout-bug linecolumn"
+                           db-line="1"
+                           db-column="1">①</a>
                         <em>Line one</em>
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                         <em>Line</em>
                         <a id="R_area2"
-                            class="callout-bug linecolumn"
-                            db-line="2"
-                            db-column="5">②</a>
+                           class="callout-bug linecolumn"
+                           db-line="2"
+                           db-column="5">②</a>
                         <em> two</em>
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                         <em>Line three</em>
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">         </ws>
                         <a id="R_area3"
-                            class="callout-bug linecolumn"
-                            db-line="3"
-                            db-column="20">③</a>
+                           class="callout-bug linecolumn"
+                           db-line="3"
+                           db-column="20">③</a>
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
                         <em>Line four</em>

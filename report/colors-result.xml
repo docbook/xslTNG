@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
-         date="2024-01-28T16:16:05.727503Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
+        date="2024-01-29T11:07:19.097388Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
       <label>When transforming colors.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/colors.001.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/colors.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -107,8 +107,8 @@ if the theme picker is enabled.</p>
                            </a>
                         </p>
                         <div class="pre-wrap highlight"
-                              db-startinglinenumber="1"
-                              db-numberoflines="23">
+                             db-startinglinenumber="1"
+                             db-numberoflines="23">
                            <pre class="language-python long numbered programlisting verbatim verblines">
                               <span class="line" db-line="1">
                                  <span class="ln"> 1 <span class="nsep">|</span>
@@ -601,9 +601,9 @@ There’s also color in <code>code</code>.</p>
                                     </span>
                                     <span class="ld">
                                        <code>Line two                                                   <span id="two-three"
-                                                 db-line="2"
-                                                 db-column="60"
-                                                 class="callout-bug linerange firstline">①</span>
+                                                db-line="2"
+                                                db-column="60"
+                                                class="callout-bug linerange firstline">①</span>
                                        </code>
                                     </span>
                                  </span>
@@ -848,7 +848,7 @@ There’s also color in <code>code</code>.</p>
                                  <span class="xlink">
                                     <span class="source">DocBook</span>
                                     <span class="xlink-arc-list"
-                                           db-arcs="article_s1_para1_phrase1_citetitle1-arcs"/>
+                                          db-arcs="article_s1_para1_phrase1_citetitle1-arcs"/>
                                     <span class="nhrefs" id="article_s1_para1_phrase1_citetitle1-arcs">
                                        <span class="xlink-arc-delim before"> [</span>
                                        <span class="xlink-arc-title">Links to DocBook resources</span>
@@ -1008,14 +1008,14 @@ parenthesis.</p>
                      <!-- Hide ToC details from user agents that don’t support JS -->
                      <script type="text/html" class="tocopen">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                              alt="[toc]"/>
+                             alt="[toc]"/>
                      </script>
                      <script type="text/html" class="toc">
                         <header>
                            <span>Table of Contents</span>
                            <span class="close">
                               <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                    alt="X"/>
+                                   alt="X"/>
                            </span>
                            <p class="ptoc-search">
                               <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
@@ -1062,21 +1062,21 @@ parenthesis.</p>
                               <fieldset>
                                  <legend>Choose a theme:</legend>
                                  <input id="db-default-theme_NOTRANDOMATALL"
-                                         type="radio"
-                                         name="db-theme"
-                                         value="default"/>
+                                        type="radio"
+                                        name="db-theme"
+                                        value="default"/>
                                  <label for="db-default-theme_NOTRANDOMATALL">Default</label>
                                  <br/>
                                  <input id="db-theme-materials-dark-NOTRANDOMATALL"
-                                         type="radio"
-                                         name="db-theme"
-                                         value="materials-dark"/>
+                                        type="radio"
+                                        name="db-theme"
+                                        value="materials-dark"/>
                                  <label for="db-theme-materials-dark-NOTRANDOMATALL">Materials dark</label>
                                  <br/>
                                  <input id="db-theme-materials-light-NOTRANDOMATALL"
-                                         type="radio"
-                                         name="db-theme"
-                                         value="materials-light"/>
+                                        type="radio"
+                                        name="db-theme"
+                                        value="materials-light"/>
                                  <label for="db-theme-materials-light-NOTRANDOMATALL">Materials light</label>
                                  <br/>
                               </fieldset>
@@ -1192,8 +1192,8 @@ if the theme picker is enabled.</p>
                               </a>
                            </p>
                            <div class="pre-wrap highlight"
-                                 db-startinglinenumber="1"
-                                 db-numberoflines="23">
+                                db-startinglinenumber="1"
+                                db-numberoflines="23">
                               <pre class="language-python long numbered programlisting verbatim verblines">
                                  <span class="line" db-line="1">
                                     <span class="ln"> 1 <span class="nsep">|</span>
@@ -1686,9 +1686,9 @@ There’s also color in <code>code</code>.</p>
                                        </span>
                                        <span class="ld">
                                           <code>Line two                                                   <span id="two-three"
-                                                    db-line="2"
-                                                    db-column="60"
-                                                    class="callout-bug linerange firstline">①</span>
+                                                   db-line="2"
+                                                   db-column="60"
+                                                   class="callout-bug linerange firstline">①</span>
                                           </code>
                                        </span>
                                     </span>
@@ -1933,7 +1933,7 @@ There’s also color in <code>code</code>.</p>
                                     <span class="xlink">
                                        <span class="source">DocBook</span>
                                        <span class="xlink-arc-list"
-                                              db-arcs="article_s1_para1_phrase1_citetitle1-arcs"/>
+                                             db-arcs="article_s1_para1_phrase1_citetitle1-arcs"/>
                                        <span class="nhrefs" id="article_s1_para1_phrase1_citetitle1-arcs">
                                           <span class="xlink-arc-delim before"> [</span>
                                           <span class="xlink-arc-title">Links to DocBook resources</span>
@@ -2093,14 +2093,14 @@ parenthesis.</p>
                         <!-- Hide ToC details from user agents that don’t support JS -->
                         <script type="text/html" class="tocopen">
                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAABDklEQVQ4je2UUW3EMAyGv0wDUAhlkDBIyuAYXCEclEJoGZRBUgYOgzJoGHgPW6o7rWq35+2TIkWW9duW7N+oKuM46jiOGGMAaNsW5xzee5xzn8EvRESXZUFEWNcVAFWl73v6vjcGUIAYIyEEANZ1RUSY55lSCo/HA4BhGGiahtvthnOOtm0BSCnRdd1eVAGNMeoR27aptVattbpt22FOjFGrzjsX1I7q/4q3y4xf8i/4FwT3Pcw5Y4zBWvujfQMopZBzJuf8XbCeVyWEgHOO+/2+x0SEaZpIKSEih0X2Wz6jdlxKuezaqL7qpZS0lLKbw/M4ANba3RyapiGE8OJGqOrpizGq916999VATvM/AGFn1sxsVjL5AAAAAElFTkSuQmCC"
-                                 alt="[toc]"/>
+                                alt="[toc]"/>
                         </script>
                         <script type="text/html" class="toc">
                            <header>
                               <span>Table of Contents</span>
                               <span class="close">
                                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAtklEQVQ4jaWT0Q3DIAxEz52AEbyB2cDZhBEY3SNcPyqqBEwqpZaQAHNP5jBCEiJCPAiSIgAeiUe8zoveO9x9e9jd0XtfKwHA1hpHtNY49rO8u59zn4mqMiJSyFkcEVTVFQCAtdYFMotrrXN111JnyA/xCsggN2JeXmGEmaGU8l2XUmBm29fZuh0RW2PTK2SGZcamADPb3nmGmNkKOI7j1rAzJG2kcWhqkstQ1QX+/2ciKU/FJOUN6JFZYWpmK3sAAAAASUVORK5CYII="
-                                       alt="X"/>
+                                      alt="X"/>
                               </span>
                               <p class="ptoc-search">
                                  <input class="ptoc-search" placeholder="Search" style="width: 80%"/>
@@ -2147,21 +2147,21 @@ parenthesis.</p>
                                  <fieldset>
                                     <legend>Choose a theme:</legend>
                                     <input id="db-default-theme_NOTRANDOMATALL"
-                                            type="radio"
-                                            name="db-theme"
-                                            value="default"/>
+                                           type="radio"
+                                           name="db-theme"
+                                           value="default"/>
                                     <label for="db-default-theme_NOTRANDOMATALL">Default</label>
                                     <br/>
                                     <input id="db-theme-materials-dark-NOTRANDOMATALL"
-                                            type="radio"
-                                            name="db-theme"
-                                            value="materials-dark"/>
+                                           type="radio"
+                                           name="db-theme"
+                                           value="materials-dark"/>
                                     <label for="db-theme-materials-dark-NOTRANDOMATALL">Materials dark</label>
                                     <br/>
                                     <input id="db-theme-materials-light-NOTRANDOMATALL"
-                                            type="radio"
-                                            name="db-theme"
-                                            value="materials-light"/>
+                                           type="radio"
+                                           name="db-theme"
+                                           value="materials-light"/>
                                     <label for="db-theme-materials-light-NOTRANDOMATALL">Materials light</label>
                                     <br/>
                                  </fieldset>

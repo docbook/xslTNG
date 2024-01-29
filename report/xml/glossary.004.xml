@@ -3,6 +3,13 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          version="5.0">
    <title>Article wrapper</title>
+
+<note>
+<para>The test harness is configured to run this test with the
+<parameter>glossary-collection</parameter> parameter pointing to
+<filename>src/test/resources/glosscollection.xml</filename>.</para>
+</note>
+
    <para>This unit test is in response to
    <link xlink:href="https://github.com/docbook/xslTNG/issues/171">issue 171</link>.</para>
    <glossary>
@@ -26,14 +33,14 @@
          <acronym>FT</acronym>
          <abbrev>fthing</abbrev>
          <glossdef>
-            <para>Alphabetically first entry</para>
+            <para>Alphabetically fourth entry (sortas=“thing, first”)</para>
          </glossdef>
       </glossentry>
       <glossentry xml:id="fifo">
          <glossterm>First-in First-out</glossterm>
          <acronym>FIFO</acronym>
          <glossdef>
-            <para>Alphabetically second entry</para>
+            <para>Alphabetically first entry</para>
          </glossdef>
       </glossentry>
    </glossary>

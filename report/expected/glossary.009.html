@@ -1,0 +1,32 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Referencing a non-existing external glossary</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><script src="./js/copy-verbatim.js" defer="defer"></script></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Referencing a non-existing external glossary</h1><div class="author"><h3><span class="first-last personname"><span class="firstname">Frank</span> <span class="surname">Steimke</span></span></h3></div></header><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>The test harness is configured to run this test <em>without</em>
+setting the <code class="parameter">glossary-collection</code> parameter.</p></div></div></div></div><p>This test is essentially the same as <code class="literal">glossary.008</code> The difference is,
+        that we use the following processing instruction, which references one none-existing file
+            <code class="filename">glosscollectionx.xml</code>:</p><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="3"><pre class="language-none numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;?db glossary-collection='../glosscollection.xml</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>                          ../glosscollectionx.xml</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>                          ../glosscollection2.xml' ?&gt;</code></span></span>
+</pre></div><p>We expect a warning message about the non-existing file, and a glossary with three
+        entries, mixed from the internal and the external glossaries. <ol class="orderedlist" type="1"><li><p><span class="glossterm"><a href="#R_g1_ge1">Apple</a></span> should reference the internal, poetic
+                    definition.</p></li><li><p><span class="glossterm"><a href="#pear">Pear</a></span> references the external definition from
+                        <code class="filename">glosscollection</code>;</p></li><li><p><span class="glossterm"><a href="#R_g1_ge3">Cucumber</a></span> references the external definition from
+                        <code class="filename">glosscollection2</code>.</p></li></ol>We do <strong class="bold">not</strong> expect an entry for
+            <em>Quince</em> or <em>Bloodroot</em> in the results document
+        glossary, although there is an entry in the internal glossary of the input document, because
+        there is no <em>glossterm</em> or <em>firstterm</em> that references
+        it.</p><div id="R_g1" class="auto component glossary"><header><h2>Glossary</h2></header><dl class="glossary"><dt id="R_g1_ge1" class="glossentry"><span class="glossterm">Apple</span></dt><dd class="glossdef"><p>In early autumn the apple orchards come alive with people and sounds. The
+                    farmers are picking, peeling, and processing apples into everything from apple
+                    pies to apple sauce. Families swarm the apple trees with their baskets looking
+                    for the best Honeycrisp and Macintosh. The sound of children playing is blended
+                    with the occasional barking dog, or the low rumble of the old Ferguson Orchard
+                    tractor pulling a wagon up and down the rows. </p></dd><dt id="R_g1_ge3" class="glossentry"><span class="glossterm">Cucumber</span></dt><dd class="glossdef"><p>The cucumber (Cucumis sativus) is a widely-cultivated creeping vine plant in the family
+        Cucurbitaceae that bears cylindrical to spherical fruits, which are used as culinary
+        vegetables. Considered an annual plant, there are three main types of cucumber—slicing,
+        pickling, and seedless—within which several cultivars have been created. The cucumber
+        originates in Asia extending from India, Nepal, Bangladesh, China (Yunnan, Guizhou,
+        Guangxi), and Northern Thailand, but now grows on most continents, and many different types
+        of cucumber are grown commercially and traded on the global market. In North America, the
+        term wild cucumber refers to plants in the genera Echinocystis and Marah, though the two are
+        not closely related.</p></dd><dt id="pear" class="glossentry"><span class="glossterm">Pear</span></dt><dd class="glossdef"><p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p></dd></dl></div></article></main><nav class="bottom"></nav></body></html>

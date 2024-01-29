@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-         date="2024-01-28T16:20:45.383046Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+        date="2024-01-29T11:12:33.359516Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_note.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -98,14 +98,14 @@
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_note.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -192,14 +192,14 @@
       </test>
    </scenario>
    <scenario id="scenario3"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_note.003</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.003.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_note.003.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -286,14 +286,14 @@
       </test>
    </scenario>
    <scenario id="scenario4"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_tip.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_tip.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_tip.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -380,14 +380,14 @@
       </test>
    </scenario>
    <scenario id="scenario5"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_tip.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_tip.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_tip.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -474,14 +474,14 @@
       </test>
    </scenario>
    <scenario id="scenario6"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_important.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_important.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_important.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -568,14 +568,14 @@
       </test>
    </scenario>
    <scenario id="scenario7"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_important.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_important.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_important.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -662,14 +662,14 @@
       </test>
    </scenario>
    <scenario id="scenario8"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_caution.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_caution.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_caution.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -756,14 +756,14 @@
       </test>
    </scenario>
    <scenario id="scenario9"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_caution.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_caution.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_caution.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -850,14 +850,14 @@
       </test>
    </scenario>
    <scenario id="scenario10"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_warning.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_warning.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_warning.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -944,14 +944,14 @@
       </test>
    </scenario>
    <scenario id="scenario11"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_warning.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_warning.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_warning.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1038,14 +1038,14 @@
       </test>
    </scenario>
    <scenario id="scenario12"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_danger.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_danger.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_danger.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1132,14 +1132,14 @@
       </test>
    </scenario>
    <scenario id="scenario13"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming en_danger.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_danger.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/en_danger.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1226,14 +1226,14 @@
       </test>
    </scenario>
    <scenario id="scenario14"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_note.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1320,14 +1320,14 @@
       </test>
    </scenario>
    <scenario id="scenario15"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_note.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1414,14 +1414,14 @@
       </test>
    </scenario>
    <scenario id="scenario16"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_note.003</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.003.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_note.003.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1508,14 +1508,14 @@
       </test>
    </scenario>
    <scenario id="scenario17"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_tip.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_tip.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_tip.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1602,14 +1602,14 @@
       </test>
    </scenario>
    <scenario id="scenario18"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_tip.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_tip.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_tip.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1696,14 +1696,14 @@
       </test>
    </scenario>
    <scenario id="scenario19"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_important.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_important.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_important.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1790,14 +1790,14 @@
       </test>
    </scenario>
    <scenario id="scenario20"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_important.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_important.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_important.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1884,14 +1884,14 @@
       </test>
    </scenario>
    <scenario id="scenario21"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_caution.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_caution.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_caution.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -1978,14 +1978,14 @@
       </test>
    </scenario>
    <scenario id="scenario22"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_caution.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_caution.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_caution.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -2072,14 +2072,14 @@
       </test>
    </scenario>
    <scenario id="scenario23"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_warning.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_warning.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_warning.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -2166,14 +2166,14 @@
       </test>
    </scenario>
    <scenario id="scenario24"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_warning.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_warning.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_warning.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -2260,14 +2260,14 @@
       </test>
    </scenario>
    <scenario id="scenario25"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_danger.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_danger.001.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_danger.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -2354,14 +2354,14 @@
       </test>
    </scenario>
    <scenario id="scenario26"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-admonitions.xspec">
       <label>When transforming fr_danger.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:db="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_danger.002.xml"/>
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/fr_danger.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">

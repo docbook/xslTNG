@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/a11y.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/a11y.xsl"
-         date="2024-01-28T16:14:11.371995Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/a11y.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/a11y.xsl"
+        date="2024-01-29T11:05:18.597653Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/a11y.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/a11y.xspec">
       <label>When transforming mediaobject.005</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/mediaobject.005.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/mediaobject.005.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -35,7 +35,7 @@
 so don’t assume these examples represent good practice.)</p>
                         <div class="mediaobject" summary="A video of a spinning top.">
                            <meta property="a11y:accessibilitySummary"
-                                  content="A video of a spinning top."/>
+                                 content="A video of a spinning top."/>
                            <meta property="a11y:accessMode" content="visual"/>
                            <meta property="a11y:accessModeSufficient" content="auditory"/>
                            <details>
@@ -45,15 +45,15 @@ so don’t assume these examples represent good practice.)</p>
                            </details>
                            <div class="media video">
                               <video class="videoobject"
-                                      controls="controls"
-                                      poster="../media/spinning-top-poster.png">
+                                     controls="controls"
+                                     poster="../media/spinning-top-poster.png">
                                  <meta property="a11y:accessMode" content="visual"/>
                                  <meta property="a11y:accessMode" content="auditory"/>
                                  <meta property="a11y:accessModeSufficient" content="auditory"/>
                                  <source src="media/spinning-top.webm" type="video/webm"/>
                                  <source src="media/spinning-top.mp4"
-                                          type="video/mp4"
-                                          onerror="docbook_object_fallback(parentNode)"/>
+                                         type="video/mp4"
+                                         onerror="docbook_object_fallback(parentNode)"/>
                               </video>
                            </div>
                            <div class="caption">
@@ -94,7 +94,7 @@ so don’t assume these examples represent good practice.)</p>
 so don’t assume these examples represent good practice.)</p>
                            <div class="mediaobject" summary="A video of a spinning top.">
                               <meta property="a11y:accessibilitySummary"
-                                     content="A video of a spinning top."/>
+                                    content="A video of a spinning top."/>
                               <meta property="a11y:accessMode" content="visual"/>
                               <meta property="a11y:accessModeSufficient" content="auditory"/>
                               <details>
@@ -104,15 +104,15 @@ so don’t assume these examples represent good practice.)</p>
                               </details>
                               <div class="media video">
                                  <video class="videoobject"
-                                         controls="controls"
-                                         poster="../media/spinning-top-poster.png">
+                                        controls="controls"
+                                        poster="../media/spinning-top-poster.png">
                                     <meta property="a11y:accessMode" content="visual"/>
                                     <meta property="a11y:accessMode" content="auditory"/>
                                     <meta property="a11y:accessModeSufficient" content="auditory"/>
                                     <source src="media/spinning-top.webm" type="video/webm"/>
                                     <source src="media/spinning-top.mp4"
-                                             type="video/mp4"
-                                             onerror="docbook_object_fallback(parentNode)"/>
+                                            type="video/mp4"
+                                            onerror="docbook_object_fallback(parentNode)"/>
                                  </video>
                               </div>
                               <div class="caption">

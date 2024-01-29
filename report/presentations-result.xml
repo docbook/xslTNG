@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/presentations.xsl"
-         date="2024-01-28T16:22:32.642212Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/presentations.xsl"
+        date="2024-01-29T11:14:31.752014Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec">
       <label>When transforming presentation.001</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/presentation.001.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/presentation.001.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -753,11 +753,11 @@ on synchronized windows, you’ll get a tangled mess.</p>
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec">
       <label>When transforming presentation.002</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/presentation.002.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/presentation.002.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -829,7 +829,7 @@ page.</p>
                               <li>
                                  <p>For the moment, the cross-linking between the inline
 reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_itemizedlist1_listitem2_para1_footnote1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">2</a>
                                     </sup>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -849,7 +849,7 @@ reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_ite
                               <li>
                                  <p>They are not displayed as part of the normal
 presentation.<sup id="R_article2_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -912,7 +912,7 @@ reasonable.</p>
                               <li>
                                  <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -931,7 +931,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref
                               <li>
                                  <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -950,7 +950,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref
                               <li>
                                  <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -969,7 +969,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref
                               <li>
                                  <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -988,7 +988,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fre
                               <li>
                                  <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem14_para1_footnoteref1-fref"
-                                          class="footnote-number">
+                                         class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -1019,7 +1019,7 @@ in the presentation.001 unit test.</p>
                               </div>
                            </div>
                            <div class="footnote"
-                                 id="R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">
+                                id="R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">
                               <div class="footnote-number">
                                  <sup class="footnote-number">
                                     <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fref">2</a>
@@ -1149,7 +1149,7 @@ page.</p>
                                  <li>
                                     <p>For the moment, the cross-linking between the inline
 reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_itemizedlist1_listitem2_para1_footnote1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">2</a>
                                        </sup>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
@@ -1169,7 +1169,7 @@ reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_ite
                                  <li>
                                     <p>They are not displayed as part of the normal
 presentation.<sup id="R_article2_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1232,7 +1232,7 @@ reasonable.</p>
                                  <li>
                                     <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1251,7 +1251,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref
                                  <li>
                                     <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1270,7 +1270,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref
                                  <li>
                                     <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1289,7 +1289,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref
                                  <li>
                                     <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1308,7 +1308,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fre
                                  <li>
                                     <p>They are not displayed as part of the normal
 presentation.<sup id="R_article4_itemizedlist1_listitem14_para1_footnoteref1-fref"
-                                             class="footnote-number">
+                                            class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1339,7 +1339,7 @@ in the presentation.001 unit test.</p>
                                  </div>
                               </div>
                               <div class="footnote"
-                                    id="R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">
+                                   id="R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">
                                  <div class="footnote-number">
                                     <sup class="footnote-number">
                                        <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fref">2</a>

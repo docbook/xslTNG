@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-         date="2024-01-28T16:21:35.586567Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+        date="2024-01-29T11:13:21.986853Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an address in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'raw'"/>
             <x:param name="style" select="'raw'"/>
-            <address xml:id="d3e0" role="a b c b">...</address>
+            <address xml:id="d2e0" role="a b c b">...</address>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d3e0" class="a address b c verbatim">...</pre>
+               <pre id="d2e0" class="a address b c verbatim">...</pre>
             </div>
          </content-wrap>
       </result>
@@ -29,9 +29,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -39,9 +39,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd3e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd2e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -49,9 +49,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a address b c verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a address b c verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -59,32 +59,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an literallayout in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'raw'"/>
             <x:param name="style" select="'raw'"/>
-            <literallayout xml:id="d4e0" role="a b c b">...</literallayout>
+            <literallayout xml:id="d3e0" role="a b c b">...</literallayout>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d4e0" class="a b c literallayout verbatim">...</pre>
+               <pre id="d3e0" class="a b c literallayout verbatim">...</pre>
             </div>
          </content-wrap>
       </result>
@@ -92,9 +92,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -102,9 +102,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd4e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd3e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -112,9 +112,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c literallayout verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c literallayout verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -122,32 +122,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario3"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an screen in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'raw'"/>
             <x:param name="style" select="'raw'"/>
-            <screen xml:id="d5e0" role="a b c b">...</screen>
+            <screen xml:id="d4e0" role="a b c b">...</screen>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d5e0" class="a b c screen verbatim">
+               <pre id="d4e0" class="a b c screen verbatim">
                   <code>...</code>
                </pre>
             </div>
@@ -157,9 +157,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -167,9 +167,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd5e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd4e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -177,9 +177,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c screen verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c screen verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -187,32 +187,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario4"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an synopsis in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'raw'"/>
             <x:param name="style" select="'raw'"/>
-            <synopsis xml:id="d6e0" role="a b c b">...</synopsis>
+            <synopsis xml:id="d5e0" role="a b c b">...</synopsis>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d6e0" class="a b c synopsis verbatim">
+               <pre id="d5e0" class="a b c synopsis verbatim">
                   <code>...</code>
                </pre>
             </div>
@@ -222,9 +222,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -232,9 +232,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd6e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd5e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -242,9 +242,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c synopsis verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c synopsis verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -252,32 +252,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario5"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an programlisting in the raw style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'raw'"/>
             <x:param name="style" select="'raw'"/>
-            <programlisting xml:id="d7e0" role="a b c b">...</programlisting>
+            <programlisting xml:id="d6e0" role="a b c b">...</programlisting>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d7e0" class="a b c language-none numbered programlisting verbatim">
+               <pre id="d6e0" class="a b c language-none numbered programlisting verbatim">
                   <code>...</code>
                </pre>
             </div>
@@ -287,9 +287,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -297,9 +297,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd7e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd6e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -307,9 +307,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c language-none numbered programlisting verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c language-none numbered programlisting verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -317,32 +317,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario6"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an address in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'plain'"/>
             <x:param name="style" select="'plain'"/>
-            <address xml:id="d8e0" role="a b c b">...</address>
+            <address xml:id="d7e0" role="a b c b">...</address>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d8e0" class="a address b c verbatim">...</pre>
+               <pre id="d7e0" class="a address b c verbatim">...</pre>
             </div>
          </content-wrap>
       </result>
@@ -350,9 +350,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -360,9 +360,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd8e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd7e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -370,9 +370,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a address b c verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a address b c verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -380,32 +380,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario7"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an literallayout in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'plain'"/>
             <x:param name="style" select="'plain'"/>
-            <literallayout xml:id="d9e0" role="a b c b">...</literallayout>
+            <literallayout xml:id="d8e0" role="a b c b">...</literallayout>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d9e0" class="a b c literallayout verbatim">...</pre>
+               <pre id="d8e0" class="a b c literallayout verbatim">...</pre>
             </div>
          </content-wrap>
       </result>
@@ -413,9 +413,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -423,9 +423,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd9e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd8e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -433,9 +433,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c literallayout verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c literallayout verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -443,32 +443,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario8"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an screen in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'plain'"/>
             <x:param name="style" select="'plain'"/>
-            <screen xml:id="d10e0" role="a b c b">...</screen>
+            <screen xml:id="d9e0" role="a b c b">...</screen>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d10e0" class="a b c screen verbatim">
+               <pre id="d9e0" class="a b c screen verbatim">
                   <code>...</code>
                </pre>
             </div>
@@ -478,9 +478,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -488,9 +488,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd10e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd9e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -498,9 +498,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c screen verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c screen verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -508,32 +508,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario9"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an synopsis in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'plain'"/>
             <x:param name="style" select="'plain'"/>
-            <synopsis xml:id="d11e0" role="a b c b">...</synopsis>
+            <synopsis xml:id="d10e0" role="a b c b">...</synopsis>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d11e0" class="a b c synopsis verbatim">
+               <pre id="d10e0" class="a b c synopsis verbatim">
                   <code>...</code>
                </pre>
             </div>
@@ -543,9 +543,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -553,9 +553,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd11e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd10e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -563,9 +563,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c synopsis verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c synopsis verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -573,32 +573,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario10"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an programlisting in the plain style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'plain'"/>
             <x:param name="style" select="'plain'"/>
-            <programlisting xml:id="d12e0" role="a b c b">...</programlisting>
+            <programlisting xml:id="d11e0" role="a b c b">...</programlisting>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d12e0" class="a b c language-none numbered programlisting verbatim">
+               <pre id="d11e0" class="a b c language-none numbered programlisting verbatim">
                   <code>...</code>
                </pre>
             </div>
@@ -608,9 +608,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -618,9 +618,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd12e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd11e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -628,9 +628,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c language-none numbered programlisting verbatim'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c language-none numbered programlisting verbatim'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -638,32 +638,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario11"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an address in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'lines'"/>
             <x:param name="style" select="'lines'"/>
-            <address xml:id="d13e0" role="a b c b">...</address>
+            <address xml:id="d12e0" role="a b c b">...</address>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d13e0" class="a address b c verbatim verblines">
+               <pre id="d12e0" class="a address b c verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
@@ -681,9 +681,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -691,9 +691,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd13e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd12e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -701,9 +701,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a address b c verbatim verblines'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a address b c verbatim verblines'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -711,32 +711,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario12"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an literallayout in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'lines'"/>
             <x:param name="style" select="'lines'"/>
-            <literallayout xml:id="d14e0" role="a b c b">...</literallayout>
+            <literallayout xml:id="d13e0" role="a b c b">...</literallayout>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d14e0" class="a b c literallayout verbatim verblines">
+               <pre id="d13e0" class="a b c literallayout verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
@@ -754,9 +754,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -764,9 +764,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd14e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd13e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -774,9 +774,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c literallayout verbatim verblines'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c literallayout verbatim verblines'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -784,32 +784,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario13"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an screen in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'lines'"/>
             <x:param name="style" select="'lines'"/>
-            <screen xml:id="d15e0" role="a b c b">...</screen>
+            <screen xml:id="d14e0" role="a b c b">...</screen>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d15e0" class="a b c screen verbatim verblines">
+               <pre id="d14e0" class="a b c screen verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
@@ -829,9 +829,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -839,9 +839,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd15e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd14e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -849,9 +849,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c screen verbatim verblines'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c screen verbatim verblines'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -859,32 +859,32 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario14"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an synopsis in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'lines'"/>
             <x:param name="style" select="'lines'"/>
-            <synopsis xml:id="d16e0" role="a b c b">...</synopsis>
+            <synopsis xml:id="d15e0" role="a b c b">...</synopsis>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
-               <pre id="d16e0" class="a b c synopsis verbatim verblines">
+               <pre id="d15e0" class="a b c synopsis verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
@@ -904,9 +904,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -914,9 +914,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd16e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd15e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -924,9 +924,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c synopsis verbatim verblines'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c synopsis verbatim verblines'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -934,36 +934,36 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
    </scenario>
    <scenario id="scenario15"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an programlisting in the lines style</label>
       <input-wrap xmlns="">
          <x:context xmlns="http://docbook.org/ns/docbook"
-                     xmlns:h="http://www.w3.org/1999/xhtml"
-                     xmlns:m="http://docbook.org/ns/docbook/modes"
-                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     select="*"
-                     mode="m:docbook">
+                    xmlns:h="http://www.w3.org/1999/xhtml"
+                    xmlns:m="http://docbook.org/ns/docbook/modes"
+                    xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    select="*"
+                    mode="m:docbook">
             <x:param name="verbatim-style-default" select="'lines'"/>
             <x:param name="style" select="'lines'"/>
-            <programlisting xml:id="d17e0" role="a b c b">...</programlisting>
+            <programlisting xml:id="d16e0" role="a b c b">...</programlisting>
          </x:context>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                  class="pre-wrap"
-                  db-startinglinenumber="1"
-                  db-numberoflines="1">
-               <pre id="d17e0"
-                     class="a b c language-none numbered programlisting verbatim verblines">
+                 class="pre-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="1">
+               <pre id="d16e0"
+                    class="a b c language-none numbered programlisting verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
                         <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
@@ -983,9 +983,9 @@
          <label>it should return a single div element</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="count(/h:div) = 1"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="count(/h:div) = 1"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -993,9 +993,9 @@
          <label>it should return the xml:id in the id</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@id = 'd17e0'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@id = 'd16e0'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -1003,9 +1003,9 @@
          <label>it should return the roles as classes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="/h:div/h:pre/@class = 'a b c language-none numbered programlisting verbatim verblines'"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="/h:div/h:pre/@class = 'a b c language-none numbered programlisting verbatim verblines'"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>
@@ -1013,9 +1013,9 @@
          <label>it should not return any other attributes</label>
          <expect-test-wrap xmlns="">
             <x:expect xmlns:h="http://www.w3.org/1999/xhtml"
-                       xmlns:m="http://docbook.org/ns/docbook/modes"
-                       xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                       test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test="empty(/h:div/*/@* except (h:div/*/@id | h:div/*/@class))"/>
          </expect-test-wrap>
          <expect select="()"/>
       </test>

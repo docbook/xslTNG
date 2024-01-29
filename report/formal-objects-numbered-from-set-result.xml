@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-numbered-from-set.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/formal-objects-numbered-from-set.xsl"
-         date="2024-01-28T16:20:37.903408Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-numbered-from-set.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/formal-objects-numbered-from-set.xsl"
+        date="2024-01-29T11:12:25.286884Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-numbered-from-set.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-numbered-from-set.xspec">
       <label>When transforming figures-numbered-from-set</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/figures-numbered-from.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/figures-numbered-from.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -721,7 +721,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
             </ws>
                                        <div id="book_set1_bo1_ref1_re1_refsection1_fig1"
-                                             class="figure formalobject">
+                                            class="figure formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Figure <span class="label">7</span>
@@ -757,7 +757,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
             </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection1_fig1"
-                                             class="figure formalobject">
+                                            class="figure formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Figure <span class="label">8</span>
@@ -778,7 +778,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
             </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection2_fig1"
-                                             class="figure formalobject">
+                                            class="figure formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Figure <span class="label">9</span>
@@ -1664,7 +1664,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
             </ws>
                                           <div id="book_set1_bo1_ref1_re1_refsection1_fig1"
-                                                class="figure formalobject">
+                                               class="figure formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Figure <span class="label">7</span>
@@ -1700,7 +1700,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
             </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection1_fig1"
-                                                class="figure formalobject">
+                                               class="figure formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Figure <span class="label">8</span>
@@ -1721,7 +1721,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
             </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection2_fig1"
-                                                class="figure formalobject">
+                                               class="figure formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Figure <span class="label">9</span>
@@ -1897,11 +1897,11 @@
       </test>
    </scenario>
    <scenario id="scenario2"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-numbered-from-set.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-numbered-from-set.xspec">
       <label>When transforming formal-objects-numbered-from-set</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/formal-objects-numbered-from.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/formal-objects-numbered-from.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
@@ -3610,7 +3610,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re1_refsection1_fig1"
-                                             class="figure formalobject">
+                                            class="figure formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Figure <span class="label">7</span>
@@ -3636,7 +3636,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re1_refsection1_ex1"
-                                             class="example formalobject">
+                                            class="example formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Example <span class="label">6</span>
@@ -3646,7 +3646,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re1_refsection1_eq1"
-                                             class="equation formalobject">
+                                            class="equation formalobject">
                                           <span class="mathphrase">E=mc<sup>2</sup>
                                           </span>
                                           <header>
@@ -3657,7 +3657,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re1_refsection1_proc1"
-                                             class="formalobject procedure">
+                                            class="formalobject procedure">
                                           <header>
                                              <div class="title">Procedure <span class="label">6</span>
                                                 <span class="sep">. </span>Sixth procedure</div>
@@ -3700,7 +3700,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection1_fig1"
-                                             class="figure formalobject">
+                                            class="figure formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Figure <span class="label">8</span>
@@ -3726,7 +3726,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection1_ex1"
-                                             class="example formalobject">
+                                            class="example formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Example <span class="label">7</span>
@@ -3736,7 +3736,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection1_eq1"
-                                             class="equation formalobject">
+                                            class="equation formalobject">
                                           <span class="mathphrase">E=mc<sup>2</sup>
                                           </span>
                                           <header>
@@ -3747,7 +3747,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection1_proc1"
-                                             class="formalobject procedure">
+                                            class="formalobject procedure">
                                           <header>
                                              <div class="title">Procedure <span class="label">7</span>
                                                 <span class="sep">. </span>Seventh procedure</div>
@@ -3775,7 +3775,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection2_fig1"
-                                             class="figure formalobject">
+                                            class="figure formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Figure <span class="label">9</span>
@@ -3801,7 +3801,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection2_ex1"
-                                             class="example formalobject">
+                                            class="example formalobject">
                                           <p>…</p>
                                           <header>
                                              <div class="title">Example <span class="label">8</span>
@@ -3811,7 +3811,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection2_eq1"
-                                             class="equation formalobject">
+                                            class="equation formalobject">
                                           <span class="mathphrase">E=mc<sup>2</sup>
                                           </span>
                                           <header>
@@ -3822,7 +3822,7 @@
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                        <div id="book_set1_bo1_ref1_re2_refsection2_proc1"
-                                             class="formalobject procedure">
+                                            class="formalobject procedure">
                                           <header>
                                              <div class="title">Procedure <span class="label">8</span>
                                                 <span class="sep">. </span>Eighth procedure</div>
@@ -6049,7 +6049,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re1_refsection1_fig1"
-                                                class="figure formalobject">
+                                               class="figure formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Figure <span class="label">7</span>
@@ -6075,7 +6075,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re1_refsection1_ex1"
-                                                class="example formalobject">
+                                               class="example formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Example <span class="label">6</span>
@@ -6085,7 +6085,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re1_refsection1_eq1"
-                                                class="equation formalobject">
+                                               class="equation formalobject">
                                              <span class="mathphrase">E=mc<sup>2</sup>
                                              </span>
                                              <header>
@@ -6096,7 +6096,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re1_refsection1_proc1"
-                                                class="formalobject procedure">
+                                               class="formalobject procedure">
                                              <header>
                                                 <div class="title">Procedure <span class="label">6</span>
                                                    <span class="sep">. </span>Sixth procedure</div>
@@ -6139,7 +6139,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection1_fig1"
-                                                class="figure formalobject">
+                                               class="figure formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Figure <span class="label">8</span>
@@ -6165,7 +6165,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection1_ex1"
-                                                class="example formalobject">
+                                               class="example formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Example <span class="label">7</span>
@@ -6175,7 +6175,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection1_eq1"
-                                                class="equation formalobject">
+                                               class="equation formalobject">
                                              <span class="mathphrase">E=mc<sup>2</sup>
                                              </span>
                                              <header>
@@ -6186,7 +6186,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection1_proc1"
-                                                class="formalobject procedure">
+                                               class="formalobject procedure">
                                              <header>
                                                 <div class="title">Procedure <span class="label">7</span>
                                                    <span class="sep">. </span>Seventh procedure</div>
@@ -6214,7 +6214,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection2_fig1"
-                                                class="figure formalobject">
+                                               class="figure formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Figure <span class="label">9</span>
@@ -6240,7 +6240,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection2_ex1"
-                                                class="example formalobject">
+                                               class="example formalobject">
                                              <p>…</p>
                                              <header>
                                                 <div class="title">Example <span class="label">8</span>
@@ -6250,7 +6250,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection2_eq1"
-                                                class="equation formalobject">
+                                               class="equation formalobject">
                                              <span class="mathphrase">E=mc<sup>2</sup>
                                              </span>
                                              <header>
@@ -6261,7 +6261,7 @@
                                           <ws xmlns="http://www.jenitennison.com/xslt/xspec">
         </ws>
                                           <div id="book_set1_bo1_ref1_re2_refsection2_proc1"
-                                                class="formalobject procedure">
+                                               class="formalobject procedure">
                                              <header>
                                                 <div class="title">Procedure <span class="label">8</span>
                                                    <span class="sep">. </span>Eighth procedure</div>

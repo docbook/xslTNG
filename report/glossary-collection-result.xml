@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/glossary-collection.xsl"
+        date="2024-01-29T11:13:28.30604Z">
+   <scenario id="scenario1"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit Test: glossary.001</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="book division">
+                        <header>
+                           <h1>Unit Test: glossary.001</h1>
+                           <h2>Wikipedia fruits with pepper</h2>
+                           <div class="editor">
+                              <h3>
+                                 <span class="editedby">Edited by </span>
+                                 <span class="first-last personname">
+                                    <span class="firstname">Someone</span>
+                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                    <span class="surname">Random</span>
+                                 </span>
+                              </h3>
+                           </div>
+                           <p class="releaseinfo">
+                              <span class="releaseinfo">Just some test data</span>
+                           </p>
+                        </header>
+                        <div class="list-of-titles">
+                           <div class="lot toc">
+                              <div class="title">Table of Contents</div>
+                              <ul class="toc">
+                                 <li>
+                                    <a href="#R_ch1">
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Fruits and Peppers</a>
+                                 </li>
+                                 <li>
+                                    <a href="#glossary">Glossary</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <section id="R_ch1" class="chapter component">
+                           <header>
+                              <h2>Chapter <span class="label">1</span>
+                                 <span class="sep">. </span>Fruits and Peppers</h2>
+                           </header>
+                           <div class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <p>There's a <code class="tag tag-element">firstterm</code> here:
+<span class="firstterm">
+                                 <a href="#apple">Apple</a>
+                              </span>.</p>
+                           <p>And there's a couple of <code class="tag tag-element">glossterm</code>s here:
+<span class="glossterm">
+                                 <a href="#peach">Peach</a>
+                              </span>, <span class="glossterm">
+                                 <a href="#jackfruit">Jackfruit</a>
+                              </span>,
+and <span class="glossterm">Durian</span> (not in the <a href="#glossary" class="xref xref-glossary">Glossary</a>).</p>
+                           <p>We also have <span class="glossterm">
+                                 <a href="#glossary_gd5_ge3">Pepper</a>
+                              </span> which has
+<em>two</em> entries in the glossary. This is wrong, of
+course. The application should complain. (Note that when constructing a glossary
+automatically, repeated terms are avoided by only using the first. When the glossary
+is constructed by hand, removing duplicates is the author’s resposibility.)</p>
+                        </section>
+                        <div id="glossary" class="component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <div id="glossary_gd1" class="glossdiv">
+                              <header>
+                                 <div class="title">A</div>
+                              </header>
+                              <dl class="glossdiv">
+                                 <dt id="apple" class="glossentry">
+                                    <span class="glossterm">Apple</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                                 </dd>
+                                 <dd>
+                                    <p>See also <a href="#pear">
+                                          <span class="label">Pear</span>
+                                       </a>.</p>
+                                 </dd>
+                                 <dt id="apricot" class="glossentry">
+                                    <span class="glossterm">Apricot</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>An apricot is a fruit, or the tree that bears the fruit, of
+    several species in the genus Prunus.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                           <div id="glossary_gd2" class="glossdiv">
+                              <header>
+                                 <div class="title">D</div>
+                              </header>
+                              <dl class="glossdiv">
+                                 <dt id="drupe" class="glossentry">
+                                    <span class="glossterm">Drupe</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>In botany, a drupe (or stone fruit) is an indehiscent fruit
+    in which an outer fleshy part (exocarp, or skin; and mesocarp, or
+    flesh) surrounds a single shell (the pit, stone, or pyrene) of
+    hardened endocarp with a seed (kernel) inside. These fruits
+    usually develop from a single carpel, and mostly from flowers with
+    superior ovaries.</p>
+                                 </dd>
+                                 <dd>
+                                    <p>See also <a href="#apricot">
+                                          <span class="label">Apricot</span>
+                                       </a>, <a href="#peach">
+                                          <span class="label">Peach</span>
+                                       </a>, <a href="#nectarine">
+                                          <span class="label">Nectarine</span>
+                                       </a>.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                           <div id="glossary_gd3" class="glossdiv">
+                              <header>
+                                 <div class="title">J</div>
+                              </header>
+                              <dl class="glossdiv">
+                                 <dt id="jackfruit" class="glossentry">
+                                    <span class="glossterm">Jackfruit</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The jackfruit (Artocarpus heterophyllus), also known as jack
+    tree, is a species of tree in the fig, mulberry, and breadfruit
+    family (Moraceae). Its origin is in the region between the
+    Western Ghats of southern India and the rainforests of
+    Malaysia.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                           <div id="glossary_gd4" class="glossdiv">
+                              <header>
+                                 <div class="title">N</div>
+                              </header>
+                              <dl class="glossdiv">
+                                 <dt id="nectarine" class="glossentry">
+                                    <span class="glossterm">Nectarine</span>
+                                 </dt>
+                                 <dd class="glosssee">
+                                    <p>See <a href="#peach">Peach</a>.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                           <div id="glossary_gd5" class="glossdiv">
+                              <header>
+                                 <div class="title">P</div>
+                              </header>
+                              <dl class="glossdiv">
+                                 <dt id="peach" class="glossentry">
+                                    <span class="glossterm">Peach</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The peach (Prunus persica) is a deciduous tree native to the
+    region of Northwest China between the Tarim Basin and the north
+    slopes of the Kunlun Mountains, where it was first domesticated
+    and cultivated. It bears an edible juicy fruit called a peach
+    or a nectarine.</p>
+                                 </dd>
+                                 <dt id="pear" class="glossentry">
+                                    <span class="glossterm">Pear</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                                 </dd>
+                                 <dd>
+                                    <p>See also <a href="#apple">
+                                          <span class="label">Apple</span>
+                                       </a>.</p>
+                                 </dd>
+                                 <dt id="glossary_gd5_ge3" class="glossentry">
+                                    <span class="glossterm">Pepper</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Black pepper (Piper nigrum) is a flowering vine in the family Piperaceae, cultivated for
+            its fruit (the peppercorn), which is usually dried and used as a spice and seasoning.
+            Peppercorns and the ground pepper derived from them may be described simply as pepper,
+            or more precisely as <em>black pepper</em> (cooked and dried unripe fruit),
+              <em>green pepper</em> (dried unripe fruit), or <em>white pepper
+            </em>(ripe fruit seeds).</p>
+                                 </dd>
+                                 <dt id="glossary_gd5_ge4" class="glossentry">
+                                    <span class="glossterm">Pepper</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Long pepper (Piper longum), sometimes called Indian long pepper or pippali, is a
+          flowering vine in the family Piperaceae, cultivated for its fruit, which is usually
+          dried and used as a spice and seasoning. Long pepper has a taste similar to, but sweeter
+          and less pungent than, that of its close relative Piper nigrum – from which black, green
+          and white pepper are obtained. </p>
+                                 </dd>
+                              </dl>
+                           </div>
+                           <dl class="glossary"/>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect glossary.001.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit Test: glossary.001</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="book division">
+                           <header>
+                              <h1>Unit Test: glossary.001</h1>
+                              <h2>Wikipedia fruits with pepper</h2>
+                              <div class="editor">
+                                 <h3>
+                                    <span class="editedby">Edited by </span>
+                                    <span class="first-last personname">
+                                       <span class="firstname">Someone</span>
+                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                       <span class="surname">Random</span>
+                                    </span>
+                                 </h3>
+                              </div>
+                              <p class="releaseinfo">
+                                 <span class="releaseinfo">Just some test data</span>
+                              </p>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#R_ch1">
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Fruits and Peppers</a>
+                                    </li>
+                                    <li>
+                                       <a href="#glossary">Glossary</a>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <section id="R_ch1" class="chapter component">
+                              <header>
+                                 <h2>Chapter <span class="label">1</span>
+                                    <span class="sep">. </span>Fruits and Peppers</h2>
+                              </header>
+                              <div class="admonition note">
+                                 <div>
+                                    <div class="icon">ⓘ</div>
+                                    <div class="body">
+                                       <header>
+                                          <div class="title">Note</div>
+                                       </header>
+                                       <div>
+                                          <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <p>There's a <code class="tag tag-element">firstterm</code> here:
+<span class="firstterm">
+                                    <a href="#apple">Apple</a>
+                                 </span>.</p>
+                              <p>And there's a couple of <code class="tag tag-element">glossterm</code>s here:
+<span class="glossterm">
+                                    <a href="#peach">Peach</a>
+                                 </span>, <span class="glossterm">
+                                    <a href="#jackfruit">Jackfruit</a>
+                                 </span>,
+and <span class="glossterm">Durian</span> (not in the <a href="#glossary" class="xref xref-glossary">Glossary</a>).</p>
+                              <p>We also have <span class="glossterm">
+                                    <a href="#glossary_gd5_ge3">Pepper</a>
+                                 </span> which has
+<em>two</em> entries in the glossary. This is wrong, of
+course. The application should complain. (Note that when constructing a glossary
+automatically, repeated terms are avoided by only using the first. When the glossary
+is constructed by hand, removing duplicates is the author’s resposibility.)</p>
+                           </section>
+                           <div id="glossary" class="component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <div id="glossary_gd1" class="glossdiv">
+                                 <header>
+                                    <div class="title">A</div>
+                                 </header>
+                                 <dl class="glossdiv">
+                                    <dt id="apple" class="glossentry">
+                                       <span class="glossterm">Apple</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                                    </dd>
+                                    <dd>
+                                       <p>See also <a href="#pear">
+                                             <span class="label">Pear</span>
+                                          </a>.</p>
+                                    </dd>
+                                    <dt id="apricot" class="glossentry">
+                                       <span class="glossterm">Apricot</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>An apricot is a fruit, or the tree that bears the fruit, of
+    several species in the genus Prunus.</p>
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div id="glossary_gd2" class="glossdiv">
+                                 <header>
+                                    <div class="title">D</div>
+                                 </header>
+                                 <dl class="glossdiv">
+                                    <dt id="drupe" class="glossentry">
+                                       <span class="glossterm">Drupe</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>In botany, a drupe (or stone fruit) is an indehiscent fruit
+    in which an outer fleshy part (exocarp, or skin; and mesocarp, or
+    flesh) surrounds a single shell (the pit, stone, or pyrene) of
+    hardened endocarp with a seed (kernel) inside. These fruits
+    usually develop from a single carpel, and mostly from flowers with
+    superior ovaries.</p>
+                                    </dd>
+                                    <dd>
+                                       <p>See also <a href="#apricot">
+                                             <span class="label">Apricot</span>
+                                          </a>, <a href="#peach">
+                                             <span class="label">Peach</span>
+                                          </a>, <a href="#nectarine">
+                                             <span class="label">Nectarine</span>
+                                          </a>.</p>
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div id="glossary_gd3" class="glossdiv">
+                                 <header>
+                                    <div class="title">J</div>
+                                 </header>
+                                 <dl class="glossdiv">
+                                    <dt id="jackfruit" class="glossentry">
+                                       <span class="glossterm">Jackfruit</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>The jackfruit (Artocarpus heterophyllus), also known as jack
+    tree, is a species of tree in the fig, mulberry, and breadfruit
+    family (Moraceae). Its origin is in the region between the
+    Western Ghats of southern India and the rainforests of
+    Malaysia.</p>
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div id="glossary_gd4" class="glossdiv">
+                                 <header>
+                                    <div class="title">N</div>
+                                 </header>
+                                 <dl class="glossdiv">
+                                    <dt id="nectarine" class="glossentry">
+                                       <span class="glossterm">Nectarine</span>
+                                    </dt>
+                                    <dd class="glosssee">
+                                       <p>See <a href="#peach">Peach</a>.</p>
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <div id="glossary_gd5" class="glossdiv">
+                                 <header>
+                                    <div class="title">P</div>
+                                 </header>
+                                 <dl class="glossdiv">
+                                    <dt id="peach" class="glossentry">
+                                       <span class="glossterm">Peach</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>The peach (Prunus persica) is a deciduous tree native to the
+    region of Northwest China between the Tarim Basin and the north
+    slopes of the Kunlun Mountains, where it was first domesticated
+    and cultivated. It bears an edible juicy fruit called a peach
+    or a nectarine.</p>
+                                    </dd>
+                                    <dt id="pear" class="glossentry">
+                                       <span class="glossterm">Pear</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                                    </dd>
+                                    <dd>
+                                       <p>See also <a href="#apple">
+                                             <span class="label">Apple</span>
+                                          </a>.</p>
+                                    </dd>
+                                    <dt id="glossary_gd5_ge3" class="glossentry">
+                                       <span class="glossterm">Pepper</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>Black pepper (Piper nigrum) is a flowering vine in the family Piperaceae, cultivated for
+            its fruit (the peppercorn), which is usually dried and used as a spice and seasoning.
+            Peppercorns and the ground pepper derived from them may be described simply as pepper,
+            or more precisely as <em>black pepper</em> (cooked and dried unripe fruit),
+              <em>green pepper</em> (dried unripe fruit), or <em>white pepper
+            </em>(ripe fruit seeds).</p>
+                                    </dd>
+                                    <dt id="glossary_gd5_ge4" class="glossentry">
+                                       <span class="glossterm">Pepper</span>
+                                    </dt>
+                                    <dd class="glossdef">
+                                       <p>Long pepper (Piper longum), sometimes called Indian long pepper or pippali, is a
+          flowering vine in the family Piperaceae, cultivated for its fruit, which is usually
+          dried and used as a spice and seasoning. Long pepper has a taste similar to, but sweeter
+          and less pungent than, that of its close relative Piper nigrum – from which black, green
+          and white pepper are obtained. </p>
+                                    </dd>
+                                 </dl>
+                              </div>
+                              <dl class="glossary"/>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario2"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.002</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.002.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <p>This test tests the <code class="parameter">glossary-collection</code>
+machinery when the “internal”, auto-generated glossary is
+empty.</p>
+                        <p>Referencing <span class="firstterm">
+                              <a href="#apple">Apple</a>
+                           </span> and
+<span class="glossterm">
+                              <a href="#pear">Pear</a>
+                           </span>.</p>
+                        <div id="R_g1" class="auto component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="apple" class="glossentry">
+                                 <span class="glossterm">Apple</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                              </dd>
+                              <dt id="pear" class="glossentry">
+                                 <span class="glossterm">Pear</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario2-expect1" successful="true">
+         <label>expect glossary.002.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <p>This test tests the <code class="parameter">glossary-collection</code>
+machinery when the “internal”, auto-generated glossary is
+empty.</p>
+                           <p>Referencing <span class="firstterm">
+                                 <a href="#apple">Apple</a>
+                              </span> and
+<span class="glossterm">
+                                 <a href="#pear">Pear</a>
+                              </span>.</p>
+                           <div id="R_g1" class="auto component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="apple" class="glossentry">
+                                    <span class="glossterm">Apple</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                                 </dd>
+                                 <dt id="pear" class="glossentry">
+                                    <span class="glossterm">Pear</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario3"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.003</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.003.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <p>This is a test. Xref to fifo: <a href="#fifo" class="xref xref-glossentry">
+                              <span class="label">First-in First-out</span>
+                           </a>. The glossary
+entries are sorted alphabetically by default.</p>
+                        <div id="R_g1" class="component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="R_g1_ge3" class="glossentry">
+                                 <span class="glossterm">first thing</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>Alphabetically first entry</p>
+                              </dd>
+                              <dt id="fifo" class="glossentry">
+                                 <span class="glossterm">First-in First-out</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>Alphabetically second entry</p>
+                              </dd>
+                              <dt id="R_g1_ge1" class="glossentry">
+                                 <span class="glossterm">test1</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>First definition</p>
+                              </dd>
+                              <dt id="R_g1_ge2" class="glossentry">
+                                 <span class="glossterm">test2</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>First definition</p>
+                              </dd>
+                              <dd class="glossdef">
+                                 <p>Second definition</p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario3-expect1" successful="true">
+         <label>expect glossary.003.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <p>This is a test. Xref to fifo: <a href="#fifo" class="xref xref-glossentry">
+                                 <span class="label">First-in First-out</span>
+                              </a>. The glossary
+entries are sorted alphabetically by default.</p>
+                           <div id="R_g1" class="component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="R_g1_ge3" class="glossentry">
+                                    <span class="glossterm">first thing</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Alphabetically first entry</p>
+                                 </dd>
+                                 <dt id="fifo" class="glossentry">
+                                    <span class="glossterm">First-in First-out</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Alphabetically second entry</p>
+                                 </dd>
+                                 <dt id="R_g1_ge1" class="glossentry">
+                                    <span class="glossterm">test1</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>First definition</p>
+                                 </dd>
+                                 <dt id="R_g1_ge2" class="glossentry">
+                                    <span class="glossterm">test2</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>First definition</p>
+                                 </dd>
+                                 <dd class="glossdef">
+                                    <p>Second definition</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario4"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.004</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.004.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <div class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <p>This unit test is in response to
+   <a href="https://github.com/docbook/xslTNG/issues/171" class="link">issue 171</a>.</p>
+                        <div id="R_g1" class="component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="fifo" class="glossentry">
+                                 <span class="glossterm">First-in First-out</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>Alphabetically first entry</p>
+                              </dd>
+                              <dt id="R_g1_ge1" class="glossentry">
+                                 <span class="glossterm">test1</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>First definition</p>
+                              </dd>
+                              <dt id="R_g1_ge2" class="glossentry">
+                                 <span class="glossterm">test2</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>First definition</p>
+                              </dd>
+                              <dd class="glossdef">
+                                 <p>Second definition</p>
+                              </dd>
+                              <dt id="R_g1_ge3" class="glossentry">
+                                 <span class="glossterm">first thing</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>Alphabetically fourth entry (sortas=“thing, first”)</p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario4-expect1" successful="true">
+         <label>expect glossary.004.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <div class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <p>This unit test is in response to
+   <a href="https://github.com/docbook/xslTNG/issues/171" class="link">issue 171</a>.</p>
+                           <div id="R_g1" class="component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="fifo" class="glossentry">
+                                    <span class="glossterm">First-in First-out</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Alphabetically first entry</p>
+                                 </dd>
+                                 <dt id="R_g1_ge1" class="glossentry">
+                                    <span class="glossterm">test1</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>First definition</p>
+                                 </dd>
+                                 <dt id="R_g1_ge2" class="glossentry">
+                                    <span class="glossterm">test2</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>First definition</p>
+                                 </dd>
+                                 <dd class="glossdef">
+                                    <p>Second definition</p>
+                                 </dd>
+                                 <dt id="R_g1_ge3" class="glossentry">
+                                    <span class="glossterm">first thing</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Alphabetically fourth entry (sortas=“thing, first”)</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario5"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.005</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.005.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Mixed Glossary</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Mixed Glossary</h1>
+                        </header>
+                        <div class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <p>This test tests the <code class="parameter">glossary-collection</code>
+machinery when the “internal” glossary is not empty. We expect a
+glossary with three entries, mixed from the internal and the external
+glossaries.</p>
+                        <p>Referencing <span class="firstterm">
+                              <a href="#apple">Apple</a>
+                           </span>,
+<span class="glossterm">
+                              <a href="#pear">Pear</a>
+                           </span> and
+<span class="glossterm">
+                              <a href="#R_g1_ge3">Bloodroot</a>
+                           </span>.</p>
+                        <div id="R_g1" class="auto component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="apple" class="glossentry">
+                                 <span class="glossterm">Apple</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                              </dd>
+                              <dt id="R_g1_ge3" class="glossentry">
+                                 <span class="glossterm">Bloodroot</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>Sanguinaria canadensis, bloodroot, is a perennial,
+      herbaceous flowering plant native to eastern North America. It
+      is the only species in the genus Sanguinaria, included in the
+      poppy family Papaveraceae, and is most closely related to
+      Eomecon of eastern Asia.</p>
+                                 <p>It is sometimes known as Canada puccoon, bloodwort,
+      redroot, red puccoon, and black paste. Plants are variable in
+      leaf and flower shape, and have been separated as a different
+      subspecies due to these variable shapes, indicating a highly
+      variable species. </p>
+                              </dd>
+                              <dt id="pear" class="glossentry">
+                                 <span class="glossterm">Pear</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario5-expect1" successful="true">
+         <label>expect glossary.005.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Mixed Glossary</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Mixed Glossary</h1>
+                           </header>
+                           <div class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <p>This test tests the <code class="parameter">glossary-collection</code>
+machinery when the “internal” glossary is not empty. We expect a
+glossary with three entries, mixed from the internal and the external
+glossaries.</p>
+                           <p>Referencing <span class="firstterm">
+                                 <a href="#apple">Apple</a>
+                              </span>,
+<span class="glossterm">
+                                 <a href="#pear">Pear</a>
+                              </span> and
+<span class="glossterm">
+                                 <a href="#R_g1_ge3">Bloodroot</a>
+                              </span>.</p>
+                           <div id="R_g1" class="auto component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="apple" class="glossentry">
+                                    <span class="glossterm">Apple</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                                 </dd>
+                                 <dt id="R_g1_ge3" class="glossentry">
+                                    <span class="glossterm">Bloodroot</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Sanguinaria canadensis, bloodroot, is a perennial,
+      herbaceous flowering plant native to eastern North America. It
+      is the only species in the genus Sanguinaria, included in the
+      poppy family Papaveraceae, and is most closely related to
+      Eomecon of eastern Asia.</p>
+                                    <p>It is sometimes known as Canada puccoon, bloodwort,
+      redroot, red puccoon, and black paste. Plants are variable in
+      leaf and flower shape, and have been separated as a different
+      subspecies due to these variable shapes, indicating a highly
+      variable species. </p>
+                                 </dd>
+                                 <dt id="pear" class="glossentry">
+                                    <span class="glossterm">Pear</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario6"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.006</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.006.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Mixed Glossary with multiple entries</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Mixed Glossary with multiple entries</h1>
+                           <div class="author">
+                              <h3>
+                                 <span class="first-last personname">
+                                    <span class="firstname">Frank</span>
+                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                    <span class="surname">Steimke</span>
+                                 </span>
+                              </h3>
+                           </div>
+                        </header>
+                        <div class="admonition note">
+                           <div>
+                              <div class="icon">ⓘ</div>
+                              <div class="body">
+                                 <header>
+                                    <div class="title">Note</div>
+                                 </header>
+                                 <div>
+                                    <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <p>This test checks the <code class="parameter">glossary-collection</code>
+machinery when the “internal” glossary is not empty, and some
+glossterms have definitions in the internal and external glossaries.
+The externals glossary file path must be given by setting the
+<code class="parameter">$glossary-collection</code> transformation
+parameter.</p>
+                        <p>The internal entry has priority and should therefore
+cover/overwrite the definition from the external glossary.</p>
+                        <p>We expect a glossary with four entries, mixed from the internal and the external
+        glossaries. <ol class="orderedlist" type="1">
+                              <li>
+                                 <p>
+                                    <span class="glossterm">
+                                       <a href="#R_g1_ge1">Apple</a>
+                                    </span> should reference the internal, poetic
+                    definition.</p>
+                              </li>
+                              <li>
+                                 <p>
+                                    <span class="glossterm">
+                                       <a href="#pear">Pear</a>
+                                    </span> references the external definition;</p>
+                              </li>
+                              <li>
+                                 <p>
+                                    <span class="glossterm">
+                                       <a href="#R_g1_ge3">Quince</a>
+                                    </span> references the internal definition.</p>
+                              </li>
+                              <li>
+                                 <p>
+                                    <span class="glossterm">
+                                       <a href="#R_g1_ge4">Bloodroot</a>
+                                    </span> references the internal definition.</p>
+                              </li>
+                           </ol>
+                        </p>
+                        <div id="R_g1" class="auto component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="R_g1_ge1" class="glossentry">
+                                 <span class="glossterm">Apple</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>In early autumn the apple orchards come alive with people and sounds. The
+                    farmers are picking, peeling, and processing apples into everything from apple
+                    pies to apple sauce. Families swarm the apple trees with their baskets looking
+                    for the best Honeycrisp and Macintosh. The sound of children playing is blended
+                    with the occasional barking dog, or the low rumble of the old Ferguson Orchard
+                    tractor pulling a wagon up and down the rows. </p>
+                              </dd>
+                              <dt id="R_g1_ge4" class="glossentry">
+                                 <span class="glossterm">Bloodroot</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>Sanguinaria canadensis, bloodroot, is a perennial, herbaceous flowering plant
+                    native to eastern North America. It is the only species in the genus
+                    Sanguinaria, included in the poppy family Papaveraceae, and is most closely
+                    related to Eomecon of eastern Asia.</p>
+                                 <p>It is sometimes known as Canada puccoon, bloodwort, redroot, red puccoon, and
+                    black paste. Plants are variable in leaf and flower shape, and have been
+                    separated as a different subspecies due to these variable shapes, indicating a
+                    highly variable species. </p>
+                              </dd>
+                              <dt id="pear" class="glossentry">
+                                 <span class="glossterm">Pear</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                              </dd>
+                              <dt id="R_g1_ge3" class="glossentry">
+                                 <span class="glossterm">Quince</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The quince (/ˈkwɪns/; Cydonia oblonga) is the sole member of the genus Cydonia
+                    in the Malinae subtribe (which also contains apples and pears, among other
+                    fruits) of the Rosaceae family. It is a deciduous tree that bears hard, aromatic
+                    bright golden-yellow pome fruit, similar in appearance to a pear. Ripe quince
+                    fruits are hard, tart, and astringent. They are eaten raw or processed into
+                    marmalade, jam, paste (known as quince cheese) or alcoholic beverages. </p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario6-expect1" successful="true">
+         <label>expect glossary.006.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Mixed Glossary with multiple entries</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Mixed Glossary with multiple entries</h1>
+                              <div class="author">
+                                 <h3>
+                                    <span class="first-last personname">
+                                       <span class="firstname">Frank</span>
+                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                       <span class="surname">Steimke</span>
+                                    </span>
+                                 </h3>
+                              </div>
+                           </header>
+                           <div class="admonition note">
+                              <div>
+                                 <div class="icon">ⓘ</div>
+                                 <div class="body">
+                                    <header>
+                                       <div class="title">Note</div>
+                                    </header>
+                                    <div>
+                                       <p>The test harness is configured to run this test with the
+<code class="parameter">glossary-collection</code> parameter pointing to
+<code class="filename">src/test/resources/glosscollection.xml</code>.</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <p>This test checks the <code class="parameter">glossary-collection</code>
+machinery when the “internal” glossary is not empty, and some
+glossterms have definitions in the internal and external glossaries.
+The externals glossary file path must be given by setting the
+<code class="parameter">$glossary-collection</code> transformation
+parameter.</p>
+                           <p>The internal entry has priority and should therefore
+cover/overwrite the definition from the external glossary.</p>
+                           <p>We expect a glossary with four entries, mixed from the internal and the external
+        glossaries. <ol class="orderedlist" type="1">
+                                 <li>
+                                    <p>
+                                       <span class="glossterm">
+                                          <a href="#R_g1_ge1">Apple</a>
+                                       </span> should reference the internal, poetic
+                    definition.</p>
+                                 </li>
+                                 <li>
+                                    <p>
+                                       <span class="glossterm">
+                                          <a href="#pear">Pear</a>
+                                       </span> references the external definition;</p>
+                                 </li>
+                                 <li>
+                                    <p>
+                                       <span class="glossterm">
+                                          <a href="#R_g1_ge3">Quince</a>
+                                       </span> references the internal definition.</p>
+                                 </li>
+                                 <li>
+                                    <p>
+                                       <span class="glossterm">
+                                          <a href="#R_g1_ge4">Bloodroot</a>
+                                       </span> references the internal definition.</p>
+                                 </li>
+                              </ol>
+                           </p>
+                           <div id="R_g1" class="auto component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="R_g1_ge1" class="glossentry">
+                                    <span class="glossterm">Apple</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>In early autumn the apple orchards come alive with people and sounds. The
+                    farmers are picking, peeling, and processing apples into everything from apple
+                    pies to apple sauce. Families swarm the apple trees with their baskets looking
+                    for the best Honeycrisp and Macintosh. The sound of children playing is blended
+                    with the occasional barking dog, or the low rumble of the old Ferguson Orchard
+                    tractor pulling a wagon up and down the rows. </p>
+                                 </dd>
+                                 <dt id="R_g1_ge4" class="glossentry">
+                                    <span class="glossterm">Bloodroot</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>Sanguinaria canadensis, bloodroot, is a perennial, herbaceous flowering plant
+                    native to eastern North America. It is the only species in the genus
+                    Sanguinaria, included in the poppy family Papaveraceae, and is most closely
+                    related to Eomecon of eastern Asia.</p>
+                                    <p>It is sometimes known as Canada puccoon, bloodwort, redroot, red puccoon, and
+                    black paste. Plants are variable in leaf and flower shape, and have been
+                    separated as a different subspecies due to these variable shapes, indicating a
+                    highly variable species. </p>
+                                 </dd>
+                                 <dt id="pear" class="glossentry">
+                                    <span class="glossterm">Pear</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                                 </dd>
+                                 <dt id="R_g1_ge3" class="glossentry">
+                                    <span class="glossterm">Quince</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The quince (/ˈkwɪns/; Cydonia oblonga) is the sole member of the genus Cydonia
+                    in the Malinae subtribe (which also contains apples and pears, among other
+                    fruits) of the Rosaceae family. It is a deciduous tree that bears hard, aromatic
+                    bright golden-yellow pome fruit, similar in appearance to a pear. Ripe quince
+                    fruits are hard, tart, and astringent. They are eaten raw or processed into
+                    marmalade, jam, paste (known as quince cheese) or alcoholic beverages. </p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
-         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-division-component-section.xspec"
-         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-inherit-from-division-component-section.xsl"
-         date="2024-01-28T16:23:08.264572Z">
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-division-component-section.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/sections-inherit-from-division-component-section.xsl"
+        date="2024-01-29T11:15:09.149082Z">
    <scenario id="scenario1"
-              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-division-component-section.xspec">
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/sections-inherit-from-division-component-section.xspec">
       <label>When transforming sections-inherit-from-division-component-section</label>
       <input-wrap xmlns="">
          <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                     href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/sections-numbered-from.xml"/>
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/sections-numbered-from.xml"/>
       </input-wrap>
       <result select="/self::document-node()">
          <content-wrap xmlns="">
