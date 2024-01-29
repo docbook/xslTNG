@@ -438,6 +438,39 @@ to construct the divisions in an index.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="f_glossentries">
+  <?db filename='f_glossentries'?>
+  <refmeta>
+    <refentrytitle>f:glossentries</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}glossentries#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}glossentries#2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:glossentries</refname>
+    <refpurpose>Returns a list of all glossentries for a term</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Returns all <code>glossentry</code> elements that are targeted by <code>$term</code>,
+        which must either by a <code>glossterm</code> or a <code>firstterm</code> element.  The
+        internal glossary of the input document is always taken into account. </para>
+      <para>In the form with only one argument, external glossaries are also taken into account if
+        they are designated in the input document with a <code>&lt;?db
+            glossary-collection='<replaceable>URIs</replaceable>'?></code> processing instruction.
+        In the form with two arguments, you can specify a list of URIs of the external
+        glossaries.</para>
+    
+    <para>When there is more than one <code>glossentry</code> found, the result sequence will
+      start with entries from the internal glossary, if any.</para>
+      <para>The functions design allows its use indepentend from the xslTNG stylesheets. You can, for
+        example, integrate it in a Schematron rule that checks whether every <code>glossterm</code>
+        has exactly one corresponding <code>glossentry</code> while authoring your document. That`s
+        why the function can't use the <parameter>glossary-collection</parameter> transformation
+        parameter. </para>
+  </refsection>
+</refentry>
+  
 <refentry xml:id="f_highlight-verbatim">
 <?db filename="f_highlight-verbatim"?>
 <refmeta>

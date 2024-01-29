@@ -214,7 +214,7 @@
                                   |$param_xsl//xsl:variable[@name=$dname]"/>
 
             <xsl:if test="count($decl) != 1">
-              <xsl:message select="count($decl), ': ', $dname"/>
+              <xsl:message select="'DECL:', count($decl), ': ', $dname"/>
             </xsl:if>
 
             <fieldsynopsis>

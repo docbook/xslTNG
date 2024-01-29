@@ -1979,15 +1979,17 @@ across many documents. If
 <parameter>glossary-collection</parameter> points to a
 glossary, the stylesheets will automatically populate glossary
 entries in the document being transformed.</para>
+
 <para>To achieve this:</para>
+
 <orderedlist>
 <listitem>
 <para>Create a shared glossary and store it somewhere.</para>
 </listitem>
-        <listitem>
-          <para>In the document you’re transforming, add an empty <code>glossary</code> with
-              <code>@role='auto'</code>.</para>
-        </listitem>
+<listitem>
+<para>In the document you’re transforming, add an empty <code>glossary</code> with
+<code>@role='auto'</code>.</para>
+</listitem>
 <listitem>
 <para>Run your
 transformation with <parameter>glossary-collection</parameter> set
@@ -1995,7 +1997,24 @@ to the URI of that document.
 </para>
 </listitem>
 </orderedlist>
+
 <para>The stylesheets will copy referenced entries into your document before processing it.</para>
+
+<para>You may specify per-document glossary collections with the
+<literal>db</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+</indexterm> processing instruction using the
+<literal>glossary-collection</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+<secondary>glossary-collection pseudo-attribute</secondary>
+</indexterm> pseudo-attribute. This must appear in the root element of
+your main document. If per-document glossary collections are provided,
+they are processed in the order provided before the global
+collection.</para>
+<para>If multiple definitions for the same term appear in a glossary collection, only
+the first term is used.</para>
 </refsection>
 </refentry>
 
