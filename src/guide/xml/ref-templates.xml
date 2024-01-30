@@ -665,4 +665,25 @@ element with an <att>xlink:href</att> attribute) and extended links.
 </refsection>
 </refentry>
 
+<refentry xml:id="t_glossary-divisions">
+<?db filename="t_glossary-divisions"?>
+<refmeta>
+<refentrytitle>t:glossary-divisions</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}glossary-divisions</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:glossary-divisions</refname>
+<refpurpose>Groups entries in a glossary</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>glossary-automatic-divisions</parameter> <glossterm>is true</glossterm>,
+this template is used to construct the divisions. By default, it makes groups based on the
+(upper-case) first letter of the terms. It does not add a grouping wrapper if there’s only
+one group.
+</para>
+</refsection>
+</refentry>
+
 </reference>

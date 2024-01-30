@@ -19,25 +19,74 @@
   <xsl:variable name="gi" select="if (parent::*)
                                   then 'div'
                                   else 'article'"/>
+
+  <xsl:variable name="make-divisions"
+                select="if (empty(f:pi(., 'glossary-divisions', ())))
+                        then f:is-true($glossary-automatic-divisions)
+                        else f:is-true(f:pi(., 'glossary-divisions', 'false'))"/>
+
   <xsl:element name="{$gi}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
     <xsl:apply-templates select="* except (db:glossentry|db:bibliography)"/>
-    <dl class="{local-name(.)}">
-      <xsl:choose>
-        <xsl:when test="$glossary-sort-entries">
+    <xsl:choose>
+      <xsl:when test="self::db:glossary and db:glossentry
+                      and f:is-true($glossary-sort-entries) and $make-divisions">
+        <xsl:call-template name="t:glossary-divisions">
+          <xsl:with-param name="terms" as="element(db:glossentry)+">
+            <xsl:for-each select="db:glossentry">
+              <xsl:sort select="(@sortas, normalize-space(db:glossterm[1]))[1]"
+                        collation="{$sort-collation}"/>
+              <xsl:sequence select="."/>
+            </xsl:for-each>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="db:glossentry and f:is-true($glossary-sort-entries)">
+        <dl class="{local-name(.)}">
           <xsl:apply-templates select="db:glossentry">
             <xsl:sort select="(@sortas, normalize-space(db:glossterm[1]))[1]"
                       collation="{$sort-collation}"/>
           </xsl:apply-templates>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="db:glossentry"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </dl>
+        </dl>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="db:glossentry"/>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates select="db:bibliography"/>
   </xsl:element>
+</xsl:template>
+
+<xsl:template name="t:glossary-divisions">
+  <xsl:param name="terms" as="element(db:glossentry)+"/>
+
+  <xsl:variable name="gid" select="f:id(.)"/>
+
+  <xsl:for-each-group
+      select="$terms"
+      group-by="upper-case(substring((db:glossterm[1]/@baseform, string(db:glossterm[1]))[1], 1, 1))">
+    <xsl:choose>
+      <!-- Don't bother with the group in the unlikely event that there's only one. -->
+      <xsl:when test="last() gt 1">
+        <div id="{$gid}_{current-grouping-key()}" class="glossdiv">
+          <header>
+            <div class="title">
+              <xsl:sequence select="current-grouping-key()"/>
+            </div>
+          </header>
+          <dl>
+            <xsl:apply-templates select="current-group()"/>
+          </dl>
+        </div>
+      </xsl:when>
+      <xsl:otherwise>
+        <dl>
+          <xsl:apply-templates select="current-group()"/>
+        </dl>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each-group>
 </xsl:template>
 
 <xsl:template match="db:glossentry">

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info>
+  <?db toc="false"?>
+   <title>Unit Test: glossary.010</title>
+   <editor>
+      <personname>
+         <firstname>Someone</firstname>
+         <surname>Random</surname>
+      </personname>
+   </editor>
+   <subtitle>Wikipedia fruits with pepper</subtitle>
+   <releaseinfo>Just some test data</releaseinfo>
+   <othercredit><orgname>Wikimedia Commons</orgname></othercredit>
+</info>
+
+<chapter>
+<title>Fruits and Peppers</title>
+
+<note>
+<para>The test harness is configured to run this test with the
+<parameter>glossary-collection</parameter> parameter pointing to
+<filename>src/test/resources/glosscollection.xml</filename>.</para>
+</note>
+
+<para><glossterm baseform="Peach">Peaches</glossterm>,
+<glossterm baseform="Pear">Pears</glossterm>, and
+<glossterm baseform="Pepper">Peppers</glossterm>.</para>
+</chapter>
+
+<glossary xml:id="glossary" role="auto">
+<?db glossary-divisions="true"?>
+<glossentry>
+  <glossterm>Pepper</glossterm>
+  <glossdef>
+    <para>Black pepper (Piper nigrum) is a flowering vine in the family Piperaceae, cultivated for
+            its fruit (the peppercorn), which is usually dried and used as a spice and seasoning.
+            Peppercorns and the ground pepper derived from them may be described simply as pepper,
+            or more precisely as <emphasis>black pepper</emphasis> (cooked and dried unripe fruit),
+              <emphasis>green pepper</emphasis> (dried unripe fruit), or <emphasis>white pepper
+            </emphasis>(ripe fruit seeds).</para>
+  </glossdef>
+</glossentry>  
+
+<glossentry xml:id="peach">
+  <glossterm>Peach</glossterm>
+  <glossdef>
+    <para>The peach (Prunus persica) is a deciduous tree native to the
+    region of Northwest China between the Tarim Basin and the north
+    slopes of the Kunlun Mountains, where it was first domesticated
+    and cultivated. It bears an edible juicy fruit called a peach
+    or a nectarine.</para>
+  </glossdef>
+</glossentry>
+
+<glossentry xml:id="pear">
+  <glossterm>Pear</glossterm>
+  <glossdef>
+    <para>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</para>
+  </glossdef>
+</glossentry>
+</glossary>
+</book>

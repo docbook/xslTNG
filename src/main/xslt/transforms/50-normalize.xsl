@@ -159,14 +159,14 @@
 </xsl:template>
 
 <xsl:template match="db:glossary">
-  <xsl:variable name="glossary">
+  <xsl:variable name="glossary" as="element(db:glossary)">
     <xsl:call-template name="tp:normalize-generated-title">
       <xsl:with-param name="title-key" select="local-name(.)"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$glossary/db:glossary[@role = 'auto']">
+    <xsl:when test="$glossary[@role = 'auto']">
       <xsl:variable name="terms" as="element()*">
         <xsl:for-each-group select="//db:glossterm[not(ancestor::db:glossary)] union //db:firstterm"
                             group-by="(@baseform, normalize-space())[1]">
@@ -175,7 +175,7 @@
       </xsl:variable>
       <xsl:if test="exists($terms)">
         <glossary xmlns="http://docbook.org/ns/docbook">
-          <xsl:sequence select="$glossary/*/@*, $glossary/*/db:info"/>
+          <xsl:sequence select="$glossary/@*, $glossary/node() except $glossary/db:glossentry"/>
           <xsl:call-template name="t:glossary-content">
             <xsl:with-param name="terms" select="$terms"/>
           </xsl:call-template>

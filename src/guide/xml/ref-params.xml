@@ -2022,7 +2022,7 @@ the first term is used.</para>
   <refmeta>
     <fieldsynopsis>
       <varname>glossary-sort-entries</varname>
-      <initializer>true()</initializer>
+      <initializer>'true'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -2030,10 +2030,45 @@ the first term is used.</para>
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>If <parameter>glossary-sort-entries</parameter> is true, the entries in a
+<para>If <parameter>glossary-sort-entries</parameter> <glossterm>is true</glossterm>, the entries in a
 <tag>glossary</tag> or <tag>glosslist</tag> will be sorted before transformation.
 This saves the author from the burden of maintaining the list in a strictly
 alphabetic order.
+</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>glossary-automatic-divisions</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Divide glossaries into sections?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If <parameter>glossary-automatic-divisions</parameter> <glossterm>is true</glossterm>,
+the entries in an automatically constructed glossary will be grouped. The actual grouping
+is performed by the <template>t:glossary-divisions</template> template. This parameter is
+false by default for backwards compatibility.
+</para>
+
+<para>Automatic divisions can be specified on a per-glossary basis with a
+<literal>db</literal> processing instruction
+<indexterm>
+<primary>db processing instruction</primary>
+</indexterm> using the <literal>glossary-divisions</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>glossary-divisions pseudo-attribute</secondary>
+</indexterm>
+pseudo-attribute with a value of <code>true</code> or <code>false</code>.</para>
+
+<para>This parameter only applies if 
+<parameter>glossary-sort-entries</parameter> <glossterm>is true</glossterm> and the glossary
+is not already grouped with <tag>glossdiv</tag> elements by hand.
 </para>
 </refsection>
 </refentry>
