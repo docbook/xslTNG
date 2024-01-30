@@ -15,6 +15,10 @@
 |    Functions designed for use independent from the xsTNG Stylesheets 
 |    e. g. in Schematron rules  
 |=================================================================================== -->
+
+<xsl:variable name="v:pi-db-attributes-are-uris" as="xs:string*"
+              select="('glossary-collection', 'bibliography-collection',
+                       'annotation-collection')"/>
   
 <!-- ====================================================================================
 |    Functions for processing instructions and their pseudo attributes

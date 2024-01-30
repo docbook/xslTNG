@@ -26,10 +26,6 @@
 <xsl:variable name="v:as-json" select="map {'method':'json','indent':true()}"/>
 <xsl:variable name="v:as-xml" select="map {'method':'xml','indent':true()}"/>
 
-<xsl:variable name="v:pi-db-attributes-are-uris" as="xs:string*"
-              select="('glossary-collection', 'bibliography-collection',
-                       'annotation-collection')"/>
-
 <xsl:variable name="v:custom-localizations" as="document-node()?"
               select="()"/>
 

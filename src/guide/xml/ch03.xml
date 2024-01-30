@@ -738,12 +738,9 @@ check whether a corresponding <code>glossentry</code> exists for a
 <code>glossterm</code> or <code>firstterm</code> while you are still
 writing. Corresponding Schematron schemas are not yet part of the
 xslTNG framework.</para>
-      
-  <simplesect>
-    <title>Caveats</title>
-    <para>The use of <code>glossdiv</code> is not supported for automatic glossaries, all
-    of the entries will appear in a flat list.</para>
-  </simplesect>
+
+<para>Generating glossary divisions automatically is controlled by the
+<parameter>glossary-automatic-divisions</parameter> parameter.</para>
 </section>
 
 <section xml:id="different">
