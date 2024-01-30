@@ -24,9 +24,12 @@
 <!-- Load the whole stylesheet; well, down to one level of nesting -->
 <xsl:variable name="main.xsl"
               select="resolve-uri('../../../build/xslt/docbook.xsl', static-base-uri())"/>
+<xsl:variable name="standalone.xsl"
+              select="resolve-uri('../../../build/xslt/standalone-functions.xsl', static-base-uri())"/>
 <xsl:variable name="param_xsl">
   <main xmlns="">
     <xsl:apply-templates select="doc($main.xsl)/*" mode="mg:collect-imports"/>
+    <xsl:apply-templates select="doc($standalone.xsl)/*" mode="mg:collect-imports"/>
   </main>
 </xsl:variable>
 
