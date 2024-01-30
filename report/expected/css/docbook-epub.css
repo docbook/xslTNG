@@ -1429,6 +1429,10 @@ li[db-mark=box] {
   margin-top: 1em;
 }
 
+.glossdiv dl dt {
+  padding-left: 1em;
+}
+
 /* ============================================================ */
 .sidebar {
   background-color: var(--sidebar-color);
@@ -1798,7 +1802,7 @@ nav.top {
   width: 100%;
   background-color: var(--nav-background-color);
   opacity: 1;
-  z-index: 2; /* make sure floating elements go under it! */
+  z-index: 100; /* make sure floating elements go under it! */
 }
 
 body.home nav.top {
