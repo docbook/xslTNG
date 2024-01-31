@@ -16,17 +16,30 @@
               select="'https://api.github.com/repos/' || $org || '/' || $repo || '/releases'"/>
 
 <xsl:variable name="release" as="map(*)">
-  <xsl:variable name="releases" as="array(*)">
+  <xsl:variable name="try-releases" as="array(*)">
     <xsl:try>
-      <xsl:message select="'Attempt to read', resolve-uri('../build/releases.json', static-base-uri())"/>
+      <xsl:message select="'Reading releases from', resolve-uri('../build/releases.json', static-base-uri())"/>
       <xsl:sequence select="parse-json(unparsed-text('../build/releases.json'))"/>
       <xsl:catch xmlns:err="http://www.w3.org/2005/xqt-errors">
-        <xsl:message select="'Attempt failed, trying', $reluri"/>
+        <xsl:message select="'Read failed, trying', $reluri"/>
         <xsl:message select="$err:code, $err:description"/>
         <xsl:sequence select="parse-json(unparsed-text($reluri))"/>
       </xsl:catch>
     </xsl:try>
   </xsl:variable>
+
+  <xsl:variable name="releases" as="array(*)">
+    <xsl:choose>
+      <xsl:when test="array:size($try-releases) = 0">
+        <xsl:message select="'No published releases, trying', $reluri"/>
+        <xsl:sequence select="parse-json(unparsed-text($reluri))"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$try-releases"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:sequence select="array:get($releases, 1)"/>
 </xsl:variable>
 

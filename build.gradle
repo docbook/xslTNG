@@ -1259,7 +1259,7 @@ task webHtml(type: Copy, dependsOn: ['report', 'webHomepage']) {
   exclude "homepage.html"
 }
 
-def buildTag = System.getenv()["CIRCLE_TAG"]
+def buildTag = System.getenv()["CI_TAG"]
 if (buildTag == null) {
   buildTag = ""
 }
