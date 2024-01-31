@@ -542,7 +542,7 @@ original document is transformed several times before converting it to
 HTML. The standard transformations are:</para>
 
 <orderedlist>
-<listitem>
+<listitem xml:id="step-first-00-transform">
 <para>Adjust the logical structure. Adds an XML base attribute to the root of the
 document and converts media object <tag class="attribute">entityref</tag> attributes
 into <tag class="attribute">fileref</tag> attributes.
@@ -587,7 +587,7 @@ extension function is available and the stylesheet specifies a
 <parameter>relax-ng-grammar</parameter>.
 </para>
 </listitem>
-<listitem>
+<listitem xml:id="step-last-oxy-markup">
 <para>Process Oxygen change markup. Only occurs if 
 <parameter>oxy-markup</parameter> <glossterm>is true</glossterm> and the document contains
 Oxygen change markup processing instructions.
@@ -596,19 +596,45 @@ Oxygen change markup processing instructions.
 </orderedlist>
 
 <para>A customization can introduce transformations to the original
-document: before the standard transformations by specifying them in
-<parameter>transform-original</parameter>; after the standard transformations
-but before the transformation to HTML by specifying them in
-<parameter>transform-before</parameter>; or after the HTML transformation
-by specifying them in <parameter>transform-after</parameter>. (If you need
+document using three parameters:</para>
+
+<variablelist>
+<varlistentry>
+<term><parameter>transform-original</parameter></term>
+<listitem>
+<para>This transform runs before step <xref linkend="step-first-00-transform"/> in the standard transformations.
+If this transformation is used, it must take special care to preserve the 
+base URI of the original document by adding an <tag class="attribute">xml:base</tag>
+attribute to the root element (if it doesn’t already have one).</para>
+<para>Only the first transformation in the list has access to the original base URI.
+If it isn’t preserved, relative references to other documents will be resolved against
+the static base URI of the stylesheet and not the URI of the original document. That’s
+unlikely to be correct.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><parameter>transform-before</parameter></term>
+<listitem>
+<para>This transformation runs after step <xref linkend="step-last-oxy-markup"/>. Its
+input is the DocBook document that will be transformed into HTML.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><parameter>transform-after</parameter></term>
+<listitem>
+<para>This transformation runs after the DocBook document has been transformed into HTML.
+The resulting HTML document is not valid HTML, but contains islands of valid HTML that will
+be separated out into chunks by subsequent processing.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>(If you need
 to insert a transformation in the middle of the standard transformations,
 you’ll have to update the <varname>v:standard-transforms</varname>
-variable.)</para>
-
-<note>
-<para>Transformations in <varname>transform-after</varname> will be processing
-the <emphasis>HTML</emphasis> result of applying the “main” DocBook transformation.</para>
-</note>
+variable in your customization.)</para>
 
 <para>Each of the transformation variables holds a list of transforms that will
 be applied in the order specified. Each member of the list can be a map or a
