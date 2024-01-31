@@ -675,7 +675,7 @@ This most closely reproduces the numbering from the 1.x stylesheets.</para>
 
 </section>
 
-<section>
+<section xml:id="using-glossaries">
 <title>Using glossaries</title>
 
 <para>There are essentially two ways to manage glossaries: you can
@@ -741,6 +741,58 @@ xslTNG framework.</para>
 
 <para>Generating glossary divisions automatically is controlled by the
 <parameter>glossary-automatic-divisions</parameter> parameter.</para>
+</section>
+
+<section xml:id="using-bibliographies">
+<title>Using bibliographies</title>
+
+<para>Bibliographies are more complicated than glossaries.
+Bibliography entries can be “cooked” (<tag>bibliomixed</tag>) or “raw”
+(<tag>biblioentry</tag>) and there’s no obvious way to sort
+bibliography entries in the general case.</para>
+
+<para>Unlike glossary terms and glossary entries that are matched on
+the text of the term, bibliographic citations are matched with
+ID/IDREF links. Each entry has an ID and <tag>biblioref</tag> elements
+(or, in some cases, <tag>xref</tag> elements) point to them with a
+<att>linkend</att> attribute.</para>
+
+<para>One consequence of this design is that you must have an ID to
+point to, even if you want the bibliography to be generated
+automatically. If you don’t have an ID, then you’ll get
+cross-reference validity errors.</para>
+
+<para>The expectation if you want automatic bibliography processing is
+that you’ll put empty entries in the bibliography where you want the
+generated entries to appear. For example:</para>
+
+<programlisting language="xml"><![CDATA[<bibliography>
+  <bibliomixed xml:id="Bray08"/>
+  <bibliomixed xml:id="Walsh96"/>
+</bibliography>]]></programlisting>
+
+<para>That <tag>bibliography</tag> will satisfy the validator, but won’t produce
+a useful bibliography.</para>
+
+<para>If you specify the <parameter>bibliography-collection</parameter> parameter, then
+matching entries from the external bibliography will be used to replace the empty
+entries. In this way, you can maintain a global bibliography and use it selectively
+in different documents.</para>
+
+<para>Starting in verison 2.2.0 of the <citetitle>DocBook xslTNG Stylesheets</citetitle>,
+there’s an additional feature that you can use, modeled on the similar
+<link linkend="using-glossaries">glossaries feature</link>. If you add
+<code>auto</code> to the <att>role</att> attribute on the <tag>bibliography</tag>,
+two additional features are enabled:</para>
+
+<orderedlist>
+<listitem><para>If there are multiple matching (non-empty) bibliography entries in the
+external bibliographies, then only the first will be used.</para>
+</listitem>
+<listitem><para>If the bibliography contains unreferenced citations (entries that are not
+pointed to with a <att>linkend</att> attribute), they will be dropped from the bibliography.</para>
+</listitem>
+</orderedlist>
 </section>
 
 <section xml:id="different">
