@@ -16,6 +16,12 @@
 |    e. g. in Schematron rules  
 |=================================================================================== -->
 
+<xsl:key name="bibliocitation" match="db:citation" use="normalize-space(.)"/>
+
+<xsl:key name="bibliocited"
+         match="db:biblioentry[db:abbrev]|db:bibliomixed[db:abbrev]"
+         use="db:abbrev ! normalize-space(.)"/>
+
 <xsl:variable name="v:pi-db-attributes-are-uris" as="xs:string*"
               select="('glossary-collection', 'bibliography-collection',
                        'annotation-collection')"/>
@@ -130,16 +136,19 @@
      if designated by a db PI with glossary-collection pseudo attribute. -->
 <xsl:function name="f:glossentries" as="element(db:glossentry)*">
   <xsl:param name="term" as="element()"/>
-  <xsl:sequence select="f:glossentries($term, f:pi(root($term), 'glossary-collection')[1])"/>
+  <xsl:sequence select="f:glossentries($term, f:pi(root($term), 'glossary-collection'))"/>
 </xsl:function>
 
 <!-- all glossentries for $term (glossterm, firstterm) 
      taking into account external glossaries 
-     if designated by a sequence of URIs in $collection. 
+     if designated by a sequence of URIs in $collections. 
      glossentries from the internal glossary are first in the result sequence-->
 <xsl:function name="f:glossentries" as="element(db:glossentry)*">
   <xsl:param name="term" as="element()"/>
-  <xsl:param name="collection" as="xs:string?"/>
+  <xsl:param name="collections" as="xs:string*"/>
+
+  <xsl:variable name="collection-list"
+                select="tokenize(normalize-space(string-join($collections, ' ')), '\s+')"/>
 
   <xsl:choose>
     <xsl:when test="$term/self::db:glossterm or $term/self::db:firstterm">
@@ -147,7 +156,7 @@
           let $internal-glossaries := root($term)//db:glossary
           return
             fp:glossentries-in-glossaries($term, $internal-glossaries),
-          fp:glossentries-in-glossaries($term, fp:external-glossaries($collection))"/>
+          fp:glossentries-in-glossaries($term, fp:external-glossaries($collection-list))"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message
@@ -156,13 +165,13 @@
   </xsl:choose>
 </xsl:function>
 
-<!-- returns external glossaries referenced by URIs in the $collection string -->
+<!-- returns external glossaries referenced by URIs in the $collections list -->
 <xsl:function name="fp:external-glossaries" as="element(db:glossary)*" cache="yes">
-  <xsl:param name="collection" as="xs:string?"/>
+  <xsl:param name="collections" as="xs:string*"/>
  
-  <xsl:if test="$collection ne ''">
+  <xsl:if test="exists($collections)">
     <xsl:variable name="glossaries" as="element(db:glossary)*">
-      <xsl:for-each select="tokenize($collection, '\s+')">
+      <xsl:for-each select="$collections">
         <!-- n.b. there's nothing to resolve a relative URI against here; values
              set by the db processing instruction are made absolute against the PI.
              Values from elsewhere should be made absolute before calling this function. -->
@@ -176,7 +185,7 @@
       </xsl:for-each>
     </xsl:variable>
     <!--
-    <xsl:message select="count($glossaries) || ' external glossaries loaded from collection ' || $collection"/>
+    <xsl:message select="count($glossaries) || ' external glossaries loaded from collections ' || $collections"/>
     -->
     <xsl:sequence select="$glossaries"/>
   </xsl:if>
@@ -200,5 +209,82 @@
   <xsl:param name="element" as="element()"/>
   <xsl:sequence select="($element/@baseform, xs:string($element))[1] ! normalize-space(.)"/>
 </xsl:function>
-  
+
+<!-- ===================================================================================
+|   Support for automatic bibliography and bibliography-collection
+|=================================================================================== -->
+
+<!-- all bibliography for a given citation taking into account external bibliographies
+     if designated by a db PI with bibliography-collection pseudo attribute. -->
+<xsl:function name="f:biblioentries" as="element()*">
+  <xsl:param name="cite" as="element()"/>
+  <xsl:sequence select="f:biblioentries($cite, f:pi(root($cite), 'bibliography-collection'))"/>
+</xsl:function>
+
+<!-- all biblioentries for a given citation taking into account external glossaries 
+     if designated by a sequence of URIs in $collections. 
+     bibliography entries from the internal bibliography are first in the result sequence-->
+<xsl:function name="f:biblioentries" as="element()*">
+  <xsl:param name="cite" as="element()"/>
+  <xsl:param name="collections" as="xs:string?"/>
+
+  <xsl:variable name="collection-list"
+                select="tokenize(normalize-space(string-join($collections, ' ')), '\s+')"/>
+
+  <xsl:choose>
+    <xsl:when test="$cite/self::db:citation">
+      <xsl:sequence select="
+          let $internal-bibliographies := root($cite)//db:bibliography
+          return
+            fp:biblioentries-in-bibliographies($cite, $internal-bibliographies),
+          fp:biblioentries-in-bibliographies($cite, fp:external-bibliographies($collection-list))"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message
+          select="'Warning: f:biblioentries must not be called with ' || local-name($cite) || ' as $cite.'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<!-- returns external bibliographies referenced by URIs in the $collections list -->
+<xsl:function name="fp:external-bibliographies" as="element(db:bibliography)*" cache="yes">
+  <xsl:param name="collections" as="xs:string*"/>
+ 
+  <xsl:if test="exists($collections)">
+    <xsl:variable name="bibliographies" as="element(db:bibliography)*">
+      <xsl:for-each select="$collections">
+        <!-- n.b. there's nothing to resolve a relative URI against here; values
+             set by the db processing instruction are made absolute against the PI.
+             Values from elsewhere should be made absolute before calling this function. -->
+        <xsl:try>
+          <xsl:sequence select="doc(xs:anyURI(.))/db:bibliography"/>
+          <xsl:catch>
+            <xsl:message select="'Failed to load bibliography: ' || ."/>
+            <xsl:message select="'    ' || $err:description"/>
+          </xsl:catch>
+        </xsl:try>
+      </xsl:for-each>
+    </xsl:variable>
+    <!--
+    <xsl:message select="count($bibliographies) || ' external bibliographies loaded from collections ' || $collections"/>
+    -->
+    <xsl:sequence select="$bibliographies"/>
+  </xsl:if>
+</xsl:function>
+
+<!-- returns all bibliography entries in the sequence of $bibliographies for $cite, if any -->
+<xsl:function name="fp:biblioentries-in-bibliographies" as="element()*">
+  <xsl:param name="cite" as="element()"/>
+  <xsl:param name="bibliographies" as="element(db:bibliography)*"/>
+  <xsl:sequence select="$bibliographies ! fp:biblioentries-in-bibliography($cite, .)"/>
+</xsl:function>
+
+<!-- returns all bibliography entries in one $bibliography for $cite, if any  -->
+<xsl:function name="fp:biblioentries-in-bibliography" as="element()*" cache="yes">
+  <xsl:param name="cite" as="element()"/>
+  <xsl:param name="bibliography" as="element(db:bibliography)"/>
+  <xsl:sequence select="$bibliography//(db:bibliomixed|db:biblioentry)
+                          [normalize-space(db:abbrev) eq normalize-space($cite)]"/>
+</xsl:function>
+
 </xsl:stylesheet>

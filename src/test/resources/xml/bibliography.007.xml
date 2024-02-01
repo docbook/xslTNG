@@ -12,16 +12,17 @@
   <chapter>
     <title>Some title</title>
 
-    <para>See <biblioref linkend="aho96"/> and <biblioref linkend="bib.xml"/>.</para>
+    <para>Citations: <citation>AhoSethiUllman96</citation> and <citation>XML</citation>.</para>
 
-    <para>The bibliography should contain the bogus “not-referenced” entry as well
-    as the unreferenced entry “Walsh96”.</para>
+    <para>Biblioref: <biblioref linkend="bib.xml"/>.</para>
+
+    <para>The bibliography should contain cited works and the
+    unreferenced entry “Walsh96”.</para>
   </chapter>
 
   <bibliography>
     <bibliomixed xml:id="bib.xml"/>
-    <bibliomixed xml:id="not-referenced"/>
-    <biblioentry xml:id="aho96">
+    <biblioentry>
       <abbrev>AhoSethiUllman96</abbrev>
       <authorgroup>
          <author>

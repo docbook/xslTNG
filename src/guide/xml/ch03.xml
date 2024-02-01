@@ -751,6 +751,82 @@ Bibliography entries can be “cooked” (<tag>bibliomixed</tag>) or “raw”
 (<tag>biblioentry</tag>) and there’s no obvious way to sort
 bibliography entries in the general case.</para>
 
+<para>There are also two different cross-referencing mechanisms for
+bibliographic entries: by ID, using <tag>biblioref</tag> or <tag>xref</tag>,
+or with <tag>citation</tag> that matches on <tag>abbrev</tag> elements
+in the bibliography entry.</para>
+
+<para>Consider this bibliography:</para>
+
+<programlisting language="xml"><![CDATA[<bibliography>
+<bibliomixed xml:id="bib.xml"><abbrev>XML</abbrev>Tim Bray,
+Jean Paoli, C. M. Sperberg-McQueen, Eve Maler,
+and François Yergeau, editors.
+<citetitle><link xlink:href="https://www.w3.org/TR/xml"
+>Extensible Markup Language (XML) 1.0 (Fifth Edition)</link
+></citetitle>.
+World Wide Web Consortium, November 2008.</bibliomixed>
+
+<biblioentry>
+  <abbrev>MalerElAndaloussi96</abbrev>
+  <title>Developing SGML DTDs</title>
+  <subtitle>From Text to Model to Markup</subtitle>
+  <authorgroup>
+    <author>
+      <personname>
+        <firstname>Eve</firstname>
+        <surname>Maler</surname>
+      </personname>
+    </author>
+    <author>
+      <personname>
+        <firstname>Jeanne</firstname>
+        <surname>El Andaloussi</surname>
+      </personname>
+    </author>
+  </authorgroup>
+  <biblioid class="isbn">0-13-309881-8</biblioid>
+  <publisher>
+    <publishername>Prentice-Hall PTR</publishername>
+    <address><city>Upper Saddle River</city>
+      <state>New Jersey</state></address>
+  </publisher>
+  <pubdate>1996</pubdate>
+</biblioentry>
+</bibliography>]]></programlisting>
+
+<para>The first entry can be cited in two ways: <code>&lt;biblioref linkend="bib.xml"/&gt;</code>
+or <code>&lt;citation&gt;XML&lt;/citation&gt;</code>. The second can only be cited with
+a <code>&lt;citation&gt;MalerElAndaloussi96&lt;/citation&gt;</code>
+(it has no <att>xml:id</att> to link to).</para>
+
+<para>Taking all of these factors into account, there are three ways to construct bibliographies:</para>
+
+<orderedlist>
+<listitem><para>Entirely by hand. The entries appear as they are listed,
+possibly with divisions. Every entry appears, whether it is cited or not.</para>
+</listitem>
+<listitem><para>Managed by hand, with empty elements as placeholders
+in the bibliography. The entries appear as they are listed, possibly
+with divisions. Every entry appears, whether it is cited or not.
+</para>
+<para>When the document is formatted, replacements for the
+empty elements will be drawn from one or more external bibliography files.
+Using empty elements as placeholders supports, and requires, that bibliographic
+citations use the ID/IDREF mechanism.</para>
+</listitem>
+<listitem>
+<para>Managed automatically. Entries only appear if they are cited and no
+placeholders are required. The order of the entries is determined by their order
+in the bibliographies from which they are drawn.</para>
+<para>The absence of placeholders means that divisions are not possible and
+requires that the <tag>citation</tag> mechanism be used for bibliographic
+citations.</para>
+<para>Automatic bibliography management only applies of the <tag>bibliography</tag>
+element has the value <code>auto</code> in its <att>role</att> attribute.</para>
+</listitem>
+</orderedlist>
+
 <para>Unlike glossary terms and glossary entries that are matched on
 the text of the term, bibliographic citations are matched with
 ID/IDREF links. Each entry has an ID and <tag>biblioref</tag> elements

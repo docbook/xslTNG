@@ -465,7 +465,7 @@ to construct the divisions in an index.</para>
       start with entries from the internal glossary, if any.</para>
       <para>The functions design allows its use independent from the xslTNG stylesheets. You can, for
         example, integrate it in a Schematron rule that checks whether every <tag>glossterm</tag>
-        has exactly one corresponding <tag>glossentry</tag> while authoring your document. That`s
+        has exactly one corresponding <tag>glossentry</tag> while authoring your document. That’s
         why the function can't use the <parameter>glossary-collection</parameter> transformation
         parameter. </para>
   </refsection>
@@ -2286,6 +2286,43 @@ If the document is valid, the <literal>errors</literal> key will not be present.
 </listitem>
 </varlistentry>
 </variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_biblioentries">
+  <?db filename='f_biblioentries'?>
+  <refmeta>
+    <refentrytitle>f:biblioentries</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}biblioentries#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}biblioentries#2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:biblioentries</refname>
+    <refpurpose>Returns a list of all bibliographic entries for a citation</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>Returns all the <tag>biblioentry</tag> or <tag>bibliomixed</tag>
+elements that have an <tag>abbrev</tag> that matches a
+<tag>citation</tag>. The internal bibliography of the input document
+is always taken into account. </para>
+<para>In the form with only one argument, external bibliographies are also taken into account if
+they are designated in the input document with a <code>&lt;?db
+biblioary-collection='<replaceable>URIs</replaceable>'?></code> processing instruction.
+In the form with two arguments, you can specify a list of URIs of the external
+bibliographies.</para>
+
+<para>When more than one entry is found, the result sequence will
+start with entries from the internal bibliography, if any.</para>
+
+<para>The function is designed so that it can be used independently from
+the xslTNG stylesheets. You can, for example, integrate it in a
+Schematron rule that checks whether every <tag>citation</tag> has
+exactly one corresponding bibliographic entry while authoring your
+document.
+</para>
 </refsection>
 </refentry>
 

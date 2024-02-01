@@ -3,7 +3,7 @@
       version="5.0">
   <?db bibliography-collection="../bibcollection.xml"?>
   <info>
-    <title>Unit Test: bibliography.006.xml</title>
+    <title>Unit Test: bibliography.008.xml</title>
     <abstract>
       <para>This tests “auto” bibliographies.</para>
     </abstract>
@@ -11,14 +11,13 @@
 
   <chapter>
     <title>Some title</title>
-    <para>See <biblioref linkend="aho96"/> and <biblioref linkend="bib.xml"/>.</para>
+
+    <para>Citations: <citation>AhoSethiUllman96</citation> and <citation>XML</citation>.</para>
 
     <para>The bibliography should contain only the two referenced works.</para>
   </chapter>
 
   <bibliography role="auto">
-    <bibliomixed xml:id="bib.xml"/>
-    <bibliomixed xml:id="not-referenced"/>
     <biblioentry xml:id="aho96">
       <abbrev>AhoSethiUllman96</abbrev>
       <authorgroup>
