@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      version="5.0">
+  <?db bibliography-collection="../bibcollection.xml"?>
+  <info>
+    <title>Unit Test: bibliography.010.xml</title>
+    <abstract>
+      <para>This tests not-“auto” bibliographies.</para>
+    </abstract>
+  </info>
+
+  <chapter>
+    <title>Some title</title>
+
+    <para>Citations: <citation>AhoSethiUllman96</citation> and <citation>XML</citation>.</para>
+
+    <para>The bibliography should contain the cited works and the
+    unreferenced entry “Walsh96”. This unit test checks that a bibliography
+    entry that contains only a single <tag>abbrev</tag> element is treated as empty
+    for the purpose of managing the entries by hand.
+    </para>
+  </chapter>
+
+  <bibliography>
+    <!-- test that whitespace is stripped in biblioentry -->
+    <biblioentry>    <abbrev>XML</abbrev>   </biblioentry>
+    <biblioentry>
+      <abbrev>AhoSethiUllman96</abbrev>
+      <authorgroup>
+         <author>
+            <personname>
+               <firstname>Alfred V.</firstname>
+               <surname>Aho</surname>
+            </personname>
+         </author>
+         <author>
+            <personname>
+               <firstname>Ravi</firstname>
+               <surname>Sethi</surname>
+            </personname>
+         </author>
+         <author>
+            <personname>
+               <firstname>Jeffrey D.</firstname>
+               <surname>Ullman</surname>
+            </personname>
+         </author>
+      </authorgroup>
+      <title>Compilers, Principles, Techniques, and Tools</title>
+      <publisher>
+         <publishername>Addison-Wesley Publishing Company</publishername>
+      </publisher>
+      <copyright>
+         <year>1996</year>
+         <holder>Bell Telephone Laboratories, Inc.</holder>
+      </copyright>
+      <biblioid class="isbn">0-201-10088-6</biblioid>
+      <editor>
+         <personname>
+            <firstname>James T.</firstname>
+            <surname>DeWolf</surname>
+         </personname>
+      </editor>
+   </biblioentry>
+   <bibliomixed xml:id="Walsh96">
+      <bibliomset relation="article">
+         <personname>
+            <surname>Walsh</surname>
+         </personname>, <personname>
+            <firstname>Norman</firstname>
+         </personname>.
+    <title role="article">Introduction to Cascading Style Sheets</title>.
+  </bibliomset>
+      <bibliomset relation="journal">
+         <title>The World Wide Web Journal</title>.
+    <volumenum>2</volumenum>(<issuenum>1</issuenum>).
+    <publishername>O'Reilly &amp; Associates, Inc.</publishername> and
+    <orgname>The World Wide Web Consortium</orgname>.
+    <pubdate>Winter, 1996</pubdate>
+      </bibliomset>.
+</bibliomixed>
+</bibliography>
+</book>
