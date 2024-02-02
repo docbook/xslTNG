@@ -122,7 +122,7 @@
       <xsl:value-of select="false()"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message expand-text="yes"
+      <xsl:message expand-text="yes" terminate="yes"
                    >Warning: interpreting ‘{$value}’ as true.</xsl:message>
       <xsl:value-of select="true()"/>
     </xsl:otherwise>

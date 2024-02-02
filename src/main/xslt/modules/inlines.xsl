@@ -6,6 +6,7 @@
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:t="http://docbook.org/ns/docbook/templates"
+                xmlns:tp="http://docbook.org/ns/docbook/templates/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -111,7 +112,19 @@
 </xsl:template>
 
 <xsl:template match="db:citation">
-  <xsl:call-template name="t:inline"/>
+  <!-- Can we find a bibliography entry for this citation? -->
+  <xsl:variable name="bib" select="f:biblioentries(., $bibliography-collection)[1]"/>
+  <xsl:choose>
+    <xsl:when test="$bib">
+      <xsl:call-template name="tp:xref">
+        <xsl:with-param name="linkend" select="$bib/@xml:id"/>
+        <xsl:with-param name="target" select="$bib"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="t:inline"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:citebiblioid">

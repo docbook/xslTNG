@@ -56,6 +56,78 @@ to generate the actual attribute nodes.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="f_available-bibliographies">
+  <?db filename='f_available-bibliographies'?>
+  <refmeta>
+    <refentrytitle>f:available-bibliographies</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}available-bibliographies#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}available-bibliographies#2</refmiscinfo>
+    <refmiscinfo class="version">2.2.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:available-bibliographies</refname>
+    <refpurpose>Returns a list of all available bibliographies</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>The bibliographies available are all of the <tag>bibliography</tag>s in the current
+document plus any that are referenced with
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instructions using the
+<literal>bibliography-collection</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>bibliography-collection pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the root element.</para>
+
+<para>In the two-argument form, a list of additional
+URIs may be passed. In common usage, the <parameter>bibliography-collection</parameter> parameter
+is passed this way. (It’s not referenced directly because these functions are available
+for use outside of the stylesheets, for example in Schematron rules, in
+<filename>standalone-functions.xsl</filename>.)</para>
+
+<para>The <code>$term</code> argument is only used to establish the context document for
+finding bibliographies in the current document.</para>
+  </refsection>
+</refentry>
+
+<refentry xml:id="f_available-glossaries">
+  <?db filename='f_available-glossaries'?>
+  <refmeta>
+    <refentrytitle>f:available-glossaries</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}available-glossaries#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}available-glossaries#2</refmiscinfo>
+    <refmiscinfo class="version">2.2.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:available-glossaries</refname>
+    <refpurpose>Returns a list of all available glossaries</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>The glossaries available are all of the <tag>glossary</tag>s in the current
+document plus any that are referenced with
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instructions using the
+<literal>glossary-collection</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>glossary-collection pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the root element.</para>
+
+<para>In the two-argument form, a list of additional
+URIs may be passed. In common usage, the <parameter>glossary-collection</parameter> parameter
+is passed this way. (It’s not referenced directly because these functions are available
+for use outside of the stylesheets, for example in Schematron rules, in
+<filename>standalone-functions.xsl</filename>.)</para>
+
+<para>The <code>$term</code> argument is only used to establish the context document for
+finding glossaries in the current document.</para>
+  </refsection>
+</refentry>
+
 <refentry xml:id="f_cals-colsep">
 <?db filename="f_cals-colsep"?>
 <refmeta>
@@ -152,15 +224,15 @@ relevant <tag class="pi">db</tag><indexterm><primary>db processing instruction</
 </indexterm> processing instructions
 (<literal>filename</literal><indexterm>
 <primary>db processing instruction</primary>
-<secondary>annotations pseudo-attribute</secondary>
+<secondary>filename pseudo-attribute</secondary>
 </indexterm>,
 <literal>href</literal><indexterm>
 <primary>db processing instruction</primary>
-<secondary>annotations pseudo-attribute</secondary>
+<secondary>href pseudo-attribute</secondary>
 </indexterm>, and
 <literal>basename</literal><indexterm>
 <primary>db processing instruction</primary>
-<secondary>annotations pseudo-attribute</secondary>
+<secondary>basename pseudo-attribute</secondary>
 </indexterm> pseudo-attributes) as well as the generated ID of the element.
 </para>
 </refsection>
@@ -444,6 +516,7 @@ to construct the divisions in an index.</para>
     <refentrytitle>f:glossentries</refentrytitle>
     <refmiscinfo>{http://docbook.org/ns/docbook/functions}glossentries#1</refmiscinfo>
     <refmiscinfo>{http://docbook.org/ns/docbook/functions}glossentries#2</refmiscinfo>
+    <refmiscinfo class="version">2.2.0</refmiscinfo>
   </refmeta>
   <refnamediv>
     <refname>f:glossentries</refname>
@@ -452,8 +525,8 @@ to construct the divisions in an index.</para>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Returns all <code>glossentry</code> elements that are targeted by <code>$term</code>,
-        which must either by a <code>glossterm</code> or a <code>firstterm</code> element.  The
+    <para>Returns all <tag>glossentry</tag> elements that are targeted by <code>$term</code>,
+        which must either by a <tag>glossterm</tag> or a <tag>firstterm</tag> element.  The
         internal glossary of the input document is always taken into account. </para>
       <para>In the form with only one argument, external glossaries are also taken into account if
         they are designated in the input document with a <code>&lt;?db
@@ -461,11 +534,11 @@ to construct the divisions in an index.</para>
         In the form with two arguments, you can specify a list of URIs of the external
         glossaries.</para>
     
-    <para>When there is more than one <code>glossentry</code> found, the result sequence will
+    <para>When there is more than one <tag>glossentry</tag> found, the result sequence will
       start with entries from the internal glossary, if any.</para>
-      <para>The functions design allows its use indepentend from the xslTNG stylesheets. You can, for
-        example, integrate it in a Schematron rule that checks whether every <code>glossterm</code>
-        has exactly one corresponding <code>glossentry</code> while authoring your document. That`s
+      <para>The functions design allows its use independent from the xslTNG stylesheets. You can, for
+        example, integrate it in a Schematron rule that checks whether every <tag>glossterm</tag>
+        has exactly one corresponding <tag>glossentry</tag> while authoring your document. That’s
         why the function can't use the <parameter>glossary-collection</parameter> transformation
         parameter. </para>
   </refsection>
@@ -2286,6 +2359,88 @@ If the document is valid, the <literal>errors</literal> key will not be present.
 </listitem>
 </varlistentry>
 </variablelist>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_biblioentries">
+  <?db filename='f_biblioentries'?>
+  <refmeta>
+    <refentrytitle>f:biblioentries</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}biblioentries#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}biblioentries#2</refmiscinfo>
+    <refmiscinfo class="version">2.2.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:biblioentries</refname>
+    <refpurpose>Returns a list of all bibliographic entries for a citation</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>Returns all the <tag>biblioentry</tag> or <tag>bibliomixed</tag>
+elements that have an <tag>abbrev</tag> that matches a
+<tag>citation</tag>. The internal bibliography of the input document
+is always taken into account. </para>
+<para>In the form with only one argument, external bibliographies are also taken into account if
+they are designated in the input document with a <code>&lt;?db
+biblioary-collection='<replaceable>URIs</replaceable>'?></code> processing instruction.
+In the form with two arguments, you can specify a list of URIs of the external
+bibliographies.</para>
+
+<para>When more than one entry is found, the result sequence will
+start with entries from the internal bibliography, if any.</para>
+
+<para>The function is designed so that it can be used independently from
+the xslTNG stylesheets. You can, for example, integrate it in a
+Schematron rule that checks whether every <tag>citation</tag> has
+exactly one corresponding bibliographic entry while authoring your
+document.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_citations">
+  <?db filename='f_citations'?>
+  <refmeta>
+    <refentrytitle>f:citations</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}citations#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}citations#2</refmiscinfo>
+    <refmiscinfo class="version">2.2.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:citations</refname>
+    <refpurpose>Returns the citations for a term</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns all of the <tag>citation</tag> elements in the document that match
+<code>$term</code>. The document is identified by <code>$root</code>, if specified,
+otherwise the document is the one that <code>$term</code> appears in.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_">
+  <?db filename='f_glossrefs'?>
+  <refmeta>
+    <refentrytitle>f:glossrefs</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}glossrefs#1</refmiscinfo>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}glossrefs#2</refmiscinfo>
+    <refmiscinfo class="version">2.2.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:glossrefs</refname>
+    <refpurpose>Returns the glossary references for a term</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Returns all of the <tag>glossterm</tag> and <tag>firstterm</tag> elements in the document that match
+<code>$term</code>. The document is identified by <code>$root</code>, if specified,
+otherwise the document is the one that <code>$term</code> appears in.
+</para>
 </refsection>
 </refentry>
 

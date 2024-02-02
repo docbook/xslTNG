@@ -541,10 +541,21 @@ task copyXslt(dependsOn: ['copyResources', 'makeVersion',
   }    
 }
 
+task testStandalone(type: SaxonXsltTask) {
+  // The output of this test doesn't matter; it simply assures that
+  // the standalone-functions.xsl file hasn't accidentally become
+  // dependent on other stylesheets so it isn't properly standalone
+  inputs.dir "${buildDir}/xslt"
+  input "${projectDir}/src/test/resources/xml/article.001.xml"
+  stylesheet "${projectDir}/tools/standalone.xsl"
+  output "${buildDir}/tmp/standalone.xml"
+}
+
 task makeXslt(type: SaxonXsltTask, dependsOn: ["copyXslt"]) {
   input "${projectDir}/src/guide/xml/ref-params.xml"
   stylesheet "${projectDir}/tools/generate-parameters.xsl"
   output "${buildDir}/xslt/param.xsl"
+  finalizedBy = [ 'testStandalone' ]
 }
 
 task makeUriList(

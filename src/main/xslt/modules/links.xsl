@@ -196,11 +196,10 @@
                      if (starts-with(@xlink:href, '#'))
                      then substring-after(@xlink:href, '#')
                      else ())[1]"/>
-
-  <xsl:variable name="target"
-                select="if ($linkend)
-                        then key('id', $linkend)[1]
-                        else ()"/>
+  <xsl:param name="target"
+             select="if ($linkend)
+                     then key('id', $linkend)[1]
+                     else ()"/>
 
   <xsl:choose>
     <xsl:when test="empty($target)">

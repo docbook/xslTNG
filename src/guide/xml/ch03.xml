@@ -675,7 +675,7 @@ This most closely reproduces the numbering from the 1.x stylesheets.</para>
 
 </section>
 
-<section>
+<section xml:id="using-glossaries">
 <title>Using glossaries</title>
 
 <para>There are essentially two ways to manage glossaries: you can
@@ -741,6 +741,117 @@ xslTNG framework.</para>
 
 <para>Generating glossary divisions automatically is controlled by the
 <parameter>glossary-automatic-divisions</parameter> parameter.</para>
+</section>
+
+<section xml:id="using-bibliographies">
+<title>Using bibliographies</title>
+
+<para>Bibliographies are more complicated than glossaries.
+Bibliography entries can be “cooked” (<tag>bibliomixed</tag>) or “raw”
+(<tag>biblioentry</tag>) and there’s no obvious way to sort
+bibliography entries in the general case.</para>
+
+<para>There are also two different cross-referencing mechanisms for
+bibliographic entries: by ID, using <tag>biblioref</tag> or <tag>xref</tag>,
+or with <tag>citation</tag> that matches on <tag>abbrev</tag> elements
+in the bibliography entry.</para>
+
+<para>Consider this example bibliography:</para>
+
+<programlisting language="xml"><![CDATA[<bibliography>
+<bibliomixed xml:id="bib.xml"><abbrev>XML</abbrev>Tim Bray,
+Jean Paoli, …</bibliomixed>
+
+<biblioentry><abbrev>MalerElAndaloussi96</abbrev>
+  <title>Developing SGML DTDs</title> …</biblioentry>
+</bibliography>]]></programlisting>
+
+<para>The first entry can be cited in two ways: <code>&lt;biblioref linkend="bib.xml"/&gt;</code>
+or <code>&lt;citation&gt;XML&lt;/citation&gt;</code>. The second can only be cited with
+a <code>&lt;citation&gt;MalerElAndaloussi96&lt;/citation&gt;</code>
+(it has no <att>xml:id</att> to link to).</para>
+
+<para>Taking all of these variations into account, there are three
+ways to construct bibliographies:</para>
+
+<orderedlist>
+<listitem><para><link linkend="bib.byhand">Entirely by hand</link>.</para>
+</listitem>
+<listitem><para><link linkend="bib.managed.by.hand">Managed by hand</link>,
+with empty elements as placeholders.</para>
+</listitem>
+<listitem><para><link linkend="bib.automatic">Managed automatically</link>.</para>
+</listitem>
+</orderedlist>
+
+<para>There are tradeoffs to each approach.</para>
+
+<para>When external bibliographies are used, they can be identified either with the
+<parameter>bibliography-collection</parameter> parameter or with
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instructions with a
+<literal>bibliography-collection</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>bibliography-collection pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the root element.</para>
+
+<section xml:id="bib.byhand">
+<title>Entirely by hand</title>
+<para>In a bibliography constructed entirely by hand, no special processing
+takes place. The entries appear as they are listed and every entry appears
+whether it is cited or not. The author is free to use <tag>bibliodiv</tag> elements
+to divide the bibliography into sections and the document may have multiple
+<tag>bibliography</tag> elements.</para>
+</section>
+
+<section xml:id="bib.managed.by.hand">
+<title>Managed by hand</title>
+<para>Bibliographic entries can be complex and may be shared across multiple
+documents. One approach to managing this complexity is to store the full entries in
+an external bibliography and use only placeholders in your actual document.</para>
+<para>A placeholder is an empty entry with an <att>xml:id</att>, or an entry that contains only an
+<tag>abbrev</tag> (if it has both an <att>xml:id</att> and contains only an <tag>abbrev</tag>, the
+ID will be used to search for a matching entry in the external bibliography).
+It will be replaced by the full entry from the external bibliography
+when the document is formatted.</para>
+<para>For example, if the full entries are available externally, the preceding
+bibliography example could be shortened to:</para>
+
+<programlisting language="xml"><![CDATA[<bibliography>
+<bibliomixed xml:id="bib.xml"/>
+<biblioentry><abbrev>MalerElAndaloussi96</abbrev>
+</biblioentry>
+</bibliography>]]></programlisting>
+
+<para>The entries appear in the order listed and every entry appears
+whether it is cited or not. The author is free to use <tag>bibliodiv</tag> elements
+to divide the bibliography into sections and the document may have multiple
+<tag>bibliography</tag> elements.</para>
+</section>
+
+<section xml:id="bib.automatic">
+<title>Automatic</title>
+
+<para>An automatic bibliography is selected by using the token
+<code>auto</code> in the <att>role</att> attribute on a bibliography.
+Placeholders can still be used, but they are unnecessary when using
+<tag>citation</tag> for citations.</para>
+
+<para>Any citation that appear in the text will be matched to entries
+in the external bibliographies. Those entries will be included
+automatically. Automatically added entries appear at the end of the
+bibliography (after any internal ones, if the internal bibliography
+has entries), in the order that they appear in the external
+bibliographies.
+If multiple external entries match, only the first is added.</para>
+
+<para>Any bibliography entries in the internal bibliography that
+<emphasis>aren’t</emphasis> cited will be removed.</para>
+
+<para>When using the automatic style, there should be only one
+<tag>bibliography</tag> in the document and it cannot contain
+divisions.</para>
+</section>
 </section>
 
 <section xml:id="different">
