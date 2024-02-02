@@ -756,43 +756,14 @@ bibliographic entries: by ID, using <tag>biblioref</tag> or <tag>xref</tag>,
 or with <tag>citation</tag> that matches on <tag>abbrev</tag> elements
 in the bibliography entry.</para>
 
-<para>Consider this bibliography:</para>
+<para>Consider this example bibliography:</para>
 
 <programlisting language="xml"><![CDATA[<bibliography>
 <bibliomixed xml:id="bib.xml"><abbrev>XML</abbrev>Tim Bray,
-Jean Paoli, C. M. Sperberg-McQueen, Eve Maler,
-and François Yergeau, editors.
-<citetitle><link xlink:href="https://www.w3.org/TR/xml"
->Extensible Markup Language (XML) 1.0 (Fifth Edition)</link
-></citetitle>.
-World Wide Web Consortium, November 2008.</bibliomixed>
+Jean Paoli, …</bibliomixed>
 
-<biblioentry>
-  <abbrev>MalerElAndaloussi96</abbrev>
-  <title>Developing SGML DTDs</title>
-  <subtitle>From Text to Model to Markup</subtitle>
-  <authorgroup>
-    <author>
-      <personname>
-        <firstname>Eve</firstname>
-        <surname>Maler</surname>
-      </personname>
-    </author>
-    <author>
-      <personname>
-        <firstname>Jeanne</firstname>
-        <surname>El Andaloussi</surname>
-      </personname>
-    </author>
-  </authorgroup>
-  <biblioid class="isbn">0-13-309881-8</biblioid>
-  <publisher>
-    <publishername>Prentice-Hall PTR</publishername>
-    <address><city>Upper Saddle River</city>
-      <state>New Jersey</state></address>
-  </publisher>
-  <pubdate>1996</pubdate>
-</biblioentry>
+<biblioentry><abbrev>MalerElAndaloussi96</abbrev>
+  <title>Developing SGML DTDs</title> …</biblioentry>
 </bibliography>]]></programlisting>
 
 <para>The first entry can be cited in two ways: <code>&lt;biblioref linkend="bib.xml"/&gt;</code>
@@ -800,75 +771,87 @@ or <code>&lt;citation&gt;XML&lt;/citation&gt;</code>. The second can only be cit
 a <code>&lt;citation&gt;MalerElAndaloussi96&lt;/citation&gt;</code>
 (it has no <att>xml:id</att> to link to).</para>
 
-<para>Taking all of these factors into account, there are three ways to construct bibliographies:</para>
+<para>Taking all of these variations into account, there are three
+ways to construct bibliographies:</para>
 
 <orderedlist>
-<listitem><para>Entirely by hand. The entries appear as they are listed,
-possibly with divisions. Every entry appears, whether it is cited or not.</para>
+<listitem><para><link linkend="bib.byhand">Entirely by hand</link>.</para>
 </listitem>
-<listitem><para>Managed by hand, with empty elements as placeholders
-in the bibliography. The entries appear as they are listed, possibly
-with divisions. Every entry appears, whether it is cited or not.
-</para>
-<para>When the document is formatted, replacements for the
-empty elements will be drawn from one or more external bibliography files.
-Using empty elements as placeholders supports, and requires, that bibliographic
-citations use the ID/IDREF mechanism.</para>
+<listitem><para><link linkend="bib.managed.by.hand">Managed by hand</link>,
+with empty elements as placeholders.</para>
 </listitem>
-<listitem>
-<para>Managed automatically. Entries only appear if they are cited and no
-placeholders are required. The order of the entries is determined by their order
-in the bibliographies from which they are drawn.</para>
-<para>The absence of placeholders means that divisions are not possible and
-requires that the <tag>citation</tag> mechanism be used for bibliographic
-citations.</para>
-<para>Automatic bibliography management only applies of the <tag>bibliography</tag>
-element has the value <code>auto</code> in its <att>role</att> attribute.</para>
+<listitem><para><link linkend="bib.automatic">Managed automatically</link>.</para>
 </listitem>
 </orderedlist>
 
-<para>Unlike glossary terms and glossary entries that are matched on
-the text of the term, bibliographic citations are matched with
-ID/IDREF links. Each entry has an ID and <tag>biblioref</tag> elements
-(or, in some cases, <tag>xref</tag> elements) point to them with a
-<att>linkend</att> attribute.</para>
+<para>There are tradeoffs to each approach.</para>
 
-<para>One consequence of this design is that you must have an ID to
-point to, even if you want the bibliography to be generated
-automatically. If you don’t have an ID, then you’ll get
-cross-reference validity errors.</para>
+<para>When external bibliographies are used, they can be identified either with the
+<parameter>bibliography-collection</parameter> parameter or with
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instructions with a
+<literal>bibliography-collection</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>bibliography-collection pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the root element.</para>
 
-<para>The expectation if you want automatic bibliography processing is
-that you’ll put empty entries in the bibliography where you want the
-generated entries to appear. For example:</para>
+<section xml:id="bib.byhand">
+<title>Entirely by hand</title>
+<para>In a bibliography constructed entirely by hand, no special processing
+takes place. The entries appear as they are listed and every entry appears
+whether it is cited or not. The author is free to use <tag>bibliodiv</tag> elements
+to divide the bibliography into sections and the document may have multiple
+<tag>bibliography</tag> elements.</para>
+</section>
+
+<section xml:id="bib.managed.by.hand">
+<title>Managed by hand</title>
+<para>Bibliographic entries can be complex and may be shared across multiple
+documents. One approach to managing this complexity is to store the full entries in
+an external bibliography and use only placeholders in your actual document.</para>
+<para>A placeholder is an empty entry with an <att>xml:id</att>, or an entry that contains only an
+<tag>abbrev</tag> (if it has both an <att>xml:id</att> and contains only an <tag>abbrev</tag>, the
+ID will be used to search for a matching entry in the external bibliography).
+It will be replaced by the full entry from the external bibliography
+when the document is formatted.</para>
+<para>For example, if the full entries are available externally, the preceding
+bibliography example could be shortened to:</para>
 
 <programlisting language="xml"><![CDATA[<bibliography>
-  <bibliomixed xml:id="Bray08"/>
-  <bibliomixed xml:id="Walsh96"/>
+<bibliomixed xml:id="bib.xml"/>
+<biblioentry><abbrev>MalerElAndaloussi96</abbrev>
+</biblioentry>
 </bibliography>]]></programlisting>
 
-<para>That <tag>bibliography</tag> will satisfy the validator, but won’t produce
-a useful bibliography.</para>
+<para>The entries appear in the order listed and every entry appears
+whether it is cited or not. The author is free to use <tag>bibliodiv</tag> elements
+to divide the bibliography into sections and the document may have multiple
+<tag>bibliography</tag> elements.</para>
+</section>
 
-<para>If you specify the <parameter>bibliography-collection</parameter> parameter, then
-matching entries from the external bibliography will be used to replace the empty
-entries. In this way, you can maintain a global bibliography and use it selectively
-in different documents.</para>
+<section xml:id="bib.automatic">
+<title>Automatic</title>
 
-<para>Starting in verison 2.2.0 of the <citetitle>DocBook xslTNG Stylesheets</citetitle>,
-there’s an additional feature that you can use, modeled on the similar
-<link linkend="using-glossaries">glossaries feature</link>. If you add
-<code>auto</code> to the <att>role</att> attribute on the <tag>bibliography</tag>,
-two additional features are enabled:</para>
+<para>An automatic bibliography is selected by using the token
+<code>auto</code> in the <att>role</att> attribute on a bibliography.
+Placeholders can still be used, but they are unnecessary when using
+<tag>citation</tag> for citations.</para>
 
-<orderedlist>
-<listitem><para>If there are multiple matching (non-empty) bibliography entries in the
-external bibliographies, then only the first will be used.</para>
-</listitem>
-<listitem><para>If the bibliography contains unreferenced citations (entries that are not
-pointed to with a <att>linkend</att> attribute), they will be dropped from the bibliography.</para>
-</listitem>
-</orderedlist>
+<para>Any citation that appear in the text will be matched to entries
+in the external bibliographies. Those entries will be included
+automatically. Automatically added entries appear at the end of the
+bibliography (after any internal ones, if the internal bibliography
+has entries), in the order that they appear in the external
+bibliographies.
+If multiple external entries match, only the first is added.</para>
+
+<para>Any bibliography entries in the internal bibliography that
+<emphasis>aren’t</emphasis> cited will be removed.</para>
+
+<para>When using the automatic style, there should be only one
+<tag>bibliography</tag> in the document and it cannot contain
+divisions.</para>
+</section>
 </section>
 
 <section xml:id="different">

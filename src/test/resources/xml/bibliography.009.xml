@@ -3,9 +3,9 @@
       version="5.0">
   <?db bibliography-collection="../bibcollection.xml"?>
   <info>
-    <title>Unit Test: bibliography.008.xml</title>
+    <title>Unit Test: bibliography.009.xml</title>
     <abstract>
-      <para>This tests “auto” bibliographies.</para>
+      <para>This tests not-“auto” bibliographies.</para>
     </abstract>
   </info>
 
@@ -14,12 +14,16 @@
 
     <para>Citations: <citation>AhoSethiUllman96</citation> and <citation>XML</citation>.</para>
 
-    <para>The bibliography should contain only the two referenced works, one of which
-    comes from the external bibliography.</para>
+    <para>The bibliography should contain the cited works and the
+    unreferenced entry “Walsh96”. This unit test checks that a bibliography
+    entry that contains only a single <tag>abbrev</tag> element is treated as empty
+    for the purpose of managing the entries by hand.
+    </para>
   </chapter>
 
-  <bibliography role="auto">
-    <biblioentry xml:id="aho96">
+  <bibliography>
+    <bibliomixed><abbrev>XML</abbrev></bibliomixed>
+    <biblioentry>
       <abbrev>AhoSethiUllman96</abbrev>
       <authorgroup>
          <author>

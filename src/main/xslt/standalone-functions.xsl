@@ -4,6 +4,7 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
+                xmlns:mp="http://docbook.org/ns/docbook/modes/private"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -16,11 +17,19 @@
 |    e. g. in Schematron rules  
 |=================================================================================== -->
 
-<xsl:key name="bibliocitation" match="db:citation" use="normalize-space(.)"/>
+<xsl:key name="glossary-entry" match="db:glossary//db:glossentry"
+         use="fp:baseform(db:glossterm)"/>
 
-<xsl:key name="bibliocited"
+<xsl:key name="glossary-ref" match="db:glossterm[not(parent::db:glossentry)]|db:firstterm"
+         use="fp:baseform(.)"/>
+
+<xsl:key name="citation" match="db:citation" use="normalize-space(.)"/>
+
+<xsl:key name="bibliography-entry"
          match="db:biblioentry[db:abbrev]|db:bibliomixed[db:abbrev]"
          use="db:abbrev ! normalize-space(.)"/>
+
+<!-- ============================================================ -->
 
 <xsl:variable name="v:pi-db-attributes-are-uris" as="xs:string*"
               select="('glossary-collection', 'bibliography-collection',
@@ -49,8 +58,7 @@
       <xsl:sequence select="$default"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:sequence select="fp:pi-from-list(($context/processing-instruction('db'),
-                                             root($context)/processing-instruction('db')),
+      <xsl:sequence select="fp:pi-from-list($context/processing-instruction('db'),
                                             $property, $default)"/>
     </xsl:otherwise>
   </xsl:choose>
@@ -131,50 +139,20 @@
 |   Support for automatic glossary and glossary-collection
 |=================================================================================== -->
 
-<!-- all glossentries for $term (glossterm, firstterm) 
-     taking into account external glossaries 
-     if designated by a db PI with glossary-collection pseudo attribute. -->
-<xsl:function name="f:glossentries" as="element(db:glossentry)*">
-  <xsl:param name="term" as="element()"/>
-  <xsl:sequence select="f:glossentries($term, f:pi(root($term), 'glossary-collection'))"/>
-</xsl:function>
-
-<!-- all glossentries for $term (glossterm, firstterm) 
-     taking into account external glossaries 
-     if designated by a sequence of URIs in $collections. 
-     glossentries from the internal glossary are first in the result sequence-->
-<xsl:function name="f:glossentries" as="element(db:glossentry)*">
-  <xsl:param name="term" as="element()"/>
+<xsl:function name="fp:available-glossaries" as="document-node()" cache="yes">
+  <xsl:param name="root" as="element()"/>
   <xsl:param name="collections" as="xs:string*"/>
 
-  <xsl:variable name="collection-list"
-                select="tokenize(normalize-space(string-join($collections, ' ')), '\s+')"/>
+  <xsl:variable name="gloss-uris" as="xs:string*">
+    <xsl:sequence select="f:pi($root, 'glossary-collection')"/>
+    <xsl:sequence select="$collections"/>
+  </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="$term/self::db:glossterm or $term/self::db:firstterm">
-      <xsl:sequence select="
-          let $internal-glossaries := root($term)//db:glossary
-          return
-            fp:glossentries-in-glossaries($term, $internal-glossaries),
-          fp:glossentries-in-glossaries($term, fp:external-glossaries($collection-list))"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message
-          select="'Warning: f:glossentries must not be called with ' || local-name($term) || ' as $term.'"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<!-- returns external glossaries referenced by URIs in the $collections list -->
-<xsl:function name="fp:external-glossaries" as="element(db:glossary)*" cache="yes">
-  <xsl:param name="collections" as="xs:string*"/>
- 
-  <xsl:if test="exists($collections)">
-    <xsl:variable name="glossaries" as="element(db:glossary)*">
-      <xsl:for-each select="$collections">
-        <!-- n.b. there's nothing to resolve a relative URI against here; values
-             set by the db processing instruction are made absolute against the PI.
-             Values from elsewhere should be made absolute before calling this function. -->
+  <xsl:document>
+    <!-- It doesn't *need* a single root element, but it feels cleaner -->
+    <glossary-collection xmlns="http://docbook.org/ns/docbook">
+      <xsl:sequence select="$root//db:glossary"/>
+      <xsl:for-each select="tokenize(normalize-space(string-join($gloss-uris, ' ')), '\s+')">
         <xsl:try>
           <xsl:sequence select="doc(xs:anyURI(.))/db:glossary"/>
           <xsl:catch>
@@ -183,79 +161,79 @@
           </xsl:catch>
         </xsl:try>
       </xsl:for-each>
-    </xsl:variable>
-    <!--
-    <xsl:message select="count($glossaries) || ' external glossaries loaded from collections ' || $collections"/>
-    -->
-    <xsl:sequence select="$glossaries"/>
-  </xsl:if>
+    </glossary-collection>
+  </xsl:document>
 </xsl:function>
 
-<!-- returns all glossentries in the sequence of $glossaries for $term, if any -->
-<xsl:function name="fp:glossentries-in-glossaries" as="element(db:glossentry)*">
+<xsl:function name="f:available-glossaries">
   <xsl:param name="term" as="element()"/>
-  <xsl:param name="glossaries" as="element(db:glossary)*"/>
-  <xsl:sequence select="$glossaries ! fp:glossentries-in-glossary($term, .)"/>
+  <xsl:sequence select="fp:available-glossaries(root($term)/*, ())"/>
 </xsl:function>
 
-<!-- returns all glossentries in one $glossary for $term, if any  -->
-<xsl:function name="fp:glossentries-in-glossary" as="element(db:glossentry)*" cache="yes">
+<xsl:function name="f:available-glossaries">
   <xsl:param name="term" as="element()"/>
-  <xsl:param name="glossary" as="element(db:glossary)"/>
-  <xsl:sequence select="$glossary//db:glossentry[db:glossterm eq fp:baseform($term)]"/>
+  <xsl:param name="collections" as="xs:string*"/>
+  <xsl:sequence select="fp:available-glossaries(root($term)/*, $collections)"/>
+</xsl:function>
+
+<xsl:function name="f:glossentries" as="element(db:glossentry)*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:sequence select="f:glossentries($term, ())"/>
+</xsl:function>
+
+<xsl:function name="f:glossentries" as="element(db:glossentry)*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:param name="collections" as="xs:string*"/>
+
+  <xsl:variable name="glossaries" select="f:available-glossaries($term, $collections)"/>
+
+  <xsl:choose>
+    <xsl:when test="$term/self::db:glossterm or $term/self::db:firstterm">
+      <xsl:sequence select="key('glossary-entry', fp:baseform($term), $glossaries)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message
+          select="'Warning: f:glossentries must not be called with '
+                  || local-name($term) || ' as $term.'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="f:glossrefs" as="element()*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:sequence select="f:glossrefs($term, root($term))"/>
+</xsl:function>
+
+<xsl:function name="f:glossrefs" as="element()*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:param name="root" as="document-node()"/>
+  <xsl:sequence select="key('glossary-ref', fp:baseform($term), $root)"/>
 </xsl:function>
 
 <xsl:function name="fp:baseform" as="xs:string">
   <xsl:param name="element" as="element()"/>
-  <xsl:sequence select="($element/@baseform, xs:string($element))[1] ! normalize-space(.)"/>
+  <xsl:sequence select="($element/@baseform, string($element))[1] ! normalize-space(.)"/>
 </xsl:function>
 
 <!-- ===================================================================================
 |   Support for automatic bibliography and bibliography-collection
 |=================================================================================== -->
 
-<!-- all bibliography for a given citation taking into account external bibliographies
-     if designated by a db PI with bibliography-collection pseudo attribute. -->
-<xsl:function name="f:biblioentries" as="element()*">
-  <xsl:param name="cite" as="element()"/>
-  <xsl:sequence select="f:biblioentries($cite, f:pi(root($cite), 'bibliography-collection'))"/>
-</xsl:function>
-
-<!-- all biblioentries for a given citation taking into account external glossaries 
-     if designated by a sequence of URIs in $collections. 
-     bibliography entries from the internal bibliography are first in the result sequence-->
-<xsl:function name="f:biblioentries" as="element()*">
-  <xsl:param name="cite" as="element()"/>
-  <xsl:param name="collections" as="xs:string?"/>
-
-  <xsl:variable name="collection-list"
-                select="tokenize(normalize-space(string-join($collections, ' ')), '\s+')"/>
-
-  <xsl:choose>
-    <xsl:when test="$cite/self::db:citation">
-      <xsl:sequence select="
-          let $internal-bibliographies := root($cite)//db:bibliography
-          return
-            fp:biblioentries-in-bibliographies($cite, $internal-bibliographies),
-          fp:biblioentries-in-bibliographies($cite, fp:external-bibliographies($collection-list))"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message
-          select="'Warning: f:biblioentries must not be called with ' || local-name($cite) || ' as $cite.'"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<!-- returns external bibliographies referenced by URIs in the $collections list -->
-<xsl:function name="fp:external-bibliographies" as="element(db:bibliography)*" cache="yes">
+<xsl:function name="fp:available-bibliographies" as="document-node()" cache="yes">
+  <xsl:param name="root" as="element()"/>
   <xsl:param name="collections" as="xs:string*"/>
- 
-  <xsl:if test="exists($collections)">
-    <xsl:variable name="bibliographies" as="element(db:bibliography)*">
-      <xsl:for-each select="$collections">
-        <!-- n.b. there's nothing to resolve a relative URI against here; values
-             set by the db processing instruction are made absolute against the PI.
-             Values from elsewhere should be made absolute before calling this function. -->
+
+  <xsl:variable name="bibl-uris" as="xs:string*">
+    <xsl:sequence select="f:pi($root, 'bibliography-collection')"/>
+    <xsl:sequence select="$collections"/>
+  </xsl:variable>
+
+  <xsl:document>
+    <!-- It doesn't *need* a single root element, but it feels cleaner -->
+    <bibliography-collection xmlns="http://docbook.org/ns/docbook">
+      <!-- for internal bibliographies, don't include the empty entries -->
+      <xsl:apply-templates select="$root//db:bibliography" mode="mp:strip-empty-biblioentries"/>
+      <xsl:for-each select="tokenize(normalize-space(string-join($bibl-uris, ' ')), '\s+')">
         <xsl:try>
           <xsl:sequence select="doc(xs:anyURI(.))/db:bibliography"/>
           <xsl:catch>
@@ -264,27 +242,60 @@
           </xsl:catch>
         </xsl:try>
       </xsl:for-each>
-    </xsl:variable>
-    <!--
-    <xsl:message select="count($bibliographies) || ' external bibliographies loaded from collections ' || $collections"/>
-    -->
-    <xsl:sequence select="$bibliographies"/>
-  </xsl:if>
+    </bibliography-collection>
+  </xsl:document>
 </xsl:function>
 
-<!-- returns all bibliography entries in the sequence of $bibliographies for $cite, if any -->
-<xsl:function name="fp:biblioentries-in-bibliographies" as="element()*">
-  <xsl:param name="cite" as="element()"/>
-  <xsl:param name="bibliographies" as="element(db:bibliography)*"/>
-  <xsl:sequence select="$bibliographies ! fp:biblioentries-in-bibliography($cite, .)"/>
+<xsl:mode name="mp:strip-empty-biblioentries" on-no-match="shallow-copy"/>
+<xsl:template match="db:bibliomixed[empty(node() except db:abbrev)]
+                     |db:biblioentry[empty(node() except db:abbrev)]"
+              mode="mp:strip-empty-biblioentries">
+  <!-- discard -->
+</xsl:template>
+
+<xsl:function name="f:available-bibliographies">
+  <xsl:param name="term" as="element()"/>
+  <xsl:sequence select="fp:available-bibliographies(root($term)/*, ())"/>
 </xsl:function>
 
-<!-- returns all bibliography entries in one $bibliography for $cite, if any  -->
-<xsl:function name="fp:biblioentries-in-bibliography" as="element()*" cache="yes">
-  <xsl:param name="cite" as="element()"/>
-  <xsl:param name="bibliography" as="element(db:bibliography)"/>
-  <xsl:sequence select="$bibliography//(db:bibliomixed|db:biblioentry)
-                          [normalize-space(db:abbrev) eq normalize-space($cite)]"/>
+<xsl:function name="f:available-bibliographies">
+  <xsl:param name="term" as="element()"/>
+  <xsl:param name="collections" as="xs:string*"/>
+  <xsl:sequence select="fp:available-bibliographies(root($term)/*, $collections)"/>
+</xsl:function>
+
+<xsl:function name="f:biblioentries" as="element()*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:sequence select="f:biblioentries($term, ())"/>
+</xsl:function>
+
+<xsl:function name="f:biblioentries" as="element()*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:param name="collections" as="xs:string*"/>
+
+  <xsl:variable name="bibliographies" select="f:available-bibliographies($term, $collections)"/>
+
+  <xsl:choose>
+    <xsl:when test="$term/self::db:citation or $term/self::db:abbrev">
+      <xsl:sequence select="key('bibliography-entry', normalize-space($term), $bibliographies)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message
+          select="'Warning: f:biblioentries must not be called with '
+                  || local-name($term) || ' as $term.'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="f:citations" as="element()*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:sequence select="f:citations($term, root($term))"/>
+</xsl:function>
+
+<xsl:function name="f:citations" as="element()*">
+  <xsl:param name="term" as="element()"/>
+  <xsl:param name="root" as="document-node()"/>
+  <xsl:sequence select="key('citation', normalize-space($term), $root)"/>
 </xsl:function>
 
 </xsl:stylesheet>
