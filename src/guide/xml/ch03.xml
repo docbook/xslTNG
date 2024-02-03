@@ -190,7 +190,7 @@ is included.
 -->
 <listitem>
 <para>If <parameter>persistent-toc</parameter> <glossterm>is
-true</glossterm> 
+true</glossterm>
 a link to the <parameter>persistent-toc-css</parameter> stylesheet
 is included.
 </para>
@@ -288,7 +288,7 @@ audio clip as <uri>../../media/spinning-top.mp4</uri>.
 <term>mo-4</term>
 <listitem>
 <para>The XML files are still in different directories, but the significant change
-here is that the media are in their own hierarchy. 
+here is that the media are in their own hierarchy.
 Media references in the source use URIs relative to the root of <emphasis>that</emphasis>
 hierarchy: <filename>book/front/preface.xml</filename> refers to the “this is a test”
 audio clip as <uri>spinning-top.mp4</uri>.
@@ -487,7 +487,7 @@ with the addition of one more parameter:</para>
 
 <programlisting linenumbering="unnumbered">mediaobject-grouped-by-type = "true"</programlisting>
 
-<para>In each case, this adds the extra “media object type” level to the 
+<para>In each case, this adds the extra “media object type” level to the
 URI path.
 </para>
 </listitem>
@@ -615,7 +615,7 @@ in uncommon cases.</para>
 <tag>sect4</tag>,
 <tag>sect5</tag>,
 <tag>simplesect</tag>.
-The <tag>refentry</tag> section elements are not included because they are 
+The <tag>refentry</tag> section elements are not included because they are
 not typically numbered.</para>
 </listitem>
 </varlistentry>
@@ -646,7 +646,7 @@ only counts as a formal object if it has a title.</para>
 <parameter>sections-number-from</parameter>, and
 <parameter>formal-objects-number-from</parameter>. In each case, the value
 of the parameter must be the name of one of the categories. Sets and books
-can only number from sets, divisions can number from sets or books, 
+can only number from sets, divisions can number from sets or books,
 components can number from sets, books, or divisions, etc. It is also
 possible to specify the value <code>root</code> to indicate that elements in
 the relevant category are numbered sequentially through the whole document.</para>
@@ -679,55 +679,90 @@ This most closely reproduces the numbering from the 1.x stylesheets.</para>
 <title>Using glossaries</title>
 
 <para>There are essentially two ways to manage glossaries: you can
-author them by hand, or you can build them automatically from a
+author them by hand, or you can compose them automatically from a
 collection of glossary entries.</para>
 
-<para>If you build them by hand, if you put <tag>glossary</tag> elements containing
-<tag>glossentry</tag> elements, etc. in your document, then you have complete control.
-What you put in your document is what will be formatted and published.</para>
+<para>In a glossary authored by hand, no special processing
+takes place. The entries appear as they are listed and every entry appears
+whether there is a corresponding glossary reference in the document or not.
+The author is free to use <tag>glossdiv</tag> elements
+to divide the glossary into sections and the document may have multiple
+<tag>glossary</tag> elements.</para>
 
-<para>If you compose them from glossary collections, only the terms used in your document
-(in <tag>glossterm</tag> or <tag>firstterm</tag> elements) will appear in the glossary.
-The glossary collections can be managed internally or externally.
-If multiple definitions appear in the glossary collections, only the first definition 
-is included.</para>
+<para>If you compose them from glossary collections, only the terms
+used in your document (in <tag>glossterm</tag> or <tag>firstterm</tag>
+elements) will appear in the glossary. The glossary collections can be
+managed internally or externally. If multiple definitions appear in
+the glossary collections, only the first definition is
+included.</para>
 
-    <para>The best way to explain automatic glossaries is to use an example. Let's assume that you
-      have marked the two terms <emphasis role="bold">Apple</emphasis> and <emphasis role="bold"
-        >Pear</emphasis> in your document, so that your automatic glossary should ultimately contain
-      exactly two entries for these two terms. Create a <code>glossary</code> with
-        <code>@role='auto'</code> in your document. We call this the <emphasis>internal</emphasis>
-      glossary.</para>
-    <itemizedlist>
-      <listitem>
-        <para>If your internal glossary has three entries for <emphasis>Apple</emphasis>,
-            <emphasis>Jackfruit</emphasis> and <emphasis>Pear</emphasis>, you will end up with a
-          glossary in the generated document that has only the two entries for
-            <emphasis>Apple</emphasis> and <emphasis>Pear</emphasis>. There will be no entry for
-            <emphasis>Jackfruit</emphasis>, since there is no corresponding <code>glossterm</code>
-          or <code>firstterm</code> in the main part of your text.</para>
-      </listitem>
-      <listitem>
-        <para>You can also use external glossaries for this task, which can be referenced by the use
-          of the <parameter>glossary-collection</parameter> transformation parameter, or the
-            <code>db</code> processing instruction with a <code>glossary-collection</code> pseudo
-          attribute. You can leave the internal, automatic glossary completely empty. As long as
-          there are entries for <emphasis>Apple</emphasis> and <emphasis>Pear</emphasis> in one of
-          your external gloassries, you will end up with these two entries in the generated
-          glossary, no matter how much more entries the external glossaries may contain.</para>
-      </listitem>
-      <listitem>
-        <para>You can use the internal, automatic glossary in conjunction with external glossaries.
-          In this case, entries from the internal glossary take precedence over entries for the same
-          term from external glossaries. Lets say you have entries for <emphasis>Apple</emphasis>
-          and <emphasis>Pear</emphasis> among others in your external glossary, and also an
-            <code>glossentry</code> for <emphasis>Apple</emphasis> in your internal glossary. In
-          this case you will end up with a glossary which contains two entries, one for
-            <emphasis>Apple</emphasis> with the specific definition taken from the internal
-          glossary, and one for <emphasis>Pear</emphasis> from the external glossary, which may be a
-          more general definition.</para>
-      </listitem>
-    </itemizedlist>
+<para>The best way to explain automatic glossaries is to use an
+example. Let's assume that you have marked the two terms
+<emphasis role="bold">Apple</emphasis> and
+<emphasis role="bold">Pear</emphasis> as <tag>glossterm</tag>s in your document.
+Your automatic glossary should ultimately contain exactly two entries,
+one for each of those terms.</para>
+
+<para>Create a glossary in your document and add <code>auto</code> to the
+<att>role</att> attribute on the <tag>glossary</tag> element.
+(If you’re using automatic glossaries, there should only be one <tag>glossary</tag>
+element in your document.) This is the <emphasis>internal</emphasis> glossary.</para>
+
+<itemizedlist>
+<listitem>
+<para>Even if your internal glossary has three entries, one each for <emphasis>Apple</emphasis>,
+<emphasis>Jackfruit</emphasis> and <emphasis>Pear</emphasis>, you will end up with a
+glossary in the generated document that has only two entries. There will be no entry for
+<emphasis>Jackfruit</emphasis>, since there is no corresponding <code>glossterm</code>
+or <code>firstterm</code> in the main part of your text.</para>
+</listitem>
+<listitem>
+<para>You can also use <emphasis>external</emphasis> glossaries for
+this task, which can be identified by the
+<parameter>glossary-collection</parameter> parameter, or the
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instructions with a
+<literal>glossary-collection</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>glossary-collection pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the root element.</para>
+<para>If you use external glossaries, you can leave the internal,
+automatic glossary completely empty. As long as there are entries for
+<emphasis>Apple</emphasis> and <emphasis>Pear</emphasis> in one of
+your external glossaries, you will end up with those two entries in
+the generated glossary, even if the external glossaries contain many
+more terms.
+</para>
+</listitem>
+<listitem>
+<para>You can use the internal, automatic glossary in conjunction with
+external glossaries. In this case, entries from the internal glossary
+take precedence over entries for the same term from external
+glossaries. Lets say you have entries for <emphasis>Apple</emphasis>
+and <emphasis>Pear</emphasis> among others in your external glossary,
+and also a <code>glossentry</code> for <emphasis>Apple</emphasis> in
+your internal glossary. In this case you will end up with a glossary
+which contains two entries, one for <emphasis>Apple</emphasis>, with
+the definition taken from the internal glossary, and one for
+<emphasis>Pear</emphasis> with a definition from the
+external glossary.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>Entries will appear in the glossary in the same order as they appear in the
+internal and external glossaries unless they are sorted. Sorting is controlled
+by the <parameter>glossary-sort-entries</parameter> parameter.</para>
+
+<para>An automatic glossary may have glossary divisions. Those are
+controlled by the <parameter>glossary-automatic-divisions</parameter>
+parameter.</para>
+
+<section xml:id="glossary-schematron">
+<info>
+<titleabbrev>Using Schematron</titleabbrev>
+<title>Using Schematron to manage the glossary</title>
+</info>
 
 <para>Schematron rules can help manage the glossary. The
 <function>f:glossentries</function> function (defined in
@@ -737,10 +772,45 @@ Schematron independently of the xslTNG stylesheets. You can use it to
 check whether a corresponding <code>glossentry</code> exists for a
 <code>glossterm</code> or <code>firstterm</code> while you are still
 writing. Corresponding Schematron schemas are not yet part of the
-xslTNG framework.</para>
+xslTNG framework. <xref linkend="ex.schematron.glossary" xrefstyle="%label"/>, however,
+shows how you could use schematron to check whether there is exactly one <tag>glossentry</tag>
+for the <tag>glossterm</tag> and <tag>firstterm</tag> elements in your document.</para>
 
-<para>Generating glossary divisions automatically is controlled by the
-<parameter>glossary-automatic-divisions</parameter> parameter.</para>
+<example xml:id="ex.schematron.glossary">
+  <title>A Schematron schema to check glossary terms</title>
+  <programlistingco>
+    <areaspec units="linecolumn">
+      <area xml:id="co.include-function" coords="3 1"/>
+      <area xml:id="co.ns-f" coords="7 1"></area>
+      <area xml:id="co.use-function" coords="14 1"></area>
+    </areaspec>
+    <programlisting><xi:include href="examples/glossary.sch" parse="text"/></programlisting>
+    <calloutlist>
+      <callout arearefs="co.include-function"><para>Include the <filename>standalone-functions.xsl</filename> file.
+        You have to adjust the path accordingly.</para></callout>
+      <callout arearefs="co.ns-f"><para>Provide declaration for the namespace of functions from xslTNG.</para></callout>
+      <callout arearefs="co.use-function"><para>Use the <function>f:glossentries</function> function
+        to get the number of matching <tag>glossentry</tag> elements for the given <tag>glossterm</tag> or <tag>firstterm</tag></para></callout>
+    </calloutlist>
+  </programlistingco>
+</example>
+
+<para>If you want to use Schematron rules with external glossaries,
+it’s most convenient to use the <tag class="pi">db</tag> processing instruction
+to identify the external glossaries. The
+<function>f:glossentries</function> function will load them automatically (see <xref
+linkend="ex.pass-parameter-to-schematron" xrefstyle="%label"/>).
+</para>
+
+<example xml:id="ex.pass-parameter-to-schematron">
+  <title>Pass the <literal>glossary-collection</literal> parameter to Schematron</title>
+  <programlisting>&lt;article xmlns="http://docbook.org/ns/docbook" version="5.0"&gt;
+  &lt;?db glossary-collection='resources/glosscollection.xml' ?&gt;
+  &lt;title&gt;My document&lt;/title&gt;
+  …
+&lt;/article></programlisting>
+</example>
+</section>
 </section>
 
 <section xml:id="using-bibliographies">
@@ -833,7 +903,7 @@ to divide the bibliography into sections and the document may have multiple
 <title>Automatic</title>
 
 <para>An automatic bibliography is selected by using the token
-<code>auto</code> in the <att>role</att> attribute on a bibliography.
+<code>auto</code> in the <att>role</att> attribute on a <tag>bibliography</tag>.
 Placeholders can still be used, but they are unnecessary when using
 <tag>citation</tag> for citations.</para>
 
@@ -855,7 +925,10 @@ divisions.</para>
 </section>
 
 <section xml:id="different">
+<info>
 <title>Creating something completely different</title>
+<titleabbrev>Something completely different</titleabbrev>
+</info>
 
 <para>Your input documents go through several pre-processing steps
 before they are rendered into HTML. If you want to produce completely
