@@ -59,8 +59,12 @@
       }
       const id = sect.getAttribute("id");
       const header = sect.querySelector("header");
-      const title = header && header.querySelector("h1,h2,h3,h4,h5,h6");
       const skip = sect.classList.contains("nopagetoc");
+
+      let title = header && header.querySelector("h1,h2,h3,h4,h5,h6");
+      if (title.querySelector("script.titleabbrev")) {
+        title = title.querySelector("script.titleabbrev");
+      }
 
       if (title && !skip) {
         toclength++;

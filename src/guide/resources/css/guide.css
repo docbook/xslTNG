@@ -73,10 +73,8 @@ p .refpurpose-sep {
 .informalfigure {
     border: 2px solid #afafaf;
     border-radius: 1em;
-    margin-left: 2em;
     padding-left: 1em;
     padding-right: 1em;
-    margin-right: 2em;
 }
 
 .informalfigure .imageobject {
@@ -93,11 +91,10 @@ img {
 
 .figure {
     border: 2px solid #afafaf;
+    border-radius: 0.5em;
     border-radius: 1em;
-    margin-left: 2em;
     padding-left: 1em;
     padding-right: 1em;
-    margin-right: 2em;
 }
 
 .figure table {
@@ -111,10 +108,16 @@ img {
 
 .example {
     border: 2px solid #afafaf;
-    margin-left: 2em;
+    border-radius: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
-    margin-right: 2em;
+}
+
+.example > .programlisting > .pre-wrap,
+.example > .programlistingco > .pre-wrap,
+.example > .pre-wrap {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .funcname,

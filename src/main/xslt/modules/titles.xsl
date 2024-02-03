@@ -170,6 +170,21 @@
     </xsl:if>
   </xsl:variable>
 
+  <xsl:if test="f:is-true($titleabbrev-passthrough)
+                and db:info/db:titleabbrev and not($purpose = 'lot')">
+    <script type="text/html" class="titleabbrev">
+      <xsl:apply-templates select="$template" mode="mp:localization">
+        <xsl:with-param name="context" select="."/>
+        <xsl:with-param name="label" select="$label"/>
+        <xsl:with-param name="content">
+          <xsl:apply-templates select="." mode="m:headline-title">
+            <xsl:with-param name="purpose" select="'abbrev'"/>
+          </xsl:apply-templates>
+        </xsl:with-param>
+      </xsl:apply-templates>
+    </script>
+  </xsl:if>
+
   <xsl:apply-templates select="$template" mode="mp:localization">
     <xsl:with-param name="context" select="."/>
     <xsl:with-param name="label" select="$label"/>
