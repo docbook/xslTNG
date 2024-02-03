@@ -1,7 +1,5 @@
 # DocBook xslTNG
 
-Build status: [![Build Status](https://circleci.com/gh/docbook/xslTNG.svg?style=shield)](https://circleci.com/gh/docbook/xslTNG.svg?style=shield)
-
 This is *The Next Generation* of DocBook stylesheets in XSLT. It is a
 complete reimplementation of the stylesheets for transforming
 [DocBook](https://docbook.org/) into modern, clean, semantically rich
