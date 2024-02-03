@@ -1,47 +1,47 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Appendix A. Changes in version 2.x</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-02-02T10:08:05Z"/><meta name="dc.created" content="2024-02-02T10:08:05Z"/><meta name="generator" content="DocBook xslTNG version 2.2.0-SNAPSHOT / 6276ffe / SAXON HE 12.4"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-building.html"/><link rel="next" href="glossary.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="appendix component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-building.html" title="Chapter  6 .  Building the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Glossary" href="glossary.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="version2" db-chunk="version2.html" db-id="d149e4525" class="appendix component"><header><h1>Appendix <span class="label">A</span><span class="sep">. </span>Changes in version 2.x</h1></header><section id="changelog" class="section"><header><h2><span class="label">A<span class="sep">.</span>1</span><span class="sep">. </span>Change Log</h2></header><p>This section documents the changes made in each release. This
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Appendix A. Changes in version 2.x</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-02-03T15:42:12Z"/><meta name="dc.created" content="2024-02-03T15:42:12Z"/><meta name="generator" content="DocBook xslTNG version 2.2.0-SNAPSHOT / 9567055 / SAXON HE 12.4"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-building.html"/><link rel="next" href="glossary.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="appendix component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-building.html" title="Chapter  6 .  Building the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Glossary" href="glossary.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="version2" db-chunk="version2.html" db-id="d149e4607" class="appendix component"><header><h1>Appendix <span class="label">A</span><span class="sep">. </span>Changes in version 2.x</h1></header><section id="changelog" class="section"><header><h2><span class="label">A<span class="sep">.</span>1</span><span class="sep">. </span>Change Log</h2></header><p>This section documents the changes made in each release. This
 does not necessarily include every minor change, only those likely to
 be of interest to users of the stylesheets. See the commits and pull requests on
 <a href="https://github.com/docbook/xslTNG/" class="link">the repository</a> for
-finer detail.</p><section id="r220" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>1</span><span class="sep">. </span>Changes in version 2.2.0</h3></header><ul class="itemizedlist"><li><p>Ensure that subtitle appears on a book titlepage, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/415" class="link">#415</a>.
-  </p></li><li><p>Make sure <a href="v_debug.html"><code class="varname">$v:debug</code></a><span class="indexterm" id="r220_itemizedlist1_listitem2_para1_indexterm1"></span> is declared in <code class="filename">print.xsl</code>, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/420" class="link">#420</a>.
-  </p></li><li><p>Corrected the image intrinsic functions so that non-integer dimensions are supported in SVG;
-  added support for dimensions with units, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/413" class="link">#413</a>,
-  <a href="https://github.com/docbook/xslTNG/issues/432" class="link">#432</a>, and
-  <a href="https://github.com/docbook/xslTNG/issues/443" class="link">#443</a>.
-  </p></li><li><p>Column widths computed from CALS tables did not correctly specify units, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/410" class="link">#410</a>.
-  </p></li><li><p>Integrated improved support for improved
-  <a href="ch-using.html#customize-individual-cross-references" class="link">cross reference styles</a>
-  contributed by Frank Steimke, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/414" class="link">#414</a>.
-  </p></li><li><p>Merged a fix to the German localization contributed by Tom Schraitle, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/428" class="link">#428</a>.
-  </p></li><li><p>Attempted to work around a scrolling issue in the persistent ToC, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/451" class="link">#451</a>.
-  </p></li><li><p>Merged a patch, contributed by Frank Steimke, to avoid a
-  warning when a table width is exactly the same as the nominal page
-  width, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/411" class="link">#411</a>.
-  </p></li><li><p>Allow pre- and post-processing transforms to be specified as command line parameters, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/440" class="link">#440</a>
-  and
-  <a href="https://github.com/docbook/xslTNG/issues/441" class="link">#441</a>
+finer detail.</p><section id="r220" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>1</span><span class="sep">. </span>Changes in version 2.2.0</h3></header><ul class="itemizedlist"><li><p>Support <a href="p_titleabbrev-passthrough.html"><code class="paramname">$titleabbrev-passthrough</code></a><span class="indexterm" id="r220_itemizedlist1_listitem1_para1_indexterm1"></span>,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/469" class="link">#469</a>.
   </p></li><li><p>Integrated support for
   <a href="ch-customizing.html#using-glossaries" class="link">automatic glossaries</a>
-  contributed by Frank Steimke. Fixed
-  <a href="https://github.com/docbook/xslTNG/issues/453" class="link">#453</a>,
-  and
-  <a href="https://github.com/docbook/xslTNG/issues/445" class="link">#445</a>.
-  Extended to support automatic glossary divisions, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/453" class="link">#460</a>.
+  contributed by Frank Steimke.
+  Fixed <a href="https://github.com/docbook/xslTNG/issues/453" class="link">#453</a>
+  and <a href="https://github.com/docbook/xslTNG/issues/445" class="link">#445</a>.
+  Extended to support automatic glossary divisions,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/453" class="link">#460</a>.
   </p></li><li><p>Added support for
   <a href="ch-customizing.html#using-bibliographies" class="link">automatic bibliographies</a>
-  somewhat analagous to automatic glossaries.
-  </p></li><li><p>Integrated documentation improvements contributed by Frank Steimke, fixed
-  <a href="https://github.com/docbook/xslTNG/issues/452" class="link">#452</a>.
+  analogous to automatic glossaries.
+  </p></li><li><p>Integrated documentation improvements contributed by Frank Steimke,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/452" class="link">#452</a>.
+  </p></li><li><p>Attempted to work around a scrolling issue in the persistent ToC,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/451" class="link">#451</a>.
+  </p></li><li><p>Corrected the image intrinsic functions so that non-integer dimensions are supported in SVG;
+  added support for dimensions with units,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/413" class="link">#413</a>,
+  <a href="https://github.com/docbook/xslTNG/issues/432" class="link">#432</a>,
+  and <a href="https://github.com/docbook/xslTNG/issues/443" class="link">#443</a>.
+  </p></li><li><p>Allow pre- and post-processing transforms to be specified as command line parameters,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/440" class="link">#440</a>
+  and <a href="https://github.com/docbook/xslTNG/issues/441" class="link">#441</a>
+  </p></li><li><p>Merged a fix to the German localization contributed by Tom Schraitle,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/428" class="link">#428</a>.
+  </p></li><li><p>Make sure <a href="v_debug.html"><code class="varname">$v:debug</code></a><span class="indexterm" id="r220_itemizedlist1_listitem9_para1_indexterm1"></span> is declared in <code class="filename">print.xsl</code>,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/420" class="link">#420</a>.
+  </p></li><li><p>Ensure that subtitle appears on a book titlepage,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/415" class="link">#415</a>.
+  </p></li><li><p>Integrated improved support for improved
+  <a href="ch-using.html#customize-individual-cross-references" class="link">cross reference styles</a>
+  contributed by Frank Steimke,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/414" class="link">#414</a>.
+  </p></li><li><p>Merged a patch, contributed by Frank Steimke, to avoid a
+  warning when a table width is exactly the same as the nominal page
+  width,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/411" class="link">#411</a>.
+  </p></li><li><p>Corrected an error where column widths computed from CALS tables did not correctly specify units,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/410" class="link">#410</a>.
   </p></li></ul></section><section id="r219" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>2</span><span class="sep">. </span>Changes in version 2.1.9</h3></header><ul class="itemizedlist"><li><p>Links added with <a href="m_head-additions.html"><code class="mode">m:head-additions</code></a> were not being made relative
   to the chunk base URI. Reworked <a href="m_html-body-script.html"><code class="mode">m:html-body-script</code></a> slightly so that
   links there can also be made relative appropriately.</p></li></ul></section><section id="r218" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>3</span><span class="sep">. </span>Changes in version 2.1.8</h3></header><ul class="itemizedlist"><li><p>Added <a href="m_head-additions.html"><code class="mode">m:head-additions</code></a> mode for customizers. This allows a customization

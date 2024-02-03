@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Chapter 3. Customizing the stylesheets</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-02-02T10:08:05Z"/><meta name="dc.created" content="2024-02-02T10:08:05Z"/><meta name="generator" content="DocBook xslTNG version 2.2.0-SNAPSHOT / 6276ffe / SAXON HE 12.4"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-using.html"/><link rel="next" href="ch-localization.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="chapter component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-using.html" title="Chapter  2 .  Using the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Chapter  4 .  Localization" href="ch-localization.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="customization" db-chunk="ch-customizing.html" db-id="d149e1888" class="chapter component"><header><h1>Chapter <span class="label">3</span><span class="sep">. </span>Customizing the stylesheets</h1></header><p>In many circumstances, the stylesheets can be used “out of the
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Chapter 3. Customizing the stylesheets</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-02-03T15:42:12Z"/><meta name="dc.created" content="2024-02-03T15:42:12Z"/><meta name="generator" content="DocBook xslTNG version 2.2.0-SNAPSHOT / 9567055 / SAXON HE 12.4"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-using.html"/><link rel="next" href="ch-localization.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="chapter component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-using.html" title="Chapter  2 .  Using the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Chapter  4 .  Localization" href="ch-localization.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="customization" db-chunk="ch-customizing.html" db-id="d149e1888" class="chapter component"><header><h1>Chapter <span class="label">3</span><span class="sep">. </span>Customizing the stylesheets</h1></header><p>In many circumstances, the stylesheets can be used “out of the
 box” without any customization. But sometimes you may need to change
 the formatting of certain elements. One common reason is to change the
 formatting of title pages or navigational features. In other cases, it
@@ -164,7 +164,7 @@ changed several times. The current scheme is this:</p><ol class="orderedlist" ty
 <a href="p_verbatim-syntax-highlight-css.html"><code class="paramname">$verbatim-syntax-highlight-css</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem1_para1_indexterm1"></span> stylesheet is
 included.
 </p></li><li><p>If <a href="p_persistent-toc.html"><code class="paramname">$persistent-toc</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem2_para1_indexterm1"></span> <span class="glossterm"><a href="glossary.html#glossary_ge5">is
-true</a></span> 
+true</a></span>
 a link to the <a href="p_persistent-toc-css.html"><code class="paramname">$persistent-toc-css</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem2_para1_indexterm2"></span> stylesheet
 is included.
 </p></li><li><p>If <a href="p_use-docbook-css.html"><code class="paramname">$use-docbook-css</code></a><span class="indexterm" id="managing-css_orderedlist1_listitem3_para1_indexterm1"></span> <span class="glossterm"><a href="glossary.html#glossary_ge5">is true</a></span>,
@@ -215,7 +215,7 @@ Media references in the source use relative URIs to refer to the
 underlying media: <code class="filename">book/front/preface.xml</code> refers to the “this is a test”
 audio clip as <code class="uri">../../media/spinning-top.mp4</code>.
 </p></dd></div><div id="mo_mo-4" class="varlistentry"><dt><span class="term">mo-4</span></dt><dd><p>The XML files are still in different directories, but the significant change
-here is that the media are in their own hierarchy. 
+here is that the media are in their own hierarchy.
 Media references in the source use URIs relative to the root of <em>that</em>
 hierarchy: <code class="filename">book/front/preface.xml</code> refers to the “this is a test”
 audio clip as <code class="uri">spinning-top.mp4</code>.
@@ -308,7 +308,7 @@ example of arbitrary, custom processing.
 </pre></div><p>This is effectively scenario 2 with chunking.
 </p></dd></div><div class="varlistentry"><dt><span class="term"><a href="#mo_mo-5" class="link">mo-5</a> / scenarios 1-5</span></dt><dd><p>The “mo-5” scenarios are all the same as the “mo-4” scenarios
 with the addition of one more parameter:</p><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>mediaobject-grouped-by-type = "true"</code></span></span>
-</pre></div><p>In each case, this adds the extra “media object type” level to the 
+</pre></div><p>In each case, this adds the extra “media object type” level to the
 URI path.
 </p></dd></div></dl><p>If you download the source repository, you can see these combinations
 in action with the build targets
@@ -381,7 +381,7 @@ in uncommon cases.</p><p>To simplify the problem, we divide the DocBook elements
 <code class="tag tag-element">sect4</code>,
 <code class="tag tag-element">sect5</code>,
 <code class="tag tag-element">simplesect</code>.
-The <code class="tag tag-element">refentry</code> section elements are not included because they are 
+The <code class="tag tag-element">refentry</code> section elements are not included because they are
 not typically numbered.</p></dd></div><div class="varlistentry"><dt><span class="term">formal objects</span></dt><dd><p>The formal objects are
 <code class="tag tag-element">figure</code>,
 <code class="tag tag-element">table</code>,
@@ -400,7 +400,7 @@ only counts as a formal object if it has a title.</p></dd></div></dl><p>Six para
 <a href="p_sections-number-from.html"><code class="paramname">$sections-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm5"></span>, and
 <a href="p_formal-objects-number-from.html"><code class="paramname">$formal-objects-number-from</code></a><span class="indexterm" id="numeration_para7_indexterm6"></span>. In each case, the value
 of the parameter must be the name of one of the categories. Sets and books
-can only number from sets, divisions can number from sets or books, 
+can only number from sets, divisions can number from sets or books,
 components can number from sets, books, or divisions, etc. It is also
 possible to specify the value <code>root</code> to indicate that elements in
 the relevant category are numbered sequentially through the whole document.</p><p>To assure consistency, “numbering from” resets when the specified
@@ -420,37 +420,55 @@ inherit from “<code>component section</code>”. That means that the
 first figure in chapter 2 will be labeled “2.1” and the first figure
 in the first section in chapter 2 will be labeled “2.1.1”, etc.
 This most closely reproduces the numbering from the 1.x stylesheets.</p></section><section id="using-glossaries" class="section"><header><h2><span class="label">3<span class="sep">.</span>6</span><span class="sep">. </span>Using glossaries</h2></header><p>There are essentially two ways to manage glossaries: you can
-author them by hand, or you can build them automatically from a
-collection of glossary entries.</p><p>If you build them by hand, if you put <code class="tag tag-element">glossary</code> elements containing
-<code class="tag tag-element">glossentry</code> elements, etc. in your document, then you have complete control.
-What you put in your document is what will be formatted and published.</p><p>If you compose them from glossary collections, only the terms used in your document
-(in <code class="tag tag-element">glossterm</code> or <code class="tag tag-element">firstterm</code> elements) will appear in the glossary.
-The glossary collections can be managed internally or externally.
-If multiple definitions appear in the glossary collections, only the first definition 
-is included.</p><p>The best way to explain automatic glossaries is to use an example. Let's assume that you
-      have marked the two terms <strong class="bold">Apple</strong> and <strong class="bold">Pear</strong> in your document, so that your automatic glossary should ultimately contain
-      exactly two entries for these two terms. Create a <code>glossary</code> with
-        <code>@role='auto'</code> in your document. We call this the <em>internal</em>
-      glossary.</p><ul class="itemizedlist"><li><p>If your internal glossary has three entries for <em>Apple</em>,
-            <em>Jackfruit</em> and <em>Pear</em>, you will end up with a
-          glossary in the generated document that has only the two entries for
-            <em>Apple</em> and <em>Pear</em>. There will be no entry for
-            <em>Jackfruit</em>, since there is no corresponding <code>glossterm</code>
-          or <code>firstterm</code> in the main part of your text.</p></li><li><p>You can also use external glossaries for this task, which can be referenced by the use
-          of the <a href="p_glossary-collection.html"><code class="paramname">$glossary-collection</code></a><span class="indexterm" id="using-glossaries_itemizedlist1_listitem2_para1_indexterm1"></span> transformation parameter, or the
-            <code>db</code> processing instruction with a <code>glossary-collection</code> pseudo
-          attribute. You can leave the internal, automatic glossary completely empty. As long as
-          there are entries for <em>Apple</em> and <em>Pear</em> in one of
-          your external gloassries, you will end up with these two entries in the generated
-          glossary, no matter how much more entries the external glossaries may contain.</p></li><li><p>You can use the internal, automatic glossary in conjunction with external glossaries.
-          In this case, entries from the internal glossary take precedence over entries for the same
-          term from external glossaries. Lets say you have entries for <em>Apple</em>
-          and <em>Pear</em> among others in your external glossary, and also an
-            <code>glossentry</code> for <em>Apple</em> in your internal glossary. In
-          this case you will end up with a glossary which contains two entries, one for
-            <em>Apple</em> with the specific definition taken from the internal
-          glossary, and one for <em>Pear</em> from the external glossary, which may be a
-          more general definition.</p></li></ul><p>Schematron rules can help manage the glossary. The
+author them by hand, or you can compose them automatically from a
+collection of glossary entries.</p><p>In a glossary authored by hand, no special processing
+takes place. The entries appear as they are listed and every entry appears
+whether there is a corresponding glossary reference in the document or not.
+The author is free to use <code class="tag tag-element">glossdiv</code> elements
+to divide the glossary into sections and the document may have multiple
+<code class="tag tag-element">glossary</code> elements.</p><p>If you compose them from glossary collections, only the terms
+used in your document (in <code class="tag tag-element">glossterm</code> or <code class="tag tag-element">firstterm</code>
+elements) will appear in the glossary. The glossary collections can be
+managed internally or externally. If multiple definitions appear in
+the glossary collections, only the first definition is
+included.</p><p>The best way to explain automatic glossaries is to use an
+example. Let's assume that you have marked the two terms
+<strong class="bold">Apple</strong> and
+<strong class="bold">Pear</strong> as <code class="tag tag-element">glossterm</code>s in your document.
+Your automatic glossary should ultimately contain exactly two entries,
+one for each of those terms.</p><p>Create a glossary in your document and add <code>auto</code> to the
+<code class="tag tag-attribute">role</code> attribute on the <code class="tag tag-element">glossary</code> element.
+(If you’re using automatic glossaries, there should only be one <code class="tag tag-element">glossary</code>
+element in your document.) This is the <em>internal</em> glossary.</p><ul class="itemizedlist"><li><p>Even if your internal glossary has three entries, one each for <em>Apple</em>,
+<em>Jackfruit</em> and <em>Pear</em>, you will end up with a
+glossary in the generated document that has only two entries. There will be no entry for
+<em>Jackfruit</em>, since there is no corresponding <code>glossterm</code>
+or <code>firstterm</code> in the main part of your text.</p></li><li><p>You can also use <em>external</em> glossaries for
+this task, which can be identified by the
+<a href="p_glossary-collection.html"><code class="paramname">$glossary-collection</code></a><span class="indexterm" id="using-glossaries_itemizedlist1_listitem2_para1_indexterm1"></span> parameter, or the
+<code class="tag tag-pi">db</code><span class="indexterm" id="using-glossaries_itemizedlist1_listitem2_para1_indexterm2"></span> processing instructions with a
+<code class="literal">glossary-collection</code><span class="indexterm" id="using-glossaries_itemizedlist1_listitem2_para1_indexterm3"></span> pseudo-attribute in the root element.</p><p>If you use external glossaries, you can leave the internal,
+automatic glossary completely empty. As long as there are entries for
+<em>Apple</em> and <em>Pear</em> in one of
+your external glossaries, you will end up with those two entries in
+the generated glossary, even if the external glossaries contain many
+more terms.
+</p></li><li><p>You can use the internal, automatic glossary in conjunction with
+external glossaries. In this case, entries from the internal glossary
+take precedence over entries for the same term from external
+glossaries. Lets say you have entries for <em>Apple</em>
+and <em>Pear</em> among others in your external glossary,
+and also a <code>glossentry</code> for <em>Apple</em> in
+your internal glossary. In this case you will end up with a glossary
+which contains two entries, one for <em>Apple</em>, with
+the definition taken from the internal glossary, and one for
+<em>Pear</em> with a definition from the
+external glossary.
+</p></li></ul><p>Entries will appear in the glossary in the same order as they appear in the
+internal and external glossaries unless they are sorted. Sorting is controlled
+by the <a href="p_glossary-sort-entries.html"><code class="paramname">$glossary-sort-entries</code></a><span class="indexterm" id="using-glossaries_para6_indexterm1"></span> parameter.</p><p>An automatic glossary may have glossary divisions. Those are
+controlled by the <a href="p_glossary-automatic-divisions.html"><code class="paramname">$glossary-automatic-divisions</code></a><span class="indexterm" id="using-glossaries_para7_indexterm1"></span>
+parameter.</p><section id="glossary-schematron" class="section"><header><h3><script type="text/html" class="titleabbrev"><span class="label">3<span class="sep">.</span>6<span class="sep">.</span>1</span><span class="sep">. </span>Using Schematron</script><span class="label">3<span class="sep">.</span>6<span class="sep">.</span>1</span><span class="sep">. </span>Using Schematron to manage the glossary</h3></header><p>Schematron rules can help manage the glossary. The
 <a href="f_glossentries.html"><code class="funcname">f:glossentries()</code></a> function (defined in
 <code class="filename">standalone-functions.xsl</code> in the xslTNG install
 directory) has been designed so that it can be integrated into
@@ -458,8 +476,45 @@ Schematron independently of the xslTNG stylesheets. You can use it to
 check whether a corresponding <code>glossentry</code> exists for a
 <code>glossterm</code> or <code>firstterm</code> while you are still
 writing. Corresponding Schematron schemas are not yet part of the
-xslTNG framework.</p><p>Generating glossary divisions automatically is controlled by the
-<a href="p_glossary-automatic-divisions.html"><code class="paramname">$glossary-automatic-divisions</code></a><span class="indexterm" id="using-glossaries_para6_indexterm1"></span> parameter.</p></section><section id="using-bibliographies" class="section"><header><h2><span class="label">3<span class="sep">.</span>7</span><span class="sep">. </span>Using bibliographies</h2></header><p>Bibliographies are more complicated than glossaries.
+xslTNG framework. <a href="#ex.schematron.glossary" class="xref xref-example">Example <span class="label">3<span class="sep">.</span>1</span></a>, however,
+shows how you could use schematron to check whether there is exactly one <code class="tag tag-element">glossentry</code>
+for the <code class="tag tag-element">glossterm</code> and <code class="tag tag-element">firstterm</code> elements in your document.</p><div id="ex.schematron.glossary" class="example formalobject"><div class="programlistingco"><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="25"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code>&lt;schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2"&gt;</code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><a id="co.include-function" class="callout-bug linecolumn" db-line="3" db-column="1">①</a>  &lt;xsl:include xmlns:xsl="http://www.w3.org/1999/XSL/Transform"</code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    href="standalone-functions.xsl"/&gt;</code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>   &lt;ns uri="http://docbook.org/ns/docbook" prefix="db"/&gt;</code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><a id="co.ns-f" class="callout-bug linecolumn" db-line="7" db-column="1">②</a>  &lt;ns uri="http://docbook.org/ns/docbook/functions" prefix="f"/&gt;</code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>  &lt;pattern&gt;</code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code>    &lt;rule context="</code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        db:firstterm</code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        | db:glossterm[not(ancestor::db:glossary)]"&gt;</code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>       &lt;let name="term" value="((@baseform, .)[1])"/&gt;</code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><a id="co.use-function" class="callout-bug linecolumn" db-line="14" db-column="1">③</a>      &lt;let name="n" value="count(f:glossentries(.))"/&gt;</code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>      &lt;report role="error" test="$n eq 0"&gt;No entry for </code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>        &lt;value-of select="$term"/&gt; in glossary.&lt;/report&gt;</code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>      &lt;report role="warning" test="$n gt 1"&gt;&lt;value-of select="$n"/&gt; </code></span></span>
+<span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code>        entries for &lt;value-of select="$term"/&gt; in glossary.&lt;/report&gt;</code></span></span>
+<span class="line" db-line="21"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="22"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    &lt;/rule&gt;</code></span></span>
+<span class="line" db-line="23"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>  &lt;/pattern&gt;</code></span></span>
+<span class="line" db-line="24"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="25"><span class="ln">25 <span class="nsep">|</span></span><span class="ld"><code>&lt;/schema&gt;</code></span></span>
+</pre></div><div class="calloutlist"><dl><dt class="callout"><a class="callout-bug" href="#co.include-function">①</a></dt><dd><p>Include the <code class="filename">standalone-functions.xsl</code> file.
+        You have to adjust the path accordingly.</p></dd><dt class="callout"><a class="callout-bug" href="#co.ns-f">②</a></dt><dd><p>Provide declaration for the namespace of functions from xslTNG.</p></dd><dt class="callout"><a class="callout-bug" href="#co.use-function">③</a></dt><dd><p>Use the <a href="f_glossentries.html"><code class="funcname">f:glossentries()</code></a> function
+        to get the number of matching <code class="tag tag-element">glossentry</code> elements for the given <code class="tag tag-element">glossterm</code> or <code class="tag tag-element">firstterm</code></p></dd></dl></div></div><header><div class="title">Example <span class="label">3<span class="sep">.</span>1</span><span class="sep">. </span>A Schematron schema to check glossary terms</div></header></div><p>If you want to use Schematron rules with external glossaries,
+it’s most convenient to use the <code class="tag tag-pi">db</code> processing instruction
+to identify the external glossaries. The
+<a href="f_glossentries.html"><code class="funcname">f:glossentries()</code></a> function will load them automatically (see <a href="#ex.pass-parameter-to-schematron" class="xref xref-example">Example <span class="label">3<span class="sep">.</span>2</span></a>).
+</p><div id="ex.pass-parameter-to-schematron" class="example formalobject"><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code>&lt;article xmlns="http://docbook.org/ns/docbook" version="5.0"&gt;</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>  &lt;?db glossary-collection='resources/glosscollection.xml' ?&gt;</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>  &lt;title&gt;My document&lt;/title&gt;</code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>  …</code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code>&lt;/article&gt;</code></span></span>
+</pre></div><header><div class="title">Example <span class="label">3<span class="sep">.</span>2</span><span class="sep">. </span>Pass the <code class="literal">glossary-collection</code> parameter to Schematron</div></header></div></section></section><section id="using-bibliographies" class="section"><header><h2><span class="label">3<span class="sep">.</span>7</span><span class="sep">. </span>Using bibliographies</h2></header><p>Bibliographies are more complicated than glossaries.
 Bibliography entries can be “cooked” (<code class="tag tag-element">bibliomixed</code>) or “raw”
 (<code class="tag tag-element">biblioentry</code>) and there’s no obvious way to sort
 bibliography entries in the general case.</p><p>There are also two different cross-referencing mechanisms for
@@ -500,7 +555,7 @@ bibliography example could be shortened to:</p><div class="pre-wrap highlight" d
 whether it is cited or not. The author is free to use <code class="tag tag-element">bibliodiv</code> elements
 to divide the bibliography into sections and the document may have multiple
 <code class="tag tag-element">bibliography</code> elements.</p></section><section id="bib.automatic" class="section"><header><h3><span class="label">3<span class="sep">.</span>7<span class="sep">.</span>3</span><span class="sep">. </span>Automatic</h3></header><p>An automatic bibliography is selected by using the token
-<code>auto</code> in the <code class="tag tag-attribute">role</code> attribute on a bibliography.
+<code>auto</code> in the <code class="tag tag-attribute">role</code> attribute on a <code class="tag tag-element">bibliography</code>.
 Placeholders can still be used, but they are unnecessary when using
 <code class="tag tag-element">citation</code> for citations.</p><p>Any citation that appear in the text will be matched to entries
 in the external bibliographies. Those entries will be included
@@ -511,7 +566,7 @@ bibliographies.
 If multiple external entries match, only the first is added.</p><p>Any bibliography entries in the internal bibliography that
 <em>aren’t</em> cited will be removed.</p><p>When using the automatic style, there should be only one
 <code class="tag tag-element">bibliography</code> in the document and it cannot contain
-divisions.</p></section></section><section id="different" class="section"><header><h2><span class="label">3<span class="sep">.</span>8</span><span class="sep">. </span>Creating something completely different</h2></header><p>Your input documents go through several pre-processing steps
+divisions.</p></section></section><section id="different" class="section"><header><h2><script type="text/html" class="titleabbrev"><span class="label">3<span class="sep">.</span>8</span><span class="sep">. </span>Something completely different</script><span class="label">3<span class="sep">.</span>8</span><span class="sep">. </span>Creating something completely different</h2></header><p>Your input documents go through several pre-processing steps
 before they are rendered into HTML. If you want to produce completely
 different outputs, the place to start is with root template in the
 <a href="m_docbook.html"><code class="mode">m:docbook</code></a> mode.</p><p>Consider, <a href="https://github.com/docbook/xslTNG/issues/84" class="link">for example</a>,
