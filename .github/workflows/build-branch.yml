@@ -32,7 +32,7 @@ jobs:
             echo "Running in $reponame on $branch"
           fi
           echo "tag=$tag" >> $GITHUB_OUTPUT
-          raw=`cat properties.gradle | grep guideVersion | sed "s#['\"]#g"
+          raw=`cat properties.gradle | grep guideVersion | sed "s#[ '\"]##g"`
           guideversion=${raw##*=}
           echo "guideversion=${raw##*=}" >> $GITHUB_OUTPUT
 
@@ -58,6 +58,10 @@ jobs:
         os: [ubuntu-20.04]
 
     steps:
+      - name: Report guide version
+        run: |
+          echo "Building guide version ::${GUIDE_VERSION}::"
+
       - name: Install platform-independent Python modules
         run: |
           python3 -m pip install pygments==2.14.0 click cython
@@ -141,9 +145,7 @@ jobs:
         run: |
           mkdir /tmp/guide
           rsync -ar guide/ /tmp/guide/
-          rm -f /tmp/guide/*.html /tmp/guide/validated.xml
-          cp guide/index.html /tmp
-          echo "Building guide version $GUIDE_VERSION"
+          rm -rf /tmp/guide/$GUIDE_VERSION
 
       - name: Checkout the main branch on Linux
         if: matrix.os == 'ubuntu-20.04'
@@ -176,9 +178,9 @@ jobs:
       - name: Restore previous version(s) of the guide
         if: matrix.os == 'ubuntu-20.04'
         run: |
-          rsync -var /tmp/guide/ build/website/guide/
+          rsync -ar /tmp/guide/ build/website/guide/
           if [ ! -f build/website/guide/index.html ]; then \
-            mv /tmp/index.html build/website/guide/; \
+            mv /tmp/guide/index.html build/website/guide/; \
           fi
 
       - name: Deploy main to gh-pages
