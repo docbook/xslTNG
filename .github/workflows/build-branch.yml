@@ -8,6 +8,7 @@ jobs:
       branch: ${{ steps.check_step.outputs.branch }}
       reponame: ${{ steps.check_step.outputs.reponame }}
       tag: ${{ steps.check_step.outputs.tag }}
+      guideversion: ${{ steps.check_step.outputs.guideversion }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,6 +32,9 @@ jobs:
             echo "Running in $reponame on $branch"
           fi
           echo "tag=$tag" >> $GITHUB_OUTPUT
+          raw=`cat properties.gradle | grep guideVersion | sed "s#['\"]#g"
+          guideversion=${raw##*=}
+          echo "guideversion=${raw##*=}" >> $GITHUB_OUTPUT
 
   build-and-deploy:
     name: Build xslTNG on ${{ matrix.os }}
@@ -47,6 +51,7 @@ jobs:
       CI_PROJECT_REPONAME: ${{ needs.check_branch.outputs.reponame }}
       CI_BRANCH: ${{ needs.check_branch.outputs.branch }}
       CI_TAG: ${{ needs.check_branch.outputs.tag }}
+      GUIDE_VERSION: ${{ needs.check_branch.outputs.guideversion }}
 
     strategy:
       matrix:
@@ -135,9 +140,10 @@ jobs:
         if: matrix.os == 'ubuntu-20.04'
         run: |
           mkdir /tmp/guide
-          rsync -var guide/ /tmp/guide/
+          rsync -ar guide/ /tmp/guide/
           rm -f /tmp/guide/*.html /tmp/guide/validated.xml
           cp guide/index.html /tmp
+          echo "Building guide version $GUIDE_VERSION"
 
       - name: Checkout the main branch on Linux
         if: matrix.os == 'ubuntu-20.04'
