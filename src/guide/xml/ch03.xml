@@ -729,6 +729,11 @@ is included.</para>
       </listitem>
     </itemizedlist>
 
+<para>Generating glossary divisions automatically is controlled by the
+<parameter>glossary-automatic-divisions</parameter> parameter.</para>
+  
+<bridgehead>Using Schematron to manage the glossary</bridgehead>  
+
 <para>Schematron rules can help manage the glossary. The
 <function>f:glossentries</function> function (defined in
 <filename>standalone-functions.xsl</filename> in the xslTNG install
@@ -737,10 +742,44 @@ Schematron independently of the xslTNG stylesheets. You can use it to
 check whether a corresponding <code>glossentry</code> exists for a
 <code>glossterm</code> or <code>firstterm</code> while you are still
 writing. Corresponding Schematron schemas are not yet part of the
-xslTNG framework.</para>
-
-<para>Generating glossary divisions automatically is controlled by the
-<parameter>glossary-automatic-divisions</parameter> parameter.</para>
+xslTNG framework. <xref linkend="ex.schematron.glossary" xrefstyle="%label"/>, however,
+shows how you could use schematron to check whether there is exactly one <tag>glossentry</tag> 
+for the <tag>glossterm</tag> and <tag>firstterm</tag> elements in your document.</para>
+  
+<example xml:id="ex.schematron.glossary">
+  <title>A schematron schema to check glossary terms</title>
+  <programlistingco>
+    <areaspec units="linecolumn">
+      <area xml:id="co.include-function" coords="3 1"/>
+      <area xml:id="co.ns-f" coords="7 1"></area>
+      <area xml:id="co.use-function" coords="14 1"></area>
+    </areaspec>
+    <programlisting><xi:include href="examples/glossary.sch" parse="text"/></programlisting>
+    <calloutlist>
+      <callout arearefs="co.include-function"><para>Include the <filename>standalone-functions.xsl</filename> file.
+        You have to adjust the path accordingly.</para></callout>
+      <callout arearefs="co.ns-f"><para>Provide declaration for the namespace of functions from xslTNG.</para></callout>
+      <callout arearefs="co.use-function"><para>Use the <function>f:glossentries</function> function 
+        to get the number of matching <tag>glossentry</tag> elements for the given <tag>glossterm</tag> or <tag>firstterm</tag></para></callout>
+    </calloutlist>
+  </programlistingco>
+</example>  
+  
+<para>If you want to use external / shared glossaries, it's best to use an 
+processing instruction in your document 
+to pass the <parameter>glossary-collection</parameter> parameter
+to schematron, as it will be evaluated in the <function>f:glossentries</function> function
+(see  <xref linkend="ex.pass-parameter-to-schematron" xrefstyle="%label"/>).
+</para>
+  
+<example xml:id="ex.pass-parameter-to-schematron">
+  <title>Pass the <literal>glossry-collection</literal> parameter to schematron</title>
+  <programlisting>&lt;article xmlns="http://docbook.org/ns/docbook" version="5.0"&gt;
+  &lt;?db glossary-collection='resources/glosscollection.xml' ?&gt;
+  &lt;title&gt;My document&lt;/title&gt;
+  …
+&lt;/article></programlisting>
+</example>
 </section>
 
 <section xml:id="using-bibliographies">
