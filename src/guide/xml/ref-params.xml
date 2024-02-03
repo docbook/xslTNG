@@ -5648,4 +5648,55 @@ in the online stylesheets (but might in the future).</para>
   </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>titleabbrev-passthrough</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Pass <tag>titleabbrev</tag> elements through to the HTML</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>The <tag>titleabbrev</tag> element allows an author to provide
+an abbreviated title. This is used, for example, in the Table of
+Contents and in other “lists of titles” (LoT).</para>
+
+<para>The actual titles of books, chapters, sections, etc. come from
+the <tag>title</tag> element. But if downstream processing generates an LoT
+dynamically, for example the <link linkend="onpage-toc">on-page table of contents</link>,
+it’s useful to have access to the <tag>titleabbrev</tag> content.</para>
+
+<para>Unfortunately, HTML doesn’t provide an obvious mechanism to pass
+content that should not be rendered. (Simply suppressing the content
+with CSS is insufficient in this case because the abbreviated title
+really shouldn’t appear even if CSS is not available.) The only element that won’t
+render is the
+<tag namespace="http://www.w3.org/1999/xhtml">script</tag> element.</para>
+
+<para>If this parameter <glossterm>is true</glossterm>, the rendered
+<tag>titleabbrev</tag> content will be embedded in the header using a
+script element. For example:</para>
+
+<programlisting language="xml"><![CDATA[<header>
+<h1>
+  <script type="text/html" class="titleabbrev"
+  >Buckaroo Banzai</script>The Adventures of
+  Buckaroo Banzai Across the 8th Dimension
+</h1>
+</header>]]></programlisting>
+
+<para>If it’s present, the on-page ToC feature will render the abbreviated title.
+This parameter is true by default. Abbreviated titles are relatively uncommon
+and the presence of extra script elements isn’t likely to be a problem. But if your
+environment has hard requirements to avoid script elements, this feature can
+be disabled by setting the parameter to “false”.</para>
+
+</refsection>
+</refentry>  
+
 </reference>
