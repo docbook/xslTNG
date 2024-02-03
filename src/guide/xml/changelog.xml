@@ -14,94 +14,98 @@ finer detail.</para>
 <info>
   <title>Changes in version 2.2.0</title>
   <productnumber>2.2.0</productnumber>
-  <date>2024-02-02</date>
+  <date>2024-02-03</date>
 </info>
 <itemizedlist>
 <listitem>
-  <para>Ensure that subtitle appears on a book titlepage, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/415">#415</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Make sure <varname>v:debug</varname> is declared in <filename>print.xsl</filename>, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/420">#420</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Corrected the image intrinsic functions so that non-integer dimensions are supported in SVG;
-  added support for dimensions with units, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/413">#413</link>,
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/432">#432</link>, and
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/443">#443</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Column widths computed from CALS tables did not correctly specify units, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/410">#410</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Integrated improved support for improved
-  <link linkend="customize-individual-cross-references">cross reference styles</link>
-  contributed by Frank Steimke, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/414">#414</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Merged a fix to the German localization contributed by Tom Schraitle, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/428">#428</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Attempted to work around a scrolling issue in the persistent ToC, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/451">#451</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Merged a patch, contributed by Frank Steimke, to avoid a
-  warning when a table width is exactly the same as the nominal page
-  width, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/411">#411</link>.
-  </para>
-</listitem>
-
-<listitem>
-  <para>Allow pre- and post-processing transforms to be specified as command line parameters, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/440">#440</link>
-  and
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/441">#441</link>
+  <para>Support <parameter>titleabbrev-passthrough</parameter>,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/469">#469</link>.
   </para>
 </listitem>
 
 <listitem>
   <para>Integrated support for
   <link linkend="using-glossaries">automatic glossaries</link>
-  contributed by Frank Steimke. Fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/453">#453</link>,
-  and
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/445">#445</link>.
-  Extended to support automatic glossary divisions, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/453">#460</link>.
+  contributed by Frank Steimke.
+  Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/453">#453</link>
+  and <link xlink:href="https://github.com/docbook/xslTNG/issues/445">#445</link>.
+  Extended to support automatic glossary divisions,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/453">#460</link>.
   </para>
 </listitem>
 
 <listitem>
   <para>Added support for
   <link linkend="using-bibliographies">automatic bibliographies</link>
-  somewhat analagous to automatic glossaries.
+  analogous to automatic glossaries.
   </para>
 </listitem>
 
 <listitem>
-  <para>Integrated documentation improvements contributed by Frank Steimke, fixed
-  <link xlink:href="https://github.com/docbook/xslTNG/issues/452">#452</link>.
+  <para>Integrated documentation improvements contributed by Frank Steimke,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/452">#452</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Attempted to work around a scrolling issue in the persistent ToC,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/451">#451</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Corrected the image intrinsic functions so that non-integer dimensions are supported in SVG;
+  added support for dimensions with units,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/413">#413</link>,
+  <link xlink:href="https://github.com/docbook/xslTNG/issues/432">#432</link>,
+  and <link xlink:href="https://github.com/docbook/xslTNG/issues/443">#443</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Allow pre- and post-processing transforms to be specified as command line parameters,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/440">#440</link>
+  and <link xlink:href="https://github.com/docbook/xslTNG/issues/441">#441</link>
+  </para>
+</listitem>
+
+<listitem>
+  <para>Merged a fix to the German localization contributed by Tom Schraitle,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/428">#428</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Make sure <varname>v:debug</varname> is declared in <filename>print.xsl</filename>,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/420">#420</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Ensure that subtitle appears on a book titlepage,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/415">#415</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Integrated improved support for improved
+  <link linkend="customize-individual-cross-references">cross reference styles</link>
+  contributed by Frank Steimke,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/414">#414</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Merged a patch, contributed by Frank Steimke, to avoid a
+  warning when a table width is exactly the same as the nominal page
+  width,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/411">#411</link>.
+  </para>
+</listitem>
+
+<listitem>
+  <para>Corrected an error where column widths computed from CALS tables did not correctly specify units,
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/410">#410</link>.
   </para>
 </listitem>
 </itemizedlist>
