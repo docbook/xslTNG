@@ -1242,6 +1242,21 @@ task webGuide(
       writer.println('</body>')
       writer.println('</html>')
       writer.close()
+
+      def epub = "DocBook-xslTNG-${guideVersion}.epub"
+      html = new File("${buildDir}/website/epub/index.html")
+      writer = new PrintStream(html)
+      writer.println('<!DOCTYPE html>')
+      writer.println('<html>')
+      writer.println('<head>')
+      writer.println("<meta http-equiv='refresh' content=\"0; url='${epub}'\" />")
+      writer.println('</head>')
+      writer.println('<body>')
+      writer.println('<p>The current EPUB guide is ')
+      writer.println("<a href='${epub}'>version ${guideVersion}</a>.</p>")
+      writer.println('</body>')
+      writer.println('</html>')
+      writer.close()
     }
   }
 }

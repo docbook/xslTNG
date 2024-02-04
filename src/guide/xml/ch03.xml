@@ -776,7 +776,7 @@ xslTNG framework. <xref linkend="ex.schematron.glossary" xrefstyle="%label"/>, h
 shows how you could use schematron to check whether there is exactly one <tag>glossentry</tag>
 for the <tag>glossterm</tag> and <tag>firstterm</tag> elements in your document.</para>
 
-<example xml:id="ex.schematron.glossary">
+<example xml:id="ex.schematron.glossary" role="landscape">
   <title>A Schematron schema to check glossary terms</title>
   <programlistingco>
     <areaspec units="linecolumn">
@@ -959,7 +959,7 @@ processing by processing DocBook elements in the
 <para>Here is a simple example of a stylesheet that produces a JSON version of the
 Table of Contents for a DocBook document:</para>
 
-<programlisting language="xml"
+<programlisting language="xml landscape"
 ><xi:include href="examples/issue84.xsl" parse="text"/></programlisting>
 
 <note>
