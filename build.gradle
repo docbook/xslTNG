@@ -1217,6 +1217,7 @@ task webGuide(
   inputs.dir "${buildDir}/guide"
   outputs.dir "${buildDir}/website/guide/${guideVersion}"
   outputs.file "${buildDir}/website/guide/index.html"
+  outputs.file "${buildDir}/website/epub/index.html"
 
   doLast {
     copy {
@@ -1243,6 +1244,7 @@ task webGuide(
       writer.println('</html>')
       writer.close()
 
+      mkdir("${buildDir}/website/epub")
       def epub = "DocBook-xslTNG-${guideVersion}.epub"
       html = new File("${buildDir}/website/epub/index.html")
       writer = new PrintStream(html)
