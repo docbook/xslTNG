@@ -37,7 +37,7 @@
         <xsl:if test="'details' = $vp:table-accessibility">
           <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
         </xsl:if>
-        <xsl:apply-templates select="db:tgroup"/>
+        <xsl:apply-templates select="db:tgroup, db:caption"/>
         <xsl:if test=".//db:footnote">
           <xsl:call-template name="t:table-footnotes">
             <xsl:with-param name="footnotes" select=".//db:footnote"/>
@@ -45,7 +45,7 @@
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="db:tgroup"/>
+        <xsl:apply-templates select="db:tgroup, db:caption"/>
         <xsl:if test=".//db:footnote">
           <xsl:call-template name="t:table-footnotes">
             <xsl:with-param name="footnotes" select=".//db:footnote"/>
@@ -66,7 +66,7 @@
     <xsl:if test="'details' = $vp:table-accessibility">
       <xsl:apply-templates select="db:textobject[not(db:phrase)]" mode="m:details"/>
     </xsl:if>
-    <xsl:apply-templates select="db:tgroup"/>
+    <xsl:apply-templates select="db:tgroup, db:caption"/>
     <xsl:if test=".//db:footnote">
       <xsl:call-template name="t:table-footnotes">
         <xsl:with-param name="footnotes" select=".//db:footnote"/>
