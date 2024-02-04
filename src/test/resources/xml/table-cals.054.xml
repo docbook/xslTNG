@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<table xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e3" frame="all">
+  <?db title-placement="after"?>
+  <info>
+    <title>A CALS table with a title after</title>
+  </info>
+  <tgroup cols="3" colsep="1" rowsep="1">
+    <tbody>
+      <row>
+        <entry>X</entry>
+        <entry></entry>
+        <entry></entry>
+      </row>
+      <row>
+        <entry></entry>
+        <entry>X<footnote><para>Looks a bit like a tic-tac-toe (aka noughts and crosses),
+        doesn’t it?</para></footnote></entry>
+        <entry></entry>
+      </row>
+      <row>
+        <entry></entry>
+        <entry></entry>
+        <entry>X</entry>
+      </row>
+    </tbody>
+  </tgroup>
+  <caption>
+    <para>This table also has a caption. I had completely forgotten that CALS
+    tables <emphasis>could have</emphasis> captions. They’re not formally part of CALS,
+    just something DocBook added to all formal objects for consistency.</para>
+  </caption>
+</table>
