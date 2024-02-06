@@ -802,6 +802,17 @@ html.book-style .book .list-of-titles {
 }
 
 /* ============================================================ */
+/* Support for landscape orientation                            */
+
+@page landscape {
+  size: landscape;
+}
+
+.landscape {
+  page: landscape;
+}
+
+/* ============================================================ */
 
 html.article-style > header {
     page-break-after: always;

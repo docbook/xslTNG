@@ -1484,6 +1484,12 @@ presentation, in the printed version.</para>
 
 <para>The resulting HTML document can be formatted directly with a
 CSS paged-media formatter.</para>
+    <bridgehead>Landscape orientation in print output</bridgehead>
+    <para>The default orientation for pages in print output is portrait. You can switch it to
+      landscape orientation with the <code>&lt;?landscape></code> processing instruction. This may
+      apply to the whole <tag>book</tag> or <tag>article</tag>, or to individual <tag>chapter</tag>,
+        <tag>section</tag> or <tag>appendix</tag> elements. You can also print individual tables or
+      figures in landscape, if they are to wide for portrait pages.   </para>
 
 </section>
 

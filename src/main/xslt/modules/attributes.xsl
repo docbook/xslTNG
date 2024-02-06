@@ -28,13 +28,20 @@
 
 <xsl:template match="db:article" mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" select="fp:common-attributes(.)"/>
+  
+  <xsl:variable name="landscape" as="xs:string?">
+    <xsl:if test="@orient = 'land' or processing-instruction('landscape')">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:if>
+  </xsl:variable>
+  
   <xsl:sequence select="f:attributes(., $attr,
                                      (local-name(.),
                                      'component',
                                      @status, @otherclass,
                                      if (@otherclass)
                                      then 'otherclass'
-                                     else @class),
+                                     else @class, $landscape),
                                      ())"/>
   <xsl:if test="@label">
     <xsl:attribute name="db-label" select="@label"/>
@@ -44,8 +51,15 @@
 <xsl:template match="db:set|db:book|db:part|db:reference"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" select="fp:common-attributes(.)"/>
+  
+  <xsl:variable name="landscape" as="xs:string?">
+    <xsl:if test="@orient = 'land'  or processing-instruction('landscape')">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:if>
+  </xsl:variable>
+  
   <xsl:sequence
-      select="f:attributes(., $attr, (local-name(.), 'division', @status), ())"/>
+      select="f:attributes(., $attr, (local-name(.), 'division', @status, $landscape), ())"/>
   <xsl:if test="@label">
     <xsl:attribute name="db-label" select="@label"/>
   </xsl:if>
@@ -56,8 +70,15 @@
                      |db:preface|db:chapter|db:appendix"
               mode="m:attributes" as="attribute()*">
   <xsl:variable name="attr" select="fp:common-attributes(.)"/>
+  
+  <xsl:variable name="landscape" as="xs:string?">
+    <xsl:if test="@orient = 'land'  or processing-instruction('landscape')">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:if>
+  </xsl:variable>
+  
   <xsl:sequence
-      select="f:attributes(., $attr, (local-name(.), 'component', @status), ())"/>
+      select="f:attributes(., $attr, (local-name(.), 'component', @status, $landscape), ())"/>
   <xsl:if test="@label">
     <xsl:attribute name="db-label" select="@label"/>
   </xsl:if>
@@ -70,8 +91,15 @@
   <!-- tempting to add a 'section' class here, but note that if we did
        it would become much harder to distinguish a section from a sect1.
        (I'm not sure that matters, but ...) -->
+  
+  <xsl:variable name="landscape" as="xs:string?">
+    <xsl:if test="processing-instruction('landscape')">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:if>
+  </xsl:variable>
+  
   <xsl:sequence
-      select="f:attributes(., $attr, (local-name(.), @status), ())"/>
+      select="f:attributes(., $attr, (local-name(.), @status, $landscape), ())"/>
   <xsl:if test="@label">
     <xsl:attribute name="db-label" select="@label"/>
   </xsl:if>
@@ -174,7 +202,7 @@
     </xsl:if>
   </xsl:variable>
   <xsl:variable name="landscape" as="xs:string?">
-    <xsl:if test="@orient = 'land'">
+    <xsl:if test="@orient = 'land' or processing-instruction('landscape')">
       <xsl:sequence select="'landscape'"/>
     </xsl:if>
   </xsl:variable>
@@ -208,7 +236,7 @@
   </xsl:variable>
 
   <xsl:variable name="landscape" as="xs:string?">
-    <xsl:if test="@orient = 'land'">
+    <xsl:if test="@orient = 'land'  or processing-instruction('landscape')">
       <xsl:sequence select="'landscape'"/>
     </xsl:if>
   </xsl:variable>
@@ -332,13 +360,21 @@
       <xsl:sequence select="'pgwide'"/>
     </xsl:if>
   </xsl:variable>
+  
+  <!-- landscapeFigure is legacy PI from XSLT 1.0 Stylesheets, 
+       see http://www.sagehill.net/docbookxsl/LandscapeImage.html -->
+  <xsl:variable name="landscape" as="xs:string?">
+    <xsl:if test="processing-instruction('landscape') or processing-instruction('landscapeFigure')">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:if>
+  </xsl:variable>
 
   <xsl:variable name="type"
                 select="if (starts-with(local-name(.), 'informal'))
                         then 'informalobject'
                         else 'formalobject'"/>
 
-  <xsl:sequence select="f:attributes(., $attr, (local-name(.), $type, $pgwide, $class), ())"/>
+  <xsl:sequence select="f:attributes(., $attr, (local-name(.), $type, $pgwide, $landscape, $class), ())"/>
 </xsl:template>
 
 <xsl:template match="db:index|db:bibliography|db:glossary"
