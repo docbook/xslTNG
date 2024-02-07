@@ -5699,4 +5699,55 @@ be disabled by setting the parameter to “false”.</para>
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>variablelist-panelset</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.2.1</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Enable the “panelset” rendering for variable lists?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>If this parameter <glossterm>is true</glossterm>, a “panel set” rendering
+may be selected for <tag>variablelist</tag> elements by placing <literal>panelset</literal>
+in its <tag class="attribute">role</tag> attribute. In interactive presentations, these
+render as selectable, alternative “panels”. In other presentations, they render as a
+normal list.</para>
+
+<variablelist role="panelset">
+<varlistentry>
+<term>Why</term>
+<listitem>
+<para>Panels are often used to show equivalent code samples in different
+languages (Groovy or Kotlin, JavaScript or TypeScript) or different
+versions of a language (Python 2.x or Python 3.x).
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>What</term>
+<listitem>
+<para>The actual content of the individual panels is constrainted only by
+the content model of <tag>listitem</tag> in <tag>variablelist</tag>.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>How</term>
+<listitem>
+<para>With the <code>panelset</code> role attribute value. But note that in print
+output, this option is <code>false</code> by default.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</refsection>
+</refentry>  
+
 </reference>
