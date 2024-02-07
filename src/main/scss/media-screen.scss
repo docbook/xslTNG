@@ -390,6 +390,58 @@ nav.top div {
 }
 
 /* ============================================================ */
+/* Panel sets */
+/* Based on https://codepen.io/alvarotrigo/pen/RwLzvQz by Álvaro */
+
+.panelset {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.panelset label {
+    order: 1;
+    display: block;
+    padding: 1rem 2rem;
+    margin-right: 0.2rem;
+    cursor: pointer;
+    transition: background ease 0.2s;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    color: var(--primary-color);
+}
+
+.panelset .paneltab {
+    order: 99; /* Put the tabs last */
+    flex-grow: 1;
+    width: 100%;
+    display: none;
+    padding: 1rem;
+    border-top: 1px solid var(--focused-color);
+    background-color: var(--panelset-color);
+}
+
+.panelset input[type="radio"] {
+    display: none;
+}
+
+.panelset input[type="radio"]:checked + label {
+    border-bottom: 2px solid var(--focused-color);
+    background-color: var(--panelset-color);
+    color: var(--on-background-color);
+}
+
+.panelset label:hover {
+    border-top: 2px solid var(--focused-color);
+    border-bottom: 2px solid var(--focused-color);
+    color: var(--on-background-color);
+    border-radius: 0;
+}
+
+.panelset input[type="radio"]:checked + label + .paneltab {
+    display: block;
+}
+
+/* ============================================================ */
 
 @media screen and (max-width: 1199px) {
     nav.top div {

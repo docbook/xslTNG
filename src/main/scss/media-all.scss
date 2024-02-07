@@ -17,6 +17,7 @@
     --hovered-color: rgb(235,235,235);
     --focused-color: rgb(221,221,221);
     --modal-overlay-color: rgba(255,255,255,0.85);
+    --panelset-color: #fafaf0;
 
     --border-color: var(--primary-color);
 
@@ -316,7 +317,7 @@ pre code,
     border: none;
     background-color: inherit;
     padding: 0;
-    font-size: inherit;
+    font-size: 0.85rem; /* code = 85% */
     margin: 0;
 }
 
