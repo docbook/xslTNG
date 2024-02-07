@@ -26,6 +26,7 @@
   --hovered-color: rgb(235,235,235);
   --focused-color: rgb(221,221,221);
   --modal-overlay-color: rgba(255,255,255,0.85);
+  --panelset-color: #fafaf0;
   --border-color: var(--primary-color);
   --header-color: var(--background-color);
   --on-header-color: var(--on-background-color);
@@ -293,7 +294,7 @@ pre code,
   border: none;
   background-color: inherit;
   padding: 0;
-  font-size: inherit;
+  font-size: 0.85rem; /* code = 85% */
   margin: 0;
 }
 
@@ -2538,4 +2539,12 @@ span.footnote p {
 .book-style .component > header h3 {
   padding-top: 0;
   margin-top: 0;
+}
+
+/* ============================================================ */
+@page landscape {
+  size: landscape;
+}
+.landscape {
+  page: landscape;
 }
