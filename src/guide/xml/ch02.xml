@@ -1496,9 +1496,11 @@ presentation, in the printed version.</para>
 
 <para>The resulting HTML document can be formatted directly with a
 CSS paged-media formatter.</para>
-  
-<bridgehead><anchor xml:id="landscape-print"/>Landscape orientation in print output</bridgehead>
-<para>The default orientation for pages in print output is portrait. You can switch it to
+</section>
+
+<section xml:id="landscape">  
+<title>Landscape orientation in print output</title>
+<para>The default orientation for pages in print output is portrait. You can switch to
 landscape orientation with <code>landscape</code> as a token within the
 <att>role</att> attribute
 <footnote>
@@ -1507,9 +1509,14 @@ landscape orientation with <code>landscape</code> as a token within the
 <para>This may apply to the whole <tag>book</tag> or
 <tag>article</tag>, or to individual <tag>chapter</tag>, <tag>section</tag> or
 <tag>appendix</tag> elements. You can also print individual tables or figures in landscape,
-if they are to wide for portrait pages. For tables, you should use the <att>orient</att> attribute with the value <code>land</code>, 
-because it is provided precisely for this purpose. 
-However, in the interests of a uniform solution, the <att>role</att> attribute with the value <code>landscape</code> can also be used</para>
+if they are to wide for portrait pages. For wide tables, you should use the <att>orient</att> attribute with the value <code>land</code>, 
+because it is provided precisely for this purpose.
+However, in the interests of a uniform solution, the <att>role</att> attribute with the value <code>landscape</code> can also be used for tables.</para>
+  
+<para>For legacy reasons, the <code>landscapeFigure</code> processing instruction from the XSLT 1.0 stylesheets is also supported for <tag>figure</tag> and 
+<tag>informalfigure</tag> elements, as described 
+in <link xlink:href="http://www.sagehill.net/docbookxsl/LandscapeImage.html">Chapter 18 of Bob Staytons <quote>Complete Guide</quote>.</link>
+</para>  
 </section>
 
 <section xml:id="epub">
