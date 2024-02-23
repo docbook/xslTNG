@@ -896,10 +896,6 @@ purpose:</para>
 </tgroup>
 </table>
 
-<para>In addition, the stylesheets support profiling on several common attributes
-that are not explicitly for effectivity: <att>xml:lang</att>, <att>revisionflag</att>,
-and <att>role</att>.</para>
-
 <note>
 <para>DocBook places no constraints on the values used for effectivity
 and the stylesheets don’t either. You’re free to use “cat” and “dog”
@@ -949,6 +945,22 @@ some common text. Options are introduced with the
 </blockquote>
 <para>That is unlikely to work well.</para>
 </important>
+</section>
+<section xml:id="other-common-attributes">
+<title>Other common Attributes</title>  
+<para>In addition, the stylesheets support profiling on several common attributes
+that are not explicitly for effectivity: <att>xml:lang</att>, <att>revisionflag</att>,
+and <att>role</att>.</para>
+
+<note>
+  <title>The role Attribute is multivalued</title>
+<para>Please note that the stylesheets treat the <att>role</att> attribute as
+<emphasis>multivalued,</emphasis> similar to the <tag>class</tag> attribute in HTML. It
+may contain a sequence of tokens, seperated by whitespace. This allows you, for example,
+to classify a section as <emphasis>informal</emphasis> which should be printed in
+<emphasis>landscape</emphasis> orientation with the following value for it's <att>role</att>
+attribute: <code>role='informal landscape'</code>.</para>
+</note>
 
 </section>
 <section>
@@ -1484,13 +1496,20 @@ presentation, in the printed version.</para>
 
 <para>The resulting HTML document can be formatted directly with a
 CSS paged-media formatter.</para>
-    <bridgehead>Landscape orientation in print output</bridgehead>
-    <para>The default orientation for pages in print output is portrait. You can switch it to
-      landscape orientation with the <code>&lt;?landscape></code> processing instruction. This may
-      apply to the whole <tag>book</tag> or <tag>article</tag>, or to individual <tag>chapter</tag>,
-        <tag>section</tag> or <tag>appendix</tag> elements. You can also print individual tables or
-      figures in landscape, if they are to wide for portrait pages.   </para>
-
+  
+<bridgehead><anchor xml:id="landscape-print"/>Landscape orientation in print output</bridgehead>
+<para>The default orientation for pages in print output is portrait. You can switch it to
+landscape orientation with <code>landscape</code> as a token within the
+<att>role</att> attribute
+<footnote>
+<para>See the note about the multivalued <att>role</att> Attribute in <xref linkend="other-common-attributes" xrefstyle="%label"/>.</para>
+</footnote>.</para>
+<para>This may apply to the whole <tag>book</tag> or
+<tag>article</tag>, or to individual <tag>chapter</tag>, <tag>section</tag> or
+<tag>appendix</tag> elements. You can also print individual tables or figures in landscape,
+if they are to wide for portrait pages. For tables, you should use the <att>orient</att> attribute with the value <code>land</code>, 
+because it is provided precisely for this purpose. 
+However, in the interests of a uniform solution, the <att>role</att> attribute with the value <code>landscape</code> can also be used</para>
 </section>
 
 <section xml:id="epub">
@@ -1641,4 +1660,3 @@ has a background color.
 
 </section>
 </chapter>
-

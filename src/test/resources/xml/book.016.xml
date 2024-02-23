@@ -3,7 +3,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       version="5.0" xml:id="book">
   <info>
-    <title>Fun with landscape orientation</title>
+    <title>Still more fun with landscape orientation</title>
     <abstract>
       <para>A series of book unit test that checks landscape orientation.</para>
     </abstract>
@@ -16,16 +16,20 @@
       The table won't fit on a regular, portrait-oriented page which is about 160 or 170mm wide (assuming A$ paper size).
       This is why it is printed in landscape orientation in PDF output.
       But as always, there are different ways to achieve this goal.</para>
-    <para>Only this table with it's caption should be printed in landscape orientation</para>
-    <informaltable>
-      <?landscape?>
+    <para>This table with it's caption should be printed in landscape orientation</para>
+    <informaltable orient="land">
       <tgroup cols="2">
-        <colspec colwidth="120mm"/>
-        <colspec colwidth="80mm"/>
+        <colspec colwidth="120mm" colname="c1"/>
+        <colspec colwidth="80mm" colname="c2"/>
         <tbody>
           <row>
             <entry><para>This is a very wide column (120mm)</para></entry>
             <entry><para>The second column is also wide (80mm)</para></entry>
+          </row>
+          <row>
+            <entry namest="c1" nameend="c2" align="center">
+              <para>We use the table's <code>orient</code> Attribute</para>
+            </entry>
           </row>
         </tbody>
       </tgroup>
@@ -35,6 +39,27 @@
     </informaltable>
     <para>This is a regular <tag>para</tag> below the very wide table.
       It has nothing to say, but will show the orientation within the firts chapter of this book</para>
+    
+    <informaltable role="landscape">
+      <tgroup cols="2">
+        <colspec colwidth="120mm" colname="c1"/>
+        <colspec colwidth="80mm" colname="c2"/>
+        <tbody>
+          <row>
+            <entry><para>This is a very wide column (120mm)</para></entry>
+            <entry><para>The second column is also wide (80mm)</para></entry>
+          </row>
+          <row>
+            <entry namest="c1" nameend="c2" align="center">
+              <para>We use the table's <code>role</code> Attribute</para>
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+      <caption>
+        <para>The caption for ths table should be printed in the same orientation as the table itself.</para>
+      </caption>
+    </informaltable>
   </chapter>
   
   <chapter>

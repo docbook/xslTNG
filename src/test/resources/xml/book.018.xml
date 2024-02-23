@@ -3,7 +3,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       version="5.0" xml:id="book">
   <info>
-    <title>Fun with landscape orientation</title>
+    <title>Fun with landscape orientend graphics</title>
     <abstract>
       <para>A series of book unit test that checks landscape orientation.</para>
     </abstract>
@@ -13,8 +13,7 @@
     <title>Purpose of this Book</title>
     
     <para>The folowing figure should be printed in landscape orientation</para>
-    <informalfigure>
-      <?landscape?>
+    <informalfigure role="informal landscape">
       <mediaobject>
         <imageobject>
           <imagedata fileref="../media/duck.png"/>
