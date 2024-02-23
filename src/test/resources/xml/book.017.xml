@@ -3,14 +3,13 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       version="5.0" xml:id="book">
   <info>
-    <title>Fun with landscape orientation</title>
+    <title>Landscape orientation, revisited</title>
     <abstract>
       <para>A series of book unit test that checks landscape orientation.</para>
     </abstract>
   </info>
 
-  <article>
-    <?landscape?>
+  <article role="landscape">
     <title>Purpose of this Book</title>
     <para>This book contains a table with two wide columns. 
       The table won't fit on a regular, portrait-oriented page which is about 160 or 170mm wide (assuming A$ paper size).
