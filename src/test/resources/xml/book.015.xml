@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+  <info>
+    <title>More fun with landscape orientation</title>
+    <abstract>
+      <para>A series of book unit test that checks landscape orientation.</para>
+    </abstract>
+  </info>
+
+  <chapter role="landscape">
+    <title>Purpose of this Book</title>
+    <para>This book contains a table with two wide columns. 
+      The table won't fit on a regular, portrait-oriented page which is about 160 or 170mm wide (assuming A$ paper size).
+      This is why it is printed in landscape orientation in PDF output.
+      But as always, there are different ways to achieve this goal.</para>
+    <para>Only this chapter should be printed in landscape orientation</para>
+    <informaltable>
+      <tgroup cols="2">
+        <colspec colwidth="120mm"/>
+        <colspec colwidth="80mm"/>
+        <tbody>
+          <row>
+            <entry><para>This is a very wide column (120mm)</para></entry>
+            <entry><para>The second column is also wide (80mm)</para></entry>
+          </row>
+        </tbody>
+      </tgroup>
+      <caption>
+        <para>The caption for ths table should be printed in the same orientation as the table itself.</para>
+      </caption>
+    </informaltable>
+    <para>This is a regular <tag>para</tag> below the very wide table.
+      It has nothing to say, but will show the orientation within the firts chapter of this book</para>
+  </chapter>
+  
+  <chapter>
+    <title>Second Chapter</title>
+    <para>The second chapter will end this book, which is very short indeed. It does not tell us anything about the outside world,
+    it's only purpuse is to show the effect of PDF pages in landscape orientation.</para>
+  </chapter>
+  
+  
+  
+</book>
