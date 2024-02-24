@@ -146,10 +146,7 @@
 
 <xsl:template match="db:bibliomixed|db:biblioentry" mode="m:crossref-label">
   <xsl:choose>
-    <xsl:when test="node()[1]/self::db:abbrev
-                    or (node()[1]/text()
-                        and normalize-space(node()[1]) = ''
-                        and node()[2]/self::db:abbrev)">
+    <xsl:when test="*[1]/self::db:abbrev">
       <xsl:apply-templates select="db:abbrev[1]"/>
     </xsl:when>
     <xsl:when test="@xml:id">
