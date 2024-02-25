@@ -1057,12 +1057,24 @@ into the middle.</para>
 </refnamediv>
 <refsection>
 <title>Description</title>
-<para>The stylesheets use templates, as described in <xref linkend="header-templates"/>,
-to determine the formatting of title pages<footnote><para>The term “title pages”
-should be understood very broadly here. Anything that has a title has a title page, even
-if that “page” consists of only a single heading.</para></footnote>. Any templates provided in
-<varname>v:templates</varname> will be used preferentially to whatever builtin templates
-exist.</para>
+<para>The stylesheets use templates, as described in <xref linkend="header-templates"/>, to
+        determine the formatting of title pages<footnote>
+          <para>The term “title pages” should be understood very broadly here. Anything that has a
+            title has a title page, even if that “page” consists of only a single heading.</para>
+        </footnote>. Any templates provided in <varname>v:templates</varname> will be used
+        preferentially to whatever builtin templates exist. Since the XPath data model doesn't
+        require a document node to have a single element child, it's fine to define a sequence of
+        templates. Although there is no single root element, it is still a valid document-node as
+        long as all child elements are valid.</para>
+      <para>If you want to define custom templates for <tag>book</tag> and <tag>chapter</tag>
+        titlepages, for example, you can do it this way: </para>
+      <programlisting>&lt;xsl:variable name="v:templates" as="document-node()" 
+              xmlns:db="http://docbook.org/ns/docbook">
+  &lt;xsl:document>
+    &lt;db:book>…&lt;/db:book>
+    &lt;db:chapter>…&lt;/db:chapter>
+  &lt;/xsl:document>
+&lt;/xsl:variable>        </programlisting>
 </refsection>
 </refentry>
 
