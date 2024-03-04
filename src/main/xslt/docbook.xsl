@@ -5,7 +5,9 @@
                 xmlns:err='http://www.w3.org/2005/xqt-errors'
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:file="http://expath.org/ns/file"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:ghost="http://docbook.org/ns/docbook/ephemeral"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
@@ -275,7 +277,15 @@
   <xsl:variable name="result" as="document-node()">
     <xsl:sequence select="fp:run-transforms($result, $post-processing)"/>
   </xsl:variable>
-
+  
+  <xsl:call-template name="tp:mediaobjects-copy-support">
+    <xsl:with-param name="html" select="$result"/>
+  </xsl:call-template>
+  
+  <xsl:variable name="result" as="document-node()">
+    <xsl:apply-templates select="$result" mode="mp:final-cleanup"/>
+  </xsl:variable>
+  
   <xsl:choose>
     <xsl:when test="$return = 'raw-results'">
       <xsl:sequence select="map {
@@ -448,5 +458,77 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+  
+<!-- Try to copy mediaobject files if a copy function is available, and if there is an absolute output base uri -->
+<xsl:template name="tp:mediaobjects-copy-support" use-when="function-available('file:copy')">
+  <xsl:param name="html" as="document-node()"/>
+  <xsl:choose>
+    <xsl:when test="$vp:chunk-output-base-uri or $mediaobject-output-base-uri">
+      <xsl:for-each select="$html//h:img">
+        <xsl:variable name="instruction" as="map(*)">
+          <xsl:apply-templates select="." mode="mp:mediaobject-copy-instruction"/>
+        </xsl:variable>
+        <xsl:try>
+          <xsl:choose>
+            <xsl:when test="file:exists($instruction('source'))">
+              <xsl:sequence
+                select="file:copy($instruction('source'), $instruction('destination'))"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message
+                select="'Can''t copy ' || $instruction('source') || ': file not found.'"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:catch>
+            <xsl:message
+              select="'Can''t copy ' || $instruction('source') || ': ' || $err:description"/>
+          </xsl:catch>
+        </xsl:try>
+      </xsl:for-each>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message select="'Can''t copy media objects: output base uri not set.'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="tp:mediaobjects-copy-support" use-when="not(function-available('file:copy'))">
+  <xsl:param name="html" as="document-node()"/>
+  <!-- NO OP -->
+</xsl:template>
+
+<!-- mp:mediaobject-copy-instruction calculates for some HTML Elements a map which can support copy instructions  -->
+<xsl:mode name="mp:mediaobject-copy-instruction" on-no-match="fail"/>
+
+<xsl:template match="h:img" mode="mp:mediaobject-copy-instruction" as="map(*)">
+  <xsl:choose>
+    <xsl:when test="$mediaobject-output-base-uri">
+      <xsl:sequence select="
+        map {
+        'source': @ghost:sourcefilename,
+        'destination': resolve-uri(@src, $mediaobject-output-base-uri)
+        }"/>
+    </xsl:when>
+    <xsl:when test="$chunk-output-base-uri">
+      <xsl:sequence select="
+        map {
+        'source': @ghost:sourcefilename,
+        'destination': resolve-uri(@src, $chunk-output-base-uri)
+        }"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="
+        map {
+        'source': @ghost:sourcefilename,
+        'destination': @src
+        }"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- mp:final-cleanup removes attributes in the ghost namespace -->
+<xsl:mode name="mp:final-cleanup" on-no-match="shallow-copy"/>
+
+<xsl:template mode="mp:final-cleanup" match="@ghost:*"/>
 
 </xsl:stylesheet>

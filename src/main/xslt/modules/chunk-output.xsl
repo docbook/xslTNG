@@ -215,7 +215,7 @@
 </xsl:function>
 
 <xsl:template match="element()">
-  <xsl:copy>
+  <xsl:copy copy-namespaces="no">
     <xsl:apply-templates select="@*,node()"/>
   </xsl:copy>
 </xsl:template>
