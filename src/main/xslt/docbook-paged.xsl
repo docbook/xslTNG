@@ -93,7 +93,10 @@
     <xsl:variable name="ctype" select="$head/h:meta[@http-equiv='Content-Type']"/>
     <xsl:variable name="title" select="$head/h:title"/>
     <head>
-      <xsl:apply-templates select="$ctype" mode="m:chunk-cleanup"/>
+        <xsl:apply-templates select="$ctype" mode="m:chunk-cleanup">
+          <xsl:with-param name="rootbaseuri" select="$rbu"/>
+          <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+        </xsl:apply-templates>
       <title>
         <xsl:value-of select="f:chunk-title(.)"/>
       </title>
@@ -101,26 +104,26 @@
         <xsl:text>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})</xsl:text>
         <xsl:text>(document.documentElement)</xsl:text>
       </script>
-      <xsl:apply-templates select="$head/node() except ($ctype|$title)"
-                           mode="m:chunk-cleanup">
-        <xsl:with-param name="rootbaseuri" select="$rbu"/>
-        <xsl:with-param name="chunkbaseuri" select="$cbu"/>
-      </xsl:apply-templates>
-      <xsl:if test="exists(.//mml:*)"
-              xmlns:mml="http://www.w3.org/1998/Math/MathML">
-        <xsl:apply-templates select="/h:html/h:db-mathml-script/*"
-                             mode="m:chunk-cleanup">
+        <xsl:apply-templates select="$head/node() except ($ctype | $title)" mode="m:chunk-cleanup">
           <xsl:with-param name="rootbaseuri" select="$rbu"/>
           <xsl:with-param name="chunkbaseuri" select="$cbu"/>
         </xsl:apply-templates>
+      <xsl:if test="exists(.//mml:*)"
+              xmlns:mml="http://www.w3.org/1998/Math/MathML">
+          <xsl:apply-templates select="/h:html/h:db-mathml-script/*" mode="m:chunk-cleanup">
+            <xsl:with-param name="rootbaseuri" select="$rbu"/>
+            <xsl:with-param name="chunkbaseuri" select="$cbu"/>
+          </xsl:apply-templates>
       </xsl:if>
     </head>
     <body>
       <xsl:copy-of select="*/@*"/>
       <xsl:apply-templates select="*/h:header" mode="m:chunk-cleanup"/>
       <main>
-        <xsl:apply-templates select="*/* except */h:header"
-                             mode="m:chunk-cleanup"/>
+          <xsl:apply-templates select="*/* except */h:header" mode="m:chunk-cleanup">
+            <xsl:with-param name="rootbaseuri" select="$rbu" tunnel="yes"/>
+            <xsl:with-param name="chunkbaseuri" select="$cbu" tunnel="yes"/>
+          </xsl:apply-templates>
       </main>
     </body>
   </html>
