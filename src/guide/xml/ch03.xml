@@ -346,11 +346,11 @@ subdirectory.
 the desired results for each combination of input and output arrangements.</para>
 
 <note>
-<para>Remember that in each case, the questions are: can the
-stylesheets find the media files to query them and are the correct
-HTML references produced? Actually copying the media files from where
-they are in the source system to where they need to be in the HTML is
-“not our problem.”</para>
+<para>Remember that in each case, the questions are: can the stylesheets find the media files to
+        query them and are the correct HTML references produced? Actually copying the media files
+        from where they are in the source system to where they need to be in the HTML is “not our
+        problem”, but the stylesheets may offer some help. See <xref
+          linkend="copyinstructions" xrefstyle="%label"/> for details.</para>
 </note>
 
 <variablelist>
@@ -504,6 +504,38 @@ for example, run:</para>
 <para>to see the results of processing “mo-3” in scenario 2. The output
 will be in the <filename>build/actual</filename> directory. The build target
 <buildtarget>all_mo_tests</buildtarget> will run them all.</para>
+  
+<section xml:id="copyinstructions">
+  <title>Copy instructions for media files</title>
+  <para>Because handling of media files can be complicated, the stylesheets may provide support
+    under certain circumstances. If the destination of the transformation is known within the
+    stylesheets, we can infer the destination for media files as well, and a script with
+    instructions for copying the media files can be created on request. If the <link
+      xlink:href="http://expath.org/spec/file">expath <code>file:copy</code> function</link> is
+    available, the copy instructions can even be executed. This is the case, for example, if you
+    are using <productname>Saxon-PE </productname>or <productname>Saxon-EE</productname>.</para>
+  <para>Two prerequisites must be met for copy instructions to be created and, if possible,
+    executed:</para>
+  <orderedlist>
+    <listitem>
+      <para>The target of the transformation must be specified with the two parameters
+          <parameter>chunk-output-base-uri</parameter> and <parameter>chunk</parameter>. In
+        other words: the support for copying media files only works for chunked output in
+        accordance with <xref linkend="chunking" xrefstyle="%label"/>. If you are not interested
+        in "chunked HTML", but prefer a single HTML file as output, you can set the parameter
+          <parameter>chunk-include</parameter> to the empty sequence <code>()</code>. You may
+        call this "fake chunking" if you want, but we have to rely on this trick because there
+        is currently no other way to determine the destination of the transformation</para>
+    </listitem>
+    <listitem>
+      <para>You must request copy instructions by setting the parameter
+          <parameter>copyinstructions-uri</parameter> to a file path. The copy instructions will be
+        written to this file.</para>
+    </listitem>
+  </orderedlist>
+  <para>The template <template>t:write-copyinstructions</template> is responsible for
+    writing the file which contains copy instructions.</para>
+</section>
 </section>
 
 <section xml:id="numeration">
