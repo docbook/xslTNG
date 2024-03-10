@@ -277,7 +277,38 @@ the element’s content.</para>
 </variablelist>
 </refsection>
 </refentry>
-
+  
+<refentry xml:id="t_write-copyinstructions">
+  <refmeta>
+    <refentrytitle>t:write-copyinstructions</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/templates}write-copyinstructions</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>t:write-copyinstructions</refname>
+    <refpurpose>Writes a file which contains copy instructions for mediaobject files</refpurpose>
+    <refclass>template</refclass>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>This template writes a file at <parameter>copyinstructions-uri</parameter> for copying
+      the media files in the template parameter <code>$instructions</code>, which is a non-empty
+      sequence of maps with <code>source</code> and <code>destination</code>.</para>
+    <para>The default implementation will create an XML file with <code>copyinstructions</code> as
+      root element, and one <code>copy</code> Element for each map in <code>$instructions</code>.</para>
+    <programlisting>&lt;copyinstructions&gt;
+    &lt;copy source=     &quot;file:/mnt/shared/kosit/xslTNG/src/test/resources/media/duck-small.gif&quot;
+          destination=&quot;file:/home/frank/kosit/xslTNG/test/html/duck-small.gif&quot;/&gt;
+&lt;/copyinstructions&gt;      
+    </programlisting>
+    <para>You may use a customization layer with your own implementation of this template to create a UNIX or Windows Script file.</para>
+    <para>Please note, that this templete will only be called if the expath function
+        <code>{http://expath.org/ns/file}:copy</code> is not available. Otherwise, the copy
+      instruction will pe performed by the stylesheets, in which case the file at
+        <parameter>copyinstructions-uri</parameter> will become a logfile with a slightly
+      different format.</para>
+  </refsection>
+</refentry>
+  
 <refentry xml:id="t_mediaobject-img">
 <?db filename="t_mediaobject-img"?>
 <refmeta>
