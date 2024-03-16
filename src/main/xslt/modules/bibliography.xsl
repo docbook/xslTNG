@@ -53,6 +53,12 @@
     </xsl:choose>
   </p>
 </xsl:template>
+  
+<xsl:template match="db:bibliography//db:titleabbrev">
+  <span class="titleabbrev">
+    <xsl:apply-templates select="node()"/>
+  </span>
+</xsl:template>  
 
 <!-- ============================================================ -->
 
@@ -222,6 +228,7 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+  
 
 <!-- ============================================================ -->
 
