@@ -198,6 +198,13 @@
     <xsl:if test="normalize-space($default-theme) ne ''">
       <xsl:attribute name="class" select="$default-theme"/>
     </xsl:if>
+    
+    <!-- inherit lang attribute -->
+    <xsl:variable name="lang" as="attribute(lang)?" select="(ancestor::*/@lang)[last()]"/>
+    <xsl:if test="not(@lang)">
+      <xsl:copy-of select="$lang"/>
+    </xsl:if>
+    
     <head>
       <!-- When serialized, this always comes first, so make sure it's first
            here. (It doesn't really matter in practice, but the XSpec tests
