@@ -610,6 +610,13 @@ attribute to the root element (if it doesn’t already have one).</para>
 If it isn’t preserved, relative references to other documents will be resolved against
 the static base URI of the stylesheet and not the URI of the original document. That’s
 unlikely to be correct.</para>
+<para>You must also take into account that no XInclude processing has taken place at this time. 
+If you are using modular DocBook, the <parameter>transform-original</parameter> pipeline is usually a bad choice, 
+because it only operates on the root document, but not on the fragments referenced by XInclude. 
+If it is absolutely necessary to use a <parameter>transform-original</parameter> pipeline together with modular DocBook, 
+you can use Saxons <code>-x</code> switch to enable XInclude when parsing the document (see <xref linkend="java-main" xrefstyle="%label"/>). 
+Otherwise, however, the transform-before pipeline is usually the better choice 
+for modular DocBook documents<indexterm><primary>Modular DocBook</primary><secondary>processing pipelines</secondary></indexterm>.</para>  
 </listitem>
 </varlistentry>
 <varlistentry>
