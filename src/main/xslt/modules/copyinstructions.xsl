@@ -44,6 +44,7 @@
         <mediaobjects xmlns="">
           <xsl:for-each select="$instructions">
             <xsl:try>
+              <xsl:sequence select="file:copy(.?source, .?destination)"/>
               <copied source="{.?source}" destination="{.?destination}" result='successs'/>
               <xsl:catch>
                 <error source="{.?source}" destination="{.?destination}">
