@@ -11,7 +11,6 @@
 
   <xsl:template name="tp:mediaobjects-copyinstructions">
     <xsl:param name="html" as="document-node()"/>
-    <xsl:message select="'v:debug= ' || string-join($v:debug,', ') || '; $debug=' || $debug"/>
     <xsl:choose>
       <xsl:when test="$copyinstructions-uri and exists($vp:absolute-mediaobject-output-base-uri)">
         <xsl:variable name="instructions" as="map(*)*">
