@@ -103,19 +103,6 @@
                         else if (ends-with($mediaobject-output-base-uri, '/'))
                              then $mediaobject-output-base-uri
                              else $mediaobject-output-base-uri || '/'"/>
-</xsl:variable>
-  
-<xsl:variable name="vp:absolute-mediaobject-output-base-uri" as="xs:anyURI?">
-  <xsl:variable name="uri" as="xs:anyURI?">
-    <xsl:try>
-      <xsl:sequence
-        select="resolve-uri(($v:mediaobject-output-base-uri, './')[1], $vp:chunk-output-base-uri)"/>
-      <xsl:catch/>
-    </xsl:try>
-  </xsl:variable>
-  <xsl:message select="'$vp:absolute-mediaobject-output-base-uri:' || $uri"
-    use-when="'mediaobject-uris' = $v:debug"/>
-  <xsl:sequence select="$uri"/>
 </xsl:variable>  
   
 <xsl:variable name="vp:copyinstructions-uri" as="xs:string?">

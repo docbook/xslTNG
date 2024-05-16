@@ -12,7 +12,7 @@
   <xsl:template name="tp:mediaobjects-copyinstructions">
     <xsl:param name="html" as="document-node()"/>
     <xsl:choose>
-      <xsl:when test="$copyinstructions-uri and exists($vp:absolute-mediaobject-output-base-uri)">
+      <xsl:when test="$copyinstructions-uri and exists($vp:chunk-output-base-uri)">
         <xsl:variable name="instructions" as="map(*)*">
           <xsl:apply-templates select="$html//h:img[@ghost:sourcefile]"
             mode="mp:mediaobject-copy-instruction"/>
@@ -28,9 +28,9 @@
           </xsl:call-template>
         </xsl:if>
       </xsl:when>
-      <xsl:when test="$copyinstructions-uri and not($vp:chunk-output-base-uri)">
+      <xsl:when test="$copyinstructions-uri">
         <xsl:message
-          select="'Can''t construct copy instructions for mediaobjects: Don''t know absolute URI of mediaobject output base.'"
+          select="'Can''t construct copy instructions for mediaobjects: Don''t know absolute URI of chunk output base.'"
         />
       </xsl:when>
     </xsl:choose>
@@ -87,8 +87,8 @@
 
   <xsl:template match="h:img[@ghost:sourcefile]" mode="mp:mediaobject-copy-instruction"
     as="map(xs:string, xs:anyURI)?">
-    <xsl:if test="exists($vp:absolute-mediaobject-output-base-uri)">
-      <xsl:variable name="destination" as="xs:anyURI" select="resolve-uri(@src, $vp:absolute-mediaobject-output-base-uri)" />
+    <xsl:if test="exists($vp:chunk-output-base-uri)">
+      <xsl:variable name="destination" as="xs:anyURI" select="resolve-uri(@src, $vp:chunk-output-base-uri)" />
       <xsl:message
         select="'abs. uri (' || @src || ') &#x2192; ' || $destination" use-when="$v:debug = 'mediaobject-uris'"/>
       <xsl:sequence select="
