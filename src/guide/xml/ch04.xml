@@ -403,10 +403,16 @@ will be to <uri>media/image.png</uri>.
 <xref linkend="media"/>.</para>
 
 <important>
-<para>The stylesheets are not responsible for actually copying the media files
-into the correct locations in the output. The stylesheets only generate the HTML
-files and the references. You must copy the images and other media with some
-other process.</para>
+  <para>The stylesheets are not responsible for actually copying the media files into the
+    correct locations in the output. They only generate the HTML files and the references. You
+    must copy the images and other media with some other process. But the stylesheets may
+    offer some help if the output base URI is known. The volatile attribute
+      <code>ghost:sourcefile</code> contains the the computed absolute URI of the input data
+    until the last phase of the transformation. It allows us to create copy instructions for
+    media files with <emphasis>source</emphasis> and <emphasis>destination</emphasis> on
+    demand, which may even be executed under certain circumstances. See <xref
+      linkend="copyinstructions" xrefstyle="%label"/> and
+      <parameter>copyinstructions-uri</parameter> for details.</para>
 </important>
 </section>
 </section>

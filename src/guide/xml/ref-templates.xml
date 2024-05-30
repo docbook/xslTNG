@@ -301,11 +301,11 @@ the element’s content.</para>
 &lt;/copyinstructions&gt;      
     </programlisting>
     <para>You may use a customization layer with your own implementation of this template to create a UNIX or Windows Script file.</para>
-    <para>Please note, that this templete will only be called if the expath function
-        <code>{http://expath.org/ns/file}:copy</code> is not available. Otherwise, the copy
-      instruction will pe performed by the stylesheets, in which case the file at
-        <parameter>copyinstructions-uri</parameter> will become a logfile with a slightly
-      different format.</para>
+    <para>Please note, that this template will only be called if the expath function
+          <code>{http://expath.org/ns/file}:copy</code> is not available. Otherwise, the copy
+        instruction will pe performed by the stylesheets, in which case the file at
+          <parameter>copyinstructions-uri</parameter> will become a logfile with a slightly
+        different format.</para>
   </refsection>
 </refentry>
   
