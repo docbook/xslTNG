@@ -15,6 +15,7 @@ from xml.dom.minidom import parse, Node
 
 class JavaClassRunnerException(Exception):
     """Subclass of Exception for errors raised by the runner."""
+    pass
 
 
 class JavaClassRunner:
@@ -64,10 +65,12 @@ class JavaClassRunner:
         self._cp = {}
         self._seen = {}
 
-        # This script assumes it's in /path/to/somewhere/docbook/bin/python
+        # This script assumes it's in /path/to/somewhere/docbook/bin
         # where "docbook" is the root of the distribution. If you move
         # this script into /usr/local/bin or something, it won't work.
-        self.root = os.path.abspath(__file__)
+        # Instead, create a symbolic link with:
+        # ln -s /path/to/somewhere/docbook/bin/docbook /usr/local/bin/docbook
+        self.root = os.path.realpath(__file__)
         self.root = self.root[0:self.root.rfind(os.sep)]  # strip /docbook
         self.root = self.root[0:self.root.rfind(os.sep)]  # strip /bin
 
