@@ -26,7 +26,7 @@
   --hovered-color: rgb(235,235,235);
   --focused-color: rgb(221,221,221);
   --modal-overlay-color: rgba(255,255,255,0.85);
-  --panelset-color: #fafaf0;
+  --panelset-color: #f7f7f0;
   --border-color: var(--primary-color);
   --header-color: var(--background-color);
   --on-header-color: var(--on-background-color);
@@ -2003,7 +2003,7 @@ nav.top div {
   width: 100%;
   display: none;
   padding: 1rem;
-  border-top: 1px solid var(--focused-color);
+  border: 2px solid var(--focused-color);
   background-color: var(--panelset-color);
 }
 
@@ -2013,15 +2013,16 @@ nav.top div {
 
 .panelset input[type=radio]:checked + label {
   border-bottom: 2px solid var(--focused-color);
+  border-left: 1px solid var(--focused-color);
   background-color: var(--panelset-color);
   color: var(--on-background-color);
 }
 
 .panelset label:hover {
-  border-top: 2px solid var(--focused-color);
-  border-bottom: 2px solid var(--focused-color);
+  border: 2px solid var(--focused-color);
   color: var(--on-background-color);
-  border-radius: 0;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
 }
 
 .panelset input[type=radio]:checked + label + .paneltab {
