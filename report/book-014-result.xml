@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/book-014.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/book-014.xsl"
+        date="2024-09-21T17:44:14.082232Z">
+   <scenario id="scenario1"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/book-014.xspec">
+      <label>When transforming book.014</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/book.014.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Unit Test: book.014</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="book division">
+                        <header>
+                           <h1>Unit Test: book.014</h1>
+                           <div class="editor">
+                              <h3>
+                                 <span class="editedby">Edited by </span>
+                                 <span class="first-last personname">
+                                    <span class="firstname">Norman</span>
+                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                    <span class="surname">Walsh</span>
+                                 </span>
+                              </h3>
+                           </div>
+                        </header>
+                        <div class="list-of-titles">
+                           <div class="lot toc">
+                              <div class="title">Table of Contents</div>
+                              <ul class="toc">
+                                 <li>
+                                    <a href="#R_ch1">
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>A brief history of Yoyodyne</a>
+                                 </li>
+                                 <li>
+                                    <a href="#R_ch2">
+                                       <span class="label">2</span>
+                                       <span class="sep">. </span>Grovers Mill: No place like home</a>
+                                 </li>
+                                 <li>
+                                    <a href="#R_ch3">
+                                       <span class="label">3</span>
+                                       <span class="sep">. </span>Stories of Planet 10</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <section id="R_ch1" class="chapter component">
+                           <header>
+                              <h2>Chapter <span class="label">1</span>
+                                 <span class="sep">. </span>A brief history of Yoyodyne</h2>
+                           </header>
+                           <p>…</p>
+                        </section>
+                        <section id="R_ch2" class="chapter component">
+                           <header>
+                              <h2>Chapter <span class="label">2</span>
+                                 <span class="sep">. </span>Grovers Mill: No place like home</h2>
+                           </header>
+                           <p>…</p>
+                        </section>
+                        <section id="R_ch3" class="chapter component">
+                           <header>
+                              <h2>Chapter <span class="label">3</span>
+                                 <span class="sep">. </span>Stories of Planet 10</h2>
+                           </header>
+                           <p>…</p>
+                        </section>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect book.014.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Unit Test: book.014</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="book division">
+                           <header>
+                              <h1>Unit Test: book.014</h1>
+                              <div class="editor">
+                                 <h3>
+                                    <span class="editedby">Edited by </span>
+                                    <span class="first-last personname">
+                                       <span class="firstname">Norman</span>
+                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                       <span class="surname">Walsh</span>
+                                    </span>
+                                 </h3>
+                              </div>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#R_ch1">
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>A brief history of Yoyodyne</a>
+                                    </li>
+                                    <li>
+                                       <a href="#R_ch2">
+                                          <span class="label">2</span>
+                                          <span class="sep">. </span>Grovers Mill: No place like home</a>
+                                    </li>
+                                    <li>
+                                       <a href="#R_ch3">
+                                          <span class="label">3</span>
+                                          <span class="sep">. </span>Stories of Planet 10</a>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <section id="R_ch1" class="chapter component">
+                              <header>
+                                 <h2>Chapter <span class="label">1</span>
+                                    <span class="sep">. </span>A brief history of Yoyodyne</h2>
+                              </header>
+                              <p>…</p>
+                           </section>
+                           <section id="R_ch2" class="chapter component">
+                              <header>
+                                 <h2>Chapter <span class="label">2</span>
+                                    <span class="sep">. </span>Grovers Mill: No place like home</h2>
+                              </header>
+                              <p>…</p>
+                           </section>
+                           <section id="R_ch3" class="chapter component">
+                              <header>
+                                 <h2>Chapter <span class="label">3</span>
+                                    <span class="sep">. </span>Stories of Planet 10</h2>
+                              </header>
+                              <p>…</p>
+                           </section>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>
