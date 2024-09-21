@@ -37,8 +37,10 @@ plugins {
   id "de.undercouch.download" version "4.0.4"
 }
 
-sourceCompatibility=1.8
-targetCompatibility=1.8
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 sourceSets {
   main {
@@ -1429,12 +1431,12 @@ jar {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
+  archiveClassifier = 'javadoc'
   from javadoc.destinationDir
 }
 
 task sourcesJar(type: Jar) {
-  classifier = 'sources'
+  archiveClassifier = 'sources'
   from sourceSets.main.allSource
 }
 
