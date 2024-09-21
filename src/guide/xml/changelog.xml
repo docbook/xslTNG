@@ -10,9 +10,27 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
-<!--
-Added panelset
--->
+<section xml:id="r220a">
+<info>
+  <title>Changes in version 2.2.0a</title>
+  <productnumber>2.2.0a</productnumber>
+  <date>2024-09-21</date>
+</info>
+<para>This is an intermediate version. It’ll be published as 2.2.1 shortly.</para>
+<itemizedlist>
+<listitem>
+  <para>Support <parameter>variablelist-panelset</parameter> presentation for
+  <tag>variablelist</tag> elements.
+  </para>
+</listitem>
+<listitem>
+  <para>Added <xref linkend="titlepages"/> to the guide.</para>
+</listitem>
+<listitem>
+  <para>(Note to self: review other PRs before publishing 2.2.1!)</para>
+</listitem>
+</itemizedlist>
+</section>
 
 <section xml:id="r220">
 <info>

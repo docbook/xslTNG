@@ -118,6 +118,10 @@ class TestGenerator {
     testConfigurations.create('default')
       .withEnvironments(['default'])
 
+    testConfigurations.create('book-014')
+      .withEnvironments(['default'])
+      .withStylesheet("${uBuildDir}/../src/test/resources/book.014.xsl")
+
     testConfigurations.create('callouts')
       .withEnvironments(['verbatim', 'callouts'])
 
@@ -156,6 +160,7 @@ class TestGenerator {
      'presentation\\.': 'presentations',
      'glossary\\.00[1,2,3,4,5,6]': 'glossary-collection', // Not 7, 8, or 9!
      'glossary\\.01': 'glossary-collection',
+     'book\\.014': 'book-014',
     ].each { entry ->
       Pattern pat = ~"^.*${entry.key}.*\$"
       regexList.add(new Tuple(pat, testConfigurations.find(entry.value)))

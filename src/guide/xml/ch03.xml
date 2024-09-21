@@ -226,6 +226,176 @@ a customization layer.</para>
 </orderedlist>
 </section>
 
+<section xml:id="titlepages">
+<title>Customizing title pages</title>
+
+<para>All of the titled elements (books, chapters, sections, etc.) have “title pages”. That is,
+they have a
+<tag namespace="http://www.w3.org/1999/xhtml">header</tag> element that contains the
+elements from the <tag>info</tag> that should be presented in the title header.
+In practice, <tag>info</tag> is a wrapper for general metadata about the element and
+often contains many elements that shouldn’t be presented.</para>
+
+<para>There’s <emphasis>so</emphasis> much variation both in what goes in the
+<tag>info</tag> elements and in what users need to have in the title header, that
+there’s no practical way to control it simply with stylesheet parameters.</para>
+
+<para>Instead the stylesheets offer two customization mechanisms: first, each header is formed
+from a header template. You can change the titlepage template in your
+<link linkend="layer">customization layer</link>.</para>
+
+<para>For example, the default titlepage template for chapter headers is:</para>
+
+<programlisting language="xml"><![CDATA[<header>
+  <tmp:apply-templates select="db:title">
+    <h2><tmp:content/></h2>
+  </tmp:apply-templates>
+  <tmp:apply-templates select="db:subtitle">
+    <h3><tmp:content/></h3>
+  </tmp:apply-templates>
+</header>]]></programlisting>
+
+<para>The <code>tmp:apply-templates</code> elements aren’t as sophisticated as
+XSLT templates, but they let you select parts of the document. If nothing is
+selected, the content is ignored. When the title page template is evaluated, the context
+item is the <tag>info</tag> element.</para>
+
+<para>Inside the <code>tmp:apply-templates</code>, you can decide what HTML markup should
+appear. The
+<code>tmp:content</code> element will be replaced by the result of processing
+the element or elements you selected.</para>
+
+<para>As a consequence of that template, a chapter title page contains the
+chapter title in an <tag namespace="http://www.w3.org/1999/xhtml">h2</tag> and
+the subtitle in an <tag namespace="http://www.w3.org/1999/xhtml">h3</tag>. No
+other elements in the <tag>info</tag> are presented.</para>
+
+<para>Suppose you are writing a book where each chapter has a different author.
+You can add the authors to the chapter title page by updating the template in
+your customization layer. The stylesheets contain a
+<varname>v:templates</varname> variable for this purpose. Any templates that you
+put inside it will be used before the default templates.</para>
+
+<programlisting language="xml"><![CDATA[<xsl:variable name="v:templates" as="document-node()"
+              xmlns:v="http://docbook.org/ns/docbook/variables">
+  <xsl:document xmlns:tmp="http://docbook.org/ns/docbook/templates"
+                xmlns:db="http://docbook.org/ns/docbook"
+                xmlns="http://www.w3.org/1999/xhtml">
+    <db:chapter context="parent::db:book">
+      <header>
+        <tmp:apply-templates select="db:title">
+          <h2><tmp:content/></h2>
+        </tmp:apply-templates>
+        <tmp:apply-templates select="db:subtitle">
+          <h3><tmp:content/></h3>
+        </tmp:apply-templates>
+        <tmp:apply-templates select="db:author">
+          <h3 class="author">
+            <tmp:content/>
+          </h3>
+        </tmp:apply-templates>
+      </header>
+    </db:chapter>
+  </xsl:document>
+</xsl:variable>]]></programlisting>
+
+<para>With that customization, a chapter title page contains the
+chapter title in an <tag namespace="http://www.w3.org/1999/xhtml">h2</tag>
+and the subtitle and authors in 
+<tag namespace="http://www.w3.org/1999/xhtml">h3</tag> elements, in that order.
+If you change the order of the <code>tmp:apply-template</code> elements, the
+order of the elements in the header will change.</para>
+
+<para>Another common requirement is to put a graphic on the title page of a
+book. Here’s how you might do that. (This example appears in the test suite
+as test <filename>book.014.xml</filename>.) Add the <tag>cover</tag> to your
+<tag>info</tag> element:</para>
+
+<programlisting language="xml"><![CDATA[<book xmlns="http://docbook.org/ns/docbook" version="5.2">
+<info>
+  <title>Unit Test: book.014</title>
+  <cover>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../media/yoyodyne.png"/>
+      </imageobject>
+    </mediaobject>
+  </cover>
+  <editor>
+    <personname>
+      <firstname>Norman</firstname>
+      <surname>Walsh</surname>
+    </personname>
+    <email>ndw@nwalsh.com</email>
+  </editor>
+</info>
+…
+</book>]]></programlisting>
+
+<para>Then decide how you want that graphic in the header with a new book template:</para>
+
+<programlisting language="xml"><![CDATA[<xsl:variable name="v:templates" as="document-node()"
+              xmlns:v="http://docbook.org/ns/docbook/variables">
+  <xsl:document xmlns:tmp="http://docbook.org/ns/docbook/templates"
+                xmlns:db="http://docbook.org/ns/docbook"
+                xmlns="http://www.w3.org/1999/xhtml">
+    <db:book>
+      <header>
+        <tmp:apply-templates select="db:cover/db:mediaobject">
+          <div class="cover">
+            <tmp:content/>
+          </div>
+        </tmp:apply-templates>
+        <tmp:apply-templates select="db:title">
+          <h1><tmp:content/></h1>
+        </tmp:apply-templates>
+        <tmp:apply-templates select="db:editor">
+          <div class="editor">
+            <h3><tmp:content/></h3>
+          </div>
+        </tmp:apply-templates>
+      </header>
+    </db:book>
+  </xsl:document>
+</xsl:variable>]]></programlisting>
+
+<para>This template will output the cover image, then the title, then the editor.
+If you want to update multiple templates, put them all in the same 
+<varname>v:templates</varname> element as siblings.</para>
+
+<para>Once you’ve output the elements in the header, you can use CSS to
+customize their appearance further.</para>
+
+<para>You can get a long way just by updating the title page templates, but not
+always far enough. If you can’t achieve what you need by changing a template,
+you can take full control.</para>
+
+<para>Each element generates its title page with the <mode>m:generate-titlepage</mode>
+mode. If you add a template in that mode to your customization layer, it has
+complete freedom to generate a custom title page.</para>
+
+<para>Here, for example, is a book title page template:</para>
+
+<programlisting language="xml"><![CDATA[<xsl:template match="db:book" mode="m:generate-titlepage">
+  <header>
+    <h1>
+      <xsl:apply-templates select="db:info/db:title" mode="m:titlepage"/>
+    </h1>
+    <p>Hello, world</p>
+  </header>
+</xsl:template>]]></programlisting>
+
+<para>With this XSLT template in your customization layer, the book title page
+will consist of the title in an 
+<tag namespace="http://www.w3.org/1999/xhtml">h1</tag>
+and the phrase “Hello, world” in a paragraph.
+In this case, the context item for the XSLT template is the main element, not
+its <tag>info</tag> child. But it will <emphasis>always</emphasis> have an
+<tag>info</tag> child, even if your original document didn’t have a wrapper
+around the titlepage metadata.</para>
+
+</section>
+
 <section xml:id="media">
 <title>Managing media</title>
 
