@@ -416,7 +416,7 @@ nav.top div {
     width: 100%;
     display: none;
     padding: 1rem;
-    border-top: 1px solid var(--focused-color);
+    border: 2px solid var(--focused-color);
     background-color: var(--panelset-color);
 }
 
@@ -426,15 +426,16 @@ nav.top div {
 
 .panelset input[type="radio"]:checked + label {
     border-bottom: 2px solid var(--focused-color);
+    border-left: 1px solid var(--focused-color);
     background-color: var(--panelset-color);
     color: var(--on-background-color);
 }
 
 .panelset label:hover {
-    border-top: 2px solid var(--focused-color);
-    border-bottom: 2px solid var(--focused-color);
+    border: 2px solid var(--focused-color);
     color: var(--on-background-color);
-    border-radius: 0;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
 }
 
 .panelset input[type="radio"]:checked + label + .paneltab {
