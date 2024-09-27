@@ -1,0 +1,153 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Chapter 6. Building the stylesheets</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-09-27T13:09:58Z"/><meta name="dc.created" content="2024-09-27T13:09:58Z"/><meta name="generator" content="DocBook xslTNG version 2.2.1-SNAPSHOT / 8cbf982e / SAXON HE 12.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-implementation.html"/><link rel="next" href="version2.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="chapter component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-implementation.html" title="Chapter  5 .  Implementation details"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Appendix  A .  Changes in version 2.x" href="version2.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="building" db-chunk="ch-building.html" db-id="d149e4269" class="chapter component"><header><h1>Chapter <span class="label">6</span><span class="sep">. </span>Building the stylesheets</h1></header><p>If you wish, you can also clone the distribution and build them
+yourself. The distribution is designed to be self contained. In a Unix
+or Mac environment, running:
+</p><div class="pre-wrap"><pre class="screen verbatim"><code><code class="userinput">./gradlew dist</code></code></pre></div><p>
+will build the stylesheets. Building will:</p><ol class="orderedlist" type="1"><li><p>Compile the stylesheets and run the unit tests. The compiled stylesheets
+will be available in <code class="filename">build/xslt</code>.
+</p><p>Running all the tests requires building the reference guide and
+a few other things. You can build the stylesheets without running any
+of the tests with the <code class="buildtarget">makeXslt</code> task.</p></li><li><p>Compile the extension functions. The compiled extension functions will be
+available in <code class="filename">build/libs</code>. The <code class="buildtarget">jar</code> task
+will compile the extensions without running the tests.
+</p></li><li><p>“Compile” <a href="ch-using.html#python-script" class="link">the Python script</a> that helps run
+the stylesheets. (It’s not really compiled, but several stylesheet-version-specific
+strings are interpolated.)
+The <code class="buildtarget">copyBin</code> task will setup the Python script
+without running the tests.
+</p></li></ol><div class="admonition important"><div><div class="icon">☝</div><div class="body"><header><div class="title">Important</div></header><div><p>In principle, it should be possible to build the stylesheets on
+<span class="trademark">Windows</span>. In practice, it isn’t entirely
+reliable. It has been much improved as of version 2.1.4, but still
+fails randomly on some Windows machines, but not others. It may be
+more expedient to build in the Linux subsystem on Windows 10 or in a
+Docker container.
+</p></div></div></div></div><section id="buildpre" class="section"><header><h2><span class="label">6<span class="sep">.</span>1</span><span class="sep">. </span>Prerequisites</h2></header><p>In order to build the stylesheets, you must configure your
+system with several prerequisites:</p><ul class="itemizedlist"><li><p><a href="https://gradle.org/" class="link">Gradle</a>. The stylesheet
+builds use <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html" class="link">the
+Gradle wrapper</a> to assure a consistent environment across systems, it’ll
+be downloaded automatically the first time you build.
+</p></li><li><p>A modern version of Java. (Java 1.8 or later, for example.)
+</p></li><li><p><a href="https://www.python.org/" class="link">Python</a> 3 and
+the <a href="https://click.palletsprojects.com/en/7.x/" class="link">click</a> module.
+The <a href="https://pygments.org/" class="link">Pygmentize</a> program is also
+required for syntax highlighting, though that’s not technically a build requirement.
+</p></li></ul><p>If you discover other prerequisites that have been overlooked,
+or have questions or suggestions about how best to manage them, please
+let us know.</p></section><section id="repostruct" class="section"><header><h2><span class="label">6<span class="sep">.</span>2</span><span class="sep">. </span>Repository structure</h2></header><p>The most significant parts of the repository hierarchy are:</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/xslt</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/xslt/transforms</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/xslt/modules</code></span></span>
+</pre></div><p>These are the sources for the stylesheets themselves. The
+<code class="directory filename">transform</code> subdirectory contains the preprocessing
+stylesheets that are run as separate transforms. The
+<code class="directory filename">modules</code> directory doesn’t have any special significance, it
+just makes the main entry points easier to find.</p><p>You cannot run the XSLT stylesheets directly from the source
+location. You must build them first with the
+<code class="buildtarget">makeXslt</code> build target.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/web</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/web/resources/css</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/web/resources/js</code></span></span>
+</pre></div><p>These are the CSS and JavaScript files needed for accurate rendering in the
+browser or formatter process.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/locales/locale-10</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/locales/locale</code></span></span>
+</pre></div><p>The <code class="directory filename">local-10</code> directory holds copies of the
+localization files from the XSLT 1.0 stylesheets. They’re transformed
+into the <code class="directory filename">locale</code> versions by the build system. This whole
+area is one that needs work.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/test/xspec</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/test/generators</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/test/resources/xml</code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/test/resources/expected</code></span></span>
+</pre></div><p>These are the testing resources. You cannot run the XSpec tests
+directly from <code class="directory filename">src/test/xspec</code>. The build system copies them into
+<code class="directory filename">build/xspec</code> along with a few XSpec tests generated
+automatically by the stylesheets in <code class="directory filename">generators</code>.
+</p><p>The library of DocBook documents that are used for testing is
+stored in the <code class="directory filename">xml</code> directory. The HTML files in
+<code class="directory filename">expected</code> correspond to the expected results. The expected
+results aren’t usefully viewed in a browser. Only the
+<code class="tag tag-element">body</code> element and its
+decendants are stored in the expected results. This avoids a lot of
+noise in the
+<code class="tag tag-element">head</code>.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/main/java</code></span></span>
+</pre></div><p>These are the sources for the <a href="ch-using.html#extensions" class="link">extension functions</a>.
+</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/guide</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>src/website</code></span></span>
+</pre></div><p>These are the sources, resources, and ancillary files for the 
+reference guide and the website.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>tools</code></span></span>
+</pre></div><p>The <code class="directory filename">tools</code> directory holds a number of stylesheets and other scripts used
+by the build process.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>lib</code></span></span>
+</pre></div><p>The <code class="directory filename">lib</code> directory holds third party jar files. This is also where
+you can put your Saxon PE or EE files if you have them.</p><div class="pre-wrap"><pre class="monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>build</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>build/actual</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>build/xslt</code></span></span>
+</pre></div><p>The build system puts all of its temporary files under <code class="directory filename">build</code>. It’s
+always safe to delete the entire directory and start over, though it will require internet
+access and it may take a while.</p><p>Test files that you format are published to
+<code class="directory filename">build/actual</code> and the images, CSS, and JavaScript resources
+are copied under there so that everything will look right in the
+browser. For security reasons, some JavaScript features may not work
+if you are looking at the documents from the filesystem. You can work
+around this by pointing a local web server at the build directory.</p><p>The built stylesheets are in <code class="directory filename">build/xslt</code>. You can run
+them directly from there.</p></section><section id="buildconfig" class="section"><header><h2><span class="label">6<span class="sep">.</span>3</span><span class="sep">. </span>Build configuration</h2></header><p>Several build properties are defined in <code class="filename">gradle.properties</code>.
+</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><code class="property">verbose</code></span></dt><dd><p>If true, enables additional messages in the extension functions.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">requireCompileSuccess</code></span></dt><dd><p>If true, the build will fail if there are any errors building the stylesheets.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">requireTestSuccess</code></span></dt><dd><p>If true, the build will fail if any tests fail.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">xspecVersion</code></span></dt><dd><p>The version of XSpec.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">xsltExplorerVersion</code></span></dt><dd><p>The version of XSLT Explorer.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">pdftool</code></span></dt><dd><p>Select a tool for formatting PDFs. Expected values are <code class="literal">antennahouse</code>
+or <code class="literal">prince</code>.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">antennahouse</code></span></dt><dd><p>The path to the Antenna House Formatter.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">prince</code></span></dt><dd><p>The path to the Prince formatter.</p></dd></div></dl><p>There are four additional properties that are used by the
+<code class="buildtarget">dbtransform</code> target. This target allows you to process arbitrary
+documents with the stylesheets. It takes care of loading all of the extension functions.</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="property">dbsource</code></span></dt><dd><p>The URI of the source document.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">dboutput</code></span></dt><dd><p>The path for outputting the principle result document.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">dbstyle</code></span></dt><dd><p>The URI of the base stylesheet, defaults to the main DocBook xslTNG stylesheet.</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="property">dbparams</code></span></dt><dd><p>Stylesheet parameters.</p></dd></div></dl><p>You can change these variables in your local version of <code class="filename">gradle.properties</code>,
+or you can specify them on the command line. For example, to enable <code class="property">verbose</code>
+processing, pass <code>-Pverbose=true</code> on the Gradle command line.</p></section><section id="buildtasks" class="section"><header><h2><span class="label">6<span class="sep">.</span>4</span><span class="sep">. </span>Build tasks</h2></header><p>The build system is <a href="references.html#Gradle" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Gradle</span></span></a>. Gradle’s
+processing model operates in several phases, this allows an initial
+configuration phase to construct build targets (called tasks)
+dynamically. The <cite class="citetitle">DocBook xslTNG Stylesheets</cite>
+build script uses this facility quite a bit.</p><p>In the discussion that follows, <em class="replaceable">testdoc</em> is the
+base name of a test document, that is, one of the example files from the
+<code class="directory filename">src/test/resources/xml</code> directory. For example, one of the test documents
+is <code class="filename">src/test/resources/xml/article.001.xml</code>. In the build
+targets that would be the “testdoc” <code class="literal">article.001</code>.
+In an analogous way, “testset” is the root name of an XSpec test file in
+<code class="directory filename">src/test/xspec</code>.</p><p>The most important tasks are:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="buildtarget">makeXslt</code></span></dt><dd><p>This tasks “compiles” the stylesheets into <code class="directory filename">build/xslt</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">report</code></span></dt><dd><p>This task runs all of the tests and generates a unified report in
+<code class="directory filename">build/report</code>. This is the default task.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">test</code></span></dt><dd><p>Runs the test suite against the stylesheets.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">jar</code></span></dt><dd><p>Compiles the extension functions and creates the jar file in
+<code class="directory filename">build/libs</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">dist</code></span></dt><dd><p>Builds an archive in <code class="directory filename">build/distributions</code> suitable for distribution.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">guide</code></span></dt><dd><p>Builds the reference guide.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">website</code></span></dt><dd><p>Builds the website.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">explorer</code></span></dt><dd><p>Generates the <a href="https://xslt.xmlexplorer.com/" class="link">XSLT Explorer</a>
+report for the stylesheets in
+<code class="directory filename">build/explorer</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget">helloWorld</code></span></dt><dd><p>A smoke test target. It just prints a message, but doing so will exercise
+a bunch of the build machinery in Gradle.
+</p></dd></div></dl></section><section id="testingtasks" class="section"><header><h2><span class="label">6<span class="sep">.</span>5</span><span class="sep">. </span>Testing tasks</h2></header><p>The way tests are managed was completely refactored in version 2.0.13. The new
+system is largely automatic.</p><ol class="orderedlist" type="1"><li><p>Create a new test document in <code class="filename">src/test/resources/xml</code>. For this
+example, we’ll create <code class="filename">para.003.xml</code>, an example of a <code class="tag tag-element">sidebar</code>
+in a <code class="tag tag-element">para</code>.
+</p></li><li><p>Use the build target <code class="buildtarget">para.003.html</code> to format the document.
+This build target (and several others) exist automatically because the source file has
+been created.</p></li><li><p>Inspect the results (in <code class="filename">build/actual/para.003.html</code>) and adjust
+the stylesheets until you are satisfied that the results are correct. Each time you make a
+stylesheet change, you can re-run the <code class="buildtarget">para.003.html</code> target to
+rebuild the output.</p></li><li><p>When you are satisified, run <code class="buildtarget">param.003.expected</code> to
+update the expected results.</p></li><li><p>Run the <code class="buildtarget">report</code> target to make sure no other tests have broken
+as a result of your changes.</p></li></ol><p>More generally, the following targets exist for any source document in 
+<code class="filename">src/test/resources/xml</code>:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="buildtarget"><em class="replaceable">testdoc</em>.html</code></span></dt><dd><p>Formats <em class="replaceable">testdoc</em> into HTML and stores the result
+in <code class="directory filename">build/actual</code> where it can be viewed in the browser with the appropriate
+CSS, JavaScript, images, etc.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget"><em class="replaceable">testdoc</em>.expected</code></span></dt><dd><p>Formats <em class="replaceable">testdoc</em> into HTML and stores the result
+in <code class="directory filename">src/test/resources/expected</code>. You should <em>only</em> run this
+task when you’ve made a change and determined that the new results are correct and should
+replace the previously expected results.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget"><em class="replaceable">testdoc</em>.pdf.html</code></span></dt><dd><p>Formats <em class="replaceable">testdoc</em> into HTML suitable
+for paged media and stores the result in <code class="directory filename">build/actual</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget"><em class="replaceable">testdoc</em>.pdf</code></span></dt><dd><p>The <code class="extension filename">.pdf</code> target will generate the
+<code class="extension filename">.pdf.html</code> output and then attempt to transform it into PDF
+with either AntennaHouse or PrinceXML. Additional configuration may be
+necessary to get this to work.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget"><em class="replaceable">testdoc</em>.chunk</code></span></dt><dd><p>Formats <em class="replaceable">testdoc</em> into HTML with chunking turned
+on. The result is stored in <code class="filename">index.html</code> and other files
+in <code class="directory filename">build/actual</code>. No attempt is made to avoid having
+the output files from different documents overwrite each other. At the moment,
+none of the automated tests create chunked output.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="buildtarget"><em class="replaceable">testset</em>.xspec</code></span></dt><dd><p>Runs the <em class="replaceable">testset</em> set of XSpec tests.
+The test sets that are available are the sets constructed from build environments and
+the sets created by hand (in <code class="filename">src/test/xspec</code>).
+</p></dd></div></dl></section><section id="xspec" class="section"><header><h2><span class="label">6<span class="sep">.</span>6</span><span class="sep">. </span>Running XSpec</h2></header><p>In order to get consistent results across different runs and in different
+environments, the XSpec tests run a driver stylesheet, <code class="filename">xspec-driver.xsl</code>.
+</p><p>Note also that the XSpec shell script is modified by the stylesheets.</p></section></section></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Chapter  5 .  Implementation details" href="ch-implementation.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Appendix  A .  Changes in version 2.x" href="version2.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Chapter  5 .  Implementation details</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Appendix  A .  Changes in version 2.x</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2024 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>

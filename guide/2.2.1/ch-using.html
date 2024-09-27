@@ -1,0 +1,625 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Chapter 2. Using the stylesheets</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-09-27T13:09:58Z"/><meta name="dc.created" content="2024-09-27T13:09:58Z"/><meta name="generator" content="DocBook xslTNG version 2.2.1-SNAPSHOT / 8cbf982e / SAXON HE 12.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-overview.html"/><link rel="next" href="ch-customizing.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/copy-verbatim.js" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="chapter component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-overview.html" title="Chapter  1 .  Overview"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Chapter  3 .  Customizing the stylesheets" href="ch-customizing.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="using" db-chunk="ch-using.html" db-id="d149e169" class="chapter component"><header><h1>Chapter <span class="label">2</span><span class="sep">. </span>Using the stylesheets</h1></header><p>In principle, the stylesheets will run with any conformant XSLT
+3.0 processor. For many users, that means
+<a href="http://saxonica.com/" class="link">Saxon</a>. Although earlier versions
+may work, Saxon 10.1 or later is recommended.</p><p>In principle, the instructions for using the stylesheets are
+straightforward: using your XSLT 3.0 processor of choice, transform your
+DocBook source documents with the <code class="filename">docbook.xsl</code>
+stylesheet in the <code class="directory filename">xslt</code>
+directory of the distribution.</p><p>In practice, for most users, running the stylesheets will
+require getting a Java environment configured appropriately. For many,
+one of the most significant challenges is getting all of the
+dependencies sorted out. Modern software development, for better or
+worse, often consists of one library relying on another which relies
+on another, etc.</p><p>The <cite class="citetitle">DocBook xslTNG</cite> stylesheets attempt to
+simplify this process, especially for the “out of the box” experience
+by providing two convenience methods for running the stylesheets: a
+jar file with a <code class="classname">Main</code> class, and a Python script
+that attempts, among other things, to make sure all of the
+dependencies are available.</p><p>If you’re an experience Java user, you may prefer to simply run
+the stylesheets
+<a href="#run-with-java" class="link">directly with Java</a>.</p><p>Irrespective of which method you choose, running the stylesheets
+is simply a matter of processing your input document
+<q><em class="replaceable">myfile.xml</em></q> with
+<q><code class="filename">xslt/docbook.xsl</code></q>. For example:
+</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">saxon myfile.xml -xsl:xslt/docbook.xsl -o:myfile.html</code></code></span></span>
+</pre></div><p>The exact path to <code class="filename">docbook.xsl</code> will vary, of course,
+but it’s in the <code class="directory filename">xslt</code> directory of the
+distribution.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>The resulting HTML document contains references to CSS stylesheets
+and possibly JavaScript libraries. The output won’t look as nice in your browser
+if those resources aren’t available. They’re in the <code class="directory filename">resources</code> directory of the distribution. A quick and easy way to see the
+results is simply to send the output to the <code class="directory filename">samples</code>
+directory from the distribution. The resources have already been copied into
+that directory. In the longer run, you’ll want to make sure that they get
+copied into the output directory for each of your projects.</p><p>Alternatively, you can copy them to a web location of your choosing and
+point to them there. You can even point to them in
+<a href="https://cdn.docbook.org/release/xsltng/current/resources" class="link">the
+DocBook CDN</a>, but beware that those are not immutable. The “current”
+version will change with every release and versioned releases will not persist
+indefinitely.</p><p>Change the <a href="p_resource-base-uri.html"><code class="paramname">$resource-base-uri</code></a><span class="indexterm" id="using_note1_para3_indexterm1"></span> to adjust the paths
+used in the output document.</p></div></div></div></div><p>Many aspects of the transformation can be controlled simply by
+setting parameters (see <a href="params.html" class="xref xref-reference"><span class="label">I</span><span class="sep">. </span>Parameter reference</a>). It’s also possible
+to change the transformation by writing your own customization layer
+(see <a href="ch-customizing.html" class="xref xref-chapter">Chapter <span class="label">3</span>, Customizing the stylesheets</a>).</p><section id="java-main" class="section"><header><h2><span class="label">2<span class="sep">.</span>1</span><span class="sep">. </span>Using the Jar</h2></header><p>The <a href="ch-overview.html#get-github" class="link">ZIP distribution</a> includes a
+JAR file that you can run directly. That
+JAR file is
+<code class="filename"><em class="replaceable">$ROOT</em>/libs/docbook-xslTNG-<em class="replaceable">version</em>.jar</code>
+where “<code><em class="replaceable">$ROOT</em></code>” is whatever directory you chose
+to unzip the distribution into and <em class="replaceable">version</em> is the
+stylesheet version.</p><p>Assuming you unzipped the version 2.2.1-SNAPSHOT distribution into
+<code class="directory filename">/home/ndw/xsltng</code>, you can run
+the JAR like this:</p><p><code>java -jar /home/ndw/xsltng/libs/docbook-xslTNG-2.2.1-SNAPSHOT.jar</code></p><p>Let’s try it out. Open a shell window and change to the samples directory,
+<code class="directory filename">/home/ndw/xsltng/samples</code> assuming you unzipped
+it as described above. Now run the java command:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">java -jar ../libs/docbook-xslTNG-2.2.1-SNAPSHOT.jar article.xml</code></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="computeroutput">&lt;!DOCTYPE html&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;</code></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="computeroutput">…more HTML here...</code></code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="computeroutput">&lt;nav class="bottom"&gt;&lt;/nav&gt;&lt;/body&gt;&lt;/html&gt;</code></code></span></span>
+</pre></div><p>That big splash of HTML was your first DocBook document
+formatted by the stylesheets! Slightly more usefully, you can save
+that HTML in a file:
+</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">java -jar ../libs/docbook-xslTNG-2.2.1-SNAPSHOT.jar article.xml \</code></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="userinput">        -o:article.html</code></code></span></span>
+</pre></div><p>If you now open <code class="filename">article.html</code> in your
+favorite web browser, you’ll see the transformed sample document
+which should look like <a href="#fig-sample" class="xref xref-figure">Figure <span class="label">2<span class="sep">.</span>1</span>, “The sample document: article.xml”</a>.
+</p><div id="fig-sample" class="figure formalobject"><div class="mediaobject" summary="A rendering of the sample document"><details><p>This is a rendering of the sample document. It consists of the
+title “Sample Article” centered on the screen with a short paragraph
+of text below it. The text reads: This is a very simple DocBook
+document. It serves as a kind of "smoke test" to demonstrate that the
+stylesheets are working.
+</p></details><div class="media image"><span class="viewport-table" style="width:480px;"><span class="viewport-row"><span class="viewport-cell"><span><span class="viewport"><picture class="imageobject"><img src="media/sample.png" alt="A rendering of the sample document" style="width:480px;"/></picture></span></span></span></span></span></div></div><header><div class="title">Figure <span class="label">2<span class="sep">.</span>1</span><span class="sep">. </span>The sample document: article.xml</div></header></div><p id="caveats">The JAR file, run this way, accepts the same
+<a href="https://www.saxonica.com/html/documentation/using-xsl/commandline/" class="link">command line options</a> as Saxon, with a few caveats:</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term">No <code>-x</code>, <code>-y</code>, or <code>-r</code> options</span></dt><dd><p>The executable in the JAR file automatically configures Saxon to
+use a catalog-based resolver and points the resolver at a catalog that
+includes the files in the distribution.
+</p></dd></div><div class="varlistentry"><dt><span class="term">No <code>-init</code> option</span></dt><dd><p>The <cite class="citetitle">DocBook xslTNG</cite>
+<a href="#extensions" class="link">extension functions</a> will be registered
+automatically.</p></dd></div><div class="varlistentry"><dt><span class="term">Multiple <code>-catalog</code> options</span></dt><dd><p>You can repeat the <code>-catalog</code> option. All of the catalogs
+you specify will be searched before the default catalog.</p></dd></div><div class="varlistentry"><dt><span class="term">Default stylesheet</span></dt><dd><p>If you do not specify a stylesheet with the <code>-xsl</code> option,
+the <code class="filename">xslt/docbook.xsl</code> stylesheet will be used automatically.
+</p></dd></div></dl></section><section id="python-script" class="section"><header><h2><span class="label">2<span class="sep">.</span>2</span><span class="sep">. </span>Using the Python script</h2></header><p>The <a href="ch-overview.html#get-github" class="link">ZIP distribution</a> includes a
+Python script in the <code class="directory filename">bin</code> directory.
+This helper script is a convenience wrapper around Saxon. It sets up
+the Java classpath and automatically configures a catalog resolver and
+the DocBook extension functions.</p><div class="admonition important"><div><div class="icon">☝</div><div class="body"><header><div class="title">Important</div></header><div><p>The script requires the <span class="application">click</span> and
+<span class="application">pygments</span> packages,
+which you must install with <span class="application">pip</span> before
+running the script. For example:</p><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>python3 -m pip install pygments=2.6.1 click</code></span></span>
+</pre></div></div></div></div></div><p>This script behaves much like the JAR file described in
+<a href="#java-main" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>1</span>, “Using the Jar”</a>. In particular,
+it accepts the same
+<a href="https://www.saxonica.com/html/documentation/using-xsl/commandline/" class="link">command line options</a> as Saxon, with
+<a href="#caveats" class="link">the same caveats</a>.</p><p>The significant feature of the Python script is that it will
+attempt to sort out the dependencies for you. It assumes that you’ve
+used Maven to install the package and its dependencies, so you’ll
+have to have <a href="http://maven.apache.org/" class="link">installed
+Maven</a>. How you do that varies by platform, but your package
+manager probably has it.</p><p>The following command will assure that you’ve downloaded all of
+the necessary dependencies. You only have to do this once.</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">mvn org.apache.maven.plugins:maven-dependency-plugin:2.4:get \</code></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="userinput">      -Dartifact=org.docbook:docbook-xslTNG:2.2.1-SNAPSHOT</code></code></span></span>
+</pre></div><p>That might take a while.</p><p>The script will work through the dependencies that you have
+installed, and the things that they depend on, and construct a Java
+class path that includes them all.</p><p>The script stores its configuration in
+<code>.docbook-xsltng.json</code> in your home directory.</p><p>Options passed to the script are processed as follows: the
+initial options, all introduced by two hyphens, are interpreted by
+this script; all the remaining options are passed directly to
+Saxon.</p><p>The script options are:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="option">--help</code></span></dt><dd><p>Prints a usage message.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--config:<em class="replaceable">filename</em></code></span></dt><dd><p>Use <em class="replaceable">filename</em> as the configuration
+file. The default configuration file is
+<code class="filename">.docbook-xsltng.json</code> in your home directory.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--resources<em class="replaceable">:dir</em></code></span></dt><dd><p>This option will copy the resources directory (the CSS and JavaScript files)
+from the distribution into the directory where your output files are going,
+<em class="replaceable">dir</em>. If
+<em class="replaceable">dir</em> is not specified, the script attempts to
+work out the directory from the <code class="option">-o</code> option provided to Saxon.
+If no directory is specified and it can’t work out what the directory is, it does nothing.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--java:<em class="replaceable">javaexec</em></code></span></dt><dd><p>Use <em class="replaceable">javaexec</em> as the Java executable.
+The default java executable is the first one on your <code class="envar">PATH</code>.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--home:<em class="replaceable">dir</em></code></span></dt><dd><p>Use <em class="replaceable">dir</em> as the <cite class="citetitle">DocBook
+xslTNG</cite> home directory. This should be the location where
+you unzipped the distribution. (You probably shouldn’t change this.)
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--verbose</code></span></dt><dd><p>Enables <em>verbose</em> mode; it prints more
+messages about what it finds.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--debug</code></span></dt><dd><p>Enables <em>debug</em> mode. Instead of running the
+transformation, it will print out the command that would have been run.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="option">--</code></span></dt><dd><p>Immediately stop interpreting options. Everything that follows this option
+will be passed to Saxon, even if it begins with two hyphens.
+</p></dd></div></dl></section><section id="run-with-java" class="section"><header><h2><span class="label">2<span class="sep">.</span>3</span><span class="sep">. </span>Run with Java</h2></header><p>Assuming you’ve organized your class path so that all of the
+dependencies are available (you may find that using a tool like Gradle
+or Maven simplifies this process), simply run the Saxon class.</p><p>For Saxon HE, the class is <code class="classname">net.sf.saxon.Transform</code>.
+For Saxon PE and EE, the class is <code class="classname">com.saxonica.Transform</code>.</p></section><section id="run-with-docker" class="section"><header><h2><span class="label">2<span class="sep">.</span>4</span><span class="sep">. </span>Run with Docker</h2></header><p>This is experimental.</p><p>The <code class="directory filename">docker</code> directory
+contains an experimental Dockerfile. Using docker allows you to
+isolate the environment necessary to run the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> from your local environment. (If you’re using Linux, see
+<a href="#docker-on-linux" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>4<span class="sep">.</span>1</span>, “Docker on Linux”</a>.)</p><p>Using Docker is a three step process. Step 0, you have to have
+installed Docker!</p><ol class="orderedlist" type="1"><li><p>Build the docker image. In the <code class="directory filename">docker</code> directory, run the docker build
+command:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">docker build -t docbook-xsltng .</code></code></span></span>
+</pre></div><p>The “<code class="option">-t</code>” option provides a tag for the image;
+you can make this anything you want. There’s a <code>VERSION</code>
+build argument if you want to build a particular release. For example,</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">docker build --build-arg VERSION=2.2.1-SNAPSHOT -t docbook-xsltng .</code></code></span></span>
+</pre></div><p>will build a Docker image for the 2.2.1-SNAPSHOT release of the
+stylesheets irrespective of the version in the Dockerfile.</p></li><li><p>Run the image, for example:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">docker run docbook-xsltng samples/article.xml</code></code></span></span>
+</pre></div><p>If you chose a different tag when you built the image, use that
+tag in place of <q><code>docbook-xsltng</code></q> in the <code class="command">run</code>
+command. Everything after the container tag becomes options to the
+<a href="#python-script" class="link"><code class="command">docbook</code> Python script</a>.
+</p></li></ol><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>The context the script runs in is <em>inside</em>
+the container. It can’t for example, see your local filesystem. The
+example above works because the distribution is unpacked inside the
+container. So the <code class="filename">article.xml</code> document isn’t the
+one on your local filesystem.</p></div></div></div></div><p>You can use the Docker facilities for mounting directories to
+change what documents the script can access. For example:
+</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>$ <code class="userinput">docker run -v /tmp:/output -v /path/to/samples:/input \</code></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="userinput">       docbook-xsltng /input/article.xml chunk=index.html \</code></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><code class="userinput">       chunk-output-base-uri=/output/</code></code></span></span>
+</pre></div><p>Assuming that the “samples” directory in the distribution is
+located at <code class="directory filename">/path/to/samples</code>, this will chunk the
+<code class="filename">article.xml</code> sample document that the script sees
+in <code class="directory filename">/input</code>
+(which is where you mounted samples) and it will write the
+output to <code class="directory filename">/output</code> (which is where you mounted
+<code class="directory filename">/tmp</code>).</p><p>When the script finishes, the chunked output will be in
+<code class="directory filename">/tmp</code>.</p><div class="admonition tip"><div><div class="icon">☞</div><div class="body"><header><div class="title">Tip</div></header><div><p>If you choose to use Docker, you don’t have to rebuild the container
+everytime a new stylesheet release occurs. You can simply mount the new
+<code class="directory filename">xslt</code> directory into the container
+like any other directory.</p></div></div></div></div><section id="docker-on-linux" class="section"><header><h3><span class="label">2<span class="sep">.</span>4<span class="sep">.</span>1</span><span class="sep">. </span>Docker on Linux</h3></header><p>When a Docker container running on Linux writes to the local
+filesystem, for example because you mounted it in a container, any
+files written by the container will be owned by “root”. This can be
+quite inconvenient.</p><p>If there’s an elegant solution to this problem, I haven’t found it.
+Some users have reported success using <a href="https://podman.io/" class="link">podman</a>,
+a Docker-compatible, open source alternative that apparently doesn’t exhibit this behavior.
+</p><p>The following approach will work with Docker, but it’s a bit more complicated.</p><ol class="orderedlist" type="1"><li><p>Create a volume, say <em class="replaceable">docbook-output</em>,
+with the <code>docker volume</code> command.</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker volume create <em class="replaceable">docbook-output</em></code></span></span>
+</pre></div></li><li><p>Instead of mounting a directory on the local filesystem in the container, mount
+the volume.</p></li><li><p>Run the transformation.</p></li><li><p>In order to copy the files off the volume, the volume has to be
+mounted on a running container. You can start one with <code>docker run</code>,
+for example:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker run —mount source=<em class="replaceable">docbook-output</em>,target=/out \</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>       --name copy-helper -d busyboxy sleep 3600</code></span></span>
+</pre></div></li><li><p>Copy the files out of the container. For a single file, <code>docker cp</code> will
+do the trick:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker cp copy-helper:/out/<em class="replaceable">filename.html</em> .</code></span></span>
+</pre></div><p>If there are multiple output files, you can copy them individually, or you can use 
+<code>docker exec</code>:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker exec copy-helper \</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>       /bin/sh -c 'cd /out &amp;&amp; tar cf - .' &gt; out.tar</code></span></span>
+</pre></div><p>That’ll copy all the files into the <code class="filename">out.tar</code> archive which you can
+expand wherever you like.</p></li><li><p>When you have the files, you can stop and remove the container with:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker stop copy-helper</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker rm copy-helper</code></span></span>
+</pre></div></li><li><p>You may want to remove the volume you created as well:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>docker volume rm docbook-output</code></span></span>
+</pre></div><p>and recreate it for the next transformation. If you don’t, be
+aware that the content of the volume will persist. If you resuse the
+volume for other transformations, the output from the various
+transformations will be mingled together on the volume.</p><p>And, perhaps obviously, if you remove the volume before you copy
+the files off of it, the files will be lost.</p></li></ol><p>In short: using a Docker container on Linux is somewhat less convenient.</p></section></section><section id="using_s5" class="section"><header><h2><span class="label">2<span class="sep">.</span>5</span><span class="sep">. </span>Run in Oxygen</h2></header><p>“<span class="productname"><a href="https://oxygenxml.com/">Oxygen</a></span>” is a family
+of tools for XML authoring and development. The <cite class="citetitle">DocBook
+xslTNG Stylesheets</cite> are not currently shipped with Oxygen. To
+take advantage of the xslTNG stylesheets, you must setup the transformation scenarios
+yourself.</p><ol class="orderedlist" type="1"><li><p>Download the <em>nosaxon</em> xslTNG release that you want to use in Oxygen
+  (<code>docbook-xslTNG-nosaxon-<em class="replaceable">version</em>.zip</code>) and unzip
+  it somewhere in your filesystem.
+  (Oxygen includes Saxon EE; the integration will be cleaner if the release you
+  use does not include a different version of Saxon.)</p></li><li><p>Define a transformation scenario with
+  <code class="filename"><em class="replaceable">path</em>/xslt/docbook.xsl</code> as the XSLT
+ file (where <em class="replaceable">path</em> is where you unzipped the release in the previous step.</p></li><li><p>In order to use the extension functions defined in
+  <a href="#extensions" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>6</span></a>, you have to add the
+  <code>docbook-xslTNG-<em class="replaceable">version</em>.jar</code> library as an
+  <em>Extension</em> and set
+  <code>org.docbook.xslt.extensions</code> as the <em>Initializer class</em>
+  in the <em>Advanced Saxon HE/PE/EE XQuery Transformation Options</em> for
+  the transformation scenario.</p><p>Without this step the basic transformation will work, but extensions like
+  <em>image metadate extraction</em> with <code>ext:image-metadata</code> will
+  not be available.</p></li><li><p>Set the stylesheet parameters accordingly in the transformation scenario.</p></li><li><p>Run the transformation to generate HTML output. You will have to copy the
+  <code class="filename">resources/css</code> and <code class="filename">resources/js</code> directories to
+  the output location in order to get the styling and interactive features.</p></li></ol></section><section id="extensions" class="section"><header><h2><span class="label">2<span class="sep">.</span>6</span><span class="sep">. </span>Extension functions</h2></header><p>The stylesheets are distributed with several extension functions:</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><a href="ext_cwd.html"><code class="funcname">ext:cwd()</code></a></span></dt><dd><p>Returns the “current working directory” where the processor is running.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="ext_image-properties.html"><code class="funcname">ext:image-properties()</code></a></span></dt><dd><p>Returns basic properties of an image, width and height.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="ext_image-metadata.html"><code class="funcname">ext:image-metadata()</code></a></span></dt><dd><p>Returns much more comprehensive image properties and understands
+far more image types than <a href="ext_image-properties.html"><code class="funcname">ext:image-properties()</code></a>.
+Requires the <a href="references.html#metadata-extractor" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">metadata-extractor</span></span></a> libraries.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="ext_pygmentize.html"><code class="funcname">ext:pygmentize()</code></a></span></dt><dd><p>Runs the external <a href="references.html#Pygments" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Pygments</span></span></a> processor on
+a verbatim listing to add syntax highlighting.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="ext_pygmentize-available.html"><code class="funcname">ext:pygmentize-available()</code></a></span></dt><dd><p>Returns true if the external <a href="references.html#Pygments" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Pygments</span></span></a> processor
+is available on the current system.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="ext_xinclude.html"><code class="funcname">ext:xinclude()</code></a></span></dt><dd><p>Performs <a href="references.html#xinclude" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">XInclude</span></span></a> processing. This extension supports
+the basic XPointer schemes, <a href="references.html#RFC5147" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">RFC 5147</span></span></a> fragment identifiers,
+and <a href="references.html#searchfid" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">search</span></span></a>, a scheme that supports searching in text
+documents.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="ext_validate-with-relax-ng.html"><code class="funcname">ext:validate-with-relax-ng()</code></a></span></dt><dd><p>Performs RELAX NG validation.
+</p></dd></div></dl><p>At the time of this writing, all of these extension functions require
+Saxon 10.1 or later.
+Make sure that the <code class="filename">docbook-xsltng-<em class="replaceable">version</em>.jar</code>
+file is on your class path and use the Saxon <code>-init</code> option to
+load them:</p><div class="pre-wrap"><pre class="border monochrome screen verbatim"><code><code class="userinput">-init:org.docbook.xsltng.extensions.Register</code></code></pre></div><section id="ext-debug" class="section"><header><h3><span class="label">2<span class="sep">.</span>6<span class="sep">.</span>1</span><span class="sep">. </span>Extension function debugging</h3></header><p>When an extension function fails, or produces result other than
+what you expect, it can be difficult sometimes to work out what
+happened. You can enable debugging messages by setting the the system
+property <code class="property">org.docbook.xsltng.verbose</code>.</p><p>Setting the property to the value “<code>true</code>” enables
+all of the debugging messages. For a more selective approach, set it
+to a comma separated list of keyword values.</p><p>The following keywords are recognized:</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><code class="literal">registration</code></span></dt><dd><p>Enables messages related to function registration.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">image-properties</code></span></dt><dd><p>Enables messages related to image properties.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">image-errors</code></span></dt><dd><p>Enables messages related to image properties, but only when the
+function was unable to find the properties or encountered some sort of error
+condition.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">pygmentize-show-command</code></span></dt><dd><p>Enables a message that will show the pygmentize command as it was run.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">pygmentize-show-results</code></span></dt><dd><p>Enables a message that will show the output of the pygmentize command,
+before it is processed by the function.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">pygmentize-errors</code></span></dt><dd><p>Enables messages related to errors encountered attempting to highlight
+listings with pygmentize.
+</p></dd></div></dl></section></section><section id="chunking" class="section"><header><h2><span class="label">2<span class="sep">.</span>7</span><span class="sep">. </span>“Chunked” output</h2></header><p>Transforming <q><code class="filename">myfile.xml</code></q> with
+<code class="filename">docbook.xsl</code> usually produces a single HTML
+document. For large documents, books like this one for example, it’s
+sometimes desirable to break the input document into a collection of
+web pages. You can achieve this with the
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite> by setting
+two parameters:
+</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><a href="p_chunk.html"><code class="paramname">$chunk</code></a><span class="indexterm" id="chunking_variablelist1_varlistentry1_term1_indexterm1"></span></span></dt><dd><p>This parameter should be set to the name that you want to use for the
+first, or top, page of the result. The name
+<q><code class="filename">index.html</code></q> is a common choice.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="p_chunk-output-base-uri.html"><code class="paramname">$chunk-output-base-uri</code></a><span class="indexterm" id="chunking_variablelist1_varlistentry2_term1_indexterm1"></span></span></dt><dd><p>This parameter should be set to the absolute path where you want
+to use as the base URI for the result documents, for example
+<code class="directory filename">/home/ndw/output/guide/</code>.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>The trailing slash is important, this is a URI. If you specify
+only <code class="directory filename">/home/ndw/output/guide</code>, the
+base URI will be taken to be <code class="directory filename">/home/ndw/output/</code>,
+and the documents won’t have the URIs you expect.</p></div></div></div></div><p>This output URI has nothing to do with where your documents are
+ultimately published and the documents themselves won’t contain any references
+to it. It simply establishes the root of output. If you’re running your
+XSLT processor from the command line, it’s likely that the documents will
+be written to that location. If you’re running an XProc pipeline, it simply
+controls the URIs that appear on the secondary result port.
+</p></dd></div></dl><p>Many aspects of chunking can be easily customized. A few of the most
+relevant parameters and templates are:
+</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><a href="p_chunk-include.html"><code class="paramname">$chunk-include</code></a><span class="indexterm" id="chunking_variablelist2_varlistentry1_term1_indexterm1"></span> and 
+<a href="p_chunk-exclude.html"><code class="paramname">$chunk-exclude</code></a><span class="indexterm" id="chunking_variablelist2_varlistentry1_term1_indexterm2"></span></span></dt><dd><p>Taken together, these two parameters determine what elements in your
+source document will be considered “chunks” in the output.</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="p_persistent-toc.html"><code class="paramname">$persistent-toc</code></a><span class="indexterm" id="chunking_variablelist2_varlistentry2_term1_indexterm1"></span></span></dt><dd><p>If this parameter <span class="glossterm"><a href="glossary.html#glossary_ge5">is true</a></span>, then a JavaScript
+“fly-out” table of contents will be available on every page.</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="p_chunk-nav.html"><code class="paramname">$chunk-nav</code></a><span class="indexterm" id="chunking_variablelist2_varlistentry3_term1_indexterm1"></span></span></dt><dd><p>This parameter, discussed more thoroughly in
+<a href="#chunk-navigation" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>7<span class="sep">.</span>1</span>, “Keyboard navigation”</a> enables keyboard navigation between
+chunks.</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="t_top-nav.html"><code class="template">t:top-nav</code></a> and
+<a href="t_bottom-nav.html"><code class="template">t:bottom-nav</code></a></span></dt><dd><p>These templates control how the top-of-page and bottom-of-page
+navigation aids are constructed.</p></dd></div></dl><section id="chunk-navigation" class="section"><header><h3><span class="label">2<span class="sep">.</span>7<span class="sep">.</span>1</span><span class="sep">. </span>Keyboard navigation</h3></header><p>If the <a href="p_chunk-nav.html"><code class="paramname">$chunk-nav</code></a><span class="indexterm" id="chunk-navigation_para1_indexterm1"></span> parameter <span class="glossterm"><a href="glossary.html#glossary_ge5">is
+true</a></span>, a reference to an additional JavaScript library will
+be included in the resulting pages. This library supports keyboard
+navigation between the pages. The navigation keys are described in the
+<a href="p_chunk-nav.html" class="link">parameter reference page</a>.
+</p></section></section><section id="presentation-mode" class="section"><header><h2><span class="label">2<span class="sep">.</span>8</span><span class="sep">. </span>Presentation mode</h2></header><p>Presentation mode implements paged navigation through a document.
+For presentation mode, a single document is used (rather than chunking) with 
+some JavaScript code providing the user interface.</p><p>As the name implies, it’s designed for use in presentations:</p><ul class="itemizedlist"><li><p>It uses generally
+larger fonts by default and works best for many small pages</p></li><li><p>Each unit of a
+document (part, chapter, article, section, etc.) becomes a page.</p></li><li><p>Presentation mode replaces earlier “slides” and “speaker notes” implementations.</p></li></ul><p>Beyond the paginated navigation, presentation mode has three key features:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term">Synchronization</span></dt><dd><p>When served with <code class="protocol systemitem">https</code>
+(or from <code class="domainname systemitem">localhost</code> with
+<code class="protocol systemitem">http</code>), presentation mode can use
+local storage to synchronize display in different browser windows.</p><p>Add</p><div class="pre-wrap"><pre class="language-none programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;meta xmlns="http://www.w3.org/1999/xhtml"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>      name="localStorage.key" content="keyName"/&gt;</code></span></span>
+</pre></div><p>to the <code class="tag tag-element">info</code> of your document.</p><p>The key name is irrelevant, but is used to coordinate between windows.
+All documents with the same key name will be synchronized together.
+<sup id="f1-fref" class="footnote-number"><a href="#f1-fnote">*</a></sup>
+</p><p>Synchronized displays are useful for reading speaker notes in one view
+while presenting the “normal” view to your audience.</p></dd></div><div class="varlistentry"><dt><span class="term">Speaker notes</span></dt><dd><p>Speaker notes can be placed on any page.
+They are not displayed as part of the normal presentation.
+They can be revealed by selecting notes view (pressing <span class="keycap">S</span>).
+</p><p>Use the <code class="literal">speaker-notes</code> role to add speaker notes.
+</p></dd></div><div class="varlistentry"><dt><span class="term">Progressive reveal</span></dt><dd><p>Any elements marked with the role <code class="literal">reveal</code> will
+be hidden initially. Navigating forward or pressing <span class="keycap">Space</span> will reveal them.</p><p>When applied to lists, the behavior applies to
+all of the items except the first.</p><p>If an item is marked both <code class="literal">reveal</code> and <code class="literal">transitory</code>,
+it will be revealed in turn and then concealed again when the next item is revealed.
+This allows one to create the illusion, for example, of bullet items being replaced.</p></dd></div></dl><p>In sort, you get:</p><ul class="itemizedlist"><li><p>Quick and easy presentations from DocBook documents.
+</p></li><li><p>No special markup required.
+</p></li><li><p>Easy navigation.
+</p></li><li><p>Clean look and feel.
+</p></li><li><p>Advanced features:
+</p><ul class="itemizedlist"><li><p>Synchronized display
+</p></li><li><p>Speaker notes
+</p></li><li><p>Progressive and transitory reveals
+</p></li></ul></li></ul><p>Pressing <span class="keycap">F1</span> in a presentation mode document will display
+a summary of the keyboard navigation shortcuts.</p><p>There’s a small customization layer in the distribution,
+<code class="filename">presentation.xsl</code> that enables presentation mode
+and changes some of the generated text so that the labels “Part”, “Chapter”, and so forth aren’t
+in the output.</p></section><section id="profiling" class="section"><header><h2><span class="label">2<span class="sep">.</span>9</span><span class="sep">. </span>Effectivity attributes and profiling</h2></header><p>When documenting computer hardware and software systems, it’s
+very common to have different documentation sets that overlap
+signficantly. Documentation for two different models of network
+router, for example, might differ only in a few specific details. Or a
+user guide aimed at experts might have a lot in common with the new user
+guide.</p><section id="profiling_s1" class="section"><header><h3><span class="label">2<span class="sep">.</span>9<span class="sep">.</span>1</span><span class="sep">. </span>Effectivity</h3></header><p>There are many ways to address this problem, but one of the
+simplest is to identify the “effectivity” of different parts of a
+document. Effectivity in this context means identifying the parts
+of a document that are effective for different audiences.</p><p>When a document is formatted, the stylesheets can selectively
+include or omit elements based on their configured effectivity. This
+“profiled” version of the document is the one that’s explicitly
+targeted to the audience specified.</p><p>DocBook supports a wide variety of common attributes for this
+purpose:</p><div id="table.effectivity-attributes" class="formalobject table"><header><div class="title">Table <span class="label">2<span class="sep">.</span>1</span><span class="sep">. </span>Common DocBook effectivity attributes</div></header><table><thead><tr><th>Attribute</th><th>Nominal effectivity axis</th></tr></thead><tbody><tr><td>arch</td><td>The architecture, Intel or AMD</td></tr><tr><td>audience</td><td>The audience, operations or development</td></tr><tr><td>condition</td><td>Any condition (semantically neutral)</td></tr><tr><td>conformance</td><td>The conformance level</td></tr><tr><td>os</td><td>The operating system, Windows or Linux</td></tr><tr><td>outputformat</td><td>The output format, print or online</td></tr><tr><td>revision</td><td>The revision, 3.4 or 4.0.</td></tr><tr><td>security</td><td>The security, secret or top-secret</td></tr><tr><td>userlevel</td><td>The user level, novice or expert</td></tr><tr><td>vendor</td><td>The vendor, Acme or Yoyodyne</td></tr><tr><td>wordsize</td><td>The word size, 32 or 64 bit</td></tr></tbody></table></div><p>In addition, the stylesheets support profiling on several common attributes
+that are not explicitly for effectivity: <code class="tag tag-attribute">xml:lang</code>, <code class="tag tag-attribute">revisionflag</code>,
+and <code class="tag tag-attribute">role</code>.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>DocBook places no constraints on the values used for effectivity
+and the stylesheets don’t either. You’re free to use “cat” and “dog”
+as effectivity values in the <code class="tag tag-attribute">wordsize</code> attribute, if you
+wish. The further you deviate from the nominal meaning, the more
+important it is to document your system!</p></div></div></div></div><p>Consider <a href="#ex-profile-os" class="xref xref-example">Example <span class="label">2<span class="sep">.</span>1</span>, “A contrived effectivity example”</a>.</p><div id="ex-profile-os" class="example formalobject"><div class="pre-wrap"><pre class="language-none programlisting verbatim"><code>&lt;para&gt;This is an utterly contrived example of
+some common text. Options are introduced with the
+&lt;phrase os="windows"&gt;/&lt;/phrase&gt;
+&lt;phrase os="mac;linux"&gt;-&lt;/phrase&gt; character.&lt;/para&gt;</code></pre></div><header><div class="title">Example <span class="label">2<span class="sep">.</span>1</span><span class="sep">. </span>A contrived effectivity example</div></header></div><p>If this document is formatted with the <a href="p_profile-os.html"><code class="paramname">$profile-os</code></a><span class="indexterm" id="profiling_s1_para6_indexterm1"></span>
+parameter set to “windows”, it will produce:</p><blockquote class="blockquote"><p>This is an utterly contrived example of
+some common text. Options are introduced with the
+<span class="phrase">/</span>
+ character.</p></blockquote><p>If “mac” or “linux” is specified, it will produce:</p><blockquote class="blockquote"><p>This is an utterly contrived example of
+some common text. Options are introduced with the
+
+<span class="phrase">-</span> character.</p></blockquote><div class="admonition important"><div><div class="icon">☝</div><div class="body"><header><div class="title">Important</div></header><div><p>If the document is formatted without any profiling, <em>all</em>
+of the versions will be included:</p><blockquote class="blockquote"><p>This is an utterly contrived example of
+some common text. Options are introduced with the
+<span class="phrase">/</span>
+<span class="phrase">-</span> character.</p></blockquote><p>That is unlikely to work well.</p></div></div></div></div></section><section id="profiling_s2" class="section"><header><h3><span class="label">2<span class="sep">.</span>9<span class="sep">.</span>2</span><span class="sep">. </span>Profiling</h3></header><p>The profiling parameters are applied to every document:
+<a href="p_profile-arch.html"><code class="paramname">$profile-arch</code></a><span class="indexterm" id="profiling_s2_para1_indexterm1"></span>,
+<a href="p_profile-audience.html"><code class="paramname">$profile-audience</code></a><span class="indexterm" id="profiling_s2_para1_indexterm2"></span>,
+<a href="p_profile-condition.html"><code class="paramname">$profile-condition</code></a><span class="indexterm" id="profiling_s2_para1_indexterm3"></span>,
+<a href="p_profile-conformance.html"><code class="paramname">$profile-conformance</code></a><span class="indexterm" id="profiling_s2_para1_indexterm4"></span>,
+<a href="p_profile-lang.html"><code class="paramname">$profile-lang</code></a><span class="indexterm" id="profiling_s2_para1_indexterm5"></span>,
+<a href="p_profile-os.html"><code class="paramname">$profile-os</code></a><span class="indexterm" id="profiling_s2_para1_indexterm6"></span>,
+<a href="p_profile-outputformat.html"><code class="paramname">$profile-outputformat</code></a><span class="indexterm" id="profiling_s2_para1_indexterm7"></span>,
+<a href="p_profile-revision.html"><code class="paramname">$profile-revision</code></a><span class="indexterm" id="profiling_s2_para1_indexterm8"></span>,
+<a href="p_profile-revisionflag.html"><code class="paramname">$profile-revisionflag</code></a><span class="indexterm" id="profiling_s2_para1_indexterm9"></span>,
+<a href="p_profile-role.html"><code class="paramname">$profile-role</code></a><span class="indexterm" id="profiling_s2_para1_indexterm10"></span>,
+<a href="p_profile-security.html"><code class="paramname">$profile-security</code></a><span class="indexterm" id="profiling_s2_para1_indexterm11"></span>,
+<a href="p_profile-userlevel.html"><code class="paramname">$profile-userlevel</code></a><span class="indexterm" id="profiling_s2_para1_indexterm12"></span>,
+<a href="p_profile-vendor.html"><code class="paramname">$profile-vendor</code></a><span class="indexterm" id="profiling_s2_para1_indexterm13"></span>, and
+<a href="p_profile-wordsize.html"><code class="paramname">$profile-wordsize</code></a><span class="indexterm" id="profiling_s2_para1_indexterm14"></span>. Each of these values is treated
+as a string and broken into tokens at the
+<a href="p_profile-separator.html"><code class="paramname">$profile-separator</code></a><span class="indexterm" id="profiling_s2_para1_indexterm15"></span>.</p><p>For every element in the source document:</p><ul class="itemizedlist"><li><p>If it specifies a value for an effectivity attribute, the value
+is split into tokens at the
+<a href="p_profile-separator.html"><code class="paramname">$profile-separator</code></a><span class="indexterm" id="profiling_s2_itemizedlist1_listitem1_para1_indexterm1"></span>.</p></li><li><p>If the corresponding profile parameter is not empty, then the
+element is discarded unless at least one of the tokens in the profile
+parameter list is also in the effectivity list.</p></li></ul><p>In practice, elements that don’t specify effectivity are always included
+and profile parameters that are empty don’t exclude any elements.</p></section><section id="dynprofiling" class="section"><header><h3><span class="label">2<span class="sep">.</span>9<span class="sep">.</span>3</span><span class="sep">. </span>Dynamic profiling</h3></header><p>Dynamic profiling is a feature that allows you to profile the output
+of the stylesheets according to the runtime values of stylesheet parameters.
+You can, for example, produce different output depending on whether or not
+chunking is enabled or JavaScript is being used for annotations.</p><p>To enable dynamic profiling, set the <a href="p_dynamic-profiles.html"><code class="paramname">$dynamic-profiles</code></a><span class="indexterm" id="dynprofiling_para2_indexterm1"></span>
+parameter to “<span class="glossterm"><a href="glossary.html#glossary_ge5">true</a></span>”.</p><p>In the interest of performance, security, and legibility,
+dynamic profiles don’t support arbitrary expressions.
+You can use a variable name by itself, <code>$flag</code>, which tests
+if that variable <span class="glossterm"><a href="glossary.html#glossary_ge5">is true</a></span>, or you can use a
+simple comparison, <code>$var=value</code> which tests if (the string value of)
+<code>$var</code> has the value <code>value</code>.
+(If <code>$var</code> is a list, it’s an existential
+test.) You also can’t use boolean operators or any other fancy expressions.
+</p><p>If you really need to have a dynamic profile based on some
+arbitrary condition, you can do it by making a customization layer
+that stores that computation in a variable and then testing that
+variable in your dynamic profile.</p><div class="sidebar"><header><div class="title">Backwards incompatibility</div></header><p>This is slightly backwards
+incompatible in that profile values that begin with a dollar sign are
+now interpreted differently. This is only true if dynamic profiling is
+enabled.</p></div><p>An element with dynamic profiling will be published if none of
+it’s profile expressions evaluate to false. This is slightly different
+from the ordinary profiling semantic which publishes the element if
+any of it’s values match.</p></section></section><section id="customize-individual-cross-references" class="section"><header><h2><span class="label">2<span class="sep">.</span>10</span><span class="sep">. </span>Customize individual cross references</h2></header><p>Most kinds of generated text apply across an entire document: do you want chapters
+to be numbered? Should generated text be in English or French? What form should numbered
+and unnumbered sections have? The mechanisms for changing this generated text are
+described in <a href="ch-localization.html" class="xref xref-chapter">Chapter <span class="label">4</span>, Localization</a>. These mechanisms control the formatting
+of cross references.</p><p>But it’s sometimes desirable to be able to change the format of a
+cross reference on an individual basis (that is, on the basis of the
+context in which the <em>reference</em> occurs, not the
+nature of what is <em>referenced</em>). You might, for
+example, want to shorten a cross reference to just a label if it’s
+already been referenced several times.</p><p>Consider a cross reference to a section:
+<code>see &lt;xref linkend="syntax-highlighting"/&gt;</code>.
+In the localization style of this guide, that is rendered like this:
+see <a href="#syntax-highlighting" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>11</span>, “Syntax highlighting”</a>.</p><p>The text that is generated by a cross reference can be customized
+for individual references with the <code>xrefstyle</code> attribute.
+For example, 
+<code>see &lt;xref linkend="syntax-highlighting" xrefstyle="%l"/&gt;</code>,
+will produce a result like this:
+see <a href="#syntax-highlighting" class="xref xref-section"><span class="label">2<span class="sep">.</span>11</span></a>.</p><p>You can use the <code>%c</code>, <code>%l</code> and
+<code>%p</code> values from <a href="ch-localization.html#table.template-letter-substitutions" class="xref xref-table">Table <span class="label">4<span class="sep">.</span>1</span>, “Template %-letter substitutions”</a> in
+<code>xrefstyle</code>. There is also an additional
+<code>%label</code> for <em>the full Label</em>, which is
+the component`s name and number. The use of these percent-values is
+explained in the following table, where all cross references target
+the next section called <a href="#syntax-highlighting" class="xref xref-section">Syntax highlighting</a>.</p><div id="customize-individual-cross-references_informaltable1" class="informalobject informaltable"><table><colgroup><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/></colgroup><thead><tr><th class="bleft btop colsep rowsep top">Value of <code>xref/@xrefstyle</code></th><th class="btop colsep rowsep top">Result</th><th class="btop colsep rowsep top">Remark</th></tr></thead><tbody><tr><td class="bleft btop colsep rowsep top">(<code>@xrefstyle</code> is absent)</td><td class="btop colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>11</span>, “Syntax highlighting”</a></td><td class="btop colsep rowsep top">Default</td></tr><tr><td class="bleft colsep rowsep top"><code>%c</code></td><td class="colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section">Syntax highlighting</a></td><td class="colsep rowsep top">Content, e. g. title of target</td></tr><tr><td class="bleft colsep rowsep top"><code>%l</code></td><td class="colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section"><span class="label">2<span class="sep">.</span>11</span></a></td><td class="colsep rowsep top">Label, ususally the targets number.</td></tr><tr><td class="bleft colsep rowsep top"><code>%label</code></td><td class="colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>11</span></a></td><td class="colsep rowsep top">The full Label, ususally the targets number and name.</td></tr><tr><td class="bleft colsep rowsep top"><code>%p</code></td><td class="colsep rowsep top"></td><td class="colsep rowsep top">Page number. Intended for print output (PDF). Displayed as <em>"#"</em> in HTML,
+              unless you differentiate between the output formats for print and online. See <a href="#using-pagenumber-in-crossreferences" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>10<span class="sep">.</span>1</span></a> for a possible
+              solution.</td></tr><tr><td class="bleft colsep rowsep top"><code>%label (%c)</code></td><td class="colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>11</span> (Syntax highlighting)</a></td><td class="colsep rowsep top">You can use different %-letters and combine with text</td></tr></tbody></table></div><h3 class="bridgehead">Legacy values for xrefstyle</h3><p>In order to support migration from XSLT 1.0 Stylesheets, xslTNG supports the
+<code>template:</code> Syntax which is explained in
+“<a href="http://www.sagehill.net/docbookxsl/CustomXrefs.html#usingtemplate" class="link">Customizing
+    with an xrefstyle attribute / Using template:</a>” in
+ the book “<cite class="citetitle">DocBook XSL: The Complete
+  Guide</cite>”. This is summarized in the following
+  table.</p><div id="customize-individual-cross-references_informaltable2" class="informalobject informaltable"><table><colgroup><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/></colgroup><thead><tr><th class="bleft btop colsep rowsep top">Value of <code>xref/@xrefstyle</code></th><th class="btop colsep rowsep top">Result</th><th class="btop colsep rowsep top">Remark</th></tr></thead><tbody><tr><td class="bleft btop colsep rowsep top"><code>template:the chapter numbered %n</code></td><td class="btop colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section">the chapter numbered <span class="label">2<span class="sep">.</span>11</span></a></td><td class="btop colsep rowsep top">XSLT 1.0 Legacy Syntax</td></tr><tr><td class="bleft colsep rowsep top"><code>template:the chapter called %t</code></td><td class="colsep rowsep top"><a href="#syntax-highlighting" class="xref xref-section">the chapter called Syntax highlighting</a></td><td class="colsep rowsep top">XSLT 1.0 Legacy Syntax</td></tr></tbody></table></div><section id="using-pagenumber-in-crossreferences" class="section"><header><h3><span class="label">2<span class="sep">.</span>10<span class="sep">.</span>1</span><span class="sep">. </span>Using pagenumber in cross-references</h3></header><p>The <code>%p</code> makes little sense in HTML output, since there are no page numbers.
+      If you use it anyway, it will be displayed as <em>"#"</em>, which can be
+      confusing for readers. A possible solution for this problem is the use of the
+        <code>outputformat</code> attribute, that was intoduced in <a href="#profiling" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>9</span>, “Effectivity attributes and profiling”</a> and
+        <a href="#table.effectivity-attributes" class="xref xref-table">Table <span class="label">2<span class="sep">.</span>1</span></a>.</p><p><em>This</em> cross reference to <a href="#syntax-highlighting" class="xref xref-section">Section <span class="label">2<span class="sep">.</span>11</span></a>
+       will include the target`s page number only when the
+        <code>@profile.outputformat</code> parameter is <em>"print"</em>, but without
+      the annoying <em>#</em> in HTML.</p><div id="using-pagenumber-in-crossreferences_ex1" class="example formalobject"><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="8"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code>This cross reference to </code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;xref linkend="syntax-highlighting"  xrefstyle="%label/&gt;</code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;phrase outputformat="print"&gt; </code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>  on &lt;xref linkend="syntax-highlighting" xrefstyle="page %p"/&gt;</code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code>&lt;/phrase&gt;</code></span></span>
+<span class="line" db-line="6"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>will reference the page number only when the</code></span></span>
+<span class="line" db-line="7"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>@profile.outputformat parameter is print, but</code></span></span>
+<span class="line" db-line="8"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>without the annoying # in HTML.</code></span></span>
+</pre></div><header><div class="title">Example <span class="label">2<span class="sep">.</span>2</span><span class="sep">. </span>Use outputformat to deal with page numbers in cross references</div></header></div></section></section><section id="syntax-highlighting" class="section"><header><h2><span class="label">2<span class="sep">.</span>11</span><span class="sep">. </span>Syntax highlighting</h2></header><p>Program listings and other verbatim environments can be “syntax highlighted”,
+that is, the significant tokens in the listing can be colored differently (keywords in red,
+quoted strings in blue, that sort of thing).</p><p>The default syntax highlighter is <a href="references.html#Pygments" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Pygments</span></span></a>, an external
+Python program. This has the advantage that the highlighted listing is available to
+the stylesheets. The stylesheets can then render line numbers, call outs, and other
+features.</p><p>But running an external program for every verbatim environment requires
+<em>having</em> the external program and also, if there are many verbatim
+environments, may slow down the formatting process</p><p>An alternative is to use a JavaScript highlighter in the browser such as
+<a href="references.html#highlight.js" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">highlight.js</span></span></a> or <a href="references.html#Prism" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Prism</span></span></a>. This approach
+has no impact on formatting and doesn’t require an external process. However, it means the
+<cite class="citetitle">xslTNG Stylesheets</cite> have no control over the process. Most of the 
+verbatim options only apply when Pygments is used.</p><p>The choice of syntax highlighter is determined by the
+<a href="p_verbatim-syntax-highlighter.html"><code class="paramname">$verbatim-syntax-highlighter</code></a><span class="indexterm" id="syntax-highlighting_para5_indexterm1"></span> parameter.</p></section><section id="persistent-toc" class="section"><header><h2><span class="label">2<span class="sep">.</span>12</span><span class="sep">. </span>Persistent table of contents</h2></header><p>The persistent Table of Contents (ToC) provides a full ToC for
+an entire document accessible from each <a href="#chunking" class="link">chunked</a>
+page.</p><p>The ToC is accessed by clicking on the “book” icon in the upper right
+corner of the page as shown in <a href="#fig.ptoc.1" class="xref xref-figure">Figure <span class="label">2<span class="sep">.</span>2</span>, “Opening the ToC”</a>.</p><div id="fig.ptoc.1" class="figure formalobject"><div class="mediaobject" summary="Screen capture with an arrow pointing at the closed book icon in the upper-right corner."><div class="media image"><picture class="imageobject"><img src="media/ptoc-1.png" alt="Screen capture with an arrow pointing at the closed book icon in the upper-right corner."/></picture></div></div><header><div class="title">Figure <span class="label">2<span class="sep">.</span>2</span><span class="sep">. </span>Opening the ToC</div></header></div><p>The icon and other aspects of the style can be changed by providing
+<a href="p_persistent-toc-css.html"><code class="paramname">$persistent-toc-css</code></a><span class="indexterm" id="persistent-toc_para3_indexterm1"></span>.</p><p>Once open, the ToC is displayed. A long ToC will be scrolled to
+the location of the current page in the document as shown in
+<a href="#fig.ptoc.2" class="xref xref-figure">Figure <span class="label">2<span class="sep">.</span>3</span>, “The Persistent ToC”</a>.</p><div id="fig.ptoc.2" class="figure formalobject"><div class="mediaobject" summary="Screen capture showing the persistent ToC window on the right."><div class="media image"><picture class="imageobject"><img src="media/ptoc-2.png" alt="Screen capture showing the persistent ToC window on the right."/></picture></div></div><header><div class="title">Figure <span class="label">2<span class="sep">.</span>3</span><span class="sep">. </span>The Persistent ToC</div></header></div><p>The persistent ToC popup is transient by default, meaning that
+it will disappear if you use it to navigate to a different page. If
+you open the popup by “shift-clicking” on it, the ToC will persist
+until you dismiss it. This can also be accomplished by selecting the
+check box in the ToC. The presense of the search bar is controlled by
+the <a href="p_persistent-toc-search.html"><code class="paramname">$persistent-toc-search</code></a><span class="indexterm" id="persistent-toc_para5_indexterm1"></span> parameter.</p><section id="ptoc-data-file" class="section"><header><h3><span class="label">2<span class="sep">.</span>12<span class="sep">.</span>1</span><span class="sep">. </span>Persistent ToC data</h3></header><p>The data used by the persistent ToC can be stored in a separate
+file or stored in each chunk. This is controlled by the
+<a href="p_persistent-toc-filename.html"><code class="paramname">$persistent-toc-filename</code></a><span class="indexterm" id="ptoc-data-file_para1_indexterm1"></span>.</p><ol class="orderedlist" type="1"><li><p>If <a href="#chunking" class="link">chunking</a> is enabled and the
+<a href="p_persistent-toc-filename.html"><code class="paramname">$persistent-toc-filename</code></a><span class="indexterm" id="ptoc-data-file_orderedlist1_listitem1_para1_indexterm1"></span> parameter is non-empty,
+it’s used as a filename and a single copy of the ToC will be saved in
+that file.</p><p>The benefit of this approach is that the HTML chunks are
+smaller. If the persistent ToC is written into every chunk, the size
+of each HTML chunk increases in proportion to the size of the ToC. For
+a large document with lots of small pages, this can be a significant
+percentage of the overall size.</p><p>There are two disadvantages:</p><ol class="orderedlist" type="a"><li><p>This will not work if the documents are accessed with
+<code>file:</code> URIs: you must use <code>http</code> (and in some
+environments, perhaps <code>https</code>) to load the documents. The
+browser will (quite reasonably) not allow JavaScript to load documents
+from the filesystem.</p></li><li><p>Also, with this approach, opening the ToC requires another
+document to be loaded into the browser. For a large ToC, this can
+introduce visible latency, although browser caching tends to reduce
+that after the document has been loaded once.
+</p></li></ol></li><li><p>If the 
+<a href="p_persistent-toc-filename.html"><code class="paramname">$persistent-toc-filename</code></a><span class="indexterm" id="ptoc-data-file_orderedlist1_listitem2_para1_indexterm1"></span> parameter is the empty
+sequence, a copy of the ToC is stored in each chunk.</p><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Note</div></header><div><p>When stored in each chunk, the Table of Contents is secreted away in a
+<code class="tag tag-element">script</code> element so that
+it will be ignored by screen readers and other user agents that don’t
+support JavaScript or CSS.
+</p></div></div></div></div><p>The benefit of this approach is that it requires no additional
+document to be loaded and will work even if the documents are loaded
+with <code>file</code> URIs.</p><p>The disadvantage of this approach is that it increases the size of
+each chunk. Whether that matters depends on the size of the ToC, the relative
+size of the chunks, bandwidth and other constraints.</p></li><li><p>If chunking <em>is not</em> being used, there will
+only be one HTML result and the ToC will always be stored in that chunk.
+</p></li></ol></section></section><section id="onpage-toc" class="section"><header><h2><span class="label">2<span class="sep">.</span>13</span><span class="sep">. </span>On-page table of contents</h2></header><p>Documents come in many shapes and sizes. Consequently, there are
+a variety of navigation mechanisms available. For long documents, such as books,
+a Table of Contents (ToC) is traditional (as are indexes). For web presentation,
+long documents may be broken into chunks, for example at the chapter level.
+In this case, header and footer navigation between chunks is almost always
+available. For large documents a “<a href="#persistent-toc" class="link">persistent
+ToC</a>” can enable quick navigation from any chunk.</p><p>You can also enable an on-page ToC. The on-page ToC provides a
+navigation mechanism for sections within a page. By default, it
+appears on the right of the page if the window is wide enough to
+comfortably display it next to the main body.</p><p>The current implementation requires JavaScript. In fact it is not
+constructed from the DocBook markup, but instead from the HTML markup when
+the page is rendered. To be precise, the ToC is constructed from HTML
+<code class="tag tag-element">section</code> elements that
+begin with a <code class="tag tag-element">header</code> that
+contains an
+<code class="tag tag-element">h1</code>…<code class="tag tag-element">h6</code>
+element. It is therefore either a bug or a feature, depending on your perspective,
+that a customization layer that changes how sections are marked up will change
+what appears in the ToC. If you simply wish to suppress a particular section
+from appearing in the ToC, add <code class="literal">nopagetoc</code> to its
+<code class="tag tag-attribute">class</code> attribute.</p><p>Several parameters control presentation and formatting of the on-page ToC.</p><dl class="long-terms variablelist"><div class="varlistentry"><dt><span class="term"><a href="p_pagetoc-elements.html"><code class="paramname">$pagetoc-elements</code></a><span class="indexterm" id="onpage-toc_variablelist1_varlistentry1_term1_indexterm1"></span></span></dt><dd><p>A list of the names of the elements (technically, the classes of
+the sections) that should get an on-page ToC. It’s empty by default (meaning no
+such ToC is rendered). For the standard presentation of this guide,
+the list is set to <code>preface chapter appendix refentry</code>.
+(The sneaky among you may wonder if you could simply set it to “<code>component</code>”
+because that class is used for all those elements; “Yes. Yes, you could.”)
+</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="p_pagetoc-dynamic.html"><code class="paramname">$pagetoc-dynamic</code></a><span class="indexterm" id="onpage-toc_variablelist1_varlistentry2_term1_indexterm1"></span></span></dt><dd><p>Determines whether or not the ToC is “dynamic”. Inspired by
+Kevin Drum’s
+<a href="https://kld.dev/toc-animation/" class="link">table of contents progress
+animation</a>, the ToC keeps track of the reader’s location in the main
+view and highlights the corresponding sections in the ToC (albeit without the
+clever SVG animation of the original).</p><p>Set this parameter to false if you find the animation distracting.
+(If the animation is enabled, a control is provided to let the reader turn it off,
+in case <em>they</em> find it distracting.)</p></dd></div><div class="varlistentry"><dt><span class="term"><a href="p_pagetoc-js.html"><code class="paramname">$pagetoc-js</code></a><span class="indexterm" id="onpage-toc_variablelist1_varlistentry3_term1_indexterm1"></span></span></dt><dd><p>This is the JavaScript that implements the on-page ToC. Changing this
+parameter allows you to replace it with JavaScript of your own invention.
+</p></dd></div><div class="varlistentry"><dt><span class="term">CSS</span></dt><dd><p>There is no <code class="literal">pagetoc-css</code> parameter; the CSS is integrated
+into the standard CSS. You can find it in the <code class="filename">pagetoc.scss</code> file
+in the repository if you want to change the presentation. (Don’t change that file,
+simply add overriding rules later in the cascade.)
+</p></dd></div></dl><p>There is also a JavaScript API that you can use to control some features
+of the presentation. This is done by adding a <code>DocBook</code> property to
+the browser’s <code>window</code> object. The value of the <code>DocBook</code> property
+should be a map. To control the on-page ToC, add a <code>pagetoc</code> property
+to the <code>DocBook</code> map. The value of this property must also be a map.</p><p>The properties of the <code>pagetoc</code> map can be used to change
+the display:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code>decorated</code></span></dt><dd><p>This is the markup used for the user-control on the on-page ToC when
+the ToC is decorated. The default value is “<code class="literal">☀</code>”.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code>plain</code></span></dt><dd><p>This is the markup used for the user-control on the on-page ToC when
+the ToC is plain (not decorated). The default value is “<code class="literal">￮</code>”.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code>hidden</code></span></dt><dd><p>This is the markup used for the user-control on the on-page ToC when
+the ToC is hidden. The default value is “<code class="literal">◄</code>”.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code>nothing_to_reveal</code></span></dt><dd><p>This property controls how the on-page ToC is rendered if there are 
+no additional sections to be revealed. It can have the value
+“<code class="literal">hide</code>”, to hide the ToC, “<code class="literal">plain</code>” to
+make its presentation plain in this case, or “<code class="literal">decorated</code>” to
+use the decorated style. The ToC will not appear if there are no sections.
+</p></dd></div></dl><p>To use the JavaScript API, make sure your assignments to the
+<code>DocBook</code> object are performed <em>before</em> the
+on-page ToC JavaScript is executed.</p></section><section id="print" class="section"><header><h2><span class="label">2<span class="sep">.</span>14</span><span class="sep">. </span>Paged-media (print output)</h2></header><p>Formatters, the tools that turn markup of any sort into
+aesthetically pleasing (or even passably acceptable) printed pages are
+fiendishly difficult to write.</p><p>In the XML space, there have been a number of standards and
+vendor-specific solutions to this problem. The current standards are
+<a href="references.html#XSLFO" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">XSL FO</span></span></a> and <a href="references.html#CSS" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">CSS</span></span></a>.
+</p><p>At present, the <cite class="citetitle">DocBook xslTNG Stylesheets</cite>
+are focused on CSS for print output. There’s a customization layer
+that produces “paged-media-ready” HTML that can be processed with
+a CSS formatter such as <a href="references.html#AntennaHouse" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Antenna House</span></span></a>
+or <a href="references.html#Prince" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">Prince</span></span></a>.</p><p>To get print output, format your documents with the
+<code class="filename">print.xsl</code> stylesheet instead of the
+<code class="filename">docbook.xsl</code> stylesheet. The additional cleanup provided
+by <code class="filename">print.xsl</code> assures that footnotes, annotations, and
+other elements will appear in the right place, and with reasonable
+presentation, in the printed version.</p><p>The resulting HTML document can be formatted directly with a
+CSS paged-media formatter.</p></section><section id="epub" class="section"><header><h2><span class="label">2<span class="sep">.</span>15</span><span class="sep">. </span>EPUB output</h2></header><p>The <cite class="citetitle">DocBook xslTNG Stylesheets</cite> will
+produce output designed for EPUB(3) if you use the
+<code class="filename">epub.xsl</code> stylesheet instead of
+<code class="filename">docbook.xsl</code>. This is new in version 1.11.0 and
+may be incomplete. The output conforms to
+<a href="https://www.w3.org/publishing/epubcheck/" class="link">EPUBCheck</a>
+version 3.2.</p><p>Producing an EPUB file is a slightly complicated process. You
+must produce (X)HTML that conforms to strict requirements, you must
+produce a media type document containing a specific text string, you
+must produce a manifest that identifies all of the content including
+all the images, stylesheets, fonts, etc, and you must finally create a
+ZIP archive (with some special consideration as well).</p><p>The stylesheets can only do part of this process. In some future
+release where we use, for example, an XProc 3.0 pipeline, it may be
+practical to do more.</p><p>When you run the EPUB stylesheet, the principle result document is the
+media type document. This has two useful side effects: first, it establishes the
+output base URI from which all the relative documents can be created, and second, if
+you fail to process some element in the input, you’re likely to get extra text characters
+in the principle result document. That will cause tools to reject the EPUB and draw your
+attention to the error.</p><p>The stylesheets also produce the META-INF files and the OPS
+directory containing the document parts and the manifest.</p><p>There are two parameters specific to EPUB:</p><dl class="variablelist"><div class="varlistentry"><dt><span class="term"><code class="literal">pub-id</code></span></dt><dd><p>This is the unique identifier for your EPUB. If you don’t specify one, a random
+one will be generated for you.
+</p></dd></div><div class="varlistentry"><dt><span class="term"><code class="literal">manifest-extra</code></span></dt><dd><p>This is a URI. If it’s specified, then it must be an XML document and that will
+be added to the EPUB manifest. This is how you can add links to media and other resources
+that the stylesheets don’t know about.
+</p></dd></div></dl><section id="metadata" class="section"><header><h3><span class="label">2<span class="sep">.</span>15<span class="sep">.</span>1</span><span class="sep">. </span>Adding metadata</h3></header><p>You can add elements to the <code class="tag tag-element">info</code> element of the root element of your
+document to add metadata to your EPUB files. Elements in the Dublin Core namespace
+will be copied through. You can also add the elements
+<code>meta</code> and <code>link</code> in the special namespace
+<code>http://docbook.org/ns/docbook/epub</code>.</p></section><section id="epub-in-ation" class="section"><header><h3><span class="label">2<span class="sep">.</span>15<span class="sep">.</span>2</span><span class="sep">. </span>EPUB in action</h3></header><p>The <a href="https://github.com/docbook/getting-started/" class="link">Getting
+Started</a> project has been updated to show how to create EPUB
+from a book. The project has support for dealing with external media,
+fonts, and constructing the final ZIP file.</p></section></section><section id="ad-hoc-css-styling" class="section"><header><h2><span class="label">2<span class="sep">.</span>16</span><span class="sep">. </span>Ad hoc CSS styling</h2></header><p>Generally speaking, it’s considered good practice to separate
+content from presentation. On the web, this is most often accomplished
+with clean, structural HTML as the content and CSS styling providing
+the presentation. Indeed, that’s how the output from the
+<cite class="citetitle">DocBook xslTNG Stylesheets</cite> is
+structured.</p><p>And yet, sometimes you need to tweak individual elements in
+small ways. For example, you may want to change the style of a single
+<code class="tag tag-element">programlisting</code> to avoid a page break inside it. Or perhaps
+you need to make some adjustment to a single image.</p><p>In principle, this can be done in a completely “hands off”
+manner: add an ID to the element and add an ID selector to the
+external CSS file. In practice, that’s a bit tedious and there’s
+nothing in the source to suggest that the styling is required or even
+exists.</p><p>HTML allows for inline styles with the <code class="tag tag-attribute">style</code> attribute and starting in version 2.1.5,
+the xslTNG stylesheets provide a way to access this feature.</p><p>DocBook allows namespace qualified attributes on any element.
+Adding attributes in the <code>https://xsltng.docbook.org/ns/css</code>
+namespace to an element will add those properties to the HTML <code class="tag tag-attribute">style</code> attribute. For example:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="4"><pre class="language-xml numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para</span><span class="w"> </span><span class="na">xmlns:css=</span><span class="s">"https://xsltng.docbook.org/ns/css"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">css:border=</span><span class="s">"1px solid blue"</span><span class="w"> </span><span class="na">css:border-radius=</span><span class="s">"0.5em"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">css:padding=</span><span class="s">"0.5em"</span><span class="nt">&gt;</span>This</code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>is<span class="w"> </span>a<span class="w"> </span>paragraph<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>border.<span class="nt">&lt;/para&gt;</span></code></span></span>
+</pre></div><p>Will be rendered as you expect:</p><p style="border:1px solid blue;padding:0.5em;border-radius:0.5em;">This
+is a paragraph with a border.</p><p>The generated HTML wraps up the CSS properties in a style
+attribute:</p><div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="2"><pre class="language-none numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;p style="padding:0.5em;border:1px solid blue;border-radius:0.5em;"</code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&gt;This is a pargraph with a border.&lt;/p&gt;</code></span></span>
+</pre></div><p>To facilitate different properties based on the output medium, the stylesheets
+will also look for attributes in the
+“<code>https://xsltng.docbook.org/ns/css#<a href="p_output-media.html"><code class="paramname">$output-media</code></a><span class="indexterm" id="ad-hoc-css-styling_para9_code1_indexterm1"></span></code>”
+namespace. For example, this paragraph:</p><div class="pre-wrap highlight" db-startinglinenumber="1" db-numberoflines="6"><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">1 <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;para</span><span class="w"> </span><span class="na">xmlns:p-css=</span><span class="s">"https://xsltng.docbook.org/ns/css#print"</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">xmlns:css=</span><span class="s">"https://xsltng.docbook.org/ns/css"</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">css:background-color=</span><span class="s">"#ffaaaa"</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="w">      </span><span class="na">p-css:background-color=</span><span class="s">"#bbbbbb"</span><span class="nt">&gt;</span>This<span class="w"> </span>paragraph</code></span></span>
+<span class="line" db-line="5"><span class="ln">5 <span class="nsep">|</span></span><span class="ld"><code>has<span class="w"> </span>a<span class="w"> </span>background<span class="w"> </span>color.</code></span></span>
+<span class="line" db-line="6"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code><span class="nt">&lt;/para&gt;</span></code></span></span>
+</pre></div><p>Will be rendered with a pinkish background online and with a grey
+background in print:</p><p style="background-color:#ffaaaa;">This paragraph
+has a background color.
+</p><p>By default, the stylesheets set
+<a href="p_output-media.html"><code class="paramname">$output-media</code></a><span class="indexterm" id="ad-hoc-css-styling_para12_indexterm1"></span> to <code class="literal">screen</code> for
+“ordinary output”, <code class="literal">epub</code> for EPUB, and
+<code class="literal">print</code> for paged media.</p></section></section><footer><div class="footnotes"><hr/><div class="footnote" id="f1-fnote"><div class="footnote-number"><sup class="footnote-number"><a href="#f1-fref">*</a></sup></div><div class="footnote-body"><p>In other words, if you have two different documents
+that use the same key name and you attempt to view them simultanously
+on synchronized windows, you’ll get a tangled mess.</p></div></div></div></footer></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Chapter  1 .  Overview" href="ch-overview.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Chapter  3 .  Customizing the stylesheets" href="ch-customizing.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Chapter  1 .  Overview</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Chapter  3 .  Customizing the stylesheets</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2024 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>
