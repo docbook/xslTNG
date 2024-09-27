@@ -843,6 +843,34 @@ first figure in chapter 2 will be labeled “2.1” and the first figure
 in the first section in chapter 2 will be labeled “2.1.1”, etc.
 This most closely reproduces the numbering from the 1.x stylesheets.</para>
 
+<section>
+<title>Numeration overrides</title>
+
+<para>Although the numeration parameters give you complete control over
+numeration, they aren’t simple to use. A few common cases can be handled with
+simpler settings: <parameter>division-numbers</parameter>,
+<parameter>component-numbers</parameter>, and
+<parameter>section-numbers</parameter>. Each of these parameters is “true” by
+default and numeration of divisions, components, and sections is handled as
+described above. If these parameters are set to “false”, divisions, components,
+and sections, respectively, will not be numbered.</para>
+
+<para>Numbering can also be controlled on a per-element basis with the
+<link linkend="pi_db">db processing instruction</link>.
+<indexterm>
+<primary>db processing instruction</primary>
+</indexterm>
+If the <literal>numbered</literal>
+<indexterm>
+<primary>db processing instruction</primary>
+<secondary>numbered pseudo-attribute</secondary>
+</indexterm>
+pseudo-attribute is “true”, the division, component, or section in which that 
+processing instruction occurs, and all of its descendants, will be numbered.
+If it’s “false”, the element and its descendants will not be numbered.</para>
+<para>In this way, it would be possible to have a single chapter or article with
+numbered sections even in a book where sections are not normally numbered.</para>
+</section>
 </section>
 
 <section xml:id="using-glossaries">

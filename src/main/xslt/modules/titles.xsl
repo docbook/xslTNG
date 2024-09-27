@@ -83,7 +83,7 @@
 
     <xsl:choose>
       <xsl:when test="$test">
-        <xsl:sequence select="."/>
+        <xsl:sequence select="fp:title-properties-override($test, .)"/>
         <xsl:break/>
       </xsl:when>
       <xsl:otherwise>
@@ -93,10 +93,44 @@
   </xsl:iterate>
 </xsl:function>
 
+<xsl:function name="fp:title-properties-override" as="element()" cache="yes">
+  <xsl:param name="context" as="element()"/>
+  <xsl:param name="properties" as="element()"/>
+
+  <xsl:variable name="numbered-pi"
+                select="($context/ancestor-or-self::* ! f:pi(., 'numbered'))[last()]"/>
+
+  <!--
+  <xsl:message select="node-name($context), $numbered-pi"/>
+  -->
+
+  <xsl:element name="{node-name($properties)}" namespace="{namespace-uri($properties)}">
+    <xsl:copy select="$properties/@* except $properties/@group"/>
+    <xsl:attribute name="group">
+      <xsl:choose>
+        <xsl:when test="empty($numbered-pi)">
+          <xsl:sequence select="$properties/@group"/>
+        </xsl:when>
+        <xsl:when test="$numbered-pi[1] = 'true'">
+          <xsl:sequence select="'title-numbered'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="'title-unnumbered'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:element>
+</xsl:function>
+
+
 <xsl:template match="*" mode="mp:compute-headline-label" as="item()*">
   <xsl:param name="purpose" as="xs:string" required="yes"/>
 
   <xsl:variable name="prop" select="fp:title-properties(.)"/>
+
+  <!--
+  <xsl:message select="node-name(.), $purpose, $prop/@group/string()"/>
+  -->
 
   <xsl:variable name="template"
                 select="if ($purpose = 'lot')
