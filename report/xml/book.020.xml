@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.2">
+<info>
+  <title>Unit Test: book.020</title>
+  <author>
+    <personname>
+      <firstname>Norman</firstname>
+      <surname>Walsh</surname>
+    </personname>
+    <email>ndw@nwalsh.com</email>
+  </author>
+</info>
+
+<chapter>
+  <title>First Chapter</title>
+  <para>This chapter is numbered, so are its sections.</para>
+  <section>
+    <title>First section</title>
+    <section>
+      <title>Second section</title>
+      <para>…</para>
+    </section>
+  </section>
+</chapter>
+
+<chapter>
+  <?db numbered="false"?>
+  <title>Second Chapter</title>
+  <para>This chapter is not numbered, neither are its sections.</para>
+  <section>
+    <title>First section</title>
+    <section>
+      <title>Second section</title>
+    </section>
+  </section>
+</chapter>
+
+<chapter>
+  <title>Third Chapter</title>
+  <para>This chapter is numbered, its sections are not.</para>
+  <section>
+    <?db numbered="false"?>
+    <title>First section</title>
+    <section>
+      <title>Second section</title>
+      <para>…</para>
+    </section>
+  </section>
+</chapter>
+
+<chapter>
+  <?db numbered="false"?>
+  <title>Fourth Chapter</title>
+  <para>This chapter is not numbered, but its sections are.</para>
+  <section>
+    <?db numbered="true"?>
+    <title>First section</title>
+    <section>
+      <title>Second section</title>
+    </section>
+  </section>
+</chapter>
+
+</book>
