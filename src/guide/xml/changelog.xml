@@ -10,24 +10,43 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
-<section xml:id="r220a">
+<section xml:id="r221">
 <info>
-  <title>Changes in version 2.2.0a</title>
-  <productnumber>2.2.0a</productnumber>
-  <date>2024-09-21</date>
+  <title>Changes in version 2.2.1</title>
+  <productnumber>2.2.1</productnumber>
+  <date>2024-09-27</date>
 </info>
-<para>This is an intermediate version. It’ll be published as 2.2.1 shortly.</para>
 <itemizedlist>
 <listitem>
-  <para>Support <parameter>variablelist-panelset</parameter> presentation for
-  <tag>variablelist</tag> elements.
+  <para>Add missing zh-cn localization for “Danger”;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/510">#510</link>.
   </para>
 </listitem>
 <listitem>
-  <para>Added <xref linkend="titlepages"/> to the guide.</para>
+  <para>Added <xref linkend="titlepages"/>, describing how to customize title pages;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/507">#507</link>.</para>
 </listitem>
 <listitem>
-  <para>(Note to self: review other PRs before publishing 2.2.1!)</para>
+  <para>Added support for a <code>numbered</code> DocBook processing instruction pseudo-attribute
+  to control numbering of divisions, components, and sections on a per-element basis;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/506">#506</link>.
+  See <xref linkend="numeration-overrides"/>.</para>
+</listitem>
+<listitem>
+  <para>Added <parameter>variablelist-panelset</parameter> to 
+  support a “panel set” presentation of variable lists.</para>
+</listitem>
+<listitem>
+  <para>Simplified and corrected the selection of bibliography entry abbreviations;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/479">#479</link>.
+  Thanks, Frank!</para>
+</listitem>
+<listitem>
+  <para>Improved <filename>docbook.py</filename> script. Thanks, Rafal!</para>
+</listitem>
+<listitem>
+  <para>Added support for <tag>caption</tag> elements in CALS tables;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/472">#472</link>.</para>
 </listitem>
 </itemizedlist>
 </section>
