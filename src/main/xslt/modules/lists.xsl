@@ -361,24 +361,39 @@
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
     <xsl:apply-templates select="* except db:varlistentry"/>
+
+    <xsl:variable name="button-set" select="'tabs_' || f:id(.)"/>
+
     <div class="panelset">
       <xsl:for-each select="db:varlistentry">
         <!-- inline style so that the radio button is not displayed -->
         <!-- even if the CSS is missing -->
-        <input type="radio" name="tabs" id="{f:id(.)}" style="display:none">
+        <input type="radio" name="{$button-set}" id="{f:id(.)}" style="display:none">
           <xsl:if test="position() = 1">
             <xsl:attribute name="checked" select="'checked'"/>
           </xsl:if>
         </input>
         <label for="{f:id(.)}">
-          <xsl:apply-templates select="db:term/node()"/>
+          <xsl:apply-templates select="db:term" mode="m:panelset"/>
         </label>
         <div class="paneltab">
-          <xsl:apply-templates select="db:listitem/node()"/>
+          <xsl:apply-templates select="." mode="m:panelset"/>
         </div>
       </xsl:for-each>
     </div>
   </div>
+</xsl:template>
+
+<xsl:template match="db:term" mode="m:panelset">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="db:varlistentry" mode="m:panelset">
+  <xsl:apply-templates select="db:listitem" mode="m:panelset"/>
+</xsl:template>
+
+<xsl:template match="db:listitem" mode="m:panelset">
+  <xsl:apply-templates/>
 </xsl:template>
 
 <!-- ============================================================ -->

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+<info>
+<title>Unit Test: panelset.002</title>
+</info>
+
+<para>This unit test is an experiment in providing a “panel set” presentation
+for a variable list. This test checks that multiple panel sets on the same page
+function correctly.</para>
+
+<variablelist role="panelset">
+  <varlistentry>
+    <term>A</term>
+    <listitem>
+      <para>One</para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>B</term>
+    <listitem>
+      <para>Two</para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>C</term>
+    <listitem>
+      <para>Three</para>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+<para>And another:</para>
+
+<variablelist role="panelset">
+  <varlistentry>
+    <term>D</term>
+    <listitem>
+      <para>Four</para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>E</term>
+    <listitem>
+      <para>Five</para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>F</term>
+    <listitem>
+      <para>Six</para>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+</article>
