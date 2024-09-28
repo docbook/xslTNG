@@ -185,7 +185,7 @@ jobs:
 
       - name: Deploy main to gh-pages
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           folder: build/website
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -194,7 +194,7 @@ jobs:
 
       - name: Deploy tagged release to CDN as ${{ env.CI_TAG }}
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           folder: build/release
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -204,7 +204,7 @@ jobs:
 
       - name: Deploy tagged release to CDN as current
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           folder: build/release
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -249,7 +249,7 @@ jobs:
         run: bin/git-index-html
 
       - name: Deploy the indexes back to the CDN
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4.6.4
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           folder: .
