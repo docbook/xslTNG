@@ -2008,5 +2008,27 @@ depth of sections in the ToC.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_panelset">
+<?db filename="m_panelset"?>
+<refmeta>
+<refentrytitle>m:panelset</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}panelset</refmiscinfo>
+<refmiscinfo class="version">2.2.2</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:panelset</refname>
+<refpurpose>Process variable list elements for a panel set</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When <tag>variablelist</tag> elements are processed for a
+<parameter>variablelist-panelset</parameter>, they are processed in this mode.
+This mode makes it possible to override the templates for selected elements.
+Be aware, however, that the HTML markup is quite constrained for panel sets.
+</para>
+</refsection>
+</refentry>
+
 </reference>
 
