@@ -342,7 +342,11 @@
 
 <xsl:variable name="vp:gidmap" select="map {
   'acknowledgements': 'ack',
+  'annotation': 'an',
   'appendix': 'ap',
+  'article': 'art',
+  'bibliodiv': 'bd',
+  'bibliography': 'bi',
   'book': 'bo',
   'chapter': 'ch',
   'colophon': 'co',
@@ -350,14 +354,21 @@
   'equation': 'eq',
   'example': 'ex',
   'figure': 'fig',
+  'glossary': 'g',
+  'glossdiv': 'gd',
+  'glossentry': 'ge',
+  'glossterm': 'gt',
+  'itemizedlist': 'il',
+  'listitem': 'li',
+  'orderedlist': 'ol',
   'part': 'part',
   'preface': 'p',
   'procedure': 'proc',
   'refentry': 're',
   'reference': 'ref',
-  'refsect1': 'rs1',
-  'refsect2': 'rs2',
-  'refsect3': 'rs3',
+  'refsect1': 'rs1_',
+  'refsect2': 'rs2_',
+  'refsect3': 'rs3_',
   'sect1': 's1_',
   'sect2': 's2_',
   'sect3': 's3_',
@@ -365,12 +376,8 @@
   'sect5': 's5_',
   'section': 's',
   'table': 'tab',
-  'glossary': 'g',
-  'glossdiv': 'gd',
-  'glossentry': 'ge',
-  'glossterm': 'gt',
-  'bibliography': 'bi',
-  'bibliodiv': 'bd'
+  'variablelist': 'vl',
+  'varlistentry': 'vle'
   }"/>
 
 <xsl:function name="f:generate-id" as="xs:string" cache="yes">
@@ -411,12 +418,6 @@
   <xsl:param name="node" as="element()"/>
   <xsl:sequence select="f:generate-id($node, false())"/>
 </xsl:function>
-
-
-
-
-
-
 
 <xsl:function name="fp:css-properties" as="attribute()?">
   <xsl:param name="context" as="element()?"/>
