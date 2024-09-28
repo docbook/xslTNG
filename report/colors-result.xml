@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
-        date="2024-09-28T09:42:17.51384Z">
+        date="2024-09-28T10:57:28.918751Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
       <label>When transforming colors.001</label>
@@ -62,7 +62,7 @@ that gets presented in different colors by default today. You are, of course,
 free to add your own CSS which uses color in other places. The primary
 purpose of this document is to test various themes, so it’s most useful
 if the theme picker is enabled.</p>
-                        <p id="ordinary">This is a paragraph of ordinary text.<a class="annomark" href="#article_annotation1">
+                        <p id="ordinary">This is a paragraph of ordinary text.<a class="annomark" href="#article_an1">
                               <sup>⌖</sup>
                               <sup class="num">1</sup>
                            </a>
@@ -957,7 +957,7 @@ parenthesis.</p>
                      <footer>
                         <div class="annotations">
                            <div class="annotation-wrapper title">Annotations</div>
-                           <div id="article_annotation1" class="annotation-wrapper">
+                           <div id="article_an1" class="annotation-wrapper">
                               <div class="annotation-body">
                                  <div class="annotation-header">
                                     <div class="annotation-close"/>
@@ -1147,7 +1147,7 @@ that gets presented in different colors by default today. You are, of course,
 free to add your own CSS which uses color in other places. The primary
 purpose of this document is to test various themes, so it’s most useful
 if the theme picker is enabled.</p>
-                           <p id="ordinary">This is a paragraph of ordinary text.<a class="annomark" href="#article_annotation1">
+                           <p id="ordinary">This is a paragraph of ordinary text.<a class="annomark" href="#article_an1">
                                  <sup>⌖</sup>
                                  <sup class="num">1</sup>
                               </a>
@@ -2042,7 +2042,7 @@ parenthesis.</p>
                         <footer>
                            <div class="annotations">
                               <div class="annotation-wrapper title">Annotations</div>
-                              <div id="article_annotation1" class="annotation-wrapper">
+                              <div id="article_an1" class="annotation-wrapper">
                                  <div class="annotation-body">
                                     <div class="annotation-header">
                                        <div class="annotation-close"/>

@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/presentations.xsl"
-        date="2024-09-28T09:49:40.133703Z">
+        date="2024-09-28T11:04:50.516411Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/presentations.xspec">
       <label>When transforming presentation.001</label>
@@ -46,39 +46,39 @@
                               <div class="title">Table of Contents</div>
                               <ul class="toc">
                                  <li>
-                                    <a href="#R_article1">Introduction</a>
+                                    <a href="#R_art1">Introduction</a>
                                  </li>
                                  <li>
-                                    <a href="#R_article2">Synchronization</a>
+                                    <a href="#R_art2">Synchronization</a>
                                  </li>
                                  <li>
-                                    <a href="#R_article3">Speaker notes</a>
+                                    <a href="#R_art3">Speaker notes</a>
                                  </li>
                                  <li>
                                     <a href="#R_part1">Part <span class="label">I</span>
                                        <span class="sep">. </span>Progressive reveal</a>
                                     <ul class="toc">
                                        <li>
-                                          <a href="#R_part1_article1">Reveal elements</a>
+                                          <a href="#R_part1_art1">Reveal elements</a>
                                        </li>
                                        <li>
-                                          <a href="#R_part1_article2">List reveals</a>
+                                          <a href="#R_part1_art2">List reveals</a>
                                        </li>
                                        <li>
-                                          <a href="#R_part1_article3">Transitory reveals</a>
+                                          <a href="#R_part1_art3">Transitory reveals</a>
                                        </li>
                                        <li>
-                                          <a href="#R_part1_article4">Overrides</a>
+                                          <a href="#R_part1_art4">Overrides</a>
                                        </li>
                                     </ul>
                                  </li>
                                  <li>
-                                    <a href="#R_article4">Summary</a>
+                                    <a href="#R_art4">Summary</a>
                                  </li>
                               </ul>
                            </div>
                         </div>
-                        <section id="R_article1" class="article component">
+                        <section id="R_art1" class="article component">
                            <header>
                               <h1>Introduction</h1>
                            </header>
@@ -102,7 +102,7 @@ document (part, chapter, article, section, etc.) becomes a page.</p>
                               </li>
                            </ul>
                         </section>
-                        <section id="R_article2" class="article component">
+                        <section id="R_art2" class="article component">
                            <header>
                               <h1>Synchronization</h1>
                            </header>
@@ -157,7 +157,7 @@ while presenting the “normal” view to your audience.</p>
                               </li>
                            </ul>
                         </section>
-                        <section id="R_article3" class="article component">
+                        <section id="R_art3" class="article component">
                            <header>
                               <h1>Speaker notes</h1>
                            </header>
@@ -229,21 +229,21 @@ normal view.</p>
                                  <div class="title">Table of Contents</div>
                                  <ul class="toc">
                                     <li>
-                                       <a href="#R_part1_article1">Reveal elements</a>
+                                       <a href="#R_part1_art1">Reveal elements</a>
                                     </li>
                                     <li>
-                                       <a href="#R_part1_article2">List reveals</a>
+                                       <a href="#R_part1_art2">List reveals</a>
                                     </li>
                                     <li>
-                                       <a href="#R_part1_article3">Transitory reveals</a>
+                                       <a href="#R_part1_art3">Transitory reveals</a>
                                     </li>
                                     <li>
-                                       <a href="#R_part1_article4">Overrides</a>
+                                       <a href="#R_part1_art4">Overrides</a>
                                     </li>
                                  </ul>
                               </div>
                            </div>
-                           <section id="R_part1_article1" class="article component">
+                           <section id="R_part1_art1" class="article component">
                               <header>
                                  <h1>Reveal elements</h1>
                               </header>
@@ -251,7 +251,7 @@ normal view.</p>
 be hidden initially. Navigating forward or pressing <span class="keycap">Space</span> will reveal them.</p>
                               <p class="reveal">This paragraph is revealed!</p>
                            </section>
-                           <section id="R_part1_article2" class="article component">
+                           <section id="R_part1_art2" class="article component">
                               <header>
                                  <h1>List reveals</h1>
                               </header>
@@ -269,7 +269,7 @@ all of the items except the first.</p>
                                  </li>
                               </ol>
                            </section>
-                           <section id="R_part1_article3" class="article component">
+                           <section id="R_part1_art3" class="article component">
                               <header>
                                  <h1>Transitory reveals</h1>
                               </header>
@@ -291,7 +291,7 @@ it will be revealed in turn and then concealed again when the next item is revea
                                  </li>
                               </ol>
                            </section>
-                           <section id="R_part1_article4" class="article component">
+                           <section id="R_part1_art4" class="article component">
                               <header>
                                  <h1>Overrides</h1>
                               </header>
@@ -314,7 +314,7 @@ but this one is marked “noreveal”.</p>
                               </ul>
                            </section>
                         </article>
-                        <section id="R_article4" class="article component">
+                        <section id="R_art4" class="article component">
                            <header>
                               <h1>Summary</h1>
                            </header>
@@ -417,39 +417,39 @@ on synchronized windows, you’ll get a tangled mess.</p>
                                  <div class="title">Table of Contents</div>
                                  <ul class="toc">
                                     <li>
-                                       <a href="#R_article1">Introduction</a>
+                                       <a href="#R_art1">Introduction</a>
                                     </li>
                                     <li>
-                                       <a href="#R_article2">Synchronization</a>
+                                       <a href="#R_art2">Synchronization</a>
                                     </li>
                                     <li>
-                                       <a href="#R_article3">Speaker notes</a>
+                                       <a href="#R_art3">Speaker notes</a>
                                     </li>
                                     <li>
                                        <a href="#R_part1">Part <span class="label">I</span>
                                           <span class="sep">. </span>Progressive reveal</a>
                                        <ul class="toc">
                                           <li>
-                                             <a href="#R_part1_article1">Reveal elements</a>
+                                             <a href="#R_part1_art1">Reveal elements</a>
                                           </li>
                                           <li>
-                                             <a href="#R_part1_article2">List reveals</a>
+                                             <a href="#R_part1_art2">List reveals</a>
                                           </li>
                                           <li>
-                                             <a href="#R_part1_article3">Transitory reveals</a>
+                                             <a href="#R_part1_art3">Transitory reveals</a>
                                           </li>
                                           <li>
-                                             <a href="#R_part1_article4">Overrides</a>
+                                             <a href="#R_part1_art4">Overrides</a>
                                           </li>
                                        </ul>
                                     </li>
                                     <li>
-                                       <a href="#R_article4">Summary</a>
+                                       <a href="#R_art4">Summary</a>
                                     </li>
                                  </ul>
                               </div>
                            </div>
-                           <section id="R_article1" class="article component">
+                           <section id="R_art1" class="article component">
                               <header>
                                  <h1>Introduction</h1>
                               </header>
@@ -473,7 +473,7 @@ document (part, chapter, article, section, etc.) becomes a page.</p>
                                  </li>
                               </ul>
                            </section>
-                           <section id="R_article2" class="article component">
+                           <section id="R_art2" class="article component">
                               <header>
                                  <h1>Synchronization</h1>
                               </header>
@@ -528,7 +528,7 @@ while presenting the “normal” view to your audience.</p>
                                  </li>
                               </ul>
                            </section>
-                           <section id="R_article3" class="article component">
+                           <section id="R_art3" class="article component">
                               <header>
                                  <h1>Speaker notes</h1>
                               </header>
@@ -600,21 +600,21 @@ normal view.</p>
                                     <div class="title">Table of Contents</div>
                                     <ul class="toc">
                                        <li>
-                                          <a href="#R_part1_article1">Reveal elements</a>
+                                          <a href="#R_part1_art1">Reveal elements</a>
                                        </li>
                                        <li>
-                                          <a href="#R_part1_article2">List reveals</a>
+                                          <a href="#R_part1_art2">List reveals</a>
                                        </li>
                                        <li>
-                                          <a href="#R_part1_article3">Transitory reveals</a>
+                                          <a href="#R_part1_art3">Transitory reveals</a>
                                        </li>
                                        <li>
-                                          <a href="#R_part1_article4">Overrides</a>
+                                          <a href="#R_part1_art4">Overrides</a>
                                        </li>
                                     </ul>
                                  </div>
                               </div>
-                              <section id="R_part1_article1" class="article component">
+                              <section id="R_part1_art1" class="article component">
                                  <header>
                                     <h1>Reveal elements</h1>
                                  </header>
@@ -622,7 +622,7 @@ normal view.</p>
 be hidden initially. Navigating forward or pressing <span class="keycap">Space</span> will reveal them.</p>
                                  <p class="reveal">This paragraph is revealed!</p>
                               </section>
-                              <section id="R_part1_article2" class="article component">
+                              <section id="R_part1_art2" class="article component">
                                  <header>
                                     <h1>List reveals</h1>
                                  </header>
@@ -640,7 +640,7 @@ all of the items except the first.</p>
                                     </li>
                                  </ol>
                               </section>
-                              <section id="R_part1_article3" class="article component">
+                              <section id="R_part1_art3" class="article component">
                                  <header>
                                     <h1>Transitory reveals</h1>
                                  </header>
@@ -662,7 +662,7 @@ it will be revealed in turn and then concealed again when the next item is revea
                                     </li>
                                  </ol>
                               </section>
-                              <section id="R_part1_article4" class="article component">
+                              <section id="R_part1_art4" class="article component">
                                  <header>
                                     <h1>Overrides</h1>
                                  </header>
@@ -685,7 +685,7 @@ but this one is marked “noreveal”.</p>
                                  </ul>
                               </section>
                            </article>
-                           <section id="R_article4" class="article component">
+                           <section id="R_art4" class="article component">
                               <header>
                                  <h1>Summary</h1>
                               </header>
@@ -795,21 +795,21 @@ on synchronized windows, you’ll get a tangled mess.</p>
                               <div class="title">Table of Contents</div>
                               <ul class="toc">
                                  <li>
-                                    <a href="#R_article1">Footnotes and annotations</a>
+                                    <a href="#R_art1">Footnotes and annotations</a>
                                  </li>
                                  <li>
-                                    <a href="#R_article2">More footnotes and annotations</a>
+                                    <a href="#R_art2">More footnotes and annotations</a>
                                  </li>
                                  <li>
-                                    <a href="#R_article3">Variable list reveal</a>
+                                    <a href="#R_art3">Variable list reveal</a>
                                  </li>
                                  <li>
-                                    <a href="#R_article4">Footnote position</a>
+                                    <a href="#R_art4">Footnote position</a>
                                  </li>
                               </ul>
                            </div>
                         </div>
-                        <section id="R_article1" class="article component">
+                        <section id="R_art1" class="article component">
                            <header>
                               <h1>Footnotes and annotations</h1>
                            </header>
@@ -828,9 +828,8 @@ page.</p>
                               </li>
                               <li>
                                  <p>For the moment, the cross-linking between the inline
-reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_itemizedlist1_listitem2_para1_footnote1-fref"
-                                         class="footnote-number">
-                                       <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">2</a>
+reference and the bottom-of-the-page footnote is removed.<sup id="R_art1_il1_li2_para1_footnote1-fref" class="footnote-number">
+                                       <a href="#R_art1_il1_li2_para1_footnote1-fnote">2</a>
                                     </sup>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
@@ -838,7 +837,7 @@ reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_ite
                               </li>
                            </ul>
                         </section>
-                        <section id="R_article2" class="article component">
+                        <section id="R_art2" class="article component">
                            <header>
                               <h1>More footnotes and annotations</h1>
                            </header>
@@ -848,8 +847,7 @@ reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_ite
                               </li>
                               <li>
                                  <p>They are not displayed as part of the normal
-presentation.<sup id="R_article2_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                         class="footnote-number">
+presentation.<sup id="R_art2_il1_li2_para1_footnoteref1-fref" class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -864,7 +862,7 @@ presentation.<sup id="R_article2_itemizedlist1_listitem2_para1_footnoteref1-fref
                               </li>
                            </ul>
                         </section>
-                        <section id="R_article3" class="article component">
+                        <section id="R_art3" class="article component">
                            <header>
                               <h1>Variable list reveal</h1>
                            </header>
@@ -897,7 +895,7 @@ but it needs testing.</p>
                               </div>
                            </dl>
                         </section>
-                        <section id="R_article4" class="article component">
+                        <section id="R_art4" class="article component">
                            <header>
                               <h1>Footnote position</h1>
                            </header>
@@ -911,8 +909,7 @@ reasonable.</p>
                               </li>
                               <li>
                                  <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                         class="footnote-number">
+presentation.<sup id="R_art4_il1_li2_para1_footnoteref1-fref" class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -930,8 +927,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref
                               </li>
                               <li>
                                  <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref"
-                                         class="footnote-number">
+presentation.<sup id="R_art4_il1_li5_para1_footnoteref1-fref" class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -949,8 +945,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref
                               </li>
                               <li>
                                  <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref"
-                                         class="footnote-number">
+presentation.<sup id="R_art4_il1_li8_para1_footnoteref1-fref" class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -968,8 +963,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref
                               </li>
                               <li>
                                  <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fref"
-                                         class="footnote-number">
+presentation.<sup id="R_art4_il1_li11_para1_footnoteref1-fref" class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -987,8 +981,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fre
                               </li>
                               <li>
                                  <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem14_para1_footnoteref1-fref"
-                                         class="footnote-number">
+presentation.<sup id="R_art4_il1_li14_para1_footnoteref1-fref" class="footnote-number">
                                        <a href="#f1-fnote">1</a>
                                     </sup>
                                  </p>
@@ -1018,11 +1011,10 @@ presentation.<sup id="R_article4_itemizedlist1_listitem14_para1_footnoteref1-fre
 in the presentation.001 unit test.</p>
                               </div>
                            </div>
-                           <div class="footnote"
-                                id="R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">
+                           <div class="footnote" id="R_art1_il1_li2_para1_footnote1-fnote">
                               <div class="footnote-number">
                                  <sup class="footnote-number">
-                                    <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fref">2</a>
+                                    <a href="#R_art1_il1_li2_para1_footnote1-fref">2</a>
                                  </sup>
                               </div>
                               <div class="footnote-body">
@@ -1115,21 +1107,21 @@ in the presentation.001 unit test.</p>
                                  <div class="title">Table of Contents</div>
                                  <ul class="toc">
                                     <li>
-                                       <a href="#R_article1">Footnotes and annotations</a>
+                                       <a href="#R_art1">Footnotes and annotations</a>
                                     </li>
                                     <li>
-                                       <a href="#R_article2">More footnotes and annotations</a>
+                                       <a href="#R_art2">More footnotes and annotations</a>
                                     </li>
                                     <li>
-                                       <a href="#R_article3">Variable list reveal</a>
+                                       <a href="#R_art3">Variable list reveal</a>
                                     </li>
                                     <li>
-                                       <a href="#R_article4">Footnote position</a>
+                                       <a href="#R_art4">Footnote position</a>
                                     </li>
                                  </ul>
                               </div>
                            </div>
-                           <section id="R_article1" class="article component">
+                           <section id="R_art1" class="article component">
                               <header>
                                  <h1>Footnotes and annotations</h1>
                               </header>
@@ -1148,9 +1140,8 @@ page.</p>
                                  </li>
                                  <li>
                                     <p>For the moment, the cross-linking between the inline
-reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_itemizedlist1_listitem2_para1_footnote1-fref"
-                                            class="footnote-number">
-                                          <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">2</a>
+reference and the bottom-of-the-page footnote is removed.<sup id="R_art1_il1_li2_para1_footnote1-fref" class="footnote-number">
+                                          <a href="#R_art1_il1_li2_para1_footnote1-fnote">2</a>
                                        </sup>
                                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
@@ -1158,7 +1149,7 @@ reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_ite
                                  </li>
                               </ul>
                            </section>
-                           <section id="R_article2" class="article component">
+                           <section id="R_art2" class="article component">
                               <header>
                                  <h1>More footnotes and annotations</h1>
                               </header>
@@ -1168,8 +1159,7 @@ reference and the bottom-of-the-page footnote is removed.<sup id="R_article1_ite
                                  </li>
                                  <li>
                                     <p>They are not displayed as part of the normal
-presentation.<sup id="R_article2_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                            class="footnote-number">
+presentation.<sup id="R_art2_il1_li2_para1_footnoteref1-fref" class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1184,7 +1174,7 @@ presentation.<sup id="R_article2_itemizedlist1_listitem2_para1_footnoteref1-fref
                                  </li>
                               </ul>
                            </section>
-                           <section id="R_article3" class="article component">
+                           <section id="R_art3" class="article component">
                               <header>
                                  <h1>Variable list reveal</h1>
                               </header>
@@ -1217,7 +1207,7 @@ but it needs testing.</p>
                                  </div>
                               </dl>
                            </section>
-                           <section id="R_article4" class="article component">
+                           <section id="R_art4" class="article component">
                               <header>
                                  <h1>Footnote position</h1>
                               </header>
@@ -1231,8 +1221,7 @@ reasonable.</p>
                                  </li>
                                  <li>
                                     <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref"
-                                            class="footnote-number">
+presentation.<sup id="R_art4_il1_li2_para1_footnoteref1-fref" class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1250,8 +1239,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem2_para1_footnoteref1-fref
                                  </li>
                                  <li>
                                     <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref"
-                                            class="footnote-number">
+presentation.<sup id="R_art4_il1_li5_para1_footnoteref1-fref" class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1269,8 +1257,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem5_para1_footnoteref1-fref
                                  </li>
                                  <li>
                                     <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref"
-                                            class="footnote-number">
+presentation.<sup id="R_art4_il1_li8_para1_footnoteref1-fref" class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1288,8 +1275,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem8_para1_footnoteref1-fref
                                  </li>
                                  <li>
                                     <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fref"
-                                            class="footnote-number">
+presentation.<sup id="R_art4_il1_li11_para1_footnoteref1-fref" class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1307,8 +1293,7 @@ presentation.<sup id="R_article4_itemizedlist1_listitem11_para1_footnoteref1-fre
                                  </li>
                                  <li>
                                     <p>They are not displayed as part of the normal
-presentation.<sup id="R_article4_itemizedlist1_listitem14_para1_footnoteref1-fref"
-                                            class="footnote-number">
+presentation.<sup id="R_art4_il1_li14_para1_footnoteref1-fref" class="footnote-number">
                                           <a href="#f1-fnote">1</a>
                                        </sup>
                                     </p>
@@ -1338,11 +1323,10 @@ presentation.<sup id="R_article4_itemizedlist1_listitem14_para1_footnoteref1-fre
 in the presentation.001 unit test.</p>
                                  </div>
                               </div>
-                              <div class="footnote"
-                                   id="R_article1_itemizedlist1_listitem2_para1_footnote1-fnote">
+                              <div class="footnote" id="R_art1_il1_li2_para1_footnote1-fnote">
                                  <div class="footnote-number">
                                     <sup class="footnote-number">
-                                       <a href="#R_article1_itemizedlist1_listitem2_para1_footnote1-fref">2</a>
+                                       <a href="#R_art1_il1_li2_para1_footnote1-fref">2</a>
                                     </sup>
                                  </div>
                                  <div class="footnote-body">
