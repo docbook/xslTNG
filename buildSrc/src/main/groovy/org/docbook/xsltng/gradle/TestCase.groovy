@@ -137,6 +137,7 @@ class TestCase {
       doFirst {
         println("Processing ${testname}.html with ${config.name}")
         println(config.parameters)
+        println(dbxsl)
       }
        */
 
