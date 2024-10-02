@@ -2472,6 +2472,29 @@ settings.</para>
 <para>See also <varname>table-accessibility</varname>.</para>
 </refsection>
 </refentry>
+  
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>copyinstructions-uri</varname>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>URI for a file with copy instructions for media files</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>You may specify the path of a file with instructions for copying media files in this
+      parameter. Please keep in mind, that support for copy-instructions for media files will only
+      work for "chunked" output, see <xref linkend="copyinstructions" xrefstyle="%label"/> for
+      details. If it is a relative path, it will be resolved against
+        <parameter>mediaobject-output-base-uri</parameter>. The template
+        <template>t:write-copyinstructions</template> is responsible for writing the file, it
+      determines the format of the "instructions".</para>
+  </refsection>
+</refentry>  
+  
 
 <refentry>
   <refmeta>
@@ -2580,8 +2603,10 @@ audio files, etc.) is complicated. See <xref linkend="mediaobject-uris"/>.
 The <parameter>mediaobject-output-base-uri</parameter> is used to compute
 the base URI of media objects in the output.
 </para>
-<para>It defaults to the empty string.
-See <varname>v:mediaobject-output-base-uri</varname>.
+<para>It defaults to the empty string. In this case,
+the <tag>img</tag> elements in the generated HTML file(s)
+will reference the mediaobject files in their original places.
+See <varname>v:mediaobject-input-base-uri</varname>.
 </para>
 </refsection>
 </refentry>

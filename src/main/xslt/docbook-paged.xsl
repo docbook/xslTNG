@@ -117,10 +117,16 @@
     </head>
     <body>
       <xsl:copy-of select="*/@*"/>
-      <xsl:apply-templates select="*/h:header" mode="m:chunk-cleanup"/>
+      <xsl:apply-templates select="*/h:header" mode="m:chunk-cleanup">
+        <xsl:with-param name="rootbaseuri" select="$rbu" tunnel="yes"/>
+        <xsl:with-param name="chunkbaseuri" select="$cbu" tunnel="yes"/>
+      </xsl:apply-templates>
       <main>
         <xsl:apply-templates select="*/* except */h:header"
-                             mode="m:chunk-cleanup"/>
+                             mode="m:chunk-cleanup">
+          <xsl:with-param name="rootbaseuri" select="$rbu" tunnel="yes"/>
+          <xsl:with-param name="chunkbaseuri" select="$cbu" tunnel="yes"/>
+        </xsl:apply-templates>
       </main>
     </body>
   </html>
