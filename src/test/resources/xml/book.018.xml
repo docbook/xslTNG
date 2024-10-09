@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="5.0" xml:id="book">
+  <info>
+    <title>Fun with landscape orientend graphics</title>
+    <abstract>
+      <para>A series of book unit test that checks landscape orientation.</para>
+    </abstract>
+  </info>
+
+  <chapter>
+    <title>Purpose of this Book</title>
+    
+    <para>The folowing figure should be printed in landscape orientation</para>
+    <informalfigure role="informal landscape">
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../media/duck.png" depth="5.5in"/>
+        </imageobject>
+        <caption><para>A duck in its full beauty</para></caption>
+      </mediaobject>
+    </informalfigure>
+    <para>This is a regular paragraph below the figure, it shoud be in portrait orientation.</para>
+  </chapter>
+  
+  <chapter>
+    <title>Second Chapter</title>
+    <para>The second chapter will end this book, which is very short indeed. It does not tell us anything about the outside world,
+    it's only purpuse is to show the effect of PDF pages in landscape orientation.</para>
+  </chapter>
+  
+  
+  
+</book>
