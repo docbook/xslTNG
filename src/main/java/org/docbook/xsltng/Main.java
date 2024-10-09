@@ -8,15 +8,14 @@ import java.util.Vector;
 
 public class Main extends Transform {
     Vector<String> userArgs = new Vector<>();
-    private Vector<String> userCatalogFiles = new Vector<> ();
     private boolean userStylesheet = false;
     private boolean uriResolver = false;
     private boolean sourceReader = false;
     private boolean stylesheetReader = false;
     private boolean init = false;
+    private int catalogCount = 0;
 
     protected DebuggingLogger logger = null;
-    protected String catalogFile = null;
     protected XslTNG xslTNG = null;
 
     public static void main(String[] args) {
@@ -25,43 +24,32 @@ public class Main extends Transform {
     }
 
     public Main(String[] args) {
-        int pos = 0;
         for (String arg : args) {
+            uriResolver = uriResolver || arg.startsWith("-r:");
+            sourceReader = sourceReader || arg.startsWith("-x:");
+            stylesheetReader = stylesheetReader || arg.startsWith("-y:");
+            userStylesheet = userStylesheet || arg.startsWith("-xsl:");
+            init = init || arg.startsWith("-init:");
             if (arg.startsWith("-catalog:")) {
-                pos = arg.indexOf(":");
-                userCatalogFiles.add(arg.substring(pos+1));
-            } else {
-                uriResolver = uriResolver || arg.startsWith("-r:");
-                sourceReader = sourceReader || arg.startsWith("-x:");
-                stylesheetReader = stylesheetReader || arg.startsWith("-y:");
-                userStylesheet = userStylesheet || arg.startsWith("-xsl:");
-                init = init || arg.startsWith("-init:");
-                userArgs.add(arg);
+                catalogCount = catalogCount + 1;
             }
+            userArgs.add(arg);
         }
 
         xslTNG = new XslTNG();
         logger = xslTNG.logger;
-        catalogFile = xslTNG.createCatalog(System.getProperty("org.docbook.xsltng.catalog-file"));
     }
 
     public void run() {
-        if (uriResolver || sourceReader || stylesheetReader || init) {
+        if (uriResolver || sourceReader || stylesheetReader || init | catalogCount > 1) {
             if (uriResolver) logger.error("The -r: option is not supported");
             if (sourceReader) logger.error("The -x: option is not supported");
             if (stylesheetReader) logger.error("The -y: option is not supported");
             if (init) logger.error("The -init: option is not supported");
+            if (catalogCount > 1) logger.error("At most one -catalog: option can be specified");
             System.exit(1);
         }
 
-        StringBuilder catBuilder = new StringBuilder();
-        catBuilder.append(catalogFile);
-        for (String cat : userCatalogFiles) {
-            catBuilder.append(";");
-            catBuilder.append(cat);
-        }
-
-        System.setProperty("xml.catalog.files", catBuilder.toString());
         userArgs.add("-init:org.docbook.xsltng.extensions.Register");
         if (!userStylesheet) {
             userArgs.add("-xsl:https://cdn.docbook.org/release/xsltng/current/xslt/docbook.xsl");
@@ -71,7 +59,6 @@ public class Main extends Transform {
         userArgs.toArray(args);
 
         if (logger.getFlag("java-args")) {
-            logger.debug("java-args", "xml.catalog.files=" + System.getProperty("xml.catalog.files"));
             for (String arg : args) {
                 logger.debug("java-args", arg);
             }
