@@ -41,11 +41,8 @@ development continues.</para>
 </listitem>
 <listitem>
   <para>Reworked Java initialization;
-  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/504">#504</link>. The
-  only way to specify a catalog file is with the <code>-catalog</code> option, and only one
-  catalog can be specified. (You can work around this limitation by making a catalog that
-  includes other catalogs.)</para>
-  <para>This change in behavior is a consequence of how Saxon initializes the XML Resolver.
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/504">#504</link>.
+  This change is a consequence of how Saxon initializes the XML Resolver.
   </para>
 </listitem>
 
