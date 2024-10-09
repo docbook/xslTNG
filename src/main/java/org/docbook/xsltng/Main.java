@@ -8,7 +8,7 @@ import java.util.Vector;
 
 public class Main extends Transform {
     Vector<String> userArgs = new Vector<>();
-    private Vector<String> userCatalogFiles = new Vector<> ();
+    private final Vector<String> userCatalogFiles = new Vector<> ();
     private boolean userStylesheet = false;
     private boolean uriResolver = false;
     private boolean sourceReader = false;
@@ -60,8 +60,8 @@ public class Main extends Transform {
             catBuilder.append(";");
             catBuilder.append(cat);
         }
+        userArgs.add("-catalog:" + catBuilder);
 
-        System.setProperty("xml.catalog.files", catBuilder.toString());
         userArgs.add("-init:org.docbook.xsltng.extensions.Register");
         if (!userStylesheet) {
             userArgs.add("-xsl:https://cdn.docbook.org/release/xsltng/current/xslt/docbook.xsl");
@@ -71,7 +71,6 @@ public class Main extends Transform {
         userArgs.toArray(args);
 
         if (logger.getFlag("java-args")) {
-            logger.debug("java-args", "xml.catalog.files=" + System.getProperty("xml.catalog.files"));
             for (String arg : args) {
                 logger.debug("java-args", arg);
             }

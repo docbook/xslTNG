@@ -85,7 +85,6 @@ class JavaClassRunner:
 
         self._parse_args(args)
 
-        self.catalogs.append(f"{self.root}/xslt/catalog.xml")
         if not self.stylesheet:
             self.stylesheet = f"-xsl:{self.root}/xslt/docbook.xsl"
             self._app_args.append(self.stylesheet)
@@ -577,8 +576,10 @@ wrapper sets these automatically.
         """Run the process."""
         cp = self.classpath()
         args = self.args()
-        jopt = ["-Dxml.catalog.files=" + ";".join(self.catalogs)]
-        jopt = jopt + self.config.get("java-options", [])
+        if self.catalogs:
+            args.append("-catalog:" + ";".join(self.catalogs))
+
+        jopt = self.config.get("java-options", [])
         if self.debug:
             print(self._java)
             for item in jopt:

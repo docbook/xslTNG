@@ -39,6 +39,13 @@ development continues.</para>
   “<code>portrait</code>” in their <att>class</att> attribute. At present, this has no
   effect in the browser presentation.</para>
 </listitem>
+<listitem>
+  <para>Reworked Java initialization;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/504">#504</link>.
+  This change is a consequence of how Saxon initializes the XML Resolver.
+  </para>
+</listitem>
+
 </itemizedlist>
 </section>
 
