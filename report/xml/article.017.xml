@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+   <title>Unit Test: article.017</title>
+   <para>This page is portrait.</para>
+   <table orient='land' frame="all">
+     <title>This table is landscape</title>
+     <tgroup cols="2">
+       <tbody>
+         <row><entry>1</entry><entry>2</entry></row>
+         <row><entry>3</entry><entry>4</entry></row>
+       </tbody>
+     </tgroup>
+   </table>
+   <para>More portrait content follows.</para>
+   <table orient='land' border="1">
+     <caption>HTML table in landscape</caption>
+     <tbody>
+       <tr><td>a</td><td>b</td></tr>
+       <tr><td>c</td><td>d</td></tr>
+     </tbody>
+   </table>
+   <para>No, neither of those tables needed to be landscape. Why do you ask?</para>
+</article>

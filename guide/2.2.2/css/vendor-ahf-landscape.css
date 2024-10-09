@@ -1,0 +1,164 @@
+/* DocBook xslTNG version 2.2.2-SNAPSHOT, https://xsltng.docbook.org */
+/* ============================================================ */
+/* Support for landscape orientation of figures and tables      */
+html.article-style.A4 body .db-bfs.portrait,
+html.article-style.A4 body .division.portrait,
+html.article-style.A4 body .component.portrait,
+html.article-style.A4 body .section.portrait,
+html.article-style.A4 body .formalobject.portrait,
+html.article-style.A4 body .informalobject.portrait,
+html.article-style.A4 body .list-of-titles.portrait {
+  page: A4-article-flow-landscape;
+}
+
+html.article-style.A4 body .db-bfs.draft.portrait,
+html.article-style.A4 body .division.draft.portrait,
+html.article-style.A4 body .component.draft.portrait,
+html.article-style.A4 body .section.draft.portrait,
+html.article-style.A4 body .formalobject.draft.portrait,
+html.article-style.A4 body .informalobject.draft.portrait,
+html.article-style.A4 body .list-of-titles.draft.portrait {
+  page: A4-article-flow-draft-landscape;
+}
+
+html.article-style.A5 body .db-bfs.portrait,
+html.article-style.A5 body .division.portrait,
+html.article-style.A5 body .component.portrait,
+html.article-style.A5 body .section.portrait,
+html.article-style.A5 body .formalobject.portrait,
+html.article-style.A5 body .informalobject.portrait,
+html.article-style.A5 body .list-of-titles.portrait {
+  page: A5-article-flow-landscape;
+}
+
+html.article-style.A5 body .db-bfs.draft.portrait,
+html.article-style.A5 body .division.draft.portrait,
+html.article-style.A5 body .component.draft.portrait,
+html.article-style.A5 body .section.draft.portrait,
+html.article-style.A5 body .formalobject.draft.portrait,
+html.article-style.A5 body .informalobject.draft.portrait,
+html.article-style.A5 body .list-of-titles.draft.portrait {
+  page: A5-article-flow-draft-landscape;
+}
+
+html.article-style.Letter body .db-bfs.portrait,
+html.article-style.Letter body .division.portrait,
+html.article-style.Letter body .component.portrait,
+html.article-style.Letter body .section.portrait,
+html.article-style.Letter body .formalobject.portrait,
+html.article-style.Letter body .informalobject.portrait,
+html.article-style.Letter body .list-of-titles.portrait {
+  page: Letter-article-flow-landscape;
+}
+
+html.article-style.Letter body .db-bfs.draft.portrait,
+html.article-style.Letter body .division.draft.portrait,
+html.article-style.Letter body .component.draft.portrait,
+html.article-style.Letter body .section.draft.portrait,
+html.article-style.Letter body .formalobject.draft.portrait,
+html.article-style.Letter body .informalobject.draft.portrait,
+html.article-style.Letter body .list-of-titles.draft.portrait {
+  page: Letter-article-flow-draft-landscape;
+}
+
+html.book-style.A4 body .division,
+html.book-style.A4 body .component,
+html.book-style.A4 body .list-of-titles {
+  break-before: right;
+}
+
+html.book-style.A4 body .division.portrait,
+html.book-style.A4 body .component.portrait,
+html.book-style.A4 body .list-of-titles.portrait {
+  page: A4-book-flow-landscape;
+}
+
+html.book-style.A4 body .section.portrait,
+html.book-style.A4 body .formalobject.portrait,
+html.book-style.A4 body .informalobject.portrait {
+  page: A4-book-flow-landscape;
+}
+
+html.book-style.A4 body .division.draft.portrait,
+html.book-style.A4 body .component.draft.portrait,
+html.book-style.A4 body .list-of-titles.draft.portrait {
+  break-before: right;
+  page: A4-book-draft-landscape;
+}
+
+html.book-style.A4 body .section.draft.portrait,
+html.book-style.A4 body .formalobject.draft.portrait,
+html.book-style.A4 body .informalobject.draft.portrait {
+  page: A4-book-draft-landscape;
+}
+
+html.book-style.A5 body .division,
+html.book-style.A5 body .component,
+html.book-style.A5 body .list-of-titles {
+  break-before: right;
+}
+
+html.book-style.A5 body .division.portrait,
+html.book-style.A5 body .component.portrait,
+html.book-style.A5 body .list-of-titles.portrait {
+  page: A5-book-flow-landscape;
+}
+
+html.book-style.A5 body .section.portrait,
+html.book-style.A5 body .formalobject.portrait,
+html.book-style.A5 body .informalobject.portrait {
+  page: A5-book-flow-landscape;
+}
+
+html.book-style.A5 body .division.draft.portrait,
+html.book-style.A5 body .component.draft.portrait,
+html.book-style.A5 body .list-of-titles.draft.portrait {
+  break-before: right;
+  page: A5-book-draft-landscape;
+}
+
+html.book-style.A5 body .section.draft.portrait,
+html.book-style.A5 body .formalobject.draft.portrait,
+html.book-style.A5 body .informalobject.draft.portrait {
+  page: A5-book-draft-landscape;
+}
+
+html.book-style.Letter body .division,
+html.book-style.Letter body .component,
+html.book-style.Letter body .list-of-titles {
+  break-before: right;
+}
+
+html.book-style.Letter body .division.portrait,
+html.book-style.Letter body .component.portrait,
+html.book-style.Letter body .list-of-titles.portrait {
+  page: Letter-book-flow-landscape;
+}
+
+html.book-style.Letter body .section.portrait,
+html.book-style.Letter body .formalobject.portrait,
+html.book-style.Letter body .informalobject.portrait {
+  page: Letter-book-flow-landscape;
+}
+
+html.book-style.Letter body .division.draft.portrait,
+html.book-style.Letter body .component.draft.portrait,
+html.book-style.Letter body .list-of-titles.draft.portrait {
+  break-before: right;
+  page: Letter-book-draft-landscape;
+}
+
+html.book-style.Letter body .section.draft.portrait,
+html.book-style.Letter body .formalobject.draft.portrait,
+html.book-style.Letter body .informalobject.draft.portrait {
+  page: Letter-book-draft-landscape;
+}
+
+.portrait {
+  break-before: page;
+  break-after: page;
+  -ah-reference-orientation: 90;
+  width: 100%;
+  margin-bottom: 0;
+  margin-top: auto;
+}

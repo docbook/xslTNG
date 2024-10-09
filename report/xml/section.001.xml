@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<article xmlns="http://docbook.org/ns/docbook" version="5.0" role="landscape">
    <title>Article wrapper</title>
    <para>See <xref linkend="c2s1s1s2"/>.</para>
    <section xml:id="c2s1">
@@ -11,6 +11,46 @@
          <section xml:id="c2s1s1s1">
             <title>Section 1.1.1</title>
             <para>blah.</para>
+<table xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="d1e3" frame="all" orient="port">
+      <info>
+        <title>Table title</title>
+      </info>
+      <tgroup cols="4" colsep="1" rowsep="1">
+        <colspec colname="b" colnum="2"/>
+        <colspec colname="c" colnum="3"/>
+        <colspec colname="d"/>
+        <spanspec spanname="cd" namest="c" nameend="d"/>
+        <tbody>
+          <row>
+            <entry>a1</entry>
+            <entry morerows="1" namest="b" nameend="c">b1-c2</entry>
+            <entry>d1</entry>
+          </row>
+          <row>
+            <entry morerows="2">a2-a4</entry>
+            <!-- b2, c2 spans from above -->
+            <entry>d2</entry>
+          </row>
+          <row>
+            <!-- a3 spans from above -->
+            <entry>b3</entry>
+            <entry>c3</entry>
+            <entry>d3</entry>
+          </row>
+          <row>
+            <!-- a4 spans from above -->
+            <entry>b4</entry>
+            <entry spanname="cd">c4-d4</entry>
+          </row>
+          <row>
+            <entry>a5</entry>
+            <entry>b5</entry>
+            <!-- c4 is missing -->
+            <entry colname="d">d5</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
             <section xml:id="c2s1s1s1s1">
                <title>Section 1.1.1.1</title>
                <para>blah.</para>

@@ -1,0 +1,291 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Appendix A. Changes in version 2.x</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2024-10-09T13:36:30Z"/><meta name="dc.created" content="2024-10-09T13:36:30Z"/><meta name="generator" content="DocBook xslTNG version 2.2.2-SNAPSHOT / 7688aa3b / SAXON HE 12.5"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="ch-building.html"/><link rel="next" href="glossary.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="appendix component"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="ch-building.html" title="Chapter  6 .  Building the stylesheets"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Glossary" href="glossary.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="version2" db-chunk="version2.html" db-id="d150e4884" class="appendix component"><header><h1>Appendix <span class="label">A</span><span class="sep">. </span>Changes in version 2.x</h1></header><section id="changelog" class="section"><header><h2><span class="label">A<span class="sep">.</span>1</span><span class="sep">. </span>Change Log</h2></header><p>This section documents the changes made in each release. This
+does not necessarily include every minor change, only those likely to
+be of interest to users of the stylesheets. See the commits and pull requests on
+<a href="https://github.com/docbook/xslTNG/" class="link">the repository</a> for
+finer detail.</p><section id="r222" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>1</span><span class="sep">. </span>Changes in version 2.2.2</h3></header><div class="admonition note"><div><div class="icon">ⓘ</div><div class="body"><header><div class="title">Version 2.2.2 is a placeholder</div></header><div><p>The next release will be version 2.3.0 because the markup changes required
+to support lanscape mode seem to justify a major bump (though they aren’t,
+technically, backwards incompatible). Version 2.2.2 is just a placeholder while
+development continues.</p></div></div></div></div><ul class="itemizedlist"><li><p>The principle new feature in version 2.3.0 is support for landscape (and portrait)
+  rotation in paged media, fixing <a href="https://github.com/docbook/xslTNG/issues/476" class="link">#476</a>.
+  This entails a lage number of changes to the paged media
+  stylesheets and some markup changes in the HTML output.</p><p>The most significant markup change is that elements that appear before
+  the first section of component (before the first <code class="tag tag-element">section</code> of a <code class="tag tag-element">chapter</code>,
+  for example) are now wrapped in a 
+  <code class="tag tag-element">div</code> element with the
+  <code class="tag tag-attribute">class</code> “<code>db-bfs</code>”. This true in both browser and paged media presentations,
+  though it’s currently unused in the browser presentation.</p><p>Another change is that rotated elements will have “<code>landscape</code>” or
+  “<code>portrait</code>” in their <code class="tag tag-attribute">class</code> attribute. At present, this has no
+  effect in the browser presentation.</p></li></ul></section><section id="r221" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>2</span><span class="sep">. </span>Changes in version 2.2.1</h3></header><ul class="itemizedlist"><li><p>Add missing zh-cn localization for “Danger”;
+  fixed <a href="https://github.com/docbook/xslTNG/issues/510" class="link">#510</a>.
+  </p></li><li><p>Added <a href="ch-customizing.html#titlepages" class="xref xref-section">Section <span class="label">3<span class="sep">.</span>4</span>, “Customizing title pages”</a>, describing how to customize title pages;
+  fixed <a href="https://github.com/docbook/xslTNG/issues/507" class="link">#507</a>.</p></li><li><p>Added support for a <code>numbered</code> DocBook processing instruction pseudo-attribute
+  to control numbering of divisions, components, and sections on a per-element basis;
+  fixed <a href="https://github.com/docbook/xslTNG/issues/506" class="link">#506</a>.
+  See <a href="ch-customizing.html#numeration-overrides" class="xref xref-section">Section <span class="label">3<span class="sep">.</span>6<span class="sep">.</span>1</span>, “Numeration overrides”</a>.</p></li><li><p>Added <a href="p_variablelist-panelset.html"><code class="paramname">$variablelist-panelset</code></a><span class="indexterm" id="r221_il1_li4_para1_indexterm1"></span> to 
+  support a “panel set” presentation of variable lists.</p></li><li><p>Simplified and corrected the selection of bibliography entry abbreviations;
+  fixed <a href="https://github.com/docbook/xslTNG/issues/479" class="link">#479</a>.
+  Thanks, Frank!</p></li><li><p>Improved <code class="filename">docbook.py</code> script. Thanks, Rafal!</p></li><li><p>Added support for <code class="tag tag-element">caption</code> elements in CALS tables;
+  fixed <a href="https://github.com/docbook/xslTNG/issues/472" class="link">#472</a>.</p></li></ul></section><section id="r220" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>3</span><span class="sep">. </span>Changes in version 2.2.0</h3></header><ul class="itemizedlist"><li><p>Support <a href="p_titleabbrev-passthrough.html"><code class="paramname">$titleabbrev-passthrough</code></a><span class="indexterm" id="r220_il1_li1_para1_indexterm1"></span>,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/469" class="link">#469</a>.
+  </p></li><li><p>Integrated support for
+  <a href="ch-customizing.html#using-glossaries" class="link">automatic glossaries</a>
+  contributed by Frank Steimke.
+  Fixed <a href="https://github.com/docbook/xslTNG/issues/453" class="link">#453</a>
+  and <a href="https://github.com/docbook/xslTNG/issues/445" class="link">#445</a>.
+  Extended to support automatic glossary divisions,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/453" class="link">#460</a>.
+  </p></li><li><p>Added support for
+  <a href="ch-customizing.html#using-bibliographies" class="link">automatic bibliographies</a>
+  analogous to automatic glossaries.
+  </p></li><li><p>Integrated documentation improvements contributed by Frank Steimke,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/452" class="link">#452</a>.
+  </p></li><li><p>Attempted to work around a scrolling issue in the persistent ToC,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/451" class="link">#451</a>.
+  </p></li><li><p>Corrected the image intrinsic functions so that non-integer dimensions are supported in SVG;
+  added support for dimensions with units,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/413" class="link">#413</a>,
+  <a href="https://github.com/docbook/xslTNG/issues/432" class="link">#432</a>,
+  and <a href="https://github.com/docbook/xslTNG/issues/443" class="link">#443</a>.
+  </p></li><li><p>Allow pre- and post-processing transforms to be specified as command line parameters,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/440" class="link">#440</a>
+  and <a href="https://github.com/docbook/xslTNG/issues/441" class="link">#441</a>
+  </p></li><li><p>Merged a fix to the German localization contributed by Tom Schraitle,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/428" class="link">#428</a>.
+  </p></li><li><p>Make sure <a href="v_debug.html"><code class="varname">$v:debug</code></a><span class="indexterm" id="r220_il1_li9_para1_indexterm1"></span> is declared in <code class="filename">print.xsl</code>,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/420" class="link">#420</a>.
+  </p></li><li><p>Ensure that subtitle appears on a book titlepage,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/415" class="link">#415</a>.
+  </p></li><li><p>Integrated improved support for improved
+  <a href="ch-using.html#customize-individual-cross-references" class="link">cross reference styles</a>
+  contributed by Frank Steimke,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/414" class="link">#414</a>.
+  </p></li><li><p>Merged a patch, contributed by Frank Steimke, to avoid a
+  warning when a table width is exactly the same as the nominal page
+  width,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/411" class="link">#411</a>.
+  </p></li><li><p>Corrected an error where column widths computed from CALS tables did not correctly specify units,
+  fixed <a href="https://github.com/docbook/xslTNG/issues/410" class="link">#410</a>.
+  </p></li></ul></section><section id="r219" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>4</span><span class="sep">. </span>Changes in version 2.1.9</h3></header><ul class="itemizedlist"><li><p>Links added with <a href="m_head-additions.html"><code class="mode">m:head-additions</code></a> were not being made relative
+  to the chunk base URI. Reworked <a href="m_html-body-script.html"><code class="mode">m:html-body-script</code></a> slightly so that
+  links there can also be made relative appropriately.</p></li></ul></section><section id="r218" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>5</span><span class="sep">. </span>Changes in version 2.1.8</h3></header><ul class="itemizedlist"><li><p>Added <a href="m_head-additions.html"><code class="mode">m:head-additions</code></a> mode for customizers. This allows a customization
+  layer to add information to the HTML <code class="tag tag-element">head</code>.</p></li><li><p>Added tunnel parameters to the list of titles templates. This allows a customization
+  to determine the parent element of the list of titles. (For example, to format the table of contents
+  for a <code class="tag tag-element">set</code> differently than for the contained <code class="tag tag-element">book</code>s.)
+  </p></li><li><p>When formatting a <code class="tag tag-element">part</code> with a <code class="tag tag-element">partintro</code> and a list of titles,
+  move the <code class="tag tag-element">partintro</code> before the list of titles. (This is technically backwards incompatible,
+  but it seems so obviously superior to the current behavior that I’m calling the current behavior
+  a bug.)
+  </p></li><li><p>Removed incorrect use of <code>v:</code> prefix in the documentation; fixed
+  <a href="https://github.com/docbook/xslTNG/issues/406" class="link">#406</a>.
+  </p></li><li><p>Added a <a href="p_inline-xlink-href.html"><code class="paramname">$inline-xlink-href</code></a><span class="indexterm" id="r218_il1_li5_para1_indexterm1"></span> parameter to control whether or not
+  XLink href attributes are printed after the link in the paged media stylesheets;
+  fixed <a href="https://github.com/docbook/xslTNG/issues/404" class="link">#404</a>.
+  Previously, this was handled in two different ways: for simple
+  links, the links where always printed; for extended links, the text
+  were actually added by CSS. Now they’re both controlled by the
+  parameter and CSS is no longer involved.
+  </p></li><li><p>Hacked PrismJS a bit; added support for ABNF and my own attempt at an
+  Invisible XML highlighter.
+  </p></li><li><p>Added CSS for lists of titles in <code class="tag tag-element">set</code>s.
+  </p></li></ul></section><section id="r217" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>6</span><span class="sep">. </span>Changes in version 2.1.7</h3></header><ul class="itemizedlist"><li><p>Tweaks to <code class="filename">presentation.js</code> to make sure
+revealed elements are in view.</p></li><li><p>Tweaks to the bundled PrismJS to support (not especially well)
+syntax highlighting Invisible XML.</p></li><li><p>CSS improvements for footnote rendering in paged media.</p></li><li><p>First attempt to support <a href="https://vivliostyle.org/" class="link">Vivliostyle</a>
+for rendering paged media.</p></li></ul></section><section id="r216" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>7</span><span class="sep">. </span>Changes in version 2.1.6</h3></header><ul class="itemizedlist"><li><p>Fixed the bug where disabling division, component, or section
+numbers didn’t change their presentation in Tables of Contents. It’s
+not especially elegant, the stylesheets simply check if
+“<code class="literal">unnumbered</code>” occurs in the localization group name
+for the title. If it does, then the unnumbered table of contents
+template is also selected.</p></li><li><p>Fixed the bug where chunk navigation wasn’t localized.</p></li></ul></section><section id="r215" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>8</span><span class="sep">. </span>Changes in version 2.1.5</h3></header><ul class="itemizedlist"><li><p>Introduced “<a href="ch-using.html#presentation-mode" class="link">presentation mode</a>” as a replacement
+for earlier “slides” and “speaker notes” customizations. Simplified the normal “chunk navigation”
+processing.</p></li><li><p>Improved copyright handling on title pages. Removed most
+CSS <code class="property">page-break-inside</code>: <code>avoid</code> rules. (They cause
+overflow if the space isn’t big enough.)</p></li><li><p>Added the ability to put
+<a href="ch-using.html#ad-hoc-css-styling" class="link">arbitrary CSS properties</a> on
+elements with attributes in the <code class="uri xmlnamespace">https://xsltng.docbook.org/ns/css</code>
+namespace.</p></li><li><p>Added <code>css</code> to the set of verbatim environment
+languages that are syntax highlighted by default.</p></li><li><p>The <a href="p_output-media.html"><code class="paramname">$output-media</code></a><span class="indexterm" id="r215_il1_li5_para1_indexterm1"></span> is now set to “<code class="literal">epub</code>” when
+formatting EPUBs.</p></li><li><p>Paged media improvements: removed body margins (they’re provided by the page setup);
+enabled hyphenation.</p></li><li><p>Add documentation for the properties in <code class="filename">gradle.properties</code>.</p></li><li><p>Yet even more fussing with the building the distribution on Windows.</p></li></ul></section><section id="r214" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>9</span><span class="sep">. </span>Changes in version 2.1.4</h3></header><ul class="itemizedlist"><li><p>Fixed a bug where the <cite class="citetitle">Index by module</cite> index in the PDF
+guide ran off the bottom of the page.</p></li><li><p>Improved the left and right page headers in PDF output.
+</p></li><li><p>Fixed (another) bug in <a href="p_unwrap-paragraphs.html"><code class="paramname">$unwrap-paragraphs</code></a><span class="indexterm" id="r214_il1_li3_para1_indexterm1"></span> support.
+</p></li><li><p>Fixed a bug where the link for the persistent ToC was not visible. (This started 
+in 2.1.3 when a z-index was added to the page header.)
+</p></li><li><p>Added a <a href="m_back-cover.html"><code class="mode">m:back-cover</code></a> mode for producing a back
+cover. By default, this mode produces no output, but it can be changed
+an a customization layer to produce a cover.
+</p></li><li><p>Fixed a few places where the <a href="p_debug.html"><code class="paramname">$debug</code></a><span class="indexterm" id="r214_il1_li6_para1_indexterm1"></span> parameter was not being
+tested correctly. Documented the <code class="literal">templates-matches</code> debug flag.
+</p></li><li><p>Reworked how the change log is produced; it’s now an appendix rather than attempting
+to put it between the front cover and the table of contents.
+</p></li><li><p>Fixed some navigation issues associated with annotations when JavaScript is being used
+to display the annotations.
+</p></li><li><p>For convenience, the SASS SCSS stylesheets are now in the distribution ZIP archive.
+These aren’t used at runtime, but if you have plans to make extensive
+changes to the CSS, deriving those changes from the SASS sources may
+prove easier than updating the derived CSS directly.
+</p></li><li><p>Added CSS variables: <code class="literal">default-font-size</code> and
+<code class="literal">default-line-height</code> to simplify customization.
+</p></li><li><p>Reworked the title page for articles in books. Previously, they
+only rendered the title. An article in a book now renders the “full”
+titlepage that’s consistent with stand-alone articles.
+</p></li><li><p>A bunch of build fixes: matrix builds work again, attempting to get the release information
+uses an authenticated request if it can, an old Xerces implementation pulled in by a transitive
+dependency is explicitly excluded (it has problems with UTF-16 encoded files, for example on Windows).
+</p></li></ul></section><section id="r213" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>10</span><span class="sep">. </span>Changes in version 2.1.3</h3></header><ul class="itemizedlist"><li><p>Fixed a bug in the handling of the <a href="p_unwrap-paragraphs.html"><code class="paramname">$unwrap-paragraphs</code></a><span class="indexterm" id="r213_il1_li1_para1_indexterm1"></span> parameter.
+The list of “block” elements understood to be “unwrapped” was incomplete.
+</p></li><li><p>Fixed the way <code class="tag tag-element">title</code> and <code class="tag tag-element">citetitle</code> are formatted in bibliographies.
+</p></li><li><p>Added support for the <code class="tag tag-attribute">translate</code>
+attribute in HTML via the
+<a href="p_translate-suppress-elements.html"><code class="paramname">$translate-suppress-elements</code></a><span class="indexterm" id="r213_il1_li3_para1_indexterm1"></span> parameter and the
+<a href="f_translate-attribute.html"><code class="funcname">f:translate-attribute()</code></a> function. Note that these
+attributes are in the HTML <em>output</em>, so they won’t
+directly help with translations of the source XML. Apparently, some
+production toolchains involve translating the published HTML.</p></li><li><p>Attempt to address problems caused by Oxygen change markup in
+CALS tables. Deleted cells are now identified in the output (to keep
+the dimensions of the table valid) rather than removing them.
+</p></li><li><p>Fixed the rendering of table footnotes in PDF.</p></li><li><p>Added support for PDF bookmarks for H1 and H2 headings.</p></li><li><p>Removed the <code class="property">page-break-inside: avoid</code> property from program listings.
+The property was causing some program listings to be rendered beyond the bottom of the page
+in PDF.</p></li><li><p>CSS has been adjusted in an attempt to avoid extra space below a <code class="tag tag-element">calloutlist</code>.</p></li><li><p>Added <code class="property">z-index</code> to avoid problems in fixed navigation headers.</p></li><li><p>Extended the documentation about Docker and Docker alternatives;
+improved the Dockerfile, especially with respect to Linux.</p></li><li><p>There are now two files in the GitHub distribution, the “normal”
+one and one labeled “nosaxon”. The “nosaxon” ZIP file is the same
+release, but without a copy of Saxon-HE. This release should be easier to integrate into environments,
+like <a href="https://www.oxygenxml.com/" class="link">&lt;oXygen/&gt;</a>, where a version of
+Saxon is already provided. (Having two <em>different</em> versions of Saxon can
+cause problems.)</p></li><li><p>A fallback version of the “Pygments” CSS file is included in repository. This allows
+the correct formatting to be achieved even if
+<a href="https://pygments.org/" class="link">Pygments</a> (and especially 
+<code class="command">pygmentize</code>) isn’t available locally.</p></li><li><p>Lots (and lots) of build changes to support building the release on Windows.
+It’s now at the “works on my machine” stage, but not yet working generally. Specific
+suggestions welcome.
+</p></li><li><p>A few other build improvements. A wholly unsuccessful attempt to
+use the matrix build in CI.</p></li><li><p>A variety of typos have been fixed in the guide.</p></li></ul></section><section id="r212" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>11</span><span class="sep">. </span>Changes in version 2.1.2</h3></header><ul class="itemizedlist"><li><p>Added a <a href="p_verbatim-trim-leading-blank-lines.html"><code class="paramname">$verbatim-trim-leading-blank-lines</code></a><span class="indexterm" id="r212_il1_li1_para1_indexterm1"></span> parameter. This
+is analagous to the <a href="p_verbatim-trim-trailing-blank-lines.html"><code class="paramname">$verbatim-trim-trailing-blank-lines</code></a><span class="indexterm" id="r212_il1_li1_para1_indexterm2"></span> parameter except
+for leading blank lines instead of trailing ones. It is false by default, for backwards
+compatibility, but note that some syntax highlighters may trim leading (and trailing)
+blank links anyway.</p></li></ul></section><section id="r211" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>12</span><span class="sep">. </span>Changes in version 2.1.1</h3></header><ul class="itemizedlist"><li><p>Added a <a href="p_copy-verbatim-js.html"><code class="paramname">$copy-verbatim-js</code></a><span class="indexterm" id="r211_il1_li1_para1_indexterm1"></span> parameter. This feature 
+creates a dynamic “copy” button on verbatim listings that will copy the
+text of the listing (without callouts, line annotations, etc.) to the clipboard.</p></li><li><p>Fixed a minor issue where some spurious namespace declarations were being copied
+into the HTML output.</p></li></ul></section><section id="r210" class="section"><header><h3><span class="label">A<span class="sep">.</span>1<span class="sep">.</span>13</span><span class="sep">. </span>Changes in version 2.1.0</h3></header><p>This is the first official release of the “2.x” versions of the
+stylesheets. Version 2.1.0 introduces a number of new features and
+corrects major issues with localization and media object rendering,
+but is not entirely backwards compatible with the 1.x versions. The
+incompatibilities should mostly effect customization layers, not
+formatted documents, though the HTML output will be a little different
+in most cases. For a summary of the changes, see <a href="#intro-210" class="xref xref-section">Section <span class="label">A<span class="sep">.</span>2</span>, “Introduction to xslTNG 2.x”</a>.</p></section></section><section id="intro-210" class="section"><header><h2><span class="label">A<span class="sep">.</span>2</span><span class="sep">. </span>Introduction to xslTNG 2.x</h2></header><p>Version 2.x of the <cite class="citetitle">DocBook xslTNG
+Stylesheets</cite> include some substantial changes from version
+1.x. If you use the stylesheets “out of the box” without any
+customization, you should have no trouble updating from version 1.x to
+version 2.1.0 (or later), but there will be differences in the HTML
+produced. If you have customization layers for 1.x, you may need to
+change them in order to get the results you expect from 2.x.</p><p>The most significant rewrite, and the change that actually
+motivated the decision to adopt some backwards incompatible changes,
+is in the area of localization. Version 1.x of the
+<cite class="citetitle">xslTNG</cite> stylesheets attempted to simplify (from
+the preceding XSLT 2.0 stylesheets) how generated text was
+constructed. The model adopted simply didn’t work for some languages.
+Trying to adapt the model to support these languages was going to
+result in something <em>even more complicated</em> than
+what had worked before, so the model has largely been reverted to what
+it was before.</p><p>The format of the localization data and the way that it’s used
+are the subject of <a href="ch-localization.html" class="xref xref-chapter">Chapter <span class="label">4</span>, Localization</a>. In broad terms, the new
+system should produce “the same results” as the old system for an
+equivalent localization, but there may be small changes in the way
+lists of titles and cross references are formatted.</p><p>The major changes are:</p><ul class="itemizedlist"><li><p>Completely reworked how localization is handled. See
+<a href="ch-localization.html" class="xref xref-chapter">Chapter <span class="label">4</span>, Localization</a>. The
+localization file format has changed. Localization files are no longer
+simply transformed from the XSLT 1.0 stylesheet format.</p></li><li><p>Completely reworked how numbering of elements is performed. See
+<a href="ch-customizing.html#numeration" class="xref xref-section">Section <span class="label">3<span class="sep">.</span>6</span>, “Controlling numeration”</a>. It’s a bit more complicated now, but it’s also
+more flexible and better tested. The default numeration should be the same
+as before, although a few small changes may appear in places where (I think)
+the previous numeration was wrong.
+</p></li><li><p>Completely refactored the way that media objects are located
+during the transformation and how the URIs for them are generated in
+the output. It is now possible to store the media objects in a location
+independent of the source files. Four separate source arrangements are represented
+in the test suite and each can be processed to produce several different outputs;
+see the <code class="buildtarget">all_mo_tests</code> build target and its dependencies.</p></li><li><p>Refactored the templates for processing media objects to improve support for
+accessibility metadata and formatting copyright statements, legal notices, etc.
+See <a href="m_mediaobject-start.html"><code class="mode">m:mediaobject-start</code></a> and <a href="m_mediaobject-end.html"><code class="mode">m:mediaobject-end</code></a>.
+</p></li><li><p>Fixed the bug where attributes on image, video, audio, and text objects
+in <code class="tag tag-element">mediaobject</code> and <code class="tag tag-element">inlinemediaobject</code> were not being preserved
+in the output. In particular, this meant that <code class="tag tag-attribute">role</code>
+attributes on those objects were not reflected in the HTML
+<code class="tag tag-attribute">class</code> attribute.</p></li><li><p>Reworked audio and video fallback. Placing an HTML prose description
+in the video tag is not the correct approach in modern browsers. That prose is only
+rendered by browsers that don’t understand the 
+<code class="tag tag-element">video</code> tag <em>at all</em>.
+Apparently, it has to be
+handled by JavaScript. There’s now a <a href="p_fallback-js.html"><code class="paramname">$fallback-js</code></a><span class="indexterm" id="intro-210_il1_li6_para1_indexterm1"></span>
+parameter.</p></li><li><p>Support media objects that have no media (e.g., a media object that contains
+only inline text objects).</p></li><li><p>Implemented an
+<a href="ch-using.html#onpage-toc" class="link">on-page table of contents</a> feature.
+</p></li><li><p>Switched to
+<code class="tag tag-element">section</code> elements
+(instead of <code class="tag tag-element">div</code> elements)
+for sections inside of <code class="tag tag-element">refentry</code> and a number of other places.
+This supports the new 
+<a href="ch-using.html#onpage-toc" class="link">on-page table of contents</a> feature and
+should have been done when the rest of the sectioning elements
+were converted.
+</p></li><li><p>Reworked ToC handling. Added <a href="p_auto-toc.html"><code class="paramname">$auto-toc</code></a><span class="indexterm" id="intro-210_il1_li10_para1_indexterm1"></span> parameter.
+The placement of generated lists-of-titles can now be controlled with an
+empty <code class="tag tag-element">toc</code> element (or <code class="tag tag-pi">db-toc</code> processing
+instruction).</p></li><li><p>Added support for creating ToCs by hand. (Former handling for
+<code class="tag tag-element">tocdiv</code> and <code class="tag tag-element">tocentry</code> was just broken.)
+</p></li><li><p>Placement of table titles, before or after the table, is now
+set with <a href="p_formal-object-title-placement.html"><code class="paramname">$formal-object-title-placement</code></a><span class="indexterm" id="intro-210_il1_li12_para1_indexterm1"></span>. For backwards
+compatibility, it defaults to ‘before’ for tables. Within a
+<code class="tag tag-element">formalgroup</code>, title placement is controlled by
+<a href="p_formalgroup-nested-object-title-placement.html"><code class="paramname">$formalgroup-nested-object-title-placement</code></a><span class="indexterm" id="intro-210_il1_li12_para1_indexterm2"></span>. In a related way,
+the placement of media
+object details can be set with <a href="p_mediaobject-details-placement.html"><code class="paramname">$mediaobject-details-placement</code></a><span class="indexterm" id="intro-210_il1_li12_para1_indexterm3"></span>.
+</p></li><li><p>Labels for formal objects may be different, but I think the previous
+formatting was actually in error.
+</p></li><li><p>Changed <a href="p_mediaobject-accessibility.html"><code class="paramname">$mediaobject-accessibility</code></a><span class="indexterm" id="intro-210_il1_li14_para1_indexterm1"></span> and
+<a href="p_table-accessibility.html"><code class="paramname">$table-accessibility</code></a><span class="indexterm" id="intro-210_il1_li14_para1_indexterm2"></span> parameters into space-separated lists of strings.</p></li><li><p>The parameters for the <a href="t_top-nav.html"><code class="template">t:top-nav</code></a> and
+<a href="t_bottom-nav.html"><code class="template">t:bottom-nav</code></a> templates have changed. They are now always
+called, even when chunking is not being performed. The new
+<code>$chunk</code> parameter indicates whether or not a chunk is being formatted.
+</p></li><li><p>Moved the 
+<code class="tag tag-element">footer</code> element from
+just after
+<code class="tag tag-element">main</code> to just inside it.
+This simplifies and improves CSS rendering and is arguably more correct.
+</p></li><li><p>Added an <a href="p_unwrap-paragraphs.html"><code class="paramname">$unwrap-paragraphs</code></a><span class="indexterm" id="intro-210_il1_li17_para1_indexterm1"></span> parameter. If this
+parameter <span class="glossterm"><a href="glossary.html#glossary_ge5">is true</a></span>, a single DocBook paragraph that contains
+block elements (for example, tables or figures) will be rendered as several HTML paragraphs
+with blocks between them. HTML doesn’t allow blocks inside paragraphs.</p></li><li><p>Made including the <code class="filename">docbook-print.css</code> file conditional
+on producing print output. Modern browsers attempt to parse the file, even when
+the link specifies that it’s for print media, and produce a large number of
+spurious error messages.</p></li><li><p>Deprecated the <a href="m_html-body-script.html"><code class="mode">m:html-body-script</code></a> mode.
+Changed the way the standard scripts are included; instead of putting them
+at the end of the 
+<code class="tag tag-element">body</code> element, they’re
+placed in the 
+<code class="tag tag-element">head</code> but explicitly marked
+deferred.
+</p></li><li><p>In some contexts, for example callouts, labels are now used for the
+links instead of titles.</p></li><li><p>Removed up-arrow from the keys that <a href="p_chunk-nav.html"><code class="paramname">$chunk-nav</code></a><span class="indexterm" id="intro-210_il1_li21_para1_indexterm1"></span> responds
+to. The up-arrow key is used by browser to move up the page and chunk navigation was
+interfering with that behavior. The <span class="keycap">U</span> key will still go “up” in
+chunk navigation.</p></li><li><p>Reworked the <a href="ch-using.html#persistent-toc" class="link">persistent
+ToC</a>. It can now store the ToC in a separate file. Improved the
+error messages when the persistent ToC is unavailable.</p></li><li><p>Changed <code>ext:cwd()</code> so that it always returns an absolute URI.
+This fixes a bug in chunk output base URI handling. Tidied up some code.</p></li><li><p>Process unexected elements in titlepage templates in the normal way; removed
+the warning message associated with them. Add it back by putting
+<code>templates</code> in <a href="p_debug.html"><code class="paramname">$debug</code></a><span class="indexterm" id="intro-210_il1_li24_para1_indexterm1"></span>.</p></li><li><p>Improved presentation of multiple <code class="tag tag-element">keycap</code> elements in a 
+<code class="tag tag-element">keycombo</code>.</p></li><li><p>Added table-of-contents to the linear flow of EPUBs. This fixes an
+<span class="application">epubcheck</span> 3.3 error. Fixed the CSS for the ToC.</p></li><li><p>Added support for ISO 690 bibliographies via a
+<a href="p_bibliography-style.html"><code class="paramname">$bibliography-style</code></a><span class="indexterm" id="intro-210_il1_li27_para1_indexterm1"></span> parameter.
+</p></li><li><p>Added a <a href="p_message-level.html"><code class="paramname">$message-level</code></a><span class="indexterm" id="intro-210_il1_li28_para1_indexterm1"></span> parameter to support suppressing
+some informational messages.</p></li><li><p>Removed <code class="tag tag-attribute">db-footnote</code> attributes from the output. Technically, attribute
+names that contain a hyphen are HTML5 extension attributes, but sometimes they make validation
+more difficult. Some extension attributes remain, because they’re used by JavaScript in
+the presentation for example, but <code class="tag tag-attribute">db-footnote</code> isn’t used that way.</p></li><li><p>Fixed bug where <code class="tag tag-element">authorgroup</code> wasn’t being processed in
+<code class="tag tag-element">biblioentry</code>.
+</p></li><li><p>Fixed a bug where <code class="tag tag-element">orderedlist</code> numeration was not handled
+correctly in cross-references to list items.</p></li><li><p>Fixed incorrect URIs for SVG draft overlay in print CSS.</p></li><li><p>Fixed a bug where the <code class="filename">catalog.xml</code> file in the
+jar file was not at a location where the XML Resolver would find it.</p></li><li><p>Updated the build system to use Pygments version 2.14.0. This effects the markup
+produced in some syntax highlighted listings. (You’re free to use any version of Pygments
+that’s convenient; this is just about conformance with the expected test results.)</p></li><li><p>The way unit tests are managed has been completely rewritten.
+See <a href="ch-building.html#testingtasks" class="xref xref-section">Section <span class="label">6<span class="sep">.</span>5</span>, “Testing tasks”</a>.</p></li></ul></section></section></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Chapter  6 .  Building the stylesheets" href="ch-building.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Glossary" href="glossary.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Chapter  6 .  Building the stylesheets</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Glossary</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2024 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>

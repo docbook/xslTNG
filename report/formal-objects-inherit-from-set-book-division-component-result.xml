@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-inherit-from-set-book-division-component.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/formal-objects-inherit-from-set-book-division-component.xsl"
-        date="2024-09-28T11:01:47.350793Z">
+        date="2024-10-09T13:38:12.720514Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/formal-objects-inherit-from-set-book-division-component.xspec">
       <label>When transforming figures-inherit-from-set-book-division-component</label>
@@ -809,13 +809,15 @@
                                     <h2>Appendix <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B</span>
                                        <span class="sep">. </span>Second appendix</h2>
                                  </header>
-                                 <p>This is just a test.</p>
-                                 <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
-                                    <p>…</p>
-                                    <header>
-                                       <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                          <span class="sep">. </span>Eleventh figure</div>
-                                    </header>
+                                 <div class="db-bfs">
+                                    <p>This is just a test.</p>
+                                    <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
+                                       <p>…</p>
+                                       <header>
+                                          <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                             <span class="sep">. </span>Eleventh figure</div>
+                                       </header>
+                                    </div>
                                  </div>
                                  <section id="book_set1_bo1_ap1_s1" class="section">
                                     <header>
@@ -1752,13 +1754,15 @@
                                        <h2>Appendix <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B</span>
                                           <span class="sep">. </span>Second appendix</h2>
                                     </header>
-                                    <p>This is just a test.</p>
-                                    <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
-                                       <p>…</p>
-                                       <header>
-                                          <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                             <span class="sep">. </span>Eleventh figure</div>
-                                       </header>
+                                    <div class="db-bfs">
+                                       <p>This is just a test.</p>
+                                       <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
+                                          <p>…</p>
+                                          <header>
+                                             <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                                <span class="sep">. </span>Eleventh figure</div>
+                                          </header>
+                                       </div>
                                     </div>
                                     <section id="book_set1_bo1_ap1_s1" class="section">
                                        <header>
@@ -3903,56 +3907,58 @@
                                     <h2>Appendix <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B</span>
                                        <span class="sep">. </span>Second appendix</h2>
                                  </header>
-                                 <p>This is just a test.</p>
-                                 <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
-                                    <p>…</p>
-                                    <header>
-                                       <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                          <span class="sep">. </span>Eleventh figure</div>
-                                    </header>
-                                 </div>
-                                 <div id="book_set1_bo1_ap1_tab1" class="formalobject table">
-                                    <header>
-                                       <div class="title">Table <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                          <span class="sep">. </span>Tenth table</div>
-                                    </header>
-                                    <table>
-                                       <tbody>
-                                          <tr>
-                                             <td>Some</td>
-                                             <td>Row</td>
-                                          </tr>
-                                       </tbody>
-                                    </table>
-                                 </div>
-                                 <div id="book_set1_bo1_ap1_ex1" class="example formalobject">
-                                    <p>…</p>
-                                    <header>
-                                       <div class="title">Example <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                          <span class="sep">. </span>Tenth example</div>
-                                    </header>
-                                 </div>
-                                 <div id="book_set1_bo1_ap1_eq1" class="equation formalobject">
-                                    <span class="mathphrase">E=mc<sup>2</sup>
-                                    </span>
-                                    <header>
-                                       <div class="title">Equation <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                          <span class="sep">. </span>Tenth equation</div>
-                                    </header>
-                                 </div>
-                                 <div id="book_set1_bo1_ap1_proc1" class="formalobject procedure">
-                                    <header>
-                                       <div class="title">Procedure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                          <span class="sep">. </span>Tenth procedure</div>
-                                    </header>
-                                    <ol class="procedure" type="1">
-                                       <li class="step">
-                                          <p>First step</p>
-                                       </li>
-                                       <li class="step">
-                                          <p>Second step</p>
-                                       </li>
-                                    </ol>
+                                 <div class="db-bfs">
+                                    <p>This is just a test.</p>
+                                    <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
+                                       <p>…</p>
+                                       <header>
+                                          <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                             <span class="sep">. </span>Eleventh figure</div>
+                                       </header>
+                                    </div>
+                                    <div id="book_set1_bo1_ap1_tab1" class="formalobject table">
+                                       <header>
+                                          <div class="title">Table <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                             <span class="sep">. </span>Tenth table</div>
+                                       </header>
+                                       <table>
+                                          <tbody>
+                                             <tr>
+                                                <td>Some</td>
+                                                <td>Row</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                    <div id="book_set1_bo1_ap1_ex1" class="example formalobject">
+                                       <p>…</p>
+                                       <header>
+                                          <div class="title">Example <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                             <span class="sep">. </span>Tenth example</div>
+                                       </header>
+                                    </div>
+                                    <div id="book_set1_bo1_ap1_eq1" class="equation formalobject">
+                                       <span class="mathphrase">E=mc<sup>2</sup>
+                                       </span>
+                                       <header>
+                                          <div class="title">Equation <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                             <span class="sep">. </span>Tenth equation</div>
+                                       </header>
+                                    </div>
+                                    <div id="book_set1_bo1_ap1_proc1" class="formalobject procedure">
+                                       <header>
+                                          <div class="title">Procedure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                             <span class="sep">. </span>Tenth procedure</div>
+                                       </header>
+                                       <ol class="procedure" type="1">
+                                          <li class="step">
+                                             <p>First step</p>
+                                          </li>
+                                          <li class="step">
+                                             <p>Second step</p>
+                                          </li>
+                                       </ol>
+                                    </div>
                                  </div>
                                  <section id="book_set1_bo1_ap1_s1" class="section">
                                     <header>
@@ -6342,56 +6348,58 @@
                                        <h2>Appendix <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B</span>
                                           <span class="sep">. </span>Second appendix</h2>
                                     </header>
-                                    <p>This is just a test.</p>
-                                    <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
-                                       <p>…</p>
-                                       <header>
-                                          <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                             <span class="sep">. </span>Eleventh figure</div>
-                                       </header>
-                                    </div>
-                                    <div id="book_set1_bo1_ap1_tab1" class="formalobject table">
-                                       <header>
-                                          <div class="title">Table <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                             <span class="sep">. </span>Tenth table</div>
-                                       </header>
-                                       <table>
-                                          <tbody>
-                                             <tr>
-                                                <td>Some</td>
-                                                <td>Row</td>
-                                             </tr>
-                                          </tbody>
-                                       </table>
-                                    </div>
-                                    <div id="book_set1_bo1_ap1_ex1" class="example formalobject">
-                                       <p>…</p>
-                                       <header>
-                                          <div class="title">Example <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                             <span class="sep">. </span>Tenth example</div>
-                                       </header>
-                                    </div>
-                                    <div id="book_set1_bo1_ap1_eq1" class="equation formalobject">
-                                       <span class="mathphrase">E=mc<sup>2</sup>
-                                       </span>
-                                       <header>
-                                          <div class="title">Equation <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                             <span class="sep">. </span>Tenth equation</div>
-                                       </header>
-                                    </div>
-                                    <div id="book_set1_bo1_ap1_proc1" class="formalobject procedure">
-                                       <header>
-                                          <div class="title">Procedure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
-                                             <span class="sep">. </span>Tenth procedure</div>
-                                       </header>
-                                       <ol class="procedure" type="1">
-                                          <li class="step">
-                                             <p>First step</p>
-                                          </li>
-                                          <li class="step">
-                                             <p>Second step</p>
-                                          </li>
-                                       </ol>
+                                    <div class="db-bfs">
+                                       <p>This is just a test.</p>
+                                       <div id="book_set1_bo1_ap1_fig1" class="figure formalobject">
+                                          <p>…</p>
+                                          <header>
+                                             <div class="title">Figure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                                <span class="sep">. </span>Eleventh figure</div>
+                                          </header>
+                                       </div>
+                                       <div id="book_set1_bo1_ap1_tab1" class="formalobject table">
+                                          <header>
+                                             <div class="title">Table <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                                <span class="sep">. </span>Tenth table</div>
+                                          </header>
+                                          <table>
+                                             <tbody>
+                                                <tr>
+                                                   <td>Some</td>
+                                                   <td>Row</td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                       <div id="book_set1_bo1_ap1_ex1" class="example formalobject">
+                                          <p>…</p>
+                                          <header>
+                                             <div class="title">Example <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                                <span class="sep">. </span>Tenth example</div>
+                                          </header>
+                                       </div>
+                                       <div id="book_set1_bo1_ap1_eq1" class="equation formalobject">
+                                          <span class="mathphrase">E=mc<sup>2</sup>
+                                          </span>
+                                          <header>
+                                             <div class="title">Equation <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                                <span class="sep">. </span>Tenth equation</div>
+                                          </header>
+                                       </div>
+                                       <div id="book_set1_bo1_ap1_proc1" class="formalobject procedure">
+                                          <header>
+                                             <div class="title">Procedure <span class="label">⎡1⎦<span class="sep">.</span>⎡1⎦<span class="sep">.</span>(α)<span class="sep">.</span>B<span class="sep">.</span>1</span>
+                                                <span class="sep">. </span>Tenth procedure</div>
+                                          </header>
+                                          <ol class="procedure" type="1">
+                                             <li class="step">
+                                                <p>First step</p>
+                                             </li>
+                                             <li class="step">
+                                                <p>Second step</p>
+                                             </li>
+                                          </ol>
+                                       </div>
                                     </div>
                                     <section id="book_set1_bo1_ap1_s1" class="section">
                                        <header>
