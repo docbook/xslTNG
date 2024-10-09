@@ -577,7 +577,7 @@ wrapper sets these automatically.
         cp = self.classpath()
         args = self.args()
         if self.catalogs:
-            args.append(f"-catalog:{";".join(self.catalogs)}")
+            args.append("-catalog:" + ";".join(self.catalogs))
 
         jopt = self.config.get("java-options", [])
         if self.debug:
