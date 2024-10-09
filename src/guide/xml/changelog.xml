@@ -10,6 +10,38 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r222">
+<info>
+  <title>Changes in version 2.2.2</title>
+  <productnumber>2.2.2</productnumber>
+  <date>2024-10-09</date> <!--tbd-->
+</info>
+<note>
+<title>Version 2.2.2 is a placeholder</title>
+<para>The next release will be version 2.3.0 because the markup changes required
+to support lanscape mode seem to justify a major bump (though they aren’t,
+technically, backwards incompatible). Version 2.2.2 is just a placeholder while
+development continues.</para>
+</note>
+<itemizedlist>
+<listitem>
+  <para>The principle new feature in version 2.3.0 is support for landscape (and portrait)
+  rotation in paged media, fixing <link xlink:href="https://github.com/docbook/xslTNG/issues/476">#476</link>.
+  This entails a lage number of changes to the paged media
+  stylesheets and some markup changes in the HTML output.</para>
+  <para>The most significant markup change is that elements that appear before
+  the first section of component (before the first <tag>section</tag> of a <tag>chapter</tag>,
+  for example) are now wrapped in a 
+  <tag namespace="http://www.w3.org/1999/xhtml">div</tag> element with the
+  <att>class</att> “<code>db-bfs</code>”. This true in both browser and paged media presentations,
+  though it’s currently unused in the browser presentation.</para>
+  <para>Another change is that rotated elements will have “<code>landscape</code>” or
+  “<code>portrait</code>” in their <att>class</att> attribute. At present, this has no
+  effect in the browser presentation.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r221">
 <info>
   <title>Changes in version 2.2.1</title>
@@ -397,7 +429,7 @@ The list of “block” elements understood to be “unwrapped” was incomplete
 </listitem>
 <listitem>
 <para>Added support for the <tag class="attribute">translate</tag>
-attribute in HTMLvia the
+attribute in HTML via the
 <parameter>translate-suppress-elements</parameter> parameter and the
 <function>f:translate-attribute</function> function. Note that these
 attributes are in the HTML <emphasis>output</emphasis>, so they won’t

@@ -188,6 +188,18 @@
       <link href="{$resource-base-uri}{fp:minified-css('css/docbook-paged.css')}"
             rel="stylesheet" media="print"/>
     </xsl:if>
+    <xsl:for-each select="$vendor-css">
+      <xsl:choose>
+        <xsl:when test="contains(., '/') or contains(., '\')">
+          <link href="{$resource-base-uri}{.}"
+                rel="stylesheet"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <link href="{$resource-base-uri}{fp:minified-css('css/' || .)}"
+                rel="stylesheet"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:if>
 
   <xsl:if test="f:is-true($presentation-mode)">

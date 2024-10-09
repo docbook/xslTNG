@@ -896,10 +896,6 @@ purpose:</para>
 </tgroup>
 </table>
 
-<para>In addition, the stylesheets support profiling on several common attributes
-that are not explicitly for effectivity: <att>xml:lang</att>, <att>revisionflag</att>,
-and <att>role</att>.</para>
-
 <note>
 <para>DocBook places no constraints on the values used for effectivity
 and the stylesheets don’t either. You’re free to use “cat” and “dog”
@@ -949,6 +945,23 @@ some common text. Options are introduced with the
 </blockquote>
 <para>That is unlikely to work well.</para>
 </important>
+</section>
+
+<section xml:id="other-common-attributes">
+<title>Other common Attributes</title>  
+<para>In addition, the stylesheets support profiling on several common attributes
+that are not explicitly for effectivity: <att>xml:lang</att>, <att>revisionflag</att>,
+and <att>role</att>.</para>
+
+<note>
+<title>The role attribute is multi-valued</title>
+<para>The stylesheets treat the <att>role</att> attribute as
+<emphasis>multi-valued,</emphasis> similar to the <tag>class</tag> attribute in HTML. It
+may contain a sequence of tokens, seperated by whitespace. This allows you, for example,
+to classify a section as <emphasis>informal</emphasis> which should be printed in
+<emphasis>landscape</emphasis> orientation with the role value
+“<code>informal landscape</code>”.</para>
+</note>
 
 </section>
 <section>
@@ -1485,6 +1498,67 @@ presentation, in the printed version.</para>
 <para>The resulting HTML document can be formatted directly with a
 CSS paged-media formatter.</para>
 
+<section xml:id="landscape">  
+<title>Landscape orientation</title>
+<para>The default orientation for pages in print output is portrait. The
+stylesheets support a simple mechanism for selecting landscape pages. This works
+in many common cases, but you may need additional CSS if you have complex requirements.</para>
+
+<note>
+<para>This feature enables whole <emphasis>pages</emphasis> with a landscape orientation.
+It doesn’t support rotating a single block element (paragraph, table, figure, etc.) to
+lanscape orientation <emphasis>within</emphasis> an otherwise portrait page. If you rotate
+a single block element, it will introduce a page break before and after the element.
+</para>
+<para>Rotations within an otherwise portrait page might be possible with custom
+CSS, depending on your formatting engine.</para>
+</note>
+
+<para>The stylesheets slightly abuse the <att>role</att> attribute
+(which is <link linkend="other-common-attributes">multi-valued</link>) for this
+purpose. Placing the token <code>landscape</code> in the <att>role</att> attribute
+will select lanscape orientation for the element on which the <att>role</att>
+attribute appears. (Placing the token <code>portrait</code> in the <att>role</att>
+attribute will select portrait orientation in an otherwise landscape document.) </para>
+
+<para>This may apply to the whole <tag>book</tag> or
+<tag>article</tag>, or to individual <tag>chapter</tag>, <tag>section</tag> or
+<tag>appendix</tag> elements.</para>
+
+<para>You can also print individual tables or figures in landscape, if they are
+too wide for portrait pages. For wide tables, you should use the
+<att>orient</att> attribute with the value <code>land</code>, because it is
+provided precisely for this purpose. However, in the interests of a uniform
+solution, the <att>role</att> attribute with the value <code>landscape</code>
+can also be used for tables.</para>
+  
+<para>For legacy reasons, the <code>landscapeFigure</code> processing instruction from the XSLT 1.0 stylesheets is also supported for <tag>figure</tag> and 
+<tag>informalfigure</tag> elements, as described 
+in <link xlink:href="http://www.sagehill.net/docbookxsl/LandscapeImage.html">Chapter 18 of Bob Staytons <quote>Complete Guide</quote>.</link>
+</para>  
+
+<section xml:id="custom-ahf">
+<title>AntennaHouse extensions</title>
+
+<para>The rotation mechanism supported by standard CSS rotates the entire page,
+including any running headers and footers. For documents that are read online,
+this has some real advantages as the PDF viewer is likely to show the landscape
+pages “the right way up”.</para>
+
+<para>But for documents that are going to be printed, or where a more
+traditional presentation is desirable, the goal is usually to rotate the
+<emphasis>content</emphasis> of the page, but not the page itself.</para>
+
+<para>This can be accomplished with the AntennaHouse formatter using the
+<parameter>vendor-css</parameter> extension. In an otherwise portrait document,
+including the <filename>vendor-ahf-portrait.css</filename> file using
+<parameter>vendor-css</parameter> will present landscape rotations in the
+portrait page. If the document is being printed on landscape pages,
+including the <filename>vendor-ahf-landscape.css</filename> file using
+<parameter>vendor-css</parameter> will present <emphasis>portrait</emphasis>
+rotations in the landscape page.</para>
+</section>
+</section>
 </section>
 
 <section xml:id="epub">
@@ -1635,4 +1709,3 @@ has a background color.
 
 </section>
 </chapter>
-

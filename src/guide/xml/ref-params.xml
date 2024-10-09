@@ -5750,4 +5750,46 @@ output, this option is <code>false</code> by default.</para>
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string*</type>
+      <varname>vendor-css</varname>
+      <initializer>()</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.2.2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Additional, vendor specific CSS</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter allows you to add an additional stylesheet for
+vendor-specific CSS. This can be used, for example, to customize the CSS used for
+different paged media engines.</para>
+<para>Two such stylesheets are provided:</para>
+
+<variablelist>
+<varlistentry><term>vendor-ahf-portrait.css</term>
+<listitem>
+<para>An extension for the AntennaHouse Formatter that prints
+<link linkend="landscape">landscape</link> material without rotating the page
+headers and footers.</para>
+<para>This version is intended for documents that are printed in portrait orientation.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term>vendor-ahf-landscape.css</term>
+<listitem>
+<para>An extension for the AntennaHouse Formatter that prints portrait material
+without rotating the page headers and footers.</para>
+<para>This version is intended for documents that are printed in
+<link linkend="landscape">landscape</link> orientation.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</refsection>
+</refentry>
+
 </reference>
