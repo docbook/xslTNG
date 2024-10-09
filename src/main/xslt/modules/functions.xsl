@@ -782,5 +782,50 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>  
+
+<xsl:function name="f:orientation-class" as="xs:string?">
+  <xsl:param name="node" as="element()"/>
+
+  <xsl:variable name="nearest"
+                select="($node/ancestor-or-self::*[contains-token(@role,'landscape')
+                                                   or contains-token(@role,'portrait')]
+                         | $node/ancestor-or-self::db:table[@orient]
+                         | $node/ancestor-or-self::db:informaltable[@orient])[last()]"/>
+
+  <xsl:choose>
+    <xsl:when test="$output-media != 'print'"/>
+    <xsl:when test="$nearest/@orient and $nearest/@orient = 'land'">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:when>
+    <xsl:when test="$nearest/@orient">
+      <xsl:sequence select="'portrait'"/>
+    </xsl:when>
+    <xsl:when test="contains-token($nearest/@role, 'landscape')">
+      <xsl:sequence select="'landscape'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="'portrait'"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="f:conditional-orientation-class" as="xs:string?">
+  <xsl:param name="node" as="element()"/>
+
+  <xsl:variable name="parent" select="$node/parent::element() ! f:orientation-class(.)"/>
+  <xsl:variable name="orient" select="f:orientation-class($node)"/>
+
+<!--
+  <xsl:message select="node-name($node), 'P:', $parent, ' O:', $orient"/>
+
+      <xsl:sequence select="$orient"/>
+-->
+  <xsl:choose>
+    <xsl:when test="exists($parent) and $parent eq $orient"/>
+    <xsl:otherwise>
+      <xsl:sequence select="$orient"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
   
 </xsl:stylesheet>

@@ -1,0 +1,64 @@
+/* ============================================================ */
+/* Support for landscape orientation of figures and tables      */
+
+@each $pagesize in [A4, A5, Letter] {
+    html.article-style.#{$pagesize} body .db-bfs.landscape,
+    html.article-style.#{$pagesize} body .division.landscape,
+    html.article-style.#{$pagesize} body .component.landscape,
+    html.article-style.#{$pagesize} body .section.landscape,
+    html.article-style.#{$pagesize} body .formalobject.landscape,
+    html.article-style.#{$pagesize} body .informalobject.landscape,
+    html.article-style.#{$pagesize} body .list-of-titles.landscape {
+        page: #{$pagesize}-article-flow-portrait;
+    }
+
+    html.article-style.#{$pagesize} body .db-bfs.draft.landscape,
+    html.article-style.#{$pagesize} body .division.draft.landscape,
+    html.article-style.#{$pagesize} body .component.draft.landscape,
+    html.article-style.#{$pagesize} body .section.draft.landscape,
+    html.article-style.#{$pagesize} body .formalobject.draft.landscape,
+    html.article-style.#{$pagesize} body .informalobject.draft.landscape,
+    html.article-style.#{$pagesize} body .list-of-titles.draft.landscape {
+        page: #{$pagesize}-article-flow-draft-portrait;
+    }
+}
+
+@each $pagesize in [A4, A5, Letter] {
+    html.book-style.#{$pagesize} body .division,
+    html.book-style.#{$pagesize} body .component,
+    html.book-style.#{$pagesize} body .list-of-titles {
+        break-before: right;
+    }
+
+    html.book-style.#{$pagesize} body .division.landscape,
+    html.book-style.#{$pagesize} body .component.landscape,
+    html.book-style.#{$pagesize} body .list-of-titles.landscape {
+        page: #{$pagesize}-book-flow-portrait;
+    }
+    html.book-style.#{$pagesize} body .section.landscape,
+    html.book-style.#{$pagesize} body .formalobject.landscape,
+    html.book-style.#{$pagesize} body .informalobject.landscape {
+        page: #{$pagesize}-book-flow-portrait;
+    }
+
+    html.book-style.#{$pagesize} body .division.draft.landscape,
+    html.book-style.#{$pagesize} body .component.draft.landscape,
+    html.book-style.#{$pagesize} body .list-of-titles.draft.landscape {
+        break-before: right;
+        page: #{$pagesize}-book-draft-portrait;
+    }
+    html.book-style.#{$pagesize} body .section.draft.landscape,
+    html.book-style.#{$pagesize} body .formalobject.draft.landscape,
+    html.book-style.#{$pagesize} body .informalobject.draft.landscape {
+        page: #{$pagesize}-book-draft-portrait;
+    }
+}
+
+.landscape {
+    break-before: page;
+    break-after: page;
+    -ah-reference-orientation: 90;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: auto;
+}

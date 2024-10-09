@@ -11,7 +11,7 @@
                 version="3.0">
 
 <xsl:template match="db:table[not(db:tgroup)]">
-  <div class="formalobject {local-name(.)}">
+  <div class="formalobject {local-name(.)}{f:conditional-orientation-class(.) ! concat(' ', .)}">
     <xsl:choose>
       <xsl:when test="@xml:id">
         <xsl:attribute name="id" select="@xml:id"/>

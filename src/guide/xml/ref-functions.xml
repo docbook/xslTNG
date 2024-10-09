@@ -2422,7 +2422,7 @@ otherwise the document is the one that <code>$term</code> appears in.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_">
+<refentry xml:id="f_glossrefs">
   <?db filename='f_glossrefs'?>
   <refmeta>
     <refentrytitle>f:glossrefs</refentrytitle>
@@ -2440,6 +2440,48 @@ otherwise the document is the one that <code>$term</code> appears in.
 <para>Returns all of the <tag>glossterm</tag> and <tag>firstterm</tag> elements in the document that match
 <code>$term</code>. The document is identified by <code>$root</code>, if specified,
 otherwise the document is the one that <code>$term</code> appears in.
+</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_orientation-class">
+  <?db filename='f_orientation-class'?>
+  <refmeta>
+    <refentrytitle>f:orientation-class</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}orientation-class#1</refmiscinfo>
+    <refmiscinfo class="version">2.2.2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:orientation-class</refname>
+    <refpurpose>Returns the class value to use for an element’s orientation</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Determines if the element specified should be printed in portrait or landscape
+orientation. The default is assumed to be portrait.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_conditional-orientation-class">
+  <?db filename='f_conditional-orientation-class'?>
+  <refmeta>
+    <refentrytitle>f:conditional-orientation-class</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}conditional-orientation-class#1</refmiscinfo>
+    <refmiscinfo class="version">2.2.2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:conditional-orientation-class</refname>
+    <refpurpose>Returns an element’s orientation if it differs from its parent</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>Determines if the element specified should be printed in portrait or landscape
+orientation. If that value is the same as the parent element’s value, an empty sequence
+is returned instead.
+</para>
+<para>This avoids “double rotation” of, for example, a landscape table within a landscape chapter.
 </para>
 </refsection>
 </refentry>

@@ -779,7 +779,9 @@ task compileSass() {
         "${fProjectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.css",
         "${fProjectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.css",
         "${fProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.css",
-        "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css"
+        "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css",
+        "${fProjectDir}/src/main/scss/vendor-ahf-portrait.scss:${buildDir}/css/vendor-ahf-portrait.css",
+        "${fProjectDir}/src/main/scss/vendor-ahf-landscape.scss:${buildDir}/css/vendor-ahf-landscape.css"
     }
   }
 
@@ -790,12 +792,15 @@ task compileSass() {
         "${fProjectDir}/src/main/scss/docbook-screen.scss:${buildDir}/css/docbook.min.css",
         "${fProjectDir}/src/main/scss/docbook-paged.scss:${buildDir}/css/docbook-paged.min.css",
         "${fProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.min.css",
-        "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css"
+        "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css",
+        "${fProjectDir}/src/main/scss/vendor-ahf-portrait.scss:${buildDir}/css/vendor-ahf-portrait.min.css",
+        "${fProjectDir}/src/main/scss/vendor-ahf-landscape.scss:${buildDir}/css/vendor-ahf-landscape.min.css"
     }
   }
 
   doLast {
-    ["docbook", "docbook-paged", "docbook-epub", "docbook-toc"].each { base ->
+    ["docbook", "docbook-paged", "docbook-epub", "docbook-toc",
+     "vendor-ahf-landscape", "vendor-ahf-portrait"].each { base ->
       [".css", ".min.css"].each { ext ->
         String fn = "${base}${ext}"
         File css = new File("${buildDir}/css/${fn}")

@@ -19,7 +19,23 @@
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:generate-titlepage"/>
     <xsl:apply-templates select="." mode="m:toc"/>
-    <xsl:apply-templates/>
+
+    <xsl:variable name="section" select="db:section[1] | db:sect1[1]"/>
+    <xsl:choose>
+      <xsl:when test="empty($section)">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="nodes" select="$section/preceding-sibling::node()"/>
+        <xsl:apply-templates select="$nodes/self::db:toc"/>
+        <xsl:where-populated>
+          <div class="db-bfs{f:conditional-orientation-class(.) ! concat(' ', .)}">
+            <xsl:apply-templates select="$nodes except $nodes/self::db:toc"/>
+          </div>
+        </xsl:where-populated>
+        <xsl:apply-templates select="$section, $section/following-sibling::node()"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:element>
 </xsl:template>
 

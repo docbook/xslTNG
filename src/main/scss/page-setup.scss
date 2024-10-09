@@ -1,3 +1,29 @@
+/* ************************************************************
+
+There are four things to consider:
+
+1. Page size
+
+   Layouts for A4, A5, and (US) Letter are provided.
+
+2. Page style
+
+   In "article" style, page margins are uniform and every page
+   has the same headers and footers. In "book" style, the page
+   margins shift on recto/verso pages to account for the gutter
+   and the headers and footers vary on recto/verso pages.
+
+3. Draft mode
+
+   In draft mode, a "draft" watermark is added to each page.
+
+4. Landscape mode
+
+   In landscape mode, pages are rotated 90 degrees. Pages
+   are portrait unless landscape is requested.
+
+************************************************************ */
+
 :root {
     --margin-inner: 1in;
     --margin-outer: 1in;
@@ -62,27 +88,6 @@ html.book-style.Letter {
     @bottom-right {
         content: "";
     }
-}
-
-/* ============================================================ */
-/* These are the page flow styles. For each page size (A4,
-   A5, Letter) there are two flows: article-flow and book-flow.
-   The article-flow style has identical left and right margins,
-   the book-flow style has a slightly wider inner margin.
-   In addition, there's a -draft style for each combination of
-   size and flow that adds a draft watermark to the page.
-   Finally, there are pseudo-classes for first, left, right,
-   and blank pages. It's all a bit cut-and-pastey. */
-/* ============================================================ */
-
-@page A4-article-flow {
-    size: A4;
-    @top-center {
-        content: string(DocumentTitle);
-    }
-    @bottom-center {
-        content: counter(page);
-    }
     @footnote {
         float: bottom page;
         border-top: thin solid black;
@@ -91,167 +96,96 @@ html.book-style.Letter {
     }
 }
 
-@page A4-article-flow:first {
-    size: A4;
-    @top-center {
-        content: "";
-    }
-}
-
-@page A4-article-flow-draft {
-    size: A4;
+@mixin draft-right {
     background-image: url('draft-right.svg');
     background-position: calc(100% - 0.5cm) 0.5cm;
     background-repeat: no-repeat;
     background-size: 2.5cm;
     background-origin: border-box;
     background-clip: border-box;
-    @top-center {
-        content: string(DocumentTitle);
-    }
-    @bottom-center {
-        content: counter(page);
-    }
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
 }
 
-@page A4-article-flow-draft:first {
-    size: A4;
-    @top-center {
-        content: "";
-    }
-}
-
-@page A5-article-flow {
-    size: A5;
-    @top-center {
-        content: string(DocumentTitle);
-    }
-    @bottom-center {
-        content: counter(page);
-    }
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page A5-article-flow:first {
-    size: A5;
-    @top-center {
-        content: "";
-    }
-}
-
-@page A5-article-flow-draft {
-    size: A5;
-    background-image: url('draft-right.svg');
-    background-position: calc(100% - 0.5cm) 0.5cm;
+@mixin draft-left {
+    background-image: url('draft-left.svg');
+    background-position: 0.5cm 0.5cm;
     background-repeat: no-repeat;
     background-size: 2.5cm;
     background-origin: border-box;
     background-clip: border-box;
+}
+
+@mixin article-page-margin-boxes {
     @top-center {
         content: string(DocumentTitle);
     }
     @bottom-center {
         content: counter(page);
     }
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
 }
 
-@page A5-article-flow-draft:first {
-    size: A5;
+@mixin article-page-margin-boxes-first {
     @top-center {
         content: "";
-    }
-}
-
-@page Letter-article-flow {
-    size: Letter;
-    @top-center {
-        content: string(DocumentTitle);
     }
     @bottom-center {
         content: counter(page);
     }
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
+}
+
+/* The default page margin boxes are bank */
+@mixin article-page-margin-boxes-blank {
+}
+
+@each $pagesize in [A4, A5, Letter] {
+    @each $orient in [portrait, landscape] {
+        @each $draft in [final, draft] {
+            $dlabel: "";
+            @if ($draft == "draft") {
+                $dlabel: "-draft";
+            }
+
+            @page #{$pagesize}-article-flow-#{$orient}#{$dlabel} {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == draft) {
+                    @include draft-right;
+                }
+                @include article-page-margin-boxes;
+            }
+
+            @page #{$pagesize}-article-flow-#{$orient}#{$dlabel}:first {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == draft) {
+                    @include draft-right;
+                }
+                @include article-page-margin-boxes;
+            }
+
+            @page #{$pagesize}-article-flow-#{$orient}#{$dlabel}:blank {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == draft) {
+                    @include draft-right;
+                }
+                @include article-page-margin-boxes-blank;
+            }
+        }
     }
 }
 
-@page Letter-article-flow:first {
-    size: Letter;
-    @top-center {
-        content: "";
-    }
-}
-
-@page Letter-article-flow-draft {
-    size: Letter;
-    background-image: url('draft-right.svg');
-    background-position: calc(100% - 0.5cm) 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-    @top-center {
-        content: string(DocumentTitle);
-    }
-    @bottom-center {
-        content: counter(page);
-    }
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page Letter-article-flow-draft:first {
-    size: Letter;
-    @top-center {
-        content: "";
-    }
-}
-
-@page A4-book-title-flow {
-    size: A4;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-outer);
-}
-
-@page A4-book-flow {
-    size: A4;
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page A4-book-flow:right {
-    size: A4;
+@mixin book-page-recto {
     margin-left: var(--margin-inner);
     margin-right: var(--margin-outer);
-
     @top-center {
         content: string(SectionTitle);
     }
@@ -260,169 +194,25 @@ html.book-style.Letter {
     }
 }
 
-@page A4-book-flow:left {
-    size: A4;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-inner);
-
-    @top-center {
-        content: string(ComponentTitle);
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-}
-
-@page A4-book-flow:blank {
-    size: A4;
-    @top-left {
-        content: "";
-    }
-    @top-center {
-        content: "";
-    }
-    @top-right {
-        content: "";
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-    @bottom-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-}
-
-@page A4-book-title-flow-draft {
-    size: A4;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-outer);
-}
-
-@page A4-book-title-flow-draft:left {
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-}
-
-@page A4-book-title-flow-draft:right {
-    background-image: url('draft-right.svg');
-    background-position: calc(100% - 0.5cm) 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-}
-
-@page A4-book-flow-draft {
-    size: A4;
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page A4-book-flow-draft:right {
-    size: A4;
+@mixin book-page-recto-first {
     margin-left: var(--margin-inner);
     margin-right: var(--margin-outer);
-    background-image: url('draft-right.svg');
-    background-position: calc(100% - 0.5cm) 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-
-    @top-center {
-        content: string(SectionTitle);
-    }
     @bottom-right {
         content: counter(page);
     }
 }
 
-@page A4-book-flow-draft:left {
-    size: A4;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-inner);
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-
-    @top-center {
-        content: string(ComponentTitle);
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-}
-
-@page A4-book-flow-draft:blank {
-    size: A4;
-    @top-left {
-        content: "";
-    }
-    @top-center {
-        content: "";
-    }
-    @top-right {
-        content: "";
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-    @bottom-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-}
-
-@page A5-book-title-flow {
-    size: A5;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-outer);
-}
-
-@page A5-book-flow {
-    size: A5;
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page A5-book-flow:right {
-    size: A5;
+@mixin book-page-recto-blank {
     margin-left: var(--margin-inner);
     margin-right: var(--margin-outer);
-
-    @top-center {
-        content: string(SectionTitle);
-    }
     @bottom-right {
         content: counter(page);
     }
 }
 
-@page A5-book-flow:left {
-    size: A5;
+@mixin book-page-verso {
     margin-left: var(--margin-outer);
     margin-right: var(--margin-inner);
-
     @top-center {
         content: string(ComponentTitle);
     }
@@ -431,378 +221,253 @@ html.book-style.Letter {
     }
 }
 
-@page A5-book-flow:blank {
-    size: A5;
-    @top-left {
-        content: "";
-    }
-    @top-center {
-        content: "";
-    }
-    @top-right {
-        content: "";
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-    @bottom-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-}
-
-@page A5-book-title-flow-draft {
-    size: A5;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-outer);
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-}
-
-@page A5-book-flow-draft {
-    size: A5;
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page A5-book-flow-draft:right {
-    size: A5;
-    margin-left: var(--margin-inner);
-    margin-right: var(--margin-outer);
-    background-image: url('draft-right.svg');
-    background-position: calc(100% - 0.5cm) 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-
-    @top-center {
-        content: string(SectionTitle);
-    }
-    @bottom-right {
-        content: counter(page);
-    }
-}
-
-@page A5-book-flow-draft:left {
-    size: A5;
+@mixin book-page-verso-first {
     margin-left: var(--margin-outer);
     margin-right: var(--margin-inner);
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-
-    @top-center {
-        content: string(ComponentTitle);
-    }
     @bottom-left {
         content: counter(page);
     }
 }
 
-@page A5-book-flow-draft:blank {
-    size: A5;
-    @top-left {
-        content: "";
-    }
-    @top-center {
-        content: "";
-    }
-    @top-right {
-        content: "";
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-    @bottom-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-}
-
-@page Letter-book-title-flow {
-    size: Letter;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-outer);
-}
-
-@page Letter-book-flow {
-    size: Letter;
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
-
-@page Letter-book-flow:right {
-    size: Letter;
-    margin-left: var(--margin-inner);
-    margin-right: var(--margin-outer);
-
-    @top-center {
-        content: string(SectionTitle);
-    }
-    @bottom-right {
-        content: counter(page);
-    }
-}
-
-@page Letter-book-flow:left {
-    size: Letter;
+@mixin book-page-verso-blank {
     margin-left: var(--margin-outer);
     margin-right: var(--margin-inner);
-
-    @top-center {
-        content: string(ComponentTitle);
-    }
     @bottom-left {
         content: counter(page);
     }
 }
 
-@page Letter-book-flow:blank {
-    size: Letter;
-    @top-left {
-        content: "";
-    }
-    @top-center {
-        content: "";
-    }
-    @top-right {
-        content: "";
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-    @bottom-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
-    }
-}
+@each $pagesize in [A4, A5, Letter] {
+    @each $orient in [portrait, landscape] {
+        @each $draft in [final, draft] {
+            $dlabel: "";
+            @if ($draft == "draft") {
+                $dlabel: "-draft";
+            }
 
-@page Letter-book-title-flow-draft {
-    size: Letter;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-outer);
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-}
+            @page #{$pagesize}-book-title-flow-#{$orient}#{$dlabel} {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == draft) {
+                    @include draft-right;
+                }
+            }
 
-@page Letter-book-flow-draft {
-    size: Letter;
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
-    @footnote {
-        float: bottom page;
-        border-top: thin solid black;
-        border-length: 30%;
-        padding-top: 0.5em;
-    }
-}
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:right {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == "draft") {
+                    @include draft-right;
+                }
+                @include book-page-recto;
+            }
 
-@page Letter-book-flow-draft:right {
-    size: Letter;
-    margin-left: var(--margin-inner);
-    margin-right: var(--margin-outer);
-    background-image: url('draft-right.svg');
-    background-position: calc(100% - 0.5cm) 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:right:first {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == "draft") {
+                    @include draft-right;
+                }
+                @include book-page-recto-first;
+            }
 
-    @top-center {
-        content: string(SectionTitle);
-    }
-    @bottom-right {
-        content: counter(page);
-    }
-}
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:right:blank {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == "draft") {
+                    @include draft-right;
+                }
+                @include book-page-recto-blank;
+            }
 
-@page Letter-book-flow-draft:left {
-    size: Letter;
-    margin-left: var(--margin-outer);
-    margin-right: var(--margin-inner);
-    background-image: url('draft-left.svg');
-    background-position: 0.5cm 0.5cm;
-    background-repeat: no-repeat;
-    background-size: 2.5cm;
-    background-origin: border-box;
-    background-clip: border-box;
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:left {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == "draft") {
+                    @include draft-left;
+                }
+                @include book-page-verso;
+            }
 
-    @top-center {
-        content: string(ComponentTitle);
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-}
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:left:first {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == "draft") {
+                    @include draft-left;
+                }
+                @include book-page-verso-first;
+            }
 
-@page Letter-book-flow-draft:blank {
-    size: Letter;
-    @top-left {
-        content: "";
-    }
-    @top-center {
-        content: "";
-    }
-    @top-right {
-        content: "";
-    }
-    @bottom-left {
-        content: counter(page);
-    }
-    @bottom-center {
-        content: "";
-    }
-    @bottom-right {
-        content: "";
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:left:blank {
+                @if ($orient == "landscape") {
+                    size: $pagesize landscape;
+                } @else {
+                    size: $pagesize;
+                }
+                @if ($draft == "draft") {
+                    @include draft-left;
+                }
+                @include book-page-verso-blank;
+            }
+        }
     }
 }
 
 /* ============================================================ */
 /* Pick the correct page style to start */
 
-html.article-style.A4 body {
-    page: A4-article-flow;
+@each $pagesize in [A4, A5, Letter] {
+    html.article-style.#{$pagesize} body {
+        string-set: DocumentTitle "";
+        page: #{$pagesize}-article-flow-portrait;
+    }
+
+    html.article-style.#{$pagesize} body .db-bfs.portrait,
+    html.article-style.#{$pagesize} body .division.portrait,
+    html.article-style.#{$pagesize} body .component.portrait,
+    html.article-style.#{$pagesize} body .section.portrait,
+    html.article-style.#{$pagesize} body .formalobject.portrait,
+    html.article-style.#{$pagesize} body .informalobject.portrait,
+    html.article-style.#{$pagesize} body .list-of-titles.portrait {
+        page: #{$pagesize}-article-flow-portrait;
+    }
+
+    html.article-style.#{$pagesize} body.landscape {
+        string-set: DocumentTitle "";
+        page: #{$pagesize}-article-flow-landscape;
+    }
+    html.article-style.#{$pagesize} body .db-bfs.landscape,
+    html.article-style.#{$pagesize} body .division.landscape,
+    html.article-style.#{$pagesize} body .component.landscape,
+    html.article-style.#{$pagesize} body .section.landscape,
+    html.article-style.#{$pagesize} body .formalobject.landscape,
+    html.article-style.#{$pagesize} body .informalobject.landscape,
+    html.article-style.#{$pagesize} body .list-of-titles.landscape {
+        page: #{$pagesize}-article-flow-landscape;
+    }
+
+    html.article-style.#{$pagesize} body.draft.portrait {
+        string-set: DocumentTitle "";
+        page: #{$pagesize}-article-flow-draft-portrait;
+    }
+    html.article-style.#{$pagesize} body .db-bfs.draft.portrait,
+    html.article-style.#{$pagesize} body .division.draft.portrait,
+    html.article-style.#{$pagesize} body .component.draft.portrait,
+    html.article-style.#{$pagesize} body .section.draft.portrait,
+    html.article-style.#{$pagesize} body .formalobject.draft.portrait,
+    html.article-style.#{$pagesize} body .informalobject.draft.portrait,
+    html.article-style.#{$pagesize} body .list-of-titles.draft.portrait {
+        page: #{$pagesize}-article-flow-draft-portrait;
+    }
+
+    html.article-style.#{$pagesize} body.draft.landscape {
+        string-set: DocumentTitle "";
+        page: #{$pagesize}-article-flow-draft-landscape;
+    }
+    html.article-style.#{$pagesize} body .db-bfs.draft.landscape,
+    html.article-style.#{$pagesize} body .division.draft.landscape,
+    html.article-style.#{$pagesize} body .component.draft.landscape,
+    html.article-style.#{$pagesize} body .section.draft.landscape,
+    html.article-style.#{$pagesize} body .formalobject.draft.landscape,
+    html.article-style.#{$pagesize} body .informalobject.draft.landscape,
+    html.article-style.#{$pagesize} body .list-of-titles.draft.landscape {
+        page: #{$pagesize}-article-flow-draft-landscape;
+    }
 }
 
-html.article-style.A4 body.draft {
-    page: A4-article-flow-draft;
-}
+@each $pagesize in [A4, A5, Letter] {
+    html.book-style.#{$pagesize} body {
+        page: #{$pagesize}-book-title-flow-portrait;
+    }
+    html.book-style.#{$pagesize} body .list-of-titles {
+        counter-reset: page;
+    }
 
-html.article-style.A5 body {
-    page: A5-article-flow;
-}
+    html.book-style.#{$pagesize} body .division,
+    html.book-style.#{$pagesize} body .component,
+    html.book-style.#{$pagesize} body .list-of-titles {
+        break-before: right;
+    }
 
-html.article-style.A5 body.draft {
-    page: A5-article-flow-draft;
-}
+    html.book-style.#{$pagesize} body .division.portrait,
+    html.book-style.#{$pagesize} body .component.portrait,
+    html.book-style.#{$pagesize} body .list-of-titles.portrait {
+        break-before: right;
+        page: #{$pagesize}-book-flow-portrait;
+    }
 
-html.article-style.Letter body {
-    page: Letter-article-flow;
-}
+    html.book-style.#{$pagesize} body .section.portrait,
+    html.book-style.#{$pagesize} body .formalobject.portrait,
+    html.book-style.#{$pagesize} body .informalobject.portrait {
+        page: #{$pagesize}-book-flow-portrait;
+    }
 
-html.article-style.Letter body.draft {
-    page: Letter-article-flow-draft;
-}
+    html.book-style.#{$pagesize} body.landscape {
+        page: #{$pagesize}-book-title-flow-landscape;
+    }
+    html.book-style.#{$pagesize} body .division.landscape,
+    html.book-style.#{$pagesize} body .component.landscape,
+    html.book-style.#{$pagesize} body .list-of-titles.landscape {
+        break-before: right;
+        page: #{$pagesize}-book-flow-landscape;
+    }
+    html.book-style.#{$pagesize} body .section.landscape,
+    html.book-style.#{$pagesize} body .formalobject.landscape,
+    html.book-style.#{$pagesize} body .informalobject.landscape {
+        page: #{$pagesize}-book-flow-landscape;
+    }
 
-html.book-style.A4 body {
-    page: A4-book-title-flow;
-}
-
-html.book-style.A4 body .division,
-html.book-style.A4 body .component,
-html.book-style.A4 body.book .list-of-titles {
-    break-before: right;
-    page: A4-book-flow;
-}
-
-html.book-style.A4 body.draft {
-    page: A4-book-title-flow-draft;
-}
-
-html.book-style.A4 body.draft .division,
-html.book-style.A4 body.draft .component,
-html.book-style.A4 body.draft.book .list-of-titles {
-    break-before: right;
-    page: A4-book-flow-draft;
-}
-
-html.book-style.A4 body.draft {
-    page: A4-book-title-flow-draft;
-}
-
-html.book-style.A5 body {
-    page: A5-book-title-flow;
-}
-
-html.book-style.A5 body .division,
-html.book-style.A5 body .component,
-html.book-style.A5 body.book .list-of-titles {
-    break-before: right;
-    page: A5-book-flow;
-}
-
-html.book-style.A5 body.draft {
-    page: A5-book-title-flow-draft;
-}
-
-html.book-style.A5 body.draft .division,
-html.book-style.A5 body.draft .component,
-html.book-style.A5 body.draft.book .list-of-titles {
-    break-before: right;
-    page: A5-book-flow-draft;
-}
-
-html.book-style.Letter body {
-    page: Letter-book-title-flow;
-}
-
-html.book-style.Letter body .division,
-html.book-style.Letter body .component,
-html.book-style.Letter body.book .list-of-titles {
-    break-before: right;
-    page: Letter-book-flow;
-}
-
-html.book-style.Letter body.draft {
-    page: Letter-book-title-flow-draft;
-}
-
-html.book-style.Letter body.draft .division,
-html.book-style.Letter body.draft .component,
-html.book-style.Letter body.draft.book .list-of-titles {
-    break-before: right;
-    page: Letter-book-flow-draft;
-}
-
-html.book-style .list-of-titles div .title {
-    string-set: ComponentTitle content()
-}
-
-html.book-style body > header {
-    page-break-after: right;
-}
-
-html.book-style body > header .revhistory {
-    page-break-before: always;
-}
-
-html.book-style .book .list-of-titles {
-    break-before: right;
-    counter-reset: page;
+    html.book-style.#{$pagesize} body.draft.portrait {
+        page: #{$pagesize}-book-title-flow-draft-portrait;
+    }
+    html.book-style.#{$pagesize} body .division.draft.portrait,
+    html.book-style.#{$pagesize} body .component.draft.portrait,
+    html.book-style.#{$pagesize} body .list-of-titles.draft.portrait {
+        break-before: right;
+        page: #{$pagesize}-book-flow-draft-portrait;
+    }
+    html.book-style.#{$pagesize} body .section.draft.portrait,
+    html.book-style.#{$pagesize} body .formalobject.draft.portrait,
+    html.book-style.#{$pagesize} body .informalobject.draft.portrait {
+        page: #{$pagesize}-book-flow-draft-portrait;
+    }
+    html.book-style.#{$pagesize} body.draft.landscape {
+        page: #{$pagesize}-book-title-draft-landscape;
+    }
+    html.book-style.#{$pagesize} body .division.draft.landscape,
+    html.book-style.#{$pagesize} body .component.draft.landscape,
+    html.book-style.#{$pagesize} body .list-of-titles.draft.landscape {
+        break-before: right;
+        page: #{$pagesize}-book-draft-landscape;
+    }
+    html.book-style.#{$pagesize} body .section.draft.landscape,
+    html.book-style.#{$pagesize} body .formalobject.draft.landscape,
+    html.book-style.#{$pagesize} body .informalobject.draft.landscape {
+        page: #{$pagesize}-book-draft-landscape;
+    }
 }
 
 /* ============================================================ */
 
+/*
 html.article-style > header {
     page-break-after: always;
 }
@@ -811,10 +476,11 @@ html.article-style .list-of-titles {
     break-before: always;
 }
 
-html.article-style .list-of-titles div .title {
-    string-set: ComponentTitle content()
-}
-
 .article-style .division {
     break-before: always;
+}
+*/
+
+html.article-style .list-of-titles div .title {
+    string-set: ComponentTitle content()
 }

@@ -651,7 +651,12 @@
 <xsl:template match="element()">
   <xsl:copy>
     <xsl:apply-templates select="@*"/>
-    <xsl:sequence select="h:db-annotation-marker[@placement='before']/node()"/>
+    <!-- annotations inside the constructed db-bfs div are moved to the top
+         so ignore them when we're *inside* the db-bfs div -->
+    <xsl:if test="not(contains-token(@class, 'db-bfs'))">
+      <xsl:sequence select="h:db-annotation-marker[@placement='before']/node()
+                            |h:div[@class='db-bfs']/h:db-annotation-marker[@placement='before']/node()"/>
+    </xsl:if>
     <xsl:apply-templates select="node()"/>
   </xsl:copy>
 </xsl:template>
