@@ -366,8 +366,16 @@ html.book-style.Letter {
 
     html.article-style.#{$pagesize} body.draft.portrait {
         string-set: DocumentTitle "";
-        page: #{$pagesize}-article-flow-draft-portrait;
+        page: #{$pagesize}-article-flow-portrait-draft;
     }
+    html.article-style.#{$pagesize} body.draft.portrait,
+    html.article-style.#{$pagesize} body.draft.portrait .db-bfs,
+    html.article-style.#{$pagesize} body.draft.portrait .division,
+    html.article-style.#{$pagesize} body.draft.portrait .component,
+    html.article-style.#{$pagesize} body.draft.portrait .section,
+    html.article-style.#{$pagesize} body.draft.portrait .formalobject,
+    html.article-style.#{$pagesize} body.draft.portrait .informalobject,
+    html.article-style.#{$pagesize} body.draft.portrait .list-of-titles,
     html.article-style.#{$pagesize} body .db-bfs.draft.portrait,
     html.article-style.#{$pagesize} body .division.draft.portrait,
     html.article-style.#{$pagesize} body .component.draft.portrait,
@@ -375,12 +383,12 @@ html.book-style.Letter {
     html.article-style.#{$pagesize} body .formalobject.draft.portrait,
     html.article-style.#{$pagesize} body .informalobject.draft.portrait,
     html.article-style.#{$pagesize} body .list-of-titles.draft.portrait {
-        page: #{$pagesize}-article-flow-draft-portrait;
+        page: #{$pagesize}-article-flow-portrait-draft;
     }
 
     html.article-style.#{$pagesize} body.draft.landscape {
         string-set: DocumentTitle "";
-        page: #{$pagesize}-article-flow-draft-landscape;
+        page: #{$pagesize}-article-flow-landscape-draft;
     }
     html.article-style.#{$pagesize} body .db-bfs.draft.landscape,
     html.article-style.#{$pagesize} body .division.draft.landscape,
@@ -389,7 +397,7 @@ html.book-style.Letter {
     html.article-style.#{$pagesize} body .formalobject.draft.landscape,
     html.article-style.#{$pagesize} body .informalobject.draft.landscape,
     html.article-style.#{$pagesize} body .list-of-titles.draft.landscape {
-        page: #{$pagesize}-article-flow-draft-landscape;
+        page: #{$pagesize}-article-flow-landscape-draft;
     }
 }
 
@@ -405,6 +413,7 @@ html.book-style.Letter {
     html.book-style.#{$pagesize} body .component,
     html.book-style.#{$pagesize} body .list-of-titles {
         break-before: right;
+        page: #{$pagesize}-book-flow-portrait;
     }
 
     html.book-style.#{$pagesize} body .division.portrait,
@@ -436,50 +445,44 @@ html.book-style.Letter {
     }
 
     html.book-style.#{$pagesize} body.draft.portrait {
-        page: #{$pagesize}-book-title-flow-draft-portrait;
+        page: #{$pagesize}-book-title-flow-portrait-draft;
     }
+    html.book-style.#{$pagesize} body.draft,
+    html.book-style.#{$pagesize} body.draft.portrait,
+    html.book-style.#{$pagesize} body.draft.portrait .division,
+    html.book-style.#{$pagesize} body.draft.portrait .component,
+    html.book-style.#{$pagesize} body.draft.portrait .list-of-titles,
+    html.book-style.#{$pagesize} body.portrait .division.draft,
+    html.book-style.#{$pagesize} body.portrait .component.draft,
+    html.book-style.#{$pagesize} body.portrait .list-of-titles.draft,
     html.book-style.#{$pagesize} body .division.draft.portrait,
     html.book-style.#{$pagesize} body .component.draft.portrait,
     html.book-style.#{$pagesize} body .list-of-titles.draft.portrait {
         break-before: right;
-        page: #{$pagesize}-book-flow-draft-portrait;
+        page: #{$pagesize}-book-flow-portrait-draft;
     }
     html.book-style.#{$pagesize} body .section.draft.portrait,
     html.book-style.#{$pagesize} body .formalobject.draft.portrait,
     html.book-style.#{$pagesize} body .informalobject.draft.portrait {
-        page: #{$pagesize}-book-flow-draft-portrait;
+        page: #{$pagesize}-book-flow-portrait-draft;
     }
     html.book-style.#{$pagesize} body.draft.landscape {
-        page: #{$pagesize}-book-title-draft-landscape;
+        page: #{$pagesize}-book-title-landscape-draft;
     }
     html.book-style.#{$pagesize} body .division.draft.landscape,
     html.book-style.#{$pagesize} body .component.draft.landscape,
     html.book-style.#{$pagesize} body .list-of-titles.draft.landscape {
         break-before: right;
-        page: #{$pagesize}-book-draft-landscape;
+        page: #{$pagesize}-book-landscape-draft;
     }
     html.book-style.#{$pagesize} body .section.draft.landscape,
     html.book-style.#{$pagesize} body .formalobject.draft.landscape,
     html.book-style.#{$pagesize} body .informalobject.draft.landscape {
-        page: #{$pagesize}-book-draft-landscape;
+        page: #{$pagesize}-book-landscape-draft;
     }
 }
 
 /* ============================================================ */
-
-/*
-html.article-style > header {
-    page-break-after: always;
-}
-
-html.article-style .list-of-titles {
-    break-before: always;
-}
-
-.article-style .division {
-    break-before: always;
-}
-*/
 
 html.article-style .list-of-titles div .title {
     string-set: ComponentTitle content()
