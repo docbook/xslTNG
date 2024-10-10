@@ -602,8 +602,14 @@ document using three parameters:</para>
 <varlistentry>
 <term><parameter>transform-original</parameter></term>
 <listitem>
-<para>This transform runs before step <xref linkend="step-first-00-transform"/> in the standard transformations.
-If this transformation is used, it must take special care to preserve the 
+<para>This transform runs before step <xref linkend="step-first-00-transform"/>
+in the standard transformations. Note that this is before XInclude processing, before
+transclusion, before any other processing. If you need to make a change to the 
+original input document, this is where you can do it, but for preprocessing
+“the XML document that will be transformed”, the <parameter>transform-before</parameter>
+parameter is likely to be a better choice.</para>
+
+<para>If this transformation is used, it must take special care to preserve the 
 base URI of the original document by adding an <tag class="attribute">xml:base</tag>
 attribute to the root element (if it doesn’t already have one).</para>
 <para>Only the first transformation in the list has access to the original base URI.
