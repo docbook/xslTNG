@@ -1,0 +1,52 @@
+.division body > header .copyright {
+    float: inherit;
+}
+
+@page {
+    @footnote {
+        float: inherit;
+        border-top: thin solid black;
+        border-length: inherit;
+        padding-top: 0.5em;
+    }
+}
+
+@each $pagesize in [A4, A5, Letter] {
+    html.book-style.#{$pagesize} body .list-of-titles {
+        counter-reset: none;
+    }
+
+    @each $orient in [portrait, landscape] {
+        @each $draft in [draft] {
+            $dlabel: "-draft";
+
+            @page #{$pagesize}-book-title-flow-#{$orient}#{$dlabel} {
+                background-position: top right;
+            }
+
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:right {
+                background-position: top right;
+            }
+
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:right:first {
+                background-position: top right;
+            }
+
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:right:blank {
+                background-position: top right;
+            }
+
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:left {
+                background-position: top left;
+            }
+
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:left:first {
+                background-position: top left;
+            }
+
+            @page #{$pagesize}-book-flow-#{$orient}#{$dlabel}:left:blank {
+                background-position: top left;
+            }
+        }
+    }
+}

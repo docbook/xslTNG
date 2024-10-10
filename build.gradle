@@ -781,7 +781,8 @@ task compileSass() {
         "${fProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.css",
         "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.css",
         "${fProjectDir}/src/main/scss/vendor-ahf-portrait.scss:${buildDir}/css/vendor-ahf-portrait.css",
-        "${fProjectDir}/src/main/scss/vendor-ahf-landscape.scss:${buildDir}/css/vendor-ahf-landscape.css"
+        "${fProjectDir}/src/main/scss/vendor-ahf-landscape.scss:${buildDir}/css/vendor-ahf-landscape.css",
+        "${fProjectDir}/src/main/scss/vendor-weasyprint.scss:${buildDir}/css/vendor-weasyprint.css"
     }
   }
 
@@ -794,13 +795,14 @@ task compileSass() {
         "${fProjectDir}/src/main/scss/docbook-epub.scss:${buildDir}/css/docbook-epub.min.css",
         "${fProjectDir}/src/main/scss/toc.scss:${buildDir}/css/docbook-toc.min.css",
         "${fProjectDir}/src/main/scss/vendor-ahf-portrait.scss:${buildDir}/css/vendor-ahf-portrait.min.css",
-        "${fProjectDir}/src/main/scss/vendor-ahf-landscape.scss:${buildDir}/css/vendor-ahf-landscape.min.css"
+        "${fProjectDir}/src/main/scss/vendor-ahf-landscape.scss:${buildDir}/css/vendor-ahf-landscape.min.css",
+        "${fProjectDir}/src/main/scss/vendor-weasyprint.scss:${buildDir}/css/vendor-weasyprint.min.css"
     }
   }
 
   doLast {
     ["docbook", "docbook-paged", "docbook-epub", "docbook-toc",
-     "vendor-ahf-landscape", "vendor-ahf-portrait"].each { base ->
+     "vendor-ahf-landscape", "vendor-ahf-portrait", "vendor-weasyprint"].each { base ->
       [".css", ".min.css"].each { ext ->
         String fn = "${base}${ext}"
         File css = new File("${buildDir}/css/${fn}")
@@ -1181,6 +1183,15 @@ if (pdftool == "prince") {
     commandLine "${vivliostyle}",
       "build", "${buildDir}/guide/guide.pdf.html",
       "-o", "${buildDir}/guide/guide.pdf"
+  }
+} else if (pdftool == "weasyprint") {
+  task "guide.pdf"(type: Exec, dependsOn: ["guide.pdf.html"]) {
+    inputs.file("${buildDir}/guide/guide.pdf.html")
+    inputs.files fileTree(dir: "${buildDir}/guide/css")
+    outputs.file("${buildDir}/guide/guide.pdf")
+    commandLine "${weasyprint}",
+      "${buildDir}/guide/guide.pdf.html",
+      "${buildDir}/guide/guide.pdf"
   }
 } else {
   throw new GradleException("Unknown pdftool: " + pdftool)

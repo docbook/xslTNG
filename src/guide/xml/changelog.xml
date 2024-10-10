@@ -45,7 +45,12 @@ development continues.</para>
   This change is a consequence of how Saxon initializes the XML Resolver.
   </para>
 </listitem>
-
+<listitem>
+  <para>Added a <filename>vendor-weasyprint.css</filename> stylesheet for use with
+  the <parameter>vendor-css</parameter> parameter;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/497">#497</link>.
+  </para>
+</listitem>
 </itemizedlist>
 </section>
 
