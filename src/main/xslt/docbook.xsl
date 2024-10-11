@@ -5,7 +5,9 @@
                 xmlns:err='http://www.w3.org/2005/xqt-errors'
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:file="http://expath.org/ns/file"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:ghost="http://docbook.org/ns/docbook/ephemeral"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
@@ -275,7 +277,15 @@
   <xsl:variable name="result" as="document-node()">
     <xsl:sequence select="fp:run-transforms($result, $post-processing)"/>
   </xsl:variable>
-
+  
+  <xsl:call-template name="tp:mediaobjects-copyinstructions">
+    <xsl:with-param name="html" select="$result"/>
+  </xsl:call-template>
+  
+  <xsl:variable name="result" as="document-node()">
+    <xsl:apply-templates select="$result" mode="mp:final-cleanup"/>
+  </xsl:variable>
+  
   <xsl:choose>
     <xsl:when test="$return = 'raw-results'">
       <xsl:sequence select="map {
@@ -448,5 +458,10 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+  
+<!-- mp:final-cleanup removes attributes in the ghost namespace -->
+<xsl:mode name="mp:final-cleanup" on-no-match="shallow-copy"/>
+
+<xsl:template mode="mp:final-cleanup" match="@ghost:*"/>
 
 </xsl:stylesheet>
