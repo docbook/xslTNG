@@ -1803,7 +1803,11 @@ nav.top {
   width: 100%;
   background-color: var(--nav-background-color);
   opacity: 1;
-  z-index: 100; /* make sure floating elements go under it! */
+  /* N.B. this "makes sure" that floating elments go under it,
+     but it also interacts with the persistent ToC which must
+     go over it. If you're thinking of changing this, think
+     of changing js/persistent-toc.js as well. */
+  z-index: 100;
 }
 
 body.home nav.top {
