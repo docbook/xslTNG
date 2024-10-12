@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.1/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.1/sch/docbook.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.1">
+    <info>
+        <title>Unit Test Bibliography 013</title>
+        <author>
+            <personname><firstname>Frank</firstname><surname>Steimke</surname></personname>
+        </author>
+        <abstract>
+            <para>Checks the use of <tag>titleabbrev</tag> inside <tag>bibliography</tag> using
+                    <tag>biblioentry</tag>.</para>
+        </abstract>
+    </info>
+    <para>Support for <tag>titleabbrev</tag> within bibliographic entries is motivated by citation
+        of german laws, which have usually a very long full title and an official abbreviation. See
+            <citation>IdNrG</citation> as an example.</para>
+    <para>In this unit test we have an <tag>biblioentry</tag>. Parenthesis around the abbreviated
+        title that show up in the generated HTML are from CSS.</para>
+    <bibliography>
+        <biblioentry xml:lang="de">
+            <abbrev>IdNrG</abbrev>
+            <title>Gesetz zur Einführung und Verwendung einer Identifikationsnummer in der
+                öffentlichen Verwaltung</title>
+            <titleabbrev>Identifikationsnummerngesetz</titleabbrev>
+            <date>28.3.2021</date>
+            <bibliosource xlink:href="https://www.buzer.de/Identifikationsnummer-Gesetz.htm">www.buzer.de/Identifikationsnummer-Gesetz</bibliosource>
+        </biblioentry>
+    </bibliography>
+</article>

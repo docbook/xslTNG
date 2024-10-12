@@ -606,7 +606,7 @@
   <tmp:apply-templates select="db:abbrev">[<tmp:content/>] </tmp:apply-templates>
   <tmp:insert ref="biblioset-article"/>
   <tmp:insert ref="biblioset-journal"/>
-  <tmp:apply-templates select="db:title"><tmp:content/>. </tmp:apply-templates>
+  <tmp:apply-templates select="db:title"><tmp:content/><tmp:apply-templates select="../db:titleabbrev"><tmp:content/></tmp:apply-templates>. </tmp:apply-templates>
   <tmp:apply-templates select="db:subtitle"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:address"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:artpagenums"><tmp:content/>. </tmp:apply-templates>
@@ -642,6 +642,7 @@
   <tmp:apply-templates select="db:releaseinfo"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:seriesvolnums"><tmp:content/>. </tmp:apply-templates>
   <tmp:apply-templates select="db:volumenum"><tmp:content/>. </tmp:apply-templates>
+  <tmp:apply-templates select="db:bibliosource"><tmp:content/>. </tmp:apply-templates>
 </db:biblioentry>
 
 <db:toc>
