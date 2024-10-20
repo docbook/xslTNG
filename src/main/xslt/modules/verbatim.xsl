@@ -284,7 +284,7 @@
     </xsl:for-each>
   </xsl:variable>
 
-  <div class="pre-wrap">
+  <div class="pre-wrap {local-name()}-wrap">
     <pre>
       <xsl:apply-templates select="." mode="m:attributes">
         <xsl:with-param name="style" select="'plain'"/>
@@ -314,7 +314,7 @@
     <xsl:apply-templates/>
   </xsl:variable>
 
-  <div class="pre-wrap">
+  <div class="pre-wrap {local-name()}-wrap">
     <pre>
       <xsl:apply-templates select="." mode="m:attributes">
         <xsl:with-param name="style" select="'raw'"/>
@@ -430,7 +430,7 @@
   <xsl:variable name="syntax-highlight"
                 select="f:highlight-verbatim(.)"/>
 
-  <div class="pre-wrap{if ($syntax-highlight) then ' highlight' else ''}">
+  <div class="pre-wrap {local-name()}-wrap{if ($syntax-highlight) then ' highlight' else ''}">
     <xsl:if test="$numbered">
       <xsl:attribute name="db-startinglinenumber" select="$starting-line-number"/>
       <xsl:attribute name="db-numberoflines" select="array:size($lines)"/>
@@ -597,7 +597,7 @@
   <xsl:variable name="syntax-highlight"
                 select="f:highlight-verbatim(.)"/>
 
-  <div class="pre-wrap{if ($syntax-highlight) then ' highlight' else ''}">
+  <div class="pre-wrap {local-name()}-wrap{if ($syntax-highlight) then ' highlight' else ''}">
     <xsl:if test="$numbered">
       <xsl:attribute name="db-startinglinenumber" select="$starting-line-number"/>
       <xsl:attribute name="db-numberoflines" select="array:size($lines)"/>

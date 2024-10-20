@@ -735,7 +735,7 @@
 
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <div class="pre-wrap">
+    <div class="pre-wrap {local-name()}-wrap">
       <pre>
         <xsl:apply-templates select="$package/preceding-sibling::*" mode="m:synopsis"/>
         <xsl:text>package </xsl:text>
@@ -754,7 +754,7 @@
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="db:classsynopsisinfo"/>
-    <div class="pre-wrap">
+    <div class="pre-wrap {local-name()}-wrap">
       <pre>
         <xsl:apply-templates select="db:ooclass/db:modifier" mode="m:synopsis"/>
         <xsl:text>class </xsl:text>
@@ -776,7 +776,7 @@
   <xsl:param name="indent" select="''"/>
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <div class="pre-wrap">
+    <div class="pre-wrap {local-name()}-wrap">
       <pre class="synopsis">
         <xsl:apply-templates select="." mode="m:synopsis"/>
       </pre>
@@ -829,7 +829,7 @@
   <xsl:param name="indent" select="''"/>
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-    <div class="pre-wrap">
+    <div class="pre-wrap {local-name()}-wrap">
       <pre class="synopsis">
         <xsl:apply-templates select="." mode="m:synopsis"/>
       </pre>
@@ -918,7 +918,7 @@
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="db:synopsisinfo"/>
-    <div class="pre-wrap">
+    <div class="pre-wrap {local-name()}-wrap">
       <pre>
         <xsl:apply-templates select="db:modifier" mode="m:synopsis"/>
         <xsl:text>enum </xsl:text>
@@ -1036,10 +1036,7 @@
     </xsl:otherwise>
   </xsl:choose>
 
-  <span>
-    <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates/>
-  </span>
+  <xsl:call-template name="t:inline"/>
 
   <xsl:choose>
     <xsl:when test="$rep='repeat'">
