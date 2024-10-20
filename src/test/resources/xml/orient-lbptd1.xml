@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook"
+      role="landscape"
+      version="5.0">
+  <info>
+    <title>Unit Test: orient-lbptd1</title>
+    <authorgroup>
+      <author>
+        <personname>
+          <firstname>Norman</firstname>
+          <surname>Walsh</surname>
+        </personname>
+        <email>ndw@nwalsh.com</email>
+      </author>
+    </authorgroup>
+    <abstract>
+      <para>This is the abstract.</para>
+    </abstract>
+  </info>
+
+<preface>
+<title>Preface</title>
+
+  <para>This is a landscape book with a portrait table (draft chapter).</para>
+
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+      <para>Curabitur pretium tincidunt lacus. Nulla gravida orci a
+      odio. Nullam varius, turpis et commodo pharetra, est eros
+      bibendum elit, nec luctus magna felis sollicitudin mauris.
+      Integer in mauris eu nibh euismod gravida. Duis ac tellus et
+      risus vulputate vehicula. Donec lobortis risus a elit. Etiam
+      tempor. Ut ullamcorper, ligula eu tempor congue, eros est
+      euismod turpis, id tincidunt sapien risus a quam. Maecenas
+      fermentum consequat mi. Donec fermentum. Pellentesque malesuada
+      nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
+      consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
+      felis nisl adipiscing sapien, sed malesuada diam lacus eget
+      erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam
+      consequat. Curabitur augue lorem, dapibus quis, laoreet et,
+      pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
+      feugiat in, orci. In hac habitasse platea dictumst.</para>
+</preface>
+<chapter status="draft">
+<title>Draft chapter</title>
+
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+      <para>Curabitur pretium tincidunt lacus. Nulla gravida orci a
+      odio. Nullam varius, turpis et commodo pharetra, est eros
+      bibendum elit, nec luctus magna felis sollicitudin mauris.
+      Integer in mauris eu nibh euismod gravida. Duis ac tellus et
+      risus vulputate vehicula. Donec lobortis risus a elit. Etiam
+      tempor. Ut ullamcorper, ligula eu tempor congue, eros est
+      euismod turpis, id tincidunt sapien risus a quam. Maecenas
+      fermentum consequat mi. Donec fermentum. Pellentesque malesuada
+      nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
+      consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
+      felis nisl adipiscing sapien, sed malesuada diam lacus eget
+      erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam
+      consequat. Curabitur augue lorem, dapibus quis, laoreet et,
+      pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
+      feugiat in, orci. In hac habitasse platea dictumst.</para>
+
+      <table orient="port">
+      <title>Table title</title>
+      <tgroup cols="4" colsep="1" rowsep="1">
+        <colspec colname="b" colnum="2"/>
+        <colspec colname="c" colnum="3"/>
+        <colspec colname="d"/>
+        <spanspec spanname="cd" namest="c" nameend="d"/>
+        <tbody>
+          <row>
+            <entry>a1</entry>
+            <entry morerows="1" namest="b" nameend="c">b1-c2</entry>
+            <entry>d1</entry>
+          </row>
+          <row>
+            <entry morerows="2">a2-a4</entry>
+            <!-- b2, c2 spans from above -->
+            <entry>d2</entry>
+          </row>
+          <row>
+            <!-- a3 spans from above -->
+            <entry>b3</entry>
+            <entry>c3</entry>
+            <entry>d3</entry>
+          </row>
+          <row>
+            <!-- a4 spans from above -->
+            <entry>b4</entry>
+            <entry spanname="cd">c4-d4</entry>
+          </row>
+          <row>
+            <entry>a5</entry>
+            <entry>b5</entry>
+            <!-- c4 is missing -->
+            <entry colname="d">d5</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+      <para>Curabitur pretium tincidunt lacus. Nulla gravida orci a
+      odio. Nullam varius, turpis et commodo pharetra, est eros
+      bibendum elit, nec luctus magna felis sollicitudin mauris.
+      Integer in mauris eu nibh euismod gravida. Duis ac tellus et
+      risus vulputate vehicula. Donec lobortis risus a elit. Etiam
+      tempor. Ut ullamcorper, ligula eu tempor congue, eros est
+      euismod turpis, id tincidunt sapien risus a quam. Maecenas
+      fermentum consequat mi. Donec fermentum. Pellentesque malesuada
+      nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
+      consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
+      felis nisl adipiscing sapien, sed malesuada diam lacus eget
+      erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam
+      consequat. Curabitur augue lorem, dapibus quis, laoreet et,
+      pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
+      feugiat in, orci. In hac habitasse platea dictumst.</para>
+
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+      <para>Curabitur pretium tincidunt lacus. Nulla gravida orci a
+      odio. Nullam varius, turpis et commodo pharetra, est eros
+      bibendum elit, nec luctus magna felis sollicitudin mauris.
+      Integer in mauris eu nibh euismod gravida. Duis ac tellus et
+      risus vulputate vehicula. Donec lobortis risus a elit. Etiam
+      tempor. Ut ullamcorper, ligula eu tempor congue, eros est
+      euismod turpis, id tincidunt sapien risus a quam. Maecenas
+      fermentum consequat mi. Donec fermentum. Pellentesque malesuada
+      nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
+      consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
+      felis nisl adipiscing sapien, sed malesuada diam lacus eget
+      erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam
+      consequat. Curabitur augue lorem, dapibus quis, laoreet et,
+      pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
+      feugiat in, orci. In hac habitasse platea dictumst.</para>
+
+      <para>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+      aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</para>
+    </chapter>
+  </book>

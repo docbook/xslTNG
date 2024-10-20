@@ -174,7 +174,7 @@ class TestCase {
       'profile-outputformat': 'print',
       'resource-base-uri': '',
       'dynamic-profiles': 'true']
-    if (name.startsWith("book.")) {
+    if (name.startsWith("book.") || name.startsWith("orient-pb") || name.startsWith("orient-lb")) {
       printParams['page-style'] = 'book'
     }
 

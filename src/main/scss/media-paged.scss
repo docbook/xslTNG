@@ -3,6 +3,23 @@
     hyphens: auto;
 }
 
+/* This comes after the orientation configuration. It establishes
+   a "title flow" for books before the first component. */
+@each $pagesize in [A4, A5, Letter] {
+    html.book-style.#{$pagesize} body {
+        page: #{$pagesize}-book-title-flow;
+    }
+    html.book-style.#{$pagesize} body.landscape {
+        page: #{$pagesize}-book-title-flow-landscape;
+    }
+    html.book-style.#{$pagesize} body.draft {
+        page: #{$pagesize}-book-title-flow-portrait-draft;
+    }
+    html.book-style.#{$pagesize} body.draft.landscape {
+        page: #{$pagesize}-book-title-flow-landscape-draft;
+    }
+}
+
 body {
     margin-left: 0;
     margin-right: 0;
