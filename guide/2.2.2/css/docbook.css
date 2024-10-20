@@ -436,6 +436,18 @@ cite.title {
   font-family: inherit;
 }
 
+.bibliography .titleabbrev {
+  font-style: italic;
+}
+
+.bibliography .titleabbrev:before {
+  content: " (";
+}
+
+.bibliography .titleabbrev:after {
+  content: ")";
+}
+
 .set > .list-of-titles > .lot > .title,
 .book > .list-of-titles > .lot > .title,
 .part > .list-of-titles > .lot > .title {
