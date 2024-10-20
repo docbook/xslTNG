@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-        date="2024-10-11T07:16:50.823298Z">
+        date="2024-10-20T14:57:38.642366Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/verbatim.xspec">
       <label>When converting an address in the raw style</label>
@@ -22,7 +22,7 @@ Line five</address>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre class="address verbatim">Line one
 Line two
 Line three
@@ -39,7 +39,7 @@ Line five</pre>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap address-wrap">
                   <pre class="address verbatim">Line one
 Line two
 Line three
@@ -69,7 +69,7 @@ Line five</literallayout>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre class="literallayout verbatim">Line one
 Line two
 Line three
@@ -86,7 +86,7 @@ Line five</pre>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap literallayout-wrap">
                   <pre class="literallayout verbatim">Line one
 Line two
 Line three
@@ -116,7 +116,7 @@ Line five</programlisting>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>Line one
 Line two
@@ -135,7 +135,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line two
@@ -167,7 +167,7 @@ Line five</screen>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre class="screen verbatim">
                   <code>Line one
 Line two
@@ -186,7 +186,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap screen-wrap">
                   <pre class="screen verbatim">
                      <code>Line one
 Line two
@@ -218,7 +218,7 @@ Line five</synopsis>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre class="synopsis verbatim">
                   <code>Line one
 Line two
@@ -237,7 +237,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap synopsis-wrap">
                   <pre class="synopsis verbatim">
                      <code>Line one
 Line two
@@ -269,7 +269,7 @@ Line five</programlisting>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>Line one
 Line <em>two</em>
@@ -288,7 +288,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line <em>two</em>
@@ -320,7 +320,7 @@ Line five</address>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre class="address verbatim">Line one
 Line two
 Line three
@@ -337,7 +337,7 @@ Line five</pre>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap address-wrap">
                   <pre class="address verbatim">Line one
 Line two
 Line three
@@ -367,7 +367,7 @@ Line five</literallayout>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre class="literallayout verbatim">Line one
 Line two
 Line three
@@ -384,7 +384,7 @@ Line five</pre>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap literallayout-wrap">
                   <pre class="literallayout verbatim">Line one
 Line two
 Line three
@@ -414,7 +414,7 @@ Line five</programlisting>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>Line one
 Line two
@@ -433,7 +433,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line two
@@ -465,7 +465,7 @@ Line five</screen>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre class="screen verbatim">
                   <code>Line one
 Line two
@@ -484,7 +484,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap screen-wrap">
                   <pre class="screen verbatim">
                      <code>Line one
 Line two
@@ -516,7 +516,7 @@ Line five</synopsis>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre class="synopsis verbatim">
                   <code>Line one
 Line two
@@ -535,7 +535,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap synopsis-wrap">
                   <pre class="synopsis verbatim">
                      <code>Line one
 Line two
@@ -568,7 +568,7 @@ Line five</programlisting></div>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>Line one
 Line <em>two</em>
@@ -589,7 +589,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>Line one
 Line <em>two</em>
@@ -623,7 +623,7 @@ Line five</address>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre class="address verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -678,7 +678,7 @@ Line five</address>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                   <pre class="address verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">
@@ -750,7 +750,7 @@ Line five</literallayout>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre class="literallayout verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -805,7 +805,7 @@ Line five</literallayout>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                   <pre class="literallayout verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">
@@ -878,7 +878,7 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                 class="pre-wrap"
+                 class="pre-wrap programlisting-wrap"
                  db-startinglinenumber="1"
                  db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
@@ -942,7 +942,7 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                    class="pre-wrap"
+                    class="pre-wrap programlisting-wrap"
                     db-startinglinenumber="1"
                     db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1022,7 +1022,7 @@ Line five</screen>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre class="screen verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -1087,7 +1087,7 @@ Line five</screen>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                   <pre class="screen verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">
@@ -1169,7 +1169,7 @@ Line five</synopsis>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre class="synopsis verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -1234,7 +1234,7 @@ Line five</synopsis>
          <label>you should get all the lines</label>
          <expect select="/element()">
             <content-wrap xmlns="">
-               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+               <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                   <pre class="synopsis verbatim verblines">
                      <span class="line" db-line="1">
                         <span class="ln">
@@ -1317,7 +1317,7 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                 class="pre-wrap"
+                 class="pre-wrap programlisting-wrap"
                  db-startinglinenumber="1"
                  db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1384,7 +1384,7 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                    class="pre-wrap"
+                    class="pre-wrap programlisting-wrap"
                     db-startinglinenumber="1"
                     db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1468,7 +1468,7 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                 class="pre-wrap"
+                 class="pre-wrap programlisting-wrap"
                  db-startinglinenumber="1"
                  db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1535,7 +1535,7 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                    class="pre-wrap"
+                    class="pre-wrap programlisting-wrap"
                     db-startinglinenumber="1"
                     db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1626,7 +1626,7 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                 class="pre-wrap"
+                 class="pre-wrap programlisting-wrap"
                  db-startinglinenumber="1"
                  db-numberoflines="5">
                <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1701,7 +1701,7 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                    class="pre-wrap"
+                    class="pre-wrap programlisting-wrap"
                     db-startinglinenumber="1"
                     db-numberoflines="5">
                   <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1800,7 +1800,7 @@ Line five</programlisting>
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                 class="pre-wrap"
+                 class="pre-wrap programlisting-wrap"
                  db-startinglinenumber="1"
                  db-numberoflines="8">
                <pre class="language-none long numbered programlisting verbatim verblines">
@@ -1914,7 +1914,7 @@ Line five</programlisting>
          <expect select="/element()">
             <content-wrap xmlns="">
                <div xmlns="http://www.w3.org/1999/xhtml"
-                    class="pre-wrap"
+                    class="pre-wrap programlisting-wrap"
                     db-startinglinenumber="1"
                     db-numberoflines="8">
                   <pre class="language-none long numbered programlisting verbatim verblines">
@@ -2051,7 +2051,7 @@ Line five</programlisting>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>
                      <a id="R_area1"
@@ -2080,7 +2080,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>
                         <a id="R_area1"
@@ -2135,7 +2135,7 @@ Line five</programlisting>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>
                      <a id="R_area1"
@@ -2164,7 +2164,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>
                         <a id="R_area1"
@@ -2214,7 +2214,7 @@ Line five</programlisting></div>
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre class="language-none numbered programlisting verbatim">
                   <code>
                      <a id="R_area1"
@@ -2254,7 +2254,7 @@ Line five</code>
                     xmlns:h="http://www.w3.org/1999/xhtml"
                     xmlns:m="http://docbook.org/ns/docbook/modes"
                     xmlns:x="http://www.jenitennison.com/xslt/xspec"
-                    class="pre-wrap">
+                    class="pre-wrap programlisting-wrap">
                   <pre class="language-none numbered programlisting verbatim">
                      <code>
                         <a id="R_area1"

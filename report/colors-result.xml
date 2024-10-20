@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
-        date="2024-10-11T07:06:53.02988Z">
+        date="2024-10-20T14:47:53.631957Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
       <label>When transforming colors.001</label>
@@ -107,7 +107,7 @@ if the theme picker is enabled.</p>
                                  <sup class="num">2</sup>
                               </a>
                            </p>
-                           <div class="pre-wrap highlight"
+                           <div class="pre-wrap programlisting-wrap highlight"
                                 db-startinglinenumber="1"
                                 db-numberoflines="23">
                               <pre class="language-python long numbered programlisting verbatim verblines">
@@ -582,7 +582,9 @@ This is a paragraph with the debug class.</p>
 The <span class="keycap">keycap</span> rendering has a drop shadow.
 There’s also color in <code>code</code>.</p>
                            <div class="programlistingco">
-                              <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="4">
+                              <div class="pre-wrap programlisting-wrap"
+                                   db-startinglinenumber="1"
+                                   db-numberoflines="4">
                                  <pre class="language-none numbered programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln">
@@ -636,7 +638,7 @@ There’s also color in <code>code</code>.</p>
                               </div>
                            </div>
                            <p>There’s also the “monochrome” listing:</p>
-                           <div class="pre-wrap">
+                           <div class="pre-wrap programlisting-wrap">
                               <pre class="language-lisp monochrome programlisting verbatim verblines">
                                  <span class="line" db-line="1">
                                     <span class="ln">
@@ -1194,7 +1196,7 @@ if the theme picker is enabled.</p>
                                     <sup class="num">2</sup>
                                  </a>
                               </p>
-                              <div class="pre-wrap highlight"
+                              <div class="pre-wrap programlisting-wrap highlight"
                                    db-startinglinenumber="1"
                                    db-numberoflines="23">
                                  <pre class="language-python long numbered programlisting verbatim verblines">
@@ -1669,7 +1671,9 @@ This is a paragraph with the debug class.</p>
 The <span class="keycap">keycap</span> rendering has a drop shadow.
 There’s also color in <code>code</code>.</p>
                               <div class="programlistingco">
-                                 <div class="pre-wrap" db-startinglinenumber="1" db-numberoflines="4">
+                                 <div class="pre-wrap programlisting-wrap"
+                                      db-startinglinenumber="1"
+                                      db-numberoflines="4">
                                     <pre class="language-none numbered programlisting verbatim verblines">
                                        <span class="line" db-line="1">
                                           <span class="ln">
@@ -1723,7 +1727,7 @@ There’s also color in <code>code</code>.</p>
                                  </div>
                               </div>
                               <p>There’s also the “monochrome” listing:</p>
-                              <div class="pre-wrap">
+                              <div class="pre-wrap programlisting-wrap">
                                  <pre class="language-lisp monochrome programlisting verbatim verblines">
                                     <span class="line" db-line="1">
                                        <span class="ln">

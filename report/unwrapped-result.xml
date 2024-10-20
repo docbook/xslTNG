@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/unwrapped.xsl"
-        date="2024-10-11T07:16:42.257251Z">
+        date="2024-10-20T14:57:30.195142Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-footnote.005</label>
@@ -387,7 +387,7 @@ And a block quote for good measure:
                         </header>
                         <p>Ordinary paragraph, followed by a paragraph with a program listing.</p>
                         <p>This is some text followed by a programlisting: </p>
-                        <div class="pre-wrap highlight"
+                        <div class="pre-wrap programlisting-wrap highlight"
                              db-startinglinenumber="1"
                              db-numberoflines="2">
                            <pre class="language-xml numbered programlisting verbatim verblines">
@@ -453,7 +453,7 @@ And a block quote for good measure:
                            </header>
                            <p>Ordinary paragraph, followed by a paragraph with a program listing.</p>
                            <p>This is some text followed by a programlisting: </p>
-                           <div class="pre-wrap highlight"
+                           <div class="pre-wrap programlisting-wrap highlight"
                                 db-startinglinenumber="1"
                                 db-numberoflines="2">
                               <pre class="language-xml numbered programlisting verbatim verblines">

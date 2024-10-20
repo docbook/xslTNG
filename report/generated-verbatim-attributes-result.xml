@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-        date="2024-10-11T07:13:17.560644Z">
+        date="2024-10-20T14:54:09.848301Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an address in the raw style</label>
@@ -20,7 +20,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre id="d2e0" class="a address b c verbatim">...</pre>
             </div>
          </content-wrap>
@@ -83,7 +83,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre id="d3e0" class="a b c literallayout verbatim">...</pre>
             </div>
          </content-wrap>
@@ -146,7 +146,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre id="d4e0" class="a b c screen verbatim">
                   <code>...</code>
                </pre>
@@ -211,7 +211,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre id="d5e0" class="a b c synopsis verbatim">
                   <code>...</code>
                </pre>
@@ -276,7 +276,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre id="d6e0" class="a b c language-none numbered programlisting verbatim">
                   <code>...</code>
                </pre>
@@ -341,7 +341,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre id="d7e0" class="a address b c verbatim">...</pre>
             </div>
          </content-wrap>
@@ -404,7 +404,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre id="d8e0" class="a b c literallayout verbatim">...</pre>
             </div>
          </content-wrap>
@@ -467,7 +467,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre id="d9e0" class="a b c screen verbatim">
                   <code>...</code>
                </pre>
@@ -532,7 +532,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre id="d10e0" class="a b c synopsis verbatim">
                   <code>...</code>
                </pre>
@@ -597,7 +597,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
                <pre id="d11e0" class="a b c language-none numbered programlisting verbatim">
                   <code>...</code>
                </pre>
@@ -662,7 +662,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre id="d12e0" class="a address b c verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -735,7 +735,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre id="d13e0" class="a b c literallayout verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -808,7 +808,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre id="d14e0" class="a b c screen verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -883,7 +883,7 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre id="d15e0" class="a b c synopsis verbatim verblines">
                   <span class="line" db-line="1">
                      <span class="ln">
@@ -959,7 +959,7 @@
       <result select="/element()">
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml"
-                 class="pre-wrap"
+                 class="pre-wrap programlisting-wrap"
                  db-startinglinenumber="1"
                  db-numberoflines="1">
                <pre id="d16e0"

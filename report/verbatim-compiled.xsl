@@ -235,7 +235,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap address-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -389,7 +389,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap literallayout-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -543,7 +543,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -702,7 +702,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap screen-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -861,7 +861,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap synopsis-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1048,7 +1048,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1221,7 +1221,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap address-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1375,7 +1375,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap literallayout-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1529,7 +1529,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1688,7 +1688,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap screen-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1847,7 +1847,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap synopsis-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -2065,7 +2065,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -3807,7 +3807,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -4295,7 +4295,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -4746,7 +4746,7 @@ Line five</xsl:text>
                               name="class"
                               namespace=""
                               select="'', ''"
-                              separator="pre-wrap"/>
+                              separator="pre-wrap programlisting-wrap"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
