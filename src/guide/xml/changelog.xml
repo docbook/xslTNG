@@ -10,19 +10,12 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
-<section xml:id="r222">
+<section xml:id="r230">
 <info>
-  <title>Changes in version 2.2.2</title>
-  <productnumber>2.2.2</productnumber>
-  <date>2024-10-09</date> <!--tbd-->
+  <title>Changes in version 2.3.0</title>
+  <productnumber>2.3.0</productnumber>
+  <date>2024-10-21</date>
 </info>
-<note>
-<title>Version 2.2.2 is a placeholder</title>
-<para>The next release will be version 2.3.0 because the markup changes required
-to support lanscape mode seem to justify a major bump (though they aren’t,
-technically, backwards incompatible). Version 2.2.2 is just a placeholder while
-development continues.</para>
-</note>
 <itemizedlist>
 <listitem>
   <para>The principle new feature in version 2.3.0 is support for landscape (and portrait)
@@ -40,15 +33,22 @@ development continues.</para>
   effect in the browser presentation.</para>
 </listitem>
 <listitem>
-  <para>Reworked Java initialization;
-  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/504">#504</link>.
-  This change is a consequence of how Saxon initializes the XML Resolver.
+  <para>Added support for <tag>titleabbrev</tag> in bibliography entries;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/487">#487</link>.
+  Thanks, Frank!
   </para>
 </listitem>
+
 <listitem>
   <para>Added a <filename>vendor-weasyprint.css</filename> stylesheet for use with
   the <parameter>vendor-css</parameter> parameter;
   fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/497">#497</link>.
+  </para>
+</listitem>
+<listitem>
+  <para>Reworked Java initialization;
+  fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/504">#504</link>.
+  This change is a consequence of how Saxon initializes the XML Resolver.
   </para>
 </listitem>
 <listitem>
