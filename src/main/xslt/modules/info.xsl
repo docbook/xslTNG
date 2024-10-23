@@ -362,7 +362,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="db:city|db:country|db:email|db:fax|db:phone
+<xsl:template match="db:city|db:country|db:fax|db:phone
                      |db:pob|db:postcode|db:state|db:street|db:otheraddr">
   <xsl:call-template name="t:inline"/>
 </xsl:template>

@@ -239,7 +239,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="db:biblioid|db:orgname|db:orgdiv|db:bibliosource
+<xsl:template match="db:biblioid|db:orgdiv|db:bibliosource
                      |db:bibliomisc|db:subtitle">
   <xsl:call-template name="t:inline"/>
 </xsl:template>
