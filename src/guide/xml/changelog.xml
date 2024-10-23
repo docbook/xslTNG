@@ -10,6 +10,36 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r231">
+<info>
+  <title>Changes in version 2.3.1</title>
+  <productnumber>2.3.1</productnumber>
+  <date>2024-10-24</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Reworked the <filename>main.xsl</filename> module to resolve import precedence issues;
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/536">#536</link>. This change
+has two visible consequences:</para>
+<orderedlist>
+<listitem>
+<para>The formatting of <tag>command</tag> in <tag>cmdsynopsis</tag> uses
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag> instead of
+<tag namespace="http://www.w3.org/1999/xhtml">code</tag>. This was always the intent;
+a <tag>cmdsynopsis</tag> is already monospaced.</para>
+</listitem>
+<listitem>
+<para>The formatting of <tag>task</tag> elements no longer suppresses the title.
+I don’t imagine that was intentional, but if you use <tag>task</tag> elements with 
+titles, make sure you’re getting the results you expect!</para>
+</listitem>
+</orderedlist>
+<para>It’s also <emphasis>possible</emphasis> that it will have consequences in customization
+layers, but I don’t think that’s the case.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r230">
 <info>
   <title>Changes in version 2.3.0</title>
