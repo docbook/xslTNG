@@ -1005,8 +1005,8 @@
   </xsl:if>
   <span>
     <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:apply-templates/>
   </span>
-  <xsl:text> </xsl:text>
 </xsl:template>
 
 <xsl:template match="db:group|db:arg" name="tp:group-or-arg">
