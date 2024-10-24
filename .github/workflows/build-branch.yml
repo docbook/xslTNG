@@ -178,7 +178,7 @@ jobs:
       - name: Restore previous version(s) of the guide
         if: matrix.os == 'ubuntu-20.04'
         run: |
-          rsync -ar /tmp/guide/ build/website/guide/
+          rsync -ar --exclude index.html /tmp/guide/ build/website/guide/
           if [ ! -f build/website/guide/index.html ]; then \
             mv /tmp/guide/index.html build/website/guide/; \
           fi
