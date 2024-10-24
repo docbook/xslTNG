@@ -961,9 +961,11 @@
 <!-- ============================================================ -->
 
 <xsl:template match="db:cmdsynopsis">
-  <div>
-    <xsl:apply-templates select="." mode="m:attributes"/>
-    <xsl:apply-templates/>
+  <div class="cmdsynopsis-wrap">
+    <div>
+      <xsl:apply-templates select="." mode="m:attributes"/>
+      <xsl:apply-templates/>
+    </div>
   </div>
 </xsl:template>
 
