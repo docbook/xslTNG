@@ -10,10 +10,10 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
-<section xml:id="r231">
+<section xml:id="r240">
 <info>
-  <title>Changes in version 2.3.1</title>
-  <productnumber>2.3.1</productnumber>
+  <title>Changes in version 2.4.0</title>
+  <productnumber>2.4.0</productnumber>
   <date>2024-10-24</date>
 </info>
 <itemizedlist>
@@ -34,8 +34,26 @@ I don’t imagine that was intentional, but if you use <tag>task</tag> elements 
 titles, make sure you’re getting the results you expect!</para>
 </listitem>
 </orderedlist>
-<para>It’s also <emphasis>possible</emphasis> that it will have consequences in customization
+<para>It’s also <emphasis>possible</emphasis> that this will have consequences in customization
 layers, but I don’t think that’s the case.</para>
+</listitem>
+<listitem>
+<para>Added a wrappar around <tag>cmdsynopsis</tag>;
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/538">#538</link>.
+This makes customization of command synopses more practical in CSS.
+</para>
+</listitem>
+<listitem>
+<para>In the DocBook Python script, pass the Saxon return code back to the shell;
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/535">#535</link>.
+Thanks, Frank!
+</para>
+</listitem>
+<listitem>
+<para>Fixed the CI build issue that was preventing the link to the most recent
+version of the guide from updating correctly;
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/534">#534</link>.
+</para>
 </listitem>
 </itemizedlist>
 </section>
