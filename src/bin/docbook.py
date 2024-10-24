@@ -579,6 +579,7 @@ wrapper sets these automatically.
         if self.catalogs:
             args.append("-catalog:" + ";".join(self.catalogs))
 
+        rc = 0
         jopt = self.config.get("java-options", [])
         if self.debug:
             print(self._java)
@@ -592,7 +593,9 @@ wrapper sets these automatically.
                 print(f"\t{item}")
         else:
             cmd = [self._java] + jopt + ["-cp", cp] + [self.config["class"]] + args
-            subprocess.call(cmd)
+            rc = subprocess.call(cmd)
+
+        return rc
 
 
 if __name__ == "__main__":
@@ -602,7 +605,7 @@ if __name__ == "__main__":
     try:
         docbook = JavaClassRunner(sys.argv[1:])
         docbook.compute_dependencies()
-        docbook.run()
+        sys.exit(docbook.run())
     except JavaClassRunnerException as err:
         print(str(err))
         sys.exit(1)
