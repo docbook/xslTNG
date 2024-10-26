@@ -10,6 +10,23 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r241">
+<info>
+  <title>Changes in version 2.4.1</title>
+  <productnumber>2.4.1</productnumber>
+  <date>2024-10-26</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>A recent fix for bottom-of-page navigation links broke the persistent ToC
+navigation link. This release fixes <emphasis>both</emphasis> of those problems
+simultaneously;
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/543">#543</link>.
+</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r240">
 <info>
   <title>Changes in version 2.4.0</title>
