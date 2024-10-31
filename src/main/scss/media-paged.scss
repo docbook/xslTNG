@@ -211,3 +211,10 @@ span.footnote p {
     padding-top: 0;
     margin-top: 0;
 }
+
+/* xref with pagenumber ====================================== */
+
+.xref-pagenum::after {
+    content: target-counter(attr(href), page);
+    font-style:normal;
+}
