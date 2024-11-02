@@ -11,7 +11,7 @@ jobs:
       guideversion: ${{ steps.check_step.outputs.guideversion }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -77,7 +77,7 @@ jobs:
 
       - name: Checkout the main branch on Mac
         if: matrix.os == 'macos-11'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get the latest releases (authenticated request on mac)
         if: ${{ matrix.os == 'macos-11' && env.HAVE_ACCESS_TOKEN == 'true' }}
@@ -96,13 +96,13 @@ jobs:
 
       - name: Install dependencies on Windows
         if: matrix.os == 'windows-2019'
-        uses: crazy-max/ghaction-chocolatey@v2
+        uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: install sass
 
       - name: Checkout the main branch on Windows
         if: matrix.os == 'windows-2019'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get the latest releases (authenticated request on Windows)
         if: ${{ matrix.os == 'windows-2019' && env.HAVE_ACCESS_TOKEN == 'true' }}
@@ -132,7 +132,7 @@ jobs:
 
       - name: Checkout the gh-pages branch on Linux
         if: matrix.os == 'ubuntu-20.04'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: 'gh-pages'
 
@@ -149,7 +149,7 @@ jobs:
 
       - name: Checkout the main branch on Linux
         if: matrix.os == 'ubuntu-20.04'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup SaxonEE on Linux
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_SAXON_EE == 'true' }}
@@ -213,7 +213,7 @@ jobs:
           target-folder: /release/xsltng/current
 
       - name: Publish release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           draft: false
@@ -236,7 +236,7 @@ jobs:
           rm -f secret.gpg
 
       - name: Checkout the CDN
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           repository: ${{ github.repository_owner}}/cdn
