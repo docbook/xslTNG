@@ -451,6 +451,56 @@
   </header>
 </db:section>
 
+<!-- h5/h6 is small enough ... -->
+<db:simplesect
+    context="parent::db:section/parent::db:section/parent::db:section
+             |parent::db:sect3|parent::db:sect4|parent::db:sect5">
+  <header>
+    <tmp:apply-templates select="db:title">
+      <h5><tmp:content/></h5>
+    </tmp:apply-templates>
+    <tmp:apply-templates select="db:subtitle">
+      <h6><tmp:content/></h6>
+    </tmp:apply-templates>
+  </header>
+</db:simplesect>
+
+<db:simplesect
+    context="parent::db:section/parent::db:section
+             |parent::db:sect2">
+  <header>
+    <tmp:apply-templates select="db:title">
+      <h4><tmp:content/></h4>
+    </tmp:apply-templates>
+    <tmp:apply-templates select="db:subtitle">
+      <h5><tmp:content/></h5>
+    </tmp:apply-templates>
+  </header>
+</db:simplesect>
+
+<db:simplesect context="parent::db:section
+                        |parent::db:sect1">
+  <header>
+    <tmp:apply-templates select="db:title">
+      <h3><tmp:content/></h3>
+    </tmp:apply-templates>
+    <tmp:apply-templates select="db:subtitle">
+      <h4><tmp:content/></h4>
+    </tmp:apply-templates>
+  </header>
+</db:simplesect>
+
+<db:simplesect>
+  <header>
+    <tmp:apply-templates select="db:title">
+      <h2><tmp:content/></h2>
+    </tmp:apply-templates>
+    <tmp:apply-templates select="db:subtitle">
+      <h3><tmp:content/></h3>
+    </tmp:apply-templates>
+  </header>
+</db:simplesect>
+
 <db:refsect3>
   <header>
     <tmp:apply-templates select="db:title">
