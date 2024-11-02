@@ -341,11 +341,6 @@ a.pmuj {
   font-style: italic;
 }
 
-.xref-pagenum {
-  content: target-counter(attr(href), page);
-  font-style: normal;
-}
-
 .xref-area,
 .xref-areaset,
 .xref-co,
@@ -2056,6 +2051,12 @@ nav.top div {
 }
 
 /* ============================================================ */
+@media screen {
+  .xref-pagenum::after {
+    content: "#";
+    font-style: normal;
+  }
+}
 @media screen and (max-width: 1199px) {
   nav.top div {
     padding-left: 2rem;

@@ -336,11 +336,6 @@ a.pmuj {
   font-style: italic;
 }
 
-.xref-pagenum {
-  content: target-counter(attr(href), page);
-  font-style: normal;
-}
-
 .xref-area,
 .xref-areaset,
 .xref-co,
@@ -17119,4 +17114,10 @@ span.footnote p {
 .book-style .component > header h3 {
   padding-top: 0;
   margin-top: 0;
+}
+
+/* xref with pagenumber ====================================== */
+.xref-pagenum::after {
+  content: target-counter(attr(href), page);
+  font-style: normal;
 }
