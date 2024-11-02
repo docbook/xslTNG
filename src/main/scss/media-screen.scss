@@ -450,6 +450,13 @@ nav.top div {
 
 /* ============================================================ */
 
+@media screen {
+    .xref-pagenum::after {
+        content: "#";
+        font-style:normal;
+    }
+}
+
 @media screen and (max-width: 1199px) {
     nav.top div {
         padding-left: 2rem;
