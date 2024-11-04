@@ -24,7 +24,7 @@
         <xsl:apply-templates select="/h:html//h:html">
           <xsl:with-param name="map" select="true()"/>
         </xsl:apply-templates>
-        <xsl:if test="exists($persistent-toc-filename) and f:is-true($persistent-toc)">
+        <xsl:if test="normalize-space($persistent-toc-filename) != '' and f:is-true($persistent-toc)">
           <xsl:variable name="rootfn"
                         select="(.//*[@db-chunk])[1]/@db-chunk/string()"/>
           <xsl:map-entry key="string(resolve-uri($persistent-toc-filename, $rootfn))">
@@ -188,7 +188,7 @@
           </xsl:if>
         </header>
         <xsl:choose>
-          <xsl:when test="$v:chunk and exists($persistent-toc-filename)">
+          <xsl:when test="$v:chunk and normalize-space($persistent-toc-filename) != ''">
             <div db-persistent-toc="{$persistent-toc-filename}">
               <xsl:attribute name="db-prefix"
                              select="fp:resolve-persistent-toc-prefix(/, .)"/>
