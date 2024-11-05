@@ -904,6 +904,44 @@ this script will be added to the document. This script must contain the JavaScri
 necessary to support the theme controls.</para>
 </refsection>
 </refentry>
+  
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>copyinstructions-uri</varname>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>URI for a file with copy instructions for image files</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>This parameter is empty by default. If this parameter contains a valid file path, this
+      means that support for copying image files is requested (should be media files in general,
+      but only image files are implemented yet). The level of support depends on whether the
+        <code>file:copy</code> function from <citation>EXPATH File</citation> is available during
+      the transformation:</para>
+    <orderedlist numeration="loweralpha">
+      <listitem>
+        <para>When <code>file:copy</code> is available, the stylesheets will copy the files to the
+          place where the generated HTML files expects them. In this case, the file at
+            <code>copyinstructions-uri</code> is a logfile with one entry for each copy
+          operation.</para>
+      </listitem>
+      <listitem>
+        <para>When <code>file:copy</code> is not available, the file at
+              <code>copyinstructions-uri</code> contains instructions which  should be executed in
+            some way independently of the stylesheets. The template
+              <template>t:write-copyinstructions</template> is responsible for writing the file, it
+            determines the format of the "instructions". You may want to override it to generate a
+            batch file in UNIX® or Windows style.</para>
+      </listitem>
+    </orderedlist>
+      <para>When it is given as a relative path, it will be resolved against the current working
+        directory (see <function>ext:cwd</function>).</para>
+  </refsection>
+</refentry> 
 
 <refentry>
   <refmeta>

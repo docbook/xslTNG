@@ -59,6 +59,7 @@
 <xsl:include href="modules/attributes.xsl"/>
 <xsl:include href="modules/publishers.xsl"/>
 <xsl:include href="modules/annotations.xsl"/>
+<xsl:include href="modules/copyinstructions.xsl"/>  
 
 <xsl:import href="modules/chunk.xsl"/>
 <xsl:import href="modules/chunk-cleanup.xsl"/>
