@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.4.1-SNAPSHOT, https://xsltng.docbook.org */
+/* DocBook xslTNG version 2.5.0-SNAPSHOT, https://xsltng.docbook.org */
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
@@ -972,6 +972,7 @@ pre.verblines span.ln {
   padding-top: 4px;
   padding-bottom: 4px;
   text-align: right;
+  color: var(--on-background-color);
 }
 
 pre.verblines.numbered span.ln {
@@ -1014,6 +1015,7 @@ pre.verblines span.ld {
   display: table-cell;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 4px;
 }
 
 pre.address span.ld,
@@ -1054,6 +1056,12 @@ table.verbatim tr td:first-child {
 table.verbatim tr td pre {
   margin-left: 0;
   margin-right: 0;
+}
+
+/* A couple of style tweaks to highlightjs-line-numbers.js line numbers */
+.hljs-ln-n {
+  padding-right: 1em;
+  text-align: right;
 }
 
 /* ============================================================ */
@@ -2048,6 +2056,10 @@ nav.top div {
 
 .panelset input[type=radio]:checked + label + .paneltab {
   display: block;
+}
+
+.laser-pointer {
+  cursor: url("data:image/gif;base64,R0lGODlhFAAUAPYAAAAAAP81If82If82Iv82I/83I/83JP84Jf84Jv85Jv85J/86J/86KP86Kf87Kf87Kv88K/88LP89LP89Lf8+Lv8/L/8/MP9AMf9BMf9BMv9CM/9CNP9DNP9ENv9FN/9GOP9GOf9HOv9JPP9JPf9KPv9LP/9MQP9NQf9OQv9PQ/9QRf9RRv9SR/9TSP9USf9VSv9WTP9XTf9XTv9YTv9ZT/9aUf9bUf9bUv9cUv9cU/9dVP9dVf9fVv9gWP9hWf9iWv9jW/9kXP9lXf9mXv9mX/9nYP9oYP9oYf9qYv9qY/9rZP9uZ/9uaP9vaf9wav9xa/9ya/9ybP90bv91b/92cP92cf93cf95c/96dP97dv98dv98d/9+ef9/e/+Ae/+Cff+Ef/+EgP+FgP+Ggv+Jhf+Khv+MiP+Nif+Pi/+QjP+Sjv+Wkv+Zlv+bmP+em/+joP+mo/+qqP+vrf+wrv+xrv+ysP+0sv+1s/+2tP+2tf+8uv+9u/++vAAAAAAAAAAAACH5BAEAAAAALAAAAAAUABQAAAfNgACCg4SFhoeIiQBqWk1HR1FgioJaOikcmCEqPZKITSkPBwajBgccMVqHUaCjBw8PpA8xYYVlM7CmKjozJbAGHD2FUSGjwF1qZ1YxsA8qnYI9zLNwdXRuViWjIVGEOsw9bHV7e3FlMaIcR92wFkdu4nt0ZzPo6oPRBg86ZXF1dXBaUojaRqgJB21EyrBZA0aHhVIpngEIs6wUhxk9esQ4+CtYoSMlROV75atZl0NFepFq1YybpxghSHIooSOVojBReujQ0cPKmUlAgyoKBAA7") 9 9, auto;
 }
 
 /* ============================================================ */

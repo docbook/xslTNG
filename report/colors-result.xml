@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/colors.xsl"
-        date="2024-11-04T10:29:12.244718Z">
+        date="2024-11-10T17:42:45.836991Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/colors.xspec">
       <label>When transforming colors.001</label>
@@ -554,8 +554,6 @@ if the theme picker is enabled.</p>
                                        </code>
                                     </span>
                                  </span>
-                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                               </pre>
                            </div>
                            <div class="sidebar">
@@ -632,212 +630,136 @@ There’s also color in <code>code</code>.</p>
                                           <code>Line four</code>
                                        </span>
                                     </span>
-                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                                  </pre>
                               </div>
                            </div>
                            <p>There’s also the “monochrome” listing:</p>
                            <div class="pre-wrap programlisting-wrap">
                               <pre class="language-lisp monochrome programlisting verbatim verblines">
-                                 <span class="line" db-line="1">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>(defun ndw/insert-date-time (with-tz)</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="2">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>  "Insert current date-time string in ISO 8601 format.</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="3">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>If WITH-TZ is nil, the time is printed without the timezone;</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="4">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>if WITH-TZ is t, the time is printed with the timezone;</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="5">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>if WITH-TZ has any other value, that value is interpreted as</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="6">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>a timezone and the current time in that timezone is inserted.</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="7">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>Example: 2010-11-29T23:23:35-08:00"</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="8">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>  (interactive)</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="9">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>  (let ((tz (cond ((eq with-tz nil) nil)</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="10">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>                  ((eq with-tz t) (current-time-zone))</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="11">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>                  (t (current-time-zone () with-tz)))))</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="12">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>    (insert</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="13">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>     (if (eq tz nil)</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="14">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>         (format-time-string "%Y-%m-%dT%T")</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="15">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>       (concat</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="16">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>        (format-time-string "%Y-%m-%dT%T" () tz)</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="17">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>        ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))</code>
                                     </span>
                                  </span>
                                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                 <span class="line" db-line="18">
-                                    <span class="ln">
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                       <span class="nsep">|</span>
-                                    </span>
+                                 <span class="line">
                                     <span class="ld">
                                        <code>         (format-time-string "%z" () tz)))))))</code>
                                     </span>
                                  </span>
-                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                               </pre>
                            </div>
                         </div>
@@ -1643,8 +1565,6 @@ if the theme picker is enabled.</p>
                                           </code>
                                        </span>
                                     </span>
-                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                                  </pre>
                               </div>
                               <div class="sidebar">
@@ -1721,212 +1641,136 @@ There’s also color in <code>code</code>.</p>
                                              <code>Line four</code>
                                           </span>
                                        </span>
-                                       <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                                     </pre>
                                  </div>
                               </div>
                               <p>There’s also the “monochrome” listing:</p>
                               <div class="pre-wrap programlisting-wrap">
                                  <pre class="language-lisp monochrome programlisting verbatim verblines">
-                                    <span class="line" db-line="1">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>(defun ndw/insert-date-time (with-tz)</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="2">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>  "Insert current date-time string in ISO 8601 format.</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="3">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>If WITH-TZ is nil, the time is printed without the timezone;</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="4">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>if WITH-TZ is t, the time is printed with the timezone;</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="5">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>if WITH-TZ has any other value, that value is interpreted as</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="6">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>a timezone and the current time in that timezone is inserted.</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="7">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>Example: 2010-11-29T23:23:35-08:00"</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="8">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>  (interactive)</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="9">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>  (let ((tz (cond ((eq with-tz nil) nil)</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="10">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>                  ((eq with-tz t) (current-time-zone))</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="11">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>                  (t (current-time-zone () with-tz)))))</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="12">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>    (insert</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="13">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>     (if (eq tz nil)</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="14">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>         (format-time-string "%Y-%m-%dT%T")</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="15">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>       (concat</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="16">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>        (format-time-string "%Y-%m-%dT%T" () tz)</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="17">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>        ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))</code>
                                        </span>
                                     </span>
                                     <ws xmlns="http://www.jenitennison.com/xslt/xspec">
 </ws>
-                                    <span class="line" db-line="18">
-                                       <span class="ln">
-                                          <ws xmlns="http://www.jenitennison.com/xslt/xspec">   </ws>
-                                          <span class="nsep">|</span>
-                                       </span>
+                                    <span class="line">
                                        <span class="ld">
                                           <code>         (format-time-string "%z" () tz)))))))</code>
                                        </span>
                                     </span>
-                                    <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                                  </pre>
                               </div>
                            </div>

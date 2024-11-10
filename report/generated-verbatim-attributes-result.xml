@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
-        date="2024-11-04T10:35:38.71508Z">
+        date="2024-11-10T17:49:02.385292Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/generated-verbatim-attributes.xspec">
       <label>When converting an address in the raw style</label>
@@ -276,7 +276,10 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 class="pre-wrap programlisting-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="1">
                <pre id="d6e0" class="a b c language-none numbered programlisting verbatim">
                   <code>...</code>
                </pre>
@@ -597,7 +600,10 @@
       </input-wrap>
       <result select="/element()">
          <content-wrap xmlns="">
-            <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap programlisting-wrap">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 class="pre-wrap programlisting-wrap"
+                 db-startinglinenumber="1"
+                 db-numberoflines="1">
                <pre id="d11e0" class="a b c language-none numbered programlisting verbatim">
                   <code>...</code>
                </pre>
@@ -664,15 +670,9 @@
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap address-wrap">
                <pre id="d12e0" class="a address b c verbatim verblines">
-                  <span class="line" db-line="1">
-                     <span class="ln">
-                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
-                        <span class="nsep">|</span>
-                     </span>
+                  <span class="line">
                      <span class="ld">...</span>
                   </span>
-                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                </pre>
             </div>
          </content-wrap>
@@ -737,15 +737,9 @@
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap literallayout-wrap">
                <pre id="d13e0" class="a b c literallayout verbatim verblines">
-                  <span class="line" db-line="1">
-                     <span class="ln">
-                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
-                        <span class="nsep">|</span>
-                     </span>
+                  <span class="line">
                      <span class="ld">...</span>
                   </span>
-                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                </pre>
             </div>
          </content-wrap>
@@ -810,17 +804,11 @@
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap screen-wrap">
                <pre id="d14e0" class="a b c screen verbatim verblines">
-                  <span class="line" db-line="1">
-                     <span class="ln">
-                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
-                        <span class="nsep">|</span>
-                     </span>
+                  <span class="line">
                      <span class="ld">
                         <code>...</code>
                      </span>
                   </span>
-                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                </pre>
             </div>
          </content-wrap>
@@ -885,17 +873,11 @@
          <content-wrap xmlns="">
             <div xmlns="http://www.w3.org/1999/xhtml" class="pre-wrap synopsis-wrap">
                <pre id="d15e0" class="a b c synopsis verbatim verblines">
-                  <span class="line" db-line="1">
-                     <span class="ln">
-                        <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
-                        <span class="nsep">|</span>
-                     </span>
+                  <span class="line">
                      <span class="ld">
                         <code>...</code>
                      </span>
                   </span>
-                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                </pre>
             </div>
          </content-wrap>
@@ -973,8 +955,6 @@
                         <code>...</code>
                      </span>
                   </span>
-                  <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                </pre>
             </div>
          </content-wrap>

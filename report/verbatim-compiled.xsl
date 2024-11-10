@@ -544,6 +544,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -555,7 +571,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1049,6 +1065,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1060,7 +1092,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1530,6 +1562,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -1541,7 +1589,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -2066,6 +2114,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -2077,7 +2141,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -3808,6 +3872,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -3819,7 +3899,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -4296,6 +4376,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -4307,7 +4403,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -4747,6 +4843,22 @@ Line five</xsl:text>
                               namespace=""
                               select="'', ''"
                               separator="pre-wrap programlisting-wrap"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-startinglinenumber"
+                              namespace=""
+                              select="'', ''"
+                              separator="1"/>
+               <xsl:attribute xmlns="http://www.w3.org/1999/xhtml"
+                              xmlns:h="http://www.w3.org/1999/xhtml"
+                              xmlns:m="http://docbook.org/ns/docbook/modes"
+                              xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                              name="db-numberoflines"
+                              namespace=""
+                              select="'', ''"
+                              separator="5"/>
                <xsl:element name="pre" namespace="http://www.w3.org/1999/xhtml">
                   <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                   <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>
@@ -4758,7 +4870,7 @@ Line five</xsl:text>
                                  name="class"
                                  namespace=""
                                  select="'', ''"
-                                 separator="language-none numbered programlisting verbatim"/>
+                                 separator="language-none long numbered programlisting verbatim"/>
                   <xsl:element name="code" namespace="http://www.w3.org/1999/xhtml">
                      <xsl:namespace name="h">http://www.w3.org/1999/xhtml</xsl:namespace>
                      <xsl:namespace name="m">http://docbook.org/ns/docbook/modes</xsl:namespace>

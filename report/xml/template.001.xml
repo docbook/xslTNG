@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info><?db toc='false'?>
+<title>Unit test: template.001</title>
+</info>
+
+<para>This is a smoke test for the elements related to template definitions.</para>
+
+<classsynopsis>
+<ooclass>
+  <classname>MyClass</classname>
+</ooclass>
+<template>
+<templatename>MyTemplate</templatename>
+</template>
+</classsynopsis>
+
+<classsynopsis>
+<ooclass>
+  <classname>MyOtherClass</classname>
+</ooclass>
+<template>
+<specializedtemplate>Some text</specializedtemplate>
+</template>
+</classsynopsis>
+
+</article>
+

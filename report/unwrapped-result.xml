@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/unwrapped.xsl"
-        date="2024-11-04T10:39:03.347856Z">
+        date="2024-11-10T17:52:25.25715Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/unwrapped.xspec">
       <label>When transforming unwrapped-footnote.005</label>
@@ -415,8 +415,6 @@ And a block quote for good measure:
                                        </span>nonsense</code>
                                  </span>
                               </span>
-                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                            </pre>
                         </div>
                         <p>Ordinary paragraph.</p>
@@ -481,8 +479,6 @@ And a block quote for good measure:
                                           </span>nonsense</code>
                                     </span>
                                  </span>
-                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">
-</ws>
                               </pre>
                            </div>
                            <p>Ordinary paragraph.</p>
