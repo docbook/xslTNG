@@ -252,18 +252,19 @@
   <xsl:param name="style" as="xs:string" select="f:verbatim-style(.)"/>
   <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
   <xsl:param name="long" as="xs:boolean" select="false()"/>
+  <xsl:param name="highlight" as="xs:boolean" select="false()"/>
 
   <xsl:variable name="attr" select="fp:common-attributes(., false())"/>
 
   <xsl:variable name="lang" as="xs:string?"
                 select="if (@language)
                         then 'language-' || @language
-                        else if (self::db:programlisting)
-                             then 'language-none'
+                        else if (self::db:programlisting and exists($verbatim-default-language))
+                             then 'language-' || $verbatim-default-language
                              else ()"/>
 
   <xsl:variable name="style" as="xs:string*"
-                select="if ($style = 'lines')
+                select="if ($style = 'lines' or $style = 'table')
                         then ('verbatim', 'verblines')
                         else 'verbatim'"/>
 
@@ -274,12 +275,22 @@
 
   <xsl:variable name="numbered" as="xs:string?"
                 select="if ($numbered)
-                        then 'numbered'
+                        then if (f:verbatim-syntax-highlighter(.) = 'prism')
+                             then 'line-numbers'
+                             else 'numbered'
+                        else ()"/>
+
+  <!-- Doesn't actually work in highlight.js 11.10.0
+       https://github.com/highlightjs/highlight.js/issues/4160 -->
+  <xsl:variable name="no-highlight" as="xs:string?"
+                select="if (f:global-syntax-highlighter(.) = 'highlight.js'
+                            and not($highlight))
+                        then 'no-highlight'
                         else ()"/>
 
   <xsl:sequence
       select="f:attributes(., $attr,
-                 (local-name(.), $lang, @class, $style, $numbered, $long), ())"/>
+                 (local-name(.), $lang, @class, $style, $numbered, $long, $no-highlight), ())"/>
 </xsl:template>
 
 <xsl:template match="db:lhs" mode="m:attributes" as="attribute()*">

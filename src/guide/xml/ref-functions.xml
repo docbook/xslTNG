@@ -544,26 +544,6 @@ to construct the divisions in an index.</para>
   </refsection>
 </refentry>
   
-<refentry xml:id="f_highlight-verbatim">
-<?db filename="f_highlight-verbatim"?>
-<refmeta>
-<refentrytitle>f:highlight-verbatim</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}highlight-verbatim#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:highlight-verbatim</refname>
-<refpurpose>Syntax highlight verbatim element?</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Returns true if the specified verbatim environment should have
-syntax highlighting applied to it. This depends on the
-<att>language</att> specified on the environment and the
-<parameter>verbatim-syntax-highlight-languages</parameter> parameter.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_href">
 <?db filename="f_href"?>
 <refmeta>
@@ -1714,36 +1694,6 @@ Otherwise, it returns an empty sequence.</para>
 </refsection>
 </refentry>
 
-<refentry xml:id="f_verbatim-highlight">
-<?db filename="f_verbatim-highlight"?>
-<refmeta>
-<refentrytitle>f:verbatim-highlight</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-highlight#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:verbatim-highlight</refname>
-<refpurpose>Returns the highlight properties for a verbatim environment</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>Verbatim elements can be styled in a variety of ways, see
-<xref linkend="verbstyle"/>. This function returns the highlight settings
-for a particular verbatim environment.</para>
-<para>If the style for this environment is explicitly “plain”, then no
-highlight settings are returned (this avoids a bunch of warning messages).
-Otherwise, if a
-<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
-</indexterm> processing instruction with a
-<literal>verbatim-highlight</literal><indexterm>
-<primary>db processing instruction</primary>
-<secondary>verbatim-highlight pseudo-attribute</secondary>
-</indexterm> pseudo-attribute is present,
-it is returned. If there’s no PI, then the default
-settings for this kind of environment are returned.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_verbatim-numbered">
 <?db filename="f_verbatim-numbered"?>
 <refmeta>
@@ -1886,6 +1836,66 @@ A <tag class="pi">db</tag><indexterm><primary>db processing instruction</primary
 <parameter>verbatim-trim-trailing-blank-lines</parameter> parameter on a
 case-by-case basis.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_verbatim-callout">
+<?db filename="f_verbatim-callout"?>
+<refmeta>
+<refentrytitle>f:verbatim-callout</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-callout#1</refmiscinfo>
+<refmiscinfo class="version">2.5.0</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-callout</refname>
+<refpurpose>Return the callout style for a verbatim environment</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function examines a verbatim environment, the <literal>$context</literal>,
+and returns the value of the
+A <tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-highlight</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-highlight pseudo-attribute</secondary>
+</indexterm> pseudo-attribute may be used to override the
+<parameter>verbatim-callouts</parameter> parameter on a
+case-by-case basis.
+</para>
+<para>The pseudo-attribute name is “highlight” for backwards compatibility. The function
+is named “callout” to make it clear(er) that this is unrelated to syntax highlighting.</para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_verbatim-syntax-highlighter">
+<?db filename="f_verbatim-syntax-highlighter"?>
+<refmeta>
+<refentrytitle>f:verbatim-syntax-highlighter</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/functions}verbatim-syntax-highlighter#1</refmiscinfo>
+<refmiscinfo class="version">2.5.0</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>f:verbatim-syntax-highlighter</refname>
+<refpurpose>Return the syntax highlighter style for a verbatim environment</refpurpose>
+<refclass>function</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function examines a verbatim environment, the <literal>$context</literal>,
+and returns the value of the
+A <tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>syntax-highlighter</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>syntax-highlighter pseudo-attribute</secondary>
+</indexterm> pseudo-attribute may be used to override the
+<function>f:global-syntax-highlighter</function> on a
+case-by-case basis.
+</para>
+<para>Not all overrides are possible. You can’t, in general, use a JavaScript-based renderer,
+or a different JavaScript-based renderer, on a case-by-case basis.</para>
 </refsection>
 </refentry>
 
@@ -2483,6 +2493,33 @@ is returned instead.
 </para>
 <para>This avoids “double rotation” of, for example, a landscape table within a landscape chapter.
 </para>
+</refsection>
+</refentry>
+
+<refentry xml:id="f_global-syntax-highlighter">
+  <?db filename='f_global-syntax-highlighter'?>
+  <refmeta>
+    <refentrytitle>f:global-syntax-highlighter</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}global-syntax-highlighter#1</refmiscinfo>
+    <refmiscinfo class="version">2.5.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:global-syntax-highlighter</refname>
+    <refpurpose>Returns the global syntax highlighter</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>The global syntax highlighter is usually specified with the
+<parameter>verbatim-syntax-highlighter</parameter> parameter. However, mostly as an aid to
+testing, you can also use the
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction
+<literal>syntax-highlighter</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>syntax-highlighter pseudo-attribute</secondary>
+</indexterm> pseudo-attribute in the root element.</para>
+<para>This will override the default highlighter for the specific document.</para>
 </refsection>
 </refentry>
 

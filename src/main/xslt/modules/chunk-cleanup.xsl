@@ -178,7 +178,11 @@
       </xsl:apply-templates>
     </xsl:if>
 
-    <xsl:if test=".//h:div[contains-token(@class, 'pre-wrap')]">
+    <!-- The copy-verbatim script doesn't handle the highlight.js markup
+         and highlight.js manages the selection correctly anyway. -->
+    <xsl:if test="f:is-true($verbatim-embellishments)
+                  and f:global-syntax-highlighter($docbook) = 'pygments'
+                  and .//h:div[contains-token(@class, 'pre-wrap')]">
       <xsl:apply-templates select="/h:html/h:db-copy-verbatim-script/*">
         <xsl:with-param name="rootbaseuri" select="$rbu"/>
         <xsl:with-param name="chunkbaseuri" select="$cbu"/>

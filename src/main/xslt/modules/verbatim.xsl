@@ -21,19 +21,46 @@
                 exclude-result-prefixes="#all"
                 version="3.0">
 
-<!-- N.B. There's no winning here. It would be nice to inject callouts
-     into the pre-formatted sources, but if we do that, the sources
-     don't get processed in the original document tree (so id/idref
-     links and such won't work). If, instead, we process the tree
-     first, then we have to do the flattening and other manipulations
-     in the formatted HTML over which we have less control. But having
-     the elements processed in the correct tree seems like a real
-     requirement, so we'll do the flatting work in the formatted
-     results.
+<!-- If there's any embedded markup in the verbatim environments, it has to be
+     processed in the context of the original document, otherwise id/idref links
+     and perhaps other cross-references won't be resolved correctly.
 
-     Note also: syntax highlighting is incompatible with embedded markup.
-     If syntax highlighting is applied, it is applied to the string value
-     of the verbatim region.
+     Embellishments may then be added. There are three kinds of embellishments:
+
+     1. Syntax highlighting (with Pygments)
+     2. Line numbering
+     3. Out-of-band callouts ("In-band" callouts, <co> elements, are just
+        another kind of inline, they have no special role here.)
+
+     There are two options: embellishments can be added by the stylesheets, or
+     embellishments will be added by JavaScript in the browser (or more
+     generally, "the rending engine"; it’s not impossible to imagine a paged
+     media formatter that renders JavaScript, I just don’t know of any). It’s
+     possible to imagine some ways to mix them, adding line numbers in the
+     stylesheets, but leaving syntax highlighting to the browser, for example,
+     but in practice it’s too complicated.
+
+     First, let’s consider how the embellishments can be added by the
+     stylesheets. There are four verbatim styles: lines, table, plain, and raw.
+     (Table is a special-case of lines where the line numbers and actual lines
+     are rendered in a table for the benefit of systems with less robust CSS
+     support.)
+
+     Which embellishments are possible depends on the style:
+
+     |=======================+=======+=======+=======+=====|
+     | Embellishment \ Style | Lines | Table | Plain | Raw |
+     |=======================+=======+=======+=======+=====|
+     | Pygments              | X     | X     | X     |     |
+     | Line numbering        | X     | X     |       |     |
+     | Out-of-band callouts  | X     | X     | X     |     |
+     |=======================+=======+=======+=======+=====|
+
+     Note that there's an unfortunate ambiguity here: adding information to
+     identify callouts is also a kind of highlighting. I'm trying to use callout
+     uniformly for that kind of markup, but for backwards compatibility the
+     actual class value is still "highlight" in some cases. This is entirely
+     distinct from syntax highlighting.
 -->
 
 <xsl:import href="highlight.xsl"/>
@@ -50,30 +77,29 @@
                        '&#xFE0C;', '&#xFE0D;', '&#xFE0E;', '&#xFE0F;', 
                        '&#x200B;')"/>
 
-<!-- FIXME: rename 'highlight' to 'callout' for consistency -->
-
 <xsl:variable name="v:verbatim-properties" as="array(map(*))">
   <xsl:variable name="maps" as="map(*)+">
     <xsl:for-each select="('address', 'literallayout',
                            'programlisting', 'programlistingco',
                            'screen', 'screenco',
                            'synopsis', 'funcsynopsisinfo', 'classsynopsisinfo')">
-      <xsl:variable name="style" select="if (. = $v:verbatim-table-style)
-                                         then 'table'
-                                         else if (. = $v:verbatim-line-style)
-                                              then 'lines'
-                                              else if (. = $v:verbatim-plain-style)
-                                                   then 'plain'
-                                                   else 'raw'"/>
+      <xsl:variable name="style"
+                    select="if (. = $v:verbatim-table-style)
+                            then 'table'
+                            else if (. = $v:verbatim-line-style)
+                                 then 'lines'
+                                 else if (. = $v:verbatim-plain-style)
+                                      then 'plain'
+                                      else 'raw'"/>
       <xsl:map>
         <xsl:map-entry key="'xpath'" select="'self::db:' || ."/>
         <xsl:map-entry key="'style'" select="$style"/>
-        <xsl:map-entry key="'highlight'"
+        <xsl:map-entry key="'callout'"
                        select="if ($style = 'lines')
                                then $v:verbatim-callouts
                                else ()"/>
         <xsl:map-entry key="'numbered'"
-                       select=". = $v:verbatim-numbered-elements"/>
+                       select="string(. = $v:verbatim-numbered-elements)"/>
       </xsl:map>
     </xsl:for-each>
   </xsl:variable>
@@ -81,42 +107,26 @@
 </xsl:variable>
 
 <xsl:template match="db:programlistingco|db:screenco">
-  <xsl:param name="style" as="xs:string" select="f:verbatim-style(.)"/>
-  <xsl:param name="highlight" as="xs:string*" select="f:verbatim-highlight(.)"/>
-  <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
-  <xsl:param name="trim-leading" as="xs:boolean" select="f:verbatim-trim-leading(.)"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
+  <xsl:variable name="style" select="f:verbatim-style((db:programlisting|db:screen)[1])"/>
 
   <xsl:variable name="areaspec" as="element(db:areaspec)?">
     <xsl:choose>
-      <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
-        <xsl:if test="$message-level gt 0">
-          <xsl:message select="'Processing', local-name(.), 'is only supported with Pygments'"/>
-        </xsl:if>
+      <xsl:when test="empty(db:areaspec) or ($style = 'lines' or $style = 'table' or $style = 'plain')">
+        <xsl:sequence select="db:areaspec"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:sequence select="db:areaspec"/>
+        <xsl:if test="$message-level gt 0 and f:is-true($verbatim-embellishments)">
+          <xsl:message>Out-of-band callouts are only supported for 'lines' and 'table' styles</xsl:message>
+        </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
-  <p xsl:use-when="'render-verbatim' = $v:debug"
-     class="debug" xsl:expand-text="yes">Verbatim environment formatted with
-  <code>style={$style}</code>, <code>numbered={$numbered}</code>, and
-  <code>highlight={string-join($highlight, ',')}</code>.</p>
-
   <div>
     <xsl:apply-templates select="." mode="m:attributes"/>
-
     <xsl:apply-templates select="db:programlisting|db:screen">
-      <xsl:with-param name="style" select="$style"/>
-      <xsl:with-param name="highlight" select="$highlight"/>
-      <xsl:with-param name="numbered" select="$numbered"/>
       <xsl:with-param name="inject" select="$areaspec"/>
-      <xsl:with-param name="trim-leading" select="$trim-leading"/>
-      <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
     </xsl:apply-templates>
-
     <xsl:apply-templates select="db:calloutlist"/>
   </div>
 </xsl:template>
@@ -126,272 +136,332 @@
                      |db:funcsynopsisinfo
                      |db:classsynopsisinfo
                      |db:literallayout|db:address">
-  <xsl:param name="style" as="xs:string" select="f:verbatim-style(.)"/>
-  <xsl:param name="highlight" as="xs:string*" select="f:verbatim-highlight(.)"/>
-  <xsl:param name="numbered" as="xs:boolean" select="f:verbatim-numbered(.)"/>
-  <xsl:param name="trim-leading" as="xs:boolean" select="f:verbatim-trim-leading(.)"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" select="f:verbatim-trim-trailing(.)"/>
-  <xsl:param name="inject" as="item()?" select="()"/>
+  <xsl:param name="style" as="xs:string?" select="()"/>
+  <xsl:param name="inject" as="element()?"/>
+
+  <xsl:variable name="inject-array" select="fp:injection-array($inject)"/>
+
+  <xsl:variable name="starting-line-number" as="xs:integer">
+    <xsl:choose>
+      <xsl:when test="@startinglinenumber">
+        <xsl:sequence select="xs:integer(@startinglinenumber)"/>
+      </xsl:when>
+      <xsl:when test="@continuation = 'continues'">
+        <xsl:variable name="name" select="node-name(.)"/>
+        <xsl:variable name="prec" select="preceding::*[node-name(.) = $name][1]"/>
+        <xsl:choose>
+          <xsl:when test="empty($prec)">
+            <xsl:sequence select="1"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:variable name="formatted" as="element()">
+              <xsl:apply-templates select="$prec"/>
+            </xsl:variable>
+            <xsl:sequence select="if ($formatted/@db-startinglinenumber
+                                      and $formatted/@db-numberoflines)
+                                  then
+                                    xs:integer($formatted/@db-startinglinenumber)
+                                    + xs:integer($formatted/@db-numberoflines)
+                                  else
+                                    1"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="1"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="minlines" as="xs:integer">
+    <xsl:choose>
+      <xsl:when test="fp:vpi(., 'linenumbering-minlines',
+                            fp:verbatim-properties(.)?minlines)">
+        <xsl:sequence
+            select="xs:integer(fp:vpi(., 'linenumbering-minlines',
+                                     fp:verbatim-properties(.)?minlines))"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="$v:verbatim-number-minlines"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="vconfig" as="map(*)">
+    <xsl:map>
+      <xsl:map-entry key="'style'" select="if ($style) then $style else f:verbatim-style(.)"/>
+      <xsl:map-entry key="'callout'" select="f:verbatim-callout(.)"/>
+      <xsl:map-entry key="'numbered'" select="f:verbatim-numbered(.)"/>
+      <xsl:map-entry key="'trim-leading'" select="f:verbatim-trim-leading(.)"/>
+      <xsl:map-entry key="'trim-trailing'" select="f:verbatim-trim-trailing(.)"/>
+      <xsl:map-entry key="'highlighter'" select="f:verbatim-syntax-highlighter(.)"/>
+      <xsl:map-entry key="'starting-line-number'" select="$starting-line-number"/>
+      <xsl:map-entry key="'min-lines'" select="$minlines"/>
+      <xsl:map-entry key="'inject'" select="$inject-array"/>
+    </xsl:map>
+  </xsl:variable>
 
   <xsl:message use-when="'verbatim' = $v:debug"
-               select="'Verbatim: ' || node-name(.)
-                       || (if (@xml:id) then '/'||@xml:id else '')
-                       || ', style: ' || $style
-                       || ', highlight: ' || string-join($highlight,',')
-                       || ', numbered: ' || $numbered"/>
+               select="'Verbatim:',
+    local-name(.) || (@xml:id ! ('/' || .)),
+    'style:' || $vconfig?style,
+    'callout:' || string-join($vconfig?callout, ','),
+    '&#10;         ',
+    'numbered:' || $vconfig?numbered,
+    'trim-leading:' || $vconfig?trim-leading,
+    'trim-trailing:' || $vconfig?trim-trailing,
+    'highlighter:' || $vconfig?highlighter,
+    'start:' || $vconfig?starting-line-number,
+    'minlines:' || $vconfig?min-lines,
+    'inject:' || exists($vconfig?inject)"/>
 
-  <!--
-  <xsl:message>STY:<xsl:value-of select="$style"/></xsl:message>
-  <xsl:message>CTX:<xsl:sequence select="."/></xsl:message>
-  <xsl:message>INJ:<xsl:sequence select="$inject"/></xsl:message>
-  -->
+  <xsl:variable name="formatted">
+    <xsl:choose>
+      <xsl:when test="not(f:is-true($verbatim-embellishments))">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="$vconfig?style = ('lines', 'table', 'plain')">
+        <xsl:choose>
+          <xsl:when test="$vconfig?highlighter = 'pygments'">
+            <xsl:variable name="options" as="map(xs:string,xs:string)">
+              <xsl:apply-templates select="." mode="m:highlight-options"/>
+            </xsl:variable>
 
-  <xsl:variable name="injectarr" select="fp:injection-array($inject)"/>
+            <xsl:variable name="pyoptions" as="map(xs:string,xs:string)">
+              <xsl:apply-templates select="." mode="m:pygments-options"/>
+            </xsl:variable>
 
-  <xsl:call-template name="tp:verbatim">
-    <xsl:with-param name="style" select="$style"/>
-    <xsl:with-param name="highlight" select="$highlight"/>
-    <xsl:with-param name="numbered" select="$numbered"/>
-    <xsl:with-param name="trim-leading" select="$trim-leading"/>
-    <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-    <xsl:with-param name="inject" select="$injectarr"/>
-  </xsl:call-template>
+            <xsl:sequence select="f:syntax-highlight(string(.),
+                                  map:merge(($v:verbatim-syntax-highlight-options, $options)),
+                                  map:merge(($v:verbatim-syntax-highlight-pygments-options, $pyoptions)))"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:if test="$message-level gt 0 and $vconfig?highlighter = 'pygments'">
+          <xsl:message>Pygments is only supported for 'lines', 'table', and 'plain' styles</xsl:message>
+        </xsl:if>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="the-lines" as="map(*)*">
+    <xsl:call-template name="tp:compute-lines">
+      <xsl:with-param name="vconfig" select="$vconfig"/>
+      <xsl:with-param name="formatted" select="$formatted"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="vconfig" select="map:put($vconfig, 'the-lines', $the-lines)"/>
+
+  <xsl:apply-templates select="." mode="mp:verbatim-pre-wrap">
+    <xsl:with-param name="vconfig" select="$vconfig"/>
+    <xsl:with-param name="pre">
+      <xsl:apply-templates select="." mode="mp:verbatim-pre">
+        <xsl:with-param name="vconfig" select="$vconfig"/>
+      </xsl:apply-templates>
+    </xsl:with-param>
+  </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template name="tp:verbatim" as="element()">
-  <xsl:param name="style" as="xs:string" required="yes"/>
-  <xsl:param name="highlight" as="xs:string*" required="yes"/>
-  <xsl:param name="numbered" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
-  <xsl:param name="inject" as="array(*)?" select="()"/>
+<xsl:template match="db:programlisting|db:screen
+                     |db:synopsis
+                     |db:funcsynopsisinfo
+                     |db:classsynopsisinfo
+                     |db:literallayout|db:address"
+              mode="mp:verbatim-pre-wrap">
+  <xsl:param name="vconfig" as="map(*)"/>
+  <xsl:param name="pre" required="true"/>
 
-  <xsl:message use-when="'verbatim' = $v:debug"
-               select="'tp:verbatim: ' || node-name(.)
-                       || (if (@xml:id) then '/'||@xml:id else '')
-                       || ', style: ' || $style
-                       || ', highlight: ' || string-join($highlight,',')
-                       || ', numbered: ' || $numbered
-                       || ', trim: ' || $trim-leading || '/' || $trim-trailing"/>
-  <xsl:for-each use-when="'verbatim' = $v:debug" select="array:flatten($inject)">
-    <xsl:message select="'  inject '||position()||':', .?line, .?column"/>
-  </xsl:for-each>
+  <xsl:variable name="classes" as="xs:string+">
+    <xsl:sequence select="'pre-wrap'"/>
+    <xsl:sequence select="local-name() || '-wrap'"/>
+    <xsl:if test="f:is-true($verbatim-embellishments) and $vconfig?highlighter = 'pygments'">
+      <xsl:sequence select="'highlight'"/>
+    </xsl:if>      
+  </xsl:variable>
+
+  <div class="{string-join($classes, ' ')}">
+    <xsl:if test="f:is-true($verbatim-embellishments) and $vconfig?numbered">
+      <xsl:attribute name="db-startinglinenumber" select="$vconfig?starting-line-number"/>
+      <xsl:attribute name="db-numberoflines" select="count($vconfig?the-lines)"/>
+    </xsl:if>
+    <xsl:sequence select="$pre"/>
+  </div>
+</xsl:template>
+
+<xsl:template match="db:programlisting|db:screen
+                     |db:synopsis
+                     |db:funcsynopsisinfo
+                     |db:classsynopsisinfo
+                     |db:literallayout|db:address"
+              mode="mp:verbatim-pre">
+  <xsl:param name="vconfig" as="map(*)"/>
+
+  <xsl:variable name="use-code" select="not(self::db:literallayout or self::db:address)"/>
+
+  <xsl:variable name="pre-attr" as="attribute()*">
+    <xsl:apply-templates select="." mode="m:attributes">
+      <xsl:with-param name="style" select="$vconfig?style"/>
+      <xsl:with-param name="numbered"
+                      select="f:is-true($verbatim-embellishments) and $vconfig?numbered"/>
+      <xsl:with-param name="long"
+                      select="f:is-true($verbatim-embellishments)
+                              and count($vconfig?the-lines) ge $vconfig?min-lines"/>
+    </xsl:apply-templates>
+  </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$style = 'plain'">
-      <xsl:if test="exists($highlight)">
-        <xsl:if test="$message-level gt 0">
-          <xsl:message>Verbatim plain processing doesn’t support highlighting</xsl:message>
-        </xsl:if>
-      </xsl:if>
-      <xsl:if test="$numbered">
-        <xsl:if test="$message-level gt 0">
-          <xsl:message>Verbatim plain processing doesn’t support line numbering</xsl:message>
-        </xsl:if>
-      </xsl:if>
-      <xsl:call-template name="tp:verbatim-plain">
-        <xsl:with-param name="highlight" select="$highlight"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-        <xsl:with-param name="trim-leading" select="$trim-leading"/>
-        <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-        <xsl:with-param name="inject" select="$inject"/>
-      </xsl:call-template>
+    <xsl:when test="not(f:is-true($verbatim-embellishments)) or $vconfig?style = 'raw'">
+      <pre>
+        <xsl:sequence select="$pre-attr"/>
+        <xsl:choose>
+          <xsl:when test="$use-code">
+            <code>
+              <xsl:if test="$vconfig?highlighter = 'highlight.js' and not($vconfig?numbered)">
+                <xsl:attribute name="class" select="'nohljsln'"/>
+              </xsl:if>
+              <xsl:apply-templates/>
+            </code>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </pre>
     </xsl:when>
-    <xsl:when test="$style = 'table'">
-      <xsl:call-template name="tp:verbatim-table">
-        <xsl:with-param name="highlight" select="$highlight"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-        <xsl:with-param name="trim-leading" select="$trim-leading"/>
-        <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-        <xsl:with-param name="inject" select="$inject"/>
-      </xsl:call-template>
+
+    <xsl:when test="$vconfig?style = 'lines'">
+      <pre>
+        <xsl:sequence select="$pre-attr"/>
+        <xsl:for-each select="$vconfig?the-lines">
+          <span class="{string-join(.?classes, ' ')}">
+            <xsl:if test="$vconfig?numbered">
+              <xsl:attribute name="db-line" select=".?line-number"/>
+            </xsl:if>
+            <xsl:if test="$vconfig?numbered">
+              <xsl:sequence select=".?formatted-number"/>
+            </xsl:if>
+            <span class="ld">
+              <xsl:choose>
+                <xsl:when test="$use-code">
+                  <code>
+                    <xsl:sequence select=".?line"/>
+                  </code>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:sequence select=".?line"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </span>
+          </span>
+          <xsl:if test="position() lt count($vconfig?the-lines)">
+            <xsl:text>&#10;</xsl:text>
+          </xsl:if>
+        </xsl:for-each>
+      </pre>
     </xsl:when>
-    <xsl:when test="$style = 'lines'">
-      <xsl:call-template name="tp:verbatim-lines">
-        <xsl:with-param name="highlight" select="$highlight"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-        <xsl:with-param name="trim-leading" select="$trim-leading"/>
-        <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-        <xsl:with-param name="inject" select="$inject"/>
-      </xsl:call-template>
+
+    <xsl:when test="$vconfig?style = 'table'">
+      <table class="verbatim">
+        <tr>
+          <xsl:if test="$vconfig?numbered">
+            <td>
+              <pre>
+                <xsl:sequence select="$pre-attr"/>
+                <xsl:for-each select="$vconfig?the-lines">
+                  <span class="line">
+                    <xsl:sequence select=".?formatted-number"/>
+                  </span>
+                  <xsl:if test="position() lt count($vconfig?the-lines)">
+                    <xsl:text>&#10;</xsl:text>
+                  </xsl:if>
+                </xsl:for-each>
+              </pre>
+            </td>
+          </xsl:if>
+          <td>
+            <pre>
+              <xsl:sequence select="$pre-attr"/>
+              <xsl:for-each select="$vconfig?the-lines">
+                <span class="line">
+                  <span class="ld">
+                    <xsl:choose>
+                      <xsl:when test="$use-code">
+                        <code>
+                          <xsl:sequence select=".?line"/>
+                        </code>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:sequence select=".?line"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </span>
+                </span>
+                <xsl:if  test="position() lt count($vconfig?the-lines)">
+                  <xsl:text>&#10;</xsl:text>
+                </xsl:if>
+              </xsl:for-each>
+            </pre>
+          </td>
+        </tr>
+      </table>
     </xsl:when>
-    <xsl:when test="$style = 'raw'">
-      <xsl:if test="exists($inject)">
-        <xsl:if test="$message-level gt 0">
-          <xsl:message>Verbatim raw processing doesn’t support injections</xsl:message>
-        </xsl:if>
-      </xsl:if>
-      <xsl:if test="exists($highlight)">
-        <xsl:if test="$message-level gt 0">
-          <xsl:message>Verbatim raw processing doesn’t support highlighting</xsl:message>
-        </xsl:if>
-      </xsl:if>
-      <xsl:if test="$numbered">
-        <xsl:if test="$message-level gt 0">
-          <xsl:message>Verbatim raw processing doesn’t support line numbering</xsl:message>
-        </xsl:if>
-      </xsl:if>
-      <xsl:call-template name="tp:verbatim-raw">
-        <xsl:with-param name="highlight" select="$highlight"/>
-        <xsl:with-param name="trim-leading" select="$trim-leading"/>
-        <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-      </xsl:call-template>
+
+    <xsl:when test="$vconfig?style = 'plain'">
+      <xsl:variable name="content">
+        <xsl:for-each select="$vconfig?the-lines">
+          <xsl:sequence select=".?line"/>
+          <xsl:if test="position() lt count($vconfig?the-lines)">
+            <xsl:text>&#10;</xsl:text>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+
+      <pre>
+        <xsl:sequence select="$pre-attr"/>
+        <xsl:choose>
+          <xsl:when test="$use-code">
+            <code>
+              <xsl:if test="$vconfig?highlighter = 'highlight.js' and not($vconfig?numbered)">
+                <xsl:attribute name="class" select="'nohljsln'"/>
+              </xsl:if>
+              <xsl:sequence select="$content"/>
+            </code>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence select="$content"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </pre>
     </xsl:when>
+
     <xsl:otherwise>
-      <xsl:if test="$message-level gt 0">
-        <xsl:message expand-text="yes">Unrecognized verbatim-style: {$style}</xsl:message>
-      </xsl:if>
-      <xsl:call-template name="tp:verbatim-plain">
-        <xsl:with-param name="highlight" select="$highlight"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-        <xsl:with-param name="trim-leading" select="$trim-leading"/>
-        <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-        <xsl:with-param name="inject" select="$inject"/>
-      </xsl:call-template>
+      <xsl:message terminate="yes"
+                   select="'Unrecognized verbatim style: ' || $vconfig?style"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+  
+<!-- ============================================================ -->
 
-<xsl:template name="tp:verbatim-plain" as="element()">
-  <xsl:param name="highlight" as="xs:string*" required="yes"/>
-  <xsl:param name="numbered" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
-  <xsl:param name="inject" as="array(*)?" select="()"/>
+<xsl:template name="tp:compute-lines" as="map(*)*">
+  <xsl:param name="vconfig" as="map(*)"/>
+  <xsl:param name="formatted" required="true"/>
 
-  <xsl:variable name="lines" as="array(*)">
-    <xsl:call-template name="tp:verbatim-array">
-      <xsl:with-param name="highlight" select="$highlight"/>
-      <xsl:with-param name="numbered" select="$numbered"/>
-      <xsl:with-param name="trim-leading" select="$trim-leading"/>
-      <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-      <xsl:with-param name="inject" select="$inject"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="body" as="item()*">
-    <xsl:for-each select="1 to array:size($lines)">
-      <xsl:if test="position() gt 1">
-        <xsl:text>&#10;</xsl:text>
-      </xsl:if>
-      <xsl:for-each select="$lines(.)">
-        <xsl:call-template name="tp:filter-callouts">
-          <xsl:with-param name="highlight" select="$highlight"/>
-          <xsl:with-param name="line" select="."/>
-        </xsl:call-template>
-      </xsl:for-each>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <div class="pre-wrap {local-name()}-wrap">
-    <pre>
-      <xsl:apply-templates select="." mode="m:attributes">
-        <xsl:with-param name="style" select="'plain'"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-      </xsl:apply-templates>
-
-      <xsl:copy-of select="@xml:space"/>
-      <xsl:choose>
-        <xsl:when test="self::db:address or self::db:literallayout">
-          <xsl:sequence select="$body"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <code><xsl:sequence select="$body"/></code>
-        </xsl:otherwise>
-      </xsl:choose>
-    </pre>
-  </div>
-</xsl:template>
-
-<xsl:template name="tp:verbatim-raw" as="element()">
-  <xsl:param name="highlight" as="xs:string*" required="yes"/>
-  <xsl:param name="numbered" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
-
-  <xsl:variable name="body" as="item()*">
-    <xsl:apply-templates/>
-  </xsl:variable>
-
-  <div class="pre-wrap {local-name()}-wrap">
-    <pre>
-      <xsl:apply-templates select="." mode="m:attributes">
-        <xsl:with-param name="style" select="'raw'"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-      </xsl:apply-templates>
-
-      <xsl:choose>
-        <xsl:when test="self::db:address or self::db:literallayout">
-          <xsl:sequence select="$body"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <code><xsl:sequence select="$body"/></code>
-        </xsl:otherwise>
-      </xsl:choose>
-    </pre>
-  </div>
-</xsl:template>
-
-<xsl:template name="tp:verbatim-table" as="element()">
-  <xsl:param name="highlight" as="xs:string*" required="yes"/>
-  <xsl:param name="numbered" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
-  <xsl:param name="inject" as="array(*)?" select="()"/>
-
-  <xsl:variable name="lines" as="array(*)">
-    <xsl:call-template name="tp:verbatim-array">
-      <xsl:with-param name="highlight" select="$highlight"/>
-      <xsl:with-param name="numbered" select="$numbered"/>
-      <xsl:with-param name="trim-leading" select="$trim-leading"/>
-      <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-      <xsl:with-param name="inject" select="$inject"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="no-code"
-                select="self::db:address or self::db:literallayout"/>
-
-  <xsl:variable name="starting-line-number" as="xs:integer">
-    <xsl:choose>
-      <xsl:when test="@startinglinenumber">
-        <xsl:sequence select="xs:integer(@startinglinenumber)"/>
-      </xsl:when>
-      <xsl:when test="@continuation = 'continues'">
-        <xsl:variable name="name" select="node-name(.)"/>
-        <xsl:variable name="prec" select="preceding::*[node-name(.) = $name][1]"/>
-        <xsl:choose>
-          <xsl:when test="empty($prec)">
-            <xsl:sequence select="1"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:variable name="formatted" as="element()">
-              <xsl:apply-templates select="$prec"/>
-            </xsl:variable>
-            <xsl:sequence select="if ($formatted/@db-startinglinenumber
-                                      and $formatted/@db-numberoflines)
-                                  then
-                                    xs:integer($formatted/@db-startinglinenumber)
-                                    + xs:integer($formatted/@db-numberoflines)
-                                  else
-                                    1"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="1"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:variable name="starting-line-number" select="$vconfig?starting-line-number"/>
 
   <xsl:variable name="every-nth" as="xs:integer">
     <xsl:choose>
-      <xsl:when test="f:pi(., 'linenumbering-everyNth',
-                           fp:verbatim-properties(.)?everyNth)">
+      <xsl:when test="fp:vpi(., 'linenumbering-everyNth',
+                            fp:verbatim-properties(.)?everyNth)">
         <xsl:sequence
-            select="xs:integer(f:pi(., 'linenumbering-everyNth',
-                               fp:verbatim-properties(.)?everyNth))"/>
+            select="xs:integer(fp:vpi(., 'linenumbering-everyNth',
+                                     fp:verbatim-properties(.)?everyNth))"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:sequence select="$v:verbatim-number-every-nth"/>
@@ -401,284 +471,89 @@
 
   <xsl:variable name="number-first" as="xs:boolean">
     <xsl:choose>
-      <xsl:when test="f:pi(., 'linenumbering-first',
-                           fp:verbatim-properties(.)?first)">
+      <xsl:when test="fp:vpi(., 'linenumbering-first',
+                            fp:verbatim-properties(.)?first)">
         <xsl:sequence
-            select="f:is-true(f:pi(., 'linenumbering-first',
-                                   fp:verbatim-properties(.)?first))"/>
+            select="f:is-true(fp:vpi(., 'linenumbering-first',
+                                    fp:verbatim-properties(.)?first))"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:sequence select="$v:verbatim-number-first-line"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-
-  <xsl:variable name="minlines" as="xs:integer">
-    <xsl:choose>
-      <xsl:when test="f:pi(., 'linenumbering-minlines',
-                           fp:verbatim-properties(.)?minlines)">
-        <xsl:sequence
-            select="xs:integer(f:pi(., 'linenumbering-minlines',
-                               fp:verbatim-properties(.)?minlines))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$v:verbatim-number-minlines"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="syntax-highlight"
-                select="f:highlight-verbatim(.)"/>
-
-  <div class="pre-wrap {local-name()}-wrap{if ($syntax-highlight) then ' highlight' else ''}">
-    <xsl:if test="$numbered">
-      <xsl:attribute name="db-startinglinenumber" select="$starting-line-number"/>
-      <xsl:attribute name="db-numberoflines" select="array:size($lines)"/>
-    </xsl:if>
-
-    <xsl:variable name="numwidth"
-                  select="string-length(string(array:size($lines) + $starting-line-number - 1))"/>
-
-    <table class="verbatim">
-      <tr>
-        <td>
-          <pre>
-            <xsl:apply-templates select="." mode="m:attributes">
-              <xsl:with-param name="style" select="'lines'"/>
-              <xsl:with-param name="numbered" select="$numbered"/>
-              <xsl:with-param name="long"
-                              select="array:size($lines) ge $minlines"/>
-            </xsl:apply-templates>
-
-            <xsl:for-each select="1 to array:size($lines)">
-              <xsl:variable name="index" select="."/>
-              <xsl:variable name="ln" select=". + $starting-line-number - 1"/>
-              <span class="line">
-                <span class="ln">
-                  <xsl:sequence 
-                      select="fp:line-number($ln, $numwidth,
-                                             ($numbered
-                                               and (array:size($lines) ge $minlines)
-                                                    and (($index = 1 and $number-first)
-                                                         or ($ln mod $every-nth = 0))))"/>
-                  <xsl:if test="$verbatim-number-separator != ''">
-                    <span class="nsep">
-                      <xsl:sequence select="$verbatim-number-separator"/>
-                    </span>
-                  </xsl:if>
-                </span>
-              </span>
-              <xsl:text>&#10;</xsl:text>
-            </xsl:for-each>
-          </pre>
-        </td>
-        <td>
-          <pre>
-            <xsl:apply-templates select="." mode="m:attributes">
-              <xsl:with-param name="style" select="'lines'"/>
-              <xsl:with-param name="numbered" select="$numbered"/>
-              <xsl:with-param name="long"
-                              select="array:size($lines) ge $minlines"/>
-            </xsl:apply-templates>
-
-            <xsl:for-each select="1 to array:size($lines)">
-              <!-- Make sure blank lines contain at least one space so that
-                   they don't get collapsed into oblivion by the renderer. -->
-              <xsl:variable name="line"
-                            select="if (count($lines(.)) = 1 and $lines(.) = '')
-                                    then ' '
-                                    else $lines(.)"/>
-              <span class="line">
-                <span class="ld"><xsl:sequence select="$line"/></span>
-              </span>
-              <xsl:text>&#10;</xsl:text>
-            </xsl:for-each>
-          </pre>
-        </td>
-      </tr>
-    </table>
-  </div>
-</xsl:template>
-
-<xsl:template name="tp:verbatim-lines" as="element()">
-  <xsl:param name="highlight" as="xs:string*" required="yes"/>
-  <xsl:param name="numbered" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
-  <xsl:param name="inject" as="array(*)?" select="()"/>
 
   <xsl:variable name="lines" as="array(*)">
     <xsl:call-template name="tp:verbatim-array">
-      <xsl:with-param name="highlight" select="$highlight"/>
-      <xsl:with-param name="numbered" select="$numbered"/>
-      <xsl:with-param name="trim-leading" select="$trim-leading"/>
-      <xsl:with-param name="trim-trailing" select="$trim-trailing"/>
-      <xsl:with-param name="inject" select="$inject"/>
+      <xsl:with-param name="vconfig" select="$vconfig"/>
+      <xsl:with-param name="formatted" select="$formatted"/>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="no-code"
-                select="self::db:address or self::db:literallayout"/>
+  <xsl:variable name="numwidth"
+                select="string-length(string(array:size($lines) + $starting-line-number - 1))"/>
 
-  <xsl:variable name="starting-line-number" as="xs:integer">
-    <xsl:choose>
-      <xsl:when test="@startinglinenumber">
-        <xsl:sequence select="xs:integer(@startinglinenumber)"/>
-      </xsl:when>
-      <xsl:when test="@continuation = 'continues'">
-        <xsl:variable name="name" select="node-name(.)"/>
-        <xsl:variable name="prec" select="preceding::*[node-name(.) = $name][1]"/>
-        <xsl:choose>
-          <xsl:when test="empty($prec)">
-            <xsl:sequence select="1"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:variable name="formatted" as="element()">
-              <xsl:apply-templates select="$prec"/>
-            </xsl:variable>
-            <xsl:sequence select="if ($formatted/@db-startinglinenumber
-                                      and $formatted/@db-numberoflines)
-                                  then
-                                    xs:integer($formatted/@db-startinglinenumber)
-                                    + xs:integer($formatted/@db-numberoflines)
-                                  else
-                                    1"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="1"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:for-each select="1 to array:size($lines)">
+    <xsl:variable name="index" select="."/>
+    <xsl:variable name="ln" select=". + $starting-line-number - 1"/>
 
-  <xsl:variable name="every-nth" as="xs:integer">
-    <xsl:choose>
-      <xsl:when test="f:pi(., 'linenumbering-everyNth',
-                           fp:verbatim-properties(.)?everyNth)">
-        <xsl:sequence
-            select="xs:integer(f:pi(., 'linenumbering-everyNth',
-                               fp:verbatim-properties(.)?everyNth))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$v:verbatim-number-every-nth"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+    <!-- Make sure blank lines contain at least one space so that
+         they don't get collapsed into oblivion by the renderer. -->
+    <xsl:variable name="line"
+                  select="if (count($lines(.)) = 1 and $lines(.) = '')
+                          then ' '
+                          else $lines(.)"/>
 
-  <xsl:variable name="number-first" as="xs:boolean">
-    <xsl:choose>
-      <xsl:when test="f:pi(., 'linenumbering-first',
-                           fp:verbatim-properties(.)?first)">
-        <xsl:sequence
-            select="f:is-true(f:pi(., 'linenumbering-first',
-                                   fp:verbatim-properties(.)?first))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$v:verbatim-number-first-line"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+     <xsl:variable name="callouts"
+                   select="$line[. instance of element()
+                                 and contains-token(@class, 'callout-bug')]"/>
 
-  <xsl:variable name="minlines" as="xs:integer">
-    <xsl:choose>
-      <xsl:when test="f:pi(., 'linenumbering-minlines',
-                           fp:verbatim-properties(.)?minlines)">
-        <xsl:sequence
-            select="xs:integer(f:pi(., 'linenumbering-minlines',
-                               fp:verbatim-properties(.)?minlines))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="$v:verbatim-number-minlines"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+     <xsl:variable name="highlight" select="$vconfig?callout"/>
 
-  <xsl:variable name="syntax-highlight"
-                select="f:highlight-verbatim(.)"/>
+     <xsl:variable name="line" as="item()*">
+       <xsl:for-each select="$line">
+         <xsl:call-template name="tp:filter-callouts">
+           <xsl:with-param name="highlight" select="$highlight"/>
+           <xsl:with-param name="line" select="."/>
+         </xsl:call-template>
+       </xsl:for-each>
+     </xsl:variable>
 
-  <div class="pre-wrap {local-name()}-wrap{if ($syntax-highlight) then ' highlight' else ''}">
-    <xsl:if test="$numbered">
-      <xsl:attribute name="db-startinglinenumber" select="$starting-line-number"/>
-      <xsl:attribute name="db-numberoflines" select="array:size($lines)"/>
-    </xsl:if>
-    <pre>
-      <xsl:apply-templates select="." mode="m:attributes">
-        <xsl:with-param name="style" select="'lines'"/>
-        <xsl:with-param name="numbered" select="$numbered"/>
-        <xsl:with-param name="long"
-                        select="array:size($lines) ge $minlines"/>
-      </xsl:apply-templates>
+     <xsl:variable name="classes" as="xs:string+">
+       <xsl:sequence select="'line'"/>
+       <xsl:if test="(('lines' = $highlight) and $callouts[.[contains-token(@class, 'defcol')]])
+                     or
+                     (('lineranges' = $highlight
+                       or 'lineranges-first' = $highlight
+                       or 'lineranges-all' = $highlight)
+                     and $callouts[.[contains-token(@class, 'linerange')]])">
+         <xsl:sequence select="'highlight'"/>
+         <xsl:sequence select="'line'||."/>
+       </xsl:if>
+     </xsl:variable>
 
-      <xsl:variable name="numwidth"
-                    select="string-length(string(array:size($lines) + $starting-line-number - 1))"/>
-
-      <xsl:for-each select="1 to array:size($lines)">
-        <!-- Make sure blank lines contain at least one space so that
-             they don't get collapsed into oblivion by the renderer. -->
-        <xsl:variable name="index" select="."/>
-        <xsl:variable name="ln" select=". + $starting-line-number - 1"/>
-        <xsl:variable name="line"
-                      select="if (count($lines(.)) = 1 and $lines(.) = '')
-                              then ' '
-                              else $lines(.)"/>
-
-        <xsl:variable name="callouts"
-                      select="$line[. instance of element()
-                                    and contains-token(@class, 'callout-bug')]"/>
-
-        <xsl:variable name="line" as="item()*">
-          <xsl:for-each select="$line">
-            <xsl:call-template name="tp:filter-callouts">
-              <xsl:with-param name="highlight" select="$highlight"/>
-              <xsl:with-param name="line" select="."/>
-            </xsl:call-template>
-          </xsl:for-each>
-        </xsl:variable>
-
-        <xsl:variable name="classes" as="xs:string+">
-          <xsl:sequence select="'line'"/>
-          <xsl:if test="(('lines' = $highlight)
-                         and $callouts[.[contains-token(@class, 'defcol')]])
-                        or
-                        (('lineranges' = $highlight
-                          or 'lineranges-first' = $highlight
-                          or 'lineranges-all' = $highlight)
-                        and $callouts[.[contains-token(@class, 'linerange')]])">
-            <xsl:sequence select="'highlight'"/>
-            <xsl:sequence select="'line'||."/>
+    <xsl:map>
+      <xsl:map-entry key="'line-number'" select="$ln"/>
+      <xsl:map-entry key="'formatted-number'">
+        <span class="ln">
+          <xsl:sequence select="fp:line-number($ln, $numwidth,
+                                 ($vconfig?numbered
+                                   and (array:size($lines) ge $vconfig?min-lines)
+                                        and (($index = 1 and $number-first)
+                                             or ($ln mod $every-nth = 0))))"/>
+          <xsl:if test="$verbatim-number-separator != ''">
+            <span class="nsep">
+              <xsl:sequence select="$verbatim-number-separator"/>
+            </span>
           </xsl:if>
-        </xsl:variable>
-
-        <span class="{string-join($classes,' ')}" db-line="{.}">
-          <span class="ln">
-            <xsl:sequence
-                select="fp:line-number($ln, $numwidth,
-                                       ($numbered
-                                         and (array:size($lines) ge $minlines)
-                                              and (($index = 1 and $number-first)
-                                                   or ($ln mod $every-nth = 0))))"/>
-            <xsl:if test="$verbatim-number-separator != ''">
-              <span class="nsep">
-                <xsl:sequence select="$verbatim-number-separator"/>
-              </span>
-            </xsl:if>
-          </span>
-          <span class="ld">
-            <xsl:choose>
-              <xsl:when test="$no-code">
-                <xsl:sequence select="$line"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <code><xsl:sequence select="$line"/></code>
-              </xsl:otherwise>
-            </xsl:choose>
-          </span>
         </span>
-        <xsl:text>&#10;</xsl:text>
-      </xsl:for-each>
-    </pre>
-  </div>
+      </xsl:map-entry>
+      <xsl:map-entry key="'classes'" select="$classes"/>
+      <xsl:map-entry key="'line'">
+        <xsl:sequence select="$line"/>
+      </xsl:map-entry>
+    </xsl:map>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template name="tp:filter-callouts">
@@ -725,93 +600,31 @@
   </xsl:for-each>
 </xsl:template>
 
+<!-- ============================================================ -->
+
 <xsl:template name="tp:verbatim-array" as="array(*)">
-  <xsl:param name="highlight" as="xs:string*" required="yes"/>
-  <xsl:param name="numbered" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-leading" as="xs:boolean" required="yes"/>
-  <xsl:param name="trim-trailing" as="xs:boolean" required="yes"/>
-  <xsl:param name="inject" as="array(*)?" select="()"/>
-
-  <xsl:variable name="syntax-highlight"
-                select="f:highlight-verbatim(.)"/>
-
-  <xsl:variable name="formatted" as="node()*">
-    <xsl:choose>
-      <xsl:when test="$syntax-highlight">
-        <xsl:variable name="options" as="map(xs:string,xs:string)">
-          <xsl:apply-templates select="." mode="m:highlight-options"/>
-        </xsl:variable>
-
-        <xsl:variable name="pyoptions" as="map(xs:string,xs:string)">
-          <xsl:apply-templates select="." mode="m:pygments-options"/>
-        </xsl:variable>
-
-        <xsl:sequence select="f:syntax-highlight(string(.),
-                              map:merge(($v:verbatim-syntax-highlight-options, $options)),
-                              map:merge(($v:verbatim-syntax-highlight-pygments-options, $pyoptions)))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:param name="vconfig" as="map(*)"/>
+  <xsl:param name="formatted" as="node()*" required="yes"/>
 
   <xsl:variable name="flattened">
     <xsl:apply-templates select="$formatted" mode="mp:flatten-markup"/>
   </xsl:variable>
 
-  <xsl:variable name="lines" select="fp:make-lines($flattened/node(), $trim-leading, $trim-trailing)"/>
-  <xsl:variable name="lines" select="fp:balance-markup($lines)"/>
+  <xsl:variable name="lines"
+                select="fp:make-lines($flattened/node(),
+                                      $vconfig?trim-leading, $vconfig?trim-trailing)"/>
+  <xsl:variable name="lines"
+                select="fp:balance-markup($lines)"/>
 
-  <xsl:variable name="lines" select="if (exists($inject))
-                                     then fp:inject-array($lines, $inject)
-                                     else $lines"/>
+  <xsl:variable name="lines"
+                select="if (exists($vconfig?inject))
+                        then fp:inject-array($lines, $vconfig?inject)
+                        else $lines"/>
 
   <xsl:variable name="lines" select="fp:unflatten($lines)"/>
 
   <xsl:sequence select="$lines"/>
 </xsl:template>
-
-<xsl:function name="f:highlight-verbatim" as="xs:boolean">
-  <xsl:param name="node" as="element()"/>
-  <xsl:sequence select="'*' = $v:verbatim-syntax-highlight-languages
-                        or string($node/@language)
-                           = $v:verbatim-syntax-highlight-languages"/>
-</xsl:function>
-
-<xsl:template match="*" as="map(xs:string, xs:string)" mode="m:highlight-options">
-  <xsl:map>
-    <xsl:if test="@language">
-      <xsl:map-entry key="'language'" select="string(@language)"/>
-    </xsl:if>
-  </xsl:map>
-</xsl:template>
-
-<xsl:template match="*" as="map(xs:string, xs:string)" mode="m:pygments-options">
-  <xsl:variable name="pyattr"
-                select="f:pi-attributes(processing-instruction('db-pygments'))"/>
-  <xsl:map>
-    <xsl:for-each select="$pyattr/@*">
-      <xsl:map-entry key="local-name(.)" select="string(.)"/>
-    </xsl:for-each>
-  </xsl:map>
-</xsl:template>
-
-<xsl:function name="fp:inject-array" as="array(*)">
-  <xsl:param name="lines" as="array(*)" required="yes"/>
-  <xsl:param name="inject" as="array(*)" required="yes"/>
-
-  <xsl:choose>
-    <xsl:when test="array:size($inject) = 0">
-      <xsl:sequence select="$lines"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="newlines" as="array(*)"
-           select="fp:inject($lines, $inject(1)?item, $inject(1)?line, $inject(1)?column)"/>
-      <xsl:sequence select="fp:inject-array($newlines, array:remove($inject, 1))"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
 
 <xsl:function name="fp:make-lines" as="array(*)">
   <xsl:param name="body" as="node()*"/>
@@ -822,7 +635,7 @@
 
   <xsl:choose>
     <xsl:when test="array:size($lines) = 0">
-      <xsl:sequence select="$lines"/>
+      <xsl:sequence select="array { '' }"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="range" as="xs:integer+">
@@ -859,6 +672,22 @@
           <xsl:sequence select="array:subarray($lines, $range[1], $range[2] - $range[1] + 1)"/>
         </xsl:otherwise>
       </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="fp:inject-array" as="array(*)">
+  <xsl:param name="lines" as="array(*)" required="yes"/>
+  <xsl:param name="inject" as="array(*)" required="yes"/>
+
+  <xsl:choose>
+    <xsl:when test="array:size($inject) = 0">
+      <xsl:sequence select="$lines"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="newlines" as="array(*)"
+           select="fp:inject($lines, $inject(1)?item, $inject(1)?line, $inject(1)?column)"/>
+      <xsl:sequence select="fp:inject-array($newlines, array:remove($inject, 1))"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
@@ -1254,6 +1083,7 @@
           <xsl:attribute name="g:virtual" select="'true'"/>
         </xsl:element>
       </xsl:for-each>
+
       <xsl:sequence select="$item"/>
 
       <xsl:for-each select="$open">
@@ -1319,6 +1149,51 @@
   </xsl:choose>
 </xsl:function>
 
+<!-- ============================================================ -->
+
+<xsl:mode name="mp:flatten-markup" on-no-match="shallow-copy"/>
+
+<xsl:template match="element()" mode="mp:flatten-markup">
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:attribute name="g:id" select="generate-id(.)"/>
+  </xsl:copy>
+  <xsl:apply-templates select="node()" mode="mp:flatten-markup"/>
+  <xsl:copy>
+    <xsl:attribute name="g:start" select="generate-id(.)"/>
+    <xsl:attribute name="g:virtual" select="'true'"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- Don't flatten footnotes, they get rendered out-of-line -->
+<xsl:template match="h:db-footnote" mode="mp:flatten-markup">
+  <xsl:copy>
+    <xsl:sequence select="@*,node()"/>
+  </xsl:copy>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:template match="*" as="map(xs:string, xs:string)" mode="m:highlight-options">
+  <xsl:map>
+    <xsl:if test="@language">
+      <xsl:map-entry key="'language'" select="string(@language)"/>
+    </xsl:if>
+  </xsl:map>
+</xsl:template>
+
+<xsl:template match="*" as="map(xs:string, xs:string)" mode="m:pygments-options">
+  <xsl:variable name="pyattr"
+                select="f:pi-attributes(processing-instruction('db-pygments'))"/>
+  <xsl:map>
+    <xsl:for-each select="$pyattr/@*">
+      <xsl:map-entry key="local-name(.)" select="string(.)"/>
+    </xsl:for-each>
+  </xsl:map>
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:function name="fp:injection-array" as="array(*)?">
   <xsl:param name="inject" as="item()?"/>
 
@@ -1340,6 +1215,37 @@
                                  'Invalid type for $inject', $inject)"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:function>
+
+<xsl:function name="fp:validate-injection-array" as="array(*)">
+  <xsl:param name="array" as="array(*)"/>
+
+  <xsl:variable name="valid-maps" as="map(*)*">
+    <xsl:for-each select="1 to array:size($array)">
+      <xsl:variable name="map" select="$array(.)"/>
+      <xsl:if test="empty($map?line)
+                    or empty($map?column)
+                    or empty($map?item)
+                    or not($map?line castable as xs:integer)
+                    or not($map?column castable as xs:integer)">
+        <xsl:sequence select="error($dbe:INVALID-INJECT, 
+                                    'Invalid map in $inject', $map)"/>
+      </xsl:if>
+      <xsl:sequence select="map { 'line': xs:integer($map?line),
+                                  'column': xs:integer($map?column),
+                                  'item': $map?item }"/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:variable name="sorted-maps" as="map(*)*">
+    <xsl:for-each select="$valid-maps">
+      <xsl:sort select=".?line" order="descending"/>
+      <xsl:sort select=".?column" order="descending"/>
+      <xsl:sequence select="."/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:sequence select="array { $sorted-maps }"/>
 </xsl:function>
 
 <!-- ============================================================ -->
@@ -1415,6 +1321,46 @@
 </xsl:template>
 
 <xsl:mode name="mp:inj-map" on-no-match="shallow-skip"/>
+
+<!-- ============================================================ -->
+
+<xsl:template match="db:area" mode="mp:callout-in-verbatim">
+  <xsl:param name="line" select="()"/>
+  <xsl:param name="column" select="()"/>
+
+  <xsl:variable name="class" as="xs:string+">
+    <xsl:sequence select="'callout-bug'"/>
+    <xsl:sequence select="if (@otherunits)
+                          then 'other ' || @otherunits
+                          else if (@units)
+                               then @units
+                               else 'linecolumn'"/>
+    <xsl:sequence select="if ((not(@units) or @units='linecolumn')
+                              and count(tokenize(@coords)) ne 2)
+                          then 'defcol'
+                          else ()"/>
+  </xsl:variable>
+
+  <a id="{ if (parent::db:areaset and empty(preceding-sibling::*))
+           then f:generate-id(parent::*)
+           else f:generate-id(.) }"
+     class="{ string-join($class, ' ') }">
+    <xsl:if test="@linkends">
+      <xsl:attribute name="href"
+                     select="'#' || tokenize(normalize-space(@linkends), '\s+')[1]"/>
+    </xsl:if>
+    <xsl:if test="exists($line)">
+      <xsl:attribute name="db-line" select="$line"/>
+    </xsl:if>
+    <xsl:if test="exists($column)">
+      <xsl:attribute name="db-column" select="$column"/>
+    </xsl:if>
+    <xsl:if test="db:alt">
+      <xsl:attribute name="title" select="string(db:alt)"/>
+    </xsl:if>
+    <xsl:apply-templates select="." mode="m:callout-bug"/>
+  </a>
+</xsl:template>
 
 <xsl:template match="db:co">
   <a>
@@ -1495,7 +1441,7 @@
   <xsl:param name="continues" as="xs:boolean" select="false()"/>
 
   <xsl:variable name="starting-pi"
-                select="f:pi(., 'starting-callout-number')"/>
+                select="fp:vpi(., 'starting-callout-number')"/>
 
   <xsl:variable name="start-at-start" as="xs:integer">
     <xsl:choose>
@@ -1539,190 +1485,7 @@
   <xsl:value-of select="codepoints-to-string(9311 + $num)"/>
 </xsl:template>
 
-<xsl:template match="db:area" mode="mp:callout-in-verbatim">
-  <xsl:param name="line" select="()"/>
-  <xsl:param name="column" select="()"/>
-
-  <xsl:variable name="class" as="xs:string+">
-    <xsl:sequence select="'callout-bug'"/>
-    <xsl:sequence select="if (@otherunits)
-                          then 'other ' || @otherunits
-                          else if (@units)
-                               then @units
-                               else 'linecolumn'"/>
-    <xsl:sequence select="if ((not(@units) or @units='linecolumn')
-                              and count(tokenize(@coords)) ne 2)
-                          then 'defcol'
-                          else ()"/>
-  </xsl:variable>
-
-  <a id="{ if (parent::db:areaset and empty(preceding-sibling::*))
-           then f:generate-id(parent::*)
-           else f:generate-id(.) }"
-     class="{ string-join($class, ' ') }">
-    <xsl:if test="@linkends">
-      <xsl:attribute name="href"
-                     select="'#' || tokenize(normalize-space(@linkends), '\s+')[1]"/>
-    </xsl:if>
-    <xsl:if test="exists($line)">
-      <xsl:attribute name="db-line" select="$line"/>
-    </xsl:if>
-    <xsl:if test="exists($column)">
-      <xsl:attribute name="db-column" select="$column"/>
-    </xsl:if>
-    <xsl:if test="db:alt">
-      <xsl:attribute name="title" select="string(db:alt)"/>
-    </xsl:if>
-    <xsl:apply-templates select="." mode="m:callout-bug"/>
-  </a>
-</xsl:template>
-
 <!-- ============================================================ -->
-
-<xsl:function name="fp:validate-injection-array" as="array(*)">
-  <xsl:param name="array" as="array(*)"/>
-
-  <xsl:variable name="valid-maps" as="map(*)*">
-    <xsl:for-each select="1 to array:size($array)">
-      <xsl:variable name="map" select="$array(.)"/>
-      <xsl:if test="empty($map?line)
-                    or empty($map?column)
-                    or empty($map?item)
-                    or not($map?line castable as xs:integer)
-                    or not($map?column castable as xs:integer)">
-        <xsl:sequence select="error($dbe:INVALID-INJECT, 
-                                    'Invalid map in $inject', $map)"/>
-      </xsl:if>
-      <xsl:sequence select="map { 'line': xs:integer($map?line),
-                                  'column': xs:integer($map?column),
-                                  'item': $map?item }"/>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <xsl:variable name="sorted-maps" as="map(*)*">
-    <xsl:for-each select="$valid-maps">
-      <xsl:sort select=".?line" order="descending"/>
-      <xsl:sort select=".?column" order="descending"/>
-      <xsl:sequence select="."/>
-    </xsl:for-each>
-  </xsl:variable>
-
-  <xsl:sequence select="array { $sorted-maps }"/>
-</xsl:function>
-
-<!-- ============================================================ -->
-
-<xsl:template match="element()" mode="mp:flatten-markup">
-  <xsl:copy>
-    <xsl:copy-of select="@*"/>
-    <xsl:attribute name="g:id" select="generate-id(.)"/>
-  </xsl:copy>
-  <xsl:apply-templates select="node()" mode="mp:flatten-markup"/>
-  <xsl:copy>
-    <xsl:attribute name="g:start" select="generate-id(.)"/>
-    <xsl:attribute name="g:virtual" select="'true'"/>
-  </xsl:copy>
-</xsl:template>
-
-<!-- Don't flatten footnotes, they get rendered out-of-line -->
-<xsl:template match="h:db-footnote" mode="mp:flatten-markup">
-  <xsl:copy>
-    <xsl:sequence select="@*,node()"/>
-  </xsl:copy>
-</xsl:template>
-
-<!-- ============================================================ -->
-
-<xsl:mode name="mp:flatten-markup" on-no-match="shallow-copy"/>
-
-<xsl:function name="fp:verbatim-properties" as="map(*)">
-  <xsl:param name="context" as="element()"/>
-
-  <xsl:variable name="style"
-                select="fp:properties($context, $v:verbatim-properties)"/>
-
-  <xsl:sequence
-      select="if (empty($style))
-              then map { 'style': $verbatim-style-default,
-                         'numbered': (local-name($context) = $v:verbatim-numbered-elements),
-                         'highlight': $v:verbatim-callouts }
-              else $style"/>
-</xsl:function>
-
-<xsl:function name="f:verbatim-style" as="xs:string">
-  <xsl:param name="context" as="element()"/>
-  <xsl:choose>
-    <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
-      <xsl:sequence select="'raw'"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence
-          select="f:pi($context, 'verbatim-style',
-                       fp:verbatim-properties($context)?style)"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="f:verbatim-highlight" as="xs:string*">
-  <xsl:param name="context" as="element()"/>
-
-  <!-- If we aren't using Pygments, or if there's a PI that explicitly
-       selects plain formatting, disable highlighting automatically.
-       This avoids a warning about highlighting not being supported.
-  -->
-  <xsl:variable name="value" as="xs:string*"
-      select="if ($verbatim-syntax-highlighter != 'pygments'
-                  or f:pi($context, 'verbatim-style') = 'plain')
-              then ()
-              else f:pi($context, 'verbatim-highlight',
-                        fp:verbatim-properties($context)?highlight)"/>
-
-  <xsl:for-each select="$value">
-    <xsl:sequence select="if (contains(., ','))
-                          then tokenize(., ',\s*') ! normalize-space(.)
-                          else ."/>
-  </xsl:for-each>
-</xsl:function>
-
-<xsl:function name="f:verbatim-numbered" as="xs:boolean">
-  <xsl:param name="context" as="element()"/>
-
-  <xsl:choose>
-    <xsl:when test="$verbatim-syntax-highlighter != 'pygments'">
-      <xsl:sequence select="false()"/>
-    </xsl:when>
-    <xsl:when test="$context/@linenumbering">
-      <xsl:sequence select="$context/@linenumbering = 'numbered'"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:variable name="pi" select="f:pi($context, 'verbatim-numbered')"/>
-      <!-- If there's a PI that explicitly selects plain formatting,
-           disable numbering automatically. This avoids a warning
-           about numbering not being supported. -->
-      <xsl:sequence select="if (f:pi($context, 'verbatim-style') = 'plain')
-                            then false()
-                            else if ($pi)
-                                 then f:is-true($pi)
-                                 else fp:verbatim-properties($context)?numbered = true()"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:function>
-
-<xsl:function name="f:verbatim-trim-trailing" as="xs:boolean">
-  <xsl:param name="context" as="element()"/>
-  <xsl:variable name="pi" select="f:pi($context, 'verbatim-trim-trailing')"/>
-  <xsl:sequence select="if ($pi)
-                        then f:is-true($pi)
-                        else f:is-true($verbatim-trim-trailing-blank-lines)"/>
-</xsl:function>
-
-<xsl:function name="f:verbatim-trim-leading" as="xs:boolean">
-  <xsl:param name="context" as="element()"/>
-  <xsl:variable name="pi" select="f:pi($context, 'verbatim-trim-leading')"/>
-  <xsl:sequence select="if ($pi)
-                        then f:is-true($pi)
-                        else f:is-true($verbatim-trim-leading-blank-lines)"/>
-</xsl:function>
 
 <xsl:function name="fp:line-number" as="xs:string">
   <xsl:param name="ln" as="xs:integer"/>
@@ -1740,6 +1503,141 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:sequence select="substring($vp:padding, 1, $width + 1)"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<!-- ============================================================ -->
+
+<xsl:function name="fp:verbatim-properties" as="map(*)">
+  <xsl:param name="context" as="element()"/>
+
+  <xsl:variable name="style"
+                select="fp:properties($context, $v:verbatim-properties)"/>
+
+  <xsl:sequence
+      select="if (empty($style))
+              then map { 'style': $verbatim-style-default,
+                         'numbered': (local-name($context) = $v:verbatim-numbered-elements),
+                         'callout': $v:verbatim-callouts }
+              else $style"/>
+</xsl:function>
+
+<!-- This special version of pi handles the case where a programlisting
+     in a programlistingco gets its ?db PIs from the parent programlistingco -->
+<xsl:function name="fp:vpi" as="item()*" cache="yes">
+  <xsl:param name="context" as="element()"/>
+  <xsl:param name="property" as="xs:string"/>
+  <xsl:sequence select="fp:vpi($context, $property, ())"/>
+</xsl:function>
+
+<xsl:function name="fp:vpi" as="item()*" cache="yes">
+  <xsl:param name="context" as="element()"/>
+  <xsl:param name="property" as="xs:string"/>
+  <xsl:param name="default" as="item()*"/>
+
+  <!-- Where are we going to look? -->
+  <xsl:choose>
+    <xsl:when test="f:pi($context, $property)">
+      <xsl:sequence select="f:pi($context, $property)"/>
+    </xsl:when>
+    <xsl:when test="f:pi(($context/parent::db:screenco|$context/parent::db:programlistingco), $property)">
+      <xsl:sequence select="f:pi(($context/parent::db:screenco|$context/parent::db:programlistingco), $property)"/>
+    </xsl:when>
+    <xsl:when test="f:pi($context/root()/*, $property)">
+      <xsl:sequence select="f:pi($context/root()/*, $property)"/>
+    </xsl:when>
+    <xsl:when test="f:pi($context/root()/*/db:info, $property)">
+      <xsl:sequence select="f:pi($context/root()/*/db:info, $property)"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$default"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="f:verbatim-style" as="xs:string">
+  <xsl:param name="context" as="element()"/>
+  <xsl:sequence
+      select="fp:vpi($context, 'verbatim-style', fp:verbatim-properties($context)?style)"/>
+</xsl:function>
+
+<xsl:function name="f:verbatim-callout" as="xs:string*">
+  <xsl:param name="context" as="element()"/>
+
+  <xsl:variable name="value" as="xs:string*"
+                select="fp:vpi($context, 'verbatim-highlight', fp:verbatim-properties($context)?callout)"/>
+
+  <xsl:for-each select="$value">
+    <xsl:sequence select="if (contains(., ','))
+                          then tokenize(., ',\s*') ! normalize-space(.)
+                          else ."/>
+  </xsl:for-each>
+</xsl:function>
+
+<xsl:function name="f:verbatim-numbered" as="xs:boolean">
+  <xsl:param name="context" as="element()"/>
+
+  <xsl:choose>
+    <xsl:when test="not(f:is-true($verbatim-embellish-linenumbers))">
+      <xsl:sequence select="false()"/>
+    </xsl:when>
+    <xsl:when test="$context/@linenumbering">
+      <xsl:sequence select="$context/@linenumbering = 'numbered'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence
+          select="f:is-true(fp:vpi($context, 'verbatim-numbered',
+                            fp:verbatim-properties($context)?numbered))"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="f:verbatim-trim-trailing" as="xs:boolean">
+  <xsl:param name="context" as="element()"/>
+  <xsl:sequence select="f:is-true(fp:vpi($context, 'verbatim-trim-trailing',
+                                        $verbatim-trim-trailing-blank-lines))"/>
+</xsl:function>
+
+<xsl:function name="f:verbatim-trim-leading" as="xs:boolean">
+  <xsl:param name="context" as="element()"/>
+  <xsl:sequence select="f:is-true(fp:vpi($context, 'verbatim-trim-leading',
+                                        $verbatim-trim-leading-blank-lines))"/>
+</xsl:function>
+
+<xsl:function name="fp:verbatim-syntax-highlight" as="xs:boolean">
+  <xsl:param name="context" as="element()"/>
+
+  <xsl:variable name="default"
+                select="('*', $context/@language) = $v:verbatim-syntax-highlight-languages"/>
+
+  <xsl:sequence
+      select="f:is-true(fp:vpi($context, 'syntax-highlight', string($default)))"/>
+</xsl:function>
+
+<xsl:function name="f:verbatim-syntax-highlighter" as="xs:string">
+  <xsl:param name="context" as="element()"/>
+
+  <xsl:variable name="global-highlighter" select="f:global-syntax-highlighter($context)"/>
+
+  <xsl:variable name="highlighter"
+                select="fp:vpi($context, 'syntax-highlighter',
+                              $global-highlighter)"/>
+
+  <xsl:choose>
+    <xsl:when test="not(fp:verbatim-syntax-highlight($context))">
+      <xsl:sequence select="'none'"/>
+    </xsl:when>
+    <xsl:when test="$highlighter = $global-highlighter
+                    or $highlighter = 'none'
+                    or $highlighter = 'pygments'">
+      <xsl:sequence select="$highlighter"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="$message-level gt 0 and f:is-true($verbatim-embellishments)">
+        <xsl:message select="'The', $highlighter, 'syntax highlighter cannot be used as an override'"/>
+      </xsl:if>
+      <xsl:sequence select="$global-highlighter"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>

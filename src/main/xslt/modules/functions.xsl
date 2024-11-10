@@ -827,5 +827,20 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+
+<xsl:function name="f:global-syntax-highlighter" as="xs:string" cache="yes">
+  <xsl:param name="context" as="node()"/>
+  <xsl:choose>
+    <xsl:when test="f:pi($context/root()/*, 'syntax-highlighter')">
+      <xsl:sequence select="f:pi($context/root()/*, 'syntax-highlighter')"/>
+    </xsl:when>
+    <xsl:when test="f:pi($context/root()/*/db:info, 'syntax-highlighter')">
+      <xsl:sequence select="f:pi($context/root()/*/db:info, 'syntax-highlighter')"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$verbatim-syntax-highlighter"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
   
 </xsl:stylesheet>

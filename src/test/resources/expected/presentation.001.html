@@ -7,8 +7,7 @@ document (part, chapter, article, section, etc.) becomes a page.</p></li><li><p>
 <code class="protocol systemitem">http</code>), presentation mode can use
 local storage to synchronize display in different browser windows.</p><ul class="itemizedlist"><li><p>Add
 <div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="2"><pre class="language-none numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;meta xmlns="http://www.w3.org/1999/xhtml"</code></span></span>
-<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>      name="localStorage.key" content="keyName"/&gt;</code></span></span>
-</pre></div>
+<span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>      name="localStorage.key" content="keyName"/&gt;</code></span></span></pre></div>
 to the <code class="tag tag-element">info</code> of your document.</p></li><li><p>The key name is irrelevant, but is used to coordinate between windows.
 All documents with the same key name will be synchronized together.
 <sup id="f1-fref" class="footnote-number"><a href="#f1-fnote">1</a></sup>
@@ -16,8 +15,7 @@ All documents with the same key name will be synchronized together.
 while presenting the “normal” view to your audience.</p></li></ul></section><section id="R_art3" class="article component"><header><h1>Speaker notes</h1></header><ul class="itemizedlist"><li><p>Speaker notes can be placed on any page.</p></li><li><p>They are not displayed as part of the normal presentation.</p></li><li><p>They can be revealed by selecting notes view.</p></li></ul><p>Use the <code class="literal">speaker-notes</code> role to add speaker notes:
 </p><div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="3"><pre class="language-none numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>&lt;para role="speaker-notes"&gt;When you present this page</code></span></span>
 <span class="line" db-line="2"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>observe that the speaker notes are normally hidden, but</code></span></span>
-<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>can be revealed by pressing &lt;keycap&gt;S&lt;/keycap&gt;.&lt;/para&gt;</code></span></span>
-</pre></div><p class="speaker-notes">When you present this page
+<span class="line" db-line="3"><span class="ln">  <span class="nsep">|</span></span><span class="ld"><code>can be revealed by pressing &lt;keycap&gt;S&lt;/keycap&gt;.&lt;/para&gt;</code></span></span></pre></div><p class="speaker-notes">When you present this page
 observe that the speaker notes are normally hidden, but
 can be revealed by pressing <span class="keycap">S</span>.</p><p>(If you’re reading this in presentation mode, press <span class="keycap">S</span> to select
 notes view.)</p><p class="speaker-notes">Press <span class="keycap">S</span> again to return to the

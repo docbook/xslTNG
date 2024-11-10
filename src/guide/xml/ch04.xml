@@ -65,59 +65,6 @@ SVG images is not available.</para>
 <varname>v:unit-scale</varname>.</para>
 </section>
 
-<section xml:id="verbstyle">
-<title>Verbatim styles</title>
-
-<para>There are four verbatim styles: <literal>lines</literal>, <literal>table</literal>,
-<literal>plain</literal>, and <literal>raw</literal>.</para>
-
-<variablelist>
-<varlistentry><term><literal>lines</literal></term>
-<listitem>
-<para>In the lines style, each line of the verbatim environment is
-marked up individually. In this style, lines can be numbered and
-callouts can be inserted.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><literal>table</literal></term>
-<listitem>
-<para>In the table style, each line of the verbatim environment is
-marked up individually, very much like the lines style. In this style,
-lines can be numbered and callouts can be inserted. It differs from
-the lines style in that the whole thing is wrapped in a table.</para>
-
-<para>The table has one row and two columns. The line numbers appear in the
-first column, the lines in the second. This format was added in order
-to improve the display in user agents that don’t support CSS.
-Ironically, in the course of adding this style, a number of changes
-were made to the way line numbers are formatted in the lines style
-making it largely, perhaps entirely, unnecessary.
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><literal>plain</literal></term>
-<listitem>
-<para>In the plain style, callouts can be inserted, but additional markup is not
-added (except for the callouts). Consequently, it isn’t possible to do line numbering
-or syntax highlighting. (It may be possible to provide these features with JavaScript
-libraries in the browser, however.)
-</para>
-</listitem>
-</varlistentry>
-<varlistentry><term><literal>raw</literal></term>
-<listitem>
-<para>In the raw style, no changes are made to the verbatim content. It’s output as
-it appears. Inline markup that it contains, <tag>emphasis</tag> or other elements, will
-be processed, but you cannot add line numbers, callouts, or syntax highlighting.
-</para>
-</listitem>
-</varlistentry>
-</variablelist>
-
-<para>Consult <xref linkend="params"/> for a variety of parameters that control
-aspects of verbatim processing.</para>
-
 <section xml:id="line-numbers">
 <title>Line numbers</title>
 
@@ -156,8 +103,6 @@ the verbatim environment. But without CSS, the numbers are aligned and
 separated from the text that follows. The
 <parameter>verbatim-number-separator</parameter> is generally
 suppressed by CSS, but is visible in text browsers.</para>
-
-</section>
 </section>
 
 <section xml:id="processing-mediaobjects">

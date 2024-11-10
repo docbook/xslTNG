@@ -1,0 +1,58 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Unit test: prism.001</title><link href="./css/prism.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><script src="./js/prism.js"></script><link href="./css/docbook.css" rel="stylesheet" media="screen"/></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Unit test: prism.001</h1></header><p>This is a test for syntax highlighting with
+<a href="https://prismjs.com/" class="link">prism</a>.</p><p>Program listings are highlighted and numbered by default:</p><div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-python line-numbers long programlisting verbatim"><code>#!/usr/bin/env python3
+ 
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+ 
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</code></pre></div><p>But numbering can be turned off:</p><div class="pre-wrap programlisting-wrap"><pre class="language-python programlisting verbatim"><code>#!/usr/bin/env python3
+ 
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+ 
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</code></pre></div><p>And so can highlighting. The most reliable way to disable highlighting
+is to remove the <code class="tag tag-attribute">language</code> attribute from the listing. 
+</p><div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-none long numbered programlisting verbatim"><code>#!/usr/bin/env python3
+ 
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+ 
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</code></pre></div></article></main><nav class="bottom"></nav></body></html>

@@ -164,7 +164,8 @@
 
 <xsl:template match="db:computeroutput">
   <xsl:call-template name="t:inline">
-    <xsl:with-param name="namemap" select="'code'"/>
+    <xsl:with-param name="namemap"
+                    select="if (fp:in-verbatim(.)) then 'span' else 'code'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -544,7 +545,8 @@
 
 <xsl:template match="db:prompt">
   <xsl:call-template name="t:inline">
-    <xsl:with-param name="namemap" select="'code'"/>
+    <xsl:with-param name="namemap"
+                    select="if (fp:in-verbatim(.)) then 'span' else 'code'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -743,7 +745,8 @@
 
 <xsl:template match="db:userinput">
   <xsl:call-template name="t:inline">
-    <xsl:with-param name="namemap" select="'code'"/>
+    <xsl:with-param name="namemap"
+                    select="if (fp:in-verbatim(.)) then 'span' else 'code'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -816,5 +819,12 @@
                   namespace-context="."/>
   </xsl:if>
 </xsl:template>
+
+<xsl:function name="fp:in-verbatim" as="xs:boolean">
+  <xsl:param name="node" as="element()"/>
+  <xsl:sequence select="$node/ancestor::db:programlisting
+                        or $node/ancestor::db:screen
+                        or $node/ancestor::db:synopsis"/>
+</xsl:function>
 
 </xsl:stylesheet>

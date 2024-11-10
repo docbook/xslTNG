@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: highlight.001</title>
+
+<para>This is a test for syntax highlighting.</para>
+
+<para>Program listings are highlighted and numbered by default:</para>
+
+<programlisting language="python">#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>But numbering can be turned off:</para>
+
+<programlisting language="python" linenumbering="unnumbered">#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>And so can highlighting. The most reliable way to disable highlighting
+is to remove the <tag class="attribute">language</tag> attribute from the listing. 
+</para>
+
+<programlisting>#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>Screens are not highlighted or numbered by default:</para>
+
+<screen><prompt>❯</prompt> <userinput>head -20 src/bin/linkcheck.py</userinput>
+<computeroutput>#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</computeroutput></screen>
+
+<para>But can be turned on:</para>
+
+<screen language="python" linenumbering="numbered"><prompt>❯</prompt> <userinput>head -20 src/bin/linkcheck.py</userinput>
+<computeroutput>#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</computeroutput></screen>
+
+<para>Line numbering can begin at an arbitrary number:</para>
+
+<programlisting language="python" startinglinenumber="601">if __name__ == "__main__":
+    # I'm perfectly happy with the name 'docbook'
+    # pylint: disable=C0103
+
+    try:
+        docbook = JavaClassRunner(sys.argv[1:])
+        docbook.compute_dependencies()
+        sys.exit(docbook.run())
+    except JavaClassRunnerException as err:
+        print(str(err))
+        sys.exit(1)</programlisting>
+
+</article>
