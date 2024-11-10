@@ -4548,6 +4548,17 @@ JavaScript is available.</para>
 syntax highlighting. The <varname>highlight-js-head-elements</varname> variable
 determines what CSS stylesheets and JavaScript libraries are loaded for this option.
 </para>
+<para>Version 11.10.0 of <emphasis xlink:href="https://highlightjs.org/">highlight.js</emphasis>
+is included, configured
+to highlight the following languages: abnf, apache, asciidoc,
+bash, c, cmake, coffeescript, cpp, csharp, css, diff, go, gradle, groovy, http,
+ini, java, javascript, json, kotlin, latex, less, lisp, lua, makefile, markdown,
+nginx, objectivec, perl, pgsql, php, php-template, plaintext, powershell,
+protobuf, python, python-repl, r, ruby, rust, scala, scheme, scss, shell, sql,
+swift, typescript, xml, yaml. Only the default CSS is included.</para>
+<para>Version 2.9.0 of
+<emphasis xlink:href="https://github.com/wcoder/highlightjs-line-numbers.js">highlightjs-line-numbers.js</emphasis>
+is also included.</para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -5827,6 +5838,80 @@ without rotating the page headers and footers.</para>
 </varlistentry>
 </variablelist>
 
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>verbatim-embellishments</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.5.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Attempt to embellish verbatim environments?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting verbatim environments, this flag controls whether
+or not any attempt will be done to number lines, add syntax highlighting, or
+identify callouts. Enabling this flag doesn’t
+necessarily mean that the embellishments will succeed (that depends on other
+settings; see <xref linkend="syntax-highlighting"/>).</para>
+<para>If this flag <glossterm>is true</glossterm>, embellishments may
+be attempted. If it is not, the listings will always be presented without
+embellishment.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>verbatim-embellish-linenumbers</varname>
+      <initializer>'true'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.5.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Attempt to add line numbers to verbatim environments?</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>When formatting verbatim environments, this flag controls whether
+or not any attempt will be done to number lines.
+Enabling this flag doesn’t
+necessarily mean that the embellishments will succeed (that depends on other
+settings; see <xref linkend="syntax-highlighting"/>).</para>
+<para>If this flag <glossterm>is true</glossterm>, line numbering may
+be attempted. If it is not, the listings will always be presented without
+line numbers. This parameter has no effect if <parameter>verbatim-embellishments</parameter> is
+“<literal>false</literal>”.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <varname>verbatim-default-language</varname>
+      <initializer>'none'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.5.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Default language for <tag>programlisting</tag> verbatim environments</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If the <tag class="attribute">language</tag> attribute is provided on
+a verbatim environment, that will be reflected in the output as a
+<literal>language-<replaceable>language</replaceable></literal> class value.
+This is used by some browser-based syntax highlighters for language identification
+and can be used for styling.</para>
+<para>When a <tag>programlisting</tag> doesn’t specify a <tag class="attribute">language</tag>,
+the value of <parameter>verbatim-default-language</parameter> will be used to construct
+one. No class will be output if the default language is the empty sequence.
+The default language only applies to <tag>programlisting</tag> elements.</para>
 </refsection>
 </refentry>
 

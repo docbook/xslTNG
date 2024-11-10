@@ -10,6 +10,31 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r250">
+<info>
+  <title>Changes in version 2.5.0</title>
+  <productnumber>2.5.0</productnumber>
+  <date>2024-11-09</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Fixed bug where @db-line didn’t take startinglinenumber into consideration.</para>
+</listitem>
+<listitem>
+<para>Verbatim environments that aren’t numbered no longer have “invisible” number markup.</para>
+</listitem>
+<listitem>
+<para>Trailing newline removed from verbatim environments.</para>
+</listitem>
+<listitem>
+<para>The <code>f:verbatim-highlight</code> and <code>f:highlight-verbatim</code>
+functions have been removed. The highlighter, and highligting, is determined by
+the <function>f:verbatim-syntax-highlighter</function> fucntion.
+</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r241">
 <info>
   <title>Changes in version 2.4.1</title>

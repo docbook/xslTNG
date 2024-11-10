@@ -31,11 +31,16 @@
     <xsl:apply-templates select="db:keywordset|db:subjectset|db:meta"
                          mode="m:html-head"/>
 
+  <xsl:variable name="global-highlighter" select="f:global-syntax-highlighter(.)"/>
+
     <xsl:choose>
-      <xsl:when test="$verbatim-syntax-highlighter = 'highlight.js'">
+      <xsl:when test="not(f:is-true($verbatim-embellishments))">
+        <!-- nop -->
+      </xsl:when>
+      <xsl:when test="$global-highlighter = 'highlight.js'">
         <xsl:sequence select="$v:highlight-js-head-elements/self::h:link"/>
       </xsl:when>
-      <xsl:when test="$verbatim-syntax-highlighter = ('prism', 'prism.js')">
+      <xsl:when test="$global-highlighter = ('prism', 'prism.js')">
         <xsl:sequence select="$v:prism-js-head-elements/self::h:link"/>
       </xsl:when>
       <xsl:otherwise>
@@ -154,19 +159,21 @@
           href="{$resource-base-uri}{fp:minified-css($persistent-toc-css)}"/>
   </xsl:if>
 
+  <xsl:variable name="global-highlighter" select="f:global-syntax-highlighter(.)"/>
+
   <xsl:choose>
-    <xsl:when test="$verbatim-syntax-highlighter = ('', 'none')"/>
-    <xsl:when test="$verbatim-syntax-highlighter = 'pygments'"/>
-    <xsl:when test="$verbatim-syntax-highlighter = 'highlight.js'">
+    <xsl:when test="$global-highlighter = ('', 'none')"/>
+    <xsl:when test="$global-highlighter = 'pygments'"/>
+    <xsl:when test="$global-highlighter = 'highlight.js'">
       <xsl:sequence select="$v:highlight-js-head-elements/self::*
                             except $v:highlight-js-head-elements/self::h:link"/>
     </xsl:when>
-    <xsl:when test="$verbatim-syntax-highlighter = ('prism', 'prism.js')">
+    <xsl:when test="$global-highlighter = ('prism', 'prism.js')">
       <xsl:sequence select="$v:prism-js-head-elements/self::*
                             except $v:prism-js-head-elements/self::h:link"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message select="'Unrecognized syntax highlighter:', $verbatim-syntax-highlighter"/>
+      <xsl:message select="'Unrecognized syntax highlighter:', $global-highlighter"/>
     </xsl:otherwise>
   </xsl:choose>
 

@@ -52,7 +52,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code>Line one
+     <div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code>Line one
 Line two
 Line three
 Line four
@@ -106,7 +106,7 @@ start of four</emphasis>
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the inline markup should be transformed.">
-     <div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code>Line one
+     <div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code>Line one
 Line <em>two</em>
 Line <em>end of three
 start of four</em>
@@ -161,7 +161,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="you should get all the lines">
-     <div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code>Line one
+     <div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code>Line one
 Line two
 Line three
 Line four
@@ -217,7 +217,7 @@ Line <emphasis>end of three
 start of four</emphasis>
 Line five</programlisting></div>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the inline markup should be transformed." xml:space="preserve"><div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code>Line one
+   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="the inline markup should be transformed." xml:space="preserve"><div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code>Line one
 Line <em>two</em>
 Line <em>end of three</em>
 <em>start of four</em>
@@ -382,7 +382,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="plain mode also works">
-     <div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one
+     <div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one
 Line<a id="R_area2" class="callout-bug linecolumn" db-line="2" db-column="5">②</a> two
 Line three         <a id="R_area3" class="callout-bug linecolumn" db-line="3" db-column="20">③</a>
 Line four
@@ -407,7 +407,7 @@ Line four
 Line five</programlisting>
    </x:context>
    <x:expect xmlns="http://www.w3.org/1999/xhtml" label="markup can also be inserted">
-     <div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one
+     <div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a>Line one
 Line<a id="R_area2" class="callout-bug linecolumn" db-line="2" db-column="5">②</a> two
 Line three         <a id="R_area3" class="callout-bug linecolumn" db-line="3" db-column="20">③</a>
 Line four
@@ -432,7 +432,7 @@ Line three
 Line four</emphasis>
 Line five</programlisting></div>
    </x:context>
-   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="they interrupt that markup" xml:space="preserve"><div class="pre-wrap programlisting-wrap"><pre class="language-none numbered programlisting verbatim"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a><em>Line one</em>
+   <x:expect xmlns="http://www.w3.org/1999/xhtml" label="they interrupt that markup" xml:space="preserve"><div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="5"><pre class="language-none long numbered programlisting verbatim"><code><a id="R_area1" class="callout-bug linecolumn" db-line="1" db-column="1">①</a><em>Line one</em>
 <em>Line</em><a id="R_area2" class="callout-bug linecolumn" db-line="2" db-column="5">②</a><em> two</em>
 <em>Line three</em>         <a id="R_area3" class="callout-bug linecolumn" db-line="3" db-column="20">③</a>
 <em>Line four</em>

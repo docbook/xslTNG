@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: highlight.002</title>
+
+<para>This is a test for embellishments to verbatim environments.</para>
+
+<para>A programlisting:</para>
+
+<programlisting language="python" linenumbering="numbered">import sys
+
+if len(sys.argv) == 1:
+    print("Hello, world.")
+else:
+    print(f"Hello, {sys.argv[1]}.")</programlisting>
+
+<para>Unnumbered:</para>
+
+<programlisting language="python" linenumbering="unnumbered">import sys
+
+if len(sys.argv) == 1:
+    print("Hello, world.")
+else:
+    print(f"Hello, {sys.argv[1]}.")</programlisting>
+
+<para>A programlistingco:</para>
+
+   <programlistingco>
+      <areaspec>
+         <area xml:id="first" coords="1">
+           <alt>The first line</alt>
+         </area>
+         <area linkends="link" xml:id="second" coords="2 30"/>
+         <areaset xml:id="three-and-four-together">
+            <area xml:id="required1" coords="3 30"/>
+            <area xml:id="required2" coords="4 30"/>
+         </areaset>
+         <area xml:id="five" coords="5"/>
+         <area xml:id="six" coords="6"/>
+         <area xml:id="eight-and-nine" coords="8 9" units="linerange"/>
+         <area xml:id="twelve" coords="12 1"/>
+      </areaspec>
+      <programlisting><?db syntax-highlighter="none"?>The first line
+The second line
+The third line
+The fourth line
+The fifth line
+The sixth line
+The seventh line
+The eighth line
+The ninth line
+The tenth line</programlisting>
+
+<calloutlist>
+  <callout arearefs="first">
+    <para>The first line.</para>
+  </callout>
+  <callout xml:id="link" arearefs="second">
+    <para>The second line.</para>
+  </callout>
+  <callout arearefs="three-and-four-together">
+    <para>The third and fourth lines, together.</para>
+  </callout>
+  <callout arearefs="five six">
+    <para>The fifth and sixth lines, separately.</para>
+  </callout>
+  <callout arearefs="eight-and-nine">
+    <para>The eight and ninth lines as a range.</para>
+  </callout>
+  <callout arearefs="twelve">
+    <para>The twelfth line.</para>
+  </callout>
+</calloutlist>
+   </programlistingco>
+
+<para>A programlistingco with syntax highlighting:</para>
+
+   <programlistingco>
+      <areaspec>
+         <area xml:id="pfirst" coords="1">
+           <alt>An import statment</alt>
+         </area>
+         <areaset xml:id="pprint">
+            <area xml:id="print1" coords="4 40"/>
+            <area xml:id="print2" coords="6 40"/>
+         </areaset>
+      </areaspec>
+<programlisting language="python"><?db syntax-highlighter="pygments"?>import sys
+
+if len(sys.argv) == 1:
+    print("Hello, world.")
+else:
+    print(f"Hello, {sys.argv[1]}.")</programlisting>
+   </programlistingco>
+
+<calloutlist>
+  <callout arearefs="pfirst">
+    <para>An import statment.</para>
+  </callout>
+  <callout arearefs="pprint">
+    <para>Print statements.</para>
+  </callout>
+</calloutlist>
+
+<para>A screen:</para>
+
+<screen><prompt>❯ </prompt><userinput>ls -l src/test/resources/xml/l*.xml</userinput>
+<computeroutput>-rw-r--r--@ 1 ndw  staff   1.5K Oct 21 09:53 src/test/resources/xml/l10n.001.xml
+-rw-r--r--@ 1 ndw  staff   1.5K Oct 21 09:53 src/test/resources/xml/l10n.002.xml
+-rw-r--r--@ 1 ndw  staff   1.5K Oct 21 09:53 src/test/resources/xml/l10n.003.xml
+-rw-r--r--@ 1 ndw  staff   1.3K Oct 21 09:53 src/test/resources/xml/legalnotice.001.xml
+-rw-r--r--@ 1 ndw  staff   410B Oct 21 09:53 <emphasis>src/test/resources/xml/lineannotation.001.xml
+-rw-r--r--@ 1 ndw  staff   1.1K Oct 21 09:53 src/test/resources/xml/link.001.xml</emphasis>
+-rw-r--r--@ 1 ndw  staff   400B Oct 21 09:53 src/test/resources/xml/link.002.xml
+-rw-r--r--@ 1 ndw  staff   885B Oct 21 09:53 src/test/resources/xml/link.003.xml
+-rw-r--r--@ 1 ndw  staff   369B Oct 21 09:53 src/test/resources/xml/link.004.xml
+-rw-r--r--@ 1 ndw  staff   334B Oct 21 09:53 src/test/resources/xml/literallayout.001.xml
+-rw-r--r--@ 1 ndw  staff   545B Oct 21 09:53 src/test/resources/xml/literallayout.002.xml
+-rw-r--r--@ 1 ndw  staff   542B Oct 21 09:53 src/test/resources/xml/literallayout.003.xml
+-rw-r--r--@ 1 ndw  staff   767B Oct 21 09:53 src/test/resources/xml/literallayout.004.xml
+-rw-r--r--@ 1 ndw  staff   928B Oct 21 09:53 src/test/resources/xml/literallayout.005.xml
+-rw-r--r--@ 1 ndw  staff   514B Oct 21 09:53 src/test/resources/xml/local.001.xml</computeroutput></screen>
+
+<para>A literallayout:</para>
+
+<literallayout>This is a test.
+This is only a test.
+Had this been a <emphasis>real emergency,
+we would have fled in terror</emphasis> and
+you would not have been informed.</literallayout>
+
+<para>An address:</para>
+
+<address xml:id="addr">Apt 56B
+Whitehaven Mansions
+Sandhurst Square
+London</address>
+
+</article>

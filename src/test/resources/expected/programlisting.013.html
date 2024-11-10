@@ -2,13 +2,11 @@
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
-<span class="line"><span class="ln">5 <span class="nsep">|</span></span></span>
-</pre></td><td><pre class="language-none long numbered programlisting verbatim verblines"><span class="line"><span class="ld">ProgramListing: This is a test</span></span>
-<span class="line"><span class="ld">  Only a test.</span></span>
-<span class="line"><span class="ld">Had this been a real emegency,</span></span>
-<span class="line"><span class="ld">  We would have fled in terror</span></span>
-<span class="line"><span class="ld">And you would not have been informed.</span></span>
-</pre></td></tr></table></div><p>A program listing for the language “python” (explicitly).</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="1" db-numberoflines="14"><table class="verbatim"><tr><td><pre class="language-python long numbered programlisting verbatim verblines"><span class="line"><span class="ln"> 1 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">5 <span class="nsep">|</span></span></span></pre></td><td><pre class="language-none long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><code>ProgramListing: This is a test</code></span></span>
+<span class="line"><span class="ld"><code>  Only a test.</code></span></span>
+<span class="line"><span class="ld"><code>Had this been a real emegency,</code></span></span>
+<span class="line"><span class="ld"><code>  We would have fled in terror</code></span></span>
+<span class="line"><span class="ld"><code>And you would not have been informed.</code></span></span></pre></td></tr></table></div><p>A program listing for the language “python” (explicitly).</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="1" db-numberoflines="14"><table class="verbatim"><tr><td><pre class="language-python long numbered programlisting verbatim verblines"><span class="line"><span class="ln"> 1 <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
@@ -21,33 +19,29 @@
 <span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
-<span class="line"><span class="ln">   <span class="nsep">|</span></span></span>
-</pre></td><td><pre class="language-python long numbered programlisting verbatim verblines"><span class="line"><span class="ld">    <span class="k">def</span> <span class="nf">_check_arg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span></span></span>
-<span class="line"><span class="ld">        <span class="k">if</span> <span class="s2">":"</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span></span></span>
-<span class="line"><span class="ld">            <span class="n">pos</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span></span></span>
-<span class="line"><span class="ld">            <span class="n">name</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">pos</span><span class="p">]</span></span></span>
-<span class="line"><span class="ld">            <span class="n">value</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[(</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):]</span></span></span>
-<span class="line"><span class="ld">            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"-x"</span><span class="p">,</span> <span class="s2">"-y"</span><span class="p">,</span> <span class="s2">"-r"</span><span class="p">,</span> <span class="s2">"-init"</span><span class="p">):</span></span></span>
-<span class="line"><span class="ld">                <span class="k">raise</span> <span class="n">JavaClassRunnerException</span><span class="p">(</span></span></span>
-<span class="line"><span class="ld">                    <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2"> option cannot be specified"</span><span class="p">)</span></span></span>
-<span class="line"><span class="ld">            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"-catalog"</span><span class="p">:</span></span></span>
-<span class="line"><span class="ld">                <span class="bp">self</span><span class="o">.</span><span class="n">catalogs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></span></span>
-<span class="line"><span class="ld">                <span class="k">return</span></span></span>
-<span class="line"><span class="ld">            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"-xsl"</span><span class="p">:</span></span></span>
-<span class="line"><span class="ld">                <span class="bp">self</span><span class="o">.</span><span class="n">stylesheet</span> <span class="o">=</span> <span class="n">arg</span></span></span>
-<span class="line"><span class="ld">        <span class="bp">self</span><span class="o">.</span><span class="n">_app_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span></span></span>
-</pre></td></tr></table></div><p>A program listing for the language “xml”</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="1" db-numberoflines="7"><table class="verbatim"><tr><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ln">1 <span class="nsep">|</span></span></span>
+<span class="line"><span class="ln">   <span class="nsep">|</span></span></span></pre></td><td><pre class="language-python long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><code>    <span class="k">def</span> <span class="nf">_check_arg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span></code></span></span>
+<span class="line"><span class="ld"><code>        <span class="k">if</span> <span class="s2">":"</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span></code></span></span>
+<span class="line"><span class="ld"><code>            <span class="n">pos</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span></code></span></span>
+<span class="line"><span class="ld"><code>            <span class="n">name</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">pos</span><span class="p">]</span></code></span></span>
+<span class="line"><span class="ld"><code>            <span class="n">value</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[(</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):]</span></code></span></span>
+<span class="line"><span class="ld"><code>            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"-x"</span><span class="p">,</span> <span class="s2">"-y"</span><span class="p">,</span> <span class="s2">"-r"</span><span class="p">,</span> <span class="s2">"-init"</span><span class="p">):</span></code></span></span>
+<span class="line"><span class="ld"><code>                <span class="k">raise</span> <span class="n">JavaClassRunnerException</span><span class="p">(</span></code></span></span>
+<span class="line"><span class="ld"><code>                    <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2"> option cannot be specified"</span><span class="p">)</span></code></span></span>
+<span class="line"><span class="ld"><code>            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"-catalog"</span><span class="p">:</span></code></span></span>
+<span class="line"><span class="ld"><code>                <span class="bp">self</span><span class="o">.</span><span class="n">catalogs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code></span></span>
+<span class="line"><span class="ld"><code>                <span class="k">return</span></code></span></span>
+<span class="line"><span class="ld"><code>            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"-xsl"</span><span class="p">:</span></code></span></span>
+<span class="line"><span class="ld"><code>                <span class="bp">self</span><span class="o">.</span><span class="n">stylesheet</span> <span class="o">=</span> <span class="n">arg</span></code></span></span>
+<span class="line"><span class="ld"><code>        <span class="bp">self</span><span class="o">.</span><span class="n">_app_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span></code></span></span></pre></td></tr></table></div><p>A program listing for the language “xml”</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="1" db-numberoflines="7"><table class="verbatim"><tr><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ln">1 <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">5 <span class="nsep">|</span></span></span>
 <span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
-<span class="line"><span class="ln">  <span class="nsep">|</span></span></span>
-</pre></td><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><span class="nt">&lt;xsl:function</span><span class="w"> </span><span class="na">name=</span><span class="s">"f:verbatim-trim-trailing"</span><span class="w"> </span><span class="na">as=</span><span class="s">"xs:boolean"</span><span class="nt">&gt;</span></span></span>
-<span class="line"><span class="ld"><span class="w">  </span><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"context"</span><span class="w"> </span><span class="na">as=</span><span class="s">"element()"</span><span class="nt">/&gt;</span></span></span>
-<span class="line"><span class="ld"><span class="w">  </span><span class="nt">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"pi"</span><span class="w"> </span><span class="na">select=</span><span class="s">"f:pi($context, 'verbatim-trim-trailing')"</span><span class="nt">/&gt;</span></span></span>
-<span class="line"><span class="ld"><span class="w">  </span><span class="nt">&lt;xsl:sequence</span><span class="w"> </span><span class="na">select=</span><span class="s">"if ($pi)</span></span></span>
-<span class="line"><span class="ld"><span class="s">                        then f:is-true($pi)</span></span></span>
-<span class="line"><span class="ld"><span class="s">                        else f:is-true($verbatim-trim-trailing-blank-lines)"</span><span class="nt">/&gt;</span></span></span>
-<span class="line"><span class="ld"><span class="nt">&lt;/xsl:function&gt;</span></span></span>
-</pre></td></tr></table></div></article></main><nav class="bottom"></nav></body></html>
+<span class="line"><span class="ln">  <span class="nsep">|</span></span></span></pre></td><td><pre class="language-xml long numbered programlisting verbatim verblines"><span class="line"><span class="ld"><code><span class="nt">&lt;xsl:function</span><span class="w"> </span><span class="na">name=</span><span class="s">"f:verbatim-trim-trailing"</span><span class="w"> </span><span class="na">as=</span><span class="s">"xs:boolean"</span><span class="nt">&gt;</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:param</span><span class="w"> </span><span class="na">name=</span><span class="s">"context"</span><span class="w"> </span><span class="na">as=</span><span class="s">"element()"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:variable</span><span class="w"> </span><span class="na">name=</span><span class="s">"pi"</span><span class="w"> </span><span class="na">select=</span><span class="s">"f:pi($context, 'verbatim-trim-trailing')"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="w">  </span><span class="nt">&lt;xsl:sequence</span><span class="w"> </span><span class="na">select=</span><span class="s">"if ($pi)</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="s">                        then f:is-true($pi)</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="s">                        else f:is-true($verbatim-trim-trailing-blank-lines)"</span><span class="nt">/&gt;</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="nt">&lt;/xsl:function&gt;</span></code></span></span></pre></td></tr></table></div></article></main><nav class="bottom"></nav></body></html>
