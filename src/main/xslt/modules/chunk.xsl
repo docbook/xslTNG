@@ -140,6 +140,9 @@
     <xsl:when test="f:pi($node/db:info, 'basename')">
       <xsl:sequence select="f:pi($node/db:info, 'basename') || $html-extension"/>
     </xsl:when>
+    <xsl:when test="$node/@xml:id and f:is-true($use-id-as-filename)">
+      <xsl:sequence select="$node/@xml:id || $html-extension"/>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="name" as="xs:string?">
         <xsl:apply-templates select="$node" mode="m:chunk-filename"/>
