@@ -54,6 +54,11 @@ the combination of options. See <xref linkend="verbatim-environments"/>.</para>
 </listitem>
 </orderedlist>
 </listitem>
+<listitem>
+<para>Added <parameter>use-id-as-filename</parameter> parameter. If true,
+the <tag class="attribute">xml:id</tag> value of a chunk will be used as the
+chunk filename.</para>
+</listitem>
 </itemizedlist>
 </section>
 
