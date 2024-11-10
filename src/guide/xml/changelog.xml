@@ -10,6 +10,53 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r250">
+<info>
+  <title>Changes in version 2.5.0</title>
+  <productnumber>2.5.0</productnumber>
+  <date>2024-11-10</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Rewrote verbatim handling; 
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/556">#556</link>.</para>
+<para>There are a lot of changes to verbatim handling. The code has been refactored
+and cleaned up significantly. There are a number of backwards-incompatible changes as
+a result. (Though the goal is that most documents should look substantially the same.)</para>
+<orderedlist>
+<listitem>
+<para>A bug where <tag class="attribute">db-line</tag> in the output didn’t take
+the starting line number into consideration has been fixed.</para>
+</listitem>
+<listitem>
+<para>Verbatim environments that aren’t numbered no longer have “invisible” line number markup.</para>
+</listitem>
+<listitem>
+<para>The verbatim features are provided using <code>highlight.js</code> and <code>prism</code>
+as much as is practical.</para>
+</listitem>
+<listitem>
+<para>There are new top-level parameters, <parameter>verbatim-embellishments</parameter> and
+<parameter>verbatim-embellish-linenumbers</parameter>. These can control embellishments overall
+and line numbering specifically at a global level. (Apparently, the XSLT 1.0 stylesheets didn’t
+number verbatim environments by default but when I wrote the xslTNG stylesheets, I did. I’m
+reluctant to make that backwards-incompatible change, so I’ve added a parameter to get that
+effect easily.)</para>
+</listitem>
+<listitem>
+<para>The verbatim style and syntax highlighter can be set on per-document basis with
+a processing instruction.</para>
+</listitem>
+<listitem>
+<para>The <code>f:verbatim-highlight</code> and <code>f:highlight-verbatim</code>
+functions have been removed. The highlighter, and highligting, are determined by
+the combination of options. See <xref linkend="verbatim-environments"/>.</para>
+</listitem>
+</orderedlist>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r241">
 <info>
   <title>Changes in version 2.4.1</title>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<?db syntax-highlighter="highlight.js" verbatim-style="plain"?>
+<title>Unit test: highlightjs.001</title>
+
+<para>This is a test for syntax highlighting with
+<link xlink:href="https://highlightjs.org/">highlight.js</link>.</para>
+
+<para>Program listings are highlighted and numbered by default:</para>
+
+<programlisting language="python">#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>But numbering can be turned off:</para>
+
+<programlisting language="python" linenumbering="unnumbered">#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>And so can highlighting. The most reliable way to disable highlighting
+is to remove the <tag class="attribute">language</tag> attribute from the listing. 
+</para>
+
+<programlisting>#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>It doesn’t appear that <literal>highlightjs-line-numbers</literal> adds
+line numbers to listings that aren’t highlighted. I guess that makes sense.
+Using the value <literal>text</literal> seems to work and might be a good
+<parameter>$verbatim-default-language</parameter> if you’re using
+<literal>highlight.js</literal>.</para>
+
+<programlisting language='text'>#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+</article>

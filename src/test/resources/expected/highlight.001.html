@@ -1,0 +1,105 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Unit test: highlight.001</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><script src="./js/copy-verbatim.js" defer="defer"></script></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Unit test: highlight.001</h1></header><p>This is a test for syntax highlighting.</p><p>Program listings are highlighted and numbered by default:</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-python long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="ch">#!/usr/bin/env python3</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="sd">"""This is yet another link checker. Was it better to write my own</span></code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="sd">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="sd">appeared to be easier."""</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">re</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">os</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">sys</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">json</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">glob</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">click</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">try</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">html5_parser</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">lxml.etree</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">from</span> <span class="nn">saxonche</span> <span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">True</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">False</span></code></span></span></pre></div><p>But numbering can be turned off:</p><div class="pre-wrap programlisting-wrap highlight"><pre class="language-python programlisting verbatim verblines"><span class="line"><span class="ld"><code><span class="ch">#!/usr/bin/env python3</span></code></span></span>
+<span class="line"><span class="ld"><code> </code></span></span>
+<span class="line"><span class="ld"><code><span class="sd">"""This is yet another link checker. Was it better to write my own</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="sd">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="sd">appeared to be easier."""</span></code></span></span>
+<span class="line"><span class="ld"><code> </code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">re</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">os</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">sys</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">json</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">glob</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">click</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="k">try</span><span class="p">:</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="kn">import</span> <span class="nn">html5_parser</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="kn">import</span> <span class="nn">lxml.etree</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="kn">from</span> <span class="nn">saxonche</span> <span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">True</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">False</span></code></span></span></pre></div><p>And so can highlighting. The most reliable way to disable highlighting
+is to remove the <code class="tag tag-attribute">language</code> attribute from the listing. 
+</p><div class="pre-wrap programlisting-wrap" db-startinglinenumber="1" db-numberoflines="19"><pre class="language-none long numbered programlisting verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code>#!/usr/bin/env python3</code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>"""This is yet another link checker. Was it better to write my own</code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>than find an existing cross-platform version? Maybe not, but it</code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code>appeared to be easier."""</code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>import re</code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>import os</code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>import sys</code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code>import json</code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>import glob</code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>import click</code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>try:</code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    import html5_parser</code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    import lxml.etree</code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    from saxonche import PySaxonProcessor</code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    importOk = True</code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>except ImportError:</code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    importOk = False</code></span></span></pre></div><p>Screens are not highlighted or numbered by default:</p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code><span class="prompt">❯</span> <span class="userinput">head -20 src/bin/linkcheck.py</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">#!/usr/bin/env python3</span></code></span></span>
+<span class="line"><span class="ld"><code> </code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">"""This is yet another link checker. Was it better to write my own</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">appeared to be easier."""</span></code></span></span>
+<span class="line"><span class="ld"><code> </code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">import re</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">import os</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">import sys</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">import json</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">import glob</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">import click</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">try:</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">    import html5_parser</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">    import lxml.etree</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">    from saxonche import PySaxonProcessor</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">    importOk = True</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">except ImportError:</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="computeroutput">    importOk = False</span></code></span></span></pre></div><p>But can be turned on:</p><div class="pre-wrap screen-wrap highlight" db-startinglinenumber="1" db-numberoflines="20"><pre class="language-python long numbered screen verbatim verblines"><span class="line" db-line="1"><span class="ln"> 1 <span class="nsep">|</span></span><span class="ld"><code><span class="err">❯</span> <span class="n">head</span> <span class="o">-</span><span class="mi">20</span> <span class="n">src</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">linkcheck</span><span class="o">.</span><span class="n">py</span></code></span></span>
+<span class="line" db-line="2"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="c1">#!/usr/bin/env python3</span></code></span></span>
+<span class="line" db-line="3"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="sd">"""This is yet another link checker. Was it better to write my own</span></code></span></span>
+<span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="sd">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
+<span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="sd">appeared to be easier."""</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">re</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">os</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">sys</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">json</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">glob</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">click</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">try</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">html5_parser</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">lxml.etree</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">from</span> <span class="nn">saxonche</span> <span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
+<span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">True</span></code></span></span>
+<span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">False</span></code></span></span></pre></div><p>Line numbering can begin at an arbitrary number:</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="601" db-numberoflines="11"><pre class="language-python long numbered programlisting verbatim verblines"><span class="line" db-line="601"><span class="ln">601 <span class="nsep">|</span></span><span class="ld"><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="602"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>    <span class="c1"># I'm perfectly happy with the name 'docbook'</span></code></span></span>
+<span class="line" db-line="603"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>    <span class="c1"># pylint: disable=C0103</span></code></span></span>
+<span class="line" db-line="604"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
+<span class="line" db-line="605"><span class="ln">605 <span class="nsep">|</span></span><span class="ld"><code>    <span class="k">try</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="606"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>        <span class="n">docbook</span> <span class="o">=</span> <span class="n">JavaClassRunner</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span></code></span></span>
+<span class="line" db-line="607"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>        <span class="n">docbook</span><span class="o">.</span><span class="n">compute_dependencies</span><span class="p">()</span></code></span></span>
+<span class="line" db-line="608"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">docbook</span><span class="o">.</span><span class="n">run</span><span class="p">())</span></code></span></span>
+<span class="line" db-line="609"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>    <span class="k">except</span> <span class="n">JavaClassRunnerException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span></code></span></span>
+<span class="line" db-line="610"><span class="ln">610 <span class="nsep">|</span></span><span class="ld"><code>        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">))</span></code></span></span>
+<span class="line" db-line="611"><span class="ln">    <span class="nsep">|</span></span><span class="ld"><code>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></code></span></span></pre></div></article></main><nav class="bottom"></nav></body></html>

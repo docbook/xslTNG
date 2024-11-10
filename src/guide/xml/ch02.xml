@@ -1223,8 +1223,187 @@ to avoid extraneous whitespace in either version.
   </simplesect>
 </section>
 
+<section xml:id="verbatim-environments">
+<title>Verbatim environments</title>
+
+<para>Verbatim environments are ones in which spaces and line-breaks are
+preserved. There are several flavors of verbatim environment in DocBook:
+<tag>programlisting</tag>, <tag>screen</tag>, <tag>literallayout</tag>,
+<tag>address</tag>, and several flavors of <tag>synopsis</tag>. Most verbatim
+environments are presented in a monospace font, but <tag>literallayout</tag> and
+<tag>address</tag> usually are not. In addition, <tag>programlistingco</tag>
+and <tag>screenco</tag> provide mechanisms for out-of-band annotations (“callouts”)
+in the environments the contain.</para>
+
+<para>To further complicate matters, line numbering may be added to verbatim
+environments, they may be syntax highlighted, and these embellishments can be
+performed by the stylesheets or with JavaScript in the browser (or more
+generally, "the rending engine"; it’s not impossible to imagine a paged
+media formatter that renders JavaScript, I just don’t know of any).</para>
+
+<para>Handling of verbatim environments was largely rewritten in version 2.5.0
+of the stylesheets to clarify what can be controlled and how. There are still
+a collection of not-quite-orthogonal issues at play.</para>
+
+<para>Broadly, there are four possible presentation styles for verbatim
+environments and three sets of features: syntax highlighting, line numbering,
+and support for out-of-band callouts. Syntax highlighting can be performed
+by the stylesheets using Pygments or by the browser using JavaScript.</para>
+
+<table xml:id="verbatim-matrix" frame="all">
+<title>Verbatim processing matrix</title>
+<tgroup cols="5" align="center">
+  <colspec colname="c1" colsep="1"/>
+  <colspec colname="c2" colsep="1"/>
+  <colspec colname="c3" colsep="1"/>
+  <colspec colname="c4" colsep="1"/>
+  <colspec colname="c5" colsep="1"/>
+<thead>
+<row>
+  <entry/>
+  <entry namest="c2" nameend="c5">Verbatim presentation style</entry>
+</row>
+<row>
+  <entry/>
+  <entry>lines</entry>
+  <entry>table</entry>
+  <entry>plain</entry>
+  <entry>raw</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+  <entry>Pygments highlighting</entry>
+  <entry>✔</entry>
+  <entry>✔</entry>
+  <entry>✔</entry>
+  <entry/>
+</row>
+<row rowsep="1">
+  <entry>JavaScript highlighting</entry>
+  <entry></entry>
+  <entry></entry>
+  <entry>✔</entry>
+  <entry>✔</entry>
+</row>
+<row rowsep="1">
+  <entry>Line numbering</entry>
+  <entry>✔</entry>
+  <entry>✔</entry>
+  <entry>*</entry>
+  <entry>*</entry>
+</row>
+<row rowsep="1">
+  <entry>Out-of-band callouts</entry>
+  <entry>✔</entry>
+  <entry>✔</entry>
+  <entry></entry>
+  <entry></entry>
+</row>
+<row>
+  <entry align="left" namest="c1" nameend="c5">* Maybe, if supported by JavaScript highlighter</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+
+<para>At the highest level, if <parameter>verbatim-embellishments</parameter> is
+false, no special formatting is provided. If
+<parameter>verbatim-embellish-linenumbers</parameter> is false, no line
+numbering will be provided, irrespective of other settings. The
+<citetitle>DocBook xslTNG Stylesheets</citetitle> have always numbered verbatim
+environments by default; this is a simple, global parameter to disable that
+behavior. Assuming that embellishments are enabled, the
+<parameter>verbatim-numbered-elements</parameter> parameter determines which
+elements are numbered by default.</para>
+
+<para>How a verbatim environment is processed depends a number of options
+described in the sections that follow.</para>
+
+<section xml:id="verbstyle">
+<title>Verbatim style</title>
+
+<para>There are four verbatim styles: <literal>lines</literal>, <literal>table</literal>,
+<literal>plain</literal>, and <literal>raw</literal>.</para>
+
+<variablelist>
+<varlistentry><term><literal>lines</literal></term>
+<listitem>
+<para>In the lines style, each line of the verbatim environment is
+marked up individually. In this style, lines can be numbered and
+callouts can be inserted.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>table</literal></term>
+<listitem>
+<para>In the table style, each line of the verbatim environment is
+marked up individually, very much like the lines style. In this style,
+lines can be numbered and callouts can be inserted. It differs from
+the lines style in that the whole thing is wrapped in a table.</para>
+
+<para>The table has one row and two columns. The line numbers appear in the
+first column, the lines in the second. This format was added in order
+to improve the display in user agents that don’t support CSS.
+Ironically, in the course of adding this style, a number of changes
+were made to the way line numbers are formatted in the lines style
+making it largely, perhaps entirely, unnecessary.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>plain</literal></term>
+<listitem>
+<para>In the plain style, callouts can be inserted, but additional markup is not
+added (except for the callouts). Consequently, it isn’t possible to do line numbering
+or syntax highlighting. (It may be possible to provide these features with JavaScript
+libraries in the browser, however.)
+</para>
+</listitem>
+</varlistentry>
+<varlistentry><term><literal>raw</literal></term>
+<listitem>
+<para>In the raw style, no changes are made to the verbatim content. It’s output as
+it appears. Inline markup that it contains, <tag>emphasis</tag> or other elements, will
+be processed, but you cannot add line numbers, callouts, or syntax highlighting.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>The <literal>lines</literal>
+style assures that inline markup doesn’t cross line boundaries, wraps each line in a 
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag>, may add an additional
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag>s for line numbers, and may
+be augmented with out-of-band callouts.</para>
+<para>The <literal>table</literal> style is essentially the same as the <literal>lines</literal>
+style except that the final presentation uses an HTML
+<tag namespace="http://www.w3.org/1999/xhtml">table</tag> to separate the line numbers
+from the listing.</para>
+<para>The <literal>plain</literal> style 
+assures that inline markup doesn’t cross line boundaries, but otherwise adds
+no markup.</para>
+<para>The <literal>raw</literal> style does nothing but format the listing.</para>
+<para>For a given verbatim element, if its (local) name appears in the
+<parameter>verbatim-table-style</parameter> parameter, it will use the <literal>table</literal>
+style, if it appears in the <parameter>verbatim-line-style</parameter> parameter, it will
+use the <literal>line</literal> style, if it appears in the <parameter>verbatim-plain-style</parameter>
+parameter, it will use the <literal>plain</literal> style. Otherwise, it will use the
+<literal>raw</literal> style.</para>
+<para>The style of an individual element can be changed by adding a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-style</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-style pseudo-attribute</secondary>
+</indexterm> pseudo attribute that specifies the style.</para>
+<para>In addition, the default style for <emphasis>all</emphasis> the listings in a given
+document can be specified by setting the <literal>verbatim-style</literal> on a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction in the root element.</para>
+</section>
+
 <section xml:id="syntax-highlighting">
-<title>Syntax highlighting</title>
+<title>Syntax highlighter</title>
 
 <para>Program listings and other verbatim environments can be “syntax highlighted”,
 that is, the significant tokens in the listing can be colored differently (keywords in red,
@@ -1245,8 +1424,116 @@ has no impact on formatting and doesn’t require an external process. However, 
 <citetitle>xslTNG Stylesheets</citetitle> have no control over the process. Most of the 
 verbatim options only apply when Pygments is used.</para>
 
-<para>The choice of syntax highlighter is determined by the
-<parameter>verbatim-syntax-highlighter</parameter> parameter.</para>
+<para>There are four highlighter choices: <literal>pygments</literal>,
+<literal>highlight.js</literal>, <literal>prism</literal>, or <literal>none</literal>.
+</para>
+
+<para>If the <literal>pygments</literal> highlighter is selected, an attempt is made
+to run an external Python program to apply syntax highlighting to the listing. This
+ignores all inline markup and, obviously, will only succeed if the Pygments highlighter
+is configured on your system.</para>
+<para>The <literal>highlight.js</literal> and <literal>prism</literal> highlighters are two
+different JavaScript-based highlighters.</para>
+<para>If <literal>none</literal> is selected, no highlighting will be attempted.
+</para>
+
+<para>The highlighter for an individual element can be changed by adding a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>syntax-highlighter</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>syntax-highlighter pseudo-attribute</secondary>
+</indexterm> pseudo attribute that specifies the highlighter.</para>
+<para>In addition, the default style for <emphasis>all</emphasis> the listings in a given
+document can be specified by setting the <literal>syntax-highlighter</literal> on a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction in the root element.</para>
+<note>
+<para>Although <literal>none</literal> and <literal>pygments</literal> can always be
+selected, the JavaScript highlighters can only be selected at the document level.</para>
+</note>
+</section>
+
+<section>
+<title>Verbatim numbering</title>
+
+<para>If enabled, line numbers are added to verbatim listings.</para>
+
+<para>The <parameter>verbatim-numbered-elements</parameter> parameter determines which
+elements are numbered by default. Numbering for an individual element can be changed by adding a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-numbered</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-numbered pseudo-attribute</secondary>
+</indexterm> pseudo attribute.</para>
+</section>
+
+<section>
+<title>Verbatim (out-of-band) callouts</title>
+<para>This option determines how out-of-band callouts should be rendered.
+</para>
+<para>The <parameter>verbatim-callouts</parameter> parameter determines the default
+renderings. The rendering for an individual element can be changed by adding a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-highlight</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-highlight pseudo-attribute</secondary>
+</indexterm> pseudo attribute.</para>
+</section>
+
+<section>
+<title>Starting line number</title>
+
+<para>When numbering, what is the number of the first line?
+</para>
+<para>This is determined by the <tag class="attribute">startinglinenumber</tag>
+and <tag class="attribute">continuation</tag> attributes.</para>
+</section>
+
+<section>
+<title>Shortest numbered listing</title>
+
+<para>What is the shortest listing that should be numbered?
+Even if line numbering is enabled, it may not be desirable to number
+the lines of very short listings. Listings shorter than the minimimum number
+will not be numbered. </para>
+<para>The <parameter>verbatim-number-minlines</parameter> parameter determines the default
+value. The valu for an individual element can be changed by adding a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>linenumbering-minlines</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>linenumbering-minlines pseudo-attribute</secondary>
+</indexterm> pseudo attribute.</para>
+</section>
+
+<section>
+<title>Trimming blank lines</title>
+
+<para>Controls if leading and/or trailing blank lines will be
+removed from the listing. This can improve the appearance of listings where the author
+has added a blank line after the start tag or before the end tag.</para>
+
+<para>The <parameter>verbatim-trim-leading-blank-lines</parameter> 
+(<parameter>verbatim-trim-trailing-blank-lines</parameter> 
+parameter determines if leading (trailing) blank lines will be removed by default.
+The value for an individual element can be changed by adding a
+<tag class="pi">db</tag><indexterm><primary>db processing instruction</primary>
+</indexterm> processing instruction with a
+<literal>verbatim-trim-leading</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-trim-leading pseudo-attribute</secondary>
+</indexterm> 
+or
+<literal>verbatim-trim-trailing</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>verbatim-trim-trailing pseudo-attribute</secondary>
+</indexterm> 
+pseudo attribute.</para>
+<para>This only applies for the lines and table presentation styles.</para>
+</section>
 </section>
 
 <section xml:id="persistent-toc">
@@ -1723,3 +2010,4 @@ has a background color.
 
 </section>
 </chapter>
+

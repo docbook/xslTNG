@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<?db syntax-highlighter="prism" verbatim-style="plain"?>
+<title>Unit test: prism.001</title>
+
+<para>This is a test for syntax highlighting with
+<link xlink:href="https://prismjs.com/">prism</link>.</para>
+
+<para>Program listings are highlighted and numbered by default:</para>
+
+<programlisting language="python">#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>But numbering can be turned off:</para>
+
+<programlisting language="python" linenumbering="unnumbered">#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+<para>And so can highlighting. The most reliable way to disable highlighting
+is to remove the <tag class="attribute">language</tag> attribute from the listing. 
+</para>
+
+<programlisting>#!/usr/bin/env python3
+
+"""This is yet another link checker. Was it better to write my own
+than find an existing cross-platform version? Maybe not, but it
+appeared to be easier."""
+
+import re
+import os
+import sys
+import json
+import glob
+import click
+try:
+    import html5_parser
+    import lxml.etree
+    from saxonche import PySaxonProcessor
+    importOk = True
+except ImportError:
+    importOk = False</programlisting>
+
+</article>
