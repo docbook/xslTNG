@@ -709,6 +709,21 @@ chunks.</para>
 navigation aids are constructed.</para>
 </listitem>
 </varlistentry>
+<varlistentry><term><parameter>use-id-as-filename</parameter></term>
+<listitem>
+<para>If this parameter <glossterm>is true</glossterm>, the <tag class="attribute">xml:id</tag>
+on a chunk will be used to construct the filename for that chunk. You can also control
+the chunk filename on a per-chunk basis with the 
+<literal>db</literal> processing instruction
+<indexterm>
+<primary>db processing instruction</primary>
+</indexterm> using the <literal>filename</literal><indexterm>
+<primary>db processing instruction</primary>
+<secondary>filename pseudo-attribute</secondary>
+</indexterm> pseudo-attribute.</para>
+</listitem>
+</varlistentry>
+
 </variablelist>
 
 <section xml:id="chunk-navigation">

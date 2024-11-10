@@ -5877,4 +5877,25 @@ The default language only applies to <tag>programlisting</tag> elements.</para>
 </refsection>
 </refentry>
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>use-id-as-filename</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.5.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Use id as filename when chunking</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>If this parameter <glossterm>is true</glossterm>, when a document is being
+chunked, the <tag class="attribute">xml:id</tag> of a chunk will be used as the filename
+unless a processing instruction overrides it.</para>
+</refsection>
+</refentry>  
+
 </reference>
