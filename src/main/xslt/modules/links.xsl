@@ -262,7 +262,7 @@
 </xsl:template>
   
 <xsl:function name="fp:localization-template-from-xrefstyle" as="element(l:template)">
-  <xsl:param name="xref" as="element(db:xref)"/>
+  <xsl:param name="xref" as="element()"/>
   <xsl:param name="target" as="element()"/>
 
   <xsl:variable name="content" as="item()*">
