@@ -1,0 +1,14 @@
+<article xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         version="5.0" xml:id="article">
+<title>Unit test: link.006</title>
+
+<para>Test: <xref xrefstyle="xrefstyle: %c" linkend="article"/>.</para>
+
+<para>Test: <link linkend="article"/>.</para>
+
+<para>Test: <link xrefstyle="xrefstyle: %c" linkend="article"/>.</para>
+
+<para>Test: <link xrefstyle="xrefstyle: %c" linkend="article">link text</link>.</para>
+
+</article>
