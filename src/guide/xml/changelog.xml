@@ -59,6 +59,10 @@ the combination of options. See <xref linkend="verbatim-environments"/>.</para>
 the <tag class="attribute">xml:id</tag> value of a chunk will be used as the
 chunk filename.</para>
 </listitem>
+<listitem>
+<para>Support <tag class="attribute">xrefstyle</tag> on <tag>link</tag>;
+fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/561">#561</link>.</para>
+</listitem>
 </itemizedlist>
 </section>
 
