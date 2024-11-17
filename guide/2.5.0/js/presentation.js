@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.5.0-SNAPSHOT
+/* DocBook xslTNG version 2.5.0
  *
  * See https://xsltng.docbook.org/
  *
