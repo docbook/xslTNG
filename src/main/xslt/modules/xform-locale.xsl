@@ -187,7 +187,7 @@
         <xsl:when test="$perc = 'l'"><lt:label/></xsl:when>
         <xsl:when test="$perc = '%'"><lt:percent/></xsl:when>
         <xsl:when test="$perc = '.'"><lt:separator/></xsl:when>
-        <xsl:when test="$perc = 'p'"><lt:page/></xsl:when>
+        <xsl:when test="$perc = 'p'"><lt:pagenum/></xsl:when>
         <xsl:when test="$perc = 'o'"><lt:olink-title/></xsl:when>
         <xsl:otherwise>
           <xsl:message terminate="yes"
