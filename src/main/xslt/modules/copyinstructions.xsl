@@ -122,7 +122,8 @@
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
-
+  
+  <!-- Process copy instructions when xpath:file is available -->
   <xsl:template name="tp:process-copyinstructions" use-when="function-available('file:copy')">
     <xsl:param name="instructions" as="map(*)"/>
     <xsl:param name="href" as="xs:anyURI"/>
@@ -131,17 +132,32 @@
       select="current-dateTime() => format-dateTime('[Y0001]-[M01]-[D01]T[H01]:[m01]:[s02]')"/>
     <xsl:try>
       <xsl:result-document href="{$href}" indent="yes" method="xml" omit-xml-declaration="no">
-        <mediaobject-copyinstructions timestamp="{$timestamp}" basedirectory="{$mediaobject-basedirectory}" xmlns="''">
+        <mediaobject-copyinstructions timestamp="{$timestamp}"
+          basedirectory="{$mediaobject-basedirectory}" xmlns="">
           <xsl:for-each select="map:keys($instructions)">
-            <xsl:try>
-              <xsl:sequence select="file:copy($instructions(.), .)"/>
-              <copied source="{$instructions(.)}" destination="{.}"/>
-              <xsl:catch>
-                <error source="{$instructions(.)}" destination="{.}">
-                  <xsl:value-of select="$err:description"/>
+            <xsl:variable name="sourcefile" as="xs:anyURI" select="$instructions(.)"/>
+            <xsl:variable name="destfile" as="xs:anyURI" select="."/>
+            <xsl:choose>
+              <xsl:when test="file:exists($sourcefile)">
+                <xsl:try>
+                  <xsl:sequence select="file:copy($sourcefile, $destfile)"/>
+                  <copied source="{$sourcefile}" destination="{$destfile}"/>
+                  <xsl:catch>
+                    <error source="{$sourcefile}" destination="{$destfile}">
+                      <xsl:value-of select="$err:description"/>
+                    </error>
+                  </xsl:catch>
+                </xsl:try>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:variable name="msg" as="xs:string"
+                  select="'Sourcefile ' || $sourcefile || ' does not exist.'"/>
+                <xsl:message terminate="no" select="$msg"/>
+                <error source="{$sourcefile}">
+                  <xsl:text>Source File does not exist</xsl:text>
                 </error>
-              </xsl:catch>
-            </xsl:try>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:for-each>
         </mediaobject-copyinstructions>
       </xsl:result-document>
@@ -154,7 +170,8 @@
       </xsl:catch>
     </xsl:try>
   </xsl:template>
-
+  
+  <!-- Write copy instructions when expath:file is not available -->
   <xsl:template name="t:write-copyinstructions">
     <xsl:param name="instructions" as="map(*)"/>
     <xsl:param name="href" as="xs:anyURI"/>
@@ -163,7 +180,8 @@
       select="current-dateTime() => format-dateTime('[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')"/>
     <xsl:try>
       <xsl:result-document href="{$href}" indent="yes" method="xml" omit-xml-declaration="no">
-        <mediaobject-copyinstructions timestamp="{$timestamp}" basedirectory="{$mediaobject-basedirectory}" xmlns="">
+        <mediaobject-copyinstructions timestamp="{$timestamp}"
+          basedirectory="{$mediaobject-basedirectory}" xmlns="">
           <xsl:for-each select="map:keys($instructions)">
             <copy source="{$instructions(.)}" destination="{.}"/>
           </xsl:for-each>
@@ -178,7 +196,7 @@
       </xsl:catch>
     </xsl:try>
   </xsl:template>
-
+ 
   <!-- mp:mediaobject-copy-instruction ==========================================================================
    |   calculates for some HTML Elements an map entry which can support copy instructions
    |   each entry is a map with copy destination as key and copy source as value
