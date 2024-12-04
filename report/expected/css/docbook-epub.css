@@ -21,7 +21,7 @@
   --on-primary-color: #ffffff;
   --on-primary-variant-color: #ffffff;
   --on-secondary-color: #000000;
-  --on-error-color: #000000;
+  --on-error-color: #ffee42;
   --enabled-color: rgb(240,240,240);
   --hovered-color: rgb(235,235,235);
   --focused-color: rgb(221,221,221);
@@ -185,6 +185,17 @@ span.error::after {
 
 span.error.broken-link::after {
   content: " 🔗 ";
+}
+
+.unhandled {
+  font-family: monospace;
+  background-color: var(--error-border-color);
+  color: var(--on-error-color);
+  font-weight: bold;
+}
+
+div.unhandled {
+  width: 100%;
 }
 
 .firstterm {
