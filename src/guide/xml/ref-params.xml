@@ -3554,35 +3554,7 @@ the provided grammar.
 <title>Description</title>
 <para>If <parameter>refentry-generate-name</parameter> is true, the
 title of the refentry page will be the word “Name”. Otherwise it will
-be the title of the subject of the reference page. Generally, exactly one
-of <parameter>refentry-generate-name</parameter> or
-<parameter>refentry-generate-title</parameter> should
-<glossterm baseform="is true">be true</glossterm>.
-</para>
-</refsection>
-</refentry>
-
-<refentry>
-  <refmeta>
-    <fieldsynopsis>
-      <varname>refentry-generate-title</varname>
-      <initializer>true()</initializer>
-    </fieldsynopsis>
-  </refmeta>
-  <refnamediv>
-    <refpurpose>Use the subject of the page as the title of a <tag>refentry</tag>
-    </refpurpose>
-  </refnamediv>
-<refsection>
-<title>Description</title>
-<para>If <parameter>refentry-generate-title</parameter> is true, the
-title of the refentry page will be the subject of the page (the
-<tag>refentrytitle</tag>, <tag>refdescriptor</tag>, or the first
-<tag>refname</tag>). Generally, exactly one
-of <parameter>refentry-generate-name</parameter> or
-<parameter>refentry-generate-title</parameter> should
-<glossterm baseform="is true">be true</glossterm>.
-</para>
+be the title of the subject of the reference page.</para>
 </refsection>
 </refentry>
 

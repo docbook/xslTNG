@@ -31,7 +31,7 @@
     <xsl:apply-templates select="." mode="m:attributes"/>
 
     <xsl:choose>
-      <xsl:when test="$refentry-generate-name">
+      <xsl:when test="f:is-true($refentry-generate-name)">
         <header>
           <h2>
             <xsl:apply-templates select="." mode="m:gentext">
@@ -42,7 +42,7 @@
         </header>
       </xsl:when>
 
-      <xsl:when test="$refentry-generate-title">
+      <xsl:otherwise>
         <header>
           <h2>
             <xsl:choose>
@@ -58,7 +58,7 @@
             </xsl:choose>
           </h2>
         </header>
-      </xsl:when>
+      </xsl:otherwise>
     </xsl:choose>
 
     <p>
