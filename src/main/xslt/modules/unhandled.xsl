@@ -9,53 +9,43 @@
                 version="3.0">
 
 <xsl:template match="*">
-  <xsl:message terminate="yes"
-      select="'No template for ' || node-name(.) || ': ' || f:generate-id(.)"/>
-  <xsl:variable name="inline-style"
-                select="'font: monospace;
-                         color: yellow;
-                         background-color: red;
-                         font-weight: bold;'"/>
-  <xsl:variable name="block-style"
-                select="'font: monospace;
-                         color: yellow;
-                         width: 100%;
-                         background-color: red;
-                         font-weight: bold;'"/>
+  <xsl:choose>
+    <xsl:when test="$on-unhandled-elements = 'fail'">
+      <xsl:message terminate="yes"
+                   select="'No template for ' || node-name(.) || ': ' || f:generate-id(.)"/>
+    </xsl:when>
+    <xsl:when test="$on-unhandled-elements = 'render'">
+      <xsl:message select="'No template for ' || node-name(.) || ': ' || f:generate-id(.)"/>
 
-  <xsl:variable name="inline"
-                select="normalize-space(string-join(text(),'')) != ''"/>
+      <xsl:variable name="inline"
+                    select="normalize-space(string-join(text(),'')) != ''"/>
 
-  <xsl:element namespace="http://www.w3.org/1999/xhtml"
-               name="{if ($inline) then 'span' else 'div'}">
+      <xsl:element namespace="http://www.w3.org/1999/xhtml"
+                   name="{if ($inline) then 'span' else 'div'}">
+        
+        <xsl:element namespace="http://www.w3.org/1999/xhtml"
+                     name="{if ($inline) then 'span' else 'div'}">
+          <xsl:attribute name="class" select="'unhandled'"/>
+          <xsl:text>&lt;</xsl:text>
+          <xsl:value-of select="node-name(.)"/>
+          <xsl:text>&gt;</xsl:text>
+        </xsl:element>
 
-    <xsl:element namespace="http://www.w3.org/1999/xhtml"
-                 name="{if ($inline) then 'span' else 'div'}">
-      <xsl:attribute name="style"
-                     select="if ($inline) then $inline-style else $block-style"/>
-      <xsl:text>&lt;</xsl:text>
-      <xsl:value-of select="node-name(.)"/>
-      <xsl:text>&gt;</xsl:text>
-    </xsl:element>
+        <xsl:apply-templates/>
 
-    <xsl:apply-templates/>
-
-    <xsl:element namespace="http://www.w3.org/1999/xhtml"
-                 name="{if ($inline) then 'span' else 'div'}">
-      <xsl:attribute name="style"
-                     select="if ($inline) then $inline-style else $block-style"/>
-      <xsl:text>&lt;/</xsl:text>
-      <xsl:value-of select="node-name(.)"/>
-      <xsl:text>&gt;</xsl:text>
-    </xsl:element>
-  </xsl:element>
-
-  <!--
-    <xsl:message>
-      <xsl:text>Unhandled element: </xsl:text>
-      <xsl:value-of select="node-name(.)"/>
-    </xsl:message>
-  -->
+        <xsl:element namespace="http://www.w3.org/1999/xhtml"
+                     name="{if ($inline) then 'span' else 'div'}">
+          <xsl:attribute name="class" select="'unhandled'"/>
+          <xsl:text>&lt;/</xsl:text>
+          <xsl:value-of select="node-name(.)"/>
+          <xsl:text>&gt;</xsl:text>
+        </xsl:element>
+      </xsl:element>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="m:unhandled"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"

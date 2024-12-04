@@ -2030,5 +2030,27 @@ Be aware, however, that the HTML markup is quite constrained for panel sets.
 </refsection>
 </refentry>
 
+<refentry xml:id="m_unhandled">
+<?db filename="m_unhandled"?>
+<refmeta>
+<refentrytitle>m:unhandled</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/modes}unhandled</refmiscinfo>
+<refmiscinfo class="version">2.5.1</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>m:unhandled</refname>
+<refpurpose>Process unhandled elements</refpurpose>
+<refclass>mode</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>When <parameter>on-unhandled-elements</parameter> is set to <literal>custom</literal>,
+elements with no other matching template will be processed in this mode. Note that
+there are no templates in this mode in the standard stylesheets. This is an extensibility
+point for customization layers.
+</para>
+</refsection>
+</refentry>
+
 </reference>
 

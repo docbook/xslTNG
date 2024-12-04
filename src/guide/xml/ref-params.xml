@@ -5898,4 +5898,53 @@ unless a processing instruction overrides it.</para>
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>on-unhandled-elements</varname>
+      <initializer>'fail'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.5.1</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>How to process unhandled elements</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>This parameter controls how unhandled elements (for example, extension
+elements added in a custom schema) should be processed.</para>
+
+<variablelist role="enumeration">
+<varlistentry>
+<term>
+<enumvalue>terminate</enumvalue>
+</term>
+<listitem>
+<para>Generates an error messages and aborts the transformation.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>render</enumvalue>
+</term>
+<listitem>
+<para>Renders the tag name in the output, styled in red and yellow.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<enumvalue>custom</enumvalue>
+</term>
+<listitem>
+<para>Processes the template in the <mode>m:unhandled</mode> mode. These must be defined
+in a customization layer; there are no templates in this mode in the standard stylesheets.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</refsection>
+</refentry>  
+
 </reference>
