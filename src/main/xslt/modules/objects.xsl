@@ -5,6 +5,7 @@
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:ghost="http://docbook.org/ns/docbook/ephemeral"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
@@ -756,7 +757,9 @@
       </div>
     </xsl:when>
     <xsl:otherwise>
+      <!-- $info?uri is The computed absolute URI of the input data -->
       <xsl:call-template name="t:mediaobject-img">
+        <xsl:with-param name="sourcefile" select="$info?uri"/> 
         <xsl:with-param name="filename" select="$info?href"/>
         <xsl:with-param name="styles" select="$styles"/>
         <xsl:with-param name="viewport" select="$viewport"/>
@@ -767,12 +770,13 @@
 </xsl:template>
 
 <xsl:template name="t:mediaobject-img">
+  <xsl:param name="sourcefile" as="xs:string"/>
   <xsl:param name="filename" as="xs:string"/>
   <xsl:param name="styles" as="xs:string*"/>
   <xsl:param name="viewport" as="map(*)?"/>
   <xsl:param name="imageproperties" as="map(*)?"/>
 
-  <img src="{$filename}">
+  <img src="{$filename}" ghost:sourcefile="{$sourcefile}">
     <xsl:apply-templates select="." mode="m:attributes"/>
     
     <!-- Apply any alt text in the media object to the image tag. -->

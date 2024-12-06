@@ -5,6 +5,7 @@
                 xmlns:err='http://www.w3.org/2005/xqt-errors'
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                xmlns:ghost="http://docbook.org/ns/docbook/ephemeral"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -275,6 +276,24 @@
   <xsl:variable name="result" as="document-node()">
     <xsl:sequence select="fp:run-transforms($result, $post-processing)"/>
   </xsl:variable>
+  
+  <!-- Try to create or perform copy instructions for media files marked by @ghost:sourcefile -->
+  <xsl:if test="$copyinstructions-uri and exists($result//*[@ghost:sourcefile])">
+    <xsl:variable name="current-output-directory" as="xs:string?" select="
+        if (current-output-uri()) then
+          tokenize(current-output-uri(), '/')[position() lt last()] => string-join('/') => concat('/')
+        else
+          ()"/>
+    <xsl:call-template name="tp:mediaobjects-copyinstructions">
+      <xsl:with-param name="mediaobjects" select="$result//*[@ghost:sourcefile]"/>
+      <xsl:with-param name="current-output-directory" as="xs:string?" select="$current-output-directory"/>
+    </xsl:call-template>
+  </xsl:if>
+  
+  <!-- Get rid of @ghost attributes -->
+  <xsl:variable name="result" as="document-node()">
+    <xsl:apply-templates select="$result" mode="mp:final-cleanup"/>
+  </xsl:variable>
 
   <xsl:choose>
     <xsl:when test="$return = 'raw-results'">
@@ -448,5 +467,10 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+  
+<!-- mp:final-cleanup removes attributes in the ghost namespace -->
+<xsl:mode name="mp:final-cleanup" on-no-match="shallow-copy"/>
+
+<xsl:template mode="mp:final-cleanup" match="@ghost:*"/>
 
 </xsl:stylesheet>
