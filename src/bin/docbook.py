@@ -157,7 +157,7 @@ class JavaClassRunner:
 
         if resources is not None:
             if resources == "" and not self.output:
-                self._message(f"Cannot determine output directory; ignoring --resources")
+                self._message("Cannot determine output directory; ignoring --resources")
             else:
                 if resources == "":
                     resources = os.path.abspath(self.output)
