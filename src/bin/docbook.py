@@ -15,7 +15,6 @@ from xml.dom.minidom import parse, Node
 
 class JavaClassRunnerException(Exception):
     """Subclass of Exception for errors raised by the runner."""
-    pass
 
 
 class JavaClassRunner:
