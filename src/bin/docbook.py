@@ -160,7 +160,7 @@ class JavaClassRunner:
                 self._message("Cannot determine output directory; ignoring --resources")
             else:
                 if resources == "":
-                    resources = os.path.abspath(self.output)
+                    resources = os.path.abspath(f"{self.output}")
                     resources = os.path.dirname(resources)
                 else:
                     resources = os.path.abspath(resources)
