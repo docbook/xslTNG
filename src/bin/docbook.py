@@ -310,9 +310,7 @@ wrapper sets these automatically.
             self._message(f"No jar: {groupId}:{artifactId}:{version}")
             return
 
-        pkgconfig = {}
-        pkgconfig["jar"] = jar
-        pkgconfig["dependencies"] = []
+        pkgconfig = {"jar": jar, "dependencies": []}
         self.depends[groupId][artifactId][version] = pkgconfig
 
         if self._skip(groupId, artifactId, version):
