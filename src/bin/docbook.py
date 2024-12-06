@@ -41,7 +41,7 @@ class JavaClassRunner:
         # docbook-xslTNG package from the distribution environment and
         # we seed with its dependencies. These must all be in the
         # DocBook distribution (in libs/lib).
-        self.seeds = set(["@@PACKAGE_LIST@@"])
+        self.seeds = {"@@PACKAGE_LIST@@"}
 
         self.config = {
             "maven-local": str(Path.home()) + "/.m2/repository",
