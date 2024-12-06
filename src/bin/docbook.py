@@ -28,7 +28,7 @@ class JavaClassRunner:
     # Yes, I have a lot of instance attributes. I'm also using camelCase names,
     # which aren't the Pythonic way, but they are the POM way. And I know some
     # methods could be functions.
-    # pylint: disable=R0902,C0103
+    # pylint: disable=R0902,C0103,W1514
 
     def __init__(self, args):
         self.version = "@@VERSION@@"
