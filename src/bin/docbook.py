@@ -391,7 +391,7 @@ wrapper sets these automatically.
               or artifact not in self.depends[group] \
               or version not in self.depends[group][artifact] \
               or self.depends[group][artifact][version] is None:
-                found = self._libfallback(package);
+                found = self._libfallback(package)
 
         if not found:
             sys.exit(1)
@@ -479,8 +479,8 @@ wrapper sets these automatically.
                 if self._higher_version(curver, version):
                     usever = version
                     # Actually remove the current version, we're replacing it.
-                    del self._cp[group][artifact][curver];
-                    del self.depends[group][artifact][curver];
+                    del self._cp[group][artifact][curver]
+                    del self.depends[group][artifact][curver]
                 else:
                     usever = curver
 
