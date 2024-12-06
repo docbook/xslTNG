@@ -599,7 +599,6 @@ wrapper sets these automatically.
 
 if __name__ == "__main__":
     # I'm perfectly happy with the name 'docbook'
-    # pylint: disable=C0103
 
     try:
         docbook = JavaClassRunner(sys.argv[1:])
