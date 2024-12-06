@@ -166,7 +166,8 @@ class JavaClassRunner:
                     resources = os.path.abspath(resources)
                 self._configure_resources(resources)
 
-    def _help(self):
+    @staticmethod
+    def _help():
         print(f"""DocBook xslTNG version @@VERSION@@
 
 Usage: {sys.argv[0]} [options]
@@ -263,7 +264,8 @@ wrapper sets these automatically.
         except IOError:
             return None
 
-    def _get_value(self, node, tag):
+    @staticmethod
+    def _get_value(node, tag):
         for child in node.childNodes:
             if child.nodeType == Node.ELEMENT_NODE \
               and child.tagName == tag \
@@ -280,7 +282,8 @@ wrapper sets these automatically.
             return jarfile
         return None
 
-    def _skip(self, groupId, artifactId, version):
+    @staticmethod
+    def _skip(groupId, artifactId, version):
         return (groupId is None or "${" in groupId
                 or artifactId is None or "${" in artifactId
                 or version is None or "${" in version)
@@ -364,7 +367,8 @@ wrapper sets these automatically.
 
         return deps
 
-    def _expandProperties(self, value, properties):
+    @staticmethod
+    def _expandProperties(value, properties):
         for prop in properties:
             repl = "${" + prop + "}"
             if repl in value:
@@ -405,7 +409,8 @@ wrapper sets these automatically.
         print(f"Required package not found: {group}:{artifact}:{version}; download with Maven")
         return False
 
-    def _higher_version(self, curver, newver):
+    @staticmethod
+    def _higher_version(curver, newver):
         if curver == newver:
             return False
 
