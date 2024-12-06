@@ -526,6 +526,7 @@ wrapper sets these automatically.
             for path in os.environ["CLASSPATH"].split(os.pathsep):
                 cplist.append(path)
 
+        # pylint: disable=C0206
         for group in self._cp:
             for archive in self._cp[group]:
                 for version in self._cp[group][archive]:
