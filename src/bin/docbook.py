@@ -237,7 +237,7 @@ wrapper sets these automatically.
             try:
                 if not os.path.isdir(fdir):
                     os.makedirs(fdir)
-            except:
+            except OSError:
                 self._message(f"Failed to create output directory: {path}")
                 return
 
