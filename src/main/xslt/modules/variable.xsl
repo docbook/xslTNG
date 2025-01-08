@@ -153,28 +153,33 @@
 </xsl:variable>
 
 <!-- Make sure we've resolved it so that file:///, file://, file:/, etc.
-     get normalized because later on we're going to want to compare
-     the prefix of this base URI with the prefix of another URI. -->
+     get normalized and down-up steps like /a/b/../c will be shortened to a/c
+     because later on we're going to want to compare
+     the prefix of this base URI with the prefix of another URI.
+     (see mode mp:copy-patch-toc in chunk-output.xsl) -->
 <xsl:variable name="vp:chunk-output-base-uri" as="xs:anyURI?">
-  <xsl:choose>
-    <xsl:when use-when="function-available('ext:cwd')"
-              test="true()">
-      <xsl:if test="'chunks' = $v:debug">
-        <xsl:message select="'Chunk output base uri:',
-                             resolve-uri($chunk-output-base-uri, ext:cwd())"/>
-      </xsl:if>
-      <xsl:sequence select="resolve-uri($chunk-output-base-uri, ext:cwd())"/>
-    </xsl:when>
-    <xsl:when test="$v:chunk">
-      <xsl:if test="'chunks' = $v:debug">
-        <xsl:message select="'Chunk output base uri:', $chunk-output-base-uri"/>
-      </xsl:if>
-      <xsl:sequence select="xs:anyURI($chunk-output-base-uri)"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:sequence select="xs:anyURI($chunk-output-base-uri)"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:variable name="result" as="xs:anyURI">
+    <xsl:choose>
+      <xsl:when test="not($chunk-output-base-uri) castable as xs:anyURI">
+        <xsl:message
+          select="'Error: ' || $chunk-output-base-uri || ' is not valid as $chunk-output-base-uri.'"
+        />
+      </xsl:when>
+      <xsl:when use-when="function-available('ext:cwd')" test="true()">
+        <xsl:sequence select="
+            let $cobu := xs:anyURI($chunk-output-base-uri) => fp:shorten-uri()
+            return
+              resolve-uri($cobu, ext:cwd())"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="xs:anyURI($chunk-output-base-uri) => fp:shorten-uri()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:if test="'chunks' = $v:debug">
+    <xsl:message select="'Chunk output base uri: ' || $result"/>
+  </xsl:if>
+  <xsl:sequence select="$result"/>
 </xsl:variable>
 
 <!-- I tinkered a bit to find images that would display across

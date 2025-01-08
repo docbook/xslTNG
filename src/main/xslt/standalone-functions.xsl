@@ -36,6 +36,30 @@
                        'annotation-collection')"/>
   
 <!-- ====================================================================================
+|    Functions for general use
+|==================================================================================   -->  
+  
+<!-- Remove down-up fragments in $uri: /a/b/c/../../d becomes /a/d  -->  
+<xsl:function name="fp:shorten-uri" as="xs:anyURI">
+  <xsl:param name="uri" as="xs:anyURI"/>
+    <xsl:variable name="result" as="xs:string*" >
+      <xsl:analyze-string select="$uri" regex="/[^/]+/\.\."> 
+        <xsl:non-matching-substring>
+          <xsl:sequence select="."/>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="string-join($result) eq $uri">
+        <xsl:sequence select="xs:anyURI($uri)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="string-join($result) => xs:anyURI() => fp:shorten-uri()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+</xsl:function>  
+  
+<!-- ====================================================================================
 |    Functions for processing instructions and their pseudo attributes
 |===================================================================================  -->  
 
