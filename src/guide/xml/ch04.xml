@@ -351,7 +351,13 @@ will be to <uri>media/image.png</uri>.
 <para>The stylesheets are not responsible for actually copying the media files
 into the correct locations in the output. The stylesheets only generate the HTML
 files and the references. You must copy the images and other media with some
-other process.</para>
+other process,
+unless you expressly request further assistance. 
+If the parameter <parameter>copyinstructions-uri</parameter> is set accordingly,
+a file with copy instructions is created at the specified location.
+If the function <code>file:copy</code> from <citation>EXPATH File</citation> is available
+(which is the case when you are using Saxon PE or EE),
+the stylesheets will actually perform these instructions and copy the files.</para>
 </important>
 </section>
 </section>

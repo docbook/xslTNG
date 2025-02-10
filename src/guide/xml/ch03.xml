@@ -516,11 +516,13 @@ subdirectory.
 the desired results for each combination of input and output arrangements.</para>
 
 <note>
-<para>Remember that in each case, the questions are: can the
+<para>Remember that in each case, the question is: can the
 stylesheets find the media files to query them and are the correct
 HTML references produced? Actually copying the media files from where
 they are in the source system to where they need to be in the HTML is
-“not our problem.”</para>
+“not our problem.”
+But the stylesheets can help to manage or even perform the task
+of copying on demand. See <parameter>copyinstructions-uri</parameter>.</para>
 </note>
 
 <variablelist>
