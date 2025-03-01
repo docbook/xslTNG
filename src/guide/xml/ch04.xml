@@ -359,11 +359,11 @@ other process.</para>
 <section xml:id="header-templates">
 <title>Templates</title>
 
-<para>It’s difficult to make title pages for documents easy to customize. There
-is <emphasis>a lot</emphasis> of variation between documents and the styles can
-have very precise design constraints. At the end of the day, if you need complete control,
-you can define a template that matches the element in the
-<mode>m:generate-titlepage</mode> mode and generate all of the markup you wish.</para>
+<para>It’s difficult to make title pages for documents easy to customize. There is <emphasis>a lot</emphasis> of
+      variation between documents and the styles can have very precise design constraints. At the end of the day, if you
+      need complete control, you can define a template that matches the element in the <mode>m:generate-titlepage</mode>
+      mode and generate all of the markup you wish. The parameter <parameter>default-templates-uri</parameter> points to
+      the file with default templates.</para>
 
 <para>The default title page handling attempts to make some declarative customization
 possible by using templates. A typical header template looks like this:</para>
