@@ -37,7 +37,8 @@
     <xsl:sequence select="doc($uri)/*/*"/>
     <xsl:catch>
       <xsl:message
-        select="'WARNING: Can''t get default templates from ' || $default-templates-uri || ': ' || $err:description"/>
+        select="'WARNING: Can''t get default templates from ' || $default-templates-uri || ': ' || $err:description || '. Using templates.xml as fallback.'"/>
+      <xsl:sequence select="doc('templates.xml')/*/*"/>
     </xsl:catch>
   </xsl:try>
 </xsl:variable>
