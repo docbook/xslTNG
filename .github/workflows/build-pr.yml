@@ -52,7 +52,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-latest]
 
     steps:
       - name: Install platform-independent Python modules
@@ -117,7 +117,7 @@ jobs:
       # Test the build on Linux
 
       - name: Install dependencies on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
           sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
@@ -127,20 +127,20 @@ jobs:
           python3 -m pip install --no-binary lxml html5-parser
 
       - name: Checkout the pull request on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Get the latest releases (authenticated request on Linux)
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
           mkdir -p build
           # Don’t attempt to use continuation lines here because Windows
           curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
 
       - name: Build on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           ./gradlew -PrequireCompileSuccess=true dist
