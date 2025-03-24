@@ -55,7 +55,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [ubuntu-latest]
 
     steps:
       - name: Report guide version
@@ -121,7 +121,7 @@ jobs:
       # Test the build on Linux
 
       - name: Install dependencies on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
           sudo apt-get install epubcheck rsync libxml2-dev libxslt-dev
@@ -131,52 +131,52 @@ jobs:
           python3 -m pip install --no-binary lxml html5-parser
 
       - name: Checkout the gh-pages branch on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         uses: actions/checkout@v4
         with:
           ref: 'gh-pages'
 
       - name: Save EPUB and PDFs
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: tar cf - epub pdf | gzip > /tmp/save-epub-pdf.tar.gz
 
       - name: Save the current version(s) of the guide
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           mkdir /tmp/guide
           rsync -ar guide/ /tmp/guide/
           rm -rf /tmp/guide/$GUIDE_VERSION
 
       - name: Checkout the main branch on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         uses: actions/checkout@v4
 
       - name: Setup SaxonEE on Linux
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_SAXON_EE == 'true' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_SAXON_EE == 'true' }}
         run: gpg --batch --yes --passphrase ${{ secrets.SAXON_PASSPHRASE }} -d tools/saxon.enc | tar zxf -
 
       - name: Get the latest releases (authenticated request on Windows)
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' }}
         run: |
           mkdir -p build
           # Don’t attempt to use continuation lines here because Windows
           curl --request GET --url https://api.github.com/repos/${{ github.repository }}/releases --header 'authorization: Bearer ${{ secrets.ACCESS_TOKEN }}' -o build/releases.json
 
       - name: Build on Linux
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           ./gradlew --stacktrace -PrequireCompileSuccess=true dist
 
       - name: Cleanup SaxonEE
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_SAXON_EE == 'true' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_SAXON_EE == 'true' }}
         run: rm -rf lib
 
       - name: Restore EPUB and PDFs
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: cd build/website && tar zxf /tmp/save-epub-pdf.tar.gz
 
       - name: Restore previous version(s) of the guide
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-latest'
         run: |
           rsync -ar --exclude index.html /tmp/guide/ build/website/guide/
           if [ ! -f build/website/guide/index.html ]; then \
@@ -184,7 +184,7 @@ jobs:
           fi
 
       - name: Deploy main to gh-pages
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' }}
         uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           folder: build/website
@@ -193,7 +193,7 @@ jobs:
           target-folder: /
 
       - name: Deploy tagged release to CDN as ${{ env.CI_TAG }}
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           folder: build/release
@@ -203,7 +203,7 @@ jobs:
           target-folder: /release/xsltng/${{ env.CI_TAG }}
 
       - name: Deploy tagged release to CDN as current
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         uses: JamesIves/github-pages-deploy-action@v4.6.4
         with:
           folder: build/release
@@ -214,7 +214,7 @@ jobs:
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           draft: false
           prerelease: false
@@ -224,7 +224,7 @@ jobs:
             build/distributions/docbook-xslTNG-nosaxon-${{ env.CI_TAG }}.zip
 
       - name: Publish to Sonatype
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         run: |
           curl -s -o secret.gpg ${{ secrets.GPGKEYURI }}
           ./gradlew -PsonatypeUsername=${{ secrets.SONATYPEUSER }} \
@@ -237,7 +237,7 @@ jobs:
 
       - name: Checkout the CDN
         uses: actions/checkout@v4
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           repository: ${{ github.repository_owner}}/cdn
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -245,12 +245,12 @@ jobs:
           ref: 'master'
 
       - name: Rebuild the CDN indexes
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         run: bin/git-index-html
 
       - name: Deploy the indexes back to the CDN
         uses: JamesIves/github-pages-deploy-action@v4.6.4
-        if: ${{ matrix.os == 'ubuntu-20.04' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_ACCESS_TOKEN == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
         with:
           folder: .
           token: ${{ secrets.ACCESS_TOKEN }}
