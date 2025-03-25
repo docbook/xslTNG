@@ -17,8 +17,8 @@
 <xsl:template match="db:itemizedlist">
   <xsl:variable name="compact" as="xs:boolean"
                 select="@spacing = 'compact'
-                        and count(db:listitem/db:para) = count(db:listitem)
-                        and empty(db:listitem/*[not(self::db:para)])"/>
+                        and count(db:listitem/*) = count(db:listitem)
+                        and empty(db:listitem/*[not(self::db:para or self::db:simpara)])"/>
 
   <xsl:choose>
     <xsl:when test="empty(db:info/*)
@@ -54,8 +54,8 @@
 <xsl:template match="db:orderedlist">
   <xsl:variable name="compact" as="xs:boolean"
                 select="@spacing = 'compact'
-                        and count(db:listitem/db:para) = count(db:listitem)
-                        and empty(db:listitem/*[not(self::db:para)])"/>
+                        and count(db:listitem/*) = count(db:listitem)
+                        and empty(db:listitem/*[not(self::db:para or self::db:simpara)])"/>
 
   <xsl:choose>
     <xsl:when test="empty(db:info/*)
@@ -149,8 +149,8 @@
       </xsl:choose>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="$compact and count(*) = 1 and db:para">
-        <xsl:apply-templates select="db:para/node()"/>
+      <xsl:when test="$compact and count(*) = 1 and (db:para or db:simpara)">
+        <xsl:apply-templates select="db:para/node(), db:simpara/node()"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates/>
