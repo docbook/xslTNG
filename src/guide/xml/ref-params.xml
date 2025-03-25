@@ -3367,6 +3367,24 @@ specified for <parameter>profile-wordsize</parameter> are matched against
 the values in the <att>wordsize</att> attribute. See <xref linkend="profiling"/>.</para>
 </refsection>
 </refentry>
+  
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>default-templates-uri</varname>
+      <initializer>'templates.xml'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>points to the file with default templates</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The URI of a file with default title page templates. 
+      If it is relative, it will be resolve against the <filename>xslt/modules</filename> directory.</para>
+  </refsection>
+</refentry>
 
 <refentry>
   <refmeta>
