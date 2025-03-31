@@ -355,7 +355,8 @@
     <xsl:with-param name="title-key" select="local-name(.)"/>
   </xsl:call-template>
 </xsl:template>
-
+    
+<!-- No default title for abstract and legalnotice. See Issue #587
 <xsl:template match="db:abstract">
   <xsl:call-template name="tp:normalize-generated-title">
     <xsl:with-param name="title-key" select="local-name(.)"/>
@@ -367,7 +368,8 @@
     <xsl:with-param name="title-key" select="local-name(.)"/>
   </xsl:call-template>
 </xsl:template>
-
+-->
+    
 <xsl:template match="db:dedication|db:acknowledgements">
   <xsl:call-template name="tp:normalize-generated-title">
     <xsl:with-param name="title-key" select="local-name(.)"/>
