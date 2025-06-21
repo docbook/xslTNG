@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/fit.xsl"
-        date="2025-03-25T15:43:38.375508872Z">
+        date="2025-06-21T07:37:30.848223105Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/fit.xspec">
       <label>When transforming fit.001</label>
@@ -436,7 +436,9 @@ be updated when the underlying resource is updated.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="kn">import</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nn">sys</span>
                                           </code>
                                        </span>
@@ -451,7 +453,9 @@ be updated when the underlying resource is updated.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="kn">import</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nn">math</span>
                                           </code>
                                        </span>
@@ -466,7 +470,9 @@ be updated when the underlying resource is updated.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="kn">import</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nn">click</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.importclick"
@@ -655,7 +661,9 @@ are lines from the same file.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="k">def</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nf">fibonacci</span>
                                              <span class="p">(</span>
                                              <span class="n">number</span>
@@ -915,7 +923,9 @@ are lines from the same file.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="k">def</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nf">make_ordinal</span>
                                              <span class="p">(</span>
                                              <span class="n">n</span>
@@ -2462,7 +2472,9 @@ be updated when the underlying resource is updated.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="kn">import</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nn">sys</span>
                                              </code>
                                           </span>
@@ -2477,7 +2489,9 @@ be updated when the underlying resource is updated.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="kn">import</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nn">math</span>
                                              </code>
                                           </span>
@@ -2492,7 +2506,9 @@ be updated when the underlying resource is updated.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="kn">import</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nn">click</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.importclick"
@@ -2681,7 +2697,9 @@ are lines from the same file.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="k">def</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nf">fibonacci</span>
                                                 <span class="p">(</span>
                                                 <span class="n">number</span>
@@ -2941,7 +2959,9 @@ are lines from the same file.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="k">def</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nf">make_ordinal</span>
                                                 <span class="p">(</span>
                                                 <span class="n">n</span>
@@ -4509,7 +4529,9 @@ be updated when the underlying resource is updated.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="kn">import</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nn">sys</span>
                                           </code>
                                        </span>
@@ -4524,7 +4546,9 @@ be updated when the underlying resource is updated.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="kn">import</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nn">math</span>
                                           </code>
                                        </span>
@@ -4539,7 +4563,9 @@ be updated when the underlying resource is updated.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="kn">import</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nn">click</span>
                                              <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                              <a id="py.importclick"
@@ -4728,7 +4754,9 @@ are lines from the same file.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="k">def</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nf">fibonacci</span>
                                              <span class="p">(</span>
                                              <span class="n">number</span>
@@ -4988,7 +5016,9 @@ are lines from the same file.</p>
                                        <span class="ld">
                                           <code>
                                              <span class="k">def</span>
-                                             <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             <span class="w">
+                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                             </span>
                                              <span class="nf">make_ordinal</span>
                                              <span class="p">(</span>
                                              <span class="n">n</span>
@@ -6549,7 +6579,9 @@ be updated when the underlying resource is updated.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="kn">import</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nn">sys</span>
                                              </code>
                                           </span>
@@ -6564,7 +6596,9 @@ be updated when the underlying resource is updated.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="kn">import</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nn">math</span>
                                              </code>
                                           </span>
@@ -6579,7 +6613,9 @@ be updated when the underlying resource is updated.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="kn">import</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nn">click</span>
                                                 <ws xmlns="http://www.jenitennison.com/xslt/xspec">  </ws>
                                                 <a id="py.importclick"
@@ -6768,7 +6804,9 @@ are lines from the same file.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="k">def</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nf">fibonacci</span>
                                                 <span class="p">(</span>
                                                 <span class="n">number</span>
@@ -7028,7 +7066,9 @@ are lines from the same file.</p>
                                           <span class="ld">
                                              <code>
                                                 <span class="k">def</span>
-                                                <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                <span class="w">
+                                                   <ws xmlns="http://www.jenitennison.com/xslt/xspec"> </ws>
+                                                </span>
                                                 <span class="nf">make_ordinal</span>
                                                 <span class="p">(</span>
                                                 <span class="n">n</span>
