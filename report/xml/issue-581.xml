@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: issue-581</title>
+
+<para>This is a scalefit test.
+</para>
+
+<informaltable >
+  <tgroup cols="1">
+    <colspec colnum="1" colwidth="200px"/>
+    <tbody>
+      <row>
+        <entry>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../media/duck.png" width="100%" scalefit="1"/>
+            </imageobject>
+          </mediaobject>
+        </entry>
+      </row>
+    </tbody>
+  </tgroup>
+</informaltable>
+
+</article>
