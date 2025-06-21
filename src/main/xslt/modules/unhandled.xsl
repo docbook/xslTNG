@@ -10,10 +10,11 @@
 
 <xsl:template match="*">
   <xsl:choose>
-    <xsl:when test="$on-unhandled-elements = 'fail'">
+    <xsl:when test="$on-unhandled-elements = 'terminate' or $on-unhandled-elements = 'fail'">
       <xsl:message terminate="yes"
                    select="'No template for ' || node-name(.) || ': ' || f:generate-id(.)"/>
     </xsl:when>
+
     <xsl:when test="$on-unhandled-elements = 'render'">
       <xsl:message select="'No template for ' || node-name(.) || ': ' || f:generate-id(.)"/>
 
@@ -42,6 +43,7 @@
         </xsl:element>
       </xsl:element>
     </xsl:when>
+
     <xsl:otherwise>
       <xsl:apply-templates select="." mode="m:unhandled"/>
     </xsl:otherwise>
