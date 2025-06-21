@@ -6,6 +6,7 @@
                 xmlns:ext="http://docbook.org/extensions/xslt"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:ghost="http://docbook.org/ns/docbook/ephemeral"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
@@ -197,11 +198,21 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  
+  <xsl:variable name="pre-processing-result" as="map(*)" select="
+      fp:run-transforms($document, $vp:transforms,
+      map {
+        xs:QName('vp:starting-base-uri'): $starting-base-uri,
+        xs:QName('vp:current-output-uri'):current-output-uri()
+      })"/>
+  
+  <xsl:call-template name="tp:write-secondary-documents">
+    <xsl:with-param name="transform-result" select="$pre-processing-result"/>
+  </xsl:call-template>
 
   <xsl:variable name="document" as="document-node()">
-    <xsl:sequence
-        select="fp:run-transforms($document, $vp:transforms,
-                                  map { xs:QName('vp:starting-base-uri'): $starting-base-uri })"/>
+    <xsl:sequence select="$pre-processing-result?output"
+        />
   </xsl:variable>
 
   <xsl:if test="string($transformed-docbook-input) != ''">
@@ -271,9 +282,19 @@
       </xsl:choose>
     </xsl:for-each>
   </xsl:variable>
+  
+  <xsl:variable name="post-processing-result" as="map(*)" select="
+      fp:run-transforms($result, $post-processing, map {
+        xs:QName('vp:current-output-uri'): current-output-uri()
+      }
+      )"/>
+  
+  <xsl:call-template name="tp:write-secondary-documents">
+    <xsl:with-param name="transform-result" select="$post-processing-result"/>
+  </xsl:call-template>
 
   <xsl:variable name="result" as="document-node()">
-    <xsl:sequence select="fp:run-transforms($result, $post-processing)"/>
+    <xsl:apply-templates select="$post-processing-result?output" mode="mp:remove-ghosts"/>
   </xsl:variable>
 
   <xsl:choose>
@@ -372,73 +393,102 @@
   </xsl:result-document>
 </xsl:template>
 
-<xsl:function name="fp:run-transforms" as="document-node()">
+<xsl:function name="fp:run-transforms" as="map(*)">
   <xsl:param name="document" as="document-node()"/>
   <xsl:param name="transforms" as="map(*)*"/>
   <xsl:sequence select="fp:run-transforms($document, $transforms, ())"/>
 </xsl:function>
 
-<xsl:function name="fp:run-transforms" as="document-node()">
+<xsl:function name="fp:run-transforms" as="map(*)">
   <xsl:param name="document" as="document-node()"/>
   <xsl:param name="transforms" as="map(*)*"/>
   <xsl:param name="extra-parameters" as="map(*)?"/>
 
   <xsl:choose>
     <xsl:when test="empty($transforms)">
-      <xsl:sequence select="$document"/>
+      <xsl:sequence select="map {'output': $document}"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:iterate select="$transforms">
         <xsl:param name="document" as="document-node()" select="$document"/>
+        <xsl:param name="secondary-documents" as="map(*)" select="map {}"/>
         <xsl:param name="extra-parameters" as="map(*)?" select="$extra-parameters"/>
-        <xsl:on-completion select="$document"/>
-        <xsl:next-iteration>
-          <xsl:with-param name="document">
-            <xsl:variable name="functions" as="xs:boolean*">
-              <xsl:for-each select=".?functions">
-                <xsl:sequence select="function-available(.)"/>
-              </xsl:for-each>
-            </xsl:variable>
+        <xsl:on-completion select="
+            let $main := map {'output': $document}
+            return
+              map:merge(($main, $secondary-documents))"/>
 
-            <xsl:variable name="process" as="xs:boolean">
-              <xsl:choose>
-                <xsl:when test="exists($functions) and false() = $functions">
-                  <xsl:sequence select="false()"/>
-                </xsl:when>
-                <xsl:when test="exists(.?test)">
-                  <xsl:evaluate xpath=".?test" as="xs:boolean"
-                                with-params="$vp:dynamic-parameters"
-                                context-item="$document"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:sequence select="true()"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:variable>
+        <xsl:variable name="next-result" as="map(*)?">
 
+          <xsl:variable name="functions" as="xs:boolean*">
+            <xsl:for-each select=".?functions">
+              <xsl:sequence select="function-available(.)"/>
+            </xsl:for-each>
+          </xsl:variable>
+
+          <xsl:variable name="process" as="xs:boolean">
             <xsl:choose>
               <xsl:when test="exists($functions) and false() = $functions">
-                <xsl:message use-when="'pipeline' = $v:debug"
-                             select="'Unavailable: ' || .?stylesheet-location"/>
-                <xsl:sequence select="$document"/>
+                <xsl:sequence select="false()"/>
               </xsl:when>
-              <xsl:when test="not($process)">
-                <xsl:message use-when="'pipeline' = $v:debug"
-                             select="'Unnecessary: ' || .?stylesheet-location"/>
-                <xsl:sequence select="$document"/>
+              <xsl:when test="exists(.?test)">
+                <xsl:evaluate xpath=".?test" as="xs:boolean" with-params="$vp:dynamic-parameters"
+                  context-item="$document"/>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:message use-when="'pipeline' = $v:debug"
-                             select="'Processing : ' || .?stylesheet-location"/>
+                <xsl:sequence select="true()"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
 
-                <xsl:sequence select="transform(map {
-                                        'stylesheet-location': .?stylesheet-location,
-                                        'source-node': $document,
-                                        'static-params': $vp:static-parameters,
-                                        'stylesheet-params': map:merge(($vp:dynamic-parameters,
-                                                                        $extra-parameters,
-                                                                        .?extra-params))
-                                      })?output"/>
+          <xsl:choose>
+            <xsl:when test="exists($functions) and false() = $functions">
+              <xsl:message use-when="'pipeline' = $v:debug"
+                select="'Unavailable: ' || .?stylesheet-location"/>
+            </xsl:when>
+            <xsl:when test="not($process)">
+              <xsl:message use-when="'pipeline' = $v:debug"
+                select="'Unnecessary: ' || .?stylesheet-location"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message use-when="'pipeline' = $v:debug"
+                select="'Processing : ' || .?stylesheet-location"/>
+
+              <xsl:sequence select="
+                  transform(map {
+                    'stylesheet-location': .?stylesheet-location,
+                    'source-node': $document,
+                    'static-params': $vp:static-parameters,
+                    'stylesheet-params': map:merge(($vp:dynamic-parameters,
+                    $extra-parameters,
+                    .?extra-params))
+                  })"/>
+            </xsl:otherwise>
+          </xsl:choose>
+
+        </xsl:variable>
+
+        <xsl:next-iteration>
+          <xsl:with-param name="document">
+            <xsl:choose>
+              <xsl:when test="exists($next-result)">
+                <xsl:sequence select="$next-result?output"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:sequence select="$document"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+          <xsl:with-param name="secondary-documents" as="map(*)">
+            <xsl:choose>
+              <xsl:when test="exists($next-result)">
+                <xsl:sequence select="
+                    let $m := map:remove($next-result, 'output')
+                    return
+                      map:merge(($secondary-documents, $m))"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:sequence select="$secondary-documents"/>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:with-param>
@@ -448,5 +498,40 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+  
+<xsl:template name="tp:write-secondary-documents">
+  <xsl:param name="transform-result" as="map(*)"/>
+  <xsl:for-each select="map:keys($transform-result)[. ne 'output']">
+    <xsl:variable name="href" as="xs:string" select="."/>
+    <xsl:try>
+      <xsl:result-document href="{$href}">
+        <xsl:sequence select="$transform-result($href)"/>
+        <xsl:message select="'Result Doc : ' || $href" use-when="'pipeline' = $v:debug"/>
+      </xsl:result-document>
+      <xsl:catch>
+        <xsl:message select="'Can''t write secondary transformation result in file ' || $href || ': ' || $err:description"/>
+      </xsl:catch>
+    </xsl:try>
+  </xsl:for-each>
+</xsl:template>  
+  
+<!-- mode to remove @ghost:* attributes and the ghost namespace -->  
+<xsl:mode name="mp:remove-ghosts"  />
+  
+<xsl:template mode="mp:remove-ghosts" match="/">
+  <xsl:document>
+    <xsl:apply-templates mode="mp:remove-ghosts" select="*"/>
+  </xsl:document>
+</xsl:template>  
+  
+<xsl:template mode="mp:remove-ghosts" match="*" >
+  <xsl:copy copy-namespaces="no">
+    <xsl:apply-templates mode="mp:remove-ghosts" select="@* except @ghost:*, node()"/>
+  </xsl:copy> 
+</xsl:template>  
+  
+<xsl:template mode="mp:remove-ghosts" match="@* | node()"  priority="-1">
+  <xsl:copy/>
+</xsl:template>      
 
 </xsl:stylesheet>
