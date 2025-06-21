@@ -1761,5 +1761,23 @@ when the processing instruction is parsed.</para>
 </refsection>
 </refentry>
 
+<refentry xml:id="v_mathml-js-roles">
+<?db filename="v_mathml-js-roles"?>
+<refmeta>
+<refentrytitle>$v:mathml-js-roles</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/variables}mathml-js-roles</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>$v:mathml-js-roles</refname>
+<refpurpose>“MathML” roles</refpurpose>
+<refclass>variable</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>See <parameter>mathml-js-role</parameter>. The value can
+actually be a whitespace separated list of roles.</para>
+</refsection>
+</refentry>
+
 </reference>
 

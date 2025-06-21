@@ -26,6 +26,9 @@
 <xsl:variable name="v:as-json" select="map {'method':'json','indent':true()}"/>
 <xsl:variable name="v:as-xml" select="map {'method':'xml','indent':true()}"/>
 
+<xsl:variable name="v:mathml-js-roles" as="xs:string*"
+              select="tokenize($mathml-js-role, '\s+')"/>
+
 <xsl:variable name="v:custom-localizations" as="document-node()?"
               select="()"/>
 

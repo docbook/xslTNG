@@ -2375,8 +2375,9 @@ that transforms pseudo-DocBook elements “<code>att</code>” and
 <refentry>
   <refmeta>
     <fieldsynopsis>
+      <type>xs:string</type>
       <varname>mathml-js</varname>
-      <initializer>'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_CHTML'</initializer>
+      <initializer>'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js'</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
@@ -2386,7 +2387,53 @@ that transforms pseudo-DocBook elements “<code>att</code>” and
 <title>Description</title>
 <para>If your documents use MathML, this library will be included to support
 MathML rendering. <biblioref linkend="MathJax"/> is a popular choice.
+See also <parameter>mathml-js-config</parameter>.</para>
+<para>Some libraries support formats other than MathML, see
+<parameter>mathml-js-role</parameter>.
 </para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>mathml-js-config</varname>
+      <initializer>()</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Configuration script for MathML</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If this parameter is set, it will be added (as a script) to the output before the
+<parameter>mathml-js</parameter> script. This can contain, for example, configuration
+settings for the MathML renderer.</para>
+</refsection>
+</refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>mathml-js-role</varname>
+      <initializer>'tex'</initializer>
+    </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Class that identifies MathML support</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>If your document contains MathML, JavaScript support for MathML is included
+automatically. If the rendering library that you’re using supports other formats,
+for example MathJax supports TeX, then you may wan to include the library on pages
+that don’t contain MathML.</para>
+<para>If the <parameter>mathml-js-role</parameter> parameter is specified, the
+MathML support will be added to any page that contains a <tag>mathphrase</tag>
+element with that role. If the role is set to the empty string (as distinct from
+the empty sequence), the script will be added unconditionally.</para>
 </refsection>
 </refentry>
 
