@@ -203,12 +203,12 @@
   </xsl:choose>
 </xsl:function>
 
-<xsl:function name="f:gentext-letters" as="element(l:letters)">
+<xsl:function name="f:gentext-letters" as="element(l:letters)?">
   <xsl:param name="node" as="element()"/>
   <xsl:sequence select="f:gentext-letters-for-language($node)"/>
 </xsl:function>
 
-<xsl:function name="f:gentext-letters-for-language" as="element(l:letters)">
+<xsl:function name="f:gentext-letters-for-language" as="element(l:letters)?">
   <xsl:param name="node" as="element()"/>
 
   <xsl:variable name="lang" select="f:l10n-language($node)"/>
