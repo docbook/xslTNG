@@ -887,10 +887,13 @@
 <xsl:function name="f:css-length" as="xs:string?">
   <xsl:param name="property" as="xs:string"/>
   <xsl:param name="length" as="map(*)?"/>
-  <xsl:sequence
-      select="if (exists($length) and $length?unit)
-              then f:css-property($property, string(f:absolute-length($length))||'px')
-              else ()"/>
+
+  <xsl:if test="exists($length) and exists($length?unit)">
+    <xsl:sequence
+        select="if ($length?unit = '%')
+                then f:css-property($property, string($length?magnitude || '%'))
+                else f:css-property($property, string(f:absolute-length($length))||'px')"/>
+  </xsl:if>
 </xsl:function>
 
 <xsl:function name="f:css-property" as="xs:string?">
