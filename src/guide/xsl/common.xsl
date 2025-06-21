@@ -669,6 +669,11 @@
       <xsl:when test="../db:refnamediv/db:refclass = 'pi'">
         <!-- this doesn't have anything to point to -->
       </xsl:when>
+      <xsl:when test="empty($objects) and 
+                      ../db:refmeta/db:refmiscinfo[not(@class)]
+                        = '{http://docbook.org/ns/docbook/modes}unhandled'">
+        <!-- this is expected -->
+      </xsl:when>
       <xsl:when test="empty($objects)">
         <xsl:message select="'Non-existant:',
                              ../db:refmeta/db:refmiscinfo[not(@class)]/string()"/>
