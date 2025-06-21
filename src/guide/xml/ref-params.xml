@@ -3377,12 +3377,12 @@ the values in the <att>wordsize</att> attribute. See <xref linkend="profiling"/>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
-    <refpurpose>points to the file with default templates</refpurpose>
+    <refpurpose>The URI of the default templates file</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>The URI of a file with default title page templates. 
-      If it is relative, it will be resolve against the <filename>xslt/modules</filename> directory.</para>
+    <para>The URI of a file with default <link linkend="titlepages">title page templates</link>. 
+      If it is relative, it will be resolve against the static base URI of the stylesheet.</para>
   </refsection>
 </refentry>
 
