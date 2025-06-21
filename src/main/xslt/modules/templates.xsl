@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:dbe="http://docbook.org/ns/docbook/errors"
+                xmlns:err='http://www.w3.org/2005/xqt-errors'
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
                 xmlns:h="http://www.w3.org/1999/xhtml"
@@ -25,14 +26,29 @@
 <xsl:variable name="v:templates" as="document-node()">
   <xsl:document/>
 </xsl:variable>
+  
+<xsl:variable name="vp:default-templates" as="element()*">
+  <xsl:variable name="uri" as="xs:string" select="
+      if (starts-with($default-templates-uri, '/')) then
+        $default-templates-uri
+      else
+        resolve-uri($default-templates-uri, static-base-uri())"/>
+  <xsl:try>
+    <xsl:sequence select="doc($uri)/*/*"/>
+    <xsl:catch>
+      <xsl:message
+        select="'WARNING: Can''t get default templates from ' || $default-templates-uri || ': ' || $err:description || '. Using templates.xml as fallback.'"/>
+      <xsl:sequence select="doc('templates.xml')/*/*"/>
+    </xsl:catch>
+  </xsl:try>
+</xsl:variable>
 
 <xsl:variable name="vp:templates" as="document-node()">
   <!-- Yes, this is basically fold-left done the hard way,
        but it avoids an EE feature in Saxon 9. -->
   <xsl:document>
     <xsl:sequence
-        select="fp:construct-templates(($v:templates/*, doc('templates.xml')/*/*),
-                                        ())"/>
+      select="fp:construct-templates(($v:templates/*, $vp:default-templates), ())"/>
   </xsl:document>
 </xsl:variable>
 
