@@ -129,6 +129,13 @@
                   defer="defer"/>
         </db-pagetoc-script>
         <db-mathml-script>
+          <xsl:if test="exists($mathml-js-config)">
+            <script src="{if (starts-with($mathml-js-config, 'http:')
+                              or starts-with($mathml-js-config, 'https:'))
+                          then $mathml-js-config
+                          else $resource-base-uri || $mathml-js-config}"
+                  defer="defer"/>
+          </xsl:if>
           <script src="{if (starts-with($mathml-js, 'http:')
                             or starts-with($mathml-js, 'https:'))
                         then $mathml-js

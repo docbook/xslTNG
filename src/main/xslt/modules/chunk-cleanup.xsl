@@ -133,8 +133,13 @@
                 select="$classes = $vp:pagetoc-elements"/>
 
   <xsl:variable name="scripts" as="element(h:script)*">
-    <xsl:if test="exists(.//mml:*)"
-            xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <xsl:variable name="mathml" select="exists(.//mml:*)"
+                  xmlns:mml="http://www.w3.org/1998/Math/MathML"/>
+    <xsl:variable name="role"
+                  select="exists($v:mathml-js-roles)
+                          and exists(//h:span[contains-token(@class, 'mathphrase')
+                                     and contains-token(@class, $v:mathml-js-roles)])"/>
+    <xsl:if test="$mathml or $role">
       <xsl:apply-templates select="/h:html/h:db-mathml-script/*">
         <xsl:with-param name="rootbaseuri" select="$rbu"/>
         <xsl:with-param name="chunkbaseuri" select="$cbu"/>
