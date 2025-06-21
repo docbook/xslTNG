@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Install platform-independent Python modules
         run: |
-          python3 -m pip install pygments==2.14.0 click cython
+          python3 -m pip install pygments==2.19.1 click cython
 
       # Test the build on Mac
 
@@ -66,7 +66,8 @@ jobs:
         run: |
           brew install rsync libxml2 libxslt sass/sass/sass
           python3 -m pip install saxonche
-          python3 -m pip install --no-binary lxml html5-parser
+          python3 -m pip install html5-parser
+          python3 -m pip install --no-binary lxml lxml
 
       - name: Checkout the pull request on Mac
         if: matrix.os == 'macos-11'

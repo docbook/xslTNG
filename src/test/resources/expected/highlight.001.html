@@ -4,16 +4,16 @@
 <span class="line" db-line="4"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="sd">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
 <span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="sd">appeared to be easier."""</span></code></span></span>
 <span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">re</span></code></span></span>
-<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">os</span></code></span></span>
-<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">sys</span></code></span></span>
-<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">json</span></code></span></span>
-<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">glob</span></code></span></span>
-<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">click</span></code></span></span>
+<span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">click</span></code></span></span>
 <span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">try</span><span class="p">:</span></code></span></span>
-<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">html5_parser</span></code></span></span>
-<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">lxml.etree</span></code></span></span>
-<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">from</span> <span class="nn">saxonche</span> <span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
+<span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span><span class="w"> </span><span class="nn">html5_parser</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span><span class="w"> </span><span class="nn">lxml.etree</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">from</span><span class="w"> </span><span class="nn">saxonche</span><span class="w"> </span><span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
 <span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">True</span></code></span></span>
 <span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span></code></span></span>
 <span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">False</span></code></span></span></pre></div><p>But numbering can be turned off:</p><div class="pre-wrap programlisting-wrap highlight"><pre class="language-python programlisting verbatim verblines"><span class="line"><span class="ld"><code><span class="ch">#!/usr/bin/env python3</span></code></span></span>
@@ -22,16 +22,16 @@
 <span class="line"><span class="ld"><code><span class="sd">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
 <span class="line"><span class="ld"><code><span class="sd">appeared to be easier."""</span></code></span></span>
 <span class="line"><span class="ld"><code> </code></span></span>
-<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">re</span></code></span></span>
-<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">os</span></code></span></span>
-<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">sys</span></code></span></span>
-<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">json</span></code></span></span>
-<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">glob</span></code></span></span>
-<span class="line"><span class="ld"><code><span class="kn">import</span> <span class="nn">click</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span></code></span></span>
+<span class="line"><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">click</span></code></span></span>
 <span class="line"><span class="ld"><code><span class="k">try</span><span class="p">:</span></code></span></span>
-<span class="line"><span class="ld"><code>    <span class="kn">import</span> <span class="nn">html5_parser</span></code></span></span>
-<span class="line"><span class="ld"><code>    <span class="kn">import</span> <span class="nn">lxml.etree</span></code></span></span>
-<span class="line"><span class="ld"><code>    <span class="kn">from</span> <span class="nn">saxonche</span> <span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="kn">import</span><span class="w"> </span><span class="nn">html5_parser</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="kn">import</span><span class="w"> </span><span class="nn">lxml.etree</span></code></span></span>
+<span class="line"><span class="ld"><code>    <span class="kn">from</span><span class="w"> </span><span class="nn">saxonche</span><span class="w"> </span><span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
 <span class="line"><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">True</span></code></span></span>
 <span class="line"><span class="ld"><code><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span></code></span></span>
 <span class="line"><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">False</span></code></span></span></pre></div><p>And so can highlighting. The most reliable way to disable highlighting
@@ -80,16 +80,16 @@ is to remove the <code class="tag tag-attribute">language</code> attribute from 
 <span class="line" db-line="5"><span class="ln"> 5 <span class="nsep">|</span></span><span class="ld"><code><span class="sd">than find an existing cross-platform version? Maybe not, but it</span></code></span></span>
 <span class="line" db-line="6"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="sd">appeared to be easier."""</span></code></span></span>
 <span class="line" db-line="7"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code> </code></span></span>
-<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">re</span></code></span></span>
-<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">os</span></code></span></span>
-<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">sys</span></code></span></span>
-<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">json</span></code></span></span>
-<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">glob</span></code></span></span>
-<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span> <span class="nn">click</span></code></span></span>
+<span class="line" db-line="8"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">re</span></code></span></span>
+<span class="line" db-line="9"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span></code></span></span>
+<span class="line" db-line="10"><span class="ln">10 <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span></code></span></span>
+<span class="line" db-line="11"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span></code></span></span>
+<span class="line" db-line="12"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span></code></span></span>
+<span class="line" db-line="13"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="kn">import</span><span class="w"> </span><span class="nn">click</span></code></span></span>
 <span class="line" db-line="14"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">try</span><span class="p">:</span></code></span></span>
-<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">html5_parser</span></code></span></span>
-<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span> <span class="nn">lxml.etree</span></code></span></span>
-<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">from</span> <span class="nn">saxonche</span> <span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
+<span class="line" db-line="15"><span class="ln">15 <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span><span class="w"> </span><span class="nn">html5_parser</span></code></span></span>
+<span class="line" db-line="16"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">import</span><span class="w"> </span><span class="nn">lxml.etree</span></code></span></span>
+<span class="line" db-line="17"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="kn">from</span><span class="w"> </span><span class="nn">saxonche</span><span class="w"> </span><span class="kn">import</span> <span class="n">PySaxonProcessor</span></code></span></span>
 <span class="line" db-line="18"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">True</span></code></span></span>
 <span class="line" db-line="19"><span class="ln">   <span class="nsep">|</span></span><span class="ld"><code><span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span></code></span></span>
 <span class="line" db-line="20"><span class="ln">20 <span class="nsep">|</span></span><span class="ld"><code>    <span class="n">importOk</span> <span class="o">=</span> <span class="kc">False</span></code></span></span></pre></div><p>Line numbering can begin at an arbitrary number:</p><div class="pre-wrap programlisting-wrap highlight" db-startinglinenumber="601" db-numberoflines="11"><pre class="language-python long numbered programlisting verbatim verblines"><span class="line" db-line="601"><span class="ln">601 <span class="nsep">|</span></span><span class="ld"><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span></code></span></span>
