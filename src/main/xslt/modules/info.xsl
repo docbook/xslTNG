@@ -173,12 +173,21 @@
   </span>
 </xsl:template>
 
-<xsl:template match="db:abstract|db:legalnotice
-                     |db:authorgroup[parent::db:info]">
+<xsl:template match="db:abstract|db:legalnotice">
   <div>
-    <xsl:apply-templates select="." mode="m:attributes"/>
+    <xsl:apply-templates select="." mode="m:attributes"/>  
+    <xsl:if test="exists(db:info/db:title)">
+        <xsl:apply-templates select="." mode="m:generate-titlepage"/>
+    </xsl:if>  
     <xsl:apply-templates/>
   </div>
+</xsl:template>
+    
+<xsl:template match="db:authorgroup[parent::db:info]">
+    <div>
+        <xsl:apply-templates select="." mode="m:attributes"/>
+        <xsl:apply-templates/>
+    </div>
 </xsl:template>
 
 <xsl:template match="db:honorific|db:firstname|db:othername
