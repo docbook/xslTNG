@@ -15,7 +15,6 @@ from xml.dom.minidom import parse, Node
 
 class JavaClassRunnerException(Exception):
     """Subclass of Exception for errors raised by the runner."""
-    pass
 
 
 class JavaClassRunner:
@@ -29,7 +28,7 @@ class JavaClassRunner:
     # Yes, I have a lot of instance attributes. I'm also using camelCase names,
     # which aren't the Pythonic way, but they are the POM way. And I know some
     # methods could be functions.
-    # pylint: disable=R0902,C0103,R0201
+    # pylint: disable=R0902,C0103,W1514
 
     def __init__(self, args):
         self.version = "@@VERSION@@"
@@ -42,7 +41,7 @@ class JavaClassRunner:
         # docbook-xslTNG package from the distribution environment and
         # we seed with its dependencies. These must all be in the
         # DocBook distribution (in libs/lib).
-        self.seeds = set(["@@PACKAGE_LIST@@"])
+        self.seeds = {"@@PACKAGE_LIST@@"}
 
         self.config = {
             "maven-local": str(Path.home()) + "/.m2/repository",
@@ -158,16 +157,17 @@ class JavaClassRunner:
 
         if resources is not None:
             if resources == "" and not self.output:
-                self._message(f"Cannot determine output directory; ignoring --resources")
+                self._message("Cannot determine output directory; ignoring --resources")
             else:
                 if resources == "":
-                    resources = os.path.abspath(self.output)
+                    resources = os.path.abspath(f"{self.output}")
                     resources = os.path.dirname(resources)
                 else:
                     resources = os.path.abspath(resources)
                 self._configure_resources(resources)
 
-    def _help(self):
+    @staticmethod
+    def _help():
         print(f"""DocBook xslTNG version @@VERSION@@
 
 Usage: {sys.argv[0]} [options]
@@ -238,7 +238,7 @@ wrapper sets these automatically.
             try:
                 if not os.path.isdir(fdir):
                     os.makedirs(fdir)
-            except:
+            except OSError:
                 self._message(f"Failed to create output directory: {path}")
                 return
 
@@ -264,7 +264,8 @@ wrapper sets these automatically.
         except IOError:
             return None
 
-    def _get_value(self, node, tag):
+    @staticmethod
+    def _get_value(node, tag):
         for child in node.childNodes:
             if child.nodeType == Node.ELEMENT_NODE \
               and child.tagName == tag \
@@ -281,7 +282,8 @@ wrapper sets these automatically.
             return jarfile
         return None
 
-    def _skip(self, groupId, artifactId, version):
+    @staticmethod
+    def _skip(groupId, artifactId, version):
         return (groupId is None or "${" in groupId
                 or artifactId is None or "${" in artifactId
                 or version is None or "${" in version)
@@ -311,9 +313,7 @@ wrapper sets these automatically.
             self._message(f"No jar: {groupId}:{artifactId}:{version}")
             return
 
-        pkgconfig = {}
-        pkgconfig["jar"] = jar
-        pkgconfig["dependencies"] = []
+        pkgconfig = {"jar": jar, "dependencies": []}
         self.depends[groupId][artifactId][version] = pkgconfig
 
         if self._skip(groupId, artifactId, version):
@@ -367,7 +367,8 @@ wrapper sets these automatically.
 
         return deps
 
-    def _expandProperties(self, value, properties):
+    @staticmethod
+    def _expandProperties(value, properties):
         for prop in properties:
             repl = "${" + prop + "}"
             if repl in value:
@@ -392,7 +393,7 @@ wrapper sets these automatically.
               or artifact not in self.depends[group] \
               or version not in self.depends[group][artifact] \
               or self.depends[group][artifact][version] is None:
-                found = self._libfallback(package);
+                found = self._libfallback(package)
 
         if not found:
             sys.exit(1)
@@ -408,7 +409,8 @@ wrapper sets these automatically.
         print(f"Required package not found: {group}:{artifact}:{version}; download with Maven")
         return False
 
-    def _higher_version(self, curver, newver):
+    @staticmethod
+    def _higher_version(curver, newver):
         if curver == newver:
             return False
 
@@ -480,8 +482,8 @@ wrapper sets these automatically.
                 if self._higher_version(curver, version):
                     usever = version
                     # Actually remove the current version, we're replacing it.
-                    del self._cp[group][artifact][curver];
-                    del self.depends[group][artifact][curver];
+                    del self._cp[group][artifact][curver]
+                    del self.depends[group][artifact][curver]
                 else:
                     usever = curver
 
@@ -527,6 +529,7 @@ wrapper sets these automatically.
             for path in os.environ["CLASSPATH"].split(os.pathsep):
                 cplist.append(path)
 
+        # pylint: disable=C0206
         for group in self._cp:
             for archive in self._cp[group]:
                 for version in self._cp[group][archive]:
@@ -600,7 +603,6 @@ wrapper sets these automatically.
 
 if __name__ == "__main__":
     # I'm perfectly happy with the name 'docbook'
-    # pylint: disable=C0103
 
     try:
         docbook = JavaClassRunner(sys.argv[1:])
