@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+        xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/refentry-name.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/refentry-name.xsl"
+        date="2025-06-21T08:26:58.136308064Z">
+   <scenario id="scenario1"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/refentry-name.xspec">
+      <label>When transforming refentry-name.001</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/refentry-name.001.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>Article wrapper</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="article component">
+                        <header>
+                           <h1>Article wrapper</h1>
+                        </header>
+                        <section id="minimal" class="component refentry">
+                           <div id="minimal_refnamediv1" class="refnamediv">
+                              <header>
+                                 <h2>Name</h2>
+                              </header>
+                              <p>
+                                 <span class="refname">Minimal</span>
+                                 <span class="refpurpose">
+                                    <span class="refpurpose-sep"> — </span>
+                                    <span class="refpurpose-text">Test of a minimal RefEntry</span>
+                                    <span class="refpurpose-punc">.</span>
+                                 </span>
+                              </p>
+                           </div>
+                           <section id="minimal_rs1_1" class="refsect1">
+                              <header>
+                                 <h2>Description</h2>
+                              </header>
+                              <p>This is a minimal RefEntry.</p>
+                           </section>
+                        </section>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect refentry-name.001.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>Article wrapper</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="article component">
+                           <header>
+                              <h1>Article wrapper</h1>
+                           </header>
+                           <section id="minimal" class="component refentry">
+                              <div id="minimal_refnamediv1" class="refnamediv">
+                                 <header>
+                                    <h2>Name</h2>
+                                 </header>
+                                 <p>
+                                    <span class="refname">Minimal</span>
+                                    <span class="refpurpose">
+                                       <span class="refpurpose-sep"> — </span>
+                                       <span class="refpurpose-text">Test of a minimal RefEntry</span>
+                                       <span class="refpurpose-punc">.</span>
+                                    </span>
+                                 </p>
+                              </div>
+                              <section id="minimal_rs1_1" class="refsect1">
+                                 <header>
+                                    <h2>Description</h2>
+                                 </header>
+                                 <p>This is a minimal RefEntry.</p>
+                              </section>
+                           </section>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+</report>
