@@ -141,6 +141,21 @@ class TestGenerator {
       .withParameters([
           'glossary-collection': "${fProjectDir}/src/test/resources/glosscollection.xml"])
 
+    testEnvironments.create('refentry-name')
+      .withParameters([
+          'refentry-generate-name': true,
+          'refentry-generate-title': false])
+
+    testEnvironments.create('refentry-title')
+      .withParameters([
+          'refentry-generate-name': false,
+          'refentry-generate-title': true])
+
+    testEnvironments.create('refentry-neither')
+      .withParameters([
+          'refentry-generate-name': false,
+          'refentry-generate-title': false])
+
     testConfigurations.create('unwrapped').withEnvironments(['unwrap'])
     testConfigurations.create('transclude').withEnvironments(['transclude'])
     testConfigurations.create('local').withEnvironments(['local'])
@@ -148,6 +163,9 @@ class TestGenerator {
     testConfigurations.create('ptoc').withEnvironments(['ptoc'])
     testConfigurations.create('a11y').withEnvironments(['a11y'])
     testConfigurations.create('glossary-collection').withEnvironments(['glossary-collection'])
+    testConfigurations.create('refentry-name').withEnvironments(['refentry-name'])
+    testConfigurations.create('refentry-title').withEnvironments(['refentry-title'])
+    testConfigurations.create('refentry-neither').withEnvironments(['refentry-neither'])
 
     def regexList = []
     ['fit\\.': 'fit',
@@ -161,6 +179,9 @@ class TestGenerator {
      'glossary\\.00[1,2,3,4,5,6]': 'glossary-collection', // Not 7, 8, or 9!
      'glossary\\.01': 'glossary-collection',
      'book\\.014': 'book-014',
+     'refentry-name\\.': 'refentry-name',
+     'refentry-title\\.': 'refentry-title',
+     'refentry-neither\\.': 'refentry-neither'
     ].each { entry ->
       Pattern pat = ~"^.*${entry.key}.*\$"
       regexList.add(new Tuple(pat, testConfigurations.find(entry.value)))

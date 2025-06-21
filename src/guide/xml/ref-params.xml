@@ -3571,8 +3571,9 @@ the provided grammar.
 <refsection>
 <title>Description</title>
 <para>If <parameter>refentry-generate-name</parameter> is true, the
-title of the refentry page will be the word “Name”. Otherwise it will
-be the title of the subject of the reference page. Generally, exactly one
+title of the refentry page will be the word “Name”. Otherwise its value
+depends on the setting of <parameter>refentry-generate-title</parameter>.
+Generally, exactly one
 of <parameter>refentry-generate-name</parameter> or
 <parameter>refentry-generate-title</parameter> should
 <glossterm baseform="is true">be true</glossterm>.
@@ -3584,7 +3585,7 @@ of <parameter>refentry-generate-name</parameter> or
   <refmeta>
     <fieldsynopsis>
       <varname>refentry-generate-title</varname>
-      <initializer>true()</initializer>
+      <initializer>false()</initializer>
     </fieldsynopsis>
   </refmeta>
   <refnamediv>
