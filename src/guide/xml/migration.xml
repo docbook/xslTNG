@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0" xml:id="migration">
+  <info>
+    <?db filename="ch-preface"?>
+    <title>Migration from XSLT 1.0 to XSLT 3.0</title>
+  </info>
+
+<!--
+This is the migration chapter for issue #212
+
+Some ideas to cover:
+
+* Benefits of moving to the new stylesheets (that's probably mostly covered in this project already)
+* Target groups (probably developers that already wrote customization layers?)
+* Requirements:
+  * Skills needed (certainly some XSLT/XPath 3.0 would be useful)
+  * Software (perhaps Saxon9-12. Other XSLT 3.0 processors aren't available at the moment, right?)
+  * System (the necessary dependencies, Docker images, or other requirements etc.)
+* Migration considerations
+* Tips and recommendations
+* Best practices
+* Traps or things to avoid (for example, how to migrate extension elements/functions from other XSLT
+  processors, like exsl:node-set)
+* Testing
+  The xslTNG stylesheets contains test cases which is really great! How can we use this for a migration project?
+* Costs
+  Not so from a financial aspect, but more about:
+  * Speed (is it slower/faster than the DocBook XSLT 1.0 stylesheets with xsltproc? By what factor? What can we do to speed up things?)
+  * Time (how much effort is it to move an existing code base? I know, that's hard to answer, but maybe there are some experiences?)
+  * Complete rewrite? (when it is useful to just throw away the existing code base and start from scratch? Any experience?)
+
+-->
+
+  <para>TBD</para>
+</appendix>
