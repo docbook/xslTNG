@@ -298,4 +298,84 @@
   <xsl:sequence select="key('citation', normalize-space($term), $root)"/>
 </xsl:function>
 
+<!-- ===================================================================================
+|   URI-related functions
+|=================================================================================== -->
+
+<xsl:function name="f:flatten-path" as="xs:anyURI">
+  <xsl:param name="hierarchical-uri" as="xs:string"/>
+
+  <xsl:variable name="uri" select="replace($hierarchical-uri, '\\', '/')"/>
+
+  <xsl:variable name="prefix" as="xs:string?">
+    <xsl:choose>
+      <xsl:when test="matches($uri, '^[a-z]+://[^/]+/', 'i')">
+        <xsl:sequence select="replace($uri, '(^[a-z]+://[^/]+/).*$', '$1', 'i')"/>
+      </xsl:when>
+      <xsl:when test="matches($uri, '^[a-z]+:///?', 'i')">
+        <xsl:sequence select="replace($uri, '(^[a-z]+:///?).*$', '$1', 'i')"/>
+      </xsl:when>
+      <xsl:when test="matches($uri, '^/+', 'i')">
+        <xsl:sequence select="replace($uri, '(^/+).*$', '$1', 'i')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="''"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="path"
+                select="if ($prefix = '') then $uri else substring-after($uri, $prefix)"/>
+
+  <xsl:variable name="windows-drive" as="xs:string?">
+    <xsl:choose>
+      <xsl:when test="matches($path, '^[a-z]:/', 'i')">
+        <xsl:sequence select="substring($path, 1, 3)"/>
+      </xsl:when>
+      <xsl:when test="matches($path, '^[a-z]:', 'i')">
+        <xsl:sequence select="substring($path, 1, 2)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="''"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="prefix" select="$prefix || $windows-drive"/> 
+
+  <xsl:variable name="path" select="if ($windows-drive = '')
+                                    then $path
+                                    else substring-after($path, $windows-drive)"/>
+
+  <xsl:variable name="result" as="xs:string*">
+    <xsl:iterate select="tokenize($path, '/')">
+      <xsl:param name="parts" select="()"/>
+      <xsl:on-completion select="$parts"/>
+      <xsl:choose>
+        <xsl:when test=". = '.'">
+          <xsl:next-iteration>
+            <xsl:with-param name="parts" select="$parts"/>
+          </xsl:next-iteration>
+        </xsl:when>
+        <xsl:when test=". = '..'">
+          <xsl:if test="empty($parts)">
+            <xsl:message
+                select="'Error: ' || $hierarchical-uri || ' contains too many ''/../'' segments'"/>
+          </xsl:if>
+          <xsl:next-iteration>
+            <xsl:with-param name="parts" select="subsequence($parts, 1, count($parts)-1)"/>
+          </xsl:next-iteration>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:next-iteration>
+            <xsl:with-param name="parts" select="($parts, .)"/>
+          </xsl:next-iteration>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:iterate>
+  </xsl:variable>
+
+  <xsl:sequence select="xs:anyURI($prefix || string-join($result, '/'))"/>
+</xsl:function>
+
 </xsl:stylesheet>

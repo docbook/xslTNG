@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:db="http://docbook.org/ns/docbook"
+               xmlns:h="http://www.w3.org/1999/xhtml"
+               xmlns:f="http://docbook.org/ns/docbook/functions"
+               xmlns:m="http://docbook.org/ns/docbook/modes"
+               xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../../../build/xspec-xslt/xspec-driver.xsl">
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'/path/to/thing'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = '/path/to/thing'"/>
+</x:scenario>
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'/path/to/./././thing'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = '/path/to/thing'"/>
+</x:scenario>
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'c:\path\where\..\to\thing'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = 'c:/path/to/thing'"/>
+</x:scenario>
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'file:/c:/path/to/where/../thing'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = 'file:/c:/path/to/thing'"/>
+</x:scenario>
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'http://example.com/path/../../warning/message'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = 'http://example.com/warning/message'"/>
+</x:scenario>
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'https://example.com/a/././././b/x/../x/../x/../c/.'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = 'https://example.com/a/b/c'"/>
+</x:scenario>
+
+<x:scenario label="When flattening a URI path">
+  <x:call function="f:flatten-path">
+    <x:param name="hierarchical-uri" select="'https://example.com/a/././././b/x/../x/../x/../c/d/..'"/>
+  </x:call>
+  <x:expect label="expect a normalized result"
+            test=". = 'https://example.com/a/b/c'"/>
+</x:scenario>
+
+</x:description>
