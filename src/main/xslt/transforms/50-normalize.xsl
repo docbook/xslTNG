@@ -201,9 +201,6 @@
     <xsl:otherwise>
       <xsl:copy>
         <xsl:sequence select="@*"/>
-        <xsl:if test="empty(@xml:id) and fp:cited(.)">
-          <xsl:attribute name="xml:id" select="f:id(.)"/>
-        </xsl:if>
         <xsl:apply-templates/>
       </xsl:copy>
     </xsl:otherwise>
@@ -275,7 +272,7 @@
 </xsl:template>
 
 <xsl:template match="db:bibliography[contains-token(@role, 'auto')]">
-  <!-- Locate all the external glossaries -->
+  <!-- Locate all the external bibliographies -->
   <xsl:variable name="bibl-uris" as="xs:string*">
     <xsl:sequence select="f:pi(root(.)/*, 'bibliography-collection')"/>
     <xsl:sequence select="$bibliography-collection"/>
