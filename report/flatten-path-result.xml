@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.jenitennison.com/xslt/xspec"
+        xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec"
+        stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/xspec-xslt/xspec-driver.xsl"
+        date="2025-06-29T13:25:17.145962603Z">
+   <scenario id="scenario1"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri" select="'/path/to/thing'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('/path/to/thing')"/>
+      <test id="scenario1-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = '/path/to/thing'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario2"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri" select="'/path/to/./././thing'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('/path/to/thing')"/>
+      <test id="scenario2-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = '/path/to/thing'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario3"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri" select="'c:\path\where\..\to\thing'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('c:/path/to/thing')"/>
+      <test id="scenario3-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = 'c:/path/to/thing'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario4"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri" select="'file:/c:/path/to/where/../thing'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('file:/c:/path/to/thing')"/>
+      <test id="scenario4-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = 'file:/c:/path/to/thing'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario5"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri"
+                     select="'http://example.com/path/../../warning/message'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('http://example.com/warning/message')"/>
+      <test id="scenario5-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = 'http://example.com/warning/message'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario6"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri"
+                     select="'https://example.com/a/././././b/x/../x/../x/../c/.'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('https://example.com/a/b/c')"/>
+      <test id="scenario6-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = 'https://example.com/a/b/c'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+   <scenario id="scenario7"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/src/test/xspec/flatten-path.xspec">
+      <label>When flattening a URI path</label>
+      <input-wrap xmlns="">
+         <x:call xmlns:db="http://docbook.org/ns/docbook"
+                 xmlns:f="http://docbook.org/ns/docbook/functions"
+                 xmlns:h="http://www.w3.org/1999/xhtml"
+                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                 xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                 function="f:flatten-path">
+            <x:param name="hierarchical-uri"
+                     select="'https://example.com/a/././././b/x/../x/../x/../c/d/..'"/>
+         </x:call>
+      </input-wrap>
+      <result select="Q{http://www.w3.org/2001/XMLSchema}anyURI('https://example.com/a/b/c')"/>
+      <test id="scenario7-expect1" successful="true">
+         <label>expect a normalized result</label>
+         <expect-test-wrap xmlns="">
+            <x:expect xmlns:db="http://docbook.org/ns/docbook"
+                      xmlns:f="http://docbook.org/ns/docbook/functions"
+                      xmlns:h="http://www.w3.org/1999/xhtml"
+                      xmlns:m="http://docbook.org/ns/docbook/modes"
+                      xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                      test=". = 'https://example.com/a/b/c'"/>
+         </expect-test-wrap>
+         <expect select="()"/>
+      </test>
+   </scenario>
+</report>
