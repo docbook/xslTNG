@@ -2523,4 +2523,24 @@ testing, you can also use the
 </refsection>
 </refentry>
 
+<refentry xml:id="f_flatten-path">
+  <?db filename='f_flatten-path'?>
+  <refmeta>
+    <refentrytitle>f:flatten-path</refentrytitle>
+    <refmiscinfo>{http://docbook.org/ns/docbook/functions}flatten-path#1</refmiscinfo>
+    <refmiscinfo class="version">2.6.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refname>f:flatten-path</refname>
+    <refpurpose>Removes “.” and “..” segments from the path of a URI</refpurpose>
+    <refclass>function</refclass>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+<para>This function removes <code>.</code> and <code>..</code> segments from the path portion
+of a (assumed to be hierarchical) URI. It issues a warning (but does not cause the stylesheet
+to fail) if an attempt is made to navigate beyond the root.</para>
+</refsection>
+</refentry>
+
 </reference>
