@@ -101,13 +101,13 @@
 </xsl:template>
 
 <xsl:template match="db:firstterm|db:glossterm" mode="m:link">
+  <xsl:variable name="baseform" as="xs:string" select="(@baseform,.)[1] => normalize-space()"/>
   <xsl:variable name="target"
-                select="key('glossterm', (@baseform,normalize-space(.))[1])"/>
+                select="key('glossterm', $baseform)"/>
 
   <xsl:choose>
     <xsl:when test="empty($target)">
-      <xsl:message select="'Gloss term has no entry:',
-                           (@baseform/string(), normalize-space(.))[1]"/>
+      <xsl:message select="'Gloss term has no entry:',$baseform"/>
       <xsl:apply-templates/>
     </xsl:when>
     <xsl:otherwise>
