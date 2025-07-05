@@ -378,4 +378,13 @@
   <xsl:sequence select="xs:anyURI($prefix || string-join($result, '/'))"/>
 </xsl:function>
 
+<!-- like standard fn:path, but with DocBook Namespace removed -->
+<xsl:function name="fp:path" as="xs:string?">
+  <xsl:param name="node" as="node()?"/>
+  <xsl:sequence select="
+      let $db := 'Q\{http://docbook\.org/ns/docbook\}'
+      return
+        path($node) ! replace(., $db, '')"/>
+</xsl:function>
+
 </xsl:stylesheet>
