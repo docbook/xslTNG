@@ -348,12 +348,41 @@ will be to <uri>media/image.png</uri>.
 <xref linkend="media"/>.</para>
 
 <important>
-<para>The stylesheets are not responsible for actually copying the media files
-into the correct locations in the output. The stylesheets only generate the HTML
-files and the references. You must copy the images and other media with some
-other process.</para>
+<para>The stylesheets are not responsible for actually copying the media files into the correct
+          locations in the output. The stylesheets only generate the HTML files and the references.
+          You must copy the images and other media with some other process. We offer some help for
+          image files in form of an attribute, which points to the image sourcefile, that is
+          accessible in post processing pipelines (see <xref linkend="copyinstructions"
+            xrefstyle="%label"/>). </para>
 </important>
 </section>
+  <section xml:id="copyinstructions">
+    <title>Instructions to copy image files</title>
+    <para>Since release 2.6, HTML <code>img</code> elements that correspond to a DocBook imagedata
+      element have a <code>img/@ghost:sourcefile</code> attribute in the namespace
+        <emphasis>http://docbook.org/ns/docbook/ephemeral</emphasis> during internal processing.
+      This is the absolute URI of the respective image source file. Together with the
+        <code>img/@src</code> attribute, it can be used to create instructions for copying image
+      files. </para>
+    <para>This would require a postprocessing pipeline that creates an instruction for each
+        <code>img</code>[<code>@ghost:sourcefile</code> ] element to copy</para>
+    <itemizedlist>
+      <listitem>
+        <para>from <code>img/@ghost:sourcefile</code>, the location where the DocBook document
+          expects the image file,</para>
+      </listitem>
+      <listitem>
+        <para>to the location where the generated HTML document expects the image file. This can
+          be determined by resolving <code>img/@src</code> as a relative URI with respect to the
+          absolute URI of the generated HTML file. </para>
+      </listitem>
+    </itemizedlist>
+      <para>When the <link
+          xlink:href="https://www.saxonica.com/documentation12/index.html#!functions/expath-file"
+          >Expath File module</link> is available, you can even execute these instructions, so that
+        image files are copied as part of the the DocBook to HTML transformation.</para>
+    
+  </section>
 </section>
 
 <section xml:id="header-templates">
