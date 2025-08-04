@@ -821,6 +821,41 @@
 <xsl:template match="db:title|db:titleabbrev" mode="m:title">
   <xsl:param name="purpose" as="xs:string" required="yes"/>
 
+  <!-- Only do this for the "real" title, not when it's in a list-of-titles,
+       or a cross reference, or elsewhere. In other contexts we may not
+       be able to output an attribute here. -->
+  <xsl:if test="$purpose eq 'title'">
+    <xsl:variable name="orig-attributes" as="attribute()*">
+      <xsl:apply-templates select="." mode="m:attributes"/>
+    </xsl:variable>
+
+    <!-- Remove the class attribute if it contains only the value title -->
+    <xsl:variable name="attributes" as="attribute()*">
+      <xsl:for-each select="$orig-attributes">
+        <xsl:if test="node-name(.) ne QName('', 'class') or string(.) ne 'title'">
+          <xsl:sequence select="."/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:if test="not(empty($attributes))">
+      <!-- Adding attributes will fail if we're not at the start of
+           an element. But the odds are very good that we are. -->
+      <xsl:try>
+        <xsl:sequence select="$attributes"/>
+        <xsl:catch xmlns:err="http://www.w3.org/2005/xqt-errors"
+                   errors="err:XTDE0420"> 
+          <!-- Ignore this; it's a "you can't add attributes to a document" error
+               and that only occurs when we're constructing the HTML head were
+               we wouldn't want these attributes anyway. -->
+        </xsl:catch>
+        <xsl:catch>
+          <xsl:message select="'Failed to apply HTML attributes for ' || local-name(.)"/>
+        </xsl:catch>
+      </xsl:try>
+    </xsl:if>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="$purpose = 'title'">
       <xsl:apply-templates/>
