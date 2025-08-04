@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+<info>
+  <title>glossary.012.xml</title>
+  <abstract>
+    <para>This tests glossterm where the term itself or its baseform contains spaces.</para>
+  </abstract>
+</info>
+
+<chapter>
+  <title>Some title</title>
+
+  <para>See the definition of <glossterm>
+      Cherry</glossterm> in the glossary.</para>
+  <para>And see the definition of <glossterm baseform=" Cherry ">cherry species</glossterm> in the glossary.</para>
+</chapter>
+
+<glossary role="auto">
+  <title>Glossary</title>
+  <glossentry>
+    <glossterm>Cherry</glossterm>
+    <glossdef>
+      <para>The most common cherry species in cultivation is sweet cherry (P.
+      avium) to which most cherry cultivars belong. The sour cherry (P. cerasus)
+      is also cultivated, mainly for cooking. Both species originate in Europe
+      and western Asia; they usually do not cross-pollinate. In East Asia,
+      Chinese cherry (P. pseudocerasus) and downy cherry (P. tomentosa) have
+      been cultivated for thousands of years for their sweet fruits.</para>
+    </glossdef>
+  </glossentry>
+</glossary>
+
+</book>

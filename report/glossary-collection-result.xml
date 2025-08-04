@@ -2,7 +2,7 @@
 <report xmlns="http://www.jenitennison.com/xslt/xspec"
         xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec"
         stylesheet="file:/home/runner/work/xslTNG/xslTNG/build/env/glossary-collection.xsl"
-        date="2025-06-29T13:29:37.305622697Z">
+        date="2025-08-04T12:03:15.918502754Z">
    <scenario id="scenario1"
              xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
       <label>When transforming glossary.001</label>
@@ -1766,6 +1766,384 @@ cover/overwrite the definition from the external glossary.</p>
             or more precisely as <em>black pepper</em> (cooked and dried unripe fruit),
               <em>green pepper</em> (dried unripe fruit), or <em>white pepper
             </em>(ripe fruit seeds).</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario8"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.011</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.011.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>glossary.011.xml</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="book division">
+                        <header>
+                           <h1>glossary.011.xml</h1>
+                           <div class="abstract">
+                              <p>This tests multiple “auto” glossaries.</p>
+                           </div>
+                        </header>
+                        <div class="list-of-titles">
+                           <div class="lot toc">
+                              <div class="title">Table of Contents</div>
+                              <ul class="toc">
+                                 <li>
+                                    <a href="#R_ch1">
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Some title</a>
+                                 </li>
+                                 <li>
+                                    <a href="#R_g1">Glossary</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <section id="R_ch1" class="chapter component">
+                           <header>
+                              <h2>Chapter <span class="label">1</span>
+                                 <span class="sep">. </span>Some title</h2>
+                           </header>
+                           <p>What about <span class="glossterm">
+                                 <a href="#R_g1_ge2">Apples</a>
+                              </span>,
+  <span class="glossterm">
+                                 <a href="#R_g1_ge3">Pears</a>
+                              </span>,
+  and <span class="glossterm">
+                                 <a href="#R_g1_ge1">Cherries</a>
+                              </span>.</p>
+                        </section>
+                        <div id="R_g1" class="auto component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="R_g1_ge2" class="glossentry">
+                                 <span class="glossterm">Apple</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                              </dd>
+                              <dt id="R_g1_ge1" class="glossentry">
+                                 <span class="glossterm">Cherry</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The most common cherry species in cultivation is sweet cherry (P.
+      avium) to which most cherry cultivars belong. The sour cherry (P. cerasus)
+      is also cultivated, mainly for cooking. Both species originate in Europe
+      and western Asia; they usually do not cross-pollinate. In East Asia,
+      Chinese cherry (P. pseudocerasus) and downy cherry (P. tomentosa) have
+      been cultivated for thousands of years for their sweet fruits.</p>
+                              </dd>
+                              <dt id="R_g1_ge3" class="glossentry">
+                                 <span class="glossterm">Pear</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario8-expect1" successful="true">
+         <label>expect glossary.011.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>glossary.011.xml</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="book division">
+                           <header>
+                              <h1>glossary.011.xml</h1>
+                              <div class="abstract">
+                                 <p>This tests multiple “auto” glossaries.</p>
+                              </div>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#R_ch1">
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Some title</a>
+                                    </li>
+                                    <li>
+                                       <a href="#R_g1">Glossary</a>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <section id="R_ch1" class="chapter component">
+                              <header>
+                                 <h2>Chapter <span class="label">1</span>
+                                    <span class="sep">. </span>Some title</h2>
+                              </header>
+                              <p>What about <span class="glossterm">
+                                    <a href="#R_g1_ge2">Apples</a>
+                                 </span>,
+  <span class="glossterm">
+                                    <a href="#R_g1_ge3">Pears</a>
+                                 </span>,
+  and <span class="glossterm">
+                                    <a href="#R_g1_ge1">Cherries</a>
+                                 </span>.</p>
+                           </section>
+                           <div id="R_g1" class="auto component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="R_g1_ge2" class="glossentry">
+                                    <span class="glossterm">Apple</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>An apple is an edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most
+    widely grown species in the genus Malus. The tree originated in
+    Central Asia, where its wild ancestor, Malus sieversii, is still
+    found today. Apples have been grown for thousands of years in Asia
+    and Europe and were brought to North America by European
+    colonists. Apples have religious and mythological significance in
+    many cultures, including Norse, Greek and European Christian
+    tradition.</p>
+                                 </dd>
+                                 <dt id="R_g1_ge1" class="glossentry">
+                                    <span class="glossterm">Cherry</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The most common cherry species in cultivation is sweet cherry (P.
+      avium) to which most cherry cultivars belong. The sour cherry (P. cerasus)
+      is also cultivated, mainly for cooking. Both species originate in Europe
+      and western Asia; they usually do not cross-pollinate. In East Asia,
+      Chinese cherry (P. pseudocerasus) and downy cherry (P. tomentosa) have
+      been cultivated for thousands of years for their sweet fruits.</p>
+                                 </dd>
+                                 <dt id="R_g1_ge3" class="glossentry">
+                                    <span class="glossterm">Pear</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The pear tree and shrub are a species of genus
+    Pyrus, in the family Rosaceae, bearing the pomaceous
+    fruit of the same name. Several species of pear are valued for
+    their edible fruit and juices while others are cultivated as
+    trees.</p>
+                                 </dd>
+                              </dl>
+                           </div>
+                        </article>
+                     </main>
+                     <nav class="bottom"/>
+                  </body>
+               </html>
+            </content-wrap>
+         </expect>
+      </test>
+   </scenario>
+   <scenario id="scenario9"
+             xspec="file:/home/runner/work/xslTNG/xslTNG/build/xspec/glossary-collection.xspec">
+      <label>When transforming glossary.012</label>
+      <input-wrap xmlns="">
+         <x:context xmlns:x="http://www.jenitennison.com/xslt/xspec"
+                    href="file:/home/runner/work/xslTNG/xslTNG/src/test/resources/xml/glossary.012.xml"/>
+      </input-wrap>
+      <result select="/self::document-node()">
+         <content-wrap xmlns="">
+            <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+               <head>
+                  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                  <title>glossary.012.xml</title>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                  <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                  <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                  <meta content="DocBook xslTNG" name="generator"/>
+                  <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+               </head>
+               <body class="home">
+                  <nav class="top"/>
+                  <main>
+                     <article class="book division">
+                        <header>
+                           <h1>glossary.012.xml</h1>
+                           <div class="abstract">
+                              <p>This tests glossterm where the term itself or its baseform contains spaces.</p>
+                           </div>
+                        </header>
+                        <div class="list-of-titles">
+                           <div class="lot toc">
+                              <div class="title">Table of Contents</div>
+                              <ul class="toc">
+                                 <li>
+                                    <a href="#R_ch1">
+                                       <span class="label">1</span>
+                                       <span class="sep">. </span>Some title</a>
+                                 </li>
+                                 <li>
+                                    <a href="#R_g1">Glossary</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <section id="R_ch1" class="chapter component">
+                           <header>
+                              <h2>Chapter <span class="label">1</span>
+                                 <span class="sep">. </span>Some title</h2>
+                           </header>
+                           <p>See the definition of <span class="glossterm">
+                                 <a href="#R_g1_ge1">
+      Cherry</a>
+                              </span> in the glossary.</p>
+                           <p>And see the definition of <span class="glossterm">
+                                 <a href="#R_g1_ge1">cherry species</a>
+                              </span> in the glossary.</p>
+                        </section>
+                        <div id="R_g1" class="auto component glossary">
+                           <header>
+                              <h2>Glossary</h2>
+                           </header>
+                           <dl class="glossary">
+                              <dt id="R_g1_ge1" class="glossentry">
+                                 <span class="glossterm">Cherry</span>
+                              </dt>
+                              <dd class="glossdef">
+                                 <p>The most common cherry species in cultivation is sweet cherry (P.
+      avium) to which most cherry cultivars belong. The sour cherry (P. cerasus)
+      is also cultivated, mainly for cooking. Both species originate in Europe
+      and western Asia; they usually do not cross-pollinate. In East Asia,
+      Chinese cherry (P. pseudocerasus) and downy cherry (P. tomentosa) have
+      been cultivated for thousands of years for their sweet fruits.</p>
+                              </dd>
+                           </dl>
+                        </div>
+                     </article>
+                  </main>
+                  <nav class="bottom"/>
+               </body>
+            </html>
+         </content-wrap>
+      </result>
+      <test id="scenario9-expect1" successful="true">
+         <label>expect glossary.012.expected</label>
+         <expect select="/self::document-node()">
+            <content-wrap xmlns="">
+               <html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+                  <head>
+                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+                     <title>glossary.012.xml</title>
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                     <link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/>
+                     <meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/>
+                     <meta content="DocBook xslTNG" name="generator"/>
+                     <link href="./css/docbook.css" rel="stylesheet" media="screen"/>
+                  </head>
+                  <body class="home">
+                     <nav class="top"/>
+                     <main>
+                        <article class="book division">
+                           <header>
+                              <h1>glossary.012.xml</h1>
+                              <div class="abstract">
+                                 <p>This tests glossterm where the term itself or its baseform contains spaces.</p>
+                              </div>
+                           </header>
+                           <div class="list-of-titles">
+                              <div class="lot toc">
+                                 <div class="title">Table of Contents</div>
+                                 <ul class="toc">
+                                    <li>
+                                       <a href="#R_ch1">
+                                          <span class="label">1</span>
+                                          <span class="sep">. </span>Some title</a>
+                                    </li>
+                                    <li>
+                                       <a href="#R_g1">Glossary</a>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <section id="R_ch1" class="chapter component">
+                              <header>
+                                 <h2>Chapter <span class="label">1</span>
+                                    <span class="sep">. </span>Some title</h2>
+                              </header>
+                              <p>See the definition of <span class="glossterm">
+                                    <a href="#R_g1_ge1">
+      Cherry</a>
+                                 </span> in the glossary.</p>
+                              <p>And see the definition of <span class="glossterm">
+                                    <a href="#R_g1_ge1">cherry species</a>
+                                 </span> in the glossary.</p>
+                           </section>
+                           <div id="R_g1" class="auto component glossary">
+                              <header>
+                                 <h2>Glossary</h2>
+                              </header>
+                              <dl class="glossary">
+                                 <dt id="R_g1_ge1" class="glossentry">
+                                    <span class="glossterm">Cherry</span>
+                                 </dt>
+                                 <dd class="glossdef">
+                                    <p>The most common cherry species in cultivation is sweet cherry (P.
+      avium) to which most cherry cultivars belong. The sour cherry (P. cerasus)
+      is also cultivated, mainly for cooking. Both species originate in Europe
+      and western Asia; they usually do not cross-pollinate. In East Asia,
+      Chinese cherry (P. pseudocerasus) and downy cherry (P. tomentosa) have
+      been cultivated for thousands of years for their sweet fruits.</p>
                                  </dd>
                               </dl>
                            </div>
