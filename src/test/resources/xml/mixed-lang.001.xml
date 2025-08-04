@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook"
+         xml:id="article" version="5.0" xml:lang="en">
+<info>
+  <title xml:lang="fr">Sample Article</title>
+  <subtitle xml:lang="fr">Pour faire un test</subtitle>
+</info>
+
+<para>This is a very simple <phrase xml:id="docbook">DocBook</phrase>
+document. It has a subtitle in a different language.</para>
+
+<para xml:lang="fr">This paragraph also claims to be French, but it isn’t.
+</para>
+
+</article>

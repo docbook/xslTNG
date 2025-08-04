@@ -34,6 +34,20 @@
 </xsl:template>
 
 <xsl:template match="db:subtitle" mode="m:titlepage">
+  <xsl:variable name="attributes" as="attribute()*">
+    <xsl:apply-templates select="." mode="m:attributes"/>
+  </xsl:variable>
+
+  <xsl:if test="not(empty($attributes))">
+    <xsl:try>
+      <!-- Adding attributes will fail if we're not at the start of
+           an element. But the odds are very good that we are. -->
+      <xsl:sequence select="$attributes"/>
+      <xsl:catch>
+        <xsl:message>Failed to apply HTML attributes for subtitle.</xsl:message>
+      </xsl:catch>
+    </xsl:try>
+  </xsl:if>
   <xsl:apply-templates/>
 </xsl:template>
 
