@@ -69,7 +69,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$v:custom-localizations/ls:locale[@language = $base-locale/@language]">
+    <xsl:when test="exists($v:custom-localizations/ls:locale[@language = $base-locale/@language])">
       <xsl:variable name="custom" as="element(l:l10n)">
         <xsl:apply-templates
             select="$v:custom-localizations/ls:locale[@language = $base-locale/@language]"

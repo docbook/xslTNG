@@ -10,6 +10,115 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r260">
+<info>
+  <title>Changes in version 2.6.0</title>
+  <productnumber>2.6.0</productnumber>
+  <date>2025-06-29</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/616">#616</link>.
+The spacebar has a navigation purpose in the browser, so don’t interfere with that.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/615">#615</link>.
+Title and subtitle elements now get attributes, for example 
+<tag class="attribute">lang</tag>. This also has the benefit that headings for subtitles
+have a class attribute to identify them.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/612">#612</link>.
+Whitespace in the baseform attribute is normalized when processing glossary entries.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/593">#593</link>.
+Updated MathJax, added support for TeX equations with a
+<tag class="attribute">role</tag> of <literal>tex</literal> on
+<tag>mathphrase</tag>.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/587">#587</link>.
+Improved support for titles on <tag>abstract</tag> and <tag>legalnotice</tag> elements.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/584">#584</link>.
+Support both <tag>para</tag> and <tag>simpara</tag> in compact lists.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/582">#582</link>.
+Allow gentext letters to be the empty sequence. This won’t give the <emphasis>correct</emphasis>
+result, but it will allow the stylesheets to run without crashing. Thank you, Johan, for
+the updated sequences for Japanese and Korean.</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/579">#579</link>.
+Remove “.” and “..” segments from the chunk output base URI with the new
+function <function>f:flatten-path</function>.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/576">#576</link>.
+Make sure that bibliography entries have unique (and not possibly duplicate) IDs even
+when the bibliography entries are loaded from external files.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/581">#581</link>;
+handle width=100% and scalefit=1 on media objects.
+</para>
+</listitem>
+<listitem>
+<para>Added support for different options when dealing with unhandled elements,
+see <parameter>on-unhandled-elements</parameter>.
+Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/572">#572</link>.
+Bring the documentation and the code in sync with respect to
+<parameter>on-unhandled-elements</parameter>.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/568">#568</link>.
+Resolved some ambiguity in <parameter>refentry-generate-name</parameter> and
+<parameter>refentry-generate-title</parameter>.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/563">#563</link>.
+Corrected a typo in the locale files.
+</para>
+</listitem>
+<listitem>
+<para>Accepted <link xlink:href="https://github.com/docbook/xslTNG/pull/570">a patch</link>
+with a large number of Python style improvements. Thank you, Rafał!</para>
+</listitem>
+<listitem>
+<para>Accepted <link xlink:href="https://github.com/docbook/xslTNG/pull/577">a patch</link>
+to fix a problem when copying namespace-qualified attributes. Thank you, Frank!</para>
+</listitem>
+<listitem>
+<para>Accepted <link xlink:href="https://github.com/docbook/xslTNG/pull/586">a patch</link>
+to add a parameter to identify the file containing default templates. Thank you, Frank!</para>
+</listitem>
+<listitem>
+<para>Accepted <link xlink:href="https://github.com/docbook/xslTNG/pull/599">a patch</link>
+to support collecting the secondary outputs of internal transforms. Thank you, Frank!</para>
+</listitem>
+<listitem>
+<para>Upgraded Pygments in the test harness to version 2.19.1.
+</para>
+</listitem>
+<listitem>
+<para>Upgraded a number of dependencies.</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r250">
 <info>
   <title>Changes in version 2.5.0</title>
