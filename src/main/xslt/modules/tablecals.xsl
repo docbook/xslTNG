@@ -352,6 +352,7 @@
 <!-- ============================================================ -->
 
 <xsl:template name="tp:cals-colspec">
+  <xsl:variable name="treshold" as="xs:integer" select="-1"/>
   <xsl:variable name="tgroup" select="."/>
 
   <xsl:variable name="widths" as="map(*)*">
@@ -381,21 +382,27 @@
   </xsl:for-each>
   -->
 
-  <xsl:variable name="absolute-width" as="xs:double"
-                select="sum($widths ! f:absolute-length(.))"/>
+  <!-- Using xs:nonNegativeInteger in function signature, because  f:absolute-length() returns 
+       a rounded numeric without fractions (as xs:double) -->
+  <xsl:variable name="absolute-width" as="xs:nonNegativeInteger"
+    select="sum($widths ! f:absolute-length(.)) => xs:nonNegativeInteger()"/>
 
   <xsl:variable name="relative-width" as="xs:double"
                 select="sum($widths ! f:relative-length(.))"/>
 
-  <xsl:variable name="absolute-remainder"
-                select="f:absolute-length($v:nominal-page-width) - $absolute-width"/>
+  <xsl:variable name="absolute-remainder" as="xs:integer"
+                select="(f:absolute-length($v:nominal-page-width) - $absolute-width) => xs:integer()"/>
 
-  <xsl:if test="$absolute-remainder lt 0">
-    <xsl:message>Table width exceeds nominal width, ignoring relative width</xsl:message>
+  <xsl:if test="$absolute-remainder lt $treshold">
+      <xsl:message select="
+          let $p := fp:path($tgroup/..)
+          return
+            $p || ' width exceeds nominal width by ' || abs($absolute-remainder) || 'px, ignoring relative width.'"
+      />
   </xsl:if>
 
   <xsl:variable name="absolute-remainder"
-                select="if ($absolute-remainder lt 0)
+                select="if ($absolute-remainder lt $treshold)
                         then 0
                         else $absolute-remainder"/>
 
