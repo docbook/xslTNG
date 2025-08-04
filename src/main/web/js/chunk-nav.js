@@ -23,8 +23,6 @@
   const KEY_H = 72;
   const KEY_HOME = 36;
 
-  const KEY_SPACE = 32;
-
   const KEY_SHIFT = 16;
 
   const body = document.querySelector("body");
@@ -41,7 +39,6 @@
     switch (keyCode) {
     case KEY_N:
     case KEY_RIGHT:
-    case KEY_SPACE:
       nav_to(event, "next");
       break;
     case KEY_P:
