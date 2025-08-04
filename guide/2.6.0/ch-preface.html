@@ -1,0 +1,73 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Preface</title><link href="./css/pygments.css" rel="stylesheet"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta name="dc.modified" content="2025-08-04T12:43:06Z"/><meta name="dc.created" content="2025-08-04T12:43:06Z"/><meta name="generator" content="DocBook xslTNG version 2.6.0-SNAPSHOT / ce7cea14 / SAXON HE 12.8"/><link href="./css/guide-toc.css" rel="stylesheet"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="css/guide.css" rel="stylesheet"/><link href="css/guide-online.css" rel="stylesheet"/><link href="media/xsltng-icon.png" rel="shortcut icon"/><script src="https://kit.fontawesome.com/c94d537c36.js" type="text/javascript" crossorigin="anonymous"></script><link rel="prev" href="parti.html"/><link rel="next" href="ch-overview.html"/><link rel="up" href="parti.html"/><link rel="home" href="index.html"/><script src="./js/xlink.js" defer="defer"></script><script src="./js/persistent-toc.js" defer="defer"></script><script src="./js/pagetoc.js" data-dynamic-pagetoc="true" defer="defer"></script><script src="./js/chunk-nav.js" defer="defer"></script></head><body class="component preface"><nav class="top"><span class="nav"><a title="DocBook xslTNG Reference" href="index.html"><i class="fas fa-home"></i></a> <a href="parti.html" title="Part  I .  Introduction"><i class="fas fa-arrow-left"></i></a> <a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a> <a title="Chapter  1 .  Overview" href="ch-overview.html"><i class="fas fa-arrow-right"></i></a></span><span class="title"><i class="title">DocBook xslTNG Reference</i></span><span class="logo"><img src="media/xsltng-inverted.png"/></span></nav><div class="pagebody"><main><section id="preface" db-chunk="ch-preface.html" db-id="d147e36" class="component preface"><header><h1>Preface</h1></header><p>These stylesheets are the third
+iteration of stylesheets for DocBook that I’ve written. I started working on the
+<a href="https://github.com/docbook/xslt10-stylesheets" class="link">XSLT 1.0
+Stylesheets for DocBook</a> in the 90’s, before XSLT 1.0 was
+even a W3C Recommendation. I started working on the
+<a href="https://github.com/docbook/xslt20-stylesheets" class="link">XSLT 2.0
+Stylesheets for DocBook</a> just around the time when XSLT 2.0 became
+a W3C Recommendation. I wrote most of
+<cite class="citetitle">DocBook xslTNG</cite> just a month or so before the third anniversary
+of the XSLT 3.0 Recommendation.</p><p>Why did it take so long?</p><p>To answer that question, we need to reflect for a moment on XSLT and
+    its place in the XML ecosystem. When XSLT arrived on the scene, we
+    were near the peak of XML enthusiasm. Not only was XML supported
+    everywhere, it was possible to imagine XSLT everywhere as well.
+    Certainly, the presence of XSLT in the browser felt significant at
+    the time.
+  </p><p>The ubiquity of XML and the fact that XSLT was “just an XML
+    vocabulary” may have contributed to another significant phenomenon:
+    lots of users who did not self identify as programmers were learning
+    to use XSLT and doing significant things with it.
+  </p><p>There were other tools available for transforming markup at the
+    time, and arguably some of them were better than XSLT, but they were
+    programming languages and you had to be a programmer to use them.
+    They were also mostly commercial applications not widely available
+    to casual users.
+  </p><p>XSLT was free, it was everywhere, and it was used by everyone, not
+    “just” programmers. It was the clear winner than and remains the
+    clear winner today in terms of markup transformation.
+  </p><p>You could do a lot of things with <a href="references.html#XSLT10" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">XSLT 1.0</span></span></a>. You could do a lot more
+    things than you might at first even have thought possible. (In fact,
+    you could do all things, but the
+    Turing complete nature of XSLT isn’t relevant here.) Some very
+    common tasks, like grouping, were possible but difficult. Lots of
+    very useful things were either not possible or required extensions:
+    regular expressions, functions, date and time formatting, creating
+    special characters in the output, to name just a few.
+  </p><p><a href="references.html#XSLT20" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">XSLT 2.0</span></span></a> solved all of these problems (and more). Significantly, I
+    think, all of these new features appealed directly to almost all
+    users of XSLT 1.0. Everyone had encountered a grouping problem
+    (building an index, for example). Everyone had wanted regular
+    expression matching or date formatting. Lots of users wanted to
+    write more sophisticated predicates (and many were willing to learn
+    how to use functions to achieve that result).
+  </p><p><a href="references.html#XSLT30" class="xref xref-bibliomixed"><span class="label"><span class="abbrev">XSLT 3.0</span></span></a> arguably introduces larger and
+  more dramatic features than XSLT 2.0 did. There are a bunch of new
+  features designed to enable streaming processing; there are
+  significant software engineering improvements: packaging, exception
+  handling, and assertions; there are common programming language
+  constructs like maps and arrays. There is also a selection of
+  features inherited from updates to XPath (new functions, a subset of
+  <code>let</code> syntax, and support for higher order
+  functions, for example).
+  </p><p>What’s curious, I think, is that many of these features are probably
+    less immediately appealing to many (most?) current users. XSLT 2.0
+    doesn’t feel constraining in the same way that XSLT 1.0 did, and the
+    features in XSLT 3.0 don’t immediately and obviously solve problems
+    that most users have.
+  </p><p>Streaming, for example, is incredibly powerful and it’s an important
+    and significant milestone in markup processing. It makes it possible
+    to solve whole classes of problems that were previously impossible
+    to solve or required enormously expensive hardware. But my laptop
+    will quite easily process a book full of complex markup that runs to
+    hundreds of pages. I don’t have any problems that require a
+    streaming processor.
+  </p><p>Likewise, packaging is useful and important. The <em>DocBook
+    xslTNG</em> stylesheets should absolutely be a package. But
+    that’s not true of a lot of stylesheets. There might be software
+    engineering benefit in making a package even for stylesheets that
+    you don’t intend to distribute, but that’s more likely to appeal to
+    people who think of what they’re doing is programming.
+  </p><p>Nevertheless, there are lots of good reasons to use XSLT 3.0 even if
+    you are “only” transforming documents and even if you don’t think of
+    writing transformations as programming.
+  </p></section></main><nav class="pagetoc"><div class="tocwrapper"></div></nav></div><nav class="bottom"><div class="navrow"><div class="navleft"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-left"></i></a></div><div class="navmiddle"><a title="" href="index.html"><i class="fas fa-home"></i></a></div><div class="navright"><a title="Chapter  1 .  Overview" href="ch-overview.html"><i class="fas fa-arrow-right"></i></a></div></div><div class="navrow"><div class="navleft navtitle">Part  I .  Introduction</div><div class="navmiddle"><a title="Part  I .  Introduction" href="parti.html"><i class="fas fa-arrow-up"></i></a></div><div class="navright navtitle">Chapter  1 .  Overview</div></div><div class="infofooter"><span class="copyrightfooter"><a href="dbcpyright.html">Copyright</a> © 2020–2024 Norman Walsh.</span></div><nav class="tocopen"></nav><nav class="toc"></nav><!-- Hide ToC details from user agents that don’t support JS --><script type="text/html" class="tocopen"><i class="far fa-book"></i></script><script type="text/html" class="toc"><header><span>Table of Contents</span><span class="close"><i class="far fa-window-close"></i></span><p class="ptoc-search"><input class="ptoc-search" placeholder="Search" style="width: 80%"/></p></header><div db-persistent-toc="persistent-toc.html" db-prefix="">Loading…</div></script></nav></body></html>
