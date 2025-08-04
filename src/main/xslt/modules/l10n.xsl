@@ -59,7 +59,25 @@
 <xsl:template match="lt:content" mode="mp:localization">
   <xsl:param name="content" as="item()*" tunnel="yes"/>
 
-  <xsl:sequence select="$content"/>
+  <!-- This is a nasty hack. The processing of titles now attempts to get
+       attributes on the title elements. For example, if your title needs a lang
+       tag. But there are a few contexts (processing olinkdb for example) where
+       this fails because some other element has already been output. In these
+       cases, we just output a wrapper for the attributes then discard it.
+       Should we keep the wrapper and the attributes? Maybe, but for backwards
+       compatibility, I'm discarding them today. -->
+  <xsl:try>
+    <xsl:sequence select="$content"/>
+    <xsl:catch xmlns:err="http://www.w3.org/2005/xqt-errors"
+               errors="err:XTDE0410"> 
+      <xsl:variable name="span" as="element()">
+        <span>
+          <xsl:sequence select="$content"/>
+        </span>
+      </xsl:variable>
+      <xsl:sequence select="$span/node()"/>
+    </xsl:catch>
+  </xsl:try>
 </xsl:template>
 
 <xsl:template match="lt:ref" mode="mp:localization">
