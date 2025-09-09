@@ -1070,12 +1070,12 @@ and unnumbered sections have? The mechanisms for changing this generated text ar
 described in <xref linkend="gentext"/>. These mechanisms control the formatting
 of cross references.</para>
 
-<para>But it’s sometimes useful to be able to change the format of a
+<para>But it’s sometimes useful to change the format of a
 cross reference on an individual basis (that is, on the basis of the
 context in which the <emphasis>reference</emphasis> occurs, not the
 nature of what is <emphasis>referenced</emphasis>). You might, for
-example, want to shorten a cross reference to just a label if it’s
-already been referenced several times.</para>
+example, want to shorten a cross reference to just a label if it is 
+referenced several times.</para>
 
 <para>Consider a cross reference to a section:
 <code><![CDATA[see <xref linkend="syntax-highlighting"/>]]></code>.
@@ -1096,7 +1096,7 @@ linkend="table.template-letter-substitutions"/> in
 <code>%label</code> for <emphasis>the full Label</emphasis>, which is
 the component`s name and number. The use of these percent-values is
 explained in the following table. The result column shows how a
-cross references to the section below entitled
+cross reference to the section below entitled
 <xref linkend="syntax-highlighting" xrefstyle="%c"/> would appear
 in each <att>xrefstyle</att>.</para>
 
