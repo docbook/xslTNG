@@ -1430,7 +1430,10 @@
           </xsl:if>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="$co"/>
+          <xsl:variable name="content" as="element()">
+            <xsl:apply-templates select="$co"/>
+          </xsl:variable>
+          <xsl:value-of select="$content"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>

@@ -1,0 +1,69 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script><title>Article wrapper</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link href="https://purl.org/dc/elements/1.1/" rel="schema.dc"/><meta content="2011-04-22T17:02:00-06:00" name="dc.modified"/><meta content="DocBook xslTNG" name="generator"/><link href="./css/docbook.css" rel="stylesheet" media="screen"/><script src="./js/copy-verbatim.js" defer="defer"></script></head><body class="home"><nav class="top"></nav><main><article class="article component"><header><h1>Article wrapper</h1><div class="abstract"><p>Checks <code class="tag tag-element">co</code> and <code class="tag tag-element">coref.</code></p></div></header><div id="R_proc1" class="formalobject procedure"><header><div class="title">Procedure <span class="label">1</span><span class="sep">. </span>Setting up an rsync server</div></header><ol class="procedure" type="1"><li id="st-rsync-server-mkdir" class="step"><p>
+        On jupiter, create a directory to store all your backup files. In this
+        example, we use <code class="filename">/var/backup</code>:
+      </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code><span class="prompt root"># </span><code class="command">mkdir</code> /var/backup</code></span></span></pre></div></li><li class="step"><p>
+        Specify ownership. In this case, the directory is owned by user
+        <code class="systemitem username">tux</code> in group
+        <code class="groupname systemitem">users</code>:
+      </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code><span class="prompt root"># </span><code class="command">chown</code> tux.users /var/backup</code></span></span></pre></div></li><li class="step"><p>
+        Configure the rsyncd daemon.
+      </p><p>
+        We separate the configuration file into a main file and certain
+        <q>modules</q> which hold your backup target. This makes it easier
+        to add additional targets later. Global values can be stored in
+        <code class="filename">/etc/rsyncd.d/*.inc</code> files, whereas your modules are
+        placed in <code class="filename">/etc/rsyncd.d/*.conf</code> files:
+      </p><div class="substeps"><ol class="procedure substeps" type="a"><li class="step"><p>
+            Create a directory <code class="filename">/etc/rsyncd.d/</code>:
+          </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code><span class="prompt root"># </span><code class="command">mkdir</code> /etc/rsyncd.d/</code></span></span></pre></div></li><li class="step"><p>
+            In the main configuration file <code class="filename">/etc/rsyncd.conf</code>,
+            add the following lines:
+          </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code># rsyncd.conf main configuration file</code></span></span>
+<span class="line"><span class="ld"><code>log file = /var/log/rsync.log</code></span></span>
+<span class="line"><span class="ld"><code>pid file = /var/lock/rsync.lock</code></span></span>
+<span class="line"><span class="ld"><code> </code></span></span>
+<span class="line"><span class="ld"><code>&amp;merge /etc/rsyncd.d <a class="co" id="co-rsync-conf-merge">①</a></code></span></span>
+<span class="line"><span class="ld"><code>&amp;include /etc/rsyncd.d <a class="co" id="co-rsync-conf-include">②</a></code></span></span></pre></div><div class="calloutlist"><dl><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-merge">①</a></dt><dd><p>
+                Merges global values from <code class="filename">/etc/rsyncd.d/*.inc</code>
+                files into the main configuration file.
+              </p></dd><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-include">②</a></dt><dd><p>
+                Loads any modules (or targets) from
+                <code class="filename">/etc/rsyncd.d/*.conf</code> files. These files should
+                not contain any references to global values.
+              </p></dd></dl></div></li><li class="step"><p>
+            Create your module (your backup target) in the file
+            <code class="filename">/etc/rsyncd.d/backup.conf</code> with the following lines:
+          </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code># backup.conf: backup module</code></span></span>
+<span class="line"><span class="ld"><code>[backup] <a class="co" id="co-rsync-conf-target">③</a></code></span></span>
+<span class="line"><span class="ld"><code>   uid = tux <a class="co" id="co-rsync-conf-uid-gid">④</a></code></span></span>
+<span class="line"><span class="ld"><code>   gid = users ④</code></span></span>
+<span class="line"><span class="ld"><code>   path = /var/backup <a class="co" id="co-rsync-conf-path">⑤</a></code></span></span>
+<span class="line"><span class="ld"><code>   auth users = tux  <a class="co" id="co-rsync-conf-authusers">⑥</a></code></span></span>
+<span class="line"><span class="ld"><code>   secrets file = /etc/rsyncd.secrets <a class="co" id="co-rsync-conf-secretfiles">⑦</a></code></span></span>
+<span class="line"><span class="ld"><code>   comment = Our backup target</code></span></span></pre></div><div class="calloutlist"><dl><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-target">③</a></dt><dd><p>
+                The <em>backup</em> target. You can use any name you like.
+                However, it is a good idea to name a target according to its purpose
+                and use the same name in your <code class="filename">*.conf</code> file.
+              </p></dd><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-uid-gid">④</a></dt><dd><p>
+                Specifies the user name or group name that is used when the file
+                transfer takes place.
+              </p></dd><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-path">⑤</a></dt><dd><p>
+                Defines the path to store your backups (from
+                <a href="#st-rsync-server-mkdir" class="xref xref-step">step <span class="label">1</span></a>).
+              </p></dd><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-authusers">⑥</a></dt><dd><p>
+                Specifies a comma-separated list of allowed users. In its simplest
+                form, it contains the user names that are allowed to connect to this
+                module. In our case, only user <code class="systemitem username">tux</code> is allowed.
+              </p></dd><dt class="callout"><a class="callout-bug" href="#co-rsync-conf-secretfiles">⑦</a></dt><dd><p>
+                Specifies the path of a file that contains lines with user names and
+                plain passwords.
+              </p></dd></dl></div></li></ol></div></li><li class="step"><p>
+        Start and enable the rsyncd daemon with:
+      </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code><span class="prompt root"># </span><code class="command">systemctl</code> enable rsyncd</code></span></span>
+<span class="line"><span class="ld"><code><span class="prompt root"># </span><code class="command">systemctl</code> start rsyncd</code></span></span></pre></div></li><li class="step"><p>
+        Test the access to your Rsync server:
+      </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code><span class="prompt">&gt; </span><code class="command">rsync</code> jupiter::</code></span></span></pre></div><p>
+        You should see a response that looks like this:
+      </p><div class="pre-wrap screen-wrap"><pre class="screen verbatim verblines"><span class="line"><span class="ld"><code>backup          Our backup target</code></span></span></pre></div><p>
+        Otherwise, check your configuration file, firewall and network settings.
+      </p></li></ol></div></article></main><nav class="bottom"></nav></body></html>
