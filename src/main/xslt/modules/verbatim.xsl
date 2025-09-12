@@ -1377,7 +1377,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:number count="db:co"
-                    level="any"
+                    level="single"
                     format="1"/>
       </xsl:otherwise>
     </xsl:choose>
