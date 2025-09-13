@@ -169,7 +169,7 @@
 <!-- ============================================================ -->
 
 <xsl:template name="t:generate-index">
-  <xsl:param name="scope" select="(ancestor::db:book|/)[last()]"/>
+  <xsl:param name="scope" select="(ancestor::db:book|/*)[last()]"/>
 
   <xsl:variable name="role"
                 select="if (f:is-true($index-on-role))
