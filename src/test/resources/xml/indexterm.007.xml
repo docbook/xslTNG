@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Chapter</title>
+<toc/>
+<section>
+    <title>Indexed<indexterm><primary>The title</primary></indexterm> topic</title>
+    <para>
+        This is a text about beer.
+        <indexterm>
+            <primary>Beverage</primary>
+            <secondary>Beer</secondary>
+            <tertiary>Pilsner</tertiary>
+        </indexterm>
+    </para>
+</section>
+<section>
+    <title>Unindexed topic</title>
+    <para>
+        This is a text about wine.
+        <indexterm>
+            <primary>Beverage</primary>
+            <secondary>Wine</secondary>
+        </indexterm>
+    </para>
+</section>
+<index/>
+</chapter>

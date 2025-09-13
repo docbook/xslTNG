@@ -872,7 +872,8 @@
 <!-- ============================================================ -->
 
 <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
-              match="h:db-footnote|h:db-annotation" mode="mp:strip-links"/>
+              match="h:db-footnote|h:db-annotation|h:span[contains-token(@class,'indexterm')]"
+              mode="mp:strip-links"/>
 
 <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
               match="h:a" mode="mp:strip-links">
