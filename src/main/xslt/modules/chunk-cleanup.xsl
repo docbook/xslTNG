@@ -203,10 +203,21 @@
 
   <!-- class=no-js is a hook for setting CSS styles when js isn't
        available; see the script element a few lines below. -->
-  <html class="no-js" db-chunk="{fp:chunk-output-filename(.)}">
-    <xsl:if test="normalize-space($default-theme) ne ''">
-      <xsl:attribute name="class" select="$default-theme"/>
-    </xsl:if>
+  <html db-chunk="{fp:chunk-output-filename(.)}">
+    <xsl:variable name="class-list" as="xs:string+">
+      <!-- class=no-js is a hook for setting CSS styles when js isn't
+           available; see the script element a few lines below. -->
+      <xsl:sequence select="'no-js'"/>
+      <xsl:if test="normalize-space($default-theme) ne ''">
+        <xsl:sequence select="$default-theme"/>
+      </xsl:if>
+      <xsl:if test="normalize-space($user-document-class) ne ''">
+        <xsl:sequence select="$user-document-class"/>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:attribute name="class"
+                   select="normalize-space(string-join($class-list, ' '))"/>
+
     <head>
       <!-- When serialized, this always comes first, so make sure it's first
            here. (It doesn't really matter in practice, but the XSpec tests

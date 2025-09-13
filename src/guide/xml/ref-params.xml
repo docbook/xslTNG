@@ -6013,4 +6013,26 @@ in a customization layer; there are no templates in this mode in the standard st
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>user-document-class</varname>
+      <initializer>''</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.6.1</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Additional user-defined class added to document root elements</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>The value of this parameter is added to the top-level element’s
+<tag class="attribute">class</tag> attribute. This provides an
+additional way of styling different document types with CSS.</para>
+
+</refsection>
+</refentry>  
+
 </reference>
