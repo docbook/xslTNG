@@ -6035,4 +6035,32 @@ additional way of styling different document types with CSS.</para>
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:integer</type>
+      <varname>cals-table-width-threshold</varname>
+      <initializer>1</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.6.1</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Determines how carefully to measure CALS table widths</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>CALS tables columns can have widths specified in relative and
+absolute terms. If the sum of the absolute widths exceeds the nominal
+page width by <parameter>cals-table-width-threshold</parameter>
+pixels, the relative widths are ignored. (No attempt is made to divide
+up the remaining width according to the relative widths.)</para>
+
+<para>The computation involves floating point calculations and may
+have rounding errors. Setting the threshold to 1 (rather than 0) reduces
+false positives.</para>
+
+</refsection>
+</refentry>  
+
 </reference>

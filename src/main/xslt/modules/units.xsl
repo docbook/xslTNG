@@ -106,12 +106,13 @@
                         else ()"/>
 </xsl:function>
 
-<xsl:function name="f:absolute-length" as="xs:double">
+<xsl:function name="f:absolute-length" as="xs:integer">
   <xsl:param name="length" as="map(*)"/>
   <xsl:choose>
     <xsl:when test="exists($length?magnitude) and exists($length?unit)
                     and map:contains($v:unit-scale, $length?unit)">
-      <xsl:sequence select="round($length?magnitude * map:get($v:unit-scale, $length?unit))"/>
+      <xsl:sequence select="round($length?magnitude * map:get($v:unit-scale, $length?unit))
+                            => xs:integer()"/>
     </xsl:when>
     <xsl:otherwise>
       <!-- this should never happen, but ... -->
