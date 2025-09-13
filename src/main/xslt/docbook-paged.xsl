@@ -85,6 +85,9 @@
       <xsl:sequence select="if ($page-style != '')
                             then normalize-space($page-style) || '-style'
                             else ()"/>
+      <xsl:if test="normalize-space($user-document-class) ne ''">
+        <xsl:sequence select="$user-document-class"/>
+      </xsl:if>
     </xsl:variable>
 
     <xsl:attribute name="class"
