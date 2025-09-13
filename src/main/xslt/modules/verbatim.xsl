@@ -1362,11 +1362,15 @@
   </a>
 </xsl:template>
 
-<xsl:template match="db:co">
-  <a>
+<xsl:template match="db:co" as="element()">
+  <!-- N.B. If you override this template such that it doesn't
+       return a single element, you must also override the template
+       that handles db:coref because it relies on this template
+       returning a single element. -->
+  <span>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:apply-templates select="." mode="m:callout-bug"/>
-  </a>
+  </span>
 </xsl:template>
 
 <xsl:template match="db:co" mode="m:callout-bug">
@@ -1430,7 +1434,14 @@
           </xsl:if>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="$co"/>
+          <!-- This is a bit crude, but it assures that we get all the
+               attributes associated with the referenced co -->
+          <xsl:variable name="callout" as="element()">
+            <xsl:apply-templates select="$co"/>
+          </xsl:variable>
+          <xsl:element name="{local-name($callout)}" namespace="{namespace-uri($callout)}">
+            <xsl:sequence select="$callout/@* except $callout/@id, $callout/node()"/>
+          </xsl:element>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
