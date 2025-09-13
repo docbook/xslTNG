@@ -23,78 +23,6 @@ in Cyrillic script, Serbian in Latin script, Slovak, Slovenian,
 Spanish, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Ukrainian,
 Urdu, Vietnamese, Welsh, and Xhosa.</para>
 
-<section xml:id="l10n-background">
-<title>Background</title>
-
-<para>Near the end of the previous millennium, I was working
-on the
-<link xlink:href="https://en.wikipedia.org/wiki/Document_Style_Semantics_and_Specification_Language">DSSSL</link>
-stylesheets for DocBook. They were popular enough that users of languages
-other than English wanted to use them.</para>
-
-<para>I invented a mechanism for doing simple localization
-so that the word “Chapter” in “Chapter 5” would, for example,
-be spelled “Chapitre” if the
-book was in French, and “Розділ” if it was in Ukrainian.
-What started as a simple word substitution system grew a few
-macro facilities and became a little more sophisticated<footnote>
-<para>I’m not sure you’d pick a twenty-something, monolingual Anglophone
-American to do this work if you were planning ahead, but that’s what
-happened.</para>
-</footnote>.</para>
-
-<para>Over time, with the aid of dozens of volunteers around the world
-who contributed files for their languages, the DocBook stylesheets
-developed localization capabilities that were for the most part good
-enough.</para>
-
-<para>Fast forward a few years and those language-specific
-localization files, and some of those mechanisms, were ported to the
-XSLT 1.0 stylesheets for DocBook.</para>
-
-<para>Fast forward another decade and those XSLT 1.0 localization
-files and some of the mechanisms were ported to the XSLT 2.0 stylesheets
-for DocBook.</para>
-
-<para>Fast forward the better part of <emphasis>another</emphasis>
-decade and those XSLT 2.0 localization files and some of the
-mechanisms were ported to the <citetitle>DocBook xslTNG</citetitle>
-stylesheets.</para>
-
-<para>Well. Sort of. Initially, I tried to replace the complex system
-of templates with a model that took the text that had to be generated
-and decomposed it into logical parts. It worked fine for English and
-many other languages, but didn’t account for the complexity of 
-many others, such as Chinese.<footnote>
-<para>Turns out a fifty-something, monolingual Anglophone American isn’t
-much of an improvement, really.</para></footnote></para>
-
-<para>Starting in version 2.0.0, the xslTNG stylesheets have reverted
-back to a templating system. The localization files have been
-transformed a little bit to make some of the customization easier (I
-hope). They can’t stray too far from the original designs because I
-must reuse the localization data I have. I don’t want to devise a
-system that requires another army of volunteers to provide new
-localization data.</para>
-
-<section xml:id="l10n-consequences">
-<title>Consequences</title>
-
-<para>One unfortunate consequence of this history is that there’s some
-cruft in the localization files. There are mappings and possibly
-templates that aren’t actually used. Or, at least, they’re not used in
-the standard DocBook stylesheet. They might be used in customization
-layers.</para>
-
-<para>I made a few attempts to trim out cruft, but found all of the
-results unsatisfying. So, at least for the moment, I’ve left it in
-place. Like everything on earth, it’s <link
-xlink:href="https://en.wikipedia.org/wiki/Mostly_Harmless">mostly
-harmless</link>.
-</para>
-</section>
-</section>
-
 <section xml:id="l10n-overview">
 <title>Overview</title>
 
@@ -593,6 +521,80 @@ template for the <tag>formalgroup</tag> element in the
 <mode>m:headline</mode> mode. The default version is in
 <filename>modules/titles.xsl</filename>.</para>
 
+</section>
+
+<section xml:id="l10n-background">
+<title>Background</title>
+
+<para>If you’re interested in how things got this way, it’s useful to
+consider the history of stylesheet localization for DocBook.
+Near the end of the previous millennium, I was working
+on the
+<link xlink:href="https://en.wikipedia.org/wiki/Document_Style_Semantics_and_Specification_Language">DSSSL</link>
+stylesheets for DocBook. They were popular enough that users of languages
+other than English wanted to use them.</para>
+
+<para>I invented a mechanism for doing simple localization
+so that the word “Chapter” in “Chapter 5” would, for example,
+be spelled “Chapitre” if the
+book was in French, and “Розділ” if it was in Ukrainian.
+What started as a simple word substitution system grew a few
+macro facilities and became a little more sophisticated<footnote>
+<para>I’m not sure you’d pick a twenty-something, monolingual Anglophone
+American to do this work if you were planning ahead, but that’s what
+happened.</para>
+</footnote>.</para>
+
+<para>Over time, with the aid of dozens of volunteers around the world
+who contributed files for their languages, the DocBook stylesheets
+developed localization capabilities that were for the most part good
+enough.</para>
+
+<para>Fast forward a few years and those language-specific
+localization files, and some of those mechanisms, were ported to the
+XSLT 1.0 stylesheets for DocBook.</para>
+
+<para>Fast forward another decade and those XSLT 1.0 localization
+files and some of the mechanisms were ported to the XSLT 2.0 stylesheets
+for DocBook.</para>
+
+<para>Fast forward the better part of <emphasis>another</emphasis>
+decade and those XSLT 2.0 localization files and some of the
+mechanisms were ported to the <citetitle>DocBook xslTNG</citetitle>
+stylesheets.</para>
+
+<para>Well. Sort of. Initially, I tried to replace the complex system
+of templates with a model that took the text that had to be generated
+and decomposed it into logical parts. It worked fine for English and
+many other languages, but didn’t account for the complexity of 
+many others, such as Chinese.<footnote>
+<para>Turns out a fifty-something, monolingual Anglophone American isn’t
+much of an improvement, really.</para></footnote></para>
+
+<para>Starting in version 2.0.0, the xslTNG stylesheets have reverted
+back to a templating system. The localization files have been
+transformed a little bit to make some of the customization easier (I
+hope). They can’t stray too far from the original designs because I
+must reuse the localization data I have. I don’t want to devise a
+system that requires another army of volunteers to provide new
+localization data.</para>
+
+<section xml:id="l10n-consequences">
+<title>Consequences</title>
+
+<para>One unfortunate consequence of this history is that there’s some
+cruft in the localization files. There are mappings and possibly
+templates that aren’t actually used. Or, at least, they’re not used in
+the standard DocBook stylesheet. They might be used in customization
+layers.</para>
+
+<para>I made a few attempts to trim out cruft, but found all of the
+results unsatisfying. So, at least for the moment, I’ve left it in
+place. Like everything on earth, it’s <link
+xlink:href="https://en.wikipedia.org/wiki/Mostly_Harmless">mostly
+harmless</link>.
+</para>
+</section>
 </section>
 
 </chapter>
