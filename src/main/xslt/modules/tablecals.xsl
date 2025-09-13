@@ -352,6 +352,8 @@
 <!-- ============================================================ -->
 
 <xsl:template name="tp:cals-colspec">
+  <xsl:variable name="threshold" as="xs:integer"
+                select="-1 * $cals-table-width-threshold"/>
   <xsl:variable name="tgroup" select="."/>
 
   <xsl:variable name="widths" as="map(*)*">
@@ -390,12 +392,18 @@
   <xsl:variable name="absolute-remainder"
                 select="f:absolute-length($v:nominal-page-width) - $absolute-width"/>
 
-  <xsl:if test="$absolute-remainder lt 0">
-    <xsl:message>Table width exceeds nominal width, ignoring relative width</xsl:message>
+  <xsl:if test="$absolute-remainder lt $threshold">
+    <xsl:message>
+      <xsl:text>Width of </xsl:text>
+      <xsl:value-of select="fp:path($tgroup/..)"/>
+      <xsl:text> exceeds nominal width by </xsl:text>
+      <xsl:value-of select="abs($absolute-remainder)"/>
+      <xsl:text>px, ignoring relative width.</xsl:text>
+    </xsl:message>
   </xsl:if>
 
   <xsl:variable name="absolute-remainder"
-                select="if ($absolute-remainder lt 0)
+                select="if ($absolute-remainder lt $threshold)
                         then 0
                         else $absolute-remainder"/>
 
