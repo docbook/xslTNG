@@ -224,17 +224,8 @@ jobs:
             build/distributions/docbook-xslTNG-${{ env.CI_TAG }}.zip
             build/distributions/docbook-xslTNG-nosaxon-${{ env.CI_TAG }}.zip
 
-      - name: Publish to Sonatype
-        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
-        run: |
-          curl -s -o secret.gpg ${{ secrets.GPGKEYURI }}
-          ./gradlew -PsonatypeUsername=${{ secrets.SONATYPEUSER }} \
-                  -PsonatypePassword="${{ secrets.SONATYPEPASS }}" \
-                  -Psigning.keyId="${{ secrets.SIGNKEY }}" \
-                  -Psigning.password="${{ secrets.SIGNPSW }}" \
-                  -Psigning.secretKeyRingFile=./secret.gpg \
-                  publish
-          rm -f secret.gpg
+
+      # Publishing to sonatype from CI is currently broken
 
       - name: Checkout the CDN
         uses: actions/checkout@v4
