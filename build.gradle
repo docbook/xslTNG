@@ -1458,6 +1458,13 @@ task sourcesJar(type: Jar) {
 
 // ============================================================
 
+task mavenReleaseArtifact(type: Zip) {
+  dependsOn("publish")
+
+  from(layout.buildDirectory.dir("maven-o-matic"))
+  archiveFileName = "maven-xslTNG-${xslTNGversion}.zip"
+}
+
 signing {
   sign publishing.publications
 }

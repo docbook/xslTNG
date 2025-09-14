@@ -44,6 +44,7 @@ jobs:
       HAVE_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN != '' }}
       HAVE_GPGKEYURI: ${{ secrets.ACCESS_TOKEN != '' && secrets.GPGKEYURI != '' }}
       HAVE_SAXON_EE: ${{ secrets.SAXON_PASSPHRASE != '' }}
+      HAVE_BEARER_TOKEN: ${{ secrets.BEARER_TOKEN != '' }}
       CIWORKFLOW: yes
       CI_SHA1: ${{ github.sha }}
       CI_BUILD_NUM: ${{ github.run_number }}
@@ -91,7 +92,7 @@ jobs:
         if: matrix.os == 'macos-11'
         run: |
           ls build
-          ./gradlew --stacktrace -PrequireCompileSuccess=true dist
+          ./gradlew --stacktrace -PrequireCompileSuccess=true dist mavenReleaseArtifact
 
       # Test the build on Windows
 
@@ -226,9 +227,8 @@ jobs:
 
 
       - name: Publish to Sonatype
-        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
-        run: |
-          ./gradlew publish
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' && env.HAVE_BEARER_TOKEN == 'true' }}
+        run: "curl --header \"Authorization: Bearer ${{ secrets.BEARER_TOKEN }}\" --form bundle=@build/distributions/maven-xslTNG-${{ env.CI_TAG }}.zip https://central.sonatype.com/api/v1/publisher/upload"
 
       - name: Checkout the CDN
         uses: actions/checkout@v4
