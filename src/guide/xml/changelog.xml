@@ -10,6 +10,85 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r261">
+<info>
+  <title>Changes in version 2.6.1</title>
+  <productnumber>2.6.1</productnumber>
+  <date>2025-09-14</date>
+</info>
+<itemizedlist>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/637">#637</link>.
+Catch and ignore parse errors from <command>pygmentize</command>.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/634">#634</link>.
+Attempt to avoid false positive warnings about table widths.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/629">#629</link>.
+Don’t create duplicate ID values when styling <tag>coref</tag> elements.
+This fix also changes the element that wraps a <tag>co</tag> from “a” to “span”. That’s
+possibly backwards incompatible, but seems unlikely to be harmful and “a” is
+clearly wrong.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/625">#625</link>.
+Added a <parameter>user-document-class</parameter> parameter.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/621">#621</link>.
+Assure that when <tag>indexterm</tag> elements appear in <tag>title</tag> elements,
+they don’t generate anchors in the list of titles.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/620">#620</link>.
+Fixed an error in how scope was computed for generated indexes.
+</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/614">#614</link>.
+Corrected the way <tag>citation</tag> links are constructed so that they work
+even when the bibliography entry doesn’t have an <tag class="attribute">xml:id</tag>.
+This change also introduces a warning message for citations that don’t have
+corresponding entries. I think that’s the right thing to do.
+</para>
+<para>There’s a small markup change in this fix. Where previously a citation
+would produce something like this:</para>
+<programlisting language="xml"><![CDATA[<a href="#R_bi1_biblioentry1" class="xref xref-biblioentry">
+  <span class="label">
+    <span class="abbrev">AhoSethiUllman96</span>
+  </span>
+</a>]]></programlisting>
+<para>it now produces:</para>
+
+<programlisting language="xml"><![CDATA[<span class="citation">
+  <a href="#R_bi1_biblioentry1" class="xref xref-biblioentry">AhoSethiUllman96</a>
+</span>]]></programlisting>
+
+<para>Technically this is backwards incompatible; it’s possible that the
+label/abbrev classes were used for styling, but styling the citation class
+should be a lot easier.</para>
+</listitem>
+<listitem>
+<para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/573">#573</link>.
+Make sure that section numbering works correctly when sections contain
+<tag>refentry</tag> elements.
+</para>
+</listitem>
+<listitem>
+<para>Made a number of improvements to this guide with special thanks to
+Olivier Cailloux for careful review and feedback.
+</para>
+</listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r260">
 <info>
   <title>Changes in version 2.6.0</title>
