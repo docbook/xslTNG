@@ -184,7 +184,7 @@
                          |ancestor::db:appendix|ancestor::db:partintro
                          |ancestor::db:dedication|ancestor::db:colophon
                          |ancestor::db:acknowledgements
-                         |ancestor::db:article|ancestor::db:refentry
+                         |ancestor::db:article
                          |ancestor::db:index|ancestor::db:setindex)">
       <xsl:number count="db:section[not(parent::db:section)
                                     and not(ancestor::db:bibliography
@@ -193,7 +193,7 @@
                                        |ancestor::db:glossary)]"
                   from="db:preface|db:chapter|db:appendix|db:partintro
                         |db:dedication|db:colophon|db:acknowledgements
-                        |db:article|db:refentry
+                        |db:article
                         |db:index|db:setindex"
                   level="any"/>
     </xsl:when>

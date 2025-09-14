@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0" xml:lang="en">
+<info>
+  <title>Unit Test: book.022</title>
+</info>
+
+  <chapter>
+    <title>Chapter title</title>
+    <para>Lorem ipsum ...</para>
+    <section>
+      <title>Section 1 - First reference block</title>
+      <para>Lorem ipsum ...</para>
+      <refentry>
+        <refnamediv>
+          <refname>Refentry 1/1</refname>
+          <refpurpose>Purpose 1/1</refpurpose>
+        </refnamediv>
+        <refsection>
+          <title>Description</title>
+          <para>Description 1/1</para>
+        </refsection>
+      </refentry>
+    </section>
+    <section>
+      <title>Section 2 - Second reference block</title>
+      <para>Lorem ipsum ...</para>
+      <refentry>
+        <refnamediv>
+          <refname>Refentry 1/2</refname>
+          <refpurpose>Purpose 1/2</refpurpose>
+        </refnamediv>
+        <refsection>
+          <title>Description</title>
+          <para>Description 1/2</para>
+        </refsection>
+      </refentry>
+    </section>
+    <section>
+      <title>Section 3 - Section without reference</title>
+      <para>Lorem ipsum ...</para>
+    </section>
+    <section>
+      <title>Section 4 - Section without reference</title>
+      <para>Lorem ipsum ...</para>
+    </section>
+    <section>
+      <title>Section 5 - References in sub-section</title>
+      <section>
+        <title>Sub-section 1 - First reference block</title>
+        <para>Lorem ipsum ...</para>
+        <refentry>
+          <refnamediv>
+            <refname>Refentry 1/5.1</refname>
+            <refpurpose>Purpose 1/5.1</refpurpose>
+          </refnamediv>
+          <refsection>
+            <title>Description</title>
+            <para>Description 1/5.1</para>
+          </refsection>
+        </refentry>
+      </section>
+      <section>
+        <title>Sub-section 2 - Second reference block</title>
+        <para>Lorem ipsum ...</para>
+        <refentry>
+          <refnamediv>
+            <refname>Refentry 1/5.2</refname>
+            <refpurpose>Purpose 1/5.2</refpurpose>
+          </refnamediv>
+          <refsection>
+            <title>Description</title>
+            <para>Description 1/5.2</para>
+          </refsection>
+        </refentry>
+      </section>
+    </section>
+    <section>
+      <title>Section 6 - Section without reference</title>
+      <para>Lorem ipsum ...</para>
+    </section>
+  </chapter>
+</book>
