@@ -126,6 +126,31 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="db:citation" mode="m:link">
+  <!-- At this point, the bibliographies have been merged into this
+       document. Look for them in here, not in the external bibs. -->
+  <xsl:variable name="target" select="key('bibliography-entry', normalize-space(.))"/>
+
+  <xsl:choose>
+    <xsl:when test="empty($target)">
+      <xsl:message select="'Citation has no bibliography entry:', normalize-space(.)"/>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- This is very like what tp:link produces, but with some extra attributes. -->
+      <a href="{f:href(., $target[1])}" class="xref xref-{local-name($target[1])}">
+        <xsl:if test="fp:pmuj-enabled(/)">
+          <xsl:attribute name="id" select="f:generate-id(.)"/>
+        </xsl:if>
+        <xsl:if test="exists(db:alt)">
+          <xsl:attribute name="title" select="db:alt[1]/string()"/>
+        </xsl:if>
+        <xsl:apply-templates/>
+      </a>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="tp:link">
   <xsl:param name="title" select="db:alt[1]/string()" as="xs:string?"/>
   <xsl:param name="href" select="iri-to-uri(@xlink:href)" as="xs:string"/>

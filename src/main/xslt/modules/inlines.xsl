@@ -112,19 +112,7 @@
 </xsl:template>
 
 <xsl:template match="db:citation">
-  <!-- Can we find a bibliography entry for this citation? -->
-  <xsl:variable name="bib" select="f:biblioentries(., $bibliography-collection)[1]"/>
-  <xsl:choose>
-    <xsl:when test="$bib">
-      <xsl:call-template name="tp:xref">
-        <xsl:with-param name="linkend" select="$bib/@xml:id"/>
-        <xsl:with-param name="target" select="$bib"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="t:inline"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="t:inline"/>
 </xsl:template>
 
 <xsl:template match="db:citebiblioid">
