@@ -78,18 +78,24 @@
 </xsl:function>
 
 <xsl:function use-when="function-available('ext:pygmentize')"
-              name="fp:syntax-highlight" as="node()*">
+  name="fp:syntax-highlight" as="node()*">
   <xsl:param name="source" as="xs:string"/>
   <xsl:param name="options" as="map(xs:string,xs:string)"/>
   <xsl:param name="pyoptions" as="map(xs:string,xs:string)"/>
-
-  <xsl:variable name="string"
-                select="ext:pygmentize($source, $options, $pyoptions)"/>
-  <xsl:variable name="html">
-    <xsl:apply-templates select="parse-xml($string)/node()" mode="mp:fix-html"/>
-  </xsl:variable>
-
-  <xsl:sequence select="$html/h:div/h:pre/node()"/>
+  
+  <xsl:try>
+    <xsl:variable name="string" select="ext:pygmentize($source, $options, $pyoptions)"/>
+    <xsl:variable name="html">
+      <xsl:apply-templates select="parse-xml($string)/node()" mode="mp:fix-html"/>
+    </xsl:variable>
+    
+    <xsl:sequence select="$html/h:div/h:pre/node()"/>
+    <xsl:catch xmlns:err="http://www.w3.org/2005/xqt-errors">
+      <xsl:message select="'Warning: pygmentize failed ' || $err:description"/>
+      <!-- return a text node -->
+      <xsl:value-of select="$source"/>
+    </xsl:catch>
+  </xsl:try>
 </xsl:function>
 
 <xsl:function use-when="not(function-available('ext:pygmentize'))"
