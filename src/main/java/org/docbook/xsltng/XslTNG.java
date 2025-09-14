@@ -29,16 +29,30 @@ import java.net.URLConnection;
 import java.security.CodeSource;
 import java.util.Properties;
 
+/**
+ * Class for constructing and running the DocBook stylesheets.
+ */
 public class XslTNG {
+    /** The default catalog file. */
     protected static String catalogFile = null;
+    /** The configuration properties. */
     protected static Properties configProperties = null;
+    /** The version. */
     protected static String version = null;
+    /** The resources version. */
     protected static String resourcesVersion = null;
+    /** The resolver version. */
     protected String resolverVersion = null;
+    /** The location of classes. */
     protected String classLoc = null;
+    /** The location of the jar file. */
     protected String jarLoc = null;
+    /** The debugging logger. */
     protected DebuggingLogger logger = null;
 
+    /**
+     * The constructor.
+     */
     public XslTNG() {
         Processor processor = new Processor(false);
         logger = new DebuggingLogger(processor.getUnderlyingConfiguration().getLogger());
@@ -69,10 +83,19 @@ public class XslTNG {
         }
     }
 
+    /**
+     * Create a default catalog.
+     * @return The catalog location.
+     */
     public String createCatalog() {
         return createCatalog(null);
     }
 
+    /**
+     * Create a catalog.
+     * @param catalogFilename The catalog filename.
+     * @return The catalog location.
+     */
     public String createCatalog(String catalogFilename) {
         if (resolverVersion != null) {
             // The version() method was introduced in 2.x, so we don't actually care
@@ -160,6 +183,10 @@ public class XslTNG {
         }
     }
 
+    /**
+     * The DocBook xslTNG version.
+     * @return The version string.
+     */
     public String version() {
         if (version != null) {
             return version;
@@ -173,6 +200,11 @@ public class XslTNG {
         return version;
     }
 
+    /**
+     * The DocBook xslTNG resources version.
+     * <p>This is currently unused.</p>
+     * @return The resources version.
+     */
     public String resourcesVersion() {
         if (resourcesVersion != null) {
             return resourcesVersion;
@@ -203,19 +235,4 @@ public class XslTNG {
             throw new UnsupportedOperationException("Failed to load version.properties file from JAR!?");
         }
     }
-
-    /*
-    public static void main(String[] args) {
-        XslTNG instance = new XslTNG();
-        instance.run();
-    }
-
-    public void run() {
-        System.out.println("Hello, world");
-        System.out.println("jarLoc: " + jarLoc);
-        System.out.println("classLoc: " + classLoc);
-        String x = createCatalog("/tmp/out.cat");
-        System.out.println("catalog: " + x);
-    }
-     */
 }

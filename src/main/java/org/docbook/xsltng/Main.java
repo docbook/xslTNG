@@ -6,6 +6,9 @@ import org.docbook.xsltng.extensions.DebuggingLogger;
 
 import java.util.Vector;
 
+/**
+ * Main driver program for executing the stylesheets.
+ */
 public class Main extends Transform {
     Vector<String> userArgs = new Vector<>();
     private final Vector<String> userCatalogFiles = new Vector<> ();
@@ -15,15 +18,26 @@ public class Main extends Transform {
     private boolean stylesheetReader = false;
     private boolean init = false;
 
+    /** The debugging logger. */
     protected DebuggingLogger logger = null;
+    /** The catalog file to use by default */
     protected String catalogFile = null;
+    /** The XslTNG object used for processing. */
     protected XslTNG xslTNG = null;
 
+    /**
+     * Run the command.
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         Main instance = new Main(args);
         instance.run();
     }
 
+    /**
+     * Instantiate the main object.
+     * @param args The command line objects.
+     */
     public Main(String[] args) {
         int pos = 0;
         for (String arg : args) {
@@ -45,6 +59,9 @@ public class Main extends Transform {
         catalogFile = xslTNG.createCatalog(System.getProperty("org.docbook.xsltng.catalog-file"));
     }
 
+    /**
+     * Run the transform.
+     */
     public void run() {
         if (uriResolver || sourceReader || stylesheetReader || init) {
             if (uriResolver) logger.error("The -r: option is not supported");
@@ -80,6 +97,10 @@ public class Main extends Transform {
         System.exit(0);
     }
 
+    /**
+     * Print the help message for bad usage.
+     * @param message The error message
+     */
     @Override
     protected void badUsage(String message) {
         if (!"".equals(message)) {
