@@ -64,7 +64,7 @@ jobs:
 
       - name: Install platform-independent Python modules
         run: |
-          python3 -m pip install pygments==2.19.1 click cython python-dateutil
+          python3 -m pip install pygments==2.19.1 click cython python-dateutil==2.9.0
 
       # Test the build on Mac
 
@@ -225,7 +225,10 @@ jobs:
             build/distributions/docbook-xslTNG-nosaxon-${{ env.CI_TAG }}.zip
 
 
-      # Publishing to sonatype from CI is currently broken
+      - name: Publish to Sonatype
+        if: ${{ matrix.os == 'ubuntu-latest' && env.HAVE_GPGKEYURI == 'true' && env.CI_BRANCH == 'main' && env.CI_TAG != '' }}
+        run: |
+          ./gradlew publish
 
       - name: Checkout the CDN
         uses: actions/checkout@v4
