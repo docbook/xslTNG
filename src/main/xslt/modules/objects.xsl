@@ -1108,9 +1108,9 @@
        the current node. But that's going to be wrong sometimes... -->
 
   <xsl:variable name="base"
-                select="if (base-uri($node/root()/*) = '')
+                select="if (base-uri(($node/root()/*)[1]) = '')
                         then base-uri($node)
-                        else base-uri($node/root()/*)"/> 
+                        else base-uri(($node/root()/*)[1])"/> 
 
 <!--
   <xsl:message use-when="'mediaobject-uris' = $v:debug"
