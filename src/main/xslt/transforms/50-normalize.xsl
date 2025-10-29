@@ -214,11 +214,12 @@
 </xsl:template>
 
 <xsl:template match="db:glossary[contains-token(@role, 'auto')]">
+  <xsl:variable name="this-glossary" as="element(db:glossary)" select="."/>
   <!-- Locate all the external glossaries -->
   <xsl:variable name="glossaries"
                 select="f:available-glossaries(., $glossary-collection)"/>
 
-  <xsl:variable name="this" select="root(.)"/>
+  <xsl:variable name="this" select="(ancestor::db:book, root(.))[1]"/>
 
   <xsl:variable name="unique-entries" as="element(db:glossentry)*">
     <xsl:iterate select="$glossaries//db:glossentry">
@@ -226,7 +227,7 @@
       <xsl:on-completion select="$entries"/>
 
       <xsl:variable name="term" select="db:glossterm"/>
-
+      
       <xsl:choose>
         <xsl:when test="empty(f:glossrefs($term, $this))">
           <!-- unreferenced, discard it -->
@@ -242,11 +243,28 @@
             <xsl:with-param name="entries" select="$entries"/>
           </xsl:next-iteration>
         </xsl:when>
-        <xsl:otherwise>
+        <xsl:when test="count(root($this-glossary)//db:glossary) eq 1">
           <!-- Ooh, we want this one! -->
           <!--<xsl:message select="'Keep:', $term"/>-->
           <xsl:next-iteration>
             <xsl:with-param name="entries" select="($entries, .)"/>
+          </xsl:next-iteration>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Unique @xml:id for glossentry even in set of books and multiple glossaries -->
+          <xsl:variable name="new-entry" as="element(db:glossentry)">
+            <db:glossentry>
+              <xsl:attribute name="xml:id" select="
+                  let $entry_id := (@xml:id, 'e' || count(preceding::db:glossentry) + 1)[1],
+                    $glossary_id := ($this-glossary/@xml:id, 'glossary' || count($this-glossary/preceding::db:glossary) + 1)[1]
+                  return
+                    string-join(($glossary_id, $entry_id), '_')"/>
+              <xsl:sequence select="@* except @xml:id, node()"/>
+            </db:glossentry>
+          </xsl:variable>
+          <!--<xsl:message select="'Keep:' || $term || ' with id ' || $new-entry/@xml:id"/>-->
+          <xsl:next-iteration>
+            <xsl:with-param name="entries" select="($entries, $new-entry)"/>
           </xsl:next-iteration>
         </xsl:otherwise>
       </xsl:choose>

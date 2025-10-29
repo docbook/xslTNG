@@ -206,7 +206,7 @@
 
 <xsl:function name="f:glossrefs" as="element()*">
   <xsl:param name="term" as="element()"/>
-  <xsl:param name="root" as="document-node()"/>
+  <xsl:param name="root" as="node()"/>
   <xsl:sequence select="key('glossary-ref', fp:baseform($term), $root)"/>
 </xsl:function>
 
