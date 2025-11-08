@@ -521,6 +521,9 @@
 <xsl:function name="f:mediaobject-viewport" as="map(*)">
   <xsl:param name="info" as="map(*)"/>
 
+  <xsl:message use-when="'image-properties' = $v:debug"
+               select="'Info:', serialize($info, map{'method':'json','indent':true()})"/>
+
   <xsl:variable name="imageproperties" select="$info?properties"/>
 
   <xsl:variable name="intrinsicwidth"
@@ -538,26 +541,51 @@
   <xsl:variable name="width" select="f:object-width($info)"/>
   <xsl:variable name="height" select="f:object-height($info)"/>
 
+  <xsl:message use-when="'image-properties' = $v:debug"
+               select="'Nominal width:',
+                       serialize($v:image-nominal-width, map{'method':'json','indent':true()})"/>
+  <xsl:message use-when="'image-properties' = $v:debug"
+               select="'Nominal height:',
+                       serialize($v:image-nominal-height, map{'method':'json','indent':true()})"/>
+
   <!-- Convert % widths into absolute widths if we can -->
+
+  <xsl:variable name="perc-width"
+                select="if (f:is-true($mediaobject-percentage-of-intrinsic-size))
+                        then $intrinsicwidth
+                        else $v:image-nominal-width"/>
+
+  <xsl:variable name="perc-height"
+                select="if (f:is-true($mediaobject-percentage-of-intrinsic-size))
+                        then $intrinsicheight
+                        else $v:image-nominal-height"/>
 
   <xsl:variable
       name="width"
-      select="if ($width?unit = '%' and not(f:is-empty-length($intrinsicwidth)))
-              then f:make-length($intrinsicwidth?magnitude
+      select="if ($width?unit = '%' and not(f:is-empty-length($perc-width)))
+              then f:make-length($perc-width?magnitude
                                  * $width?magnitude
                                  div 100.0,
-                                 $intrinsicwidth?unit)
-              else $width"/>
+                                 $perc-width?unit)
+              else
+                $width"/>
 
   <xsl:variable
       name="height"
-      select="if ($height?unit = '%' and not(f:is-empty-length($intrinsicheight)))
-              then f:make-length($intrinsicheight?magnitude
+      select="if ($height?unit = '%' and not(f:is-empty-length($perc-height)))
+              then f:make-length($perc-height?magnitude
                                  * $height?magnitude
                                  div 100.0,
-                                 $intrinsicheight?unit)
+                                 $perc-height?unit)
               else
                 $height"/>
+
+  <xsl:message use-when="'image-properties' = $v:debug"
+               select="'Width:',
+                       serialize($width, map{'method':'json','indent':true()})"/>
+  <xsl:message use-when="'image-properties' = $v:debug"
+               select="'Height:',
+                       serialize($height, map{'method':'json','indent':true()})"/>
 
   <xsl:variable name="scalefit" select="f:object-scalefit($info)"/>
   <xsl:variable name="scale" select="f:object-scale($info)"/>

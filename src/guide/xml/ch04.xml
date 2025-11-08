@@ -235,6 +235,15 @@ this can include EXIF data and metadata)</entry>
 </tgroup>
 </table>
 
+<warning>
+<para>Prior to version 2.7.0, percentage values for the
+<tag class="attribute">width</tag> or
+<tag class="attribute">depth</tag> of a media object were incorrectly computed
+against the intrinsic size of the object. That error has been corrected, but
+will effect the size of those images. To retain the previous, incorrect
+behavior, see <parameter>mediaobject-percentage-of-intrinsic-size</parameter>.</para>
+</warning>
+
 <para>The <literal>uri</literal> and <literal>href</literal> properties are computed
 by processing the data elements in the <mode>m:mediaobject-uris</mode> mode.</para>
 
