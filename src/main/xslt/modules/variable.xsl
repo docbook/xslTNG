@@ -306,11 +306,11 @@
 
 <xsl:variable name="v:highlight-js-head-elements" as="element()*">
   <link rel="stylesheet"
-        href="{$resource-base-uri}css/highlight-11.10.0.min.css" />
-  <script src="{$resource-base-uri}js/highlight-11.10.0.min.js"></script>
+        href="{fp:add-resource-base-uri('css/highlight-11.10.0.min.css')}" />
+  <script src="{fp:add-resource-base-uri('js/highlight-11.10.0.min.js')}"></script>
   <xsl:choose>
     <xsl:when test="f:is-true($verbatim-embellish-linenumbers)">
-      <script src="{$resource-base-uri}js/highlightjs-line-numbers-2.9.0.min.js"></script>
+      <script src="{fp:add-resource-base-uri('js/highlightjs-line-numbers-2.9.0.min.js')}"></script>
       <script>hljs.configure({languages:[]}); hljs.highlightAll(); hljs.initLineNumbersOnLoad();</script>
     </xsl:when>
     <xsl:otherwise>
@@ -320,8 +320,8 @@
 </xsl:variable>
 
 <xsl:variable name="v:prism-js-head-elements" as="element()*">
-  <link rel="stylesheet" href="{$resource-base-uri}css/prism.css"/>
-  <script src="{$resource-base-uri}js/prism.js"></script>
+  <link rel="stylesheet" href="{fp:add-resource-base-uri('css/prism.css')}"/>
+  <script src="{fp:add-resource-base-uri('js/prism.js')}"></script>
 </xsl:variable>
 
 <!-- ============================================================ -->

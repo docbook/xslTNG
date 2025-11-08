@@ -105,7 +105,7 @@
           <script type="text/html" class="annotation-close">
             <xsl:sequence select="$v:annotation-close"/>
           </script>
-          <script src="{$resource-base-uri}{$annotations-js}" defer="defer"/>
+          <script src="{fp:add-resource-base-uri($annotations-js)}" defer="defer"/>
         </db-annotation-script>
         <db-xlink-script>
           <xsl:if test="$xlink-icon-open">
@@ -118,13 +118,13 @@
               <xsl:sequence select="$xlink-icon-closed"/>
             </script>
           </xsl:if>
-          <script src="{$resource-base-uri}{$xlink-js}" defer="defer"/>
+          <script src="{fp:add-resource-base-uri($xlink-js)}" defer="defer"/>
         </db-xlink-script>
         <db-toc-script>
-          <script src="{$resource-base-uri}{$persistent-toc-js}" defer="defer"/>
+          <script src="{fp:add-resource-base-uri($persistent-toc-js)}" defer="defer"/>
         </db-toc-script>
         <db-pagetoc-script>
-          <script src="{$resource-base-uri}{$pagetoc-js}"
+          <script src="{fp:add-resource-base-uri($pagetoc-js)}"
                   data-dynamic-pagetoc="{f:is-true($pagetoc-dynamic)}"
                   defer="defer"/>
         </db-pagetoc-script>
@@ -133,32 +133,32 @@
             <script src="{if (starts-with($mathml-js-config, 'http:')
                               or starts-with($mathml-js-config, 'https:'))
                           then $mathml-js-config
-                          else $resource-base-uri || $mathml-js-config}"
+                          else fp:add-resource-base-uri($mathml-js-config)}"
                   defer="defer"/>
           </xsl:if>
           <script src="{if (starts-with($mathml-js, 'http:')
                             or starts-with($mathml-js, 'https:'))
                         then $mathml-js
-                        else $resource-base-uri || $mathml-js}"
+                        else fp:add-resource-base-uri($mathml-js)}"
                   defer="defer"/>
         </db-mathml-script>
         <db-script>
           <xsl:if test="exists($chunk) and f:is-true($chunk-nav)">
-            <script src="{$resource-base-uri}{$chunk-nav-js}" defer="defer"/>
+            <script src="{fp:add-resource-base-uri($chunk-nav-js)}" defer="defer"/>
           </xsl:if>
           <xsl:if test="f:is-true($theme-picker) and $vp:js-controls">
-            <script src="{$resource-base-uri}{$control-js}" defer="defer"/>
+            <script src="{fp:add-resource-base-uri($control-js)}" defer="defer"/>
           </xsl:if>
         </db-script>
         <db-copy-verbatim-script>
           <xsl:if test="normalize-space($copy-verbatim-js) != ''">
-            <script src="{$resource-base-uri}{$copy-verbatim-js}" defer="defer"/>
+            <script src="{fp:add-resource-base-uri($copy-verbatim-js)}" defer="defer"/>
           </xsl:if>
         </db-copy-verbatim-script>
         <db-fallback-script>
           <!-- NOT deferred! -->
           <xsl:if test="normalize-space($fallback-js) != ''">
-            <script src="{$resource-base-uri}{$fallback-js}"/>
+            <script src="{fp:add-resource-base-uri($fallback-js)}"/>
           </xsl:if>
         </db-fallback-script>
       </xsl:if>
