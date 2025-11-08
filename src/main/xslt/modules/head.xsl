@@ -51,7 +51,7 @@
     <xsl:if test="exists($v:verbatim-syntax-highlight-languages)
                   and normalize-space($verbatim-syntax-highlight-css) != ''">
       <link rel="stylesheet"
-            href="{$resource-base-uri}{$verbatim-syntax-highlight-css}"/>
+            href="{fp:add-resource-base-uri($verbatim-syntax-highlight-css)}"/>
     </xsl:if>
 
     <xsl:apply-templates select="." mode="mp:html-head-meta"/>
@@ -62,7 +62,7 @@
     <xsl:apply-templates select="h:*" mode="m:html-head"/>
 
     <xsl:for-each select="$vp:user-css-links">
-      <link rel="stylesheet" href="{$resource-base-uri}{.}"/>
+      <link rel="stylesheet" href="{fp:add-resource-base-uri(.)}"/>
     </xsl:for-each>
 
     <xsl:apply-templates select="." mode="m:html-head-last"/>
@@ -156,7 +156,7 @@
 <xsl:template match="*" mode="mp:html-head-script">
   <xsl:if test="f:is-true($persistent-toc)">
     <link rel="stylesheet"
-          href="{$resource-base-uri}{fp:minified-css($persistent-toc-css)}"/>
+          href="{fp:add-resource-base-uri(fp:minified-css($persistent-toc-css))}"/>
   </xsl:if>
 
   <xsl:variable name="global-highlighter" select="f:global-syntax-highlighter(.)"/>
@@ -187,22 +187,22 @@
 
 <xsl:template match="*" mode="mp:html-head-links">
   <xsl:if test="f:is-true($use-docbook-css)">
-    <link href="{$resource-base-uri}{fp:minified-css('css/docbook.css')}"
+    <link href="{fp:add-resource-base-uri(fp:minified-css('css/docbook.css'))}"
           rel="stylesheet" media="screen"/>
     <!-- This stylesheet was made conditional in 2.1.0 because modern
          browsers generate a lot of warnings for print-specific features. -->
     <xsl:if test="$output-media = 'print'">
-      <link href="{$resource-base-uri}{fp:minified-css('css/docbook-paged.css')}"
+      <link href="{fp:add-resource-base-uri(fp:minified-css('css/docbook-paged.css'))}"
             rel="stylesheet" media="print"/>
     </xsl:if>
     <xsl:for-each select="$vendor-css">
       <xsl:choose>
         <xsl:when test="contains(., '/') or contains(., '\')">
-          <link href="{$resource-base-uri}{.}"
+          <link href="{fp:add-resource-base-uri(.)}"
                 rel="stylesheet"/>
         </xsl:when>
         <xsl:otherwise>
-          <link href="{$resource-base-uri}{fp:minified-css('css/' || .)}"
+          <link href="{fp:add-resource-base-uri(fp:minified-css('css/' || .))}"
                 rel="stylesheet"/>
         </xsl:otherwise>
       </xsl:choose>

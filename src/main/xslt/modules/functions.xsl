@@ -843,5 +843,21 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
+
+<xsl:function name="fp:add-resource-base-uri" as="xs:string">
+  <xsl:param name="path" as="xs:string"/>
+
+  <xsl:choose>
+    <xsl:when test="starts-with($path, '/') or starts-with($path, 'file:')">
+      <xsl:sequence select="$path"/>
+    </xsl:when>
+    <xsl:when test="ends-with($resource-base-uri, '/')">
+      <xsl:sequence select="$resource-base-uri || $path"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence select="$resource-base-uri || '/' || $path"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
   
 </xsl:stylesheet>
