@@ -6063,4 +6063,40 @@ false positives.</para>
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>mediaobject-percentage-of-intrinsic-size</varname>
+      <initializer>'false'</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.7.0</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Compute media object percentage sizes based on intrinsic size</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>When the <tag class="attribute">width</tag> or <tag
+class="attribute">depth</tag> of a media object is specified as a percentage,
+it is supposed to be a percentage of the available space. All versions of
+the <citetitle>DocBook xslTNG Stylesheets</citetitle> before version 2.7.0
+incorrectly calculate percentages against the intrinsic size of the
+image.</para>
+
+<para>This has been corrected in 2.7.0, but the previous, incorrect behavior
+can be preserved by setting <parameter>mediaobject-percentage-of-intrinsic-size</parameter>
+to <literal>true</literal>.</para>
+
+<note>
+<para>Percentages are problematic in any event as the stylesheets don’t usually know the
+actual width that will be available when the document is formatted. Most often, this
+results in a calculation against the <parameter>image-nominal-height</parameter> and
+<parameter>image-nominal-width</parameter>.</para>
+</note>
+
+</refsection>
+</refentry>  
+
 </reference>
