@@ -179,19 +179,14 @@
     <xsl:when test="string(.) castable as xs:dateTime">
       <xsl:call-template name="t:inline">
         <xsl:with-param name="content" as="xs:string">
-          <!-- Don't attempt to use localization on Saxon HE -->
+          <!-- Don't attempt to use language localization on Saxon HE -->
           <xsl:sequence
               use-when="system-property('xsl:product-name') = 'SAXON'
-                        and not(
-                           starts-with(system-property('xsl:product-version'), 'EE')
-                           )"
+                        and starts-with(system-property('xsl:product-version'), 'HE')"
               select="format-dateTime(xs:dateTime(.), $format)"/>
-
           <xsl:sequence
               use-when="not(system-property('xsl:product-name') = 'SAXON'
-                            and not(
-                              starts-with(system-property('xsl:product-version'), 'EE')
-                              ))"
+                            and starts-with(system-property('xsl:product-version'), 'HE'))"
               select="format-dateTime(xs:dateTime(.), $format,
                                       f:l10n-language(.), (), ())"/>
         </xsl:with-param>
@@ -203,18 +198,14 @@
     <xsl:when test="string(.) castable as xs:date">
       <xsl:call-template name="t:inline">
         <xsl:with-param name="content" as="xs:string">
-          <!-- Don't attempt to use localization on Saxon HE -->
+          <!-- Don't attempt to use language localization on Saxon HE -->
           <xsl:sequence
               use-when="system-property('xsl:product-name') = 'SAXON'
-                        and not(
-                           starts-with(system-property('xsl:product-version'), 'EE')
-                           )"
+                        and starts-with(system-property('xsl:product-version'), 'HE')"
               select="format-date(xs:date(.), $format)"/>
           <xsl:sequence
               use-when="not(system-property('xsl:product-name') = 'SAXON'
-                            and not(
-                              starts-with(system-property('xsl:product-version'), 'EE')
-                              ))"
+                            and starts-with(system-property('xsl:product-version'), 'HE'))"
               select="format-date(xs:date(.), $format,
                                   f:l10n-language(.), (), ())"/>
         </xsl:with-param>
