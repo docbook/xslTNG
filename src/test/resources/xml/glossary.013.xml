@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<set xmlns="http://docbook.org/ns/docbook" version='5.2'>
+  <?db glossary-collection='../glosscollection.xml ../glosscollection2.xml'?>
+  <title>Test Glossary for a set of Books</title>
+  <info>
+    <author>
+      <personname>
+        <firstname>Frank</firstname><surname>Steimke</surname>
+      </personname>
+    </author>
+    <abstract>
+      <para>This is a <tag>set</tag> with two Books. We will check the <emphasis>auto-glossary</emphasis> mechanism.</para>
+    </abstract>
+  </info>
+  <book>
+    <title>The Book of Fruits</title>
+    <chapter>
+      <title>First chapter</title>
+      <para>In this Book's glossary i would expect only one entry for <glossterm baseform="Apple">Apples</glossterm>.</para>
+    </chapter>
+    <glossary role="auto"/>
+  </book>
+  <book>
+    <title>The Book of Vegetables</title>
+    <chapter>
+      <title>First chapter</title>
+      <para>In this Book's glossary i would expect two entries for <firstterm>Apple</firstterm> and <glossterm baseform="Cucumber">Cucumbers</glossterm>.</para>
+    </chapter>
+    <glossary role="auto"/>
+  </book>
+</set>
+  
