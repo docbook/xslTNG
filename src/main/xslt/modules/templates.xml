@@ -580,19 +580,22 @@
   </header>
 </db:refsection>
 
-<db:abstract context="parent::db:section/db:section/db:section/db:section | parent::db:sect4" >
+<db:abstract context="parent::db:info/parent::db:section/parent::db:section/parent::db:section/parent::db:section
+                      | parent::db:info/parent::db:sect4" >
     <tmp:apply-templates select="db:title">
         <h6 class="title"><tmp:content/></h6>
     </tmp:apply-templates>
 </db:abstract>
 
-<db:abstract context="parent::db:section/db:section/db:section | parent::db:sect3" >
+<db:abstract context="parent::db:info/parent::db:section/parent::db:section/parent::db:section
+                      | parent::db:info/parent::db:sect3" >
     <tmp:apply-templates select="db:title">
         <h5 class="title"><tmp:content/></h5>
     </tmp:apply-templates>
 </db:abstract>
 
-<db:abstract context="parent::db:section/db:section | parent::db:sect2" >
+<db:abstract context="parent::db:info/parent::db:section/parent::db:section
+                      | parent::db:info/parent::db:sect2" >
     <tmp:apply-templates select="db:title">
         <h4 class="title"><tmp:content/></h4>
     </tmp:apply-templates>
