@@ -214,10 +214,16 @@
   <xsl:variable name="fcol" select="map:get($properties, 'first-column')"/>
   <xsl:variable name="lcol" select="map:get($properties, 'last-column')"/>
 
+  <!-- This isn't *really* about the $mediaobject-percentage-of-intrinsic-size,
+       but since that flag exists to retain backwards-compatible behavior, we're
+       using it here. -->
   <xsl:variable name="nom-width"
-                select="map{'unit': 'px',
-                            'relative': 0,
-                            'magnitude': sum($column-widths[position() ge $fcol and position() le $lcol])}"/>
+                select="if (f:is-true($mediaobject-percentage-of-intrinsic-size))
+                        then $v:nominal-page-width
+                        else map{'unit': 'px',
+                                 'relative': 0,
+                                 'magnitude': sum($column-widths[position() ge $fcol
+                                                  and position() le $lcol])}"/>
 
   <xsl:call-template name="tp:cell">
     <xsl:with-param name="properties" select="$properties"/>
