@@ -6,6 +6,7 @@
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fcals="http://docbook.org/ns/docbook/functions/private/cals"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
                 xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:mp="http://docbook.org/ns/docbook/modes/private"
@@ -76,16 +77,57 @@
 </xsl:template>
 
 <xsl:template match="db:tgroup">
+  <xsl:param name="inherited-nominal-width" tunnel="true" as="map(*)"
+             select="$v:nominal-page-width"/>
+
+  <!-- If the nominal width is relative, just punt. 6in? Sure. -->
+  <xsl:variable name="table-width" as="xs:integer"
+                select="if (map:get($inherited-nominal-width, 'relative') gt 0)
+                        then f:absolute-length(map{'unit':'in', 'relative':0, 'magnitude':6})
+                        else f:absolute-length($inherited-nominal-width)"/>
+
   <table>
     <xsl:if test="'summary' = $vp:table-accessibility">
       <xsl:apply-templates select="../db:textobject[db:phrase]" mode="m:details"/>
     </xsl:if>
-    <xsl:if test="db:colspec[@colwidth]">
+
+    <xsl:variable name="colgroup" as="element(h:colgroup)">
       <xsl:call-template name="tp:cals-colspec"/>
+    </xsl:variable>
+
+    <xsl:if test="db:colspec[@colwidth]">
+      <xsl:sequence select="$colgroup"/>
     </xsl:if>
-    <xsl:apply-templates select="db:thead"/>
-    <xsl:apply-templates select="db:tfoot"/>
-    <xsl:apply-templates select="db:tbody"/>
+
+    <xsl:variable name="colwidths" as="xs:integer+">
+      <xsl:for-each select="$colgroup/h:col/@style">
+        <xsl:variable name="w" select="normalize-space(substring-after(., ':'))"/>
+        <xsl:choose>
+          <xsl:when test="ends-with($w, '%')">
+            <xsl:sequence
+                select="xs:integer(($table-width * xs:integer(substring-before($w, '%'))) div 100.0)"/>
+          </xsl:when>
+          <xsl:when test="ends-with($w, 'px')">
+            <xsl:sequence
+                select="xs:integer(substring-before($w, 'px'))"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message select="'Unexpected column width: ' || $w"/>
+            <xsl:sequence select="128"/> <!-- "This can't happen." Just make up a number????? -->
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:apply-templates select="db:thead">
+      <xsl:with-param name="column-widths" tunnel="yes" as="xs:integer+" select="$colwidths"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="db:tfoot">
+      <xsl:with-param name="column-widths" tunnel="yes" as="xs:integer+" select="$colwidths"/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select="db:tbody">
+      <xsl:with-param name="column-widths" tunnel="yes" as="xs:integer+" select="$colwidths"/>
+    </xsl:apply-templates>
   </table>
 </xsl:template>
 
@@ -159,6 +201,23 @@
 
 <xsl:template match="db:entry|db:entrytbl">
   <xsl:param name="properties" as="map(*)"/>
+  <xsl:param name="column-widths" tunnel="yes" as="xs:integer+"/>
+
+  <!--
+  <xsl:message
+      select="count(preceding::db:row), count(preceding-sibling::db:entry),
+              map:get($properties, 'first-column'), map:get($properties, 'last-column')"/>
+
+  <xsl:message select="$column-widths"/>
+  -->
+
+  <xsl:variable name="fcol" select="map:get($properties, 'first-column')"/>
+  <xsl:variable name="lcol" select="map:get($properties, 'last-column')"/>
+
+  <xsl:variable name="nom-width"
+                select="map{'unit': 'px',
+                            'relative': 0,
+                            'magnitude': sum($column-widths[position() ge $fcol and position() le $lcol])}"/>
 
   <xsl:call-template name="tp:cell">
     <xsl:with-param name="properties" select="$properties"/>
@@ -172,8 +231,12 @@
             <xsl:if test="db:colspec[@colwidth]">
               <xsl:call-template name="tp:cals-colspec"/>
             </xsl:if>
-            <xsl:apply-templates select="db:thead"/>
-            <xsl:apply-templates select="db:tbody"/>
+            <xsl:apply-templates select="db:thead">
+              <xsl:with-param name="inherited-nominal-width" tunnel="yes" select="$nom-width"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="db:tbody">
+              <xsl:with-param name="inherited-nominal-width" tunnel="yes" select="$nom-width"/>
+            </xsl:apply-templates>
           </table>
         </xsl:when>
         <xsl:otherwise>
@@ -256,7 +319,9 @@
               <xsl:value-of select="$before || $after"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates/>
+              <xsl:apply-templates>
+                <xsl:with-param name="inherited-nominal-width" tunnel="yes" select="$nom-width"/>
+              </xsl:apply-templates>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:otherwise>

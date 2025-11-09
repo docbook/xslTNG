@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: issue-581-html</title>
+
+<para>This is a scalefit test.
+</para>
+
+<informaltable>
+  <tbody>
+    <tr>
+      <td>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../media/duck.png" width="100%" scalefit="1"/>
+          </imageobject>
+        </mediaobject>
+      </td>
+    </tr>
+  </tbody>
+</informaltable>
+
+<para>The <tag class="attribute">width</tag> attribute on <tag>col</tag> is deprecated
+in HTML, so there’s no way to specify the width such that the stylesheets can compute
+the nominal width.</para>
+
+</article>

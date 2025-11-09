@@ -686,4 +686,28 @@ one group.
 </refsection>
 </refentry>
 
+<refentry xml:id="t_mediaobject-viewport">
+<?db filename="t_mediaobject-viewport"?>
+<refmeta>
+<refentrytitle>t:mediaobject-viewport</refentrytitle>
+<refmiscinfo>{http://docbook.org/ns/docbook/templates}mediaobject-viewport</refmiscinfo>
+<refmiscinfo class="version">2.7.0</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>t:mediaobject-viewport</refname>
+<refpurpose>Construct the “viewport” for media objects</refpurpose>
+<refclass>template</refclass>
+</refnamediv>
+<refsection>
+<title>Description</title>
+<para>If your DocBook markup for media objects includes any of the size or scaling
+adjustment attributes, this template is called to construct the HTML markup that
+implements those adjustments.</para>
+<note>
+<para>Prior to version 2.7.0, this was a function. It was changed into a template
+to support the tunnel parameter that manages the nominal width available.</para>
+</note>
+</refsection>
+</refentry>
+
 </reference>

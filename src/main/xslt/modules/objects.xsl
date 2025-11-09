@@ -107,8 +107,13 @@
          last alternative -->
     <xsl:variable name="last-data"
                   select="array:flatten($object-info?datas)[last()]"/>
-    <xsl:variable name="viewport"
-                  select="$last-data ! f:mediaobject-viewport(.)"/>
+    <xsl:variable name="viewport" as="map(*)?">
+      <xsl:if test="exists($last-data)">
+        <xsl:call-template name="t:mediaobject-viewport">
+          <xsl:with-param name="info" select="$last-data"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:variable>
 
     <xsl:variable name="display-width"
                   select="if (exists($last-data?contentwidth))
@@ -518,8 +523,9 @@
 
 <!-- ============================================================ -->
 
-<xsl:function name="f:mediaobject-viewport" as="map(*)">
+<xsl:template name="t:mediaobject-viewport" as="map(*)">
   <xsl:param name="info" as="map(*)"/>
+  <xsl:param name="inherited-nominal-width" tunnel="yes" as="map(*)"/>
 
   <xsl:message use-when="'image-properties' = $v:debug"
                select="'Info:', serialize($info, map{'method':'json','indent':true()})"/>
@@ -553,7 +559,7 @@
   <xsl:variable name="perc-width"
                 select="if (f:is-true($mediaobject-percentage-of-intrinsic-size))
                         then $intrinsicwidth
-                        else $v:image-nominal-width"/>
+                        else $inherited-nominal-width"/>
 
   <xsl:variable name="perc-height"
                 select="if (f:is-true($mediaobject-percentage-of-intrinsic-size))
@@ -679,7 +685,7 @@
                select="serialize($result, $v:as-json)"/>
 
   <xsl:sequence select="$result"/>
-</xsl:function>
+</xsl:template>
 
 <!-- ============================================================ -->
 

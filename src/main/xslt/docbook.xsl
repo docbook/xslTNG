@@ -236,6 +236,7 @@
   <xsl:variable name="transformed-html" as="document-node()">
     <xsl:apply-templates select="$document" mode="m:docbook">
       <xsl:with-param name="vp:loop-count" select="1" tunnel="yes"/>
+      <xsl:with-param name="inherited-nominal-width" tunnel="yes" select="$v:nominal-page-width"/>
     </xsl:apply-templates>
   </xsl:variable>
 

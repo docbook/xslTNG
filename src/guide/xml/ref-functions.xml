@@ -936,25 +936,6 @@ The default version simply returns the media object extension, if there is one.
 </refsection>
 </refentry>
 
-<refentry xml:id="f_mediaobject-viewport">
-<?db filename="f_mediaobject-viewport"?>
-<refmeta>
-<refentrytitle>f:mediaobject-viewport</refentrytitle>
-<refmiscinfo>{http://docbook.org/ns/docbook/functions}mediaobject-viewport#1</refmiscinfo>
-</refmeta>
-<refnamediv>
-<refname>f:mediaobject-viewport</refname>
-<refpurpose>Construct the “viewport” for media objects</refpurpose>
-<refclass>function</refclass>
-</refnamediv>
-<refsection>
-<title>Description</title>
-<para>If your DocBook markup for media objects includes any of the size or scaling
-adjustment attributes, this function is called to construct the HTML markup that
-implements those adjustments.</para>
-</refsection>
-</refentry>
-
 <refentry xml:id="f_number-separator">
 <?db filename="f_number-separator"?>
 <refmeta>
