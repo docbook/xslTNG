@@ -10,6 +10,58 @@ be of interest to users of the stylesheets. See the commits and pull requests on
 <link xlink:href="https://github.com/docbook/xslTNG/">the repository</link> for
 finer detail.</para>
 
+<section xml:id="r270">
+<info>
+  <title>Changes in version 2.7.0</title>
+  <productnumber>2.7.0</productnumber>
+  <date>2025-11-09</date>
+</info>
+
+<important>
+<para>This release contains <emphasis>backwards incompatible</emphasis> changes in
+the way relative media object widths are computed. If you specify media object
+widths or depths with percentages, take special care to assure you’re getting the
+results you expect. Use <parameter>mediaobject-percentage-of-intrinsic-size</parameter>
+to select backwards compatible behavior.</para>
+</important>
+ 
+<itemizedlist>
+<listitem><para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/657">#657</link>.
+If a resource path appears to be absolute, don’t add the resource base URI to it.
+</para></listitem>
+<listitem><para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/655">#655</link>.
+Avoid duplicate ID values in automatically generated glossaries when
+a document consists of multiple books.
+</para></listitem>
+<listitem><para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/654">#654</link>.
+Corrected the context for abstracts in titlepage templates.
+</para></listitem>
+<listitem><para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/651">#651</link>.
+Avoid a runtime error when using multiple admonition icons.
+</para></listitem>
+<listitem><para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/648">#648</link>.
+When the width or depth of a media object is specified as a percentage, it is
+supposed to be a percentage of the available space. All versions of the
+stylesheets before 2.7.0 incorrectly calculate percentages against the intrinsic
+size of the media object. That has been fixed. Note that this is a backwards
+incompatible change if you specify widths or depths as percentages.
+Use <parameter>mediaobject-percentage-of-intrinsic-size</parameter>
+to select backwards compatible behavior.
+</para></listitem>
+<listitem><para>Fixed <link xlink:href="https://github.com/docbook/xslTNG/issues/651">#647</link>.
+Support language localization with Saxon PE.
+</para></listitem>
+<listitem><para>Improved the fix for <link xlink:href="https://github.com/docbook/xslTNG/issues/581">#581</link>.
+It occurred to me that the templates processing CALS tables do know the width
+of each column. That allows the available space in a CALS table to be computed
+correctly for media objects that specify widths as a percentage. This is also
+a backwards incompatible change. Like the fix for #648, backwards compatible
+behavior can be retained with the
+<parameter>mediaobject-percentage-of-intrinsic-size</parameter> parameter.
+</para></listitem>
+</itemizedlist>
+</section>
+
 <section xml:id="r261">
 <info>
   <title>Changes in version 2.6.1</title>

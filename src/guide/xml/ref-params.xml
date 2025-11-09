@@ -2646,7 +2646,15 @@ See <varname>v:mediaobject-output-base-uri</varname>.
   </refnamediv>
 <refsection>
 <title>Description</title>
-<para>FIXME:</para>
+<para>If <parameter>mediaobject-output-paths</parameter> <glossterm>is true</glossterm>,
+media object locations are assumed to be correct, relative to the resource base URI.
+For example, if the <tag class="attribute">fileref</tag> is <literal>path/to/image.svg</literal>,
+that relative path will be preserved as the relative location against the resource base URI
+in the output.</para>
+<para>If this parameter is false, then the path component of media objects is discarded.
+All media objects are assumed to be in the location identified by the resource base URI.
+In other words, <literal>path/to/image.svg</literal> will be treated as if it was simply
+<literal>image.svg</literal>.</para>
 </refsection>
 </refentry>
 
@@ -6095,6 +6103,9 @@ actual width that will be available when the document is formatted. Most often, 
 results in a calculation against the <parameter>image-nominal-height</parameter> and
 <parameter>image-nominal-width</parameter>.</para>
 </note>
+
+<para>Available widths can sometimes be calculated, for example in CALS tables, but
+depth percentages are always resolved against the nominal height.</para> 
 
 </refsection>
 </refentry>  
