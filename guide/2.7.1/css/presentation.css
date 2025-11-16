@@ -1,0 +1,176 @@
+/* DocBook xslTNG version 2.7.1
+ *
+ * This is presentation.css.
+ *
+ * See https://xsltng.docbook.org/
+ *
+ */
+
+:root {
+    --default-font-size: 26pt;
+    --default-line-height: 1.5;
+}
+
+main {
+    padding-top: 0.5rem;
+    max-width: none;
+    min-width: inherit;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.inset-body > header > h1,
+.inset-body > header > h2,
+.inset-body > header > h3,
+.inset-body > header > h4,
+.inset-body > header > h5 {
+    margin-top: 0;
+}
+
+article {
+    height: 100%;
+}
+
+.inset-wrapper {
+    height: 100%;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 100%;
+}    
+
+/* ============================================================ */
+
+header {
+    text-align: center;
+}
+
+.list-of-titles > .toc {
+    padding-top: 1rem;
+}
+
+.list-of-titles .title {
+    display: none;
+}
+
+/*
+.list-of-titles a,
+.list-of-titles a:visited {
+    text-decoration: none;
+}
+*/
+
+.toc .toc .toc {
+    display: none;
+}
+
+.toc .toc {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toc .toc li:before {
+    content: "⮞ ";
+}
+
+/* ============================================================ */
+
+article {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+nav.bottom .message {
+    padding-left: 1em;
+    float: left;
+    margin-bottom: 0.25em;
+}
+
+nav.bottom .foilnav {
+    padding-right: 1em;
+    float: right;
+    margin-bottom: 0.25em;
+}
+
+.speaker-notes {
+    display: none;
+}
+
+.foilnav {
+    font-size: 18pt;
+}
+
+.foilnav span {
+    padding-left: 0.25em;
+    color: #dddddd;
+}
+
+.foilnav span.live {
+    color: #bbbbbb;
+}
+
+.foilnav a,
+.foilnav a:visited {
+    text-decoration: none;
+}
+
+article .inset {
+    float: right;
+    width: 800px;
+    border: 4px solid #7f7f7f;
+    border-radius: 4px;
+    padding: 1em;
+    transform: scale(0.75);
+    transform-origin: top right;
+}
+
+.speaker-notes-wrapper .speaker-notes {
+    display: block;
+}
+
+/* ============================================================ */
+
+.reveal {
+    display: none;
+}
+
+ul.reveal,
+ol.reveal {
+    display: block;
+}
+
+.reveal > li {
+    display: none;
+}
+
+.reveal > li:first-child {
+    display: list-item;
+}
+
+.inset .reveal {
+    display: inherit;
+    background-color: #ffeeee;
+}
+
+.inset ul.reveal,
+.inset ol.reveal {
+    display: block;
+    background-color: #ffeeee;
+}
+
+.inset .reveal > li {
+    display: list-item;
+    background-color: #ffeeee;
+}
+
+.threedots {
+    font-size: 12pt;
+    color: #999999;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}

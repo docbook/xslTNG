@@ -1,0 +1,151 @@
+/* DocBook xslTNG version 2.7.1, https://xsltng.docbook.org */
+.division body > header .copyright {
+  float: inherit;
+}
+
+@page {
+  @footnote {
+    float: inherit;
+    border-top: thin solid black;
+    border-length: inherit;
+    padding-top: 0.5em;
+  }
+}
+html.book-style.A4 body .list-of-titles {
+  counter-reset: none;
+}
+
+@page A4-book-title-flow-portrait-draft {
+  background-position: top right;
+}
+@page A4-book-flow-portrait-draft:right {
+  background-position: top right;
+}
+@page A4-book-flow-portrait-draft:right:first {
+  background-position: top right;
+}
+@page A4-book-flow-portrait-draft:right:blank {
+  background-position: top right;
+}
+@page A4-book-flow-portrait-draft:left {
+  background-position: top left;
+}
+@page A4-book-flow-portrait-draft:left:first {
+  background-position: top left;
+}
+@page A4-book-flow-portrait-draft:left:blank {
+  background-position: top left;
+}
+@page A4-book-title-flow-landscape-draft {
+  background-position: top right;
+}
+@page A4-book-flow-landscape-draft:right {
+  background-position: top right;
+}
+@page A4-book-flow-landscape-draft:right:first {
+  background-position: top right;
+}
+@page A4-book-flow-landscape-draft:right:blank {
+  background-position: top right;
+}
+@page A4-book-flow-landscape-draft:left {
+  background-position: top left;
+}
+@page A4-book-flow-landscape-draft:left:first {
+  background-position: top left;
+}
+@page A4-book-flow-landscape-draft:left:blank {
+  background-position: top left;
+}
+html.book-style.A5 body .list-of-titles {
+  counter-reset: none;
+}
+
+@page A5-book-title-flow-portrait-draft {
+  background-position: top right;
+}
+@page A5-book-flow-portrait-draft:right {
+  background-position: top right;
+}
+@page A5-book-flow-portrait-draft:right:first {
+  background-position: top right;
+}
+@page A5-book-flow-portrait-draft:right:blank {
+  background-position: top right;
+}
+@page A5-book-flow-portrait-draft:left {
+  background-position: top left;
+}
+@page A5-book-flow-portrait-draft:left:first {
+  background-position: top left;
+}
+@page A5-book-flow-portrait-draft:left:blank {
+  background-position: top left;
+}
+@page A5-book-title-flow-landscape-draft {
+  background-position: top right;
+}
+@page A5-book-flow-landscape-draft:right {
+  background-position: top right;
+}
+@page A5-book-flow-landscape-draft:right:first {
+  background-position: top right;
+}
+@page A5-book-flow-landscape-draft:right:blank {
+  background-position: top right;
+}
+@page A5-book-flow-landscape-draft:left {
+  background-position: top left;
+}
+@page A5-book-flow-landscape-draft:left:first {
+  background-position: top left;
+}
+@page A5-book-flow-landscape-draft:left:blank {
+  background-position: top left;
+}
+html.book-style.Letter body .list-of-titles {
+  counter-reset: none;
+}
+
+@page Letter-book-title-flow-portrait-draft {
+  background-position: top right;
+}
+@page Letter-book-flow-portrait-draft:right {
+  background-position: top right;
+}
+@page Letter-book-flow-portrait-draft:right:first {
+  background-position: top right;
+}
+@page Letter-book-flow-portrait-draft:right:blank {
+  background-position: top right;
+}
+@page Letter-book-flow-portrait-draft:left {
+  background-position: top left;
+}
+@page Letter-book-flow-portrait-draft:left:first {
+  background-position: top left;
+}
+@page Letter-book-flow-portrait-draft:left:blank {
+  background-position: top left;
+}
+@page Letter-book-title-flow-landscape-draft {
+  background-position: top right;
+}
+@page Letter-book-flow-landscape-draft:right {
+  background-position: top right;
+}
+@page Letter-book-flow-landscape-draft:right:first {
+  background-position: top right;
+}
+@page Letter-book-flow-landscape-draft:right:blank {
+  background-position: top right;
+}
+@page Letter-book-flow-landscape-draft:left {
+  background-position: top left;
+}
+@page Letter-book-flow-landscape-draft:left:first {
+  background-position: top left;
+}
+@page Letter-book-flow-landscape-draft:left:blank {
+  background-position: top left;
+}
