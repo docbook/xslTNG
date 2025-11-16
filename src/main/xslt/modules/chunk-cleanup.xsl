@@ -809,7 +809,7 @@
                                        ($header//h:h4)[1],
                                        $header//h:h5)[1]"/>
 
-      <xsl:apply-templates select="$hx/node()" mode="m:chunk-title"/>
+      <xsl:apply-templates select="$hx/node() except $hx/h:script" mode="m:chunk-title"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>
