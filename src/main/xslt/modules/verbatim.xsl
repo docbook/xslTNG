@@ -1380,9 +1380,14 @@
         <xsl:sequence select="@label"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:number count="db:co"
-                    level="any"
-                    format="1"/>
+          <xsl:variable name="from" as="node()+" select="
+              let $n := ancestor-or-self::*[local-name() = $vp:callout-number-from]
+              return
+                if (exists($n)) then
+                  $n
+                else
+                  root()"/>
+        <xsl:number count="db:co" level="any" from="$from" format="1"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>

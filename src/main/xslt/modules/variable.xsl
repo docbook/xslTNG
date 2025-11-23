@@ -7,6 +7,7 @@
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:ls="http://docbook.org/ns/docbook/l10n/source"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map"
                 xmlns:v="http://docbook.org/ns/docbook/variables"
                 xmlns:vp="http://docbook.org/ns/docbook/variables/private"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -37,6 +38,38 @@
 
 <xsl:variable name="v:chunk" as="xs:boolean"
               select="not(normalize-space($chunk) = '')"/>
+  
+<xsl:variable name="vp:callout-number-from" as="xs:string*">
+  <!-- Analyze parameter $callout-number-from and return the element names
+       that belong to the element categories -->
+  <xsl:variable name="categories" as="map(*)" select="
+      map {
+        'books': ('book'),
+        'components': ('acknowledgements', 'appendix', 'article',
+        'bibliography', 'chapter', 'colophon', 'dedication',
+        'glossary', 'partintro', 'preface', 'refentry'),
+        'sections': ('section', 'sect1', 'sect2', 'sect3', 'sect4',
+        'sect5', 'simplesect'),
+        'verbatims': ('computeroutput', 'literallayout', 'programlisting', 'screen',
+        'imageobjectco', 'programlistingco', 'screenco', 'classsynopsis', 'cmdsynopsis', 'constructorsynopsis', 'destructorsynopsis',
+        'enumsynopsis', 'fieldsynopsis', 'funcsynopsis', 'macrosynopsis',
+        'methodsynopsis', 'packagesynopsis', 'synopsis', 'typedefsynopsis', 'unionsynopsis')
+      }"/>
+  
+  <xsl:iterate select="map:keys($categories)">
+    <xsl:param name="patterns" as="xs:string*" select="()"/>
+    <xsl:on-completion>
+      <xsl:sequence select="$patterns" />
+    </xsl:on-completion>
+    <xsl:next-iteration>
+      <xsl:with-param name="patterns" select="
+        if (. = tokenize($callout-number-from, '\s+')) then
+        ($patterns, $categories(.))
+        else
+        $patterns"/>
+    </xsl:next-iteration>
+  </xsl:iterate>
+</xsl:variable>  
 
 <xsl:variable name="vp:section-toc-depth" as="xs:integer">
   <xsl:choose>

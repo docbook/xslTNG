@@ -860,4 +860,26 @@
   </xsl:choose>
 </xsl:function>
   
+<xsl:function name="fp:count-co-number-from" as="element()">
+  <!-- the nearest ancestor of $co where numbering of callouts (re)starts -->
+  <xsl:param name="co" as="element(db:co)"/>
+  <xsl:variable name="synopsis" as="xs:string+" select="
+      ('classsynopsis', 'cmdsynopsis', 'constructorsynopsis', 'destructorsynopsis',
+      'enumsynopsis', 'fieldsynopsis', 'funcsynopsis', 'macrosynopsis',
+      'methodsynopsis', 'packagesynopsis', 'synopsis', 'typedefsynopsis', 'unionsynopsis')"/>
+  <xsl:variable name="verbatim" as="xs:string+" select="
+      ('computeroutput', 'literallayout', 'programlisting', 'screen',
+      'imageobjectco', 'programlistingco', 'screenco')"/>
+  <xsl:variable name="block" as="xs:string+" select="
+      ('section', 'sect1', 'sect2', 'sect3',
+      'sect4', 'sect5', 'refentry','preface','chapter','appendix')"/>
+  <xsl:variable name="tags" as="xs:string+" select="($synopsis, $verbatim, $block)"/>
+  <xsl:variable name="from" as="element()?" select="($co/ancestor::*[local-name() = $tags])[last()]"/>
+  <xsl:choose>
+    <xsl:when test="exists($from)">
+      <xsl:message select="'Count from ' || local-name($from)"></xsl:message>
+    </xsl:when>
+  </xsl:choose>
+  <xsl:sequence select="($from,root($co))[1]"/>
+</xsl:function>  
 </xsl:stylesheet>
