@@ -1,4 +1,4 @@
-/* DocBook xslTNG version 2.7.1
+/* DocBook xslTNG version 2.7.1-SNAPSHOT
  *
  * This is fallback.js providing support for audio/video fallback.
  *
