@@ -774,4 +774,172 @@
   <xsl:number level="single"/>
 </xsl:template>
 
+<!-- ============================================================ -->
+
+<xsl:function name="fp:choose-cos-number-from" as="xs:string">
+  <xsl:param name="co" as="element(db:co)"/>
+
+  <xsl:iterate select="$vp:cos-number-from">
+    <xsl:choose>
+      <xsl:when test=". = 'book' or . = 'set' or position() = last()">
+        <xsl:sequence select="."/>
+        <xsl:break/>
+      </xsl:when>
+      <xsl:when test=". = 'division'
+                      and ($co/ancestor::db:part|$co/ancestor::db:reference)">
+        <xsl:sequence select="."/>
+        <xsl:break/>
+      </xsl:when>
+      <xsl:when test=". = 'component'
+                      and ($co/ancestor::db:preface|$co/ancestor::db:chapter
+                           |$co/ancestor::db:appendix|$co/ancestor::db:partintro
+                           |$co/ancestor::db:dedication|$co/ancestor::db:colophon
+                           |$co/ancestor::db:acknowledgements
+                           |$co/ancestor::db:article|$co/ancestor::db:refentry
+                           |$co/ancestor::db:glossary|$co/ancestor::db:bibliography
+                           |$co/ancestor::db:index|$co/ancestor::db:setindex)">
+        <xsl:sequence select="."/>
+        <xsl:break/>
+      </xsl:when>
+      <xsl:when test=". = 'section'
+                      and ($co/ancestor::db:section|$co/ancestor::db:sect1
+                           |$co/ancestor::db:sect2|$co/ancestor::db:sect3
+                           |$co/ancestor::db:sect4|$co/ancestor::db:sect5)">
+                           |$co/ancestor::db:preface|$co/ancestor::db:chapter
+                           |$co/ancestor::db:appendix|$co/ancestor::db:partintro
+                           |$co/ancestor::db:dedication|$co/ancestor::db:colophon
+                           |$co/ancestor::db:acknowledgements
+                           |$co/ancestor::db:article|$co/ancestor::db:refentry
+                           |$co/ancestor::db:glossary|$co/ancestor::db:bibliography
+                           |$co/ancestor::db:index|$co/ancestor::db:setindex)">
+        <xsl:sequence select="."/>
+        <xsl:break/>
+      </xsl:when>
+      <xsl:when test=". = 'verbatim'
+                      and ($co/ancestor::db:classsynopsis|$co/ancestor::db:cmdsynopsis
+                           |$co/ancestor::db:computeroutput|$co/ancestor::db:constructorsynopsis
+                           |$co/ancestor::db:destructorsynopsis|$co/ancestor::db:enumsynopsis
+                           |$co/ancestor::db:fieldsynopsis|$co/ancestor::db:funcsynopsis
+                           |$co/ancestor::db:imageobjectco|$co/ancestor::db:literallayout
+                           |$co/ancestor::db:macrosynopsis|$co/ancestor::db:methodsynopsis
+                           |$co/ancestor::db:packagesynopsis|$co/ancestor::db:programlistingco
+                           |$co/ancestor::db:programlisting|$co/ancestor::db:screenco
+                           |$co/ancestor::db:screen|$co/ancestor::db:synopsis
+                           |$co/ancestor::db:typedefsynopsis|$co/ancestor::db:unionsynopsis)">
+        <xsl:sequence select="."/>
+        <xsl:break/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:next-iteration/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:iterate>
+</xsl:function>    
+
+<xsl:template match="db:co" mode="mp:co-number">
+  <xsl:variable name="number-from" select="fp:choose-cos-number-from(.)"/>
+  <xsl:choose>
+    <xsl:when test="$number-from = 'set' and ancestor::db:set">
+      <xsl:number count="db:co" from="db:set" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'set'">
+      <xsl:number count="db:co" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'book' and ancestor::db:book">
+      <xsl:number count="db:co" from="db:book" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'book'">
+      <xsl:number count="db:co" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'division'
+                    and (ancestor::db:part|ancestor::db:reference)">
+      <xsl:number count="db:co"
+                  from="db:part|db:reference" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'division'">
+      <xsl:number count="db:co" from="db:book" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'component'
+                    and (ancestor::db:preface|ancestor::db:chapter
+                         |ancestor::db:appendix|ancestor::db:partintro
+                         |ancestor::db:dedication|ancestor::db:colophon
+                         |ancestor::db:acknowledgements
+                         |ancestor::db:article|ancestor::db:refentry
+                         |ancestor::db:glossary|ancestor::db:bibliography
+                         |ancestor::db:index|ancestor::db:setindex)">
+      <xsl:number count="db:co"
+                  from="db:preface|db:chapter|db:appendix|db:partintro
+                        |db:dedication|db:colophon|db:acknowledgements
+                        |db:article|db:refentry
+                        |db:glossary|db:bibliography
+                        |db:index|db:setindex"
+                  level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'component'">
+      <xsl:number count="db:co" from="db:book" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'section'
+                    and (ancestor::db:section|ancestor::db:sect1
+                         |ancestor::db:sect2|ancestor::db:sect3
+                         |ancestor::db:sect4|ancestor::db:sect5)">
+      <xsl:number count="db:co"
+                  from="db:section|db:sect1|db:sect2|db:sect3|db:sect4|db:sect5"
+                  level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'section'
+                    and (ancestor::db:preface|ancestor::db:chapter
+                         |ancestor::db:appendix|ancestor::db:partintro
+                         |ancestor::db:dedication|ancestor::db:colophon
+                         |ancestor::db:acknowledgements
+                         |ancestor::db:article|ancestor::db:refentry
+                         |ancestor::db:glossary|ancestor::db:bibliography
+                         |ancestor::db:index|ancestor::db:setindex)">
+      <xsl:number count="db:co"
+                  from="db:preface|db:chapter|db:appendix|db:partintro
+                        |db:dedication|db:colophon|db:acknowledgements
+                        |db:article|db:refentry
+                        |db:glossary|db:bibliography
+                        |db:index|db:setindex"
+                  level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'section'">
+      <xsl:number count="db:co" from="db:book" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'verbatim'
+                    and (ancestor::db:classsynopsis|ancestor::db:cmdsynopsis
+                         |ancestor::db:computeroutput|ancestor::db:constructorsynopsis
+                         |ancestor::db:destructorsynopsis|ancestor::db:enumsynopsis
+                         |ancestor::db:fieldsynopsis|ancestor::db:funcsynopsis
+                         |ancestor::db:imageobjectco|ancestor::db:literallayout
+                         |ancestor::db:macrosynopsis|ancestor::db:methodsynopsis
+                         |ancestor::db:packagesynopsis|ancestor::db:programlistingco
+                         |ancestor::db:programlisting|ancestor::db:screenco
+                         |ancestor::db:screen|ancestor::db:synopsis
+                         |ancestor::db:typedefsynopsis|ancestor::db:unionsynopsis)">
+      <xsl:number count="db:co"
+                  from="db:classsynopsis|db:cmdsynopsis
+                        |db:computeroutput|db:constructorsynopsis
+                        |db:destructorsynopsis|db:enumsynopsis
+                        |db:fieldsynopsis|db:funcsynopsis
+                        |db:imageobjectco|db:literallayout
+                        |db:macrosynopsis|db:methodsynopsis
+                        |db:packagesynopsis|db:programlistingco
+                        |db:programlisting|db:screenco
+                        |db:screen|db:synopsis
+                        |db:typedefsynopsis|db:unionsynopsis"
+                  level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'verbatim'">
+      <xsl:number count="db:co" from="db:book" level="any"/>
+    </xsl:when>
+    <xsl:when test="$number-from = 'root'">
+      <xsl:number count="db:co" level="any"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message select="'Error: cos-number-from='||$cos-number-from"/>
+      <xsl:sequence select="0"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>

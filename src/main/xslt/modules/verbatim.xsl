@@ -1380,9 +1380,7 @@
         <xsl:sequence select="@label"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:number count="db:co"
-                    level="any"
-                    format="1"/>
+        <xsl:apply-templates select="." mode="mp:co-number"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>

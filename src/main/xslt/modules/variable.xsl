@@ -148,6 +148,9 @@
 <xsl:variable name="vp:user-css-links"
               select="tokenize(normalize-space($user-css-links), '\s+')"/>
 
+<xsl:variable name="vp:cos-number-from"
+              select="tokenize(normalize-space($cos-number-from), '\s+')"/>
+
 <xsl:variable name="v:chunk-renumber-footnotes" as="xs:boolean"
               select="f:is-true($chunk-renumber-footnotes)"/>
 
