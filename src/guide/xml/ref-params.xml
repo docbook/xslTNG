@@ -6110,4 +6110,62 @@ depth percentages are always resolved against the nominal height.</para>
 </refsection>
 </refentry>  
 
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string</type>
+      <varname>cos-number-from</varname>
+      <initializer>'verbatim section'</initializer>
+      <refmiscinfo class="version">2.7.2</refmiscinfo>
+  </fieldsynopsis>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Controls numeration of <tag>co</tag> elements</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>Numeration of <tag>co</tag> elements starts from the most recent node in any of the
+      following categories:</para>
+    <variablelist>
+      <varlistentry>
+        <term>books</term>
+        <listitem>
+          <para>See <xref linkend="numeration" xrefstyle="%label"/></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>components</term>
+        <listitem>
+          <para>See <xref linkend="numeration" xrefstyle="%label"/></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sections</term>
+        <listitem>
+          <para>See <xref linkend="numeration" xrefstyle="%label"/></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>verbatims</term>
+        <listitem>
+          <para>Despite its name, this category incudes not only <literal>computeroutput</literal>,
+                <literal>literallayout</literal>, <literal>programlisting</literal>,
+                <literal>screen</literal>, <literal>imageobjectco</literal>,
+                <literal>programlistingco</literal> and <literal>screenco</literal>, but also
+                <literal>classsynopsis</literal>, <literal>cmdsynopsis</literal>,
+                <literal>constructorsynopsis</literal>, <literal>destructorsynopsis</literal>,
+                <literal>enumsynopsis</literal>, <literal>fieldsynopsis</literal>,
+                <literal>funcsynopsis</literal>, <literal>macrosynopsis</literal>,
+                <literal>methodsynopsis</literal>, <literal>packagesynopsis</literal>,
+                <literal>typedefsynopsis</literal>, <literal>unionsynopsis</literal> and
+                <literal>synopsis</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>With the default value, callout numbers will be counted separately for
+    every verbatim or synopsis element, if any (with sections as a fallback). If
+    you don't want a reset for callouts numeration in the whole book, set this
+    parameter to <literal>books</literal>.</para>
+  </refsection>
+</refentry>
 </reference>
