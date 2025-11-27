@@ -6168,4 +6168,46 @@ depth percentages are always resolved against the nominal height.</para>
     parameter to <literal>books</literal>.</para>
   </refsection>
 </refentry>
+
+<refentry>
+  <refmeta>
+    <fieldsynopsis>
+      <type>xs:string?</type>
+      <varname>label-wrapper</varname>
+      <initializer>()</initializer>
+    </fieldsynopsis>
+    <refmiscinfo class="version">2.7.2</refmiscinfo>
+  </refmeta>
+  <refnamediv>
+    <refpurpose>Additional wrapper around label and separator</refpurpose>
+  </refnamediv>
+<refsection>
+<title>Description</title>
+
+<para>By default, when the stylesheets output a title for a labeled
+element (chapter, section, table, etc.), the label is wrapped in a
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag> with the class “<literal>label</literal>”
+and the separator (if there is one) between the label and the content is wrapped in a
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag> with the class “<literal>sep</literal>”.
+For example:</para>
+
+<programlisting language="xml"
+><![CDATA[<h3><span class="label">3</span><span class="sep">. </span>Section Title</h3>]]></programlisting>
+
+<para>If <parameter>label-wrapper</parameter> is non-empty, then the label <emphasis>and</emphasis>
+the separator are further wrapped in a 
+<tag namespace="http://www.w3.org/1999/xhtml">span</tag> with a class that contains
+the string value of <parameter>label-wrapper</parameter>. For example, if
+<parameter>label-wrapper</parameter> is “<literal>lwrap</literal>”:</para>
+
+<programlisting language="xml"
+><![CDATA[<h3><span class="lwrap">
+  <span class="label">3</span><span class="sep">. </span>
+</span>Section Title</h3>]]></programlisting>
+
+<para>This allows you to group all of the parts together for CSS styling.</para>
+
+</refsection>
+</refentry>
+
 </reference>
