@@ -628,6 +628,9 @@ table {
   margin-right: 2em;
   font-style: italic;
 }
+.mediaobject .caption em, .mediaobject .caption cite {
+  font-style: normal;
+}
 .mediaobject .caption p {
   margin-top: 0;
 }
