@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>Unit test: figure.008</title>
+  <para>This is a test for figure captions.</para>
+
+<figure>
+  <title>The Duck</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="../media/duck.png" align="center" width="50%"/>
+    </imageobject>
+  <caption>
+    <para>This is a <emphasis>duck</emphasis> picture from <citetitle>Some Volume</citetitle>.</para>
+  </caption>
+  </mediaobject>
+  <caption>
+    <para>This is a <emphasis>duck</emphasis> picture from <citetitle>Some Volume</citetitle>.</para>
+  </caption>
+</figure>
+
+</article>
+
