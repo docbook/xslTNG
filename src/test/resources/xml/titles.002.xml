@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.2">
+  <info>
+    <title>Strange section title structure</title>
+    <author>
+      <personname><firstname>Frank</firstname><surname>Steimke</surname></personname>
+    </author>
+    <date>2026-01-01</date>
+  </info>
+  <chapter>
+    <title>The problem</title>
+    <para>I recently received a DocBook file that has obviously been created in another format (MS
+      Word?) and then automatically converted to DocBook. It contained some very strange constructs,
+      such as the following:</para>
+    <section>
+      <title><anchor xml:id="anchor_pmy_rsc_vhc"/>Titles with anchor Elements</title>
+      <para>All <tag>section</tag> elements had the same structure:</para>
+      <itemizedlist>
+        <listitem>
+          <para>None of them had an <code>xml:id</code> attribute</para>
+        </listitem>
+        <listitem>
+          <para>Instead, every <tag>title</tag> had an <tag>anchor</tag> child element, and
+              <emphasis>this</emphasis> had the <code>@xml:id</code> attribute. </para>
+        </listitem>
+      </itemizedlist>
+      <para>So, instead of</para>
+      <programlisting>&lt;section xml:id='the-id'>
+  &lt;title>The title&lt;/title>
+&lt;/section</programlisting>
+      <para>all sections looked like</para>
+      <programlisting>&lt;section>
+  &lt;title>&lt;anchor xml:id='the-id'/>The title&lt;/title>
+&lt;/section</programlisting>
+      <para>This is absolutely not how I would author my DocBook Dokuments. But it is valid, so
+        xslTNG Stylesheet should transform it into valid HTML. Release 2.7.1, however, copies the
+          <tag>anchor</tag> Element as part of the <tag>title</tag> into the table of content, which
+        leads to <quote>duplicate ID</quote> Errors. In the ToC you will find something like
+        this:</para>
+      <programlisting>&lt;li>
+  &lt;a href="#R_ch1_s1">
+    &lt;span class="label">1&lt;/span>
+    &lt;span class="sep">. &lt;/span>
+    <emphasis role="bold">&lt;span id="anchor_pmy_rsc_vhc" class="anchor"/></emphasis>
+Titles with anchor Elements
+  &lt;/a>
+&lt;/li></programlisting>
+
+    </section>
+  </chapter>
+  <chapter xml:id="chapter_e3b_2wc_vhc">
+    <title>The solution</title>
+    <para>I wrote a Schematron schema which detected the <code>section/title/anchor</code>
+      structure, and a Schematron Quick fix to convert it into something sensible. The Paper
+          <quote><link xlink:href="https://markupuk.org/2019/webhelp/index.html#ar09.html">Taking
+          Schematron QuickFix To The Next Level</link></quote> from
+          <personname><firstname>Octavian</firstname><surname>Nadolu</surname>
+      </personname> from MarkupUK 2019 was a great help.</para>
+    <para>And I reported this issue together with a PR to Norm.</para>
+  </chapter>
+</book>

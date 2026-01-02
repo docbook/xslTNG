@@ -864,7 +864,7 @@
       <xsl:variable name="title" as="item()*">
         <xsl:apply-templates/>
       </xsl:variable>
-      <xsl:apply-templates select="$title" mode="mp:strip-links"/>
+        <xsl:apply-templates select="$title" mode="mp:strip-links-and-ids"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -872,22 +872,22 @@
 <!-- ============================================================ -->
 
 <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
-              match="h:db-footnote|h:db-annotation|h:span[contains-token(@class,'indexterm')]"
-              mode="mp:strip-links"/>
+              match="h:db-footnote|h:db-annotation|h:span[tokenize(@class,'\s')=('indexterm','anchor')]"
+              mode="mp:strip-links-and-ids"/>
 
 <xsl:template xmlns:h="http://www.w3.org/1999/xhtml"
-              match="h:a" mode="mp:strip-links">
+              match="h:a" mode="mp:strip-links-and-ids">
   <xsl:apply-templates/>
-</xsl:template>
+</xsl:template>  
 
-<xsl:template match="element()" mode="mp:strip-links">
+<xsl:template match="element()" mode="mp:strip-links-and-ids">
   <xsl:copy>
-    <xsl:apply-templates select="@*,node()" mode="mp:strip-links"/>
+    <xsl:apply-templates select="@* except @id,node()" mode="mp:strip-links-and-ids"/>
   </xsl:copy>
 </xsl:template>
 
 <xsl:template match="attribute()|text()|comment()|processing-instruction()"
-              mode="mp:strip-links">
+              mode="mp:strip-links-and-ids">
   <xsl:copy/>
 </xsl:template>
 
