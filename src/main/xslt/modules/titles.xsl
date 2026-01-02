@@ -4,6 +4,7 @@
                 xmlns:dbe="http://docbook.org/ns/docbook/errors"
                 xmlns:f="http://docbook.org/ns/docbook/functions"
                 xmlns:fp="http://docbook.org/ns/docbook/functions/private"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 xmlns:l="http://docbook.org/ns/docbook/l10n"
                 xmlns:lt="http://docbook.org/ns/docbook/l10n/templates"
                 xmlns:m="http://docbook.org/ns/docbook/modes"
@@ -219,11 +220,48 @@
     </script>
   </xsl:if>
 
-  <xsl:apply-templates select="$template" mode="mp:localization">
-    <xsl:with-param name="context" select="."/>
-    <xsl:with-param name="label" select="$label"/>
-    <xsl:with-param name="content" select="$title"/>
-  </xsl:apply-templates>
+  <xsl:choose>
+    <xsl:when test="empty($label-wrapper)">
+      <xsl:apply-templates select="$template" mode="mp:localization">
+        <xsl:with-param name="context" select="."/>
+        <xsl:with-param name="label" select="$label"/>
+        <xsl:with-param name="content" select="$title"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="headline" as="node()*">
+        <xsl:apply-templates select="$template" mode="mp:localization">
+          <xsl:with-param name="context" select="."/>
+          <xsl:with-param name="label" select="$label"/>
+          <xsl:with-param name="content" select="$title"/>
+        </xsl:apply-templates>
+      </xsl:variable>
+
+      <xsl:variable name="label" select="$headline/self::h:span[contains-token(@class, 'label')]"/>
+      <xsl:variable name="sep" select="$headline/self::h:span[contains-token(@class, 'sep')]"/>
+
+      <xsl:choose>
+        <xsl:when test="empty($label) or empty($sep)">
+          <xsl:sequence select="$headline"/>
+        </xsl:when>
+        <xsl:when test="count($label) != 1 or count($sep) != 1">
+          <xsl:sequence select="$headline"/>
+        </xsl:when>
+        <xsl:when test="$label &lt;&lt; $sep">
+          <span class="{$label-wrapper}">
+            <xsl:sequence select="$headline[. is $sep or . &lt;&lt; $sep]"/>
+          </span>
+          <xsl:sequence select="$headline[. &gt;&gt; $sep]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="$headline[. &lt;&lt; $sep]"/>
+          <span class="${label-wrapper}">
+            <xsl:sequence select="$headline[. is $sep or . &gt;&gt; $sep]"/>
+          </span>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ============================================================ -->

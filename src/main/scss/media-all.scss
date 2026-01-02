@@ -646,6 +646,10 @@ table {
         margin-right: 2em;
         font-style: italic;
 
+        em, cite {
+            font-style: normal;
+        }
+
         p {
             margin-top: 0;
         }
