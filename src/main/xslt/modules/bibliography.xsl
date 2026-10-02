@@ -43,7 +43,7 @@
   <p>
     <xsl:apply-templates select="." mode="m:attributes"/>
     <xsl:choose>
-      <xsl:when test="@xml:id and not(child::*[1]/self::db:abbrev)">
+      <xsl:when test="@xml:id and not(*[1]/self::db:abbrev)">
         <xsl:sequence select="'[' || @xml:id || '] '"/>
         <xsl:apply-templates mode="m:bibliomixed"/>
       </xsl:when>

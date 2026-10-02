@@ -491,7 +491,7 @@
 
   <xsl:if test="$target[1]/@db-chunk and count($target) != 1">
     <xsl:choose>
-      <xsl:when test="count($target) = 0">
+      <xsl:when test="empty($target)">
         <xsl:if test="$message-level gt 0">
           <xsl:message select="'Error: cannot find ' || $id || ' in document'"/>
         </xsl:if>
