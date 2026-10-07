@@ -1260,7 +1260,7 @@
   <xsl:variable name="coords"
                 select="tokenize(normalize-space(@coords))"/>
 
-  <xsl:if test="count($coords) lt 1 or count($coords) gt 2">
+  <xsl:if test="empty($coords) or count($coords) gt 2">
     <xsl:sequence select="error($dbe:INVALID-INJECT, 
                                 'Invalid callout area: unparseable coordinates')"/>
   </xsl:if>

@@ -594,7 +594,7 @@
       <div>
         <xsl:apply-templates select="." mode="m:attributes"/>
         <xsl:apply-templates select="." mode="m:generate-titlepage"/>
-        <xsl:apply-templates select="child::* except (db:step|db:result)"/>
+        <xsl:apply-templates select="* except (db:step|db:result)"/>
         <ol class="{local-name(.)}" type="1">
           <xsl:apply-templates select="db:step"/>
         </ol>

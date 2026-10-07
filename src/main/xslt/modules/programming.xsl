@@ -867,7 +867,7 @@
           <xsl:with-param name="indent" select="$indent || f:spaces($line)"/>
         </xsl:apply-templates>
       </xsl:when>
-      <xsl:when test="count(db:methodparam) eq 0">
+      <xsl:when test="empty(db:methodparam)">
         <xsl:text>)</xsl:text>
         <xsl:sequence select="$funcsynopsis-trailing-punctuation"/>
         <xsl:text>&#10;</xsl:text>
